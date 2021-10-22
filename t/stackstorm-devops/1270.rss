@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>#stackstorm#devops</title>
+    <link>https://forum.stackstorm.com/t/stackstorm-devops/1270</link>
+    <description>Hi All, 
+
+I am new to this tool and i want to understand the end to end workflow , please help me with some DOC or videos which can be useful for me.
+
+Thanks in advance.</description>
+    
+    <lastBuildDate>Fri, 12 Jun 2020 14:48:25 +0000</lastBuildDate>
+    <category>API</category>
+    <atom:link href="https://forum.stackstorm.com/t/stackstorm-devops/1270.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>#stackstorm#devops</title>
+        <dc:creator><![CDATA[armab]]></dc:creator>
+        <description><![CDATA[
+            <p><a class="mention" href="https://github.com/nmaludy">@nmaludy</a> Love the tutorial part!</p>
+          <p><a href="https://forum.stackstorm.com/t/stackstorm-devops/1270/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/stackstorm-devops/1270/3</link>
+        <pubDate>Fri, 12 Jun 2020 14:48:25 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1270-3</guid>
+        <source url="https://forum.stackstorm.com/t/stackstorm-devops/1270.rss">#stackstorm#devops</source>
+      </item>
+      <item>
+        <title>#stackstorm#devops</title>
+        <dc:creator><![CDATA[nmaludy]]></dc:creator>
+        <description><![CDATA[
+            <p>Anushree, the best place to start is <a href="https://docs.stackstorm.com">https://docs.stackstorm.com</a></p>
+<p>The easiest install options are the “one liner” <a href="https://docs.stackstorm.com/install/index.html#ref-one-line-install" class="inline-onebox">Installation — StackStorm 3.2.0 documentation</a>  and Vagrant install <a href="https://docs.stackstorm.com/install/vagrant.html" class="inline-onebox">Vagrant &amp; Virtual Appliance — StackStorm 3.2.0 documentation</a></p>
+<p>Work your way down on the left hand side, it is organized in logical order of how you should progress.</p>
+<p>Additionally i have a tutorial that i wrote (do this after you go through <a href="http://docs.stackstorm.com">docs.stackstorm.com</a>). <a href="https://github.com/EncoreTechnologies/stackstorm-tutorial" class="inline-onebox">GitHub - EncoreTechnologies/stackstorm-tutorial: Hands-on tutorial for getting started with StackStorm</a></p>
+          <p><a href="https://forum.stackstorm.com/t/stackstorm-devops/1270/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/stackstorm-devops/1270/2</link>
+        <pubDate>Fri, 12 Jun 2020 14:22:26 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1270-2</guid>
+        <source url="https://forum.stackstorm.com/t/stackstorm-devops/1270.rss">#stackstorm#devops</source>
+      </item>
+      <item>
+        <title>#stackstorm#devops</title>
+        <dc:creator><![CDATA[Anushree]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi All,</p>
+<p>I am new to this tool and i want to understand the end to end workflow , please help me with some DOC or videos which can be useful for me.</p>
+<p>Thanks in advance.</p>
+          <p><a href="https://forum.stackstorm.com/t/stackstorm-devops/1270/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/stackstorm-devops/1270/1</link>
+        <pubDate>Fri, 12 Jun 2020 14:10:20 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1270-1</guid>
+        <source url="https://forum.stackstorm.com/t/stackstorm-devops/1270.rss">#stackstorm#devops</source>
+      </item>
+  </channel>
+</rss>

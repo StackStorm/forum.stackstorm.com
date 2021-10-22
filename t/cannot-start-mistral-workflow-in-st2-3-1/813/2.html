@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en" class="desktop-view not-mobile-device text-size-normal anon">
+<head>
+    <meta charset="utf-8">
+    <title>Cannot start mistral workflow in ST2 3.1 - #2 by jinping - Mistral - StackStorm Support (ARCHIVED)</title>
+    <meta name="description" content="We upgraded to st2 3.1 and we cannot execute mistral workflows. The actions work fine. The logs show me this error: 
+id: 5d66f520daf15a00f9054c98 
+action.ref: audit_components.generic_template_audit_workflow 
+parameters: &amp;hellip;">
+    <meta name="discourse_theme_id" content="2">
+    <meta name="discourse_current_homepage" content="latest">
+    <meta name="generator"
+          content="Discourse 2.8.0.beta6 - https://github.com/discourse/discourse version a1daf9fe53a66e2d2cdf9757ab4812fb9a2b2787">
+    <link rel="icon" type="image/png"
+          href="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/379ced12f8326d58f1b3d2b3ff652f883e141f6a_2_32x32.PNG">
+    <link rel="apple-touch-icon" type="image/png"
+          href="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/379ced12f8326d58f1b3d2b3ff652f883e141f6a_2_180x180.PNG">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <link rel="canonical" href="../813.html"/>
+    <script type="application/ld+json">{
+        "@context": "http://schema.org",
+        "@type": "WebSite",
+        "url": "https://forum.stackstorm.com",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://forum.stackstorm.com/search?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }
+    </script>
+    <link rel="search" type="application/opensearchdescription+xml" href="../../../opensearch.xml"
+          title="StackStorm Support (ARCHIVED) Search">
+
+
+    <link href="/../../stylesheets/color_definitions_base__2_3c5eec1ecf192052ea70b4afdab57a62bccc0604.css?__ws=forum.stackstorm.com"
+          media="all" rel="stylesheet" class="light-scheme"/>
+
+    <link href="/../../stylesheets/desktop_b2f2968742d41481357e0df259b51ce29f72481a.css?__ws=forum.stackstorm.com"
+          media="all" rel="stylesheet" data-target="desktop"/>
+
+
+    <meta name="fragment" content="!">
+
+
+    <link id="manifest-link" rel="manifest" href="../../../manifest.webmanifest" crossorigin="use-credentials">
+
+
+    <link rel="alternate" type="application/rss+xml"
+          title="RSS feed of &#39;Cannot start mistral workflow in ST2 3.1&#39;" href="../813.rss"/>
+    <meta property="og:site_name" content="StackStorm Support (ARCHIVED)"/>
+    <meta property="og:type" content="website"/>
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:image"
+          content="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/891f00fbdb31fecb5bd9dab30c186d2fed0091ca.jpeg"/>
+    <meta property="og:image"
+          content="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/891f00fbdb31fecb5bd9dab30c186d2fed0091ca.jpeg"/>
+    <meta property="og:url" content="https://forum.stackstorm.com/t/cannot-start-mistral-workflow-in-st2-3-1/813/2"/>
+    <meta name="twitter:url" content="https://forum.stackstorm.com/t/cannot-start-mistral-workflow-in-st2-3-1/813/2"/>
+    <meta property="og:title" content="Cannot start mistral workflow in ST2 3.1"/>
+    <meta name="twitter:title" content="Cannot start mistral workflow in ST2 3.1"/>
+    <meta property="og:description"
+          content="Please check Unable to run Mistral workflows and it has some steps to fix psql and some useful links related to debug."/>
+    <meta name="twitter:description"
+          content="Please check Unable to run Mistral workflows and it has some steps to fix psql and some useful links related to debug."/>
+    <meta property="article:published_time" content="2019-08-28T23:16:12+00:00"/>
+    <meta property="og:ignore_canonical" content="true"/>
+
+
+    <script type="application/ld+json">{
+        "@context": "http://schema.org",
+        "@type": "QAPage",
+        "name": "Cannot start mistral workflow in ST2 3.1",
+        "mainEntity": {
+            "@type": "Question",
+            "name": "Cannot start mistral workflow in ST2 3.1",
+            "text": "We upgraded to st2 3.1 and we cannot execute mistral workflows. The actions work fine. The logs show me this error:\n\nid: 5d66f520daf15a00f9054c98\n\naction.ref: audit_components.generic_template_audit_workflow\n\nparameters:\n\naudit_name: SNMP_NX7000\n\nnode_names:\n\nfoo\n\nstatus: failed (787s elapsed)\n\nsta&hellip;",
+            "upvoteCount": 0,
+            "answerCount": 1,
+            "dateCreated": "2019-08-28T22:21:38.797Z",
+            "author": {
+                "@type": "Person",
+                "name": "Techdiverdown"
+            },
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "What was the old st2 version before upgrading to latest v3.1?\n\nDid you follow Upgrade Procedure instructions? <a href="
+                https://forum.stackstorm.com/t/cannot-start-mistral-workflow-in-st2-3-1/813/\&quot;https://docs.stackstorm.com/install/upgrades.html#general-upgrade-procedure\"" class=\"inline-onebox\" rel=\"nofollow noopener\">Upgrades — StackStorm 3.1.0 documentation<\/a>\n\nand Upgrade Notes: <a href="https://forum.stackstorm.com/t/cannot-start-mistral-workflow-in-st2-3-1/813/\&quot;https://docs.stackstorm.com/upgrade_notes.html\&quot;" class=\"inline-onebox\" rel=\"nofollow noopener\">Upgrade Notes — StackStorm 3.1.0 documentation<\/a>","upvoteCount":0,"dateCreated":"2019-08-29T13:52:43.530Z","url":"https://forum.stackstorm.com/t/cannot-start-mistral-workflow-in-st2-3-1/813/3","author":{"@type":"Person","name":"armab"}}}}
+    </script>
+
+    <meta id="data-discourse-setup" data-cdn="https://sjc6.discourse-cdn.com/standard10"
+          data-base-url="https://forum.stackstorm.com" data-base-uri="" data-environment="production"
+          data-letter-avatar-version="5_8fec8e114563efeaf5265573e510f08e"
+          data-markdown-it-url="https://aws1.discourse-cdn.com/standard10/assets/markdown-it-bundle-31e9a9c535ca1801c26da78b0ff465821751a98f921c5cdc5457d7e5a69e9748.js"
+          data-service-worker-url="service-worker.js" data-default-locale="en"
+          data-asset-version="597e36448c9b51d0fa3b7e43ec1fd6d5" data-disable-custom-css="false"
+          data-highlight-js-path="/highlight-js/forum.stackstorm.com/ac0f4aa001e1343346941766d72e0c1ae330832b.js"
+          data-svg-sprite-path="/svg-sprite/forum.stackstorm.com/svg-2-c2ad434b1e06079c7e282124aed9938dc95b83ea.js"
+          data-enable-js-error-reporting="true" data-color-scheme-is-dark="false" data-user-dark-scheme-id="-1"
+          data-s3-cdn="https://aws1.discourse-cdn.com/standard10"
+          data-s3-base-url="//discourse-cloud-file-uploads.s3.dualstack.us-west-2.amazonaws.com/standard10">
+
+    <meta name="discourse/config/environment"
+          content="%7B%22modulePrefix%22%3A%22discourse%22%2C%22environment%22%3A%22production%22%2C%22rootURL%22%3A%22%22%2C%22locationType%22%3A%22auto%22%2C%22historySupportMiddleware%22%3Afalse%2C%22EmberENV%22%3A%7B%22FEATURES%22%3A%7B%7D%2C%22EXTEND_PROTOTYPES%22%3A%7B%22Date%22%3Afalse%7D%2C%22_APPLICATION_TEMPLATE_WRAPPER%22%3Afalse%2C%22_DEFAULT_ASYNC_OBSERVERS%22%3Atrue%2C%22_JQUERY_INTEGRATION%22%3Atrue%7D%2C%22APP%22%3A%7B%22name%22%3A%22discourse%22%2C%22version%22%3A%222.8.0.beta6%20a1daf9fe53a66e2d2cdf9757ab4812fb9a2b2787%22%2C%22exportApplicationGlobal%22%3Atrue%7D%7D"/>
+</head>
+
+<body class="">
+
+
+<header class="d-header">
+    <div class="wrap">
+        <div class="contents clearfix">
+            <div class="title">
+                <a href="../../../index.html">
+                    <picture>
+                        <img src="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png"
+                             alt="StackStorm Support (ARCHIVED)" id="site-logo"/>
+                    </picture>
+                </a>
+            </div>
+            <div class="panel clearfix">
+            <span class='header-buttons'>
+                <a href="../../../signup.html" class='btn btn-primary btn-small sign-up-button'>Sign Up</a>
+              <a href="../../../login.html" class='btn btn-primary btn-small login-button btn-icon-text'><svg
+                      class="fa d-icon svg-icon svg-node" aria-hidden="true"><svg id="user" viewBox="0 0 448 512">
+    <path d="M224 256c70.7 0 128-57.3 128-128S294.7 0 224 0 96 57.3 96 128s57.3 128 128 128zm89.6 32h-16.7c-22.2 10.2-46.9 16-72.9 16s-50.6-5.8-72.9-16h-16.7C60.2 288 0 348.2 0 422.4V464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48v-41.6c0-74.2-60.2-134.4-134.4-134.4z"/>
+  </svg></svg>
+Log In</a>
+            </span>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div id="main-outlet" class="wrap" role="main">
+    <!-- preload-content: -->
+
+    <!-- EOF START -->
+    <div class="container" id="main-container">
+        <div id="ember11" class="ember-view"></div>
+        <div id="ember12" class="controls ember-view"><!----></div>
+        <div id="ember13" class="ember-view"><!----></div>
+        <div id="ember14" class="ember-view">
+            <div class="row">
+                <div id="global-notice-alert-read-only" class="alert alert-info alert-read-only">
+                    <!----> <span class="text">This site is in read only mode. Please continue to browse, but replying, likes, and other actions are disabled for now.</span>
+
+                    <!---->    </div>
+            </div>
+            <div class="row">
+                <div id="global-notice-alert-global-notice" class="alert alert-info alert-global-notice">
+                    <!----> <span class="text"><h3>⚠️ We've moved!</h3>  <p> Hi there!<br><br> To reduce project dependency on 3rd party paid services the StackStorm TSC has decided to move the Q/A from this forum to <a
+                        href="https://github.com/StackStorm/st2/discussions">Github Discussions</a>. This will make user experience better integrated with the native Github flow, as well as the questions closer to the community where they can provide answers. </p>  <p> Use 🔗 <b><a
+                        href="https://github.com/StackStorm/st2/discussions" class="active">Github Discussions</a></b> to ask your questions. </p></span>
+
+                    <!---->    </div>
+            </div>
+        </div>
+        <div id="ember17" class="hidden create-topics-notice ember-view"><!----></div>
+        <!---->
+    </div>
+    <!-- EOF END -->
+    <div id="topic-title">
+        <h1>
+            <a href="../813.html">Cannot start mistral workflow in ST2 3.1</a>
+        </h1>
+
+        <div class="topic-category" itemscope itemtype="http://schema.org/BreadcrumbList">
+          <span itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a href="../../../c/workflow-related-issues/15" class="badge-wrapper bullet" itemprop="item">
+              <span class='badge-category-bg' style='background-color: #25AAE2'></span>
+              <span class='badge-category clear-badge'>
+                <span class='category-name' itemprop='name'>Workflows</span>
+              </span>
+            </a>
+            <meta itemprop="position" content="1"/>
+          </span>
+            <span itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a href="../../../c/workflow-related-issues/mistral-related-issues/16" class="badge-wrapper bullet"
+               itemprop="item">
+              <span class='badge-category-bg' style='background-color: #652D90'></span>
+              <span class='badge-category clear-badge'>
+                <span class='category-name' itemprop='name'>Mistral</span>
+              </span>
+            </a>
+            <meta itemprop="position" content="2"/>
+          </span>
+        </div>
+
+        <div class="topic-category">
+            <div class='discourse-tags list-tags'>
+                <a href='../../../tag/mistral' class='discourse-tag' rel="tag">mistral</a>,
+                <a href='../../../tag/workflows' class='discourse-tag' rel="tag">workflows</a>
+            </div>
+        </div>
+    </div>
+
+
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/techdiverdown'><span
+                    itemprop='name'>techdiverdown</span></a>
+            (Techdiverdown)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="../813.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2019-08-28T22:21:38Z' class='post-time'>
+                August 28, 2019, 10:21pm
+              </time>
+              <meta itemprop='dateModified' content='2019-08-28T22:21:38Z'>
+          <span itemprop='position'>#1</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>We upgraded to st2 3.1 and we cannot execute mistral workflows. The actions work fine. The logs show me
+                this error:</p>
+            <p>id: 5d66f520daf15a00f9054c98<br>
+                action.ref: audit_components.generic_template_audit_workflow<br>
+                parameters:<br>
+                audit_name: SNMP_NX7000<br>
+                node_names:</p>
+            <ul>
+                <li>foo<br>
+                    status: failed (787s elapsed)<br>
+                    start_timestamp: Wed, 28 Aug 2019 21:41:52 UTC<br>
+                    end_timestamp: Wed, 28 Aug 2019 21:54:59 UTC<br>
+                    result:<br>
+                    error: (‘Connection aborted.’, BadStatusLine("’’",))<br>
+                    traceback: " File “/opt/stackstorm/st2/lib/python2.7/site-packages/st2actions/container/base.py”,
+                    line 127, in _do_run<br>
+                    (status, result, context) = runner.run(action_params)<br>
+                    File “/opt/stackstorm/st2/lib/python2.7/site-packages/retrying.py”, line 49, in wrapped_f<br>
+                    return Retrying(*dargs, **dkw).call(f, *args, **kw)<br>
+                    File “/opt/stackstorm/st2/lib/python2.7/site-packages/retrying.py”, line 212, in call<br>
+                    raise attempt.get()<br>
+                    File “/opt/stackstorm/st2/lib/python2.7/site-packages/retrying.py”, line 247, in get<br>
+                    six.reraise(self.value[0], self.value[1], self.value[2])<br>
+                    File “/opt/stackstorm/st2/lib/python2.7/site-packages/retrying.py”, line 200, in call<br>
+                    attempt = Attempt(fn(*args, **kwargs), attempt_number, False)<br>
+                    File “/opt/stackstorm/st2/lib/python2.7/site-packages/mistral_v2/mistral_v2.py”, line 251, in
+                    run<br>
+                    result = self.start_workflow(action_parameters=action_parameters)<br>
+                    File “/opt/stackstorm/st2/lib/python2.7/site-packages/mistral_v2/mistral_v2.py”, line 288, in
+                    start_workflow<br>
+                    **options)<br>
+                    File “/opt/stackstorm/st2/lib/python2.7/site-packages/mistralclient/api/v2/executions.py”, line 65,
+                    in create<br>
+                    return self._create(’/executions’, data)<br>
+                    File “/opt/stackstorm/st2/lib/python2.7/site-packages/mistralclient/api/base.py”, line 95, in
+                    _create<br>
+                    resp = self.http_client.post(url, data)<br>
+                    File “/opt/stackstorm/st2/lib/python2.7/site-packages/mistralclient/api/httpclient.py”, line 54, in
+                    decorator<br>
+                    resp = func(self, *args, **kwargs)<br>
+                    File “/opt/stackstorm/st2/lib/python2.7/site-packages/mistralclient/api/httpclient.py”, line 120, in
+                    post<br>
+                    return self.session.post(self.base_url + url, data=body, **options)<br>
+                    File “/opt/stackstorm/st2/lib/python2.7/site-packages/requests/sessions.py”, line 581, in post<br>
+                    return self.request(‘POST’, url, data=data, json=json, **kwargs)<br>
+                    File “/opt/stackstorm/st2/lib/python2.7/site-packages/requests/sessions.py”, line 533, in
+                    request<br>
+                    resp = self.send(prep, **send_kwargs)<br>
+                    File “/opt/stackstorm/st2/lib/python2.7/site-packages/requests/sessions.py”, line 646, in send<br>
+                    r = adapter.send(request, **kwargs)<br>
+                    File “/opt/stackstorm/st2/lib/python2.7/site-packages/requests/adapters.py”, line 498, in send<br>
+                    raise ConnectionError(err, request=request)
+                </li>
+            </ul>
+        </div>
+
+        <meta itemprop='headline' content='Cannot start mistral workflow in ST2 3.1'>
+        <meta itemprop='keywords' content='mistral, workflows'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/jinping'><span itemprop='name'>jinping</span></a>
+            (Jinping)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="../813.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2019-08-28T23:16:12Z' class='post-time'>
+                August 28, 2019, 11:16pm
+              </time>
+              <meta itemprop='dateModified' content='2019-08-28T23:16:12Z'>
+          <span itemprop='position'>#2</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Please check <a href="../../unable-to-run-mistral-workflows/328.html" class="inline-onebox">Unable to run
+                Mistral workflows</a> and it has some steps to fix psql and some useful links related to debug.</p>
+        </div>
+
+        <meta itemprop='headline' content='Cannot start mistral workflow in ST2 3.1'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+            <span class='post-likes'>1 Like</span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/armab'><span itemprop='name'>armab</span></a>
+            (Eugen Cusmaunsa)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="../813.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2019-08-29T13:52:43Z' class='post-time'>
+                August 29, 2019,  1:52pm
+              </time>
+              <meta itemprop='dateModified' content='2019-08-29T13:52:43Z'>
+          <span itemprop='position'>#3</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>What was the old st2 version before upgrading to latest <code>v3.1</code>?</p>
+            <p>Did you follow Upgrade Procedure instructions? <a
+                    href="https://docs.stackstorm.com/install/upgrades.html#general-upgrade-procedure"
+                    class="inline-onebox" rel="nofollow noopener">Upgrades — StackStorm 3.1.0 documentation</a><br>
+                and Upgrade Notes: <a href="https://docs.stackstorm.com/upgrade_notes.html" class="inline-onebox"
+                                      rel="nofollow noopener">Upgrade Notes — StackStorm 3.1.0 documentation</a></p>
+        </div>
+
+        <meta itemprop='headline' content='Cannot start mistral workflow in ST2 3.1'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/techdiverdown'><span
+                    itemprop='name'>techdiverdown</span></a>
+            (Techdiverdown)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="../813.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2019-08-29T14:47:20Z' class='post-time'>
+                August 29, 2019,  2:47pm
+              </time>
+              <meta itemprop='dateModified' content='2019-08-29T14:47:20Z'>
+          <span itemprop='position'>#4</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>We went from 2.9 to 3.1.</p>
+            <p>A few more important facts. We are running in K8s, and we have deployed successfully to a DEV and INT
+                environment, using same exact procedure (Helm Charts, etc). Both previous env’s worked without issue.
+                When we deployed to our PROD env, that’s where things went south. Last night i followed the procedure
+                here: <a href="https://docs.stackstorm.com/install/upgrades.html#general-upgrade-procedure"
+                         class="inline-onebox" rel="nofollow noopener">Upgrades — StackStorm 3.1.0 documentation</a><br>
+                bringing down all ST2 services and running this:<br>
+                /opt/stackstorm/mistral/bin/mistral-db-manage --config-file /etc/mistral/mistral.conf upgrade head<br>
+                /opt/stackstorm/mistral/bin/mistral-db-manage --config-file /etc/mistral/mistral.conf populate | grep -v
+                -e openstack -e keystone -e ironicclient</p>
+            <p>Then st2ctl reload, to no avail. I will try to get some better error messages this morning.</p>
+        </div>
+
+        <meta itemprop='headline' content='Cannot start mistral workflow in ST2 3.1'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+
+
+    <!-- :preload-content -->
+    <footer class="noscript-footer-nav">
+        <nav itemscope itemtype='http://schema.org/SiteNavigationElement'>
+            <a href='../../../index.html'>Home</a>
+            <a href="../../../categories.html">Categories</a>
+            <a href="https://forum.stackstorm.com/guidelines">FAQ/Guidelines</a>
+            <a href="../../../tos.html">Terms of Service</a>
+            <a href="../../../privacy.html">Privacy Policy</a>
+        </nav>
+    </footer>
+</div>
+
+<footer id='noscript-footer'>
+    <p>Powered by <a href="https://www.discourse.org">Discourse</a>, best viewed with JavaScript enabled</p>
+</footer>
+
+
+<section id='main'>
+</section>
+
+<form id='hidden-login-form' method="post" action="../../../login.html" style="display: none;">
+    <input name="username" type="text" id="signin_username">
+    <input name="password" type="password" id="signin_password">
+    <input name="redirect" type="hidden">
+    <input type="submit" id="signin-button" value="Log In">
+</form>
+
+
+</body>
+</html>

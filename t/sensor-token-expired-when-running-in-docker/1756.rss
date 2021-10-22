@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Sensor token expired when running in Docker</title>
+    <link>https://forum.stackstorm.com/t/sensor-token-expired-when-running-in-docker/1756</link>
+    <description>I am running stackstorm in docker [https://github.com/StackStorm/st2-docker](https://github.com/StackStorm/st2-docker) using the st2 provided docker build.  
+
+My sensor is periodically reading/writing values to the stackstorm datastore. 
+The token is expiring and the program is unable to continue. 
+
+I solved this problem in a standard stackstorm ubuntu installation by having the sensor exit(1) and then stackstorm would automatically restart the sensor. This fix however is not working in docker. 
+
+```
+2021-06-30 01:25:02,500 140510655553608 ERROR oc_sensor [-] [qa8 - Sensor]  Failed to connect to datastore. 401 Client Error: Unauthorized
+MESSAGE: Unauthorized - Token has expired. for url: http://127.0.0.1:9101/v1/keys/qa8:last_poll_timestamp
+2021-06-30 01:25:02,505 140510655553608 ERROR oc_sensor [-] [qa8 - Sensor]  Failed to connect to datastore. 401 Client Error: Unauthorized
+MESSAGE: Unauthorized - Token has expired. for url: http://127.0.0.1:9101/v1/keys/qa8:last_poll_timestamp
+2021-06-30 01:25:02,511 140510655553608 ERROR oc_sensor [-] [qa8 - Sensor]  Failed to connect to datastore. 401 Client Error: Unauthorized
+MESSAGE: Unauthorized - Token has expired. for url: http://127.0.0.1:9101/v1/keys/qa8:last_poll_timestamp
+```</description>
+    
+    <lastBuildDate>Wed, 30 Jun 2021 21:08:24 +0000</lastBuildDate>
+    <category>API</category>
+    <atom:link href="https://forum.stackstorm.com/t/sensor-token-expired-when-running-in-docker/1756.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Sensor token expired when running in Docker</title>
+        <dc:creator><![CDATA[v.sim]]></dc:creator>
+        <description><![CDATA[
+            <p>I am running stackstorm in docker <a href="https://github.com/StackStorm/st2-docker" rel="noopener nofollow ugc">https://github.com/StackStorm/st2-docker</a> using the st2 provided docker build.</p>
+<p>My sensor is periodically reading/writing values to the stackstorm datastore.<br>
+The token is expiring and the program is unable to continue.</p>
+<p>I solved this problem in a standard stackstorm ubuntu installation by having the sensor exit(1) and then stackstorm would automatically restart the sensor. This fix however is not working in docker.</p>
+<pre><code class="lang-auto">2021-06-30 01:25:02,500 140510655553608 ERROR oc_sensor [-] [qa8 - Sensor]  Failed to connect to datastore. 401 Client Error: Unauthorized
+MESSAGE: Unauthorized - Token has expired. for url: http://127.0.0.1:9101/v1/keys/qa8:last_poll_timestamp
+2021-06-30 01:25:02,505 140510655553608 ERROR oc_sensor [-] [qa8 - Sensor]  Failed to connect to datastore. 401 Client Error: Unauthorized
+MESSAGE: Unauthorized - Token has expired. for url: http://127.0.0.1:9101/v1/keys/qa8:last_poll_timestamp
+2021-06-30 01:25:02,511 140510655553608 ERROR oc_sensor [-] [qa8 - Sensor]  Failed to connect to datastore. 401 Client Error: Unauthorized
+MESSAGE: Unauthorized - Token has expired. for url: http://127.0.0.1:9101/v1/keys/qa8:last_poll_timestamp
+</code></pre>
+          <p><a href="https://forum.stackstorm.com/t/sensor-token-expired-when-running-in-docker/1756/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/sensor-token-expired-when-running-in-docker/1756/1</link>
+        <pubDate>Wed, 30 Jun 2021 21:08:24 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1756-1</guid>
+        <source url="https://forum.stackstorm.com/t/sensor-token-expired-when-running-in-docker/1756.rss">Sensor token expired when running in Docker</source>
+      </item>
+  </channel>
+</rss>

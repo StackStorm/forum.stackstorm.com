@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en" class="desktop-view not-mobile-device text-size-normal anon">
+<head>
+    <meta charset="utf-8">
+    <title>Error logging in using LDAP backend. (verified ldap query worked) - ldap - StackStorm Support
+        (ARCHIVED)</title>
+    <meta name="description"
+          content="Trying to login using ldap authentication and get the following errors.  I get the same error whether using ssl cert or not.  the conf file here is not using ssl and queries port 389.  We verified with network traffic th&amp;hellip;">
+    <meta name="discourse_theme_id" content="2">
+    <meta name="discourse_current_homepage" content="latest">
+    <meta name="generator"
+          content="Discourse 2.8.0.beta6 - https://github.com/discourse/discourse version a1daf9fe53a66e2d2cdf9757ab4812fb9a2b2787">
+    <link rel="icon" type="image/png"
+          href="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/379ced12f8326d58f1b3d2b3ff652f883e141f6a_2_32x32.PNG">
+    <link rel="apple-touch-icon" type="image/png"
+          href="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/379ced12f8326d58f1b3d2b3ff652f883e141f6a_2_180x180.PNG">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <link rel="canonical" href="1617.html"/>
+    <script type="application/ld+json">{
+        "@context": "http://schema.org",
+        "@type": "WebSite",
+        "url": "https://forum.stackstorm.com",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://forum.stackstorm.com/search?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }
+    </script>
+    <link rel="search" type="application/opensearchdescription+xml" href="../../opensearch.xml"
+          title="StackStorm Support (ARCHIVED) Search">
+
+
+    <link href="/../../stylesheets/color_definitions_base__2_3c5eec1ecf192052ea70b4afdab57a62bccc0604.css?__ws=forum.stackstorm.com"
+          media="all" rel="stylesheet" class="light-scheme"/>
+
+    <link href="/../../stylesheets/desktop_b2f2968742d41481357e0df259b51ce29f72481a.css?__ws=forum.stackstorm.com"
+          media="all" rel="stylesheet" data-target="desktop"/>
+
+
+    <meta name="fragment" content="!">
+
+
+    <link id="manifest-link" rel="manifest" href="../../manifest.webmanifest" crossorigin="use-credentials">
+
+
+    <link rel="alternate" type="application/rss+xml"
+          title="RSS feed of &#39;Error logging in using LDAP backend. (verified ldap query worked)&#39;"
+          href="https://forum.stackstorm.com/t/error-logging-in-using-ldap-backend-verified-ldap-query-worked/1617.rss"/>
+    <meta property="og:site_name" content="StackStorm Support (ARCHIVED)"/>
+    <meta property="og:type" content="website"/>
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:image"
+          content="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/891f00fbdb31fecb5bd9dab30c186d2fed0091ca.jpeg"/>
+    <meta property="og:image"
+          content="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/891f00fbdb31fecb5bd9dab30c186d2fed0091ca.jpeg"/>
+    <meta property="og:url"
+          content="https://forum.stackstorm.com/t/error-logging-in-using-ldap-backend-verified-ldap-query-worked/1617"/>
+    <meta name="twitter:url"
+          content="https://forum.stackstorm.com/t/error-logging-in-using-ldap-backend-verified-ldap-query-worked/1617"/>
+    <meta property="og:title" content="Error logging in using LDAP backend. (verified ldap query worked)"/>
+    <meta name="twitter:title" content="Error logging in using LDAP backend. (verified ldap query worked)"/>
+    <meta property="og:description"
+          content="Trying to login using ldap authentication and get the following errors.  I get the same error whether using ssl cert or not.  the conf file here is not using ssl and queries port 389.  We verified with network traffic that ldap query worked and was returned.  This is using version 3.4.  Below are the errors and the st2.conf file.  Is there a size limit to the query return, or something else simple I’m missing.  Thanks for any help I can get.  Errors with command (st2 --debug login username):  ER..."/>
+    <meta name="twitter:description"
+          content="Trying to login using ldap authentication and get the following errors.  I get the same error whether using ssl cert or not.  the conf file here is not using ssl and queries port 389.  We verified with network traffic that ldap query worked and was returned.  This is using version 3.4.  Below are the errors and the st2.conf file.  Is there a size limit to the query return, or something else simple I’m missing.  Thanks for any help I can get.  Errors with command (st2 --debug login username):  ER..."/>
+    <meta property="article:published_time" content="2021-03-24T20:44:40+00:00"/>
+    <meta property="og:ignore_canonical" content="true"/>
+
+
+    <script type="application/ld+json">{
+        "@context": "http://schema.org",
+        "@type": "QAPage",
+        "name": "Error logging in using LDAP backend. (verified ldap query worked)",
+        "mainEntity": {
+            "@type": "Question",
+            "name": "Error logging in using LDAP backend. (verified ldap query worked)",
+            "text": "Trying to login using ldap authentication and get the following errors.  I get the same error whether using ssl cert or not.  the conf file here is not using ssl and queries port 389.  We verified with network traffic that ldap query worked and was returned.  This is using version 3.4.  Below are th&hellip;",
+            "upvoteCount": 0,
+            "answerCount": 0,
+            "dateCreated": "2021-03-24T20:44:39.897Z",
+            "author": {
+                "@type": "Person",
+                "name": "Todd Noel"
+            }
+        }
+    }
+    </script>
+
+    <meta id="data-discourse-setup" data-cdn="https://sjc6.discourse-cdn.com/standard10"
+          data-base-url="https://forum.stackstorm.com" data-base-uri="" data-environment="production"
+          data-letter-avatar-version="5_8fec8e114563efeaf5265573e510f08e"
+          data-markdown-it-url="https://aws1.discourse-cdn.com/standard10/assets/markdown-it-bundle-31e9a9c535ca1801c26da78b0ff465821751a98f921c5cdc5457d7e5a69e9748.js"
+          data-service-worker-url="service-worker.js" data-default-locale="en"
+          data-asset-version="597e36448c9b51d0fa3b7e43ec1fd6d5" data-disable-custom-css="false"
+          data-highlight-js-path="/highlight-js/forum.stackstorm.com/ac0f4aa001e1343346941766d72e0c1ae330832b.js"
+          data-svg-sprite-path="/svg-sprite/forum.stackstorm.com/svg-2-c2ad434b1e06079c7e282124aed9938dc95b83ea.js"
+          data-enable-js-error-reporting="true" data-color-scheme-is-dark="false" data-user-dark-scheme-id="-1"
+          data-s3-cdn="https://aws1.discourse-cdn.com/standard10"
+          data-s3-base-url="//discourse-cloud-file-uploads.s3.dualstack.us-west-2.amazonaws.com/standard10">
+
+    <meta name="discourse/config/environment"
+          content="%7B%22modulePrefix%22%3A%22discourse%22%2C%22environment%22%3A%22production%22%2C%22rootURL%22%3A%22%22%2C%22locationType%22%3A%22auto%22%2C%22historySupportMiddleware%22%3Afalse%2C%22EmberENV%22%3A%7B%22FEATURES%22%3A%7B%7D%2C%22EXTEND_PROTOTYPES%22%3A%7B%22Date%22%3Afalse%7D%2C%22_APPLICATION_TEMPLATE_WRAPPER%22%3Afalse%2C%22_DEFAULT_ASYNC_OBSERVERS%22%3Atrue%2C%22_JQUERY_INTEGRATION%22%3Atrue%7D%2C%22APP%22%3A%7B%22name%22%3A%22discourse%22%2C%22version%22%3A%222.8.0.beta6%20a1daf9fe53a66e2d2cdf9757ab4812fb9a2b2787%22%2C%22exportApplicationGlobal%22%3Atrue%7D%7D"/>
+</head>
+
+<body class="">
+
+
+<header class="d-header">
+    <div class="wrap">
+        <div class="contents clearfix">
+            <div class="title">
+                <a href="../../index.html">
+                    <picture>
+                        <img src="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png"
+                             alt="StackStorm Support (ARCHIVED)" id="site-logo"/>
+                    </picture>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</header>
+
+<div id="main-outlet" class="wrap" role="main">
+    <!-- preload-content: -->
+
+    <!-- EOF START -->
+    <div class="container" id="main-container">
+        <div id="ember11" class="ember-view"></div>
+        <div id="ember12" class="controls ember-view"><!----></div>
+        <div id="ember13" class="ember-view"><!----></div>
+        <div id="ember14" class="ember-view">
+            <div class="row">
+                <div id="global-notice-alert-read-only" class="alert alert-info alert-read-only">
+                    <!----> <span class="text">This site is in read only mode. Please continue to browse, but replying, likes, and other actions are disabled for now.</span>
+
+                    <!---->    </div>
+            </div>
+            <div class="row">
+                <div id="global-notice-alert-global-notice" class="alert alert-info alert-global-notice">
+                    <!----> <span class="text"><h3>⚠️ We've moved!</h3>  <p> Hi there!<br><br> To reduce project dependency on 3rd party paid services the StackStorm TSC has decided to move the Q/A from this forum to <a
+                        href="https://github.com/StackStorm/st2/discussions">Github Discussions</a>. This will make user experience better integrated with the native Github flow, as well as the questions closer to the community where they can provide answers. </p>  <p> Use 🔗 <b><a
+                        href="https://github.com/StackStorm/st2/discussions" class="active">Github Discussions</a></b> to ask your questions. </p></span>
+
+                    <!---->    </div>
+            </div>
+        </div>
+        <div id="ember17" class="hidden create-topics-notice ember-view"><!----></div>
+        <!---->
+    </div>
+    <!-- EOF END -->
+    <div id="topic-title">
+        <h1>
+            <a href="1617.html">Error logging in using LDAP backend. (verified ldap query worked)</a>
+        </h1>
+
+
+        <div class="topic-category">
+            <div class='discourse-tags list-tags'>
+                <a href='../../tag/ldap' class='discourse-tag' rel="tag">ldap</a>
+            </div>
+        </div>
+    </div>
+
+
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/noelt01'><span itemprop='name'>noelt01</span></a>
+            (Todd Noel)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="1617.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2021-03-24T20:44:40Z' class='post-time'>
+                March 24, 2021,  8:44pm
+              </time>
+              <meta itemprop='dateModified' content='2021-03-25T12:23:24Z'>
+          <span itemprop='position'>#1</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Trying to login using ldap authentication and get the following errors. I get the same error whether
+                using ssl cert or not. the conf file here is not using ssl and queries port 389. We verified with
+                network traffic that ldap query worked and was returned. This is using version 3.4. Below are the errors
+                and the st2.conf file. Is there a size limit to the query return, or something else simple I’m missing.
+                Thanks for any help I can get.</p>
+            <p><strong>Errors with command (st2 --debug login username):</strong></p>
+            <pre><code class="lang-auto">ERROR: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response',))
+
+CLI settings:
+Config file path: /root/.st2/config
+Client settings:
+ST2_BASE_URL: http://127.0.0.1
+ST2_AUTH_URL: http://127.0.0.1:9100
+ST2_API_URL: http://127.0.0.1:9101/v1
+ST2_STREAM_URL: http://127.0.0.1:9102/v1
+ST2_AUTH_TOKEN: None
+
+Proxy settings:
+HTTP_PROXY:
+HTTPS_PROXY:
+
+Traceback (most recent call last):
+  File "/opt/stackstorm/st2/lib/python3.6/site-packages/urllib3/connectionpool.py", line 677, in urlopen
+    chunked=chunked,
+  File "/opt/stackstorm/st2/lib/python3.6/site-packages/urllib3/connectionpool.py", line 426, in _make_request
+    six.raise_from(e, None)
+  File "&lt;string&gt;", line 3, in raise_from
+  File "/opt/stackstorm/st2/lib/python3.6/site-packages/urllib3/connectionpool.py", line 421, in _make_request
+    httplib_response = conn.getresponse()
+  File "/usr/lib64/python3.6/http/client.py", line 1346, in getresponse
+    response.begin()
+  File "/usr/lib64/python3.6/http/client.py", line 307, in begin
+    version, status, reason = self._read_status()
+  File "/usr/lib64/python3.6/http/client.py", line 276, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+http.client.RemoteDisconnected: Remote end closed connection without response
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/stackstorm/st2/lib/python3.6/site-packages/requests/adapters.py", line 449, in send
+    timeout=timeout
+  File "/opt/stackstorm/st2/lib/python3.6/site-packages/urllib3/connectionpool.py", line 727, in urlopen
+    method, url, error=e, _pool=self, _stacktrace=sys.exc_info()[2]
+  File "/opt/stackstorm/st2/lib/python3.6/site-packages/urllib3/util/retry.py", line 410, in increment
+    raise six.reraise(type(error), error, _stacktrace)
+  File "/opt/stackstorm/st2/lib/python3.6/site-packages/urllib3/packages/six.py", line 734, in reraise
+    raise value.with_traceback(tb)
+  File "/opt/stackstorm/st2/lib/python3.6/site-packages/urllib3/connectionpool.py", line 677, in urlopen
+    chunked=chunked,
+  File "/opt/stackstorm/st2/lib/python3.6/site-packages/urllib3/connectionpool.py", line 426, in _make_request
+    six.raise_from(e, None)
+  File "&lt;string&gt;", line 3, in raise_from
+  File "/opt/stackstorm/st2/lib/python3.6/site-packages/urllib3/connectionpool.py", line 421, in _make_request
+    httplib_response = conn.getresponse()
+  File "/usr/lib64/python3.6/http/client.py", line 1346, in getresponse
+    response.begin()
+  File "/usr/lib64/python3.6/http/client.py", line 307, in begin
+    version, status, reason = self._read_status()
+  File "/usr/lib64/python3.6/http/client.py", line 276, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+urllib3.exceptions.ProtocolError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/stackstorm/st2/lib/python3.6/site-packages/st2client/shell.py", line 408, in run
+    func(args)
+  File "/opt/stackstorm/st2/lib/python3.6/site-packages/st2client/commands/auth.py", line 154, in run_and_print
+    self.run(args, **kwargs)
+  File "/opt/stackstorm/st2/lib/python3.6/site-packages/st2client/commands/auth.py", line 125, in run
+    manager = self.manager.create(instance, auth=(args.username, args.password), **kwargs)
+  File "/opt/stackstorm/st2/lib/python3.6/site-packages/st2client/models/core.py", line 42, in decorate
+    return func(*args, **kwargs)
+  File "/opt/stackstorm/st2/lib/python3.6/site-packages/st2client/models/core.py", line 306, in create
+    response = self.client.post(url, instance.serialize(), **kwargs)
+  File "/opt/stackstorm/st2/lib/python3.6/site-packages/st2client/utils/httpclient.py", line 33, in decorate
+    return func(*args, **kwargs)
+  File "/opt/stackstorm/st2/lib/python3.6/site-packages/st2client/utils/httpclient.py", line 51, in decorate
+    return func(*args, **kwargs)
+  File "/opt/stackstorm/st2/lib/python3.6/site-packages/st2client/utils/httpclient.py", line 61, in decorate
+    return func(*args, **kwargs)
+  File "/opt/stackstorm/st2/lib/python3.6/site-packages/st2client/utils/httpclient.py", line 96, in post
+    response = requests.post(self.root + url, json.dumps(data), **kwargs)
+  File "/opt/stackstorm/st2/lib/python3.6/site-packages/requests/api.py", line 119, in post
+    return request('post', url, data=data, json=json, **kwargs)
+  File "/opt/stackstorm/st2/lib/python3.6/site-packages/requests/api.py", line 61, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/opt/stackstorm/st2/lib/python3.6/site-packages/requests/sessions.py", line 530, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/opt/stackstorm/st2/lib/python3.6/site-packages/requests/sessions.py", line 643, in send
+    r = adapter.send(request, **kwargs)
+  File "/opt/stackstorm/st2/lib/python3.6/site-packages/requests/adapters.py", line 498, in send
+    raise ConnectionError(err, request=request)
+requests.exceptions.ConnectionError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response',))
+</code></pre>
+            <p><strong>st2.conf (replacing private data between &lt;&gt;):</strong></p>
+            <pre><code class="lang-auto">[api]
+# Host and port to bind the API server.
+host = 127.0.0.1
+port = 9101
+logging = /etc/st2/logging.api.gunicorn.conf
+mask_secrets = True
+# allow_origin is required for handling CORS in st2 web UI.
+# allow_origin = http://myhost1.example.com:3000,http://myhost2.example.com:3000
+
+[stream]
+logging = /etc/st2/logging.stream.gunicorn.conf
+
+[sensorcontainer]
+logging = /etc/st2/logging.sensorcontainer.conf
+
+[rulesengine]
+logging = /etc/st2/logging.rulesengine.conf
+
+[actionrunner]
+logging = /etc/st2/logging.actionrunner.conf
+virtualenv_opts =
+
+[notifier]
+logging = /etc/st2/logging.notifier.conf
+
+[exporter]
+logging = /etc/st2/logging.exporter.conf
+
+[garbagecollector]
+logging = /etc/st2/logging.garbagecollector.conf
+
+[timersengine]
+logging = /etc/st2/logging.timersengine.conf
+
+[auth]
+use_ssl = False
+debug = True
+enable = True
+backend = ldap
+backend_kwargs = {"bind_dn": "CN=&lt;My Bind User DN&gt;", "bind_password": "&lt;My Users Password&gt;1", "base_ou": "&lt;Domain's DN&gt;", "group_dns": ["&lt;Search group's DN&gt;"], "host": "&lt;ldap server&gt;", "port": 389}
+
+logging = /etc/st2/logging.auth.gunicorn.conf
+
+mode = standalone
+
+
+# Base URL to the API endpoint excluding the version (e.g. http://myhost.net:9101/)
+api_url = http://&lt;instance URL&gt;:9101
+
+[system]
+base_path = /opt/stackstorm
+"/etc/st2/st2.conf" 90L, 1989C
+</code></pre>
+        </div>
+
+        <meta itemprop='headline' content='Error logging in using LDAP backend. (verified ldap query worked)'>
+        <meta itemprop='keywords' content='ldap'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/blag'><span itemprop='name'>blag</span></a>
+            
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="1617.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2021-03-24T21:17:25Z' class='post-time'>
+                March 24, 2021,  9:17pm
+              </time>
+              <meta itemprop='dateModified' content='2021-03-24T21:17:25Z'>
+          <span itemprop='position'>#2</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>You can use Markdown formatting, including fences, to format your code blocks and config file:</p>
+            <pre><code>```
+^^^ fence
+all of this text will be constant-width formatted, and not interpreted as Markdown
+vvv fence
+```</code></pre>
+        </div>
+
+        <meta itemprop='headline' content='Error logging in using LDAP backend. (verified ldap query worked)'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/noelt01'><span itemprop='name'>noelt01</span></a>
+            (Todd Noel)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="1617.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2021-03-25T17:09:30Z' class='post-time'>
+                March 25, 2021,  5:09pm
+              </time>
+              <meta itemprop='dateModified' content='2021-03-25T17:09:30Z'>
+          <span itemprop='position'>#3</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>thanks. I’ve updated the post. I hope it’s more legible now.</p>
+        </div>
+
+        <meta itemprop='headline' content='Error logging in using LDAP backend. (verified ldap query worked)'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+
+
+    <!-- :preload-content -->
+    <footer class="noscript-footer-nav">
+        <nav itemscope itemtype='http://schema.org/SiteNavigationElement'>
+            <a href='../../index.html'>Home</a>
+            <a href="../../categories.html">Categories</a>
+            <a href="https://forum.stackstorm.com/guidelines">FAQ/Guidelines</a>
+            <a href="../../tos.html">Terms of Service</a>
+            <a href="../../privacy.html">Privacy Policy</a>
+        </nav>
+    </footer>
+</div>
+
+<footer id='noscript-footer'>
+    <p>Powered by <a href="https://www.discourse.org">Discourse</a>, best viewed with JavaScript enabled</p>
+</footer>
+
+
+<section id='main'>
+</section>
+
+
+</body>
+</html>

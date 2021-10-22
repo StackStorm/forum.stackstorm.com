@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:discourse="http://www.discourse.org/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Documentation - StackStorm Support (ARCHIVED)</title>
+    <link>https://forum.stackstorm.com/c/documentation-related-issues/17</link>
+    <description>Topics in the &#39;Documentation&#39; category </description>
+    
+      <lastBuildDate>Mon, 23 Aug 2021 08:40:39 +0000</lastBuildDate>
+      <atom:link href="https://forum.stackstorm.com/c/documentation-related-issues/17.rss" rel="self" type="application/rss+xml" />
+        <item>
+          <title>Exporting history</title>
+          <dc:creator><![CDATA[smeds]]></dc:creator>
+          <category>Documentation</category>
+          <description><![CDATA[
+            <p>Hi!</p>
+<p>We are in the process of migrating our stackstorm environment to a new server and would like to keep the history. Is there any easy way of export and importing the history?</p>
+<p>Best regards<br>
+Patrik</p>
+            <p><small>2 posts - 2 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/exporting-history/1820">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/exporting-history/1820</link>
+          <pubDate>Mon, 23 Aug 2021 08:40:39 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1820</guid>
+          <source url="https://forum.stackstorm.com/t/exporting-history/1820.rss">Exporting history</source>
+        </item>
+        <item>
+          <title>How to add http_proxy to docker version of StackStorm?</title>
+          <dc:creator><![CDATA[VladoPortos]]></dc:creator>
+          <category>Documentation</category>
+          <description><![CDATA[
+            <p>Hello all,<br>
+I need to go through proxy to get to the internet. I managed to install and run the whole StackStorm set in docker using the provided docker-compose.</p>
+<p>However I can’t figure out where to setup the http_proxy so I can install/download packages from internet. Documentation is saying:</p>
+<p><em>On Ubuntu systems, edit <code>/etc/default/st2actionrunner</code> and <code>/etc/default/st2api</code> to set the proxy configuration environment variables. For RHEL/CentOS systems, edit <code>/etc/sysconfig/st2actionrunner</code> and <code>/etc/sysconfig/st2api</code> .</em></p>
+<p>But this files are not present in the docker images…</p>
+<p>Any ideas ? Thanks.</p>
+            <p><small>3 posts - 2 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/how-to-add-http-proxy-to-docker-version-of-stackstorm/1641">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/how-to-add-http-proxy-to-docker-version-of-stackstorm/1641</link>
+          <pubDate>Thu, 08 Apr 2021 12:57:30 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1641</guid>
+          <source url="https://forum.stackstorm.com/t/how-to-add-http-proxy-to-docker-version-of-stackstorm/1641.rss">How to add http_proxy to docker version of StackStorm?</source>
+        </item>
+        <item>
+          <title>Need for good documentation for stackstorm with slack</title>
+          <dc:creator><![CDATA[deebika]]></dc:creator>
+          <category>Documentation</category>
+          <description><![CDATA[
+            <p>I am trying out integration of stackstorm with slack .can I get perfect documentation.i am Trying out everything available on internet but unfortunately not working . I am new to these integration.i should successfully get it out.</p>
+            <p><small>2 posts - 2 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/need-for-good-documentation-for-stackstorm-with-slack/1639">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/need-for-good-documentation-for-stackstorm-with-slack/1639</link>
+          <pubDate>Wed, 07 Apr 2021 07:55:22 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1639</guid>
+          <source url="https://forum.stackstorm.com/t/need-for-good-documentation-for-stackstorm-with-slack/1639.rss">Need for good documentation for stackstorm with slack</source>
+        </item>
+        <item>
+          <title>[HOWTO] Fix tooz connection timeouts with uri</title>
+          <dc:creator><![CDATA[guzzijones]]></dc:creator>
+          <category>Documentation</category>
+          <description><![CDATA[
+            <p>There are optional settings you can add to your coordinator uri to fix errors like socket timeouts.</p>
+<p>For redis see:<br>
+<a href="https://github.com/openstack/tooz/blob/6e7a8508fbcbe9ceacb04490dc8330501bfa2477/tooz/drivers/redis.py#L141" rel="nofollow noopener">https://github.com/openstack/tooz/blob/6e7a8508fbcbe9ceacb04490dc8330501bfa2477/tooz/drivers/redis.py#L141</a></p>
+<p>In my specific situation I set my coordinator setting in st2.conf to:</p>
+<pre><code class="lang-auto">[coordination]
+url = redis://127.0.0.1:6379?socket_timeout=90
+lock_timeout = 180
+</code></pre>
+            <p><small>2 posts - 2 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/howto-fix-tooz-connection-timeouts-with-uri/1133">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/howto-fix-tooz-connection-timeouts-with-uri/1133</link>
+          <pubDate>Tue, 31 Mar 2020 18:58:31 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1133</guid>
+          <source url="https://forum.stackstorm.com/t/howto-fix-tooz-connection-timeouts-with-uri/1133.rss">[HOWTO] Fix tooz connection timeouts with uri</source>
+        </item>
+        <item>
+          <title>jinja and yaql which is better</title>
+          <dc:creator><![CDATA[i-cooltea]]></dc:creator>
+          <category>Documentation</category>
+          <description><![CDATA[
+            <p>jinja and yaql which is better<br>
+After reading the official documents, I found that both expressions can support basic functions<br>
+Using yaql seems to be more concise (I prefer to use yaql personally)<br>
+Using Jinja will conflict with the symbol of JSON<br>
+But which one is the official preferred expression ?</p>
+            <p><small>2 posts - 2 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/jinja-and-yaql-which-is-better/1122">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/jinja-and-yaql-which-is-better/1122</link>
+          <pubDate>Wed, 25 Mar 2020 01:04:34 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1122</guid>
+          <source url="https://forum.stackstorm.com/t/jinja-and-yaql-which-is-better/1122.rss">jinja and yaql which is better</source>
+        </item>
+        <item>
+          <title>Is it mandatory to install both mongodb and postgresql for stackstorm</title>
+          <dc:creator><![CDATA[rajeeb]]></dc:creator>
+          <category>Documentation</category>
+          <description><![CDATA[
+            <p>Hi all</p>
+<p>I am integrating stackstorm. I went through the document (<a href="https://docs.stackstorm.com/install/rhel7.html" class="inline-onebox" rel="nofollow noopener">RHEL 7/CentOS 7 — StackStorm 3.1.0 documentation</a>)  for installation. but I did not understand is it mandatory to install both MongoDB and PostgreSQL for stackstorm? If yes, then what are the reasons?</p>
+            <p><small>5 posts - 3 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/is-it-mandatory-to-install-both-mongodb-and-postgresql-for-stackstorm/1114">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/is-it-mandatory-to-install-both-mongodb-and-postgresql-for-stackstorm/1114</link>
+          <pubDate>Tue, 17 Mar 2020 17:07:17 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1114</guid>
+          <source url="https://forum.stackstorm.com/t/is-it-mandatory-to-install-both-mongodb-and-postgresql-for-stackstorm/1114.rss">Is it mandatory to install both mongodb and postgresql for stackstorm</source>
+        </item>
+        <item>
+          <title>Development of python action</title>
+          <dc:creator><![CDATA[guymatz]]></dc:creator>
+          <category>Documentation</category>
+          <description><![CDATA[
+            <p>Hello!  Does anyone have recommendations for steps on writing a python action?  Is there a good way to set up a development environment?  Is there a way to test the action outside of st2?</p>
+            <p><small>8 posts - 4 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/development-of-python-action/741">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/development-of-python-action/741</link>
+          <pubDate>Thu, 11 Jul 2019 17:27:48 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-741</guid>
+          <source url="https://forum.stackstorm.com/t/development-of-python-action/741.rss">Development of python action</source>
+        </item>
+        <item>
+          <title>Need support for Stackstorm installation</title>
+          <dc:creator><![CDATA[gangaarutla]]></dc:creator>
+          <category>Documentation</category>
+          <description><![CDATA[
+            <p>Hello All,</p>
+<p>We are trying to install stackstorm in our organization. So, could you please help me how to proceed on this exactly and provide me the steps/details to install stackstorm.</p>
+<p>Thanks,<br>
+Gangadhar</p>
+            <p><small>7 posts - 3 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/need-support-for-stackstorm-installation/145">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/need-support-for-stackstorm-installation/145</link>
+          <pubDate>Wed, 16 May 2018 14:14:37 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-145</guid>
+          <source url="https://forum.stackstorm.com/t/need-support-for-stackstorm-installation/145.rss">Need support for Stackstorm installation</source>
+        </item>
+        <item>
+          <title>About the Documentation category</title>
+          <dc:creator><![CDATA[lakstorm]]></dc:creator>
+          <category>Documentation</category>
+          <description><![CDATA[
+            <p>(Replace this first paragraph with a brief description of your new category. This guidance will appear in the category selection area, so try to keep it below 200 characters. <strong>Until you edit this description or create topics, this category won’t appear on the categories page.</strong>)</p>
+<p>Use the following paragraphs for a longer description, or to establish category guidelines or rules:</p>
+<ul>
+<li>
+<p>Why should people use this category? What is it for?</p>
+</li>
+<li>
+<p>How exactly is this different than the other categories we already have?</p>
+</li>
+<li>
+<p>What should topics in this category generally contain?</p>
+</li>
+<li>
+<p>Do we need this category? Can we merge with another category, or subcategory?</p>
+</li>
+</ul>
+            <p><small>1 post - 1 participant</small></p>
+            <p><a href="https://forum.stackstorm.com/t/about-the-documentation-category/85">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/about-the-documentation-category/85</link>
+          <pubDate>Wed, 14 Mar 2018 15:15:39 +0000</pubDate>
+          <discourse:topicPinned>Yes</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-85</guid>
+          <source url="https://forum.stackstorm.com/t/about-the-documentation-category/85.rss">About the Documentation category</source>
+        </item>
+  </channel>
+</rss>

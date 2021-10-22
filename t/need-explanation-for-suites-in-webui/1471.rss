@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Need explanation for Suites in webUI</title>
+    <link>https://forum.stackstorm.com/t/need-explanation-for-suites-in-webui/1471</link>
+    <description>Hi,
+     I am exploring webUI concepts and searched for **Suites**. I didn&#39;t get any solution for what is suites and why it is used for, can anyone explain why suites is used for which is in web UI.
+
+Thanks in advance</description>
+    
+    <lastBuildDate>Mon, 09 Nov 2020 19:53:35 +0000</lastBuildDate>
+    <category>UI</category>
+    <atom:link href="https://forum.stackstorm.com/t/need-explanation-for-suites-in-webui/1471.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Need explanation for Suites in webUI</title>
+        <dc:creator><![CDATA[punkrokk]]></dc:creator>
+        <description><![CDATA[
+            <p>Suites was a legacy EWC functionality that is no longer supported in the open source version.</p>
+          <p><a href="https://forum.stackstorm.com/t/need-explanation-for-suites-in-webui/1471/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/need-explanation-for-suites-in-webui/1471/2</link>
+        <pubDate>Mon, 09 Nov 2020 19:53:35 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1471-2</guid>
+        <source url="https://forum.stackstorm.com/t/need-explanation-for-suites-in-webui/1471.rss">Need explanation for Suites in webUI</source>
+      </item>
+      <item>
+        <title>Need explanation for Suites in webUI</title>
+        <dc:creator><![CDATA[Balaji.p.s]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi,<br>
+I am exploring webUI concepts and searched for <strong>Suites</strong>. I didn’t get any solution for what is suites and why it is used for, can anyone explain why suites is used for which is in web UI.</p>
+<p>Thanks in advance</p>
+          <p><a href="https://forum.stackstorm.com/t/need-explanation-for-suites-in-webui/1471/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/need-explanation-for-suites-in-webui/1471/1</link>
+        <pubDate>Fri, 06 Nov 2020 12:04:53 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1471-1</guid>
+        <source url="https://forum.stackstorm.com/t/need-explanation-for-suites-in-webui/1471.rss">Need explanation for Suites in webUI</source>
+      </item>
+  </channel>
+</rss>

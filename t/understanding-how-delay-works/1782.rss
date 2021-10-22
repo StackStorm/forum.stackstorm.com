@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Understanding how delay works</title>
+    <link>https://forum.stackstorm.com/t/understanding-how-delay-works/1782</link>
+    <description>Can anyone explain how delay works within a workflow?  Does the position of the delay in a specific action matter, or does it always process specific items in a specific order (like cmd always runs first, then delay, etc).
+
+As a bit more information on what I&#39;m attempting to accomplish, I&#39;m writing a workflow which will remotely reboot a system, pause for some period of time (30 - 60 seconds), then a subsequent action will grab the last reboot time from the targeted system and if it is within an acceptable amount of time, it will finish out the workflow as successful, otherwise it will fail out of the workflow.
+
+TIA</description>
+    
+    <lastBuildDate>Sat, 17 Jul 2021 18:25:33 +0000</lastBuildDate>
+    <category>Workflows</category>
+    <atom:link href="https://forum.stackstorm.com/t/understanding-how-delay-works/1782.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Understanding how delay works</title>
+        <dc:creator><![CDATA[blag]]></dc:creator>
+        <description><![CDATA[
+            <p>Assuming you’re talking about Orquesta.</p>
+<h1>
+<a name="quick-answers-to-your-specific-questions-1" class="anchor" href="https://forum.stackstorm.com#quick-answers-to-your-specific-questions-1"></a>Quick Answers To Your Specific Questions</h1>
+<blockquote>
+<p>Does the position of the delay in a specific action matter?</p>
+</blockquote>
+<p>No, the ordering of the <code>task</code> dictionary keys (which include <code>delay</code> and <code>retry</code>) do not matter.</p>
+<blockquote>
+<p>or does it always process specific items in a specific order (like cmd always runs first, then delay, etc)</p>
+</blockquote>
+<p>There are two ways to delay a task, and the answer to this question depends on the exact type of delay you are talking about (see below).</p>
+<h1>
+<a name="task-delay-2" class="anchor" href="https://forum.stackstorm.com#task-delay-2"></a>Task Delay</h1>
+<p>Specifying a delay on a task will prevent a task from executing for a specified time. The delay is applied before the task is executed, and is only applied once.</p>
+<h2>
+<a name="documentation-3" class="anchor" href="https://forum.stackstorm.com#documentation-3"></a>Documentation</h2>
+<p><a href="https://docs.stackstorm.com/orquesta/languages/orquesta.html#task-model" class="onebox" target="_blank" rel="noopener">https://docs.stackstorm.com/orquesta/languages/orquesta.html#task-model</a></p>
+<h2>
+<a name="example-workflow-4" class="anchor" href="https://forum.stackstorm.com#example-workflow-4"></a>Example Workflow</h2>
+<pre><code class="lang-yaml"># ...
+
+tasks:
+  task1:
+    delay: 10  # seconds
+    action: ...
+      input:
+        ...
+    next:
+      ...
+</code></pre>
+<h1>
+<a name="task-retry-5" class="anchor" href="https://forum.stackstorm.com#task-retry-5"></a>Task Retry</h1>
+<p>Task retry delay specifies the amount of delay between retry executions of a task. This is only applied when the task is retried, so if the task is successful the first time it is tried, this setting will have no effect.</p>
+<h2>
+<a name="documentation-6" class="anchor" href="https://forum.stackstorm.com#documentation-6"></a>Documentation</h2>
+<p><a href="https://docs.stackstorm.com/orquesta/languages/orquesta.html#task-retry-model" class="onebox" target="_blank" rel="noopener">https://docs.stackstorm.com/orquesta/languages/orquesta.html#task-retry-model</a></p>
+<h2>
+<a name="example-7" class="anchor" href="https://forum.stackstorm.com#example-7"></a>Example</h2>
+<pre><code class="lang-yaml"># ...
+
+tasks:
+  task1:
+    retry:
+      delay: 5  # seconds
+      count:  3
+    action: ...
+      input:
+        ...
+    next:
+      ...
+</code></pre>
+<h1>
+<a name="differences-8" class="anchor" href="https://forum.stackstorm.com#differences-8"></a>Differences</h1>
+<p>I believe that the task delay is only applied <em>once</em>, even if the task is retried.</p>
+<p>The task retry delay is applied <em>every</em> time the task is <em>retried</em>, but is not applied before the initial execution attempt.</p>
+<h1>
+<a name="skeleton-workflow-for-you-9" class="anchor" href="https://forum.stackstorm.com#skeleton-workflow-for-you-9"></a>Skeleton Workflow For You</h1>
+<pre><code class="lang-yaml">...
+
+vars:
+  - acceptable_amount_of_time: ...
+
+tasks:
+  reboot_system:
+    action: ...
+    # Retry up to three times (so four times total), delaying each non-first attempt by 30 seconds
+    retry:
+      delay: 30  # seconds
+      count: 3
+    next:
+      - when: &lt;% success() %&gt;
+        do: grab_last_reboot_time
+      - when: &lt;% failed() %&gt;
+        do: ...
+  grab_last_reboot_time:
+    delay: 60  # seconds
+    action: ...
+    next:
+      - when: &lt;% result().something &lt; acceptable_amount_of_time %&gt;  # &lt;-- modify this
+        do: noop
+      - when: &lt;% result().something &gt;= acceptable_amount_of_time %&gt; # &lt;-- modify this
+        do: fail
+</code></pre>
+          <p><a href="https://forum.stackstorm.com/t/understanding-how-delay-works/1782/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/understanding-how-delay-works/1782/2</link>
+        <pubDate>Sat, 17 Jul 2021 18:25:33 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1782-2</guid>
+        <source url="https://forum.stackstorm.com/t/understanding-how-delay-works/1782.rss">Understanding how delay works</source>
+      </item>
+      <item>
+        <title>Understanding how delay works</title>
+        <dc:creator><![CDATA[bretai2k]]></dc:creator>
+        <description><![CDATA[
+            <p>Can anyone explain how delay works within a workflow?  Does the position of the delay in a specific action matter, or does it always process specific items in a specific order (like cmd always runs first, then delay, etc).</p>
+<p>As a bit more information on what I’m attempting to accomplish, I’m writing a workflow which will remotely reboot a system, pause for some period of time (30 - 60 seconds), then a subsequent action will grab the last reboot time from the targeted system and if it is within an acceptable amount of time, it will finish out the workflow as successful, otherwise it will fail out of the workflow.</p>
+<p>TIA</p>
+          <p><a href="https://forum.stackstorm.com/t/understanding-how-delay-works/1782/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/understanding-how-delay-works/1782/1</link>
+        <pubDate>Fri, 16 Jul 2021 16:43:16 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1782-1</guid>
+        <source url="https://forum.stackstorm.com/t/understanding-how-delay-works/1782.rss">Understanding how delay works</source>
+      </item>
+  </channel>
+</rss>

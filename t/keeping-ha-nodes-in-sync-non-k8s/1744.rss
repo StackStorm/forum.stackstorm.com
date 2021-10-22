@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Keeping HA nodes in sync (non k8s)</title>
+    <link>https://forum.stackstorm.com/t/keeping-ha-nodes-in-sync-non-k8s/1744</link>
+    <description>I have multiple clusters and multiple nodes in each one. In the documentation it suggest keeping the packs and virutalenv in sync with something like Ansible but there&#39;s no suggestions on how one should do this. Any high-level suggestions on how to do this?</description>
+    
+    <lastBuildDate>Wed, 23 Jun 2021 19:41:38 +0000</lastBuildDate>
+    <category>Pack Management</category>
+    <atom:link href="https://forum.stackstorm.com/t/keeping-ha-nodes-in-sync-non-k8s/1744.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Keeping HA nodes in sync (non k8s)</title>
+        <dc:creator><![CDATA[minsis]]></dc:creator>
+        <description><![CDATA[
+            <p>I have multiple clusters and multiple nodes in each one. In the documentation it suggest keeping the packs and virutalenv in sync with something like Ansible but there’s no suggestions on how one should do this. Any high-level suggestions on how to do this?</p>
+          <p><a href="https://forum.stackstorm.com/t/keeping-ha-nodes-in-sync-non-k8s/1744/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/keeping-ha-nodes-in-sync-non-k8s/1744/1</link>
+        <pubDate>Wed, 23 Jun 2021 19:41:38 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1744-1</guid>
+        <source url="https://forum.stackstorm.com/t/keeping-ha-nodes-in-sync-non-k8s/1744.rss">Keeping HA nodes in sync (non k8s)</source>
+      </item>
+  </channel>
+</rss>

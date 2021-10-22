@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Self written python action using non required arguments, always receive &quot;None&quot; for optional args</title>
+    <link>https://forum.stackstorm.com/t/self-written-python-action-using-non-required-arguments-always-receive-none-for-optional-args/1465</link>
+    <description>Hi,
+
+I wrote a python action which is able to take several arguments. 
+Some of the parameters (arguments) I configured as &quot;required: false&quot; in the related action definition yaml file.
+This works like expected and I don&#39;t have to insert a value to start the action. But in the background it looks like the optional parameters are sent to the action as &quot;None&quot; if not set. This crashes my script as the optional argument is of type object and if now instead of an object, &quot;None&quot; is delivered it crashes. (not iterable)
+Is there any possibility that if an parameter is optional and is not set, it really is not transferred to the action instead of containing &quot;None&quot;?
+
+Is this expected behaviour or maybe a bug?
+Any idea?
+
+Thanks.</description>
+    
+    <lastBuildDate>Thu, 05 Nov 2020 14:21:39 +0000</lastBuildDate>
+    <category>Uncategorized</category>
+    <atom:link href="https://forum.stackstorm.com/t/self-written-python-action-using-non-required-arguments-always-receive-none-for-optional-args/1465.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Self written python action using non required arguments, always receive &quot;None&quot; for optional args</title>
+        <dc:creator><![CDATA[wingi]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi Carlos,</p>
+<p>thanks for your reply.</p>
+<p>There are multiple possibilities to solve that. Sure I can do it in my action code. But why should I pass values which are not necessary or handle None values? In my case I have a value which can (not required) be a dictionary, therefore None is not valid as it can not be iterated. -&gt; this brought the issue to my attention.</p>
+<p>First option is now that I hand over an empty dictionary, second I handle the None object.</p>
+<p>But I asked myself, why should I do that? If I have an optional parameter, without a useful default value (I don’t think an empty dict is a useful value) why should I pass that to an action? Why should I handle a None value if I do not need it?<br>
+So far I have not found an answer.</p>
+<p>Therefore I made the change mentioned in my second post. After some time, I recognized that some actions need a “None” value which is then defined as default: null in their config files.</p>
+<p>To fix this, I had to change my code to check for the existence of the default key and not the value:<br>
+<code>if (absent or is_none or immutable) and 'default' in value:</code></p>
+<p>Since I made this change, everything seems to be fine. This would be a solution for me.<br>
+It handles the case if an action needs a None value as well as if an action does not need it.</p>
+          <p><a href="https://forum.stackstorm.com/t/self-written-python-action-using-non-required-arguments-always-receive-none-for-optional-args/1465/4">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/self-written-python-action-using-non-required-arguments-always-receive-none-for-optional-args/1465/4</link>
+        <pubDate>Thu, 05 Nov 2020 14:21:39 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1465-4</guid>
+        <source url="https://forum.stackstorm.com/t/self-written-python-action-using-non-required-arguments-always-receive-none-for-optional-args/1465.rss">Self written python action using non required arguments, always receive &quot;None&quot; for optional args</source>
+      </item>
+      <item>
+        <title>Self written python action using non required arguments, always receive &quot;None&quot; for optional args</title>
+        <dc:creator><![CDATA[Carlos]]></dc:creator>
+        <description><![CDATA[
+            <p>What you’ve describe is correct behaviour by design.</p>
+<p>The <code>required</code> option is not a way to conditionally include or exclude passing the parameter to the action code based on user input.  It is to allow a user to execute an action without explicitly defining all the parameters declared for that action.  If a parameter is defined in the action’s metadata, the parameter will always be passed to the underlying action code.  The value of the parameter will be determined by user input, default value or None if neither were specified.</p>
+<p>I see two options for your situation:</p>
+<ol>
+<li>Leave the parameter as optional and handle the <code>None</code> value in the action’s code.</li>
+<li>Define a default value in the metadata that satisfies the the data type expected by the underlying code.</li>
+</ol>
+<p>Here is an example of an action that has an optional parameter <code>consul_profile</code> that is handled by the underlying code.</p>
+<p><strong>action metadata</strong><br>
+</p><aside class="onebox githubblob">
+  <header class="source">
+      <a href="https://github.com/StackStorm-Exchange/stackstorm-consul/blob/master/actions/acl_clone.yaml" target="_blank" rel="noopener nofollow ugc">github.com</a>
+  </header>
+  <article class="onebox-body">
+    <h4><a href="https://github.com/StackStorm-Exchange/stackstorm-consul/blob/master/actions/acl_clone.yaml" target="_blank" rel="noopener nofollow ugc">StackStorm-Exchange/stackstorm-consul/blob/master/actions/acl_clone.yaml</a></h4>
+<pre><code class="lang-yaml">name: acl_clone
+pack: consul
+runner_type: python-script
+description: "Clones the ACL token 'acl_id'."
+enabled: true
+entry_point: "acl_clone.py"
+parameters:
+    acl_id:
+        type: string
+        description: "'acl_id' to clone."
+        required: true
+    token:
+        type: string
+        description: "An ACL token to use instead of the agent token."
+        required: false
+        secret: true
+        default: ""
+    consul_profile:
+        type: string
+        description: "Consul profile to use to run the action."
+</code></pre>
+
+  This file has been truncated. <a href="https://github.com/StackStorm-Exchange/stackstorm-consul/blob/master/actions/acl_clone.yaml" target="_blank" rel="noopener nofollow ugc">show original</a>
+
+  </article>
+  <div class="onebox-metadata">
+    
+    
+  </div>
+  <div style="clear: both"></div>
+</aside>
+
+<p><strong>action code</strong><br>
+</p><aside class="onebox githubblob">
+  <header class="source">
+      <a href="https://github.com/StackStorm-Exchange/stackstorm-consul/blob/master/actions/acl_clone.py" target="_blank" rel="noopener nofollow ugc">github.com</a>
+  </header>
+  <article class="onebox-body">
+    <h4><a href="https://github.com/StackStorm-Exchange/stackstorm-consul/blob/master/actions/acl_clone.py" target="_blank" rel="noopener nofollow ugc">StackStorm-Exchange/stackstorm-consul/blob/master/actions/acl_clone.py</a></h4>
+<pre><code class="lang-py">from lib import action
+
+
+class ConsulAclCloneAction(action.ConsulBaseAction):
+    def run(self, acl_id, consul_profile=None, token=None):
+        self._create_client(consul_profile)
+        # Action parameter "token" defaults to an empty string when no input is provided.
+        # Consul-Python tests for None to use the agent's token, so "token" set to None here.
+        if token == "":
+            token = None
+        return (True, self.consul.acl.clone(acl_id, token=token))
+</code></pre>
+
+
+  </article>
+  <div class="onebox-metadata">
+    
+    
+  </div>
+  <div style="clear: both"></div>
+</aside>
+
+          <p><a href="https://forum.stackstorm.com/t/self-written-python-action-using-non-required-arguments-always-receive-none-for-optional-args/1465/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/self-written-python-action-using-non-required-arguments-always-receive-none-for-optional-args/1465/3</link>
+        <pubDate>Thu, 05 Nov 2020 08:28:52 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1465-3</guid>
+        <source url="https://forum.stackstorm.com/t/self-written-python-action-using-non-required-arguments-always-receive-none-for-optional-args/1465.rss">Self written python action using non required arguments, always receive &quot;None&quot; for optional args</source>
+      </item>
+      <item>
+        <title>Self written python action using non required arguments, always receive &quot;None&quot; for optional args</title>
+        <dc:creator><![CDATA[wingi]]></dc:creator>
+        <description><![CDATA[
+            <p>Update:</p>
+<p>I think I found the issue in <a href="https://github.com/StackStorm/st2/blob/master/st2common/st2common/util/param.py" class="inline-onebox" rel="noopener nofollow ugc">st2/param.py at master · StackStorm/st2 · GitHub</a></p>
+<pre><code>def _process_defaults(G, schemas):
+    '''
+    Process dependencies for parameters default values in the order schemas are defined.
+    '''
+    for schema in schemas:
+        for name, value in six.iteritems(schema):
+            absent = name not in G.node
+            is_none = G.node.get(name, {}).get('value') is None
+            immutable = value.get('immutable', False)
+            if absent or is_none or immutable:
+                _process(G, name, value.get('default'))
+</code></pre>
+<p>In this function the default values are assigned to the action params. But if a param has no default value and is not set, None will be assigned as a value. From my point of view this is a bug.</p>
+<p>I fixed it now for me by changing one line:</p>
+<pre><code>if (absent or is_none or immutable) and (value.get('default') is not None):
+</code></pre>
+<p>If I do not recognize any side effects, I will open a issue/merge request.</p>
+          <p><a href="https://forum.stackstorm.com/t/self-written-python-action-using-non-required-arguments-always-receive-none-for-optional-args/1465/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/self-written-python-action-using-non-required-arguments-always-receive-none-for-optional-args/1465/2</link>
+        <pubDate>Thu, 29 Oct 2020 15:06:26 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1465-2</guid>
+        <source url="https://forum.stackstorm.com/t/self-written-python-action-using-non-required-arguments-always-receive-none-for-optional-args/1465.rss">Self written python action using non required arguments, always receive &quot;None&quot; for optional args</source>
+      </item>
+      <item>
+        <title>Self written python action using non required arguments, always receive &quot;None&quot; for optional args</title>
+        <dc:creator><![CDATA[wingi]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi,</p>
+<p>I wrote a python action which is able to take several arguments.<br>
+Some of the parameters (arguments) I configured as “required: false” in the related action definition yaml file.<br>
+This works like expected and I don’t have to insert a value to start the action. But in the background it looks like the optional parameters are sent to the action as “None” if not set. This crashes my script as the optional argument is of type object and if now instead of an object, “None” is delivered it crashes. (not iterable)<br>
+Is there any possibility that if an parameter is optional and is not set, it really is not transferred to the action instead of containing “None”?</p>
+<p>Is this expected behaviour or maybe a bug?<br>
+Any idea?</p>
+<p>Thanks.</p>
+          <p><a href="https://forum.stackstorm.com/t/self-written-python-action-using-non-required-arguments-always-receive-none-for-optional-args/1465/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/self-written-python-action-using-non-required-arguments-always-receive-none-for-optional-args/1465/1</link>
+        <pubDate>Wed, 28 Oct 2020 17:40:17 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1465-1</guid>
+        <source url="https://forum.stackstorm.com/t/self-written-python-action-using-non-required-arguments-always-receive-none-for-optional-args/1465.rss">Self written python action using non required arguments, always receive &quot;None&quot; for optional args</source>
+      </item>
+  </channel>
+</rss>

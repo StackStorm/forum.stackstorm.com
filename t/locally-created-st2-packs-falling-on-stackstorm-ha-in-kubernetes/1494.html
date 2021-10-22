@@ -1,0 +1,1072 @@
+<!DOCTYPE html>
+<html lang="en" class="desktop-view not-mobile-device text-size-normal anon">
+<head>
+    <meta charset="utf-8">
+    <title>Locally created st2 packs falling on stackstorm HA in kubernetes - Operations - StackStorm Support
+        (ARCHIVED)</title>
+    <meta name="description" content="Locally created st2 packs falling on stackstorm HA in kubernetes. 
+The pack is working fine on standalone server but facing issue on docker image created in stackstorm HA in kubernetes. 
+created st2 pack with docker buil&amp;hellip;">
+    <meta name="discourse_theme_id" content="2">
+    <meta name="discourse_current_homepage" content="latest">
+    <meta name="generator"
+          content="Discourse 2.8.0.beta6 - https://github.com/discourse/discourse version a1daf9fe53a66e2d2cdf9757ab4812fb9a2b2787">
+    <link rel="icon" type="image/png"
+          href="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/379ced12f8326d58f1b3d2b3ff652f883e141f6a_2_32x32.PNG">
+    <link rel="apple-touch-icon" type="image/png"
+          href="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/379ced12f8326d58f1b3d2b3ff652f883e141f6a_2_180x180.PNG">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <link rel="canonical" href="1494.html"/>
+    <script type="application/ld+json">{
+        "@context": "http://schema.org",
+        "@type": "WebSite",
+        "url": "https://forum.stackstorm.com",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://forum.stackstorm.com/search?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }
+    </script>
+    <link rel="search" type="application/opensearchdescription+xml" href="../../opensearch.xml"
+          title="StackStorm Support (ARCHIVED) Search">
+
+
+    <link href="https://sjc6.discourse-cdn.com/standard10/stylesheets/color_definitions_basis__2_3c5eec1ecf192052ea70b4afdab57a62bccc0604.css?__ws=forum.stackstorm.com"
+          media="all" rel="stylesheet" class="light-scheme"/>
+
+    <link href="/../../stylesheets/desktop_b2f2968742d41481357e0df259b51ce29f72481a.css?__ws=forum.stackstorm.com"
+          media="all" rel="stylesheet" data-target="desktop"/>
+
+
+    <meta name="fragment" content="!">
+
+
+    <link id="manifest-link" rel="manifest" href="../../manifest.webmanifest" crossorigin="use-credentials">
+
+
+    <link rel="alternate" type="application/rss+xml"
+          title="RSS feed of &#39;Locally created st2 packs falling on stackstorm HA in kubernetes&#39;"
+          href="https://forum.stackstorm.com/t/locally-created-st2-packs-falling-on-stackstorm-ha-in-kubernetes/1494.rss"/>
+    <meta property="og:site_name" content="StackStorm Support (ARCHIVED)"/>
+    <meta property="og:type" content="website"/>
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:image"
+          content="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/891f00fbdb31fecb5bd9dab30c186d2fed0091ca.jpeg"/>
+    <meta property="og:image"
+          content="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/891f00fbdb31fecb5bd9dab30c186d2fed0091ca.jpeg"/>
+    <meta property="og:url"
+          content="https://forum.stackstorm.com/t/locally-created-st2-packs-falling-on-stackstorm-ha-in-kubernetes/1494"/>
+    <meta name="twitter:url"
+          content="https://forum.stackstorm.com/t/locally-created-st2-packs-falling-on-stackstorm-ha-in-kubernetes/1494"/>
+    <meta property="og:title" content="Locally created st2 packs falling on stackstorm HA in kubernetes"/>
+    <meta name="twitter:title" content="Locally created st2 packs falling on stackstorm HA in kubernetes"/>
+    <meta property="og:description"
+          content="Locally created st2 packs falling on stackstorm HA in kubernetes.  The pack is working fine on standalone server but facing issue on docker image created in stackstorm HA in kubernetes.  created st2 pack with docker build ,pushed and pulled the image through helm but facing issue  pymongo.errors.ServerSelectionTimeoutError: 127.0.0.1:27017: [Errno 111] ECONNREFUSED  2020-12-04 14:01:32,140 DEBUG [-] Using Python: 3.6.9 (/opt/stackstorm/st2/bin/python)  2020-12-04 14:01:32,141 DEBUG [-] Using con..."/>
+    <meta name="twitter:description"
+          content="Locally created st2 packs falling on stackstorm HA in kubernetes.  The pack is working fine on standalone server but facing issue on docker image created in stackstorm HA in kubernetes.  created st2 pack with docker build ,pushed and pulled the image through helm but facing issue  pymongo.errors.ServerSelectionTimeoutError: 127.0.0.1:27017: [Errno 111] ECONNREFUSED  2020-12-04 14:01:32,140 DEBUG [-] Using Python: 3.6.9 (/opt/stackstorm/st2/bin/python)  2020-12-04 14:01:32,141 DEBUG [-] Using con..."/>
+    <meta property="article:published_time" content="2020-12-04T17:24:12+00:00"/>
+    <meta property="og:ignore_canonical" content="true"/>
+
+
+    <script type="application/ld+json">{
+        "@context": "http://schema.org",
+        "@type": "QAPage",
+        "name": "Locally created st2 packs falling on stackstorm HA in kubernetes",
+        "mainEntity": {
+            "@type": "Question",
+            "name": "Locally created st2 packs falling on stackstorm HA in kubernetes",
+            "text": "Locally created st2 packs falling on stackstorm HA in kubernetes.\n\nThe pack is working fine on standalone server but facing issue on docker image created in stackstorm HA in kubernetes.\n\ncreated st2 pack with docker build ,pushed and pulled the image through helm but facing issue\n\npymongo.errors.Ser&hellip;",
+            "upvoteCount": 0,
+            "answerCount": 0,
+            "dateCreated": "2020-12-04T17:24:12.095Z",
+            "author": {
+                "@type": "Person",
+                "name": "Nithin"
+            }
+        }
+    }
+    </script>
+
+    <meta id="data-discourse-setup" data-cdn="https://sjc6.discourse-cdn.com/standard10"
+          data-base-url="https://forum.stackstorm.com" data-base-uri="" data-environment="production"
+          data-letter-avatar-version="5_8fec8e114563efeaf5265573e510f08e"
+          data-markdown-it-url="https://aws1.discourse-cdn.com/standard10/assets/markdown-it-bundle-31e9a9c535ca1801c26da78b0ff465821751a98f921c5cdc5457d7e5a69e9748.js"
+          data-service-worker-url="service-worker.js" data-default-locale="en"
+          data-asset-version="597e36448c9b51d0fa3b7e43ec1fd6d5" data-disable-custom-css="false"
+          data-highlight-js-path="/highlight-js/forum.stackstorm.com/ac0f4aa001e1343346941766d72e0c1ae330832b.js"
+          data-svg-sprite-path="/svg-sprite/forum.stackstorm.com/svg-2-c2ad434b1e06079c7e282124aed9938dc95b83ea.js"
+          data-enable-js-error-reporting="true" data-color-scheme-is-dark="false" data-user-dark-scheme-id="-1"
+          data-s3-cdn="https://aws1.discourse-cdn.com/standard10"
+          data-s3-base-url="//discourse-cloud-file-uploads.s3.dualstack.us-west-2.amazonaws.com/standard10">
+
+    <meta name="discourse/config/environment"
+          content="%7B%22modulePrefix%22%3A%22discourse%22%2C%22environment%22%3A%22production%22%2C%22rootURL%22%3A%22%22%2C%22locationType%22%3A%22auto%22%2C%22historySupportMiddleware%22%3Afalse%2C%22EmberENV%22%3A%7B%22FEATURES%22%3A%7B%7D%2C%22EXTEND_PROTOTYPES%22%3A%7B%22Date%22%3Afalse%7D%2C%22_APPLICATION_TEMPLATE_WRAPPER%22%3Afalse%2C%22_DEFAULT_ASYNC_OBSERVERS%22%3Atrue%2C%22_JQUERY_INTEGRATION%22%3Atrue%7D%2C%22APP%22%3A%7B%22name%22%3A%22discourse%22%2C%22version%22%3A%222.8.0.beta6%20a1daf9fe53a66e2d2cdf9757ab4812fb9a2b2787%22%2C%22exportApplicationGlobal%22%3Atrue%7D%7D"/>
+</head>
+
+<body class="">
+
+
+<header class="d-header">
+    <div class="wrap">
+        <div class="contents clearfix">
+            <div class="title">
+                <a href="../../index.html">
+                    <picture>
+                        <img src="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png"
+                             alt="StackStorm Support (ARCHIVED)" id="site-logo"/>
+                    </picture>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</header>
+
+<div id="main-outlet" class="wrap" role="main">
+    <!-- preload-content: -->
+
+    <!-- EOF START -->
+    <div class="container" id="main-container">
+        <div id="ember11" class="ember-view"></div>
+        <div id="ember12" class="controls ember-view"><!----></div>
+        <div id="ember13" class="ember-view"><!----></div>
+        <div id="ember14" class="ember-view">
+            <div class="row">
+                <div id="global-notice-alert-read-only" class="alert alert-info alert-read-only">
+                    <!----> <span class="text">This site is in read only mode. Please continue to browse, but replying, likes, and other actions are disabled for now.</span>
+
+                    <!---->    </div>
+            </div>
+            <div class="row">
+                <div id="global-notice-alert-global-notice" class="alert alert-info alert-global-notice">
+                    <!----> <span class="text"><h3>⚠️ We've moved!</h3>  <p> Hi there!<br><br> To reduce project dependency on 3rd party paid services the StackStorm TSC has decided to move the Q/A from this forum to <a
+                        href="https://github.com/StackStorm/st2/discussions">Github Discussions</a>. This will make user experience better integrated with the native Github flow, as well as the questions closer to the community where they can provide answers. </p>  <p> Use 🔗 <b><a
+                        href="https://github.com/StackStorm/st2/discussions" class="active">Github Discussions</a></b> to ask your questions. </p></span>
+
+                    <!---->    </div>
+            </div>
+        </div>
+        <div id="ember17" class="hidden create-topics-notice ember-view"><!----></div>
+        <!---->
+    </div>
+    <!-- EOF END -->
+    <div id="topic-title">
+        <h1>
+            <a href="1494.html">Locally created st2 packs falling on stackstorm HA in kubernetes</a>
+        </h1>
+
+        <div class="topic-category" itemscope itemtype="http://schema.org/BreadcrumbList">
+          <span itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a href="../../c/operations-related-issues/20" class="badge-wrapper bullet" itemprop="item">
+              <span class='badge-category-bg' style='background-color: #283890'></span>
+              <span class='badge-category clear-badge'>
+                <span class='category-name' itemprop='name'>Operations</span>
+              </span>
+            </a>
+            <meta itemprop="position" content="1"/>
+          </span>
+        </div>
+
+        <div class="topic-category">
+            <div class='discourse-tags list-tags'>
+                <a href='../../tag/k8s' class='discourse-tag' rel="tag">k8s</a>,
+                <a href='../../tag/helm' class='discourse-tag' rel="tag">helm</a>,
+                <a href='../../tag/docker' class='discourse-tag' rel="tag">docker</a>
+            </div>
+        </div>
+    </div>
+
+
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/nithinsubbaraj'><span
+                    itemprop='name'>nithinsubbaraj</span></a>
+            (Nithin)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="1494.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2020-12-04T17:24:12Z' class='post-time'>
+                December 4, 2020,  5:24pm
+              </time>
+              <meta itemprop='dateModified' content='2020-12-04T18:19:11Z'>
+          <span itemprop='position'>#1</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Locally created st2 packs falling on stackstorm HA in kubernetes.</p>
+            <p>The pack is working fine on standalone server but facing issue on docker image created in stackstorm HA
+                in kubernetes.<br>
+                created st2 pack with docker build ,pushed and pulled the image through helm but facing issue<br>
+                pymongo.errors.ServerSelectionTimeoutError: 127.0.0.1:27017: [Errno 111] ECONNREFUSED</p>
+            <p>2020-12-04 14:01:32,140 DEBUG [-] Using Python: 3.6.9 (/opt/stackstorm/st2/bin/python)<br>
+                2020-12-04 14:01:32,141 DEBUG [-] Using config files: /etc/st2/st2.conf<br>
+                2020-12-04 14:01:32,142 DEBUG [-] Using logging config: /etc/st2/logging.sensorcontainer.conf<br>
+                2020-12-04 14:01:32,151 INFO [-] Connecting to database “st2” @ “127.0.0.1:27017” as user “None”.<br>
+                2020-12-04 14:01:35,158 ERROR [-] Failed to connect to database “st2” @ “127.0.0.1:27017” as user
+                “None”: 127.0.0.1:27017: [Errno 111] ECONNREFUSED<br>
+                2020-12-04 14:01:35,158 ERROR [-] (PID:191) SensorContainer quit due to exception.<br>
+                Traceback (most recent call last):<br>
+                File “/opt/stackstorm/st2/lib/python3.6/site-packages/st2reactor/cmd/sensormanager.py”, line 61, in main<br>
+                _setup()<br>
+                File “/opt/stackstorm/st2/lib/python3.6/site-packages/st2reactor/cmd/sensormanager.py”, line 52, in
+                _setup<br>
+                register_runners=False, service_registry=True, capabilities=capabilities)<br>
+                File “/opt/stackstorm/st2/lib/python3.6/site-packages/st2common/service_setup.py”, line 162, in
+                setup<br>
+                db_setup()<br>
+                File “/opt/stackstorm/st2/lib/python3.6/site-packages/st2common/database_setup.py”, line 57, in db_setup<br>
+                connection = db_init.db_setup_with_retry(**db_cfg)<br>
+                File “/opt/stackstorm/st2/lib/python3.6/site-packages/st2common/persistence/db_init.py”, line 76, in
+                db_setup_with_retry<br>
+                ssl_match_hostname=ssl_match_hostname)<br>
+                File “/opt/stackstorm/st2/lib/python3.6/site-packages/st2common/persistence/db_init.py”, line 59, in
+                db_func_with_retry<br>
+                return retrying_obj.call(db_func, *args, **kwargs)<br>
+                File “/opt/stackstorm/st2/lib/python3.6/site-packages/retrying.py”, line 206, in call<br>
+                return attempt.get(self._wrap_exception)<br>
+                File “/opt/stackstorm/st2/lib/python3.6/site-packages/retrying.py”, line 247, in get<br>
+                six.reraise(self.value[0], self.value[1], self.value[2])<br>
+                File “/opt/stackstorm/st2/lib/python3.6/site-packages/six.py”, line 696, in reraise<br>
+                raise value<br>
+                File “/opt/stackstorm/st2/lib/python3.6/site-packages/retrying.py”, line 200, in call<br>
+                attempt = Attempt(fn(*args, **kwargs), attempt_number, False)<br>
+                File “/opt/stackstorm/st2/lib/python3.6/site-packages/st2common/models/db/<strong>init</strong>.py”,
+                line 170, in db_setup<br>
+                ssl_match_hostname=ssl_match_hostname)<br>
+                File “/opt/stackstorm/st2/lib/python3.6/site-packages/st2common/models/db/<strong>init</strong>.py”,
+                line 152, in _db_connect<br>
+                raise e<br>
+                File “/opt/stackstorm/st2/lib/python3.6/site-packages/st2common/models/db/<strong>init</strong>.py”,
+                line 145, in _db_connect<br>
+                connection.admin.command(‘ismaster’)<br>
+                File “/opt/stackstorm/st2/lib/python3.6/site-packages/pymongo/database.py”, line 730, in command<br>
+                read_preference, session) as (sock_info, slave_ok):<br>
+                File “/usr/lib/python3.6/contextlib.py”, line 81, in <strong>enter</strong><br>
+                return next(self.gen)<br>
+                File “/opt/stackstorm/st2/lib/python3.6/site-packages/pymongo/mongo_client.py”, line 1298, in
+                _socket_for_reads<br>
+                server = self._select_server(read_preference, session)<br>
+                File “/opt/stackstorm/st2/lib/python3.6/site-packages/pymongo/mongo_client.py”, line 1253, in
+                _select_server<br>
+                server = topology.select_server(server_selector)<br>
+                File “/opt/stackstorm/st2/lib/python3.6/site-packages/pymongo/topology.py”, line 235, in
+                select_server<br>
+                address))<br>
+                File “/opt/stackstorm/st2/lib/python3.6/site-packages/pymongo/topology.py”, line 193, in
+                select_servers<br>
+                selector, server_timeout, address)<br>
+                File “/opt/stackstorm/st2/lib/python3.6/site-packages/pymongo/topology.py”, line 209, in
+                _select_servers_loop<br>
+                self._error_message(selector))<br>
+                pymongo.errors.ServerSelectionTimeoutError: 127.0.0.1:27017: [Errno 111] ECONNREFUSED</p>
+        </div>
+
+        <meta itemprop='headline' content='Locally created st2 packs falling on stackstorm HA in kubernetes'>
+        <meta itemprop='keywords' content='k8s, helm, docker'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/armab'><span itemprop='name'>armab</span></a>
+            (Eugen Cusmaunsa)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="1494.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2020-12-04T18:18:32Z' class='post-time'>
+                December 4, 2020,  6:18pm
+              </time>
+              <meta itemprop='dateModified' content='2020-12-04T18:18:32Z'>
+          <span itemprop='position'>#2</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>You’re doing something wrong as your environment uses <code>127.0.0.1:27017</code> localhost for MongoDB
+                connection instead of MongoDB-HA cluster.</p>
+            <pre><code class="lang-auto">2020-12-04 14:01:32,141 DEBUG [-] Using config files: /etc/st2/st2.conf
+</code></pre>
+            <p>shows it uses only st2.conf while <code>stackstorm-ha</code> chains several st2 configuration files
+                optimized for K8s environment.</p>
+            <hr>
+            <p>Which Pod is that? Is it only a Sensor that’s failing or any pack execution? How do you run Sensors,
+                which Helm settings did you configure, were there any modifications to base Helm chart?</p>
+        </div>
+
+        <meta itemprop='headline' content='Locally created st2 packs falling on stackstorm HA in kubernetes'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/nithinsubbaraj'><span
+                    itemprop='name'>nithinsubbaraj</span></a>
+            (Nithin)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="1494.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2020-12-07T14:26:21Z' class='post-time'>
+                December 7, 2020,  2:26pm
+              </time>
+              <meta itemprop='dateModified' content='2020-12-07T14:26:21Z'>
+          <span itemprop='position'>#3</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <aside class="quote no-group" data-username="armab" data-post="2" data-topic="1494">
+                <div class="title">
+                    <div class="quote-controls"></div>
+                    <img alt="" width="20" height="20"
+                         src="https://sjc6.discourse-cdn.com/standard10/user_avatar/forum.stackstorm.com/armab/40/13_2.png"
+                         class="avatar"> armab:
+                </div>
+                <blockquote>
+                    <p>which Helm settings did you configure, were there any modifications to base Helm chart</p>
+                </blockquote>
+            </aside>
+            <p>Hi Eugen,</p>
+            <p>The pack configured is modified servicenow_pack in stackstorm HA in kubernetes.</p>
+            <p>The application team are using servicenow_pack to send a failure message from application<br>
+                which creates a serive now ticket from stackstorm.</p>
+            <p>The servicenow_pack is working on stanalone system but facing issue on HA</p>
+            <p>1)Which Pod is that?</p>
+            <blockquote>
+                <blockquote>
+                    <blockquote>
+                        <p>trying to run the command<br>
+                            /opt/stackstorm/st2/bin/st2sensorcontainer --config-file=/etc/st2/st2.conf --debug
+                            --sensor-ref=servicenow_pack.DirectorySensor</p>
+                    </blockquote>
+                </blockquote>
+            </blockquote>
+            <p>2)Is it only a Sensor that’s failing or any pack execution</p>
+            <blockquote>
+                <blockquote>
+                    <blockquote>
+                        <p>pack execution and sensor is falling</p>
+                    </blockquote>
+                </blockquote>
+            </blockquote>
+            <p>3)which Helm settings did you configure, were there any modifications to base Helm chart</p>
+            <blockquote>
+                <blockquote>
+                    <blockquote>
+                        <p>The helm configuration had modification of mongo-db and rabbitmq from db team for
+                            troubleshooting used the default helm value and modified<br>
+                            only the st2 pack contents for troubleshooting same issue.</p>
+                    </blockquote>
+                </blockquote>
+            </blockquote>
+            <p>#########<span class="hashtag">#stackstorm</span> HA ############</p>
+            <p>root@stackstorm-poc-st2client-686d789fbd-tcvr4:/opt/stackstorm/packs/servicenow_pack#
+                /opt/stackstorm/st2/bin/st2sensorcontainer --debug --sensor-ref=servicenow_pack.DirectorySensor
+                2020-12-07 13:51:00,620 DEBUG [-] Using Python: 3.6.9 (/opt/stackstorm/st2/bin/python)<br>
+                2020-12-07 13:51:00,621 DEBUG [-] Using config files: /etc/st2/st2.conf<br>
+                2020-12-07 13:51:00,621 DEBUG [-] Using logging config: /etc/st2/logging.sensorcontainer.conf<br>
+                2020-12-07 13:51:00,631 INFO [-] Connecting to database “st2” @ “127.0.0.1:27017” as user “None”.<br>
+                2020-12-07 13:51:03,638 ERROR [-] Failed to connect to database “st2” @ “127.0.0.1:27017” as user
+                “None”: 127.0.0.1:27017: [Errno 111] ECONNREFUSED<br>
+                2020-12-07 13:51:03,638 ERROR [-] (PID:1241) SensorContainer quit due to exception.<br>
+                Traceback (most recent call last):<br>
+                File “/opt/stackstorm/st2/lib/python3.6/site-packages/st2reactor/cmd/sensormanager.py”, line 61, in main<br>
+                _setup()<br>
+                File “/opt/stackstorm/st2/lib/python3.6/site-packages/st2reactor/cmd/sensormanager.py”, line 52, in
+                _setup<br>
+                register_runners=False, service_registry=True, capabilities=capabilities)</p>
+            <p>####################</p>
+            <p>#######<span class="hashtag">#standalone</span> ##########<br>
+                /opt/stackstorm/st2/bin/st2sensorcontainer --config-file=/etc/st2/st2.conf --debug
+                --sensor-ref=servicenow_pack.DirectorySensor<br>
+                2020-12-07 07:02:36,679 DEBUG [-] Using Python: 2.7.5 (/opt/stackstorm/st2/bin/python)<br>
+                2020-12-07 07:02:36,679 DEBUG [-] Using config files: /etc/st2/st2.conf<br>
+                2020-12-07 07:02:36,679 DEBUG [-] Using logging config: /etc/st2/logging.sensorcontainer.conf<br>
+                2020-12-07 07:02:36,689 INFO [-] Connecting to database “st2” @ “127.0.0.1:27017” as user “None”.<br>
+                2020-12-07 07:02:36,693 INFO [-] Successfully connected to database “st2” @ “127.0.0.1:27017” as user
+                “None”.<br>
+                2020-12-07 07:02:36,693 DEBUG [-] Ensuring database indexes…<br>
+                2020-12-07 07:02:36,806 DEBUG [-] Skipping index cleanup for blacklisted model “PermissionGrantDB”…<br>
+                2020-12-07 07:02:36,861 DEBUG [-] Indexes are ensured for models: ActionAliasDB, ActionAliasDB,
+                ActionDB, ActionExecutionDB, ActionExecutionDB, ActionExecutionOutputDB,
+                ActionExecutionSchedulingQueueItemDB, ActionExecutionStateDB, ActionExecutionStateDB, ApiKeyDB,
+                ConfigDB, ConfigSchemaDB, GroupToRoleMappingDB, KeyValuePairDB, LiveActionDB, LiveActionDB, PackDB,
+                PermissionGrantDB, PolicyDB, PolicyTypeDB, RoleDB, RuleDB, RuleEnforcementDB, RunnerTypeDB,
+                RunnerTypeDB, SensorTypeDB, TaskExecutionDB, TokenDB, TraceDB, TriggerDB, TriggerInstanceDB,
+                TriggerTypeDB, UserDB, UserRoleAssignmentDB, WorkflowExecutionDB<br>
+                2020-12-07 07:02:36,861 DEBUG [-] Registering exchanges…<br>
+                2020-12-07 07:02:36,862 DEBUG [-] Using SSL context for RabbitMQ connection: {}<br>
+                2020-12-07 07:02:36,871 DEBUG [-] Start from server, version: 0.9, properties: {‘information’: ‘Licensed
+                under the MPL. See <a href="http://www.rabbitmq.com/" rel="noopener nofollow ugc">http://www.rabbitmq.com/</a>’,
+                ‘product’: ‘RabbitMQ’, ‘copyright’: ‘Copyright © 2007-2014 GoPivotal, Inc.’, ‘capabilities’:
+                {‘exchange_exchange_bindings’: True, ‘connection.blocked’: True, ‘authentication_failure_close’: True,
+                ‘basic.nack’: True, ‘per_consumer_qos’: True, ‘consumer_priorities’: True, ‘consumer_cancel_notify’:
+                True, ‘publisher_confirms’: True}, ‘cluster_name’: ‘rabbit@dc1udatast201.abacus-us.com’, ‘platform’:
+                ‘Erlang/OTP’, ‘version’: ‘3.3.5’}, mechanisms: [‘AMQPLAIN’, ‘PLAIN’], locales: [u’en_US’]<br>
+                2020-12-07 07:02:36,873 DEBUG [-] using channel_id: 1<br>
+                2020-12-07 07:02:36,873 DEBUG [-] Channel open<br>
+                2020-12-07 07:02:36,874 DEBUG [-] Registered exchange st2.actionexecutionstate ({‘nowait’: False,
+                ‘exchange’: ‘st2.actionexecutionstate’, 'dur</p>
+            <p>################</p>
+        </div>
+
+        <meta itemprop='headline' content='Locally created st2 packs falling on stackstorm HA in kubernetes'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/armab'><span itemprop='name'>armab</span></a>
+            (Eugen Cusmaunsa)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="1494.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2020-12-07T15:51:37Z' class='post-time'>
+                December 7, 2020,  3:51pm
+              </time>
+              <meta itemprop='dateModified' content='2020-12-07T15:51:37Z'>
+          <span itemprop='position'>#4</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>OK, so looks like you’re trying to run the sensor manually from the <code>st2client</code>.</p>
+            <p>How about the <code>st2sensorcontainer</code> Pod? This is where your sensors should be deployed
+                automatically. Is the Pod running? What do you see for the <code>st2sensorcontainer</code> Pods logs?
+            </p>
+        </div>
+
+        <meta itemprop='headline' content='Locally created st2 packs falling on stackstorm HA in kubernetes'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/nithinsubbaraj'><span
+                    itemprop='name'>nithinsubbaraj</span></a>
+            (Nithin)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="1494.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2020-12-07T16:50:49Z' class='post-time'>
+                December 7, 2020,  4:50pm
+              </time>
+              <meta itemprop='dateModified' content='2020-12-07T16:50:49Z'>
+          <span itemprop='position'>#5</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>No,I think the sensor is getting stopped ,once I logout of st2 client</p>
+            <p>docker ps -a |grep -i st2sensorcontainer</p>
+            <p>10b942fdc9d3 ec0a99de65f3 “/opt/stackstorm/st2…” 2 minutes ago Up 2 minutes
+                k8s_st2sensorcontainer_poc-stackstorm-st2sensorcontainer-645fdccb65-hgw7x_stackstorm_7f9b8f70-12f5-4230-a4b4-8b59779a471f_0</p>
+            <p>3fd0124553e7 41bc819be721 “sh -ec '/bin/cp -aR…” 2 minutes ago Exited (0) 2 minutes ago
+                k8s_st2-system-packs_poc-stackstorm-st2sensorcontainer-645fdccb65-hgw7x_stackstorm_7f9b8f70-12f5-4230-a4b4-8b59779a471f_0</p>
+            <p>bdb4d8365391 nithinsubbaraj/servicenow_pack “sh -ec '/bin/cp -aR…” 2 minutes ago Exited (0) 2 minutes ago
+                k8s_st2-custom-packs_poc-stackstorm-st2sensorcontainer-645fdccb65-hgw7x_stackstorm_7f9b8f70-12f5-4230-a4b4-8b59779a471f_0</p>
+            <p>987b97bd51d0 rancher/pause:3.1 “/pause” 7 minutes ago Up 7 minutes
+                k8s_POD_poc-stackstorm-st2sensorcontainer-645fdccb65-hgw7x_stackstorm_7f9b8f70-12f5-4230-a4b4-8b59779a471f_0</p>
+        </div>
+
+        <meta itemprop='headline' content='Locally created st2 packs falling on stackstorm HA in kubernetes'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/armab'><span itemprop='name'>armab</span></a>
+            (Eugen Cusmaunsa)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="1494.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2020-12-07T18:33:49Z' class='post-time'>
+                December 7, 2020,  6:33pm
+              </time>
+              <meta itemprop='dateModified' content='2020-12-07T18:33:49Z'>
+          <span itemprop='position'>#6</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Please post the logs from the <code>st2sensorcontainer</code> Pod. There should be an indicator in there
+                why it’s stopped/failed.</p>
+        </div>
+
+        <meta itemprop='headline' content='Locally created st2 packs falling on stackstorm HA in kubernetes'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/nithinsubbaraj'><span
+                    itemprop='name'>nithinsubbaraj</span></a>
+            (Nithin)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="1494.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2020-12-08T10:57:31Z' class='post-time'>
+                December 8, 2020, 10:57am
+              </time>
+              <meta itemprop='dateModified' content='2020-12-08T10:57:31Z'>
+          <span itemprop='position'>#7</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <aside class="quote no-group" data-username="armab" data-post="6" data-topic="1494">
+                <div class="title">
+                    <div class="quote-controls"></div>
+                    <img alt="" width="20" height="20"
+                         src="https://sjc6.discourse-cdn.com/standard10/user_avatar/forum.stackstorm.com/armab/40/13_2.png"
+                         class="avatar"> armab:
+                </div>
+                <blockquote>
+                    <p><code>st2sensorcontainer</code> Pod</p>
+                </blockquote>
+            </aside>
+            <p>Thanks Eugen for helping on this ,</p>
+            <p>Please find the below logs for st2sensorcontainer Pod [it is too long]</p>
+            <p>kubectl logs poc-stackstorm-st2sensorcontainer-645fdccb65-qpbwz<br>
+                2020-12-08 10:46:56,990 DEBUG [-] Using Python: 3.6.9 (/opt/stackstorm/st2/bin/python)<br>
+                2020-12-08 10:46:56,990 DEBUG [-] Using config files:
+                /etc/st2/st2.conf,/etc/st2/st2.docker.conf,/etc/st2/st2.user.conf<br>
+                2020-12-08 10:46:56,990 DEBUG [-] Using logging config: /etc/st2/logging.sensorcontainer.conf<br>
+                2020-12-08 10:46:57,006 INFO [-] Connecting to database “st2” @
+                “poc-stackstorm-mongodb-ha-0.poc-stackstorm-mongodb-ha:27017,poc-stackstorm-mongodb-ha-1.poc-stackstorm-mongodb-ha:27017,poc-stackstorm-mongodb-ha-2.poc-stackstorm-mongodb-ha:27017
+                (replica set)” as user “admin”.<br>
+                2020-12-08 10:46:57,072 INFO [-] Successfully connected to database “st2” @
+                “poc-stackstorm-mongodb-ha-0.poc-stackstorm-mongodb-ha:27017,poc-stackstorm-mongodb-ha-1.poc-stackstorm-mongodb-ha:27017,poc-stackstorm-mongodb-ha-2.poc-stackstorm-mongodb-ha:27017
+                (replica set)” as user “admin”.<br>
+                2020-12-08 10:46:57,496 INFO [-] Using partitioner default with sensornode sensornode1.<br>
+                2020-12-08 10:46:57,510 INFO [-] Found 2 registered sensors in db scan.<br>
+                2020-12-08 10:46:57,512 INFO [-] Setting up container to run 2 sensors.<br>
+                2020-12-08 10:46:57,512 INFO [-] Sensors list - [‘linux.FileWatchSensor’,
+                ‘servicenow_pack.DirectorySensor’].<br>
+                2020-12-08 10:46:57,512 INFO [-] (PID:1) SensorContainer started.<br>
+                2020-12-08 10:46:57,513 INFO [-] Running sensor linux.FileWatchSensor<br>
+                2020-12-08 10:46:57,525 INFO [-] Connected to amqp://admin:<strong><span class="mention">@poc-stackstorm-rabbitmq-ha-discovery</span>:5672//<br>
+                    2020-12-08 10:46:57,572 INFO [-] Sensor linux.FileWatchSensor started<br>
+                    2020-12-08 10:46:57,573 INFO [-] Running sensor servicenow_pack.DirectorySensor<br>
+                    2020-12-08 10:46:57,587 INFO [-] Sensor servicenow_pack.DirectorySensor started<br>
+                    2020-12-08 10:46:59,400 INFO [-] No config found for sensor “FileWatchSensor”<br>
+                    2020-12-08 10:46:59,401 INFO [-] Watcher started<br>
+                    2020-12-08 10:46:59,402 INFO [-] Running sensor initialization code<br>
+                    2020-12-08 10:46:59,409 INFO [-] Running sensor in passive mode<br>
+                    2020-12-08 10:46:59,438 INFO [-] Connected to amqp://admin:</strong><span class="mention">@poc-stackstorm-rabbitmq-ha-discovery</span>:5672//<br>
+                2020-12-08 10:46:59,504 ERROR [-] Traceback (most recent call last):<br>
+                2020-12-08 10:46:59,504 ERROR [-] File
+                “/opt/stackstorm/st2/lib/python3.6/site-packages/st2reactor/container/sensor_wrapper.py”, line 299, in
+                _get_sensor_instance</p>
+            <p>2020-12-08 10:46:59,504 ERROR [-]<br>
+                2020-12-08 10:46:59,504 ERROR [-] class_name=self._class_name)<br>
+                2020-12-08 10:46:59,505 ERROR [-]</p>
+            <p>2020-12-08 10:46:59,505 ERROR [-] File
+                “/opt/stackstorm/st2/lib/python3.6/site-packages/st2common/util/loader.py”, line 148, in
+                register_plugin_class</p>
+            <p>2020-12-08 10:46:59,505 ERROR [-]<br>
+                2020-12-08 10:46:59,505 ERROR [-] module = imp.load_source(module_name, file_path)<br>
+                2020-12-08 10:46:59,505 ERROR [-]</p>
+            <p>2020-12-08 10:46:59,505 ERROR [-] File
+                “/opt/stackstorm/virtualenvs/servicenow_pack/lib/python3.6/imp.py”, line 172, in load_source</p>
+            <p>2020-12-08 10:46:59,505 ERROR [-]<br>
+                2020-12-08 10:46:59,505 ERROR [-] module = _load(spec)<br>
+                2020-12-08 10:46:59,505 ERROR [-]</p>
+            <p>2020-12-08 10:46:59,505 ERROR [-] File “”, line 684, in _load</p>
+            <p>2020-12-08 10:46:59,505 ERROR [-] File “”, line 665, in _load_unlocked</p>
+            <p>2020-12-08 10:46:59,506 ERROR [-] File “”, line 678, in exec_module</p>
+            <p>2020-12-08 10:46:59,506 ERROR [-] File “”, line 219, in _call_with_frames_removed</p>
+            <p>2020-12-08 10:46:59,506 ERROR [-] File
+                “/opt/stackstorm/packs/servicenow_pack/sensors/directory_sensor.py”, line 10, in </p>
+            <p>2020-12-08 10:46:59,506 ERROR [-]<br>
+                2020-12-08 10:46:59,506 ERROR [-] class DirectorySensor(PollingSensor):<br>
+                2020-12-08 10:46:59,506 ERROR [-]</p>
+            <p>2020-12-08 10:46:59,506 ERROR [-] File
+                “/opt/stackstorm/packs/servicenow_pack/sensors/directory_sensor.py”, line 16, in DirectorySensor</p>
+            <p>2020-12-08 10:46:59,506 ERROR [-]<br>
+                2020-12-08 10:46:59,506 ERROR [-] handler = TimedRotatingFileHandler(logfile, when=“midnight”,
+                interval=1)<br>
+                2020-12-08 10:46:59,506 ERROR [-]</p>
+            <p>2020-12-08 10:46:59,506 ERROR [-] File “/usr/lib/python3.6/logging/handlers.py”, line 202, in <strong>init</strong>
+            </p>
+            <p>2020-12-08 10:46:59,507 ERROR [-]<br>
+                2020-12-08 10:46:59,507 ERROR [-] BaseRotatingHandler.<strong>init</strong>(self, filename, ‘a’,
+                encoding, delay)<br>
+                2020-12-08 10:46:59,507 ERROR [-]</p>
+            <p>2020-12-08 10:46:59,507 ERROR [-] File “/usr/lib/python3.6/logging/handlers.py”, line 57, in
+                <strong>init</strong></p>
+            <p>2020-12-08 10:46:59,507 ERROR [-]<br>
+                2020-12-08 10:46:59,507 ERROR [-] logging.FileHandler.<strong>init</strong>(self, filename, mode,
+                encoding, delay)<br>
+                2020-12-08 10:46:59,507 ERROR [-]</p>
+            <p>2020-12-08 10:46:59,507 ERROR [-] File “/usr/lib/python3.6/logging/<strong>init</strong>.py”, line 1032,
+                in <strong>init</strong></p>
+            <p>2020-12-08 10:46:59,507 ERROR [-]<br>
+                2020-12-08 10:46:59,507 ERROR [-] StreamHandler.<strong>init</strong>(self, self._open())<br>
+                2020-12-08 10:46:59,507 ERROR [-]</p>
+            <p>2020-12-08 10:46:59,507 ERROR [-] File “/usr/lib/python3.6/logging/<strong>init</strong>.py”, line 1061,
+                in _open</p>
+            <p>2020-12-08 10:46:59,508 ERROR [-]<br>
+                2020-12-08 10:46:59,508 ERROR [-] return open(self.baseFilename, self.mode, encoding=self.encoding)<br>
+                2020-12-08 10:46:59,508 ERROR [-]</p>
+            <p>2020-12-08 10:46:59,508 ERROR [-] FileNotFoundError<br>
+                2020-12-08 10:46:59,508 ERROR [-] :<br>
+                2020-12-08 10:46:59,508 ERROR [-] [Errno 2] No such file or directory:
+                ‘/opt/stackstorm/packs/service_now/st2_log/sensor_log/sn_sensor.log’<br>
+                2020-12-08 10:46:59,508 ERROR [-]</p>
+            <p>2020-12-08 10:46:59,508 ERROR [-]<br>
+                During handling of the above exception, another exception occurred:</p>
+            <p>2020-12-08 10:46:59,508 ERROR [-] Traceback (most recent call last):</p>
+            <p>2020-12-08 10:46:59,508 ERROR [-] File
+                “/opt/stackstorm/st2/lib/python3.6/site-packages/st2reactor/container/sensor_wrapper.py”, line 371,
+                in </p>
+            <p>2020-12-08 10:46:59,508 ERROR [-]<br>
+                2020-12-08 10:46:59,508 ERROR [-] parent_args=parent_args)<br>
+                2020-12-08 10:46:59,508 ERROR [-]</p>
+            <p>2020-12-08 10:46:59,508 ERROR [-] File
+                “/opt/stackstorm/st2/lib/python3.6/site-packages/st2reactor/container/sensor_wrapper.py”, line 220, in
+                <strong>init</strong></p>
+            <p>2020-12-08 10:46:59,508 ERROR [-]<br>
+                2020-12-08 10:46:59,509 ERROR [-] self._sensor_instance = self._get_sensor_instance()<br>
+                2020-12-08 10:46:59,509 ERROR [-]</p>
+            <p>2020-12-08 10:46:59,509 ERROR [-] File
+                “/opt/stackstorm/st2/lib/python3.6/site-packages/st2reactor/container/sensor_wrapper.py”, line 306, in
+                _get_sensor_instance</p>
+            <p>2020-12-08 10:46:59,509 ERROR [-]<br>
+                2020-12-08 10:46:59,509 ERROR [-] raise exc_cls(msg)<br>
+                2020-12-08 10:46:59,509 ERROR [-]</p>
+            <p>2020-12-08 10:46:59,509 ERROR [-] FileNotFoundError<br>
+                2020-12-08 10:46:59,509 ERROR [-] :<br>
+                2020-12-08 10:46:59,509 ERROR [-] Failed to load sensor class from file
+                “/opt/stackstorm/packs/servicenow_pack/sensors/directory_sensor.py” (sensor file most likely doesn’t
+                exist or contains invalid syntax): [Errno 2] No such file or directory:
+                ‘/opt/stackstorm/packs/service_now/st2_log/sensor_log/sn_sensor.log’</p>
+            <p>Traceback (most recent call last):<br>
+                File “/opt/stackstorm/st2/lib/python3.6/site-packages/st2reactor/container/sensor_wrapper.py”, line 299,
+                in _get_sensor_instance<br>
+                class_name=self._class_name)<br>
+                File “/opt/stackstorm/st2/lib/python3.6/site-packages/st2common/util/loader.py”, line 148, in
+                register_plugin_class<br>
+                module = imp.load_source(module_name, file_path)<br>
+                File “/opt/stackstorm/virtualenvs/servicenow_pack/lib/python3.6/imp.py”, line 172, in load_source<br>
+                module = _load(spec)<br>
+                File “”, line 684, in _load<br>
+                File “”, line 665, in _load_unlocked<br>
+                File “”, line 678, in exec_module<br>
+                File “”, line 219, in _call_with_frames_removed<br>
+                File “/opt/stackstorm/packs/servicenow_pack/sensors/directory_sensor.py”, line 10, in <br>
+                class DirectorySensor(PollingSensor):<br>
+                File “/opt/stackstorm/packs/servicenow_pack/sensors/directory_sensor.py”, line 16, in
+                DirectorySensor<br>
+                handler = TimedRotatingFileHandler(logfile, when=“midnight”, interval=1)<br>
+                File “/usr/lib/python3.6/logging/handlers.py”, line 202, in <strong>init</strong><br>
+                BaseRotatingHandler.<strong>init</strong>(self, filename, ‘a’, encoding, delay)<br>
+                File “/usr/lib/python3.6/logging/handlers.py”, line 57, in <strong>init</strong><br>
+                logging.FileHandler.<strong>init</strong>(self, filename, mode, encoding, delay)<br>
+                File “/usr/lib/python3.6/logging/<strong>init</strong>.py”, line 1032, in <strong>init</strong><br>
+                StreamHandler.<strong>init</strong>(self, self._open())<br>
+                File “/usr/lib/python3.6/logging/<strong>init</strong>.py”, line 1061, in _open<br>
+                return open(self.baseFilename, self.mode, encoding=self.encoding)<br>
+                FileNotFoundError: [Errno 2] No such file or directory:
+                ‘/opt/stackstorm/packs/service_now/st2_log/sensor_log/sn_sensor.log’</p>
+            <p>2020-12-08 10:47:10,029 ERROR [-]</p>
+            <p>2020-12-08 10:47:10,032 INFO [-] Connected to amqp://admin:**<span class="mention">@poc-stackstorm-rabbitmq-ha-discovery</span>:5672//<br>
+                2020-12-08 10:47:12,599 INFO [-] Process for sensor servicenow_pack.DirectorySensor has exited with code
+                1<br>
+                2020-12-08 10:47:14,989 ERROR [-] Traceback (most recent call last):</p>
+            <p>2020-12-08 10:47:14,989 ERROR [-] File
+                “/opt/stackstorm/st2/lib/python3.6/site-packages/st2reactor/container/sensor_wrapper.py”, line 299, in
+                _get_sensor_instance</p>
+            <p>2020-12-08 10:47:14,989 ERROR [-]<br>
+                2020-12-08 10:47:14,989 ERROR [-] class_name=self._class_name)<br>
+                2020-12-08 10:47:14,989 ERROR [-]</p>
+            <p>2020-12-08 10:47:14,989 ERROR [-] File
+                “/opt/stackstorm/st2/lib/python3.6/site-packages/st2common/util/loader.py”, line 148, in
+                register_plugin_class</p>
+            <p>2020-12-08 10:47:14,989 ERROR [-]<br>
+                2020-12-08 10:47:14,990 ERROR [-] module = imp.load_source(module_name, file_path)<br>
+                2020-12-08 10:47:14,990 ERROR [-]</p>
+            <p>2020-12-08 10:47:14,990 ERROR [-] File
+                “/opt/stackstorm/virtualenvs/servicenow_pack/lib/python3.6/imp.py”, line 172, in load_source</p>
+            <p>2020-12-08 10:47:14,990 ERROR [-]<br>
+                2020-12-08 10:47:14,990 ERROR [-] module = _load(spec)<br>
+                2020-12-08 10:47:14,990 ERROR [-]</p>
+            <p>2020-12-08 10:47:14,990 ERROR [-] File “”, line 684, in _load</p>
+            <p>2020-12-08 10:47:14,990 ERROR [-] File “”, line 665, in _load_unlocked</p>
+            <p>2020-12-08 10:47:14,990 ERROR [-] File “”, line 678, in exec_module</p>
+            <p>2020-12-08 10:47:14,990 ERROR [-] File “”, line 219, in _call_with_frames_removed</p>
+            <p>2020-12-08 10:47:14,990 ERROR [-] File
+                “/opt/stackstorm/packs/servicenow_pack/sensors/directory_sensor.py”, line 10, in </p>
+            <p>2020-12-08 10:47:14,991 ERROR [-]<br>
+                2020-12-08 10:47:14,991 ERROR [-] class DirectorySensor(PollingSensor):<br>
+                2020-12-08 10:47:14,991 ERROR [-]</p>
+            <p>2020-12-08 10:47:14,991 ERROR [-] File
+                “/opt/stackstorm/packs/servicenow_pack/sensors/directory_sensor.py”, line 16, in DirectorySensor</p>
+            <p>2020-12-08 10:47:14,991 ERROR [-]<br>
+                2020-12-08 10:47:14,991 ERROR [-] handler = TimedRotatingFileHandler(logfile, when=“midnight”,
+                interval=1)<br>
+                2020-12-08 10:47:14,991 ERROR [-]</p>
+            <p>2020-12-08 10:47:14,991 ERROR [-] File “/usr/lib/python3.6/logging/handlers.py”, line 202, in <strong>init</strong>
+            </p>
+            <p>2020-12-08 10:47:14,991 ERROR [-]<br>
+                2020-12-08 10:47:14,991 ERROR [-] BaseRotatingHandler.<strong>init</strong>(self, filename, ‘a’,
+                encoding, delay)<br>
+                2020-12-08 10:47:14,991 ERROR [-]</p>
+            <p>2020-12-08 10:47:14,991 ERROR [-] File “/usr/lib/python3.6/logging/handlers.py”, line 57, in
+                <strong>init</strong></p>
+            <p>2020-12-08 10:47:14,991 ERROR [-]<br>
+                2020-12-08 10:47:14,991 ERROR [-] logging.FileHandler.<strong>init</strong>(self, filename, mode,
+                encoding, delay)<br>
+                2020-12-08 10:47:14,992 ERROR [-]</p>
+            <p>2020-12-08 10:47:14,992 ERROR [-] File “/usr/lib/python3.6/logging/<strong>init</strong>.py”, line 1032,
+                in <strong>init</strong></p>
+            <p>2020-12-08 10:47:14,992 ERROR [-]<br>
+                2020-12-08 10:47:14,992 ERROR [-] StreamHandler.<strong>init</strong>(self, self._open())<br>
+                2020-12-08 10:47:14,992 ERROR [-]</p>
+            <p>2020-12-08 10:47:14,992 ERROR [-] File “/usr/lib/python3.6/logging/<strong>init</strong>.py”, line 1061,
+                in _open</p>
+            <p>2020-12-08 10:47:14,992 ERROR [-]<br>
+                2020-12-08 10:47:14,992 ERROR [-] return open(self.baseFilename, self.mode, encoding=self.encoding)<br>
+                2020-12-08 10:47:14,993 ERROR [-]</p>
+            <p>2020-12-08 10:47:14,993 ERROR [-] FileNotFoundError<br>
+                2020-12-08 10:47:14,994 ERROR [-] :<br>
+                2020-12-08 10:47:14,994 ERROR [-] [Errno 2] No such file or directory:
+                ‘/opt/stackstorm/packs/service_now/st2_log/sensor_log/sn_sensor.log’<br>
+                2020-12-08 10:47:14,994 ERROR [-]</p>
+            <p>2020-12-08 10:47:14,994 ERROR [-]<br>
+                During handling of the above exception, another exception occurred:</p>
+            <p>2020-12-08 10:47:14,994 ERROR [-] Traceback (most recent call last):</p>
+            <p>2020-12-08 10:47:14,994 ERROR [-] File
+                “/opt/stackstorm/st2/lib/python3.6/site-packages/st2reactor/container/sensor_wrapper.py”, line 371,
+                in </p>
+            <p>2020-12-08 10:47:14,994 ERROR [-]<br>
+                2020-12-08 10:47:14,994 ERROR [-] parent_args=parent_args)<br>
+                2020-12-08 10:47:14,994 ERROR [-]</p>
+            <p>2020-12-08 10:47:14,994 ERROR [-] File
+                “/opt/stackstorm/st2/lib/python3.6/site-packages/st2reactor/container/sensor_wrapper.py”, line 220, in
+                <strong>init</strong></p>
+            <p>2020-12-08 10:47:14,994 ERROR [-]<br>
+                2020-12-08 10:47:14,994 ERROR [-] self._sensor_instance = self._get_sensor_instance()<br>
+                2020-12-08 10:47:14,994 ERROR [-]</p>
+            <p>2020-12-08 10:47:14,994 ERROR [-] File
+                “/opt/stackstorm/st2/lib/python3.6/site-packages/st2reactor/container/sensor_wrapper.py”, line 306, in
+                _get_sensor_instance</p>
+            <p>2020-12-08 10:47:14,995 ERROR [-]<br>
+                2020-12-08 10:47:14,995 ERROR [-] raise exc_cls(msg)<br>
+                2020-12-08 10:47:14,995 ERROR [-]</p>
+            <p>2020-12-08 10:47:14,995 ERROR [-] FileNotFoundError<br>
+                2020-12-08 10:47:14,995 ERROR [-] :<br>
+                2020-12-08 10:47:14,995 ERROR [-] Failed to load sensor class from file
+                “/opt/stackstorm/packs/servicenow_pack/sensors/directory_sensor.py” (sensor file most likely doesn’t
+                exist or contains invalid syntax): [Errno 2] No such file or directory:
+                ‘/opt/stackstorm/packs/service_now/st2_log/sensor_log/sn_sensor.log’</p>
+            <p>Traceback (most recent call last):<br>
+                File “/opt/stackstorm/st2/lib/python3.6/site-packages/st2reactor/container/sensor_wrapper.py”, line 299,
+                in _get_sensor_instance<br>
+                class_name=self._class_name)<br>
+                File “/opt/stackstorm/st2/lib/python3.6/site-packages/st2common/util/loader.py”, line 148, in
+                register_plugin_class<br>
+                module = imp.load_source(module_name, file_path)<br>
+                File “/opt/stackstorm/virtualenvs/servicenow_pack/lib/python3.6/imp.py”, line 172, in load_source<br>
+                module = _load(spec)<br>
+                File “”, line 684, in _load<br>
+                File “”, line 665, in _load_unlocked<br>
+                File “”, line 678, in exec_module<br>
+                File “”, line 219, in _call_with_frames_removed<br>
+                File “/opt/stackstorm/packs/servicenow_pack/sensors/directory_sensor.py”, line 10, in <br>
+                class DirectorySensor(PollingSensor):<br>
+                File “/opt/stackstorm/packs/servicenow_pack/sensors/directory_sensor.py”, line 16, in
+                DirectorySensor<br>
+                handler = TimedRotatingFileHandler(logfile, when=“midnight”, interval=1)<br>
+                File “/usr/lib/python3.6/logging/handlers.py”, line 202, in <strong>init</strong><br>
+                BaseRotatingHandler.<strong>init</strong>(self, filename, ‘a’, encoding, delay)<br>
+                File “/usr/lib/python3.6/logging/handlers.py”, line 57, in <strong>init</strong><br>
+                logging.FileHandler.<strong>init</strong>(self, filename, mode, encoding, delay)<br>
+                File “/usr/lib/python3.6/logging/<strong>init</strong>.py”, line 1032, in <strong>init</strong><br>
+                StreamHandler.<strong>init</strong>(self, self._open())<br>
+                File “/usr/lib/python3.6/logging/<strong>init</strong>.py”, line 1061, in _open<br>
+                return open(self.baseFilename, self.mode, encoding=self.encoding)<br>
+                FileNotFoundError: [Errno 2] No such file or directory:
+                ‘/opt/stackstorm/packs/service_now/st2_log/sensor_log/sn_sensor.log’</p>
+            <p>2020-12-08 10:47:14,995 ERROR [-]</p>
+            <p>2020-12-08 10:47:17,607 INFO [-] Process for sensor servicenow_pack.DirectorySensor has exited with code
+                1</p>
+        </div>
+
+        <meta itemprop='headline' content='Locally created st2 packs falling on stackstorm HA in kubernetes'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/armab'><span itemprop='name'>armab</span></a>
+            (Eugen Cusmaunsa)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="1494.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2020-12-08T11:23:38Z' class='post-time'>
+                December 8, 2020, 11:23am
+              </time>
+              <meta itemprop='dateModified' content='2020-12-08T11:23:38Z'>
+          <span itemprop='position'>#8</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <blockquote>
+                <p><code>FileNotFoundError: [Errno 2] No such file or directory:
+                    ‘/opt/stackstorm/packs/service_now/st2_log/sensor_log/sn_sensor.log’</code></p>
+            </blockquote>
+            <p>OK, you can see now why sensor is failing. What’s the <code>/opt/stackstorm/packs/service_now/st2_log/sensor_log/sn_sensor.log</code>?
+                It’s not recommended to write into the st2sensorcontainer file system during the execution is it a log
+                file or anything else. Instead of that, use external/remote system for storing logs.</p>
+        </div>
+
+        <meta itemprop='headline' content='Locally created st2 packs falling on stackstorm HA in kubernetes'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/nithinsubbaraj'><span
+                    itemprop='name'>nithinsubbaraj</span></a>
+            (Nithin)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="1494.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2020-12-08T16:41:19Z' class='post-time'>
+                December 8, 2020,  4:41pm
+              </time>
+              <meta itemprop='dateModified' content='2020-12-08T16:41:19Z'>
+          <span itemprop='position'>#9</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <aside class="quote no-group" data-username="armab" data-post="8" data-topic="1494">
+                <div class="title">
+                    <div class="quote-controls"></div>
+                    <img alt="" width="20" height="20"
+                         src="https://sjc6.discourse-cdn.com/standard10/user_avatar/forum.stackstorm.com/armab/40/13_2.png"
+                         class="avatar"> armab:
+                </div>
+                <blockquote>
+                    <p>external/remote system for storing logs</p>
+                </blockquote>
+            </aside>
+            <p>Thanks we are figuring out how to use external/remote system for storing logs and trying to
+                troubleshoot</p>
+        </div>
+
+        <meta itemprop='headline' content='Locally created st2 packs falling on stackstorm HA in kubernetes'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+
+
+    <!-- :preload-content -->
+    <footer class="noscript-footer-nav">
+        <nav itemscope itemtype='http://schema.org/SiteNavigationElement'>
+            <a href='../../index.html'>Home</a>
+            <a href="../../categories.html">Categories</a>
+            <a href="https://forum.stackstorm.com/guidelines">FAQ/Guidelines</a>
+            <a href="../../tos.html">Terms of Service</a>
+            <a href="../../privacy.html">Privacy Policy</a>
+        </nav>
+    </footer>
+</div>
+
+<footer id='noscript-footer'>
+    <p>Powered by <a href="https://www.discourse.org">Discourse</a>, best viewed with JavaScript enabled</p>
+</footer>
+
+
+<section id='main'>
+</section>
+
+
+</body>
+</html>

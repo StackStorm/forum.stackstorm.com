@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>EWC ldap enterprise settings: how to add a search_filter for sAMAccountName</title>
+    <link>https://forum.stackstorm.com/t/ewc-ldap-enterprise-settings-how-to-add-a-search-filter-for-samaccountname/529</link>
+    <description>using the EWC ldap setup, where do I place the 
+
+`&quot;search_filter&quot;: &quot;(&amp;(sAMAccountName={username})(!(userAccountControl:1.2.840.113556.1.4.803:=2)))&quot; `
+to allow uid to essentially now search of sAMAccountName?
+
+```
+backend = ldap
+backend_kwargs = {&quot;bind_dn&quot;: &quot;ldapxxx@fnetworks.com&quot;, &quot;bind_password&quot;: &quot;xxxx&quot;, &quot;base_ou&quot;: &quot;OU=Users,OU=XXXX,DC=fnetworks,DC=com&quot;, &quot;group_dns&quot;: [&quot;OU=Users,OU=XXX,DC=fnetworks,DC=com&quot;, &quot;OU=Users,OU=XXXX,DC=fnetworks,DC=com&quot;], &quot;scope&quot;: &quot;subtree&quot;, &quot;host&quot;: &quot;xxx.fnetworks.com&quot;, &quot;port&quot;: xxx, &quot;debug&quot;:true, &quot;group_dns_check&quot;: &quot;or&quot;, **&quot;search_filter&quot;: &quot;(&amp;(sAMAccountName={username})(!(userAccountControl:1.2.840.113556.1.4.803:=2)))&quot;** }
+```</description>
+    
+    <lastBuildDate>Thu, 07 Mar 2019 21:51:18 +0000</lastBuildDate>
+    <category>RBAC</category>
+    <atom:link href="https://forum.stackstorm.com/t/ewc-ldap-enterprise-settings-how-to-add-a-search-filter-for-samaccountname/529.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>EWC ldap enterprise settings: how to add a search_filter for sAMAccountName</title>
+        <dc:creator><![CDATA[petergits]]></dc:creator>
+        <description><![CDATA[
+            <p>Perfect.  I’ll give it a try.</p>
+<p>Cheers,</p>
+<p>Peter</p>
+          <p><a href="https://forum.stackstorm.com/t/ewc-ldap-enterprise-settings-how-to-add-a-search-filter-for-samaccountname/529/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/ewc-ldap-enterprise-settings-how-to-add-a-search-filter-for-samaccountname/529/3</link>
+        <pubDate>Thu, 07 Mar 2019 21:51:18 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-529-3</guid>
+        <source url="https://forum.stackstorm.com/t/ewc-ldap-enterprise-settings-how-to-add-a-search-filter-for-samaccountname/529.rss">EWC ldap enterprise settings: how to add a search_filter for sAMAccountName</source>
+      </item>
+      <item>
+        <title>EWC ldap enterprise settings: how to add a search_filter for sAMAccountName</title>
+        <dc:creator><![CDATA[m4dcoder]]></dc:creator>
+        <description><![CDATA[
+            <p>You can review the list of configurable options for the LDAP backend at <a href="https://bwc-docs.brocade.com/authentication.html#ldap-enterprise-edition" rel="nofollow noopener">https://bwc-docs.brocade.com/authentication.html#ldap-enterprise-edition</a>. So if I’m reading your question correctly, you want to use the sAMAccountName instead of the uid. You can override <code>id_attr</code> (defaulted to uid) in the <code>backend_kwargs</code>.</p>
+          <p><a href="https://forum.stackstorm.com/t/ewc-ldap-enterprise-settings-how-to-add-a-search-filter-for-samaccountname/529/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/ewc-ldap-enterprise-settings-how-to-add-a-search-filter-for-samaccountname/529/2</link>
+        <pubDate>Thu, 07 Mar 2019 20:55:40 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-529-2</guid>
+        <source url="https://forum.stackstorm.com/t/ewc-ldap-enterprise-settings-how-to-add-a-search-filter-for-samaccountname/529.rss">EWC ldap enterprise settings: how to add a search_filter for sAMAccountName</source>
+      </item>
+      <item>
+        <title>EWC ldap enterprise settings: how to add a search_filter for sAMAccountName</title>
+        <dc:creator><![CDATA[petergits]]></dc:creator>
+        <description><![CDATA[
+            <p>using the EWC ldap setup, where do I place the</p>
+<p><code>"search_filter": "(&amp;(sAMAccountName={username})(!(userAccountControl:1.2.840.113556.1.4.803:=2)))"</code><br>
+to allow uid to essentially now search of sAMAccountName?</p>
+<pre><code class="lang-auto">backend = ldap
+backend_kwargs = {"bind_dn": "ldapxxx@fnetworks.com", "bind_password": "xxxx", "base_ou": "OU=Users,OU=XXXX,DC=fnetworks,DC=com", "group_dns": ["OU=Users,OU=XXX,DC=fnetworks,DC=com", "OU=Users,OU=XXXX,DC=fnetworks,DC=com"], "scope": "subtree", "host": "xxx.fnetworks.com", "port": xxx, "debug":true, "group_dns_check": "or", **"search_filter": "(&amp;(sAMAccountName={username})(!(userAccountControl:1.2.840.113556.1.4.803:=2)))"** }
+</code></pre>
+          <p><a href="https://forum.stackstorm.com/t/ewc-ldap-enterprise-settings-how-to-add-a-search-filter-for-samaccountname/529/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/ewc-ldap-enterprise-settings-how-to-add-a-search-filter-for-samaccountname/529/1</link>
+        <pubDate>Thu, 07 Mar 2019 19:31:40 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-529-1</guid>
+        <source url="https://forum.stackstorm.com/t/ewc-ldap-enterprise-settings-how-to-add-a-search-filter-for-samaccountname/529.rss">EWC ldap enterprise settings: how to add a search_filter for sAMAccountName</source>
+      </item>
+  </channel>
+</rss>

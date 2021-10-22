@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Stackstorm with HA</title>
+    <link>https://forum.stackstorm.com/t/stackstorm-with-ha/167</link>
+    <description>How to deploy stackstorm with high availability? I&#39;m trying to get something like this done :- 
+
+1. clustered rabbitmq
+2. load balanced web frontend
+3. resilient st2 workers</description>
+    
+    <lastBuildDate>Fri, 08 Jun 2018 13:32:47 +0000</lastBuildDate>
+    <category>Platform</category>
+    <atom:link href="https://forum.stackstorm.com/t/stackstorm-with-ha/167.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Stackstorm with HA</title>
+        <dc:creator><![CDATA[lhill]]></dc:creator>
+        <description><![CDATA[
+            <p><a href="http://docs.stackstorm.com/reference/ha.html" class="onebox" target="_blank">docs.stackstorm.com/reference/ha.html</a></p>
+          <p><a href="https://forum.stackstorm.com/t/stackstorm-with-ha/167/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/stackstorm-with-ha/167/2</link>
+        <pubDate>Fri, 08 Jun 2018 13:32:47 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-167-2</guid>
+        <source url="https://forum.stackstorm.com/t/stackstorm-with-ha/167.rss">Stackstorm with HA</source>
+      </item>
+      <item>
+        <title>Stackstorm with HA</title>
+        <dc:creator><![CDATA[orpeakshay]]></dc:creator>
+        <description><![CDATA[
+            <p>How to deploy stackstorm with high availability? I’m trying to get something like this done :-</p>
+<ol>
+<li>clustered rabbitmq</li>
+<li>load balanced web frontend</li>
+<li>resilient st2 workers</li>
+</ol>
+          <p><a href="https://forum.stackstorm.com/t/stackstorm-with-ha/167/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/stackstorm-with-ha/167/1</link>
+        <pubDate>Fri, 08 Jun 2018 12:28:06 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-167-1</guid>
+        <source url="https://forum.stackstorm.com/t/stackstorm-with-ha/167.rss">Stackstorm with HA</source>
+      </item>
+  </channel>
+</rss>

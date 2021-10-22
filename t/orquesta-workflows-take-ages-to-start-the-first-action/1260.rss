@@ -1,0 +1,1145 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Orquesta workflows take ages to start the first action</title>
+    <link>https://forum.stackstorm.com/t/orquesta-workflows-take-ages-to-start-the-first-action/1260</link>
+    <description>Complex orquesta workflows take ages to start the first action. I have seen workflows taking as much as 45 min to start the first action. Although it runs smoothly after that. Is there a way to improve this performance issue.</description>
+    
+    <lastBuildDate>Mon, 13 Jul 2020 03:06:35 +0000</lastBuildDate>
+    <category>Workflows</category>
+    <atom:link href="https://forum.stackstorm.com/t/orquesta-workflows-take-ages-to-start-the-first-action/1260.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Orquesta workflows take ages to start the first action</title>
+        <dc:creator><![CDATA[mukjain]]></dc:creator>
+        <description><![CDATA[
+            <p>Dummy workflow to test the same. It takes around 7-8 minutes to start this workflow.</p>
+          <p><a href="https://forum.stackstorm.com/t/orquesta-workflows-take-ages-to-start-the-first-action/1260/14">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/orquesta-workflows-take-ages-to-start-the-first-action/1260/14</link>
+        <pubDate>Mon, 13 Jul 2020 03:06:35 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1260-14</guid>
+        <source url="https://forum.stackstorm.com/t/orquesta-workflows-take-ages-to-start-the-first-action/1260.rss">Orquesta workflows take ages to start the first action</source>
+      </item>
+      <item>
+        <title>Orquesta workflows take ages to start the first action</title>
+        <dc:creator><![CDATA[mukjain]]></dc:creator>
+        <description><![CDATA[
+            <pre><code>---
+name: "dummy_pre"
+enabled: true
+pack: "eglom"
+parameters:
+  lom_context:
+    required: true
+    type: "object"
+    secret: true
+runner_type: "orquesta"
+entry_point: "workflows/dummy_pre.yaml"</code></pre>
+          <p><a href="https://forum.stackstorm.com/t/orquesta-workflows-take-ages-to-start-the-first-action/1260/13">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/orquesta-workflows-take-ages-to-start-the-first-action/1260/13</link>
+        <pubDate>Mon, 13 Jul 2020 03:06:09 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1260-13</guid>
+        <source url="https://forum.stackstorm.com/t/orquesta-workflows-take-ages-to-start-the-first-action/1260.rss">Orquesta workflows take ages to start the first action</source>
+      </item>
+      <item>
+        <title>Orquesta workflows take ages to start the first action</title>
+        <dc:creator><![CDATA[mukjain]]></dc:creator>
+        <description><![CDATA[
+            <pre><code>---
+version: '1.0'
+description: abc
+input:
+- lom_context
+tasks:
+  Start:
+action: core.noop
+next:
+- do: Task68
+  when: &lt;% succeeded() and result().result.event = 'Started' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task10:
+action: core.noop
+next:
+- do: Task20
+  when: &lt;% succeeded() and result().result.event = 'Not Matched' %&gt;
+- do: Task11
+  when: &lt;% succeeded() and result().result.event = 'Matched' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Invalid Datatype' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Key Absent' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Value Null' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Exception' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task11:
+action: core.noop
+next:
+- do: Task54
+  when: &lt;% succeeded() and result().result.event = 'Conn Error' %&gt;
+- do: Task54
+  when: &lt;% succeeded() and result().result.event = 'File Missing' %&gt;
+- do: Task54
+  when: &lt;% succeeded() and result().result.event = 'Access Denied' %&gt;
+- do: Task54
+  when: &lt;% succeeded() and result().result.event = 'Failure' %&gt;
+- do: Task53
+  when: &lt;% succeeded() and result().result.event = 'Success' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task12:
+action: core.noop
+next:
+- do: Task15
+  when: &lt;% succeeded() and result().result.event = 'Not Matched' %&gt;
+- do: Task14
+  when: &lt;% succeeded() and result().result.event = 'Matched' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Invalid Datatype' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Key Absent' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Value Null' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Exception' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task13:
+action: core.noop
+next:
+- do: Task65
+  when: &lt;% succeeded() and result().result.event = 'Success' %&gt;
+- do: Task65
+  when: &lt;% succeeded() and result().result.event = 'Failure' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task14:
+action: core.noop
+next:
+- do: Task66
+  when: &lt;% succeeded() and result().result.event = 'Conn Error' %&gt;
+- do: Task66
+  when: &lt;% succeeded() and result().result.event = 'File Missing' %&gt;
+- do: Task66
+  when: &lt;% succeeded() and result().result.event = 'Access Denied' %&gt;
+- do: Task66
+  when: &lt;% succeeded() and result().result.event = 'Failure' %&gt;
+- do: Task17
+  when: &lt;% succeeded() and result().result.event = 'Success' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task15:
+action: core.noop
+next:
+- do: Task48
+  when: &lt;% succeeded() and result().result.event = 'Conn Error' %&gt;
+- do: Task48
+  when: &lt;% succeeded() and result().result.event = 'File Missing' %&gt;
+- do: Task48
+  when: &lt;% succeeded() and result().result.event = 'Access Denied' %&gt;
+- do: Task14
+  when: &lt;% succeeded() and result().result.event = 'Success' %&gt;
+- do: Task48
+  when: &lt;% succeeded() and result().result.event = 'Failure' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task16:
+action: core.noop
+next:
+- do: Task56
+  when: &lt;% succeeded() and result().result.event = 'Not Matched' %&gt;
+- do: Task19
+  when: &lt;% succeeded() and result().result.event = 'Matched' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Invalid Datatype' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Key Absent' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Value Null' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Exception' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task17:
+action: core.noop
+next:
+- do: Task10
+  when: &lt;% succeeded() and result().result.event = 'Not Matched' %&gt;
+- do: Task2
+  when: &lt;% succeeded() and result().result.event = 'Matched' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Invalid Datatype' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Key Absent' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Value Null' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Exception' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task18:
+action: core.noop
+next:
+- do: Task57
+  when: &lt;% succeeded() %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task19:
+action: core.noop
+next:
+- do: Task51
+  when: &lt;% succeeded() and result().result.event = 'Conn Error' %&gt;
+- do: Task51
+  when: &lt;% succeeded() and result().result.event = 'Access Denied' %&gt;
+- do: Task22
+  when: &lt;% succeeded() and result().result.event = 'Success' %&gt;
+- do: Task51
+  when: &lt;% succeeded() and result().result.event = 'Failure' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task2:
+action: core.noop
+next:
+- do: Task10
+  when: &lt;% succeeded() and result().result.event = 'Not Matched' %&gt;
+- do: Task19
+  when: &lt;% succeeded() and result().result.event = 'Matched' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Invalid Datatype' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Key Absent' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Value Null' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Exception' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task20:
+action: core.noop
+next:
+- do: Task54
+  when: &lt;% succeeded() and result().result.event = 'Conn Error' %&gt;
+- do: Task54
+  when: &lt;% succeeded() and result().result.event = 'File Missing' %&gt;
+- do: Task54
+  when: &lt;% succeeded() and result().result.event = 'Access Denied' %&gt;
+- do: Task21
+  when: &lt;% succeeded() and result().result.event = 'Success' %&gt;
+- do: Task54
+  when: &lt;% succeeded() and result().result.event = 'Failure' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task21:
+action: core.noop
+next:
+- do: Task54
+  when: &lt;% succeeded() and result().result.event = 'Conn Error' %&gt;
+- do: Task54
+  when: &lt;% succeeded() and result().result.event = 'File Missing' %&gt;
+- do: Task54
+  when: &lt;% succeeded() and result().result.event = 'Access Denied' %&gt;
+- do: Task54
+  when: &lt;% succeeded() and result().result.event = 'Failure' %&gt;
+- do: Task53
+  when: &lt;% succeeded() and result().result.event = 'Success' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task22:
+action: core.noop
+next:
+- do: Task23
+  when: &lt;% succeeded() and result().result.event = 'Not Matched' %&gt;
+- do: Task10
+  when: &lt;% succeeded() and result().result.event = 'Matched' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Invalid Datatype' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Key Absent' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Value Null' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Exception' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task23:
+action: core.noop
+next:
+- do: Task25
+  when: &lt;% succeeded() and result().result.event = 'Not Matched' %&gt;
+- do: Task10
+  when: &lt;% succeeded() and result().result.event = 'Matched' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Invalid Datatype' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Key Absent' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Value Null' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Exception' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task24:
+action: core.noop
+next:
+- do: Task67
+  when: &lt;% succeeded() %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task25:
+action: core.noop
+next:
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Not Matched' %&gt;
+- do: Task59
+  when: &lt;% succeeded() and result().result.event = 'Matched' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Invalid Datatype' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Key Absent' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Value Null' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Exception' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task26:
+action: core.noop
+next:
+- do: Task54
+  when: &lt;% succeeded() and result().result.event = 'Conn Error' %&gt;
+- do: Task54
+  when: &lt;% succeeded() and result().result.event = 'File Missing' %&gt;
+- do: Task54
+  when: &lt;% succeeded() and result().result.event = 'Access Denied' %&gt;
+- do: Task54
+  when: &lt;% succeeded() and result().result.event = 'Failure' %&gt;
+- do: Task41
+  when: &lt;% succeeded() and result().result.event = 'Success' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task27:
+action: core.noop
+next:
+- do: Task57
+  when: &lt;% succeeded() %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task28:
+action: core.noop
+next:
+- do: Task29
+  when: &lt;% succeeded() and result().result.event = 'Not Matched' %&gt;
+- do: Task16
+  when: &lt;% succeeded() and result().result.event = 'Matched' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Invalid Datatype' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Key Absent' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Value Null' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Exception' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task29:
+action: core.noop
+next:
+- do: Task31
+  when: &lt;% succeeded() and result().result.event = 'Not Matched' %&gt;
+- do: Task59
+  when: &lt;% succeeded() and result().result.event = 'Matched' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Invalid Datatype' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Key Absent' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Value Null' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Exception' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task3:
+action: core.noop
+next:
+- do: fail
+  when: &lt;% succeeded() and true %&gt;
+  Task30:
+action: core.noop
+next:
+- do: Task32
+  when: &lt;% succeeded() and result().result.event = 'Not Matched' %&gt;
+- do: Task24
+  when: &lt;% succeeded() and result().result.event = 'Matched' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Invalid Datatype' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Key Absent' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Value Null' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Exception' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task31:
+action: core.noop
+next:
+- do: Task33
+  when: &lt;% succeeded() and result().result.event = 'Not Matched' %&gt;
+- do: Task59
+  when: &lt;% succeeded() and result().result.event = 'Matched' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Invalid Datatype' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Key Absent' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Value Null' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Exception' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task32:
+action: core.noop
+next:
+- do: Task76
+  when: &lt;% succeeded() and result().result.event = 'Not Matched' %&gt;
+- do: Task27
+  when: &lt;% succeeded() and result().result.event = 'Matched' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Invalid Datatype' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Key Absent' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Value Null' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Exception' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task33:
+action: core.noop
+next:
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Not Matched' %&gt;
+- do: Task26
+  when: &lt;% succeeded() and result().result.event = 'Matched' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Invalid Datatype' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Key Absent' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Value Null' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Exception' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task34:
+action: core.noop
+next:
+- do: Task18
+  when: &lt;% succeeded() and result().result.event = 'Conn Error' %&gt;
+- do: Task18
+  when: &lt;% succeeded() and result().result.event = 'File Missing' %&gt;
+- do: Task18
+  when: &lt;% succeeded() and result().result.event = 'Access Denied' %&gt;
+- do: Task18
+  when: &lt;% succeeded() and result().result.event = 'Failure' %&gt;
+- do: Task75
+  when: &lt;% succeeded() and result().result.event = 'Success' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task35:
+action: core.noop
+next:
+- do: Task18
+  when: &lt;% succeeded() and result().result.event = 'Conn Error' %&gt;
+- do: Task18
+  when: &lt;% succeeded() and result().result.event = 'File Missing' %&gt;
+- do: Task18
+  when: &lt;% succeeded() and result().result.event = 'Access Denied' %&gt;
+- do: Task18
+  when: &lt;% succeeded() and result().result.event = 'Failure' %&gt;
+- do: Task7
+  when: &lt;% succeeded() and result().result.event = 'Success' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task36:
+action: core.noop
+next:
+- do: Task37
+  when: &lt;% succeeded() %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task37:
+action: core.noop
+next:
+- do: Task38
+  when: &lt;% succeeded() and true %&gt;
+- do: Task57
+  when: &lt;% failed() %&gt;
+  Task38:
+action: core.noop
+next:
+- do: Task57
+  when: &lt;% succeeded() and result().result.event = 'Not Matched' %&gt;
+- do: Task71
+  when: &lt;% succeeded() and result().result.event = 'Matched' %&gt;
+- do: Task57
+  when: &lt;% succeeded() and result().result.event = 'Invalid Datatype' %&gt;
+- do: Task57
+  when: &lt;% succeeded() and result().result.event = 'Key Absent' %&gt;
+- do: Task57
+  when: &lt;% succeeded() and result().result.event = 'Value Null' %&gt;
+- do: Task57
+  when: &lt;% succeeded() and result().result.event = 'Exception' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task39:
+action: core.noop
+next:
+- do: Task57
+  when: &lt;% succeeded() %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task4:
+action: core.noop
+next:
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task40:
+action: core.noop
+next:
+- do: Task65
+  when: &lt;% succeeded() and result().result.event = 'Not Matched' %&gt;
+- do: Task13
+  when: &lt;% succeeded() and result().result.event = 'Matched' %&gt;
+- do: Task65
+  when: &lt;% succeeded() and result().result.event = 'Invalid Datatype' %&gt;
+- do: Task65
+  when: &lt;% succeeded() and result().result.event = 'Key Absent' %&gt;
+- do: Task65
+  when: &lt;% succeeded() and result().result.event = 'Value Null' %&gt;
+- do: Task65
+  when: &lt;% succeeded() and result().result.event = 'Exception' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task41:
+action: core.noop
+next:
+- do: Task44
+  when: &lt;% succeeded() and result().result.event = 'Conn Error' %&gt;
+- do: Task44
+  when: &lt;% succeeded() and result().result.event = 'File Missing' %&gt;
+- do: Task44
+  when: &lt;% succeeded() and result().result.event = 'Access Denied' %&gt;
+- do: Task42
+  when: &lt;% succeeded() and result().result.event = 'Success' %&gt;
+- do: Task44
+  when: &lt;% succeeded() and result().result.event = 'Failure' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task42:
+action: core.noop
+next:
+- do: Task30
+  when: &lt;% succeeded() and result().result.event = 'Not Matched' %&gt;
+- do: Task45
+  when: &lt;% succeeded() and result().result.event = 'Matched' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Invalid Datatype' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Key Absent' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Value Null' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Exception' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task43:
+action: core.noop
+next:
+- do: Task57
+  when: &lt;% succeeded() %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task44:
+action: core.noop
+next:
+- do: Task30
+  when: &lt;% succeeded() %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task45:
+action: core.noop
+next:
+- do: Task46
+  when: &lt;% succeeded() and result().result.event = 'Not Matched' %&gt;
+- do: Task49
+  when: &lt;% succeeded() and result().result.event = 'Matched' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Invalid Datatype' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Key Absent' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Value Null' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Exception' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task46:
+action: core.noop
+next:
+- do: Task50
+  when: &lt;% succeeded() %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task47:
+action: core.noop
+next:
+- do: Task57
+  when: &lt;% succeeded() %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task48:
+action: core.noop
+next:
+- do: Task57
+  when: &lt;% succeeded() %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task49:
+action: core.noop
+next:
+- do: Task51
+  when: &lt;% succeeded() and result().result.event = 'Conn Error' %&gt;
+- do: Task51
+  when: &lt;% succeeded() and result().result.event = 'Access Denied' %&gt;
+- do: Task30
+  when: &lt;% succeeded() and result().result.event = 'Success' %&gt;
+- do: Task51
+  when: &lt;% succeeded() and result().result.event = 'Failure' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task5:
+action: core.noop
+next:
+- do: Task43
+  when: &lt;% succeeded() and result().result.event = 'Conn Error' %&gt;
+- do: Task43
+  when: &lt;% succeeded() and result().result.event = 'File Missing' %&gt;
+- do: Task43
+  when: &lt;% succeeded() and result().result.event = 'Access Denied' %&gt;
+- do: Task6
+  when: &lt;% succeeded() and result().result.event = 'Success' %&gt;
+- do: Task43
+  when: &lt;% succeeded() and result().result.event = 'Failure' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task50:
+action: core.noop
+next:
+- do: Task32
+  when: &lt;% succeeded() and result().result.event = 'Not Matched' %&gt;
+- do: Task52
+  when: &lt;% succeeded() and result().result.event = 'Matched' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Invalid Datatype' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Key Absent' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Value Null' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Exception' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task51:
+action: core.noop
+next:
+- do: Task57
+  when: &lt;% succeeded() %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task52:
+action: core.noop
+next:
+- do: Task24
+  when: &lt;% succeeded() %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task53:
+action: core.noop
+next:
+- do: Task28
+  when: &lt;% succeeded() and result().result.event = 'Conn Error' %&gt;
+- do: Task28
+  when: &lt;% succeeded() and result().result.event = 'File Missing' %&gt;
+- do: Task28
+  when: &lt;% succeeded() and result().result.event = 'Access Denied' %&gt;
+- do: Task28
+  when: &lt;% succeeded() and result().result.event = 'Success' %&gt;
+- do: Task28
+  when: &lt;% succeeded() and result().result.event = 'Failure' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task54:
+action: core.noop
+next:
+- do: Task57
+  when: &lt;% succeeded() %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task55:
+action: core.noop
+next:
+- do: Task57
+  when: &lt;% succeeded() %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task56:
+action: core.noop
+next:
+- do: Task57
+  when: &lt;% succeeded() %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task57:
+action: core.noop
+next:
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Not Matched' %&gt;
+- do: Task61
+  when: &lt;% succeeded() and result().result.event = 'Matched' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Invalid Datatype' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Key Absent' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Value Null' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Exception' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task58:
+action: core.noop
+next:
+- do: Task18
+  when: &lt;% succeeded() and result().result.event = 'Conn Error' %&gt;
+- do: Task18
+  when: &lt;% succeeded() and result().result.event = 'File Missing' %&gt;
+- do: Task18
+  when: &lt;% succeeded() and result().result.event = 'Access Denied' %&gt;
+- do: Task18
+  when: &lt;% succeeded() and result().result.event = 'Failure' %&gt;
+- do: Task77
+  when: &lt;% succeeded() and result().result.event = 'Success' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task59:
+action: core.noop
+next:
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Conn Error' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'File Missing' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Access Denied' %&gt;
+- do: Task63
+  when: &lt;% succeeded() and result().result.event = 'Success' %&gt;
+- do: Task60
+  when: &lt;% succeeded() and result().result.event = 'Failure' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task6:
+action: core.noop
+next:
+- do: Task39
+  when: &lt;% succeeded() and result().result.event = 'Not Matched' %&gt;
+- do: Task8
+  when: &lt;% succeeded() and result().result.event = 'Matched' %&gt;
+- do: Task39
+  when: &lt;% succeeded() and result().result.event = 'Invalid Datatype' %&gt;
+- do: Task39
+  when: &lt;% succeeded() and result().result.event = 'Key Absent' %&gt;
+- do: Task39
+  when: &lt;% succeeded() and result().result.event = 'Value Null' %&gt;
+- do: Task39
+  when: &lt;% succeeded() and result().result.event = 'Exception' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task60:
+action: core.noop
+next:
+- do: Task26
+  when: &lt;% succeeded() %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task61:
+action: core.noop
+next:
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Success' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Failure' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task62:
+action: core.noop
+next:
+- do: Task36
+  when: &lt;% succeeded() and result().result.event = 'Success' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Failure' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task63:
+action: core.noop
+next:
+- do: Task69
+  when: &lt;% succeeded() and result().result.event = 'Not Matched' %&gt;
+- do: Task10
+  when: &lt;% succeeded() and result().result.event = 'Matched' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Invalid Datatype' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Key Absent' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Value Null' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Exception' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task64:
+action: core.noop
+next:
+- do: Task3
+  when: &lt;% succeeded() and result().result.event = 'Next' %&gt;
+- do: Task3
+  when: &lt;% failed() %&gt;
+  Task65:
+action: core.noop
+next:
+- do: Task4
+  when: &lt;% succeeded() and result().result.event = 'Next' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task66:
+action: core.noop
+next:
+- do: Task57
+  when: &lt;% succeeded() %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task67:
+action: core.noop
+next:
+- do: Task72
+  when: &lt;% succeeded() and result().result.event = 'Not Matched' %&gt;
+- do: Task34
+  when: &lt;% succeeded() and result().result.event = 'Matched' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Invalid Datatype' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Key Absent' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Value Null' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Exception' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task68:
+action: core.noop
+next:
+- do: Task70
+  when: &lt;% succeeded() %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task69:
+action: core.noop
+next:
+- do: Task26
+  when: &lt;% succeeded() and result().result.event = 'Not Matched' %&gt;
+- do: Task73
+  when: &lt;% succeeded() and result().result.event = 'Matched' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Invalid Datatype' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Key Absent' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Value Null' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Exception' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task7:
+action: core.noop
+next:
+- do: Task40
+  when: &lt;% succeeded() %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task70:
+action: core.noop
+next:
+- do: Task62
+  when: &lt;% succeeded() %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task71:
+action: core.noop
+next:
+- do: Task43
+  when: &lt;% succeeded() and result().result.event = 'Conn Error' %&gt;
+- do: Task43
+  when: &lt;% succeeded() and result().result.event = 'File Missing' %&gt;
+- do: Task43
+  when: &lt;% succeeded() and result().result.event = 'Access Denied' %&gt;
+- do: Task74
+  when: &lt;% succeeded() and result().result.event = 'Success' %&gt;
+- do: Task74
+  when: &lt;% succeeded() and result().result.event = 'Failure' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task72:
+action: core.noop
+next:
+- do: Task35
+  when: &lt;% succeeded() and result().result.event = 'Not Matched' %&gt;
+- do: Task58
+  when: &lt;% succeeded() and result().result.event = 'Matched' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Invalid Datatype' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Key Absent' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Value Null' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Exception' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task73:
+action: core.noop
+next:
+- do: Task26
+  when: &lt;% succeeded() %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task74:
+action: core.noop
+next:
+- do: Task5
+  when: &lt;% succeeded() and result().result.event = 'Success' %&gt;
+- do: Task47
+  when: &lt;% succeeded() and result().result.event = 'Failure' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task75:
+action: core.noop
+next:
+- do: Task57
+  when: &lt;% succeeded() and result().result.event = 'Not Matched' %&gt;
+- do: Task72
+  when: &lt;% succeeded() and result().result.event = 'Matched' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Invalid Datatype' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Key Absent' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Value Null' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Exception' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task76:
+action: core.noop
+next:
+- do: Task57
+  when: &lt;% succeeded() %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task77:
+action: core.noop
+next:
+- do: Task57
+  when: &lt;% succeeded() and result().result.event = 'Not Matched' %&gt;
+- do: Task35
+  when: &lt;% succeeded() and result().result.event = 'Matched' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Invalid Datatype' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Key Absent' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Value Null' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Exception' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task8:
+action: core.noop
+next:
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Conn Error' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'File Missing' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Access Denied' %&gt;
+- do: Task9
+  when: &lt;% succeeded() and result().result.event = 'Success' %&gt;
+- do: Task9
+  when: &lt;% succeeded() and result().result.event = 'Failure' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task9:
+action: core.noop
+next:
+- do: Task55
+  when: &lt;% succeeded() and result().result.event = 'Conn Error' %&gt;
+- do: Task55
+  when: &lt;% succeeded() and result().result.event = 'File Missing' %&gt;
+- do: Task55
+  when: &lt;% succeeded() and result().result.event = 'Access Denied' %&gt;
+- do: Task12
+  when: &lt;% succeeded() and result().result.event = 'Success' %&gt;
+- do: Task55
+  when: &lt;% succeeded() and result().result.event = 'Failure' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;</code></pre>
+          <p><a href="https://forum.stackstorm.com/t/orquesta-workflows-take-ages-to-start-the-first-action/1260/12">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/orquesta-workflows-take-ages-to-start-the-first-action/1260/12</link>
+        <pubDate>Mon, 13 Jul 2020 03:05:19 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1260-12</guid>
+        <source url="https://forum.stackstorm.com/t/orquesta-workflows-take-ages-to-start-the-first-action/1260.rss">Orquesta workflows take ages to start the first action</source>
+      </item>
+      <item>
+        <title>Orquesta workflows take ages to start the first action</title>
+        <dc:creator><![CDATA[armab]]></dc:creator>
+        <description><![CDATA[
+            <p>Just to confirm, make sure to use the latest st2 <code>v3.2.0</code> version with the most recent fixes.</p>
+<p>If you believe you found a performance bug, - please report it in <a href="https://github.com/stackstorm/orquesta" class="inline-onebox">GitHub - StackStorm/orquesta: Orquesta is a graph based workflow engine for StackStorm. Questions? https://forum.stackstorm.com</a> providing as much details as possible, including an example workflow to reproduce the problem.</p>
+          <p><a href="https://forum.stackstorm.com/t/orquesta-workflows-take-ages-to-start-the-first-action/1260/10">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/orquesta-workflows-take-ages-to-start-the-first-action/1260/10</link>
+        <pubDate>Mon, 29 Jun 2020 11:38:45 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1260-10</guid>
+        <source url="https://forum.stackstorm.com/t/orquesta-workflows-take-ages-to-start-the-first-action/1260.rss">Orquesta workflows take ages to start the first action</source>
+      </item>
+      <item>
+        <title>Orquesta workflows take ages to start the first action</title>
+        <dc:creator><![CDATA[mukjain]]></dc:creator>
+        <description><![CDATA[
+            <p><a class="mention" href="https://github.com/armab">@armab</a> all this time is taken up by conducting.py file in orquesta where the workflow graphs and specs are serialized.</p>
+<p>It might be related to this issue (although it shows resolved on github)</p>
+<ul>
+<li><a href="https://github.com/StackStorm/orquesta/issues/122" class="inline-onebox" rel="nofollow noopener">Inflated workflow execution graph leads to increase resource consumption and delays · Issue #122 · StackStorm/orquesta · GitHub</a></li>
+</ul>
+          <p><a href="https://forum.stackstorm.com/t/orquesta-workflows-take-ages-to-start-the-first-action/1260/9">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/orquesta-workflows-take-ages-to-start-the-first-action/1260/9</link>
+        <pubDate>Mon, 29 Jun 2020 09:35:34 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1260-9</guid>
+        <source url="https://forum.stackstorm.com/t/orquesta-workflows-take-ages-to-start-the-first-action/1260.rss">Orquesta workflows take ages to start the first action</source>
+      </item>
+      <item>
+        <title>Orquesta workflows take ages to start the first action</title>
+        <dc:creator><![CDATA[pvyaka01]]></dc:creator>
+        <description><![CDATA[
+            <p>yeah, i’ll report it as soon as i can modify the workflow with dummy actions</p>
+          <p><a href="https://forum.stackstorm.com/t/orquesta-workflows-take-ages-to-start-the-first-action/1260/8">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/orquesta-workflows-take-ages-to-start-the-first-action/1260/8</link>
+        <pubDate>Fri, 26 Jun 2020 05:26:52 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1260-8</guid>
+        <source url="https://forum.stackstorm.com/t/orquesta-workflows-take-ages-to-start-the-first-action/1260.rss">Orquesta workflows take ages to start the first action</source>
+      </item>
+      <item>
+        <title>Orquesta workflows take ages to start the first action</title>
+        <dc:creator><![CDATA[armab]]></dc:creator>
+        <description><![CDATA[
+            <p><a class="mention" href="https://github.com/pvyaka01">@pvyaka01</a> f you could put together an example workflow filled with dummy actions for us to reproduce the issue, - please report it and share in <a href="https://github.com/stackstorm/orquesta" class="inline-onebox">GitHub - StackStorm/orquesta: Orquesta is a graph based workflow engine for StackStorm. Questions? https://forum.stackstorm.com</a> so that could be investigated and fixed.<br>
+Thanks!</p>
+          <p><a href="https://forum.stackstorm.com/t/orquesta-workflows-take-ages-to-start-the-first-action/1260/7">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/orquesta-workflows-take-ages-to-start-the-first-action/1260/7</link>
+        <pubDate>Thu, 25 Jun 2020 12:28:11 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1260-7</guid>
+        <source url="https://forum.stackstorm.com/t/orquesta-workflows-take-ages-to-start-the-first-action/1260.rss">Orquesta workflows take ages to start the first action</source>
+      </item>
+      <item>
+        <title>Orquesta workflows take ages to start the first action</title>
+        <dc:creator><![CDATA[pvyaka01]]></dc:creator>
+        <description><![CDATA[
+            <p>By moving some actions in the workflow to a separate action (about 10 of them), i was able to reduce the start time from 20 mins to 1 1/2 mins. There is definitely an issue.</p>
+          <p><a href="https://forum.stackstorm.com/t/orquesta-workflows-take-ages-to-start-the-first-action/1260/6">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/orquesta-workflows-take-ages-to-start-the-first-action/1260/6</link>
+        <pubDate>Wed, 24 Jun 2020 22:56:00 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1260-6</guid>
+        <source url="https://forum.stackstorm.com/t/orquesta-workflows-take-ages-to-start-the-first-action/1260.rss">Orquesta workflows take ages to start the first action</source>
+      </item>
+      <item>
+        <title>Orquesta workflows take ages to start the first action</title>
+        <dc:creator><![CDATA[pvyaka01]]></dc:creator>
+        <description><![CDATA[
+            <p>We have a similar situation. The workflow has approximately 20 tasks and sub workflows and a combination of mistral/Orquesta workflows. Noticed it takes anywhere from 15-20 mins to start the workflow and proceeds fine after that. Other smaller workflows are working fine with little or no wait time.</p>
+          <p><a href="https://forum.stackstorm.com/t/orquesta-workflows-take-ages-to-start-the-first-action/1260/5">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/orquesta-workflows-take-ages-to-start-the-first-action/1260/5</link>
+        <pubDate>Sun, 21 Jun 2020 20:36:42 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1260-5</guid>
+        <source url="https://forum.stackstorm.com/t/orquesta-workflows-take-ages-to-start-the-first-action/1260.rss">Orquesta workflows take ages to start the first action</source>
+      </item>
+      <item>
+        <title>Orquesta workflows take ages to start the first action</title>
+        <dc:creator><![CDATA[armab]]></dc:creator>
+        <description><![CDATA[
+            <p>Try to work on isolating the issue if it’s a problem with the specific orquestra workflow part or is it with the system. For example, such waits could be related for example to RabbitMQ issues.</p>
+          <p><a href="https://forum.stackstorm.com/t/orquesta-workflows-take-ages-to-start-the-first-action/1260/4">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/orquesta-workflows-take-ages-to-start-the-first-action/1260/4</link>
+        <pubDate>Wed, 03 Jun 2020 11:17:40 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1260-4</guid>
+        <source url="https://forum.stackstorm.com/t/orquesta-workflows-take-ages-to-start-the-first-action/1260.rss">Orquesta workflows take ages to start the first action</source>
+      </item>
+      <item>
+        <title>Orquesta workflows take ages to start the first action</title>
+        <dc:creator><![CDATA[mukjain]]></dc:creator>
+        <description><![CDATA[
+            <p>I am doing POC for orquesta and for that I am using stand alone stackstorm set up on a single server (centos 7 - 4 core 32 gb ram) with no other process running on it. Also as of now i don’t have any other workflow running on this system.<br>
+Its not possible for me to share workflow here but the workflow has approx 70 tasks with multiple branches such that a successful path can have around 40 tasks to execute.<br>
+We have been using the mistral flow for the similar process (same number of tasks) very effectively with multiple flows running in parallel but with orquesta i am facing this strange issue</p>
+          <p><a href="https://forum.stackstorm.com/t/orquesta-workflows-take-ages-to-start-the-first-action/1260/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/orquesta-workflows-take-ages-to-start-the-first-action/1260/3</link>
+        <pubDate>Wed, 03 Jun 2020 09:04:27 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1260-3</guid>
+        <source url="https://forum.stackstorm.com/t/orquesta-workflows-take-ages-to-start-the-first-action/1260.rss">Orquesta workflows take ages to start the first action</source>
+      </item>
+      <item>
+        <title>Orquesta workflows take ages to start the first action</title>
+        <dc:creator><![CDATA[armab]]></dc:creator>
+        <description><![CDATA[
+            <p>We didn’t see anything dramatic (45mins!) like that before.</p>
+<p>There seems to be something very specific about your environment. Please provide more info about the environment you’re in like CPU/Memory resources, load, number of workflows, workflow logic, load, OS, cloud, scaling strategy, eg what’s specific about your config.</p>
+          <p><a href="https://forum.stackstorm.com/t/orquesta-workflows-take-ages-to-start-the-first-action/1260/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/orquesta-workflows-take-ages-to-start-the-first-action/1260/2</link>
+        <pubDate>Tue, 02 Jun 2020 11:11:07 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1260-2</guid>
+        <source url="https://forum.stackstorm.com/t/orquesta-workflows-take-ages-to-start-the-first-action/1260.rss">Orquesta workflows take ages to start the first action</source>
+      </item>
+      <item>
+        <title>Orquesta workflows take ages to start the first action</title>
+        <dc:creator><![CDATA[mukjain]]></dc:creator>
+        <description><![CDATA[
+            <p>Complex orquesta workflows take ages to start the first action. I have seen workflows taking as much as 45 min to start the first action. Although it runs smoothly after that. Is there a way to improve this performance issue.</p>
+          <p><a href="https://forum.stackstorm.com/t/orquesta-workflows-take-ages-to-start-the-first-action/1260/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/orquesta-workflows-take-ages-to-start-the-first-action/1260/1</link>
+        <pubDate>Tue, 02 Jun 2020 07:51:11 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1260-1</guid>
+        <source url="https://forum.stackstorm.com/t/orquesta-workflows-take-ages-to-start-the-first-action/1260.rss">Orquesta workflows take ages to start the first action</source>
+      </item>
+  </channel>
+</rss>

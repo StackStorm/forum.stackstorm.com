@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en" class="desktop-view not-mobile-device text-size-normal anon">
+<head>
+    <meta charset="utf-8">
+    <title>Understanding how delay works - Workflows - StackStorm Support (ARCHIVED)</title>
+    <meta name="description"
+          content="Can anyone explain how delay works within a workflow?  Does the position of the delay in a specific action matter, or does it always process specific items in a specific order (like cmd always runs first, then delay, etc&amp;hellip;">
+    <meta name="discourse_theme_id" content="2">
+    <meta name="discourse_current_homepage" content="latest">
+    <meta name="generator"
+          content="Discourse 2.8.0.beta6 - https://github.com/discourse/discourse version a1daf9fe53a66e2d2cdf9757ab4812fb9a2b2787">
+    <link rel="icon" type="image/png"
+          href="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/379ced12f8326d58f1b3d2b3ff652f883e141f6a_2_32x32.PNG">
+    <link rel="apple-touch-icon" type="image/png"
+          href="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/379ced12f8326d58f1b3d2b3ff652f883e141f6a_2_180x180.PNG">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <link rel="canonical" href="1782.html"/>
+    <script type="application/ld+json">{
+        "@context": "http://schema.org",
+        "@type": "WebSite",
+        "url": "https://forum.stackstorm.com",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://forum.stackstorm.com/search?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }</script>
+    <link rel="search" type="application/opensearchdescription+xml" href="../../opensearch.xml"
+          title="StackStorm Support (ARCHIVED) Search">
+
+
+    <link href="/../../stylesheets/color_definitions_base__2_3c5eec1ecf192052ea70b4afdab57a62bccc0604.css?__ws=forum.stackstorm.com"
+          media="all" rel="stylesheet" class="light-scheme"/>
+
+    <link href="/../../stylesheets/desktop_b2f2968742d41481357e0df259b51ce29f72481a.css?__ws=forum.stackstorm.com"
+          media="all" rel="stylesheet" data-target="desktop"/>
+
+
+    <meta name="fragment" content="!">
+
+
+    <link id="manifest-link" rel="manifest" href="../../manifest.webmanifest" crossorigin="use-credentials">
+
+
+    <link rel="alternate" type="application/rss+xml" title="RSS feed of &#39;Understanding how delay works&#39;"
+          href="1782.rss"/>
+    <meta property="og:site_name" content="StackStorm Support (ARCHIVED)"/>
+    <meta property="og:type" content="website"/>
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:image"
+          content="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/891f00fbdb31fecb5bd9dab30c186d2fed0091ca.jpeg"/>
+    <meta property="og:image"
+          content="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/891f00fbdb31fecb5bd9dab30c186d2fed0091ca.jpeg"/>
+    <meta property="og:url" content="https://forum.stackstorm.com/t/understanding-how-delay-works/1782"/>
+    <meta name="twitter:url" content="https://forum.stackstorm.com/t/understanding-how-delay-works/1782"/>
+    <meta property="og:title" content="Understanding how delay works"/>
+    <meta name="twitter:title" content="Understanding how delay works"/>
+    <meta property="og:description"
+          content="Can anyone explain how delay works within a workflow?  Does the position of the delay in a specific action matter, or does it always process specific items in a specific order (like cmd always runs first, then delay, etc).  As a bit more information on what I’m attempting to accomplish, I’m writing a workflow which will remotely reboot a system, pause for some period of time (30 - 60 seconds), then a subsequent action will grab the last reboot time from the targeted system and if it is within an..."/>
+    <meta name="twitter:description"
+          content="Can anyone explain how delay works within a workflow?  Does the position of the delay in a specific action matter, or does it always process specific items in a specific order (like cmd always runs first, then delay, etc).  As a bit more information on what I’m attempting to accomplish, I’m writing a workflow which will remotely reboot a system, pause for some period of time (30 - 60 seconds), then a subsequent action will grab the last reboot time from the targeted system and if it is within an..."/>
+    <meta property="article:published_time" content="2021-07-16T16:43:16+00:00"/>
+    <meta property="og:ignore_canonical" content="true"/>
+
+
+    <script type="application/ld+json">{
+        "@context": "http://schema.org",
+        "@type": "QAPage",
+        "name": "Understanding how delay works",
+        "mainEntity": {
+            "@type": "Question",
+            "name": "Understanding how delay works",
+            "text": "Can anyone explain how delay works within a workflow?  Does the position of the delay in a specific action matter, or does it always process specific items in a specific order (like cmd always runs first, then delay, etc).\n\nAs a bit more information on what I’m attempting to accomplish, I’m writing &hellip;",
+            "upvoteCount": 0,
+            "answerCount": 0,
+            "dateCreated": "2021-07-16T16:43:16.144Z",
+            "author": {
+                "@type": "Person",
+                "name": "Ryan L Irwin"
+            }
+        }
+    }</script>
+
+    <meta id="data-discourse-setup" data-cdn="https://sjc6.discourse-cdn.com/standard10"
+          data-base-url="https://forum.stackstorm.com" data-base-uri="" data-environment="production"
+          data-letter-avatar-version="5_8fec8e114563efeaf5265573e510f08e"
+          data-markdown-it-url="https://aws1.discourse-cdn.com/standard10/assets/markdown-it-bundle-31e9a9c535ca1801c26da78b0ff465821751a98f921c5cdc5457d7e5a69e9748.js"
+          data-service-worker-url="service-worker.js" data-default-locale="en"
+          data-asset-version="597e36448c9b51d0fa3b7e43ec1fd6d5" data-disable-custom-css="false"
+          data-highlight-js-path="/highlight-js/forum.stackstorm.com/ac0f4aa001e1343346941766d72e0c1ae330832b.js"
+          data-svg-sprite-path="/svg-sprite/forum.stackstorm.com/svg-2-c2ad434b1e06079c7e282124aed9938dc95b83ea.js"
+          data-enable-js-error-reporting="true" data-color-scheme-is-dark="false" data-user-dark-scheme-id="-1"
+          data-s3-cdn="https://aws1.discourse-cdn.com/standard10"
+          data-s3-base-url="//discourse-cloud-file-uploads.s3.dualstack.us-west-2.amazonaws.com/standard10">
+
+    <meta name="discourse/config/environment"
+          content="%7B%22modulePrefix%22%3A%22discourse%22%2C%22environment%22%3A%22production%22%2C%22rootURL%22%3A%22%22%2C%22locationType%22%3A%22auto%22%2C%22historySupportMiddleware%22%3Afalse%2C%22EmberENV%22%3A%7B%22FEATURES%22%3A%7B%7D%2C%22EXTEND_PROTOTYPES%22%3A%7B%22Date%22%3Afalse%7D%2C%22_APPLICATION_TEMPLATE_WRAPPER%22%3Afalse%2C%22_DEFAULT_ASYNC_OBSERVERS%22%3Atrue%2C%22_JQUERY_INTEGRATION%22%3Atrue%7D%2C%22APP%22%3A%7B%22name%22%3A%22discourse%22%2C%22version%22%3A%222.8.0.beta6%20a1daf9fe53a66e2d2cdf9757ab4812fb9a2b2787%22%2C%22exportApplicationGlobal%22%3Atrue%7D%7D"/>
+</head>
+
+<body class="">
+
+
+<header class="d-header">
+    <div class="wrap">
+        <div class="contents clearfix">
+            <div class="title">
+                <a href="../../index.html">
+                    <picture>
+                        <img src="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png"
+                             alt="StackStorm Support (ARCHIVED)" id="site-logo"/>
+                    </picture>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</header>
+
+<div id="main-outlet" class="wrap" role="main">
+    <!-- preload-content: -->
+
+    <!-- EOF START -->
+    <div class="container" id="main-container">
+        <div id="ember11" class="ember-view"></div>
+        <div id="ember12" class="controls ember-view"><!----></div>
+        <div id="ember13" class="ember-view"><!----></div>
+        <div id="ember14" class="ember-view">
+            <div class="row">
+                <div id="global-notice-alert-read-only" class="alert alert-info alert-read-only">
+                    <!----> <span class="text">This site is in read only mode. Please continue to browse, but replying, likes, and other actions are disabled for now.</span>
+
+                    <!---->    </div>
+            </div>
+            <div class="row">
+                <div id="global-notice-alert-global-notice" class="alert alert-info alert-global-notice">
+                    <!----> <span class="text"><h3>⚠️ We've moved!</h3>  <p> Hi there!<br><br> To reduce project dependency on 3rd party paid services the StackStorm TSC has decided to move the Q/A from this forum to <a
+                        href="https://github.com/StackStorm/st2/discussions">Github Discussions</a>. This will make user experience better integrated with the native Github flow, as well as the questions closer to the community where they can provide answers. </p>  <p> Use 🔗 <b><a
+                        href="https://github.com/StackStorm/st2/discussions" class="active">Github Discussions</a></b> to ask your questions. </p></span>
+
+                    <!---->    </div>
+            </div>
+        </div>
+        <div id="ember17" class="hidden create-topics-notice ember-view"><!----></div>
+        <!---->
+    </div>
+    <!-- EOF END -->
+    <div id="topic-title">
+        <h1>
+            <a href="1782.html">Understanding how delay works</a>
+        </h1>
+
+        <div class="topic-category" itemscope itemtype="http://schema.org/BreadcrumbList">
+          <span itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a href="../../c/workflow-related-issues/15" class="badge-wrapper bullet" itemprop="item">
+              <span class='badge-category-bg' style='background-color: #25AAE2'></span>
+              <span class='badge-category clear-badge'>
+                <span class='category-name' itemprop='name'>Workflows</span>
+              </span>
+            </a>
+            <meta itemprop="position" content="1"/>
+          </span>
+        </div>
+
+    </div>
+
+
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/bretai2k'><span itemprop='name'>bretai2k</span></a>
+            (Ryan L Irwin)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="1782.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2021-07-16T16:43:16Z' class='post-time'>
+                July 16, 2021,  4:43pm
+              </time>
+              <meta itemprop='dateModified' content='2021-07-16T16:43:16Z'>
+          <span itemprop='position'>#1</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Can anyone explain how delay works within a workflow? Does the position of the delay in a specific action
+                matter, or does it always process specific items in a specific order (like cmd always runs first, then
+                delay, etc).</p>
+            <p>As a bit more information on what I’m attempting to accomplish, I’m writing a workflow which will
+                remotely reboot a system, pause for some period of time (30 - 60 seconds), then a subsequent action will
+                grab the last reboot time from the targeted system and if it is within an acceptable amount of time, it
+                will finish out the workflow as successful, otherwise it will fail out of the workflow.</p>
+            <p>TIA</p>
+        </div>
+
+        <meta itemprop='headline' content='Understanding how delay works'>
+        <meta itemprop='keywords' content=''>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/blag'><span itemprop='name'>blag</span></a>
+            
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="1782.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2021-07-17T18:25:33Z' class='post-time'>
+                July 17, 2021,  6:25pm
+              </time>
+              <meta itemprop='dateModified' content='2021-07-17T18:25:33Z'>
+          <span itemprop='position'>#2</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Assuming you’re talking about Orquesta.</p>
+            <h1>
+                <a name="quick-answers-to-your-specific-questions-1" class="anchor"
+                   href="1782.html#quick-answers-to-your-specific-questions-1"></a>Quick Answers To Your Specific
+                Questions</h1>
+            <blockquote>
+                <p>Does the position of the delay in a specific action matter?</p>
+            </blockquote>
+            <p>No, the ordering of the <code>task</code> dictionary keys (which include <code>delay</code> and <code>retry</code>)
+                do not matter.</p>
+            <blockquote>
+                <p>or does it always process specific items in a specific order (like cmd always runs first, then delay,
+                    etc)</p>
+            </blockquote>
+            <p>There are two ways to delay a task, and the answer to this question depends on the exact type of delay
+                you are talking about (see below).</p>
+            <h1>
+                <a name="task-delay-2" class="anchor" href="1782.html#task-delay-2"></a>Task Delay</h1>
+            <p>Specifying a delay on a task will prevent a task from executing for a specified time. The delay is
+                applied before the task is executed, and is only applied once.</p>
+            <h2>
+                <a name="documentation-3" class="anchor" href="1782.html#documentation-3"></a>Documentation</h2>
+            <p><a href="https://docs.stackstorm.com/orquesta/languages/orquesta.html#task-model" class="onebox"
+                  target="_blank"
+                  rel="noopener">https://docs.stackstorm.com/orquesta/languages/orquesta.html#task-model</a></p>
+            <h2>
+                <a name="example-workflow-4" class="anchor" href="1782.html#example-workflow-4"></a>Example Workflow
+            </h2>
+            <pre><code class="lang-yaml"># ...
+
+tasks:
+  task1:
+    delay: 10  # seconds
+    action: ...
+      input:
+        ...
+    next:
+      ...
+</code></pre>
+            <h1>
+                <a name="task-retry-5" class="anchor" href="1782.html#task-retry-5"></a>Task Retry</h1>
+            <p>Task retry delay specifies the amount of delay between retry executions of a task. This is only applied
+                when the task is retried, so if the task is successful the first time it is tried, this setting will
+                have no effect.</p>
+            <h2>
+                <a name="documentation-6" class="anchor" href="1782.html#documentation-6"></a>Documentation</h2>
+            <p><a href="https://docs.stackstorm.com/orquesta/languages/orquesta.html#task-retry-model" class="onebox"
+                  target="_blank" rel="noopener">https://docs.stackstorm.com/orquesta/languages/orquesta.html#task-retry-model</a>
+            </p>
+            <h2>
+                <a name="example-7" class="anchor" href="1782.html#example-7"></a>Example</h2>
+            <pre><code class="lang-yaml"># ...
+
+tasks:
+  task1:
+    retry:
+      delay: 5  # seconds
+      count:  3
+    action: ...
+      input:
+        ...
+    next:
+      ...
+</code></pre>
+            <h1>
+                <a name="differences-8" class="anchor" href="1782.html#differences-8"></a>Differences</h1>
+            <p>I believe that the task delay is only applied <em>once</em>, even if the task is retried.</p>
+            <p>The task retry delay is applied <em>every</em> time the task is <em>retried</em>, but is not applied
+                before the initial execution attempt.</p>
+            <h1>
+                <a name="skeleton-workflow-for-you-9" class="anchor" href="1782.html#skeleton-workflow-for-you-9"></a>Skeleton
+                Workflow For You</h1>
+            <pre><code class="lang-yaml">...
+
+vars:
+  - acceptable_amount_of_time: ...
+
+tasks:
+  reboot_system:
+    action: ...
+    # Retry up to three times (so four times total), delaying each non-first attempt by 30 seconds
+    retry:
+      delay: 30  # seconds
+      count: 3
+    next:
+      - when: &lt;% success() %&gt;
+        do: grab_last_reboot_time
+      - when: &lt;% failed() %&gt;
+        do: ...
+  grab_last_reboot_time:
+    delay: 60  # seconds
+    action: ...
+    next:
+      - when: &lt;% result().something &lt; acceptable_amount_of_time %&gt;  # &lt;-- modify this
+        do: noop
+      - when: &lt;% result().something &gt;= acceptable_amount_of_time %&gt; # &lt;-- modify this
+        do: fail
+</code></pre>
+        </div>
+
+        <meta itemprop='headline' content='Understanding how delay works'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+
+
+    <!-- :preload-content -->
+    <footer class="noscript-footer-nav">
+        <nav itemscope itemtype='http://schema.org/SiteNavigationElement'>
+            <a href='../../index.html'>Home</a>
+            <a href="../../categories.html">Categories</a>
+            <a href="https://forum.stackstorm.com/guidelines">FAQ/Guidelines</a>
+            <a href="../../tos.html">Terms of Service</a>
+            <a href="../../privacy.html">Privacy Policy</a>
+        </nav>
+    </footer>
+</div>
+
+<footer id='noscript-footer'>
+    <p>Powered by <a href="https://www.discourse.org">Discourse</a>, best viewed with JavaScript enabled</p>
+</footer>
+
+
+<section id='main'>
+</section>
+
+
+</body>
+</html>

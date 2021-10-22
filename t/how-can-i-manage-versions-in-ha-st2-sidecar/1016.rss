@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>How can I manage versions in HA st2 sidecar</title>
+    <link>https://forum.stackstorm.com/t/how-can-i-manage-versions-in-ha-st2-sidecar/1016</link>
+    <description>Hi,
+
+In my scenario, I&#39;m deploying st2 workflows to an HA cluster. Because it&#39;s HA, st2 pack install doesn&#39;t work. I&#39;m supposed to create an st2packs image that will be loaded as a sidecar to the pods that need it.
+
+My question is around versioning. I was hoping to create a single &#39;repository of packs&#39; (as a git repo with all tags and therefore all versions available) in the docker image. Then to be able to delay selection of the specific version of the pack to be used until the last moment.
+
+This would be more inline with the idea of a pack repository.
+
+Can somebody confirm that this versioning approach would not work. And in fact the only way to get HA stackstorm to function would be to copy the exact version of the pack into the custom st2pack docker image. And hence if the customer wanted to change or upgrade (or downgrade) packs, I would have to create a whole new image with the correct new version copied in, (or even downgraded version), and deploy this whole image? and to confirm the consequences of a single pack requiring an upgrade means an entire rebuild of that image and redeployment of the custom st2packs image to the HA cluster?
+
+If this is the case, is this by design or are there plans to improve this in future. While I understand an HA deployment might need to have fixed versions, I don&#39;t understand why a selection of versions can&#39;t be provided to chose from at deploy time. This would at least allow me to say &quot;hey here&#39;s a repo with all the versions, pick a version when you deploy, but at least I can reuse this repo image somewhere else&quot;.
+
+Just seems that an HA cluster combined with Airgap makes the whole &#39;you can use a git repo to version your packs&#39; redundant.
+
+Main reason for asking is that if I have several deployments of stackstorm, each with different versions of packs, but all with the same packs, i&#39;m going to have to generate a custom st2pack docker image for every installation and manage this. It&#39;s not impossible to manage, but it&#39;s one hell of a trade off just for HA.</description>
+    
+    <lastBuildDate>Mon, 27 Jan 2020 20:17:51 +0000</lastBuildDate>
+    <category>Pack Management</category>
+    <atom:link href="https://forum.stackstorm.com/t/how-can-i-manage-versions-in-ha-st2-sidecar/1016.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>How can I manage versions in HA st2 sidecar</title>
+        <dc:creator><![CDATA[dburrell]]></dc:creator>
+        <description><![CDATA[
+            <p>Thanks for confirming, I didn’t want to commit to different versions of the image unless it was absolutely necessary, and it looks like it is.</p>
+<p>Yes, I noticed that the virtualenv is mentioned in the docs, do I understand that the <code>st2-pack-install</code> tool generates the pip envs automatically and also installs them to the same docker image (with the /virtualenv mounted as a sidecar too) from the requirements.txt and so must have access to the internet when the image is built?</p>
+<p>I was actually planning to iterate through each pack calling requirements.txt to pre-generate the virtual envs. But I guess with the single version approach only 1 virtual env is required per pack so maybe that’s a good thing.</p>
+          <p><a href="https://forum.stackstorm.com/t/how-can-i-manage-versions-in-ha-st2-sidecar/1016/4">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-can-i-manage-versions-in-ha-st2-sidecar/1016/4</link>
+        <pubDate>Mon, 27 Jan 2020 20:17:51 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1016-4</guid>
+        <source url="https://forum.stackstorm.com/t/how-can-i-manage-versions-in-ha-st2-sidecar/1016.rss">How can I manage versions in HA st2 sidecar</source>
+      </item>
+      <item>
+        <title>How can I manage versions in HA st2 sidecar</title>
+        <dc:creator><![CDATA[armab]]></dc:creator>
+        <description><![CDATA[
+            <p>Talking about bundling several versions of st2 integration packs in a single Docker image so you could switch them “on fly”, - it’s something that should be supported in StackStorm core first with easy mechanisms to manage that.<br>
+While this sounds interesting, it also means there is a technical need to do <code>st2 pack install</code> and pre-generate virtualenvs for every possible version of every pack you want to ship as they may have different pip dependencies.</p>
+          <p><a href="https://forum.stackstorm.com/t/how-can-i-manage-versions-in-ha-st2-sidecar/1016/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-can-i-manage-versions-in-ha-st2-sidecar/1016/3</link>
+        <pubDate>Mon, 27 Jan 2020 20:00:18 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1016-3</guid>
+        <source url="https://forum.stackstorm.com/t/how-can-i-manage-versions-in-ha-st2-sidecar/1016.rss">How can I manage versions in HA st2 sidecar</source>
+      </item>
+      <item>
+        <title>How can I manage versions in HA st2 sidecar</title>
+        <dc:creator><![CDATA[armab]]></dc:creator>
+        <description><![CDATA[
+            <p>Yes,<br>
+There is a requirement to package all the custom st2 packs in a Docker image. Version that image, deploy and change reference to it in Helm values.yaml. This way you could switch to a new pack content bundle with minimal downtime and roll-back to a previous Docker image version quick, if needed.</p>
+<p>Looks like you already made some good understanding about every detail of the question you were asking.</p>
+<p>Just installing packs from git on run-time is not acceptable for HA deployment because of the reasons. First, the install process is slow for <code>st2 pack install</code>. Another reality is that pack install is not that ideal idempotent and can fail: if something wrong happened with upstream, networking, pip, repositories, versions, etc.<br>
+While the HA deployment should be fast, - you want cluster to be available as soon as possible and make it immutable/reproducible/able to roll-back for overall deployment stability in HA environment. We found this strategy best fit Docker-like environment and model.</p>
+<p>So the way pack content management works in K8s HA is just a tradeoff. Alternative is to use some shared RW-many NFS-like storage for managing pack content, which has its own set of pros/cons.</p>
+<p>A bit more context:</p>
+<ul>
+<li><a href="https://docs.stackstorm.com/install/k8s_ha.html#custom-st2-packs" class="inline-onebox">StackStorm HA Cluster in Kubernetes - BETA — StackStorm 3.1.0 documentation</a></li>
+<li><a href="https://github.com/StackStorm/stackstorm-ha#install-custom-st2-packs-in-the-cluster" class="inline-onebox">GitHub - StackStorm/stackstorm-ha: K8s Helm Chart (βeta!) that codifies StackStorm (aka "IFTTT for Ops" https://stackstorm.com/) Highly Availability fleet as a simple to use reproducible infrastructure-as-code app</a></li>
+<li><a href="https://github.com/StackStorm/stackstorm-ha/issues/18" class="inline-onebox">Sharing pack content: Bundle custom st2packs image vs Shared NFS storage? · Issue #18 · StackStorm/stackstorm-ha · GitHub</a></li>
+<li><a href="https://docs.stackstorm.com/reference/ha.html#sharing-content" class="inline-onebox">High Availability Deployment — StackStorm 3.1.0 documentation</a></li>
+</ul>
+          <p><a href="https://forum.stackstorm.com/t/how-can-i-manage-versions-in-ha-st2-sidecar/1016/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-can-i-manage-versions-in-ha-st2-sidecar/1016/2</link>
+        <pubDate>Mon, 27 Jan 2020 19:48:34 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1016-2</guid>
+        <source url="https://forum.stackstorm.com/t/how-can-i-manage-versions-in-ha-st2-sidecar/1016.rss">How can I manage versions in HA st2 sidecar</source>
+      </item>
+      <item>
+        <title>How can I manage versions in HA st2 sidecar</title>
+        <dc:creator><![CDATA[dburrell]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi,</p>
+<p>In my scenario, I’m deploying st2 workflows to an HA cluster. Because it’s HA, st2 pack install doesn’t work. I’m supposed to create an st2packs image that will be loaded as a sidecar to the pods that need it.</p>
+<p>My question is around versioning. I was hoping to create a single ‘repository of packs’ (as a git repo with all tags and therefore all versions available) in the docker image. Then to be able to delay selection of the specific version of the pack to be used until the last moment.</p>
+<p>This would be more inline with the idea of a pack repository.</p>
+<p>Can somebody confirm that this versioning approach would not work. And in fact the only way to get HA stackstorm to function would be to copy the exact version of the pack into the custom st2pack docker image. And hence if the customer wanted to change or upgrade (or downgrade) packs, I would have to create a whole new image with the correct new version copied in, (or even downgraded version), and deploy this whole image? and to confirm the consequences of a single pack requiring an upgrade means an entire rebuild of that image and redeployment of the custom st2packs image to the HA cluster?</p>
+<p>If this is the case, is this by design or are there plans to improve this in future. While I understand an HA deployment might need to have fixed versions, I don’t understand why a selection of versions can’t be provided to chose from at deploy time. This would at least allow me to say “hey here’s a repo with all the versions, pick a version when you deploy, but at least I can reuse this repo image somewhere else”.</p>
+<p>Just seems that an HA cluster combined with Airgap makes the whole ‘you can use a git repo to version your packs’ redundant.</p>
+<p>Main reason for asking is that if I have several deployments of stackstorm, each with different versions of packs, but all with the same packs, i’m going to have to generate a custom st2pack docker image for every installation and manage this. It’s not impossible to manage, but it’s one hell of a trade off just for HA.</p>
+          <p><a href="https://forum.stackstorm.com/t/how-can-i-manage-versions-in-ha-st2-sidecar/1016/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-can-i-manage-versions-in-ha-st2-sidecar/1016/1</link>
+        <pubDate>Mon, 27 Jan 2020 18:54:30 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1016-1</guid>
+        <source url="https://forum.stackstorm.com/t/how-can-i-manage-versions-in-ha-st2-sidecar/1016.rss">How can I manage versions in HA st2 sidecar</source>
+      </item>
+  </channel>
+</rss>

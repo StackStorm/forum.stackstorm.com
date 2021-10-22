@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Need help in triggering AWS auto scaling group with Docker swarm pending task</title>
+    <link>https://forum.stackstorm.com/t/need-help-in-triggering-aws-auto-scaling-group-with-docker-swarm-pending-task/138</link>
+    <description>I need help in setting up  Scaling in and Scaling out instances with AWS auto scaling group with docker swarm pending task trigger 
+Like this video 
+`https://www.youtube.com/watch?v=jxgdznuepT8`</description>
+    
+    <lastBuildDate>Sat, 24 Nov 2018 14:46:30 +0000</lastBuildDate>
+    <category>Rules</category>
+    <atom:link href="https://forum.stackstorm.com/t/need-help-in-triggering-aws-auto-scaling-group-with-docker-swarm-pending-task/138.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Need help in triggering AWS auto scaling group with Docker swarm pending task</title>
+        <dc:creator><![CDATA[valenbb]]></dc:creator>
+        <description><![CDATA[
+            <p>Is Docker Swarm integrated into this project, based on above comment that it was may be for showcasing possibilities with ST?</p>
+          <p><a href="https://forum.stackstorm.com/t/need-help-in-triggering-aws-auto-scaling-group-with-docker-swarm-pending-task/138/10">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/need-help-in-triggering-aws-auto-scaling-group-with-docker-swarm-pending-task/138/10</link>
+        <pubDate>Sat, 24 Nov 2018 14:46:30 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-138-10</guid>
+        <source url="https://forum.stackstorm.com/t/need-help-in-triggering-aws-auto-scaling-group-with-docker-swarm-pending-task/138.rss">Need help in triggering AWS auto scaling group with Docker swarm pending task</source>
+      </item>
+      <item>
+        <title>Need help in triggering AWS auto scaling group with Docker swarm pending task</title>
+        <dc:creator><![CDATA[armab]]></dc:creator>
+        <description><![CDATA[
+            <p><a class="mention" href="https://github.com/raghulopex">@raghulopex</a> To discuss Enterprise license, please write a message to <a href="mailto:sales@stackstorm.com">sales@stackstorm.com</a></p>
+<hr>
+<p>Talking about the <code>Docker Swarm</code> + <code>StackStorm</code>, do you mean by any chance this tutorial:<br>
+</p><aside class="onebox whitelistedgeneric">
+  <header class="source">
+      <img src="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/c751ff91bdd28f54897c8c647586a9605dad9259.png" class="site-icon" width="84" height="83">
+      <a href="https://stackstorm.com/2017/06/22/autoscaling-swarm-aws-stackstorm/" target="_blank" title="08:14AM - 22 June 2017" rel="nofollow noopener">StackStorm – 22 Jun 17</a>
+  </header>
+  <article class="onebox-body">
+    <div class="aspect-image" style="--aspect-ratio:690/342;"><img src="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/30b41435ca73230c35cfe4e98a58a8ef6d4acd7a.png" class="thumbnail"></div>
+
+<h3><a href="https://stackstorm.com/2017/06/22/autoscaling-swarm-aws-stackstorm/" target="_blank" rel="nofollow noopener">Autoscaling Swarm on AWS with StackStorm - StackStorm</a></h3>
+
+<p>June 22, 2017 by Dmitri Zimine In this blog, we show how to scale out a Docker Swarm Cluster based on container workload, so that you don’t over-provision your AWS cluster and pay for just enough instances to run your containers. Learn how we...</p>
+
+
+  </article>
+  <div class="onebox-metadata">
+    
+    
+  </div>
+  <div style="clear: both"></div>
+</aside>
+<br>
+and this st2 pack repository: <a href="https://github.com/dzimine/swarm_scaling/" class="inline-onebox" rel="nofollow noopener">GitHub - dzimine/swarm_scaling: StackStorm Automation pack for auto scaling Docker Swarm Cluster based on container load. https://youtu.be/2tQlfxRrtXo</a> or something else going on, maybe configuration/pack was edited for your specific needs?<p></p>
+<p>If it doesn’t work out of the box, probably needs more in-depth checking if the code is still actual, something might be changed from 2017 in both st2 and Docker Swarm APIs when the tutorial was initially published.</p>
+<p>It’s there just to showcase the possible use case of StackStorm + integration.</p>
+          <p><a href="https://forum.stackstorm.com/t/need-help-in-triggering-aws-auto-scaling-group-with-docker-swarm-pending-task/138/9">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/need-help-in-triggering-aws-auto-scaling-group-with-docker-swarm-pending-task/138/9</link>
+        <pubDate>Tue, 15 May 2018 14:04:18 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-138-9</guid>
+        <source url="https://forum.stackstorm.com/t/need-help-in-triggering-aws-auto-scaling-group-with-docker-swarm-pending-task/138.rss">Need help in triggering AWS auto scaling group with Docker swarm pending task</source>
+      </item>
+      <item>
+        <title>Need help in triggering AWS auto scaling group with Docker swarm pending task</title>
+        <dc:creator><![CDATA[raghulopex]]></dc:creator>
+        <description><![CDATA[
+            <p>We have a public release next month, it’s in user acceptance testing phase now and we are in war room now This is very urgent fix needed for production. As we are fully dependent on docker swarm and stackstorm is the only way to have aws auto scaling It would be great if someone in your team schedules a call with our team along with my managers regarding this issue and we are even ready to go for the enterprise edition.</p>
+          <p><a href="https://forum.stackstorm.com/t/need-help-in-triggering-aws-auto-scaling-group-with-docker-swarm-pending-task/138/8">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/need-help-in-triggering-aws-auto-scaling-group-with-docker-swarm-pending-task/138/8</link>
+        <pubDate>Tue, 15 May 2018 13:12:07 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-138-8</guid>
+        <source url="https://forum.stackstorm.com/t/need-help-in-triggering-aws-auto-scaling-group-with-docker-swarm-pending-task/138.rss">Need help in triggering AWS auto scaling group with Docker swarm pending task</source>
+      </item>
+      <item>
+        <title>Need help in triggering AWS auto scaling group with Docker swarm pending task</title>
+        <dc:creator><![CDATA[raghulopex]]></dc:creator>
+        <description><![CDATA[
+            <p>Yeah the docker swarm is not sending the signal to the stack storm</p>
+          <p><a href="https://forum.stackstorm.com/t/need-help-in-triggering-aws-auto-scaling-group-with-docker-swarm-pending-task/138/7">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/need-help-in-triggering-aws-auto-scaling-group-with-docker-swarm-pending-task/138/7</link>
+        <pubDate>Tue, 15 May 2018 04:37:09 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-138-7</guid>
+        <source url="https://forum.stackstorm.com/t/need-help-in-triggering-aws-auto-scaling-group-with-docker-swarm-pending-task/138.rss">Need help in triggering AWS auto scaling group with Docker swarm pending task</source>
+      </item>
+      <item>
+        <title>Need help in triggering AWS auto scaling group with Docker swarm pending task</title>
+        <dc:creator><![CDATA[lhill]]></dc:creator>
+        <description><![CDATA[
+            <p>And have you investigated what’s going on? Is Docker Swarm not sending events to StackStorm, or are your rules not matching? What rules have you configured?</p>
+          <p><a href="https://forum.stackstorm.com/t/need-help-in-triggering-aws-auto-scaling-group-with-docker-swarm-pending-task/138/6">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/need-help-in-triggering-aws-auto-scaling-group-with-docker-swarm-pending-task/138/6</link>
+        <pubDate>Fri, 11 May 2018 16:22:05 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-138-6</guid>
+        <source url="https://forum.stackstorm.com/t/need-help-in-triggering-aws-auto-scaling-group-with-docker-swarm-pending-task/138.rss">Need help in triggering AWS auto scaling group with Docker swarm pending task</source>
+      </item>
+      <item>
+        <title>Need help in triggering AWS auto scaling group with Docker swarm pending task</title>
+        <dc:creator><![CDATA[raghulopex]]></dc:creator>
+        <description><![CDATA[
+            <p>I have configured the docker swarm pending task limit sensor</p>
+          <p><a href="https://forum.stackstorm.com/t/need-help-in-triggering-aws-auto-scaling-group-with-docker-swarm-pending-task/138/5">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/need-help-in-triggering-aws-auto-scaling-group-with-docker-swarm-pending-task/138/5</link>
+        <pubDate>Fri, 11 May 2018 07:09:08 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-138-5</guid>
+        <source url="https://forum.stackstorm.com/t/need-help-in-triggering-aws-auto-scaling-group-with-docker-swarm-pending-task/138.rss">Need help in triggering AWS auto scaling group with Docker swarm pending task</source>
+      </item>
+      <item>
+        <title>Need help in triggering AWS auto scaling group with Docker swarm pending task</title>
+        <dc:creator><![CDATA[lhill]]></dc:creator>
+        <description><![CDATA[
+            <blockquote>
+<p>it is not triggering the stack storm</p>
+</blockquote>
+<p>What sensors have you configured?</p>
+          <p><a href="https://forum.stackstorm.com/t/need-help-in-triggering-aws-auto-scaling-group-with-docker-swarm-pending-task/138/4">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/need-help-in-triggering-aws-auto-scaling-group-with-docker-swarm-pending-task/138/4</link>
+        <pubDate>Wed, 09 May 2018 16:37:40 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-138-4</guid>
+        <source url="https://forum.stackstorm.com/t/need-help-in-triggering-aws-auto-scaling-group-with-docker-swarm-pending-task/138.rss">Need help in triggering AWS auto scaling group with Docker swarm pending task</source>
+      </item>
+      <item>
+        <title>Need help in triggering AWS auto scaling group with Docker swarm pending task</title>
+        <dc:creator><![CDATA[raghulopex]]></dc:creator>
+        <description><![CDATA[
+            <p>I have installed stackstorm from docker image on a centos system<br>
+Installed docker 1.18 ce</p>
+<p>And ran it in docker swarm mode and configured the launch configuration in the AWS and the auto scaling group<br>
+And when i manually increase the desired the instance the new instance gets created and gets attached to the cluster automatically</p>
+<p>My problem here is</p>
+<p>I want stackstorm to communicate with docker swarm and check for pending task and if a certain condition is met it increases the desired instance in the Auto scaling group and scale down if an instance is free</p>
+<p>But right now i am unable to make to make the trigger possible where  when i have 5 pending task in the docker swarm it is not triggering the stack storm to change the desired count in the auto scaling group</p>
+          <p><a href="https://forum.stackstorm.com/t/need-help-in-triggering-aws-auto-scaling-group-with-docker-swarm-pending-task/138/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/need-help-in-triggering-aws-auto-scaling-group-with-docker-swarm-pending-task/138/3</link>
+        <pubDate>Wed, 09 May 2018 09:27:41 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-138-3</guid>
+        <source url="https://forum.stackstorm.com/t/need-help-in-triggering-aws-auto-scaling-group-with-docker-swarm-pending-task/138.rss">Need help in triggering AWS auto scaling group with Docker swarm pending task</source>
+      </item>
+      <item>
+        <title>Need help in triggering AWS auto scaling group with Docker swarm pending task</title>
+        <dc:creator><![CDATA[lhill]]></dc:creator>
+        <description><![CDATA[
+            <p>What does your environment look like, what have you configured so far, and where are you getting stuck?</p>
+          <p><a href="https://forum.stackstorm.com/t/need-help-in-triggering-aws-auto-scaling-group-with-docker-swarm-pending-task/138/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/need-help-in-triggering-aws-auto-scaling-group-with-docker-swarm-pending-task/138/2</link>
+        <pubDate>Tue, 08 May 2018 13:18:35 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-138-2</guid>
+        <source url="https://forum.stackstorm.com/t/need-help-in-triggering-aws-auto-scaling-group-with-docker-swarm-pending-task/138.rss">Need help in triggering AWS auto scaling group with Docker swarm pending task</source>
+      </item>
+      <item>
+        <title>Need help in triggering AWS auto scaling group with Docker swarm pending task</title>
+        <dc:creator><![CDATA[raghulopex]]></dc:creator>
+        <description><![CDATA[
+            <p>I need help in setting up  Scaling in and Scaling out instances with AWS auto scaling group with docker swarm pending task trigger<br>
+Like this video<br>
+<code>https://www.youtube.com/watch?v=jxgdznuepT8</code></p>
+          <p><a href="https://forum.stackstorm.com/t/need-help-in-triggering-aws-auto-scaling-group-with-docker-swarm-pending-task/138/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/need-help-in-triggering-aws-auto-scaling-group-with-docker-swarm-pending-task/138/1</link>
+        <pubDate>Tue, 08 May 2018 09:59:36 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-138-1</guid>
+        <source url="https://forum.stackstorm.com/t/need-help-in-triggering-aws-auto-scaling-group-with-docker-swarm-pending-task/138.rss">Need help in triggering AWS auto scaling group with Docker swarm pending task</source>
+      </item>
+  </channel>
+</rss>

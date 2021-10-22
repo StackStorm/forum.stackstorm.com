@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Considerations for an agent</title>
+    <link>https://forum.stackstorm.com/t/considerations-for-an-agent/1803</link>
+    <description>Has there been any considerations for having an agent to allow for autonomous sensors and maybe even simple local linux action executions?</description>
+    
+    <lastBuildDate>Fri, 06 Aug 2021 18:43:39 +0000</lastBuildDate>
+    <category>Uncategorized</category>
+    <atom:link href="https://forum.stackstorm.com/t/considerations-for-an-agent/1803.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Considerations for an agent</title>
+        <dc:creator><![CDATA[minsis]]></dc:creator>
+        <description><![CDATA[
+            <p>Has there been any considerations for having an agent to allow for autonomous sensors and maybe even simple local linux action executions?</p>
+          <p><a href="https://forum.stackstorm.com/t/considerations-for-an-agent/1803/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/considerations-for-an-agent/1803/1</link>
+        <pubDate>Fri, 06 Aug 2021 18:43:39 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1803-1</guid>
+        <source url="https://forum.stackstorm.com/t/considerations-for-an-agent/1803.rss">Considerations for an agent</source>
+      </item>
+  </channel>
+</rss>

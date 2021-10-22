@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en" class="desktop-view not-mobile-device text-size-normal anon">
+<head>
+    <meta charset="utf-8">
+    <title>Installing pack from disk does not include lib/ directory - Pack Management - StackStorm Support
+        (ARCHIVED)</title>
+    <meta name="description" content="I have a pack (it is a Git repo) that I am attempting to install from disk using 
+st2 pack install file://&amp;lt;path to pack&amp;gt;. The pack installs successfully, but there is a lib sub-directory within my actions folder that is &amp;hellip;">
+    <meta name="discourse_theme_id" content="2">
+    <meta name="discourse_current_homepage" content="latest">
+    <meta name="generator"
+          content="Discourse 2.8.0.beta6 - https://github.com/discourse/discourse version a1daf9fe53a66e2d2cdf9757ab4812fb9a2b2787">
+    <link rel="icon" type="image/png"
+          href="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/379ced12f8326d58f1b3d2b3ff652f883e141f6a_2_32x32.PNG">
+    <link rel="apple-touch-icon" type="image/png"
+          href="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/379ced12f8326d58f1b3d2b3ff652f883e141f6a_2_180x180.PNG">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <link rel="canonical" href="1616.html"/>
+    <script type="application/ld+json">{
+        "@context": "http://schema.org",
+        "@type": "WebSite",
+        "url": "https://forum.stackstorm.com",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://forum.stackstorm.com/search?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }
+    </script>
+    <link rel="search" type="application/opensearchdescription+xml" href="../../opensearch.xml"
+          title="StackStorm Support (ARCHIVED) Search">
+
+
+    <link href="/../../stylesheets/color_definitions_base__2_3c5eec1ecf192052ea70b4afdab57a62bccc0604.css?__ws=forum.stackstorm.com"
+          media="all" rel="stylesheet" class="light-scheme"/>
+
+    <link href="/../../stylesheets/desktop_b2f2968742d41481357e0df259b51ce29f72481a.css?__ws=forum.stackstorm.com"
+          media="all" rel="stylesheet" data-target="desktop"/>
+
+
+    <meta name="fragment" content="!">
+
+
+    <link id="manifest-link" rel="manifest" href="../../manifest.webmanifest" crossorigin="use-credentials">
+
+
+    <link rel="alternate" type="application/rss+xml"
+          title="RSS feed of &#39;Installing pack from disk does not include lib/ directory&#39;" href="1616.rss"/>
+    <meta property="og:site_name" content="StackStorm Support (ARCHIVED)"/>
+    <meta property="og:type" content="website"/>
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:image"
+          content="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/891f00fbdb31fecb5bd9dab30c186d2fed0091ca.jpeg"/>
+    <meta property="og:image"
+          content="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/891f00fbdb31fecb5bd9dab30c186d2fed0091ca.jpeg"/>
+    <meta property="og:url"
+          content="https://forum.stackstorm.com/t/installing-pack-from-disk-does-not-include-lib-directory/1616"/>
+    <meta name="twitter:url"
+          content="https://forum.stackstorm.com/t/installing-pack-from-disk-does-not-include-lib-directory/1616"/>
+    <meta property="og:title" content="Installing pack from disk does not include lib/ directory"/>
+    <meta name="twitter:title" content="Installing pack from disk does not include lib/ directory"/>
+    <meta property="og:description"
+          content="I have a pack (it is a Git repo) that I am attempting to install from disk using  st2 pack install file://&lt;path to pack&gt;. The pack installs successfully, but there is a lib sub-directory within my actions folder that is not moved into /opt/stackstorm/packs.  Below is how my pack is structured on disk before installing:  &gt; pwd /home/justinm/mypack/actions &gt; ls -l -rw-r--r--. 1 root root 470 Mar 24  2021 create_release.py -rw-r--r--. 1 root root 483 Mar 23 16:08 create_release.yaml -rw-r--r--. 1 r..."/>
+    <meta name="twitter:description"
+          content="I have a pack (it is a Git repo) that I am attempting to install from disk using  st2 pack install file://&lt;path to pack&gt;. The pack installs successfully, but there is a lib sub-directory within my actions folder that is not moved into /opt/stackstorm/packs.  Below is how my pack is structured on disk before installing:  &gt; pwd /home/justinm/mypack/actions &gt; ls -l -rw-r--r--. 1 root root 470 Mar 24  2021 create_release.py -rw-r--r--. 1 root root 483 Mar 23 16:08 create_release.yaml -rw-r--r--. 1 r..."/>
+    <meta property="article:published_time" content="2021-03-24T15:35:50+00:00"/>
+    <meta property="og:ignore_canonical" content="true"/>
+
+
+    <script type="application/ld+json">{
+        "@context": "http://schema.org",
+        "@type": "QAPage",
+        "name": "Installing pack from disk does not include lib/ directory",
+        "mainEntity": {
+            "@type": "Question",
+            "name": "Installing pack from disk does not include lib/ directory",
+            "text": "I have a pack (it is a Git repo) that I am attempting to install from disk using\n\nst2 pack install file://&lt;path to pack&gt;. The pack installs successfully, but there is a lib sub-directory within my actions folder that is not moved into /opt/stackstorm/packs.\n\nBelow is how my pack is structured on dis&hellip;",
+            "upvoteCount": 0,
+            "answerCount": 1,
+            "dateCreated": "2021-03-24T15:35:50.225Z",
+            "author": {
+                "@type": "Person",
+                "name": "Justin"
+            },
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Figured it out, this was a classic PEBKAC error. My .gitignore had an entry for lib/… When I did my initial Git commit I was lazy and just did a git commit -A and didn’t even notice my lib dir wasn’t included.\n\nI removed the lib/ entry from .gitignore and the pack installed perfectly.",
+                "upvoteCount": 0,
+                "dateCreated": "2021-03-25T13:41:13.728Z",
+                "url": "https://forum.stackstorm.com/t/installing-pack-from-disk-does-not-include-lib-directory/1616/4",
+                "author": {
+                    "@type": "Person",
+                    "name": "justinm89"
+                }
+            }
+        }
+    }
+    </script>
+
+    <meta id="data-discourse-setup" data-cdn="https://sjc6.discourse-cdn.com/standard10"
+          data-base-url="https://forum.stackstorm.com" data-base-uri="" data-environment="production"
+          data-letter-avatar-version="5_8fec8e114563efeaf5265573e510f08e"
+          data-markdown-it-url="https://aws1.discourse-cdn.com/standard10/assets/markdown-it-bundle-31e9a9c535ca1801c26da78b0ff465821751a98f921c5cdc5457d7e5a69e9748.js"
+          data-service-worker-url="service-worker.js" data-default-locale="en"
+          data-asset-version="597e36448c9b51d0fa3b7e43ec1fd6d5" data-disable-custom-css="false"
+          data-highlight-js-path="/highlight-js/forum.stackstorm.com/ac0f4aa001e1343346941766d72e0c1ae330832b.js"
+          data-svg-sprite-path="/svg-sprite/forum.stackstorm.com/svg-2-c2ad434b1e06079c7e282124aed9938dc95b83ea.js"
+          data-enable-js-error-reporting="true" data-color-scheme-is-dark="false" data-user-dark-scheme-id="-1"
+          data-s3-cdn="https://aws1.discourse-cdn.com/standard10"
+          data-s3-base-url="//discourse-cloud-file-uploads.s3.dualstack.us-west-2.amazonaws.com/standard10">
+
+    <meta name="discourse/config/environment"
+          content="%7B%22modulePrefix%22%3A%22discourse%22%2C%22environment%22%3A%22production%22%2C%22rootURL%22%3A%22%22%2C%22locationType%22%3A%22auto%22%2C%22historySupportMiddleware%22%3Afalse%2C%22EmberENV%22%3A%7B%22FEATURES%22%3A%7B%7D%2C%22EXTEND_PROTOTYPES%22%3A%7B%22Date%22%3Afalse%7D%2C%22_APPLICATION_TEMPLATE_WRAPPER%22%3Afalse%2C%22_DEFAULT_ASYNC_OBSERVERS%22%3Atrue%2C%22_JQUERY_INTEGRATION%22%3Atrue%7D%2C%22APP%22%3A%7B%22name%22%3A%22discourse%22%2C%22version%22%3A%222.8.0.beta6%20a1daf9fe53a66e2d2cdf9757ab4812fb9a2b2787%22%2C%22exportApplicationGlobal%22%3Atrue%7D%7D"/>
+</head>
+
+<body class="">
+
+
+<header class="d-header">
+    <div class="wrap">
+        <div class="contents clearfix">
+            <div class="title">
+                <a href="../../index.html">
+                    <picture>
+                        <img src="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png"
+                             alt="StackStorm Support (ARCHIVED)" id="site-logo"/>
+                    </picture>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</header>
+
+<div id="main-outlet" class="wrap" role="main">
+    <!-- preload-content: -->
+
+    <!-- EOF START -->
+    <div class="container" id="main-container">
+        <div id="ember11" class="ember-view"></div>
+        <div id="ember12" class="controls ember-view"><!----></div>
+        <div id="ember13" class="ember-view"><!----></div>
+        <div id="ember14" class="ember-view">
+            <div class="row">
+                <div id="global-notice-alert-read-only" class="alert alert-info alert-read-only">
+                    <!----> <span class="text">This site is in read only mode. Please continue to browse, but replying, likes, and other actions are disabled for now.</span>
+
+                    <!---->    </div>
+            </div>
+            <div class="row">
+                <div id="global-notice-alert-global-notice" class="alert alert-info alert-global-notice">
+                    <!----> <span class="text"><h3>⚠️ We've moved!</h3>  <p> Hi there!<br><br> To reduce project dependency on 3rd party paid services the StackStorm TSC has decided to move the Q/A from this forum to <a
+                        href="https://github.com/StackStorm/st2/discussions">Github Discussions</a>. This will make user experience better integrated with the native Github flow, as well as the questions closer to the community where they can provide answers. </p>  <p> Use 🔗 <b><a
+                        href="https://github.com/StackStorm/st2/discussions" class="active">Github Discussions</a></b> to ask your questions. </p></span>
+
+                    <!---->    </div>
+            </div>
+        </div>
+        <div id="ember17" class="hidden create-topics-notice ember-view"><!----></div>
+        <!---->
+    </div>
+    <!-- EOF END -->
+    <div id="topic-title">
+        <h1>
+            <a href="1616.html">Installing pack from disk does not include lib/ directory</a>
+        </h1>
+
+        <div class="topic-category" itemscope itemtype="http://schema.org/BreadcrumbList">
+          <span itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a href="../../c/core-st2-platform-issues/6" class="badge-wrapper bullet" itemprop="item">
+              <span class='badge-category-bg' style='background-color: #AB9364'></span>
+              <span class='badge-category clear-badge'>
+                <span class='category-name' itemprop='name'>Platform</span>
+              </span>
+            </a>
+            <meta itemprop="position" content="1"/>
+          </span>
+            <span itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a href="../../c/core-st2-platform-issues/pack-management-issues/12" class="badge-wrapper bullet"
+               itemprop="item">
+              <span class='badge-category-bg' style='background-color: #BF1E2E'></span>
+              <span class='badge-category clear-badge'>
+                <span class='category-name' itemprop='name'>Pack Management</span>
+              </span>
+            </a>
+            <meta itemprop="position" content="2"/>
+          </span>
+        </div>
+
+        <div class="topic-category">
+            <div class='discourse-tags list-tags'>
+                <a href='../../tag/packs' class='discourse-tag' rel="tag">packs</a>
+            </div>
+        </div>
+    </div>
+
+
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/justinm89'><span itemprop='name'>justinm89</span></a>
+            (Justin)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="1616.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2021-03-24T15:35:50Z' class='post-time'>
+                March 24, 2021,  3:35pm
+              </time>
+              <meta itemprop='dateModified' content='2021-03-24T15:35:50Z'>
+          <span itemprop='position'>#1</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>I have a pack (it is a Git repo) that I am attempting to install from disk using<br>
+                <code>st2 pack install file://&lt;path to pack&gt;</code>. The pack installs successfully, but there is
+                a <code>lib</code> sub-directory within my <code>actions</code> folder that is not moved into <code>/opt/stackstorm/packs</code>.
+            </p>
+            <p>Below is how my pack is structured on disk before installing:</p>
+            <pre><code>&gt; pwd
+/home/justinm/mypack/actions
+&gt; ls -l
+-rw-r--r--. 1 root root 470 Mar 24  2021 create_release.py
+-rw-r--r--. 1 root root 483 Mar 23 16:08 create_release.yaml
+-rw-r--r--. 1 root root   0 Feb  8 23:58 __init__.py
+drwxr-xr-x. 2 root root  67 Feb  8 23:58 lib
+-rw-r--r--. 1 root root 394 Mar 24  2021 list_releases.py
+-rw-r--r--. 1 root root 404 Mar 23 16:13 list_releases.yaml
+
+&gt; ls -l lib
+-rw-r--r--. 1 root root 2093 Mar 23 16:11 actions.py
+-rw-r--r--. 1 root root    0 Feb  8 23:58 __init__.py
+</code></pre>
+            <p>And here is a snippet from the log from when I installed this pack with the <code>--debug</code> flag:
+            </p>
+            <pre><code># -------- begin 140499208565520 request ----------
+curl -X GET -H  'Connection: keep-alive' -H  'Accept-Encoding: gzip, deflate' -H  'Accept: */*' -H  'User-Agent: python-requests/2.14.2' -H  'X-Auth-Token: aacc49af1148409aa9659e4f3d757d66' http://127.0.0.1:9101/v1/packs/mypack
+# -------- begin 140499208565520 response ----------
+{
+    "files": [
+        ".gitignore",
+        "README.md",
+        "config.schema.yaml",
+        "icon.png",
+        "mypack.yaml.example",
+        "pack.yaml",
+        "requirements.txt",
+        "actions/__init__.py",
+        "actions/create_release.py",
+        "actions/create_release.yaml",
+        "actions/list_releases.py",
+        "actions/list_releases.yaml"
+    ],
+    "name": "mypack",
+    "contributors": [],
+    "author": "justinm",
+    "description": "My test pack",
+    "system": {},
+    "email": "justinm@foo.bar.com",
+    "version": "1.0.0",
+    "dependencies": [],
+    "keywords": [],
+    "path": "/opt/stackstorm/packs/mypack",
+    "ref": "mypack",
+    "id": "605a5211a54923e4429fbfde",
+    "uid": "mypack"
+}
+</code></pre>
+            <p>The <code>lib</code> directory is not included in the <code>files</code> list, and it does not exist in
+                <code>/opt/stackstorm/packs</code> either:</p>
+            <pre><code>&gt; ls -l /opt/stackstorm/packs/mypack/actions
+-rwxrwxr-x. 1 root st2packs 470 Mar 24 09:19 create_release.py
+-rwxrwxr-x. 1 root st2packs 483 Mar 24 09:19 create_release.yaml
+-rwxrwxr-x. 1 root st2packs   0 Mar 24 09:19 __init__.py
+-rwxrwxr-x. 1 root st2packs 394 Mar 24 09:19 list_releases.py
+-rwxrwxr-x. 1 root st2packs 404 Mar 24 09:19 list_releases.yaml
+</code></pre>
+            <p>My actions are failing because they rely on code in this <code>lib</code> directory. Anyone have any
+                ideas? This <code>lib</code> directory has been committed into my Git repo as well.</p>
+        </div>
+
+        <meta itemprop='headline' content='Installing pack from disk does not include lib/ directory'>
+        <meta itemprop='keywords' content='packs'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/blag'><span itemprop='name'>blag</span></a>
+            
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="1616.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2021-03-24T19:13:32Z' class='post-time'>
+                March 24, 2021,  7:13pm
+              </time>
+              <meta itemprop='dateModified' content='2021-03-24T19:13:32Z'>
+          <span itemprop='position'>#2</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>I’m not sure, that’s weird.</p>
+            <p>Do you have the appropriate flag turned on in your <code>st2.conf</code>?</p>
+            <p>See <a
+                    href="https://docs.stackstorm.com/reference/sharing_code_sensors_actions.html#sharing-code-between-sensors-and-python-actions"
+                    class="inline-onebox">Sharing code between Sensors and Python Actions — StackStorm 3.4.0
+                documentation</a> :</p>
+            <blockquote>
+                <p>This feature is turned off by default to avoid potential issues that might arise due to existing pack
+                    structures and lib imports. You may require to refactor your pack if enabling this feature breaks
+                    your packs. To enable this feature, simply set the following config option in <code>/etc/st2/st2.conf</code>
+                    :</p>
+                <pre><code class="lang-ini">[packs]
+enable_common_libs = True
+</code></pre>
+                <p>You have to restart st2 via <code>st2ctl restart</code> for the config change to be picked up.</p>
+            </blockquote>
+        </div>
+
+        <meta itemprop='headline' content='Installing pack from disk does not include lib/ directory'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/justinm89'><span itemprop='name'>justinm89</span></a>
+            (Justin)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="1616.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2021-03-25T13:32:18Z' class='post-time'>
+                March 25, 2021,  1:32pm
+              </time>
+              <meta itemprop='dateModified' content='2021-03-25T13:32:18Z'>
+          <span itemprop='position'>#3</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>We do not have that flag enabled, however we’re also not trying to share the <code>lib</code> dir between
+                actions and sensors. In fact, I added a couple of sensors to <code>sensors</code> along with a
+                <code>lib</code> directory containing shared code for sensors, and it’s not installing that lib folder
+                either. I renamed my <code>lib</code> dirs to <code>lib2</code> and it installed them just fine, so the
+                issue is clearly with the <code>lib</code> directory.</p>
+            <p>I’m a little hesitant to enable that option because I inherited this StackStorm instance from an employee
+                who is no longer with the company, and this instance is used by a ton of automation processes, so I
+                don’t want to break anything. However, I did a test by installing a pack from the StackStorm exchange
+                that includes <code>lib</code> dirs in <code>actions</code> and <code>sensors</code>, and they installed
+                perfectly. This is really perplexing.</p>
+        </div>
+
+        <meta itemprop='headline' content='Installing pack from disk does not include lib/ directory'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/justinm89'><span itemprop='name'>justinm89</span></a>
+            (Justin)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="1616.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2021-03-25T13:41:13Z' class='post-time'>
+                March 25, 2021,  1:41pm
+              </time>
+              <meta itemprop='dateModified' content='2021-03-25T13:41:13Z'>
+          <span itemprop='position'>#4</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Figured it out, this was a classic PEBKAC error. My <code>.gitignore</code> had an entry for
+                <code>lib/</code>… When I did my initial Git commit I was lazy and just did a <code>git commit -A</code>
+                and didn’t even notice my <code>lib</code> dir wasn’t included.</p>
+            <p>I removed the <code>lib/</code> entry from <code>.gitignore</code> and the pack installed perfectly.</p>
+        </div>
+
+        <meta itemprop='headline' content='Installing pack from disk does not include lib/ directory'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+
+
+    <!-- :preload-content -->
+    <footer class="noscript-footer-nav">
+        <nav itemscope itemtype='http://schema.org/SiteNavigationElement'>
+            <a href='../../index.html'>Home</a>
+            <a href="../../categories.html">Categories</a>
+            <a href="https://forum.stackstorm.com/guidelines">FAQ/Guidelines</a>
+            <a href="../../tos.html">Terms of Service</a>
+            <a href="../../privacy.html">Privacy Policy</a>
+        </nav>
+    </footer>
+</div>
+
+<footer id='noscript-footer'>
+    <p>Powered by <a href="https://www.discourse.org">Discourse</a>, best viewed with JavaScript enabled</p>
+</footer>
+
+
+<section id='main'>
+</section>
+
+
+</body>
+</html>

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Zabbix trigger, how to pull parameters out of the payload</title>
+    <link>https://forum.stackstorm.com/t/zabbix-trigger-how-to-pull-parameters-out-of-the-payload/633</link>
+    <description>I&#39;m in the process of learning StackStorm and building a small proof of concept that takes a trigger from Zabbix and runs an action to restart a service on a Windows server.
+
+I&#39;d like some help in figuring out how to take a parameter from the following alert_message and use that as an option in a rule.
+Specifically I&#39;m looking to take the hostname and event id out of the message text.
+
+Thanks.
+
+```
++-----------------+--------------------------------------------------------------+
+| Property        | Value                                                        |
++-----------------+--------------------------------------------------------------+
+| id              | 5cc854319a6fe026884e44df                                     |
+| trigger         | zabbix.event_handler                                         |
+| occurrence_time | 2019-04-30T23:57:05.000000Z                                  |
+| payload         | {                                                            |
+|                 |     &quot;alert_sendto&quot;: &quot;Admin&quot;,                                 |
+|                 |     &quot;extra_args&quot;: [],                                        |
+|                 |     &quot;alert_message&quot;: &quot;{&quot;items&quot;: [{&quot;value&quot;: &quot;99 %&quot;, &quot;host&quot;:   |
+|                 | &quot;DC1&quot;, &quot;name&quot;: &quot;#3: CPU utilization&quot;, &quot;key&quot;:                 |
+|                 | &quot;system.cpu.util[hrProcessorLoad.3]&quot;}, {&quot;value&quot;:             |
+|                 | &quot;*UNKNOWN*&quot;, &quot;host&quot;: &quot;*UNKNOWN*&quot;, &quot;name&quot;: &quot;*UNKNOWN*&quot;,       |
+|                 | &quot;key&quot;: &quot;*UNKNOWN*&quot;}, {&quot;value&quot;: &quot;*UNKNOWN*&quot;, &quot;host&quot;:          |
+|                 | &quot;*UNKNOWN*&quot;, &quot;name&quot;: &quot;*UNKNOWN*&quot;, &quot;key&quot;: &quot;*UNKNOWN*&quot;},       |
+|                 | {&quot;value&quot;: &quot;*UNKNOWN*&quot;, &quot;host&quot;: &quot;*UNKNOWN*&quot;, &quot;name&quot;:          |
+|                 | &quot;*UNKNOWN*&quot;, &quot;key&quot;: &quot;*UNKNOWN*&quot;}, {&quot;value&quot;: &quot;*UNKNOWN*&quot;,     |
+|                 | &quot;host&quot;: &quot;*UNKNOWN*&quot;, &quot;name&quot;: &quot;*UNKNOWN*&quot;, &quot;key&quot;:             |
+|                 | &quot;*UNKNOWN*&quot;}, {&quot;value&quot;: &quot;*UNKNOWN*&quot;, &quot;host&quot;: &quot;*UNKNOWN*&quot;,    |
+|                 | &quot;name&quot;: &quot;*UNKNOWN*&quot;, &quot;key&quot;: &quot;*UNKNOWN*&quot;}, {&quot;value&quot;:          |
+|                 | &quot;*UNKNOWN*&quot;, &quot;host&quot;: &quot;*UNKNOWN*&quot;, &quot;name&quot;: &quot;*UNKNOWN*&quot;,       |
+|                 | &quot;key&quot;: &quot;*UNKNOWN*&quot;}, {&quot;value&quot;: &quot;*UNKNOWN*&quot;, &quot;host&quot;:          |
+|                 | &quot;*UNKNOWN*&quot;, &quot;name&quot;: &quot;*UNKNOWN*&quot;, &quot;key&quot;: &quot;*UNKNOWN*&quot;}],      |
+|                 | &quot;trigger&quot;: {&quot;status&quot;: &quot;PROBLEM&quot;, &quot;id&quot;: &quot;15970&quot;, &quot;name&quot;: &quot;#3: |
+|                 | High CPU utilization&quot;}, &quot;event&quot;: {&quot;id&quot;: &quot;1120&quot;, &quot;time&quot;:      |
+|                 | &quot;23:57:03&quot;}}&quot;,                                               |
+|                 |     &quot;alert_subject&quot;: &quot;PROBLEM: #3: High CPU utilization&quot;     |
+|                 | }                                                            |
+| status          | processed                                                    |
++-----------------+--------------------------------------------------------------+
+```</description>
+    
+    <lastBuildDate>Thu, 09 May 2019 12:00:30 +0000</lastBuildDate>
+    <category>Rules</category>
+    <atom:link href="https://forum.stackstorm.com/t/zabbix-trigger-how-to-pull-parameters-out-of-the-payload/633.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Zabbix trigger, how to pull parameters out of the payload</title>
+        <dc:creator><![CDATA[armab]]></dc:creator>
+        <description><![CDATA[
+            <p>Take a look at <a href="https://docs.stackstorm.com/rules.html" class="inline-onebox" rel="nofollow noopener">Rules — StackStorm 3.0.0 documentation</a> and examples about how to work with the payload.</p>
+<p>What did you try already to extract needed data from the payload (for example  <code>payload.alert_message.event</code>)?<br>
+How your rule looks like?</p>
+          <p><a href="https://forum.stackstorm.com/t/zabbix-trigger-how-to-pull-parameters-out-of-the-payload/633/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/zabbix-trigger-how-to-pull-parameters-out-of-the-payload/633/3</link>
+        <pubDate>Thu, 09 May 2019 12:00:30 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-633-3</guid>
+        <source url="https://forum.stackstorm.com/t/zabbix-trigger-how-to-pull-parameters-out-of-the-payload/633.rss">Zabbix trigger, how to pull parameters out of the payload</source>
+      </item>
+      <item>
+        <title>Zabbix trigger, how to pull parameters out of the payload</title>
+        <dc:creator><![CDATA[jezk]]></dc:creator>
+        <description><![CDATA[
+            <p>I’m in the process of learning StackStorm and building a small proof of concept that takes a trigger from Zabbix and runs an action to restart a service on a Windows server.</p>
+<p>I’d like some help in figuring out how to take a parameter from the following alert_message and use that as an option in a rule.<br>
+Specifically I’m looking to take the hostname and event id out of the message text.</p>
+<p>Thanks.</p>
+<pre><code class="lang-auto">+-----------------+--------------------------------------------------------------+
+| Property        | Value                                                        |
++-----------------+--------------------------------------------------------------+
+| id              | 5cc854319a6fe026884e44df                                     |
+| trigger         | zabbix.event_handler                                         |
+| occurrence_time | 2019-04-30T23:57:05.000000Z                                  |
+| payload         | {                                                            |
+|                 |     "alert_sendto": "Admin",                                 |
+|                 |     "extra_args": [],                                        |
+|                 |     "alert_message": "{"items": [{"value": "99 %", "host":   |
+|                 | "DC1", "name": "#3: CPU utilization", "key":                 |
+|                 | "system.cpu.util[hrProcessorLoad.3]"}, {"value":             |
+|                 | "*UNKNOWN*", "host": "*UNKNOWN*", "name": "*UNKNOWN*",       |
+|                 | "key": "*UNKNOWN*"}, {"value": "*UNKNOWN*", "host":          |
+|                 | "*UNKNOWN*", "name": "*UNKNOWN*", "key": "*UNKNOWN*"},       |
+|                 | {"value": "*UNKNOWN*", "host": "*UNKNOWN*", "name":          |
+|                 | "*UNKNOWN*", "key": "*UNKNOWN*"}, {"value": "*UNKNOWN*",     |
+|                 | "host": "*UNKNOWN*", "name": "*UNKNOWN*", "key":             |
+|                 | "*UNKNOWN*"}, {"value": "*UNKNOWN*", "host": "*UNKNOWN*",    |
+|                 | "name": "*UNKNOWN*", "key": "*UNKNOWN*"}, {"value":          |
+|                 | "*UNKNOWN*", "host": "*UNKNOWN*", "name": "*UNKNOWN*",       |
+|                 | "key": "*UNKNOWN*"}, {"value": "*UNKNOWN*", "host":          |
+|                 | "*UNKNOWN*", "name": "*UNKNOWN*", "key": "*UNKNOWN*"}],      |
+|                 | "trigger": {"status": "PROBLEM", "id": "15970", "name": "#3: |
+|                 | High CPU utilization"}, "event": {"id": "1120", "time":      |
+|                 | "23:57:03"}}",                                               |
+|                 |     "alert_subject": "PROBLEM: #3: High CPU utilization"     |
+|                 | }                                                            |
+| status          | processed                                                    |
++-----------------+--------------------------------------------------------------+
+</code></pre>
+          <p><a href="https://forum.stackstorm.com/t/zabbix-trigger-how-to-pull-parameters-out-of-the-payload/633/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/zabbix-trigger-how-to-pull-parameters-out-of-the-payload/633/1</link>
+        <pubDate>Sun, 05 May 2019 00:00:46 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-633-1</guid>
+        <source url="https://forum.stackstorm.com/t/zabbix-trigger-how-to-pull-parameters-out-of-the-payload/633.rss">Zabbix trigger, how to pull parameters out of the payload</source>
+      </item>
+  </channel>
+</rss>

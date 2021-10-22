@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>How to compare datetime in Rule</title>
+    <link>https://forum.stackstorm.com/t/how-to-compare-datetime-in-rule/1778</link>
+    <description>Hello, 
+I want to compare trigger&#39;s datetime with current time in rules.
+For expample, some action will only execute on work time, which means trigger time should between 9:00 and 18:00, Monday - Friday.
+I can&#39;t find any jinja example `timediff_lt` or `timediff_gt` in example pack.
+Any suggestions?</description>
+    
+    <lastBuildDate>Tue, 13 Jul 2021 12:39:08 +0000</lastBuildDate>
+    <category>Rules</category>
+    <atom:link href="https://forum.stackstorm.com/t/how-to-compare-datetime-in-rule/1778.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>How to compare datetime in Rule</title>
+        <dc:creator><![CDATA[Bryan]]></dc:creator>
+        <description><![CDATA[
+            <p>Hello,<br>
+I want to compare trigger’s datetime with current time in rules.<br>
+For expample, some action will only execute on work time, which means trigger time should between 9:00 and 18:00, Monday - Friday.<br>
+I can’t find any jinja example <code>timediff_lt</code> or <code>timediff_gt</code> in example pack.<br>
+Any suggestions?</p>
+          <p><a href="https://forum.stackstorm.com/t/how-to-compare-datetime-in-rule/1778/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-to-compare-datetime-in-rule/1778/1</link>
+        <pubDate>Tue, 13 Jul 2021 12:39:08 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1778-1</guid>
+        <source url="https://forum.stackstorm.com/t/how-to-compare-datetime-in-rule/1778.rss">How to compare datetime in Rule</source>
+      </item>
+  </channel>
+</rss>

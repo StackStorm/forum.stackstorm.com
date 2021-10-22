@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>How to install addtional st2actionrunner for python actions</title>
+    <link>https://forum.stackstorm.com/t/how-to-install-addtional-st2actionrunner-for-python-actions/1035</link>
+    <description>We will eventually need to install st2actionrunner on a separate vm and give it access to our standalone stackstorm instance.  We need to do this for horizontal scaling.  
+The Kubernetes script is sort of an overkill for our current needs.  (We need to walk before we run)
+
+Is it possible to:
+1.  install the stackstorm rpm/deb
+2.  disable all services except st2actionrunner services.
+3. setup config and point rabbitmq and mongodb to appropriate uri.</description>
+    
+    <lastBuildDate>Thu, 06 Feb 2020 15:29:35 +0000</lastBuildDate>
+    <category>Operations</category>
+    <atom:link href="https://forum.stackstorm.com/t/how-to-install-addtional-st2actionrunner-for-python-actions/1035.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>How to install addtional st2actionrunner for python actions</title>
+        <dc:creator><![CDATA[armab]]></dc:creator>
+        <description><![CDATA[
+            <p>Yes, absolutely. You can run different components/microservices of StackStorm on different instances.</p>
+<p>That’s how everyone does to scale out workers on many instances to distribute the load or isolation reasons.</p>
+          <p><a href="https://forum.stackstorm.com/t/how-to-install-addtional-st2actionrunner-for-python-actions/1035/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-to-install-addtional-st2actionrunner-for-python-actions/1035/2</link>
+        <pubDate>Thu, 06 Feb 2020 15:29:35 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1035-2</guid>
+        <source url="https://forum.stackstorm.com/t/how-to-install-addtional-st2actionrunner-for-python-actions/1035.rss">How to install addtional st2actionrunner for python actions</source>
+      </item>
+      <item>
+        <title>How to install addtional st2actionrunner for python actions</title>
+        <dc:creator><![CDATA[guzzijones]]></dc:creator>
+        <description><![CDATA[
+            <p>We will eventually need to install st2actionrunner on a separate vm and give it access to our standalone stackstorm instance.  We need to do this for horizontal scaling.<br>
+The Kubernetes script is sort of an overkill for our current needs.  (We need to walk before we run)</p>
+<p>Is it possible to:</p>
+<ol>
+<li>install the stackstorm rpm/deb</li>
+<li>disable all services except st2actionrunner services.</li>
+<li>setup config and point rabbitmq and mongodb to appropriate uri.</li>
+</ol>
+          <p><a href="https://forum.stackstorm.com/t/how-to-install-addtional-st2actionrunner-for-python-actions/1035/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-to-install-addtional-st2actionrunner-for-python-actions/1035/1</link>
+        <pubDate>Wed, 05 Feb 2020 14:48:30 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1035-1</guid>
+        <source url="https://forum.stackstorm.com/t/how-to-install-addtional-st2actionrunner-for-python-actions/1035.rss">How to install addtional st2actionrunner for python actions</source>
+      </item>
+  </channel>
+</rss>

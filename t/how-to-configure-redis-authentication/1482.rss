@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>How to configure redis authentication</title>
+    <link>https://forum.stackstorm.com/t/how-to-configure-redis-authentication/1482</link>
+    <description>Hi,
+
+I&#39;m building a stackstorm setup and would like it to authenticate to the external service (mongo, rabbitmq and redis). I can find the configuration for the mongo and rabbitmq, but there is no documentation on how to configure redis. Could someone explain how to set username, password and location (host:port, url, anything else) for redis in the stackstorm configuration?
+
+P.S.
+Actually, I couldn&#39;t find any documentation on redis at all! Can someone additionally explain what redis is used for within stackstorm? Saw something about that it&#39;s used as a coordination backend in a HA setup. Our setup does not need to be HA. Can redis be disabled in that case?
+
+Thanks in advance,
+Chris</description>
+    
+    <lastBuildDate>Thu, 19 Nov 2020 07:16:54 +0000</lastBuildDate>
+    <category>Platform</category>
+    <atom:link href="https://forum.stackstorm.com/t/how-to-configure-redis-authentication/1482.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>How to configure redis authentication</title>
+        <dc:creator><![CDATA[chris]]></dc:creator>
+        <description><![CDATA[
+            <p>Thanks for the quick answer! Had a feeling I couldn’t remove that dependency, but didn’t have a reason why not. We use orquesta, so we definitely need redis then. <img src="https://emoji.discourse-cdn.com/apple/slight_smile.png?v=9" title=":slight_smile:" class="emoji" alt=":slight_smile:"></p>
+<p>Still would like to know how to authenticate stackstorm with redis.</p>
+          <p><a href="https://forum.stackstorm.com/t/how-to-configure-redis-authentication/1482/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-to-configure-redis-authentication/1482/3</link>
+        <pubDate>Thu, 19 Nov 2020 07:16:54 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1482-3</guid>
+        <source url="https://forum.stackstorm.com/t/how-to-configure-redis-authentication/1482.rss">How to configure redis authentication</source>
+      </item>
+      <item>
+        <title>How to configure redis authentication</title>
+        <dc:creator><![CDATA[guzzijones]]></dc:creator>
+        <description><![CDATA[
+            <p>Redis is used for the coordination backend which you MUST install.  It isn’t listed as a required dependency YET, but it will be.  Orquesta workflows that are more complex than sequential workflows will not work correctly without the coordination backend installed.  I haven’t setup any authentication or ssl for it so I can’t comment on that.</p>
+          <p><a href="https://forum.stackstorm.com/t/how-to-configure-redis-authentication/1482/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-to-configure-redis-authentication/1482/2</link>
+        <pubDate>Wed, 18 Nov 2020 16:20:14 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1482-2</guid>
+        <source url="https://forum.stackstorm.com/t/how-to-configure-redis-authentication/1482.rss">How to configure redis authentication</source>
+      </item>
+      <item>
+        <title>How to configure redis authentication</title>
+        <dc:creator><![CDATA[chris]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi,</p>
+<p>I’m building a stackstorm setup and would like it to authenticate to the external service (mongo, rabbitmq and redis). I can find the configuration for the mongo and rabbitmq, but there is no documentation on how to configure redis. Could someone explain how to set username, password and location (host:port, url, anything else) for redis in the stackstorm configuration?</p>
+<p>P.S.<br>
+Actually, I couldn’t find any documentation on redis at all! Can someone additionally explain what redis is used for within stackstorm? Saw something about that it’s used as a coordination backend in a HA setup. Our setup does not need to be HA. Can redis be disabled in that case?</p>
+<p>Thanks in advance,<br>
+Chris</p>
+          <p><a href="https://forum.stackstorm.com/t/how-to-configure-redis-authentication/1482/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-to-configure-redis-authentication/1482/1</link>
+        <pubDate>Wed, 18 Nov 2020 16:01:38 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1482-1</guid>
+        <source url="https://forum.stackstorm.com/t/how-to-configure-redis-authentication/1482.rss">How to configure redis authentication</source>
+      </item>
+  </channel>
+</rss>

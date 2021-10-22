@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>St2 apikey create - connection aborted</title>
+    <link>https://forum.stackstorm.com/t/st2-apikey-create-connection-aborted/1760</link>
+    <description>Running Ansible to install StackStorm on an AWS instance. Suddenly having trouble.
+Original command:
+```
+ansible-playbook stackstorm.yml -i &#39;localhost,&#39; --connection=local
+```
+
+which results in
+
+```
+TASK [StackStorm.st2chatops : Generate &quot;st2_api_key&quot; if not provided with the &quot;role&quot; or in &quot;defaults/main.yml&quot;] ***
+fatal: [ec2-&lt;ip&gt;.***.compute.amazonaws.com]: FAILED! =&gt; {&quot;censored&quot;: &quot;the output has been hidden due to the fact that &#39;no_log: true&#39; was specified for this result&quot;, &quot;changed&quot;: true}```
+```
+changed no_log: false and got a complain about not reaching port 9101 to create the key. Added 9101 to my security group and now still getting connection issues. Ports open to all, 80/443/9100-9103
+
+```TASK [StackStorm.st2chatops : Generate &quot;st2_api_key&quot; if not provided with the &quot;role&quot; or in &quot;defaults/main.yml&quot;] *****************************************************************************************
+fatal: [localhost]: FAILED! =&gt; {&quot;changed&quot;: true, &quot;cmd&quot;: [&quot;st2&quot;, &quot;apikey&quot;, &quot;create&quot;, &quot;-k&quot;], &quot;delta&quot;: &quot;0:00:04.156206&quot;, &quot;end&quot;: &quot;2021-07-01 21:21:20.928591&quot;, &quot;msg&quot;: &quot;non-zero return code&quot;, &quot;rc&quot;: 2, &quot;start&quot;: &quot;2021-07-01 21:21:16.772385&quot;, &quot;stderr&quot;: &quot;&quot;, &quot;stderr_lines&quot;: [], &quot;stdout&quot;: &quot;ERROR: (&#39;Connection aborted.&#39;, ConnectionResetError(104, &#39;Connection reset by peer&#39;))&quot;, &quot;stdout_lines&quot;: [&quot;ERROR: (&#39;Connection aborted.&#39;, ConnectionResetError(104, &#39;Connection reset by peer&#39;))&quot;]}
+```
+
+even running by hand:
+
+```
+$ st2 apikey create -k
+ERROR: (&#39;Connection aborted.&#39;, ConnectionResetError(104, &#39;Connection reset by peer&#39;))
+```
+What am I missing?</description>
+    
+    <lastBuildDate>Tue, 10 Aug 2021 12:19:15 +0000</lastBuildDate>
+    <category>API</category>
+    <atom:link href="https://forum.stackstorm.com/t/st2-apikey-create-connection-aborted/1760.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>St2 apikey create - connection aborted</title>
+        <dc:creator><![CDATA[amanda11]]></dc:creator>
+        <description><![CDATA[
+            <p>I’ve recently used the latest released ansible playbooks to install 3.4.1. YOu also have to declare the variable st2web_package_name and set to value “st2web”. This got around the error above.</p>
+<p>With the stackstorm ansible playbooks v3.1.0 it will be setup for st2 3.5.0, but can be used for 3.4.1 as long as you specify nodejs_major_version parameter to be 10 (so that nodejs 14 is not installed).</p>
+          <p><a href="https://forum.stackstorm.com/t/st2-apikey-create-connection-aborted/1760/5">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/st2-apikey-create-connection-aborted/1760/5</link>
+        <pubDate>Mon, 09 Aug 2021 20:01:07 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1760-5</guid>
+        <source url="https://forum.stackstorm.com/t/st2-apikey-create-connection-aborted/1760.rss">St2 apikey create - connection aborted</source>
+      </item>
+      <item>
+        <title>St2 apikey create - connection aborted</title>
+        <dc:creator><![CDATA[bohn002]]></dc:creator>
+        <description><![CDATA[
+            <p>little tweak to the actual commands I used:</p>
+<p><code>ansible-galaxy install git+https://github.com/StackStorm/ansible-st2.git</code></p>
+<p>and then cd into ansible-st2</p>
+<p><code>ansible-playbook stackstorm.yml --extra-vars='st2_auth_username=st2admin st2_auth_password=CHANGEME st2_version=3.4.1-2 st2web_version=latest st2chatops_version=3.4.1-1' -i 'localhost,' --connection=local</code></p>
+<p>using 3.4.1-1 for <code>st2web_version</code> caused the error:</p>
+<pre><code class="lang-auto">fatal: [localhost]: FAILED! =&gt; {"msg": "The task includes an option with an undefined variable. The error was: 'st2web_package_name' is undefined\n\nThe error appears to have been in '/home/ubuntu/ansible-st2/roles/StackStorm.st2web/tasks/main.yml': line 26, column 3, but may\nbe elsewhere in the file depending on the exact syntax problem.\n\nThe offending line appears to be:\n\n\n- name: Install pinned st2web package\n  ^ here\n"}```</code></pre>
+          <p><a href="https://forum.stackstorm.com/t/st2-apikey-create-connection-aborted/1760/4">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/st2-apikey-create-connection-aborted/1760/4</link>
+        <pubDate>Fri, 02 Jul 2021 22:05:05 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1760-4</guid>
+        <source url="https://forum.stackstorm.com/t/st2-apikey-create-connection-aborted/1760.rss">St2 apikey create - connection aborted</source>
+      </item>
+      <item>
+        <title>St2 apikey create - connection aborted</title>
+        <dc:creator><![CDATA[amanda11]]></dc:creator>
+        <description><![CDATA[
+            <p>Thanks for updating the forum - that’s really useful for others in future.</p>
+          <p><a href="https://forum.stackstorm.com/t/st2-apikey-create-connection-aborted/1760/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/st2-apikey-create-connection-aborted/1760/3</link>
+        <pubDate>Fri, 02 Jul 2021 11:16:14 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1760-3</guid>
+        <source url="https://forum.stackstorm.com/t/st2-apikey-create-connection-aborted/1760.rss">St2 apikey create - connection aborted</source>
+      </item>
+      <item>
+        <title>St2 apikey create - connection aborted</title>
+        <dc:creator><![CDATA[bohn002]]></dc:creator>
+        <description><![CDATA[
+            <p>Got some help via slack. The ansible playbooks are not up to date to match the 3.5 release, but pulls the 3.5 release.</p>
+<p>Check your /var/log/st2/st2api.log and if you see lots of<br>
+<code>tooz.coordination.ToozConnectionError: Error 111 connecting to 127.0.0.1:6379. ECONNREFUSED.</code> means its looking for redis, that doesnt exist.</p>
+<p>They are working on updating the galaxy bits and 3.5 compatibilities. You can point galaxy to master to get the latest<br>
+<code>ansible-galaxy install git+https://github.com/StackStorm/ansible-st2</code></p>
+<blockquote>
+<p>if you use latest master then:</p>
+<ul>
+<li>you can specify 3.4.1 version and install that</li>
+<li>OR if you go for 3.5.0 then I think the only things you don’t get are:</li>
+<li>a) it will still use node.js 10 instead of 14</li>
+<li>b) it won’t have Focal support`</li>
+</ul>
+</blockquote>
+<p>so it was suggested to use specific versions in the playbook:</p>
+<blockquote>
+<p>So to use a specific version you need to set: st2_Version, st2web_version, and st2chatops_version</p>
+</blockquote>
+<p>so your ansible command would be something like:</p>
+<p><code>ansible-playbook stackstorm.yml --extra-vars='st_version=3.4.1-1 st2web_version=3.4.1-1 st2chatops_version=3.4.1-1'</code></p>
+<p>if you are running ubuntu. if not ubuntu, you can drop the <code>-1</code></p>
+<p>Testing the pointing directly to master branch, but might end up doing the 3.4.1-1 option until the ansible bits are updated.</p>
+          <p><a href="https://forum.stackstorm.com/t/st2-apikey-create-connection-aborted/1760/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/st2-apikey-create-connection-aborted/1760/2</link>
+        <pubDate>Thu, 01 Jul 2021 22:25:04 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1760-2</guid>
+        <source url="https://forum.stackstorm.com/t/st2-apikey-create-connection-aborted/1760.rss">St2 apikey create - connection aborted</source>
+      </item>
+      <item>
+        <title>St2 apikey create - connection aborted</title>
+        <dc:creator><![CDATA[bohn002]]></dc:creator>
+        <description><![CDATA[
+            <p>Running Ansible to install StackStorm on an AWS instance. Suddenly having trouble.<br>
+Original command:</p>
+<pre><code class="lang-auto">ansible-playbook stackstorm.yml -i 'localhost,' --connection=local
+</code></pre>
+<p>which results in</p>
+<pre><code class="lang-auto">TASK [StackStorm.st2chatops : Generate "st2_api_key" if not provided with the "role" or in "defaults/main.yml"] ***
+fatal: [ec2-&lt;ip&gt;.***.compute.amazonaws.com]: FAILED! =&gt; {"censored": "the output has been hidden due to the fact that 'no_log: true' was specified for this result", "changed": true}```
+</code></pre>
+<p>changed no_log: false and got a complain about not reaching port 9101 to create the key. Added 9101 to my security group and now still getting connection issues. Ports open to all, 80/443/9100-9103</p>
+<pre><code class="lang-auto">fatal: [localhost]: FAILED! =&gt; {"changed": true, "cmd": ["st2", "apikey", "create", "-k"], "delta": "0:00:04.156206", "end": "2021-07-01 21:21:20.928591", "msg": "non-zero return code", "rc": 2, "start": "2021-07-01 21:21:16.772385", "stderr": "", "stderr_lines": [], "stdout": "ERROR: ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))", "stdout_lines": ["ERROR: ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))"]}
+</code></pre>
+<p>even running by hand:</p>
+<pre><code class="lang-auto">$ st2 apikey create -k
+ERROR: ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+</code></pre>
+<p>What am I missing?</p>
+          <p><a href="https://forum.stackstorm.com/t/st2-apikey-create-connection-aborted/1760/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/st2-apikey-create-connection-aborted/1760/1</link>
+        <pubDate>Thu, 01 Jul 2021 21:40:06 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1760-1</guid>
+        <source url="https://forum.stackstorm.com/t/st2-apikey-create-connection-aborted/1760.rss">St2 apikey create - connection aborted</source>
+      </item>
+  </channel>
+</rss>

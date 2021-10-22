@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Orquesta workflow is not changing to successful. It is running forever</title>
+    <link>https://forum.stackstorm.com/t/orquesta-workflow-is-not-changing-to-successful-it-is-running-forever/1577</link>
+    <description>Hi,
+
+I have a simple workflow collecting an array and afterwards starting core.http for every item in the array.
+Therefore I use the with-items solution:
+
+    Do_Loop:
+        with: &lt;% ctx().list_of_items %&gt;
+        action: core.http
+        input:
+          url: &quot;https://some.service.net/api/add/&lt;% item().value %&gt;&quot;
+          method: &quot;PUT&quot;
+          headers: {&quot;X-APP&quot;:&quot;&lt;% st2kv(&#39;system.appid&#39;) %&gt;&quot;,&quot;X-APIKEY&quot;:&quot;&lt;% st2kv(&#39;system.apikey&#39;, decrypt=&gt;true) %&gt;&quot;,&quot;content-type&quot;:&quot;application/json&quot;,&quot;Accept&quot;:&quot;application/json&quot;}
+          body: &#39;{
+                   &quot;host&quot;: &quot;&lt;% item().value %&gt;&quot;,
+                   &quot;description&quot;: &quot;Detail: &lt;% item().event_id %&gt;&quot;
+                 }&#39;
+
+
+In my current example, the list contains 286 values which leads to 286 http action executions.
+First I had the issue that the actions took longer and longer till everything stuck. After searching issues, etc. I found a PR where it is stated to use a coordination backend. (https://github.com/StackStorm/st2/pull/4595)
+
+Therefore I installed and configure redis. Since then the actions run smooth and in short time, but the overall workflow is still in progress even if all 286 actions are executed.
+
+By checking the wfl logs I get the following:
+    tail -F /var/log/st2/st2workflowengine.log 
+    2021-02-25 18:04:23,417 140710782507280 DEBUG keyvalue [-] get_key key_id: appid, scope: st2kv.system, user: st2admin, decrypt: False
+    2021-02-25 18:04:23,706 140710782507280 DEBUG keyvalue [-] get_key key_id: apikey, scope: st2kv.system, user: st2admin, decrypt: True
+    2021-02-25 18:04:23,986 140710782507280 DEBUG keyvalue [-] get_key key_id: appid, scope: st2kv.system, user: st2admin, decrypt: False
+    2021-02-25 18:04:24,068 140710782507280 DEBUG keyvalue [-] get_key key_id: apikey, scope: st2kv.system, user: st2admin, decrypt: True
+    2021-02-25 18:04:24,553 140710782507280 DEBUG keyvalue [-] get_key key_id: appid, scope: st2kv.system, user: st2admin, decrypt: False
+    2021-02-25 18:04:24,638 140710782507280 DEBUG keyvalue [-] get_key key_id: apikey, scope: st2kv.system, user: st2admin, decrypt: True
+    2021-02-25 18:04:24,921 140710782507280 DEBUG keyvalue [-] get_key key_id: appid, scope: st2kv.system, user: st2admin, decrypt: False
+
+
+It looks like it is still collecting the values from the keystore, but they are no longer needed. Every http action is already satisfied.
+It is visible that all actions of the workflow already succeeded by looking on the WebUI and the CLI.
+
+Has someone any idea what is going on here?
+
+Looks like the workflow is running forever.</description>
+    
+    <lastBuildDate>Wed, 03 Mar 2021 11:01:53 +0000</lastBuildDate>
+    <category>Workflows</category>
+    <atom:link href="https://forum.stackstorm.com/t/orquesta-workflow-is-not-changing-to-successful-it-is-running-forever/1577.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Orquesta workflow is not changing to successful. It is running forever</title>
+        <dc:creator><![CDATA[wingi]]></dc:creator>
+        <description><![CDATA[
+            <p>UPDATE - Complete summary:<br>
+Installation: Stackstorm OVA Image<br>
+Stackstorm v 3.2.0<br>
+Redis installed as coordination backend.</p>
+<p>I figured now out it is related to specific usage of with. Therefore I created two examples to demonstrate the behaviour. The examples contain less wfl context/data and is therefore faster than my real world use case, but in general it demonstrates the behaviour:</p>
+<p>Example 1:</p>
+<pre><code>version: 1.0
+description: A debugging workflow.
+
+input:
+  - array: &lt;% list(range(60)) %&gt;
+
+output:
+  - Array: &lt;% ctx().array %&gt;
+
+tasks:
+  Start:
+    action: core.echo
+    input:
+      message: "Start"
+    next:
+      - when: &lt;% completed() %&gt;
+        publish:
+        - result: &lt;% result() %&gt;
+        do: Do_Loop
+
+###Loop over array
+    with: &lt;% ctx().array %&gt;
+    action: core.echo
+    input:
+      message: "This is just a test Item: &lt;% item() %&gt;"
+</code></pre>
+<p>Example 2:</p>
+<pre><code>version: 1.0
+description: A debugging workflow.
+
+input:
+  - array: &lt;% list(range(60)) %&gt;
+
+output:
+  - Array: &lt;% ctx().array %&gt;
+
+tasks:
+  Start:
+    action: core.echo
+    input:
+      message: "Start"
+    next:
+      - when: &lt;% completed() %&gt;
+        publish:
+        - result: &lt;% result() %&gt;
+        do: Do_Loop
+
+###Loop over array
+    with:
+        concurrency: 1
+        items: &lt;% ctx().array %&gt;
+    action: core.echo
+    input:
+      message: "This is just a test Item: &lt;% item() %&gt;"
+</code></pre>
+<p>Behaviour:<br>
+Example 1:<br>
+Behaviour is seen as before described in my posts. The looped steps are executed without any real delay but after the last step the overall wfl still runs for additional ~25 seconds till it succeeds.<br>
+</p><div class="lightbox-wrapper"><a class="lightbox" href="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/1c7f89fa02cfdeaf70888670bf0bd1239e5106ea.png" data-download-href="/uploads/short-url/446CrT0uFdnJVZJ91gx9Ze5LoQq.png?dl=1" title="Bildschirmfoto 2021-03-03 um 11.35.21" rel="noopener nofollow ugc"><img src="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/1c7f89fa02cfdeaf70888670bf0bd1239e5106ea_2_690x180.png" alt="Bildschirmfoto 2021-03-03 um 11.35.21" data-base62-sha1="446CrT0uFdnJVZJ91gx9Ze5LoQq" width="690" height="180" srcset="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/1c7f89fa02cfdeaf70888670bf0bd1239e5106ea_2_690x180.png, https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/1c7f89fa02cfdeaf70888670bf0bd1239e5106ea_2_1035x270.png 1.5x, https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/1c7f89fa02cfdeaf70888670bf0bd1239e5106ea_2_1380x360.png 2x" data-small-upload="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/1c7f89fa02cfdeaf70888670bf0bd1239e5106ea_2_10x10.png"></a></div><p></p>
+<p>Example 2:<br>
+The looped steps are executed one after the other. After the last step was executed the overall wfl succeeds within 3 seconds.<br>
+</p><div class="lightbox-wrapper"><a class="lightbox" href="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/c5246c58f4a1be6ba9b8b09632dc4b8942129b0a.png" data-download-href="/uploads/short-url/s80654waWGuT0q4Y5k7dD1U1soO.png?dl=1" title="Bildschirmfoto 2021-03-03 um 11.31.03" rel="noopener nofollow ugc"><img src="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/c5246c58f4a1be6ba9b8b09632dc4b8942129b0a_2_690x180.png" alt="Bildschirmfoto 2021-03-03 um 11.31.03" data-base62-sha1="s80654waWGuT0q4Y5k7dD1U1soO" width="690" height="180" srcset="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/c5246c58f4a1be6ba9b8b09632dc4b8942129b0a_2_690x180.png, https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/c5246c58f4a1be6ba9b8b09632dc4b8942129b0a_2_1035x270.png 1.5x, https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/c5246c58f4a1be6ba9b8b09632dc4b8942129b0a_2_1380x360.png 2x" data-small-upload="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/c5246c58f4a1be6ba9b8b09632dc4b8942129b0a_2_10x10.png"></a></div><p></p>
+<p>In these examples it doesn’t seem to be an issue because it only takes 25 seconds to finish, but as you can see in my previous posts for the real world use case it takes hours which leads to issues.</p>
+<p>Can someone reproduce this issue?<br>
+Anything I can do to solve this issue while running actions in parallel?</p>
+<p>If any further info is needed, please let me know here or in Slack.</p>
+<p>Thanks.</p>
+          <p><a href="https://forum.stackstorm.com/t/orquesta-workflow-is-not-changing-to-successful-it-is-running-forever/1577/5">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/orquesta-workflow-is-not-changing-to-successful-it-is-running-forever/1577/5</link>
+        <pubDate>Wed, 03 Mar 2021 11:01:53 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1577-5</guid>
+        <source url="https://forum.stackstorm.com/t/orquesta-workflow-is-not-changing-to-successful-it-is-running-forever/1577.rss">Orquesta workflow is not changing to successful. It is running forever</source>
+      </item>
+      <item>
+        <title>Orquesta workflow is not changing to successful. It is running forever</title>
+        <dc:creator><![CDATA[wingi]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi,</p>
+<p>yes I although thought about redesigning it to just use one action from Stackstorm perspective but this only solves this case. I think in general it should be possible to use although many with-items to benefit from the modular idea of it.</p>
+<p>I used Stackstorm v3.2.0.</p>
+<p>After another hour, the time is now no longer changing and the logs stopped.<br>
+</p><div class="lightbox-wrapper"><a class="lightbox" href="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/7064f9b500e52f1477916856a86b8c03d9518991.png" data-download-href="/uploads/short-url/g2hOySF4acHklsudNUSwHa7B4fn.png?dl=1" title="Bildschirmfoto 2021-02-26 um 15.24.48" rel="noopener nofollow ugc"><img src="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/7064f9b500e52f1477916856a86b8c03d9518991_2_690x294.png" alt="Bildschirmfoto 2021-02-26 um 15.24.48" data-base62-sha1="g2hOySF4acHklsudNUSwHa7B4fn" width="690" height="294" srcset="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/7064f9b500e52f1477916856a86b8c03d9518991_2_690x294.png, https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/7064f9b500e52f1477916856a86b8c03d9518991.png 1.5x, https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/7064f9b500e52f1477916856a86b8c03d9518991.png 2x" data-small-upload="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/7064f9b500e52f1477916856a86b8c03d9518991_2_10x10.png"></a></div><p></p>
+          <p><a href="https://forum.stackstorm.com/t/orquesta-workflow-is-not-changing-to-successful-it-is-running-forever/1577/4">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/orquesta-workflow-is-not-changing-to-successful-it-is-running-forever/1577/4</link>
+        <pubDate>Fri, 26 Feb 2021 14:26:56 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1577-4</guid>
+        <source url="https://forum.stackstorm.com/t/orquesta-workflow-is-not-changing-to-successful-it-is-running-forever/1577.rss">Orquesta workflow is not changing to successful. It is running forever</source>
+      </item>
+      <item>
+        <title>Orquesta workflow is not changing to successful. It is running forever</title>
+        <dc:creator><![CDATA[arms11]]></dc:creator>
+        <description><![CDATA[
+            <p>Not exactly the answer you might be looking for, but have you tried running this in shell script or python runner instead of <code>with-items</code> in a declarative way? Just trying to understand if there is a growing contention with a tight loop. I could be wrong. Also, what version of ST2 is this?</p>
+          <p><a href="https://forum.stackstorm.com/t/orquesta-workflow-is-not-changing-to-successful-it-is-running-forever/1577/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/orquesta-workflow-is-not-changing-to-successful-it-is-running-forever/1577/3</link>
+        <pubDate>Thu, 25 Feb 2021 21:54:58 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1577-3</guid>
+        <source url="https://forum.stackstorm.com/t/orquesta-workflow-is-not-changing-to-successful-it-is-running-forever/1577.rss">Orquesta workflow is not changing to successful. It is running forever</source>
+      </item>
+      <item>
+        <title>Orquesta workflow is not changing to successful. It is running forever</title>
+        <dc:creator><![CDATA[wingi]]></dc:creator>
+        <description><![CDATA[
+            <p>Update:</p>
+<p>After more than one hour it changed now to failed with following output:</p>
+<pre><code class="lang-auto">{
+  "output": null,
+  "errors": [
+    {
+      "message": "Execution failed. See result for details.",
+      "type": "error",
+      "task_id": "Do_Loop"
+    },
+    {
+      "message": "ToozConnectionError: Timeout reading from socket",
+      "type": "error",
+      "route": 1,
+      "task_id": "Do_Loop"
+    }
+  ]
+}
+</code></pre>
+<p>But the workflowengine log still goes on and by viewing the result in the WebUI, the finish time is still updated every time I click on the WFL:<br>
+</p><div class="lightbox-wrapper"><a class="lightbox" href="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/e63d3e9a3c84eabe6e71c627de6cf669c8703265.png" data-download-href="/uploads/short-url/wQN26NCiF0o20hB1kLECPq9TNpX.png?dl=1" title="Bildschirmfoto 2021-02-25 um 19.18.59" rel="noopener nofollow ugc"><img src="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/e63d3e9a3c84eabe6e71c627de6cf669c8703265_2_690x343.png" alt="Bildschirmfoto 2021-02-25 um 19.18.59" data-base62-sha1="wQN26NCiF0o20hB1kLECPq9TNpX" width="690" height="343" srcset="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/e63d3e9a3c84eabe6e71c627de6cf669c8703265_2_690x343.png, https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/e63d3e9a3c84eabe6e71c627de6cf669c8703265.png 1.5x, https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/e63d3e9a3c84eabe6e71c627de6cf669c8703265.png 2x" data-small-upload="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/e63d3e9a3c84eabe6e71c627de6cf669c8703265_2_10x10.png"></a></div><p></p>
+<p></p><div class="lightbox-wrapper"><a class="lightbox" href="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/ad8134481c8fed80de1b5a90073972a8140ae856.png" data-download-href="/uploads/short-url/oKTq6X7HTvM3y534XZLGPkBylv0.png?dl=1" title="Bildschirmfoto 2021-02-25 um 19.20.24" rel="noopener nofollow ugc"><img src="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/ad8134481c8fed80de1b5a90073972a8140ae856_2_690x343.png" alt="Bildschirmfoto 2021-02-25 um 19.20.24" data-base62-sha1="oKTq6X7HTvM3y534XZLGPkBylv0" width="690" height="343" srcset="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/ad8134481c8fed80de1b5a90073972a8140ae856_2_690x343.png, https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/ad8134481c8fed80de1b5a90073972a8140ae856.png 1.5x, https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/ad8134481c8fed80de1b5a90073972a8140ae856.png 2x" data-small-upload="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/ad8134481c8fed80de1b5a90073972a8140ae856_2_10x10.png"></a></div><p></p>
+          <p><a href="https://forum.stackstorm.com/t/orquesta-workflow-is-not-changing-to-successful-it-is-running-forever/1577/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/orquesta-workflow-is-not-changing-to-successful-it-is-running-forever/1577/2</link>
+        <pubDate>Thu, 25 Feb 2021 18:24:42 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1577-2</guid>
+        <source url="https://forum.stackstorm.com/t/orquesta-workflow-is-not-changing-to-successful-it-is-running-forever/1577.rss">Orquesta workflow is not changing to successful. It is running forever</source>
+      </item>
+      <item>
+        <title>Orquesta workflow is not changing to successful. It is running forever</title>
+        <dc:creator><![CDATA[wingi]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi,</p>
+<p>I have a simple workflow collecting an array and afterwards starting core.http for every item in the array.<br>
+Therefore I use the with-items solution:</p>
+<pre><code>Do_Loop:
+    with: &lt;% ctx().list_of_items %&gt;
+    action: core.http
+    input:
+      url: "https://some.service.net/api/add/&lt;% item().value %&gt;"
+      method: "PUT"
+      headers: {"X-APP":"&lt;% st2kv('system.appid') %&gt;","X-APIKEY":"&lt;% st2kv('system.apikey', decrypt=&gt;true) %&gt;","content-type":"application/json","Accept":"application/json"}
+      body: '{
+               "host": "&lt;% item().value %&gt;",
+               "description": "Detail: &lt;% item().event_id %&gt;"
+             }'
+</code></pre>
+<p>In my current example, the list contains 286 values which leads to 286 http action executions.<br>
+First I had the issue that the actions took longer and longer till everything stuck. After searching issues, etc. I found a PR where it is stated to use a coordination backend. (<a href="https://github.com/StackStorm/st2/pull/4595" class="inline-onebox" rel="noopener nofollow ugc">Acquire lock in workflow engine before handling action execution completion by m4dcoder · Pull Request #4595 · StackStorm/st2 · GitHub</a>)</p>
+<p>Therefore I installed and configure redis. Since then the actions run smooth and in short time, but the overall workflow is still in progress even if all 286 actions are executed.</p>
+<p>By checking the wfl logs I get the following:<br>
+tail -F /var/log/st2/st2workflowengine.log<br>
+2021-02-25 18:04:23,417 140710782507280 DEBUG keyvalue [-] get_key key_id: appid, scope: st2kv.system, user: st2admin, decrypt: False<br>
+2021-02-25 18:04:23,706 140710782507280 DEBUG keyvalue [-] get_key key_id: apikey, scope: st2kv.system, user: st2admin, decrypt: True<br>
+2021-02-25 18:04:23,986 140710782507280 DEBUG keyvalue [-] get_key key_id: appid, scope: st2kv.system, user: st2admin, decrypt: False<br>
+2021-02-25 18:04:24,068 140710782507280 DEBUG keyvalue [-] get_key key_id: apikey, scope: st2kv.system, user: st2admin, decrypt: True<br>
+2021-02-25 18:04:24,553 140710782507280 DEBUG keyvalue [-] get_key key_id: appid, scope: st2kv.system, user: st2admin, decrypt: False<br>
+2021-02-25 18:04:24,638 140710782507280 DEBUG keyvalue [-] get_key key_id: apikey, scope: st2kv.system, user: st2admin, decrypt: True<br>
+2021-02-25 18:04:24,921 140710782507280 DEBUG keyvalue [-] get_key key_id: appid, scope: st2kv.system, user: st2admin, decrypt: False</p>
+<p>It looks like it is still collecting the values from the keystore, but they are no longer needed. Every http action is already satisfied.<br>
+It is visible that all actions of the workflow already succeeded by looking on the WebUI and the CLI.</p>
+<p>Has someone any idea what is going on here?</p>
+<p>Looks like the workflow is running forever.</p>
+          <p><a href="https://forum.stackstorm.com/t/orquesta-workflow-is-not-changing-to-successful-it-is-running-forever/1577/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/orquesta-workflow-is-not-changing-to-successful-it-is-running-forever/1577/1</link>
+        <pubDate>Thu, 25 Feb 2021 18:11:35 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1577-1</guid>
+        <source url="https://forum.stackstorm.com/t/orquesta-workflow-is-not-changing-to-successful-it-is-running-forever/1577.rss">Orquesta workflow is not changing to successful. It is running forever</source>
+      </item>
+  </channel>
+</rss>

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Is there one rule and sensor that applies to all actions?</title>
+    <link>https://forum.stackstorm.com/t/is-there-one-rule-and-sensor-that-applies-to-all-actions/1814</link>
+    <description>Hello, 
+
+I&#39;m searching for a general way to write rules and sensors.
+
+For example, I have 2 timing action: **action_a, action_b**:
+```
+**action_a brief definition:**
+parameters:
+  param_a_1:
+    type: object
+    required: true
+  param_a_2:
+    type: object
+    required: true
+```
+```
+**action_b brief definition:**
+parameters:
+  param_b_1:
+    type: string
+    required: true
+  param_b_2:
+    type: array
+    required: true
+  param_b_3:
+    type: string
+    required: true
+```
+I save the action and its param as key-value pair(change to yaml for human read) in stackstorm mongodb:
+```
+deploy_time: &quot;2021-08-19 23:00&quot; 
+action: pack1.action_a
+params:
+  param_a_1:
+    key_1: value_1
+  param_a_2:
+    key_a_2: value_a_2
+```
+```
+deploy_time: &quot;2021-08-19 23:00&quot;
+action: pack2.action_b
+params:
+  param_b_1: &quot;string_1&quot;
+  param_b_2:
+    - object_1
+    - object_2
+  param_b_3: &quot;string_3&quot;
+```
+
+Then I write a sensor to read stackstorm Datastore.  Sensor will compare current system time and `deploy_time`, if current system time is later than `deploy_time`, sensor will generate a playload to rule.
+
+As you can image, I have to write 3 very similar file( `sensor.py`; `sensor.yaml`; `rule.yaml` ) for each action. The only difference between them is `payload_schema` section of `sensor.yaml` 
+and `action` section of `rule.yaml`.
+`sensor.py` is almost exactly the same.
+
+Is there a general way to write rules and sensors?</description>
+    
+    <lastBuildDate>Thu, 19 Aug 2021 08:35:37 +0000</lastBuildDate>
+    <category>Rules</category>
+    <atom:link href="https://forum.stackstorm.com/t/is-there-one-rule-and-sensor-that-applies-to-all-actions/1814.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Is there one rule and sensor that applies to all actions?</title>
+        <dc:creator><![CDATA[Bryan]]></dc:creator>
+        <description><![CDATA[
+            <p>Hello,</p>
+<p>I’m searching for a general way to write rules and sensors.</p>
+<p>For example, I have 2 timing action: <strong>action_a, action_b</strong>:</p>
+<pre><code class="lang-auto">**action_a brief definition:**
+parameters:
+  param_a_1:
+    type: object
+    required: true
+  param_a_2:
+    type: object
+    required: true
+</code></pre>
+<pre><code class="lang-auto">**action_b brief definition:**
+parameters:
+  param_b_1:
+    type: string
+    required: true
+  param_b_2:
+    type: array
+    required: true
+  param_b_3:
+    type: string
+    required: true
+</code></pre>
+<p>I save the action and its param as key-value pair(change to yaml for human read) in stackstorm mongodb:</p>
+<pre><code class="lang-auto">deploy_time: "2021-08-19 23:00" 
+action: pack1.action_a
+params:
+  param_a_1:
+    key_1: value_1
+  param_a_2:
+    key_a_2: value_a_2
+</code></pre>
+<pre><code class="lang-auto">deploy_time: "2021-08-19 23:00"
+action: pack2.action_b
+params:
+  param_b_1: "string_1"
+  param_b_2:
+    - object_1
+    - object_2
+  param_b_3: "string_3"
+</code></pre>
+<p>Then I write a sensor to read stackstorm Datastore.  Sensor will compare current system time and <code>deploy_time</code>, if current system time is later than <code>deploy_time</code>, sensor will generate a playload to rule.</p>
+<p>As you can image, I have to write 3 very similar file( <code>sensor.py</code>; <code>sensor.yaml</code>; <code>rule.yaml</code> ) for each action. The only difference between them is <code>payload_schema</code> section of <code>sensor.yaml</code><br>
+and <code>action</code> section of <code>rule.yaml</code>.<br>
+<code>sensor.py</code> is almost exactly the same.</p>
+<p>Is there a general way to write rules and sensors?</p>
+          <p><a href="https://forum.stackstorm.com/t/is-there-one-rule-and-sensor-that-applies-to-all-actions/1814/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/is-there-one-rule-and-sensor-that-applies-to-all-actions/1814/1</link>
+        <pubDate>Thu, 19 Aug 2021 08:35:37 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1814-1</guid>
+        <source url="https://forum.stackstorm.com/t/is-there-one-rule-and-sensor-that-applies-to-all-actions/1814.rss">Is there one rule and sensor that applies to all actions?</source>
+      </item>
+  </channel>
+</rss>

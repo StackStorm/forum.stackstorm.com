@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Latest Python Version for Stackstorm and packs in official Docker images</title>
+    <link>https://forum.stackstorm.com/t/latest-python-version-for-stackstorm-and-packs-in-official-docker-images/1164</link>
+    <description>I am using st2-docker setup for stackstorm installation and the setup contains python 2.7.6
+&gt; $ st2 --version
+&gt; st2 3.1.0, on Python 2.7.6
+
+I need to install ansible pack on stackstorm image and trigger playbooks using stackstorm. Which is causing deprecation warnings and errors due to unsupported python version.
+
+So is there any way I can upgrade python 2.7.6 to latest (2.7.17) also 3.4 to 3.7
+
+https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#control-node-requirements</description>
+    
+    <lastBuildDate>Mon, 13 Apr 2020 09:33:05 +0000</lastBuildDate>
+    <category>API</category>
+    <atom:link href="https://forum.stackstorm.com/t/latest-python-version-for-stackstorm-and-packs-in-official-docker-images/1164.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Latest Python Version for Stackstorm and packs in official Docker images</title>
+        <dc:creator><![CDATA[manoj-aps]]></dc:creator>
+        <description><![CDATA[
+            <p>I am using st2-docker setup for stackstorm installation and the setup contains python 2.7.6</p>
+<blockquote>
+<p>$ st2 --version<br>
+st2 3.1.0, on Python 2.7.6</p>
+</blockquote>
+<p>I need to install ansible pack on stackstorm image and trigger playbooks using stackstorm. Which is causing deprecation warnings and errors due to unsupported python version.</p>
+<p>So is there any way I can upgrade python 2.7.6 to latest (2.7.17) also 3.4 to 3.7</p>
+<p><a href="https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#control-node-requirements" class="onebox" target="_blank" rel="nofollow noopener">https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#control-node-requirements</a></p>
+          <p><a href="https://forum.stackstorm.com/t/latest-python-version-for-stackstorm-and-packs-in-official-docker-images/1164/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/latest-python-version-for-stackstorm-and-packs-in-official-docker-images/1164/1</link>
+        <pubDate>Mon, 13 Apr 2020 09:33:05 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1164-1</guid>
+        <source url="https://forum.stackstorm.com/t/latest-python-version-for-stackstorm-and-packs-in-official-docker-images/1164.rss">Latest Python Version for Stackstorm and packs in official Docker images</source>
+      </item>
+  </channel>
+</rss>

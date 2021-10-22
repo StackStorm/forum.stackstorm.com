@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Can&#39;t setup stackstorm with mongodb SSL and ReplicaSet</title>
+    <link>https://forum.stackstorm.com/t/cant-setup-stackstorm-with-mongodb-ssl-and-replicaset/962</link>
+    <description>Hello
+
+I try to setup stackstorm when the DB is on Alas cloud and consists of 3 noes in replicaset.
+
+The st2 actually succeeds to start up and even command like st2ctl reload shows that everything ok  but in the api log and auth log i see every 5 minutes error &quot;cannot connect to database default :
+maximum recursion depth exceeded&quot; 
+
+I definitely see that stackstorm can connect to mongo and even it succeeded to create collection there but i can&#39;t login to stackstorm and things don&#39;t work with all mentioned errors in the logs.
+
+If i change the same instance and connect it to standalone mongo db on another vm by changing paramters in st2.conf , everything fine. 
+the issue exists only with replica set on atlas mongo :frowning:
+anybody can help ? :slightly_smiling_face:   
+
+
+![image|690x36](upload://fVIwNOJsrpuJJuaXaezQf6dwXFO.png)</description>
+    
+    <lastBuildDate>Thu, 27 Feb 2020 19:54:10 +0000</lastBuildDate>
+    <category>Platform</category>
+    <atom:link href="https://forum.stackstorm.com/t/cant-setup-stackstorm-with-mongodb-ssl-and-replicaset/962.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Can&#39;t setup stackstorm with mongodb SSL and ReplicaSet</title>
+        <dc:creator><![CDATA[smurugu]]></dc:creator>
+        <description><![CDATA[
+            <p>I am not sure whether SSL on mongodb has any impact on K8 HA configuration. Currently doing wireshark analysis which shows there are several handshake request to mongodb which seem to fail. I will update the details next week. Meanwhile if someone has information on how to enable or disable mongodb SSL , please share the details here</p>
+          <p><a href="https://forum.stackstorm.com/t/cant-setup-stackstorm-with-mongodb-ssl-and-replicaset/962/13">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/cant-setup-stackstorm-with-mongodb-ssl-and-replicaset/962/13</link>
+        <pubDate>Thu, 27 Feb 2020 19:54:10 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-962-13</guid>
+        <source url="https://forum.stackstorm.com/t/cant-setup-stackstorm-with-mongodb-ssl-and-replicaset/962.rss">Can&#39;t setup stackstorm with mongodb SSL and ReplicaSet</source>
+      </item>
+      <item>
+        <title>Can&#39;t setup stackstorm with mongodb SSL and ReplicaSet</title>
+        <dc:creator><![CDATA[kami]]></dc:creator>
+        <description><![CDATA[
+            <p>Thanks for opening the issue.</p>
+<p>I believe a change in <a href="https://github.com/StackStorm/st2/pull/4834">https://github.com/StackStorm/st2/pull/4834</a> should fix it.</p>
+<p>You can test that change by upgrading to staging unstable packages (<a href="https://packagecloud.io/StackStorm/staging-unstable">https://packagecloud.io/StackStorm/staging-unstable</a>) after they have been built (the PR has just been merged and the packages should be built and promoted by tomorrow EOD by the latest).</p>
+<p>That’s of course at your own risk since staging unstable packages are based directly off master and are considered as an development version.</p>
+          <p><a href="https://forum.stackstorm.com/t/cant-setup-stackstorm-with-mongodb-ssl-and-replicaset/962/12">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/cant-setup-stackstorm-with-mongodb-ssl-and-replicaset/962/12</link>
+        <pubDate>Mon, 16 Dec 2019 21:11:19 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-962-12</guid>
+        <source url="https://forum.stackstorm.com/t/cant-setup-stackstorm-with-mongodb-ssl-and-replicaset/962.rss">Can&#39;t setup stackstorm with mongodb SSL and ReplicaSet</source>
+      </item>
+      <item>
+        <title>Can&#39;t setup stackstorm with mongodb SSL and ReplicaSet</title>
+        <dc:creator><![CDATA[alexku7]]></dc:creator>
+        <description><![CDATA[
+            <p>Thank you for assistance <img src="https://emoji.discourse-cdn.com/apple/slight_smile.png?v=9" title=":slight_smile:" class="emoji" alt=":slight_smile:"><br>
+I just have opened report bug here <a href="https://github.com/StackStorm/st2/issues/4832" class="inline-onebox" rel="nofollow noopener">Connection to mongo db over SSL doesn't work · Issue #4832 · StackStorm/st2 · GitHub</a></p>
+<p>Hope  wiil be resolved <img src="https://emoji.discourse-cdn.com/apple/slight_smile.png?v=9" title=":slight_smile:" class="emoji" alt=":slight_smile:"></p>
+          <p><a href="https://forum.stackstorm.com/t/cant-setup-stackstorm-with-mongodb-ssl-and-replicaset/962/11">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/cant-setup-stackstorm-with-mongodb-ssl-and-replicaset/962/11</link>
+        <pubDate>Sun, 15 Dec 2019 08:14:06 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-962-11</guid>
+        <source url="https://forum.stackstorm.com/t/cant-setup-stackstorm-with-mongodb-ssl-and-replicaset/962.rss">Can&#39;t setup stackstorm with mongodb SSL and ReplicaSet</source>
+      </item>
+      <item>
+        <title>Can&#39;t setup stackstorm with mongodb SSL and ReplicaSet</title>
+        <dc:creator><![CDATA[armab]]></dc:creator>
+        <description><![CDATA[
+            <p>Alright, please report bug in <a href="https://github.com/stackstorm/st2" class="inline-onebox">GitHub - StackStorm/st2: StackStorm (aka "IFTTT for Ops") is event-driven automation for auto-remediation, security responses, troubleshooting, deployments, and more. Includes rules engine, workflow, 160 integration packs with 6000+ actions (see https://exchange.stackstorm.org) and ChatOps. Installer at https://docs.stackstorm.com/install/index.html. Questions? https://forum.stackstorm.com/.</a> then with more details as possible.<br>
+Someone will take a look at that closer.</p>
+          <p><a href="https://forum.stackstorm.com/t/cant-setup-stackstorm-with-mongodb-ssl-and-replicaset/962/10">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/cant-setup-stackstorm-with-mongodb-ssl-and-replicaset/962/10</link>
+        <pubDate>Sat, 14 Dec 2019 13:40:57 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-962-10</guid>
+        <source url="https://forum.stackstorm.com/t/cant-setup-stackstorm-with-mongodb-ssl-and-replicaset/962.rss">Can&#39;t setup stackstorm with mongodb SSL and ReplicaSet</source>
+      </item>
+      <item>
+        <title>Can&#39;t setup stackstorm with mongodb SSL and ReplicaSet</title>
+        <dc:creator><![CDATA[alexku7]]></dc:creator>
+        <description><![CDATA[
+            <p>trust me. i spent enough time to troubleshoot this. I  have enabled debug mode too but no useful information was found in the log files, just the same error every few seconds.</p>
+<p>I also defined in mongod.conf not to require client certificate i.e  allowConnectionsWithoutCertificates: true.</p>
+<p>Any way i don;t see any connection attempts  in the monogd logs. I think the stackstorm even doesn’t try to connect because this exception. I am sorry but it is definitely bug in the stackstorm. I pretty sure that it doen’t eork over ssl  in my scenario .</p>
+          <p><a href="https://forum.stackstorm.com/t/cant-setup-stackstorm-with-mongodb-ssl-and-replicaset/962/9">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/cant-setup-stackstorm-with-mongodb-ssl-and-replicaset/962/9</link>
+        <pubDate>Fri, 13 Dec 2019 22:14:22 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-962-9</guid>
+        <source url="https://forum.stackstorm.com/t/cant-setup-stackstorm-with-mongodb-ssl-and-replicaset/962.rss">Can&#39;t setup stackstorm with mongodb SSL and ReplicaSet</source>
+      </item>
+      <item>
+        <title>Can&#39;t setup stackstorm with mongodb SSL and ReplicaSet</title>
+        <dc:creator><![CDATA[armab]]></dc:creator>
+        <description><![CDATA[
+            <p>Just to confirm the debug instructions for StackStorm configuration, make sure to follow this doc:<br>
+<a href="https://docs.stackstorm.com/troubleshooting/debug_mode.html" class="onebox" target="_blank">https://docs.stackstorm.com/troubleshooting/debug_mode.html</a><br>
+There should be <em>something</em> in StackStorm logs for services like <code>st2api</code>.</p>
+          <p><a href="https://forum.stackstorm.com/t/cant-setup-stackstorm-with-mongodb-ssl-and-replicaset/962/8">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/cant-setup-stackstorm-with-mongodb-ssl-and-replicaset/962/8</link>
+        <pubDate>Fri, 13 Dec 2019 17:19:16 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-962-8</guid>
+        <source url="https://forum.stackstorm.com/t/cant-setup-stackstorm-with-mongodb-ssl-and-replicaset/962.rss">Can&#39;t setup stackstorm with mongodb SSL and ReplicaSet</source>
+      </item>
+      <item>
+        <title>Can&#39;t setup stackstorm with mongodb SSL and ReplicaSet</title>
+        <dc:creator><![CDATA[alexku7]]></dc:creator>
+        <description><![CDATA[
+            <p>Hey<br>
+I tried all but still without success <img src="https://emoji.discourse-cdn.com/apple/frowning.png?v=9" title=":frowning:" class="emoji" alt=":frowning:"><br>
+Now i even destroyed again the replicaset and started up the mongo as standalone server and reconfugred the st2.conf file in this way<br>
+[database]<br>
+db_name=st5<br>
+username=alex<br>
+password=password<br>
+port=27017<br>
+host=d-stackstorm-control-box-vm<br>
+ssl=true</p>
+<p>Unfortunately , the same error.<br>
+so it’s not a problem of replica set.<br>
+mongo client from stackstorm server connects to mongodb server (diffrent vm) over ssl without any problem .<br>
+No evidence for error in mongo db log,. Debug mode for staskstorm didnt’ bring any new information, but only the same error every few seconds.<br>
+Moreover, st2ctl reload works perfectly and connect to mongo over ssl without any issue. I see all collection were created in the DB. So it’s seems as not some underlying infrastracture issue in ssl/os/mongo.   very strange .</p>
+<p>It seems to me some bug in python code because the “maximum recursion depth exceeded” is definitely some python exception.</p>
+<p>I tried to reproduce this issue in 2 different vm and in the both was that bug with ssl. I use ubuntu 18.04 and mongo 4 and installed exactly following to this instruction but with separation of mongo and stackstorm on different vms.:</p>
+<p><a href="https://ewc-docs.extremenetworks.com/install/u18.html" class="onebox" target="_blank" rel="nofollow noopener">https://ewc-docs.extremenetworks.com/install/u18.html</a></p>
+<p>Just wondering if somebody succeeded to get it working in the same condititions and requirements.</p>
+          <p><a href="https://forum.stackstorm.com/t/cant-setup-stackstorm-with-mongodb-ssl-and-replicaset/962/7">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/cant-setup-stackstorm-with-mongodb-ssl-and-replicaset/962/7</link>
+        <pubDate>Fri, 13 Dec 2019 17:00:39 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-962-7</guid>
+        <source url="https://forum.stackstorm.com/t/cant-setup-stackstorm-with-mongodb-ssl-and-replicaset/962.rss">Can&#39;t setup stackstorm with mongodb SSL and ReplicaSet</source>
+      </item>
+      <item>
+        <title>Can&#39;t setup stackstorm with mongodb SSL and ReplicaSet</title>
+        <dc:creator><![CDATA[armab]]></dc:creator>
+        <description><![CDATA[
+            <p>Information that you really wanted to configure RepliaSet <em>and</em> SSL was crucial here. Please try to provide more complete info for others to help.</p>
+<p>It looks like MongoDB ReplicaSet and SSL connection settings were documented in <a href="https://docs.stackstorm.com/install/config/config.html#configure-mongodb" class="inline-onebox">Nginx and WSGI — StackStorm 3.1.0 documentation</a></p>
+<p>For the SSL configuration in <code>st2.conf</code>, this was definitely tested before.</p>
+<p>According to <a href="https://api.mongodb.com/python/current/examples/tls.html">https://api.mongodb.com/python/current/examples/tls.html</a>, can you try with just simplest setting first</p>
+<pre><code class="lang-auto">[database]
+ssl = True
+</code></pre>
+<p>and see any error messages?</p>
+<p>Additionally, depending on OS and openssl version results might differ.<br>
+Try to enable debug settings in st2.conf for services, - there should be a better information in logs about why st2 can’t connect.</p>
+<p>It worth checking the server logs as well for more information about the connected clients. Something like<br>
+<a href="https://stackoverflow.com/questions/35790287/self-signed-ssl-connection-using-pymongo/35967188">https://stackoverflow.com/questions/35790287/self-signed-ssl-connection-using-pymongo/35967188</a> might help to understand where to look further.</p>
+<p>And finally, check if mongo client can connect to remote server <a href="http://www.dba86.com/docs/mongo/3.0/tutorial/configure-ssl-clients.html">http://www.dba86.com/docs/mongo/3.0/tutorial/configure-ssl-clients.html</a> with similar SSL settings. That might help you to indicate where the problem is. If mongo client will be able to connect with SSL configuration, - st2 should be able to connect too with the same settings.</p>
+          <p><a href="https://forum.stackstorm.com/t/cant-setup-stackstorm-with-mongodb-ssl-and-replicaset/962/6">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/cant-setup-stackstorm-with-mongodb-ssl-and-replicaset/962/6</link>
+        <pubDate>Fri, 13 Dec 2019 16:07:16 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-962-6</guid>
+        <source url="https://forum.stackstorm.com/t/cant-setup-stackstorm-with-mongodb-ssl-and-replicaset/962.rss">Can&#39;t setup stackstorm with mongodb SSL and ReplicaSet</source>
+      </item>
+      <item>
+        <title>Can&#39;t setup stackstorm with mongodb SSL and ReplicaSet</title>
+        <dc:creator><![CDATA[alexku7]]></dc:creator>
+        <description><![CDATA[
+            <p>Ok , i succeeded to reproduce this issue on premises.</p>
+<p>The problem is not related to replica set but to ssl.<br>
+I succeeded to connect a stackstorm server to on premises mongo replica set without ssl.<br>
+But once i require the connection to be protected by ssl, the same issue is appearing.<br>
+without ssl all seems working perfectly with or without replica set.</p>
+<p>I tried all combination of paramters, i tried to remove part of them but always the same issue is appearing - the stackstorm is succeeded to start up and even to create the DB and collections in the DB ( so the initial connection is ok) but after, every few seconds in st2api.log and st2auth.log i see this:</p>
+<p>2019-12-13 15:22:58,551 139656589406280 INFO (unknown file) [-] Connecting to database “st5” @ “d-stackstorm-control-box-vm:27017,d-stackstorm1-vm:27017 (replica set)” as user “alex”.<br>
+2019-12-13 15:22:58,553 139656589406280 WARNING (unknown file) [-] Retry on ConnectionError - Cannot connect to database default :<br>
+maximum recursion depth exceeded.</p>
+<p>So it’s definitely some bug with ssl implementation that leads the exception :  maximum recursion depth exceeded.</p>
+<p>currently my settings as following:<br>
+username=alex<br>
+password=alexalexalexalex<br>
+host=mongodb://some-host1,some-host2/?replicaSet=alexreplica<br>
+ssl=true<br>
+ssl_cert_reqs=optional<br>
+ssl_match_hostname=false<br>
+ssl_keyfile=/etc/st2/st2mongo.key<br>
+ssl_certfile=/etc/st2/st2mongo.crt<br>
+ssl_ca_certs=/etc/st2/rootCA.crt</p>
+<p>I already tried to gray out 3 last settings or even part of them without any positive result. still the same error.<br>
+Only removing ssl requirement solves it but i can’t remove it forever. Noway to connect to mongo DB without ssl protection. unfortunately no way to use stackstorm now because of this limitation <img src="https://emoji.discourse-cdn.com/apple/frowning.png?v=9" title=":frowning:" class="emoji" alt=":frowning:"></p>
+          <p><a href="https://forum.stackstorm.com/t/cant-setup-stackstorm-with-mongodb-ssl-and-replicaset/962/5">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/cant-setup-stackstorm-with-mongodb-ssl-and-replicaset/962/5</link>
+        <pubDate>Fri, 13 Dec 2019 15:27:11 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-962-5</guid>
+        <source url="https://forum.stackstorm.com/t/cant-setup-stackstorm-with-mongodb-ssl-and-replicaset/962.rss">Can&#39;t setup stackstorm with mongodb SSL and ReplicaSet</source>
+      </item>
+      <item>
+        <title>Can&#39;t setup stackstorm with mongodb SSL and ReplicaSet</title>
+        <dc:creator><![CDATA[armab]]></dc:creator>
+        <description><![CDATA[
+            <p>We’ve seen somewhat similar issues when in-Cloud offering is in fact, differs by functionality and behaves differently comparing to OSS MongoDB.</p>
+<p>For <code>st2.conf</code> MongoDB ReplicaSet, check the <a href="https://forum.stackstorm.com/t/documentation-config-details-for-connecting-to-external-postgresql-mongodb-and-rabbitmq-clusters/588" class="inline-onebox">Documentation: Config details for connecting to external PostgreSQL MongoDB and RabbitMQ Clusters</a></p>
+          <p><a href="https://forum.stackstorm.com/t/cant-setup-stackstorm-with-mongodb-ssl-and-replicaset/962/4">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/cant-setup-stackstorm-with-mongodb-ssl-and-replicaset/962/4</link>
+        <pubDate>Thu, 12 Dec 2019 19:06:27 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-962-4</guid>
+        <source url="https://forum.stackstorm.com/t/cant-setup-stackstorm-with-mongodb-ssl-and-replicaset/962.rss">Can&#39;t setup stackstorm with mongodb SSL and ReplicaSet</source>
+      </item>
+      <item>
+        <title>Can&#39;t setup stackstorm with mongodb SSL and ReplicaSet</title>
+        <dc:creator><![CDATA[alexku7]]></dc:creator>
+        <description><![CDATA[
+            <p>We use version 4.0.</p>
+<p>But if i think about it, it doesn’t matter where mongo db runs. On prem or in the cloud. It is exposed to stackstorm as regular mongo like in prem, on the same ports without any differenc. So it’s strange. I personally suspect that  somehow related to wrong settings  for replica set in st2.conf.<br>
+I really can’t find any example or use case how to config it properly.</p>
+          <p><a href="https://forum.stackstorm.com/t/cant-setup-stackstorm-with-mongodb-ssl-and-replicaset/962/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/cant-setup-stackstorm-with-mongodb-ssl-and-replicaset/962/3</link>
+        <pubDate>Thu, 12 Dec 2019 18:02:38 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-962-3</guid>
+        <source url="https://forum.stackstorm.com/t/cant-setup-stackstorm-with-mongodb-ssl-and-replicaset/962.rss">Can&#39;t setup stackstorm with mongodb SSL and ReplicaSet</source>
+      </item>
+      <item>
+        <title>Can&#39;t setup stackstorm with mongodb SSL and ReplicaSet</title>
+        <dc:creator><![CDATA[armab]]></dc:creator>
+        <description><![CDATA[
+            <p>We hadn’t chance to try StackStorm with Atlas MongoDB yet as a backend.</p>
+<p>What version of MongoDB your Atlas cluster is running on?<br>
+StackStorm supports <code>v3.6</code>-<code>v4.0</code> at the moment.</p>
+          <p><a href="https://forum.stackstorm.com/t/cant-setup-stackstorm-with-mongodb-ssl-and-replicaset/962/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/cant-setup-stackstorm-with-mongodb-ssl-and-replicaset/962/2</link>
+        <pubDate>Thu, 12 Dec 2019 16:12:10 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-962-2</guid>
+        <source url="https://forum.stackstorm.com/t/cant-setup-stackstorm-with-mongodb-ssl-and-replicaset/962.rss">Can&#39;t setup stackstorm with mongodb SSL and ReplicaSet</source>
+      </item>
+      <item>
+        <title>Can&#39;t setup stackstorm with mongodb SSL and ReplicaSet</title>
+        <dc:creator><![CDATA[alexku7]]></dc:creator>
+        <description><![CDATA[
+            <p>Hello</p>
+<p>I try to setup stackstorm when the DB is on Alas cloud and consists of 3 noes in replicaset.</p>
+<p>The st2 actually succeeds to start up and even command like st2ctl reload shows that everything ok  but in the api log and auth log i see every 5 minutes error “cannot connect to database default :<br>
+maximum recursion depth exceeded”</p>
+<p>I definitely see that stackstorm can connect to mongo and even it succeeded to create collection there but i can’t login to stackstorm and things don’t work with all mentioned errors in the logs.</p>
+<p>If i change the same instance and connect it to standalone mongo db on another vm by changing paramters in st2.conf , everything fine.<br>
+the issue exists only with replica set on atlas mongo <img src="https://emoji.discourse-cdn.com/apple/frowning.png?v=9" title=":frowning:" class="emoji" alt=":frowning:"><br>
+anybody can help ? <img src="https://emoji.discourse-cdn.com/apple/slightly_smiling_face.png?v=9" title=":slightly_smiling_face:" class="emoji" alt=":slightly_smiling_face:"></p>
+<p></p><div class="lightbox-wrapper"><a class="lightbox" href="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/6fa6e037fee2bbb689c7db50991784a19afdbfdc.png" data-download-href="/uploads/short-url/fVIwNOJsrpuJJuaXaezQf6dwXFO.png?dl=1" title="image" rel="nofollow noopener"><img src="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/6fa6e037fee2bbb689c7db50991784a19afdbfdc_2_690x36.png" alt="image" data-base62-sha1="fVIwNOJsrpuJJuaXaezQf6dwXFO" width="690" height="36" srcset="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/6fa6e037fee2bbb689c7db50991784a19afdbfdc_2_690x36.png, https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/6fa6e037fee2bbb689c7db50991784a19afdbfdc_2_1035x54.png 1.5x, https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/6fa6e037fee2bbb689c7db50991784a19afdbfdc_2_1380x72.png 2x" data-small-upload="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/6fa6e037fee2bbb689c7db50991784a19afdbfdc_2_10x10.png"></a></div><p></p>
+          <p><a href="https://forum.stackstorm.com/t/cant-setup-stackstorm-with-mongodb-ssl-and-replicaset/962/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/cant-setup-stackstorm-with-mongodb-ssl-and-replicaset/962/1</link>
+        <pubDate>Thu, 12 Dec 2019 14:52:14 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-962-1</guid>
+        <source url="https://forum.stackstorm.com/t/cant-setup-stackstorm-with-mongodb-ssl-and-replicaset/962.rss">Can&#39;t setup stackstorm with mongodb SSL and ReplicaSet</source>
+      </item>
+  </channel>
+</rss>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Installing packs from multiple private repos using Deploy keys...how to do more than one?</title>
+    <link>https://forum.stackstorm.com/t/installing-packs-from-multiple-private-repos-using-deploy-keys-how-to-do-more-than-one/1672</link>
+    <description>(note I already looked [here](https://forum.stackstorm.com/t/how-to-install-pack-from-private-git-repository-using-ssh-when-deployed-on-docker/1500) and [here](https://docs.stackstorm.com/packs.html#installing-packs-from-private-repositories) and did not see a resolution)
+
+I am creating some proprietary workflows and actions along with some colleagues and we&#39;re storing them in our organization&#39;s GitHub in separate repos.
+
+In order to use the `st2 pack install ssh://git@github.com:_GHUSER_/_REPO_` convention, for a Private repository, it requires a valid SSH key pair with access to the repo stored in the `root` user&#39;s SSH config.
+
+This works great for a single repo using a Deploy Key.  Or for multiple repos using an actual GH user account with an SSH key that you also install on the ST2 server instance.
+
+In cases where you don&#39;t want to use a personal SSH key on a shared server running the ST2 instance, it appears there is no way to support multiple Private repo&#39;s using Deploy Keys without needing to comment out all other Deploy keys in the `~/.ssh/config` file before running the `st2 pack install` command.
+
+The problem is that SSH will offer up all the keys it knows about, and github.com will happily accept the very first key that works, and thus will only be able to install from a private repo that uses that specific key.  And for the record, you can only use a Deploy key on one specific repo in all of github land.
+
+I was hoping to find a way to pass an IdentityFIle parameter to the `packs.download` action step of the `packs.install` workflow, but no dice.
+
+Anyone have thoughts on this?  I&#39;m going to look at using SSL tokens instead, but that&#39;s a bit less secure since it will show up in logs since it becomes part of the URL.</description>
+    
+    <lastBuildDate>Sun, 02 May 2021 17:19:37 +0000</lastBuildDate>
+    <category>Pack Management</category>
+    <atom:link href="https://forum.stackstorm.com/t/installing-packs-from-multiple-private-repos-using-deploy-keys-how-to-do-more-than-one/1672.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Installing packs from multiple private repos using Deploy keys...how to do more than one?</title>
+        <dc:creator><![CDATA[willowhawk]]></dc:creator>
+        <description><![CDATA[
+            <p>I totally appreciate the input. That’s a good point about fit using it from the stored credentials if using ssh. Still requires a use account vs deploy keys but I think that might be my only option, we’ll just need to provision a service user for this.</p>
+          <p><a href="https://forum.stackstorm.com/t/installing-packs-from-multiple-private-repos-using-deploy-keys-how-to-do-more-than-one/1672/5">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/installing-packs-from-multiple-private-repos-using-deploy-keys-how-to-do-more-than-one/1672/5</link>
+        <pubDate>Sun, 02 May 2021 17:19:37 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1672-5</guid>
+        <source url="https://forum.stackstorm.com/t/installing-packs-from-multiple-private-repos-using-deploy-keys-how-to-do-more-than-one/1672.rss">Installing packs from multiple private repos using Deploy keys...how to do more than one?</source>
+      </item>
+      <item>
+        <title>Installing packs from multiple private repos using Deploy keys...how to do more than one?</title>
+        <dc:creator><![CDATA[Carlos]]></dc:creator>
+        <description><![CDATA[
+            <p>The git credentials method does not require the username/password to be sent as part of the URL when it is stored in the git credentials file, so there’s no risk of having it show up in the st2 logs.</p>
+<p>By enabling the <code>useHttpPath</code> option, multiple private repos with independent deploy keys can be defined, no need to mess around with commenting things out, git just does the right thing.</p>
+<p>The point about username/password being stored in plaintext is true.  This is the <code>.git_credentials</code> file and will be situated in the home directory of whichever system account executes the pack installation, which is <code>root</code> or <code>stanley</code> in general.</p>
+<p>It should be reasonably straight forward to protect this file from unauthorised viewing.  The deployment keys should only allow <em>read</em> access to the repo so they don’t pose a great risk since the pack contents will be viewable in the <code>st2/packs</code> directory anyway, anyone gaining unauthorised access to these keys will be able to view the code but not change it.</p>
+<p>All that is said as food for thought, I’m not telling you run your infrastructure or what security risks to accept.  I used this approach with gitlab and it works well.</p>
+          <p><a href="https://forum.stackstorm.com/t/installing-packs-from-multiple-private-repos-using-deploy-keys-how-to-do-more-than-one/1672/4">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/installing-packs-from-multiple-private-repos-using-deploy-keys-how-to-do-more-than-one/1672/4</link>
+        <pubDate>Sun, 02 May 2021 16:46:20 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1672-4</guid>
+        <source url="https://forum.stackstorm.com/t/installing-packs-from-multiple-private-repos-using-deploy-keys-how-to-do-more-than-one/1672.rss">Installing packs from multiple private repos using Deploy keys...how to do more than one?</source>
+      </item>
+      <item>
+        <title>Installing packs from multiple private repos using Deploy keys...how to do more than one?</title>
+        <dc:creator><![CDATA[willowhawk]]></dc:creator>
+        <description><![CDATA[
+            <p>Thanks Carlos. That would certainly help if I wanted to create a user to acces these private repos, which I was rather hoping to avoid by using Deploy keys. This is analogous to using personal access tokens also. Either way this method or PAT will end up storing the un/pw in plaintext in a file, as well as on every URL call which will expose it in the logs.</p>
+          <p><a href="https://forum.stackstorm.com/t/installing-packs-from-multiple-private-repos-using-deploy-keys-how-to-do-more-than-one/1672/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/installing-packs-from-multiple-private-repos-using-deploy-keys-how-to-do-more-than-one/1672/3</link>
+        <pubDate>Sun, 02 May 2021 14:56:00 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1672-3</guid>
+        <source url="https://forum.stackstorm.com/t/installing-packs-from-multiple-private-repos-using-deploy-keys-how-to-do-more-than-one/1672.rss">Installing packs from multiple private repos using Deploy keys...how to do more than one?</source>
+      </item>
+      <item>
+        <title>Installing packs from multiple private repos using Deploy keys...how to do more than one?</title>
+        <dc:creator><![CDATA[Carlos]]></dc:creator>
+        <description><![CDATA[
+            <p>To manage multiple deploy keys you can use git credentials <a href="https://www.shellhacks.com/git-config-username-password-store-credentials/" class="inline-onebox" rel="noopener nofollow ugc">Git - Config Username &amp; Password - Store Credentials - ShellHacks</a></p>
+          <p><a href="https://forum.stackstorm.com/t/installing-packs-from-multiple-private-repos-using-deploy-keys-how-to-do-more-than-one/1672/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/installing-packs-from-multiple-private-repos-using-deploy-keys-how-to-do-more-than-one/1672/2</link>
+        <pubDate>Sun, 02 May 2021 11:55:32 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1672-2</guid>
+        <source url="https://forum.stackstorm.com/t/installing-packs-from-multiple-private-repos-using-deploy-keys-how-to-do-more-than-one/1672.rss">Installing packs from multiple private repos using Deploy keys...how to do more than one?</source>
+      </item>
+      <item>
+        <title>Installing packs from multiple private repos using Deploy keys...how to do more than one?</title>
+        <dc:creator><![CDATA[willowhawk]]></dc:creator>
+        <description><![CDATA[
+            <p>(note I already looked <a href="https://forum.stackstorm.com/t/how-to-install-pack-from-private-git-repository-using-ssh-when-deployed-on-docker/1500">here</a> and <a href="https://docs.stackstorm.com/packs.html#installing-packs-from-private-repositories" rel="noopener nofollow ugc">here</a> and did not see a resolution)</p>
+<p>I am creating some proprietary workflows and actions along with some colleagues and we’re storing them in our organization’s GitHub in separate repos.</p>
+<p>In order to use the <code>st2 pack install ssh://git@github.com:_GHUSER_/_REPO_</code> convention, for a Private repository, it requires a valid SSH key pair with access to the repo stored in the <code>root</code> user’s SSH config.</p>
+<p>This works great for a single repo using a Deploy Key.  Or for multiple repos using an actual GH user account with an SSH key that you also install on the ST2 server instance.</p>
+<p>In cases where you don’t want to use a personal SSH key on a shared server running the ST2 instance, it appears there is no way to support multiple Private repo’s using Deploy Keys without needing to comment out all other Deploy keys in the <code>~/.ssh/config</code> file before running the <code>st2 pack install</code> command.</p>
+<p>The problem is that SSH will offer up all the keys it knows about, and <a href="http://github.com" rel="noopener nofollow ugc">github.com</a> will happily accept the very first key that works, and thus will only be able to install from a private repo that uses that specific key.  And for the record, you can only use a Deploy key on one specific repo in all of github land.</p>
+<p>I was hoping to find a way to pass an IdentityFIle parameter to the <code>packs.download</code> action step of the <code>packs.install</code> workflow, but no dice.</p>
+<p>Anyone have thoughts on this?  I’m going to look at using SSL tokens instead, but that’s a bit less secure since it will show up in logs since it becomes part of the URL.</p>
+          <p><a href="https://forum.stackstorm.com/t/installing-packs-from-multiple-private-repos-using-deploy-keys-how-to-do-more-than-one/1672/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/installing-packs-from-multiple-private-repos-using-deploy-keys-how-to-do-more-than-one/1672/1</link>
+        <pubDate>Sun, 02 May 2021 05:23:12 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1672-1</guid>
+        <source url="https://forum.stackstorm.com/t/installing-packs-from-multiple-private-repos-using-deploy-keys-how-to-do-more-than-one/1672.rss">Installing packs from multiple private repos using Deploy keys...how to do more than one?</source>
+      </item>
+  </channel>
+</rss>

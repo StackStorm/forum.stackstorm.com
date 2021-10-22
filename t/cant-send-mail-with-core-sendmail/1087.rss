@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Cant send mail with core.sendmail</title>
+    <link>https://forum.stackstorm.com/t/cant-send-mail-with-core-sendmail/1087</link>
+    <description>I was trying to send details and results of my actionchain via mail on completion, but I don&#39;t know how core.sendmail works and i couldn&#39;t find anything that can explain it to me.
+
+For now, i tried:
+    - Sending a mail from CLI to some &quot;XYZ&quot; email using core.sendmail
+
+Result:
+   - It says mail has been sent successfully but I never receive it.
+
+The command I used:
+   - st2 run core.sendmail subject=&quot;Intros&quot; body=&quot;hello&quot; to=&quot;xyz.example@gmail.com&quot;</description>
+    
+    <lastBuildDate>Wed, 24 Jun 2020 14:19:09 +0000</lastBuildDate>
+    <category>Exchange</category>
+    <atom:link href="https://forum.stackstorm.com/t/cant-send-mail-with-core-sendmail/1087.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Cant send mail with core.sendmail</title>
+        <dc:creator><![CDATA[Sheshagiri]]></dc:creator>
+        <description><![CDATA[
+            <p>I had issues with <code>sendmail</code> a while ago. my guess is that your ISP’s IP address could be blocked and because of which the e-mails are not being sent. You can verify that with the following command. Make sure you run this command from action runner.</p>
+<pre><code>sendmail -v "xxxxx@domain.com" &lt;&lt;EOF
+subject:"test subject"
+from:"stanley@st2.com"
+
+Example Message
+EOF 
+</code></pre>
+<p>If your ISP’s address is blocked you should see something like this in the output since you have enabled the verbose mode</p>
+<blockquote>
+<p>050 &gt;&gt;&gt; DATA<br>
+050 250 2.1.5 OK 18si14075339plg.91 - gsmtp<br>
+050 354  Go ahead 18si14075339plg.91 - gsmtp<br>
+050 &gt;&gt;&gt; .<br>
+050 550-5.7.1 [49.207.200.40] The IP you’re using to send mail is not authorized to<br>
+050 550-5.7.1 send email directly to our servers. Please use the SMTP relay at your<br>
+050 550-5.7.1 service provider instead. Learn more at<br>
+050 550 5.7.1  <a href="https://support.google.com/mail/?p=NotAuthorizedError" rel="nofollow noopener">https://support.google.com/mail/?p=NotAuthorizedError</a> 18si14075339plg.91 - gsmtp<br>
+050 <a href="mailto:root@8f4830ad0a22">root@8f4830ad0a22</a>… Connecting to local…<br>
+050 <a href="mailto:root@8f4830ad0a22">root@8f4830ad0a22</a>… Sent<br>
+250 2.0.0 05OE85F2001748 Message accepted for delivery<br>
+<a href="mailto:xxxxxxx@gmail.com">xxxxxxx@gmail.com</a>… Sent (05OE85F2001748 Message accepted for delivery)<br>
+Closing connection to [127.0.0.1</p>
+</blockquote>
+          <p><a href="https://forum.stackstorm.com/t/cant-send-mail-with-core-sendmail/1087/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/cant-send-mail-with-core-sendmail/1087/3</link>
+        <pubDate>Wed, 24 Jun 2020 14:19:09 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1087-3</guid>
+        <source url="https://forum.stackstorm.com/t/cant-send-mail-with-core-sendmail/1087.rss">Cant send mail with core.sendmail</source>
+      </item>
+      <item>
+        <title>Cant send mail with core.sendmail</title>
+        <dc:creator><![CDATA[punkrokk]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi <a class="mention" href="https://github.com/piyush.a">@piyush.a</a>! Can you see if you can get this working at the command line first? It might give you more visibility to what may be going on.</p>
+          <p><a href="https://forum.stackstorm.com/t/cant-send-mail-with-core-sendmail/1087/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/cant-send-mail-with-core-sendmail/1087/2</link>
+        <pubDate>Fri, 13 Mar 2020 02:48:09 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1087-2</guid>
+        <source url="https://forum.stackstorm.com/t/cant-send-mail-with-core-sendmail/1087.rss">Cant send mail with core.sendmail</source>
+      </item>
+      <item>
+        <title>Cant send mail with core.sendmail</title>
+        <dc:creator><![CDATA[piyush.a]]></dc:creator>
+        <description><![CDATA[
+            <p>I was trying to send details and results of my actionchain via mail on completion, but I don’t know how core.sendmail works and i couldn’t find anything that can explain it to me.</p>
+<p>For now, i tried:<br>
+- Sending a mail from CLI to some “XYZ” email using core.sendmail</p>
+<p>Result:</p>
+<ul>
+<li>It says mail has been sent successfully but I never receive it.</li>
+</ul>
+<p>The command I used:</p>
+<ul>
+<li>st2 run core.sendmail subject=“Intros” body=“hello” <a href="mailto:to=%22xyz.example@gmail.com">to="xyz.example@gmail.com</a>"</li>
+</ul>
+          <p><a href="https://forum.stackstorm.com/t/cant-send-mail-with-core-sendmail/1087/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/cant-send-mail-with-core-sendmail/1087/1</link>
+        <pubDate>Tue, 03 Mar 2020 08:44:16 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1087-1</guid>
+        <source url="https://forum.stackstorm.com/t/cant-send-mail-with-core-sendmail/1087.rss">Cant send mail with core.sendmail</source>
+      </item>
+  </channel>
+</rss>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Creating file to share between actions?</title>
+    <link>https://forum.stackstorm.com/t/creating-file-to-share-between-actions/1731</link>
+    <description>Hello all,
+I&#39;m trying to figure out a solution for this issue: 
+
+I have ansible playbook that require specially crafted inventory file. I&#39;m not finding a way natively in stackstorm creating it before the playbook is run so I thought I make another action that call python script locally with parameters and base on that it will pop out inventory file.
+
+In workflow than the script is run first, register stdout and this is used as inventory file for ansible playbook. At least that was the idea.... but I can&#39;t create the file in the same location as the script is ( in its packs/action folder ) because I get permissions denied ( does not matter if I set the folder to 777 )... if I set the destination of the file to /tmp/something it gets created but disappear ( I think this is because stackstorm spawn temporary image to run the function in ?, I&#39;m running the whole stackstorm in docker ) 
+
+So how to deal with this, I need to craft inventory file to look specific way ... on google there is so little examples of using ansible with stackstorm its not even funny :( 
+
+Any suggestions would be very appreciated.</description>
+    
+    <lastBuildDate>Tue, 08 Jun 2021 17:35:26 +0000</lastBuildDate>
+    <category>Workflows</category>
+    <atom:link href="https://forum.stackstorm.com/t/creating-file-to-share-between-actions/1731.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Creating file to share between actions?</title>
+        <dc:creator><![CDATA[VladoPortos]]></dc:creator>
+        <description><![CDATA[
+            <p>Well kind of solved it, at least the action with simple python script is now generating the files. Permissions issue was that docker containers have different UID/GID mapped left and right and are not the same between the myriad of micro containers that creates stackstorm… so I created folder in pack/action folder called inventory. chown 1000:1000 as this is user that it needs to be writable by and than it created the files there as needed.</p>
+<p>Now somehow chain this into workflow…</p>
+          <p><a href="https://forum.stackstorm.com/t/creating-file-to-share-between-actions/1731/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/creating-file-to-share-between-actions/1731/2</link>
+        <pubDate>Tue, 08 Jun 2021 17:35:26 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1731-2</guid>
+        <source url="https://forum.stackstorm.com/t/creating-file-to-share-between-actions/1731.rss">Creating file to share between actions?</source>
+      </item>
+      <item>
+        <title>Creating file to share between actions?</title>
+        <dc:creator><![CDATA[VladoPortos]]></dc:creator>
+        <description><![CDATA[
+            <p>Hello all,<br>
+I’m trying to figure out a solution for this issue:</p>
+<p>I have ansible playbook that require specially crafted inventory file. I’m not finding a way natively in stackstorm creating it before the playbook is run so I thought I make another action that call python script locally with parameters and base on that it will pop out inventory file.</p>
+<p>In workflow than the script is run first, register stdout and this is used as inventory file for ansible playbook. At least that was the idea… but I can’t create the file in the same location as the script is ( in its packs/action folder ) because I get permissions denied ( does not matter if I set the folder to 777 )… if I set the destination of the file to /tmp/something it gets created but disappear ( I think this is because stackstorm spawn temporary image to run the function in ?, I’m running the whole stackstorm in docker )</p>
+<p>So how to deal with this, I need to craft inventory file to look specific way … on google there is so little examples of using ansible with stackstorm its not even funny <img src="https://emoji.discourse-cdn.com/apple/frowning.png?v=9" title=":frowning:" class="emoji" alt=":frowning:"></p>
+<p>Any suggestions would be very appreciated.</p>
+          <p><a href="https://forum.stackstorm.com/t/creating-file-to-share-between-actions/1731/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/creating-file-to-share-between-actions/1731/1</link>
+        <pubDate>Tue, 08 Jun 2021 16:33:01 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1731-1</guid>
+        <source url="https://forum.stackstorm.com/t/creating-file-to-share-between-actions/1731.rss">Creating file to share between actions?</source>
+      </item>
+  </channel>
+</rss>

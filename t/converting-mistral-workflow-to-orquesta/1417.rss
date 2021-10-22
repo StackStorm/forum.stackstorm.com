@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Converting mistral workflow to Orquesta</title>
+    <link>https://forum.stackstorm.com/t/converting-mistral-workflow-to-orquesta/1417</link>
+    <description>I have started migrating my mistral workflows into Orquesta format and have a hard time understanding how I set up something similar to &quot;task-defaults&quot; in Orquesta. If any of my tasks fail, I want to send a email notifying me about the failure. But I would prefer not to have to set the same lines of code in all task. Is it possible?</description>
+    
+    <lastBuildDate>Wed, 16 Sep 2020 13:38:25 +0000</lastBuildDate>
+    <category>Mistral</category>
+    <atom:link href="https://forum.stackstorm.com/t/converting-mistral-workflow-to-orquesta/1417.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Converting mistral workflow to Orquesta</title>
+        <dc:creator><![CDATA[guzzijones]]></dc:creator>
+        <description><![CDATA[
+            <p>As far as I know it is not available. You could send all your failures to a workflow that sends different emails based on the name of the failed action.   It shouldn’t be more difficult just a different way of solving the problem.</p>
+          <p><a href="https://forum.stackstorm.com/t/converting-mistral-workflow-to-orquesta/1417/5">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/converting-mistral-workflow-to-orquesta/1417/5</link>
+        <pubDate>Wed, 16 Sep 2020 13:38:25 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1417-5</guid>
+        <source url="https://forum.stackstorm.com/t/converting-mistral-workflow-to-orquesta/1417.rss">Converting mistral workflow to Orquesta</source>
+      </item>
+      <item>
+        <title>Converting mistral workflow to Orquesta</title>
+        <dc:creator><![CDATA[smeds]]></dc:creator>
+        <description><![CDATA[
+            <p>Does that mean that something similar to “task-defaults” isn’t available with Orquesta?</p>
+          <p><a href="https://forum.stackstorm.com/t/converting-mistral-workflow-to-orquesta/1417/4">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/converting-mistral-workflow-to-orquesta/1417/4</link>
+        <pubDate>Wed, 16 Sep 2020 05:50:30 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1417-4</guid>
+        <source url="https://forum.stackstorm.com/t/converting-mistral-workflow-to-orquesta/1417.rss">Converting mistral workflow to Orquesta</source>
+      </item>
+      <item>
+        <title>Converting mistral workflow to Orquesta</title>
+        <dc:creator><![CDATA[jeff]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi <a class="mention" href="https://github.com/guzzijones">@guzzijones</a>,<br>
+With ‘task-defaults’ it’s easy to collect different data within different flow and send a detailed mail.<br>
+It may be hard to do this in a rule right?</p>
+          <p><a href="https://forum.stackstorm.com/t/converting-mistral-workflow-to-orquesta/1417/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/converting-mistral-workflow-to-orquesta/1417/3</link>
+        <pubDate>Wed, 16 Sep 2020 02:37:41 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1417-3</guid>
+        <source url="https://forum.stackstorm.com/t/converting-mistral-workflow-to-orquesta/1417.rss">Converting mistral workflow to Orquesta</source>
+      </item>
+      <item>
+        <title>Converting mistral workflow to Orquesta</title>
+        <dc:creator><![CDATA[guzzijones]]></dc:creator>
+        <description><![CDATA[
+            <p>I setup a rule to trigger on a failed execution.  That rule kicks off a workflow to send me an email.  That way you don’t have to change all your workflows.</p>
+          <p><a href="https://forum.stackstorm.com/t/converting-mistral-workflow-to-orquesta/1417/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/converting-mistral-workflow-to-orquesta/1417/2</link>
+        <pubDate>Tue, 15 Sep 2020 15:53:52 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1417-2</guid>
+        <source url="https://forum.stackstorm.com/t/converting-mistral-workflow-to-orquesta/1417.rss">Converting mistral workflow to Orquesta</source>
+      </item>
+      <item>
+        <title>Converting mistral workflow to Orquesta</title>
+        <dc:creator><![CDATA[smeds]]></dc:creator>
+        <description><![CDATA[
+            <p>I have started migrating my mistral workflows into Orquesta format and have a hard time understanding how I set up something similar to “task-defaults” in Orquesta. If any of my tasks fail, I want to send a email notifying me about the failure. But I would prefer not to have to set the same lines of code in all task. Is it possible?</p>
+          <p><a href="https://forum.stackstorm.com/t/converting-mistral-workflow-to-orquesta/1417/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/converting-mistral-workflow-to-orquesta/1417/1</link>
+        <pubDate>Tue, 15 Sep 2020 12:40:38 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1417-1</guid>
+        <source url="https://forum.stackstorm.com/t/converting-mistral-workflow-to-orquesta/1417.rss">Converting mistral workflow to Orquesta</source>
+      </item>
+  </channel>
+</rss>

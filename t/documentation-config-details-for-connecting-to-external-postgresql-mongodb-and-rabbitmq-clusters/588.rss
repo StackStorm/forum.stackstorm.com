@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Documentation: Config details for connecting to external PostgreSQL MongoDB and RabbitMQ Clusters</title>
+    <link>https://forum.stackstorm.com/t/documentation-config-details-for-connecting-to-external-postgresql-mongodb-and-rabbitmq-clusters/588</link>
+    <description>This post is for you if you are using a separate PostgreSQL/RabbitMQ/MongoDB HA Cluster.
+
+I went through some pain getting this to work, and I was asked to make a post to hopefully save the next person some of that pain.
+
+In my build scripts i used `crudini` to manipulate configuration files.
+
+### MongoDB
+##### /etc/st2/st2.conf
+`sudo crudini --set /etc/st2/st2.conf database host &quot;mongodb://${mongo_node1},${mongo_node1}/?replicaSet=${replica_set}&quot;`
+`sudo crudini --set /etc/st2/st2.conf database port ${monogo_port}`
+`sudo crudini --set /etc/st2/st2.conf database username ${monogo_user}`
+`sudo crudini --set /etc/st2/st2.conf database password ${monogo_user}`
+`sudo crudini --set /etc/st2/st2.conf database db_name ${monogo_db}`
+
+### RabbitMQ
+##### /etc/st2/st2.conf
+`crudini --set /etc/st2/st2.conf messaging cluster_urls &quot;amqp://${rabbit_user}:${rabbit_pass}@${rabbit_node1}:5672/,amqp://${rabbit_user}:${rabbit_pass}@${rabbit_node2}:5672/&quot;`
+##### /etc/mistral/mistral.conf
+`sudo crudini --set /etc/mistral/mistral.conf DEFAULT transport_url &quot;rabbit://${rabbit_user}:${rabbit_pass}@${RABBITMQ_LOADBALANCER_ENDPOINT}:5672&quot;`
+
+### PostgreSQL
+##### /etc/mistral/mistral.conf
+`sudo crudini --set /etc/mistral/mistral.conf database connection &quot;postgresql+psycopg2://mistral:${postgres_pwd}@${POSTGRES_ENDPOINT}/mistral&quot;`</description>
+    
+    <lastBuildDate>Thu, 04 Apr 2019 17:37:32 +0000</lastBuildDate>
+    <category>How do I do X in st2?</category>
+    <atom:link href="https://forum.stackstorm.com/t/documentation-config-details-for-connecting-to-external-postgresql-mongodb-and-rabbitmq-clusters/588.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Documentation: Config details for connecting to external PostgreSQL MongoDB and RabbitMQ Clusters</title>
+        <dc:creator><![CDATA[Namachieli]]></dc:creator>
+        <description><![CDATA[
+            <p>This post is for you if you are using a separate PostgreSQL/RabbitMQ/MongoDB HA Cluster.</p>
+<p>I went through some pain getting this to work, and I was asked to make a post to hopefully save the next person some of that pain.</p>
+<p>In my build scripts i used <code>crudini</code> to manipulate configuration files.</p>
+<h3>MongoDB</h3>
+<h5>/etc/st2/st2.conf</h5>
+<p><code>sudo crudini --set /etc/st2/st2.conf database host "mongodb://${mongo_node1},${mongo_node1}/?replicaSet=${replica_set}"</code><br>
+<code>sudo crudini --set /etc/st2/st2.conf database port ${monogo_port}</code><br>
+<code>sudo crudini --set /etc/st2/st2.conf database username ${monogo_user}</code><br>
+<code>sudo crudini --set /etc/st2/st2.conf database password ${monogo_user}</code><br>
+<code>sudo crudini --set /etc/st2/st2.conf database db_name ${monogo_db}</code></p>
+<h3>RabbitMQ</h3>
+<h5>/etc/st2/st2.conf</h5>
+<p><code>crudini --set /etc/st2/st2.conf messaging cluster_urls "amqp://${rabbit_user}:${rabbit_pass}@${rabbit_node1}:5672/,amqp://${rabbit_user}:${rabbit_pass}@${rabbit_node2}:5672/"</code></p>
+<h5>/etc/mistral/mistral.conf</h5>
+<p><code>sudo crudini --set /etc/mistral/mistral.conf DEFAULT transport_url "rabbit://${rabbit_user}:${rabbit_pass}@${RABBITMQ_LOADBALANCER_ENDPOINT}:5672"</code></p>
+<h3>PostgreSQL</h3>
+<h5>/etc/mistral/mistral.conf</h5>
+<p><code>sudo crudini --set /etc/mistral/mistral.conf database connection "postgresql+psycopg2://mistral:${postgres_pwd}@${POSTGRES_ENDPOINT}/mistral"</code></p>
+          <p><a href="https://forum.stackstorm.com/t/documentation-config-details-for-connecting-to-external-postgresql-mongodb-and-rabbitmq-clusters/588/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/documentation-config-details-for-connecting-to-external-postgresql-mongodb-and-rabbitmq-clusters/588/1</link>
+        <pubDate>Thu, 04 Apr 2019 17:33:48 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-588-1</guid>
+        <source url="https://forum.stackstorm.com/t/documentation-config-details-for-connecting-to-external-postgresql-mongodb-and-rabbitmq-clusters/588.rss">Documentation: Config details for connecting to external PostgreSQL MongoDB and RabbitMQ Clusters</source>
+      </item>
+  </channel>
+</rss>

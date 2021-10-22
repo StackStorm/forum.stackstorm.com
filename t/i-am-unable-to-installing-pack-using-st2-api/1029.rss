@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>I am unable to installing pack using st2 api</title>
+    <link>https://forum.stackstorm.com/t/i-am-unable-to-installing-pack-using-st2-api/1029</link>
+    <description>Hi Team,
+When i am trying to installing ansible pack am getting below error.
+
+Please help me  
+st2 pack install ansible
+
+        [  failed   ] download pack
+
+id: 5e399a2599828f00ef69916e
+action.ref: packs.install
+parameters:
+  packs:
+  - ansible
+  python3: false
+status: failed
+result_task: download pack
+result:
+  exit_code: 1
+  result: None
+  stderr: &quot;No handlers could be found for logger &quot;st2.st2common.services.packs&quot;
+Traceback (most recent call last):
+  File &quot;/opt/stackstorm/st2/local/lib/python2.7/site-packages/python_runner/python_action_wrapper.py&quot;, line 333, in &lt;module&gt;
+    obj.run()
+  File &quot;/opt/stackstorm/st2/local/lib/python2.7/site-packages/python_runner/python_action_wrapper.py&quot;, line 192, in run
+    output = action.run(**self._parameters)
+  File &quot;/opt/stackstorm/packs/packs/actions/pack_mgmt/download.py&quot;, line 78, in run
+    return self._validate_result(result=result, repo_url=pack_url)
+  File &quot;/opt/stackstorm/packs/packs/actions/pack_mgmt/download.py&quot;, line 99, in _validate_result
+    raise Exception(message)
+Exception: The pack has not been downloaded from &quot;None&quot;.
+
+Errors:
+No results from the index: tried https://index.stackstorm.org/v1/index.json.
+Status: [
+    {
+        &quot;url&quot;: &quot;https://index.stackstorm.org/v1/index.json&quot;,
+        &quot;message&quot;: &quot;SSLError(MaxRetryError(&#39;HTTPSConnectionPool(host=\\&#39;index.stackstorm.org\\&#39;, port=443): Max retries exceeded with url: /v1/index.json (Caused by SSLError(SSLError(\&quot;bad handshake: Error([(\\&#39;SSL routines\\&#39;, \\&#39;tls_process_server_certificate\\&#39;, \\&#39;certificate verify failed\\&#39;)],)\&quot;,),))&#39;,),)&quot;,
+        &quot;error&quot;: &quot;unresponsive&quot;,
+        &quot;packs&quot;: 0
+    }
+]
+&quot;
+  stdout: &#39;&#39;
+error: No handlers could be found for logger &quot;st2.st2common.services.packs&quot;
+Traceback (most recent call last):
+  File &quot;/opt/stackstorm/st2/local/lib/python2.7/site-packages/python_runner/python_action_wrapper.py&quot;, line 333, in &lt;module&gt;
+    obj.run()
+  File &quot;/opt/stackstorm/st2/local/lib/python2.7/site-packages/python_runner/python_action_wrapper.py&quot;, line 192, in run
+    output = action.run(**self._parameters)
+  File &quot;/opt/stackstorm/packs/packs/actions/pack_mgmt/download.py&quot;, line 78, in run
+    return self._validate_result(result=result, repo_url=pack_url)
+  File &quot;/opt/stackstorm/packs/packs/actions/pack_mgmt/download.py&quot;, line 99, in _validate_result
+    raise Exception(message)
+Exception: The pack has not been downloaded from &quot;None&quot;.
+
+Errors:
+No results from the index: tried https://index.stackstorm.org/v1/index.json.
+Status: [
+    {
+        &quot;url&quot;: &quot;https://index.stackstorm.org/v1/index.json&quot;,
+        &quot;message&quot;: &quot;SSLError(MaxRetryError(&#39;HTTPSConnectionPool(host=\&#39;index.stackstorm.org\&#39;, port=443): Max retries exceeded with url: /v1/index.json (Caused by SSLError(SSLError(&quot;bad handshake: Error([(\&#39;SSL routines\&#39;, \&#39;tls_process_server_certificate\&#39;, \&#39;certificate verify failed\&#39;)],)&quot;,),))&#39;,),)&quot;,
+        &quot;error&quot;: &quot;unresponsive&quot;,
+        &quot;packs&quot;: 0
+    }
+]
+
+traceback: None
+failed_on: download pack
+start_timestamp: Tue, 04 Feb 2020 16:21:57 UTC
+end_timestamp: Tue, 04 Feb 2020 16:22:01 UTC
++--------------------------+---------------------+---------------+----------------+-----------------+
+| id                       | status              | task          | action         | start_timestamp |
++--------------------------+---------------------+---------------+----------------+-----------------+
+| 5e399a2599828f007fc2c55b | failed (3s elapsed) | download pack | packs.download | Tue, 04 Feb     |
+|                          |                     |               |                | 2020 16:21:57   |
+|                          |                     |               |                | UTC             |
++--------------------------+---------------------+---------------+----------------+-----------------+</description>
+    
+    <lastBuildDate>Mon, 18 Jan 2021 11:53:55 +0000</lastBuildDate>
+    <category>Pack Management</category>
+    <atom:link href="https://forum.stackstorm.com/t/i-am-unable-to-installing-pack-using-st2-api/1029.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>I am unable to installing pack using st2 api</title>
+        <dc:creator><![CDATA[willkanes]]></dc:creator>
+        <description><![CDATA[
+            <p>Good information thanks for sharing<br>
+<a href="https://www.fieldengineer.com/skills/vmware-engineer" rel="noopener nofollow ugc">VMware Engineer</a></p>
+          <p><a href="https://forum.stackstorm.com/t/i-am-unable-to-installing-pack-using-st2-api/1029/13">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/i-am-unable-to-installing-pack-using-st2-api/1029/13</link>
+        <pubDate>Mon, 18 Jan 2021 11:53:55 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1029-13</guid>
+        <source url="https://forum.stackstorm.com/t/i-am-unable-to-installing-pack-using-st2-api/1029.rss">I am unable to installing pack using st2 api</source>
+      </item>
+      <item>
+        <title>I am unable to installing pack using st2 api</title>
+        <dc:creator><![CDATA[punkrokk]]></dc:creator>
+        <description><![CDATA[
+            <p>By the way - welcome to the community <a class="mention" href="https://github.com/sharathmankala">@sharathmankala</a>!</p>
+          <p><a href="https://forum.stackstorm.com/t/i-am-unable-to-installing-pack-using-st2-api/1029/12">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/i-am-unable-to-installing-pack-using-st2-api/1029/12</link>
+        <pubDate>Wed, 05 Feb 2020 21:30:06 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1029-12</guid>
+        <source url="https://forum.stackstorm.com/t/i-am-unable-to-installing-pack-using-st2-api/1029.rss">I am unable to installing pack using st2 api</source>
+      </item>
+      <item>
+        <title>I am unable to installing pack using st2 api</title>
+        <dc:creator><![CDATA[punkrokk]]></dc:creator>
+        <description><![CDATA[
+            <p>I’d recommend trying to get it working outside of docker before trying to tackle that level of complexity</p>
+          <p><a href="https://forum.stackstorm.com/t/i-am-unable-to-installing-pack-using-st2-api/1029/11">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/i-am-unable-to-installing-pack-using-st2-api/1029/11</link>
+        <pubDate>Wed, 05 Feb 2020 04:15:37 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1029-11</guid>
+        <source url="https://forum.stackstorm.com/t/i-am-unable-to-installing-pack-using-st2-api/1029.rss">I am unable to installing pack using st2 api</source>
+      </item>
+      <item>
+        <title>I am unable to installing pack using st2 api</title>
+        <dc:creator><![CDATA[sharathmankala]]></dc:creator>
+        <description><![CDATA[
+            <p>I am running it has a docker container.<br>
+in Guest os i am able access portal.<br>
+inside container i am getting certificate error.<br>
+how do i resolve</p>
+          <p><a href="https://forum.stackstorm.com/t/i-am-unable-to-installing-pack-using-st2-api/1029/10">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/i-am-unable-to-installing-pack-using-st2-api/1029/10</link>
+        <pubDate>Wed, 05 Feb 2020 04:14:34 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1029-10</guid>
+        <source url="https://forum.stackstorm.com/t/i-am-unable-to-installing-pack-using-st2-api/1029.rss">I am unable to installing pack using st2 api</source>
+      </item>
+      <item>
+        <title>I am unable to installing pack using st2 api</title>
+        <dc:creator><![CDATA[sharathmankala]]></dc:creator>
+        <description><![CDATA[
+            <ul>
+<li>Hostname was NOT found in DNS cache</li>
+<li>Trying 104.18.36.18…</li>
+<li>Connected to <a href="http://index.stackstorm.org" rel="nofollow noopener">index.stackstorm.org</a> (104.18.36.18) port 443 (<span class="hashtag">#0</span>)</li>
+<li>successfully set certificate verify locations:</li>
+<li>CAfile: none<br>
+CApath: /etc/ssl/certs</li>
+<li>SSLv3, TLS handshake, Client hello (1):</li>
+<li>SSLv3, TLS handshake, Server hello (2):</li>
+<li>SSLv3, TLS handshake, CERT (11):</li>
+<li>SSLv3, TLS alert, Server hello (2):</li>
+<li>SSL certificate problem: unable to get local issuer certificate</li>
+<li>Closing connection 0<br>
+curl: (60) SSL certificate problem: unable to get local issuer certificate<br>
+More details here: <a href="http://curl.haxx.se/docs/sslcerts.html" rel="nofollow noopener">http://curl.haxx.se/docs/sslcerts.html</a>
+</li>
+</ul>
+<p>curl performs SSL certificate verification by default, using a “bundle”<br>
+of Certificate Authority (CA) public keys (CA certs). If the default<br>
+bundle file isn’t adequate, you can specify an alternate file<br>
+using the --cacert option.<br>
+If this HTTPS server uses a certificate signed by a CA represented in<br>
+the bundle, the certificate verification probably failed due to a<br>
+problem with the certificate (it might be expired, or the name might<br>
+not match the domain name in the URL).<br>
+If you’d like to turn off curl’s verification of the certificate, use<br>
+the -k (or --insecure) option.</p>
+          <p><a href="https://forum.stackstorm.com/t/i-am-unable-to-installing-pack-using-st2-api/1029/9">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/i-am-unable-to-installing-pack-using-st2-api/1029/9</link>
+        <pubDate>Wed, 05 Feb 2020 04:10:24 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1029-9</guid>
+        <source url="https://forum.stackstorm.com/t/i-am-unable-to-installing-pack-using-st2-api/1029.rss">I am unable to installing pack using st2 api</source>
+      </item>
+      <item>
+        <title>I am unable to installing pack using st2 api</title>
+        <dc:creator><![CDATA[punkrokk]]></dc:creator>
+        <description><![CDATA[
+            <p>You need to figure out why you can’t access github from that machine. Maybe a proxy? It looks like <a href="http://github.com" rel="nofollow noopener">github.com</a> is angry with you for some reason though.</p>
+          <p><a href="https://forum.stackstorm.com/t/i-am-unable-to-installing-pack-using-st2-api/1029/8">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/i-am-unable-to-installing-pack-using-st2-api/1029/8</link>
+        <pubDate>Wed, 05 Feb 2020 03:45:01 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1029-8</guid>
+        <source url="https://forum.stackstorm.com/t/i-am-unable-to-installing-pack-using-st2-api/1029.rss">I am unable to installing pack using st2 api</source>
+      </item>
+      <item>
+        <title>I am unable to installing pack using st2 api</title>
+        <dc:creator><![CDATA[sharathmankala]]></dc:creator>
+        <description><![CDATA[
+            <p>I am unable install packs(getting above error)<br>
+but i am able to install some basic packages using apt-get.</p>
+          <p><a href="https://forum.stackstorm.com/t/i-am-unable-to-installing-pack-using-st2-api/1029/7">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/i-am-unable-to-installing-pack-using-st2-api/1029/7</link>
+        <pubDate>Wed, 05 Feb 2020 03:40:00 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1029-7</guid>
+        <source url="https://forum.stackstorm.com/t/i-am-unable-to-installing-pack-using-st2-api/1029.rss">I am unable to installing pack using st2 api</source>
+      </item>
+      <item>
+        <title>I am unable to installing pack using st2 api</title>
+        <dc:creator><![CDATA[punkrokk]]></dc:creator>
+        <description><![CDATA[
+            <p>Woah <img src="https://emoji.discourse-cdn.com/apple/slight_smile.png?v=9" title=":slight_smile:" class="emoji" alt=":slight_smile:"> looks like you might be getting blocked by something. Seem like github is blocking you? Are you coming from a blocked IP? Can you install other packs? Can you reach other content from that system?</p>
+          <p><a href="https://forum.stackstorm.com/t/i-am-unable-to-installing-pack-using-st2-api/1029/6">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/i-am-unable-to-installing-pack-using-st2-api/1029/6</link>
+        <pubDate>Wed, 05 Feb 2020 03:38:22 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1029-6</guid>
+        <source url="https://forum.stackstorm.com/t/i-am-unable-to-installing-pack-using-st2-api/1029.rss">I am unable to installing pack using st2 api</source>
+      </item>
+      <item>
+        <title>I am unable to installing pack using st2 api</title>
+        <dc:creator><![CDATA[sharathmankala]]></dc:creator>
+        <description><![CDATA[
+            <p>root@9100af200ffc:/# curl -X -L  GET <a href="https://github.com/StackStorm-Exchange/stackstorm-ansible.git" rel="nofollow noopener">https://github.com/StackStorm-Exchange/stackstorm-ansible.git</a><br>
+curl: (6) Could not resolve host: GET</p>
+
+
+  
+    
+    
+    
+    Forbidden · GitHub
+    
+      body {
+        background-color: #f1f1f1;
+        margin: 0;
+      }
+      body,
+      input,
+      button {
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      }
+      .container { margin: 30px auto 40px auto; width: 800px; text-align: center; }
+      a { color: #4183c4; text-decoration: none; font-weight: bold; }
+      a:hover { text-decoration: underline; }
+      h1, h2, h3 { color: #666; }
+      ul { list-style: none; padding: 25px 0; }
+      li {
+        display: inline;
+        margin: 10px 50px 10px 0px;
+      }
+      .logo { display: inline-block; margin-top: 35px; }
+      .logo-img-2x { display: none; }
+      @media
+      only screen and (-webkit-min-device-pixel-ratio: 2),
+      only screen and (   min--moz-device-pixel-ratio: 2),
+      only screen and (     -o-min-device-pixel-ratio: 2/1),
+      only screen and (        min-device-pixel-ratio: 2),
+      only screen and (                min-resolution: 192dpi),
+      only screen and (                min-resolution: 2dppx) {
+        .logo-img-1x { display: none; }
+        .logo-img-2x { display: inline-block; }
+      }
+    
+  
+  
+<pre><code>&lt;div class="container"&gt;
+  &lt;h1&gt;Your access to this site has been restricted.&lt;/h1&gt;
+
+  &lt;p&gt;
+    &lt;br&gt;
+    If you believe this is an error,
+    please contact the
+    &lt;a href="mailto:support@github.com"&gt;Support Team&lt;/a&gt;.
+  &lt;/p&gt;
+
+  &lt;a href="/" class="logo logo-img-1x"&gt;
+    &lt;img width="32" height="32" title="" alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyRpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoTWFjaW50b3NoKSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDpFMTZCRDY3REIzRjAxMUUyQUQzREIxQzRENUFFNUM5NiIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDpFMTZCRDY3RUIzRjAxMUUyQUQzREIxQzRENUFFNUM5NiI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkUxNkJENjdCQjNGMDExRTJBRDNEQjFDNEQ1QUU1Qzk2IiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOkUxNkJENjdDQjNGMDExRTJBRDNEQjFDNEQ1QUU1Qzk2Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+SM9MCAAAA+5JREFUeNrEV11Ik1EY3s4+ddOp29Q5b0opCgKFsoKoi5Kg6CIhuwi6zLJLoYLopq4qsKKgi4i6CYIoU/q5iDAKs6syoS76IRWtyJ+p7cdt7sf1PGOD+e0c3dygAx/67ZzzPM95/877GYdHRg3ZjMXFxepQKNS6sLCwJxqNNuFpiMfjVs4ZjUa/pmmjeD6VlJS8NpvNT4QQ7mxwjSsJiEQim/1+/9lgMHgIr5ohuxG1WCw9Vqv1clFR0dCqBODElV6v90ogEDjGdYbVjXhpaendioqK07CIR7ZAqE49PT09BPL2PMgTByQGsYiZlQD4uMXtdr+JxWINhgINYhGT2MsKgMrm2dnZXgRXhaHAg5jEJodUAHxux4LudHJE9RdEdA+i3Juz7bGHe4mhE9FNrgwBCLirMFV9Okh5eflFh8PR5nK5nDabrR2BNJlKO0T35+Li4n4+/J+/JQCxhmu5h3uJoXNHPbmWZAHMshWB8l5/ipqammaAf0zPDDx1ONV3vurdidqwAQL+pEc8sLcAe1CCvQ3YHxIW8Pl85xSWNC1hADDIv0rIE/o4J0k3kww4xSlwIhcq3EFFOm7KN/hUGOQkt0CFa5WpNJlMvxBEz/IVQAxg/ZRZl9wiHA63yDYieM7DnLP5CiAGsC7I5sgtYKJGWe2A8seFqgFJrJjEPY1Cn3pJ8/9W1e5VWsFDTEmFrBcoDhZJEQkXuhICMyKpjhahqN21hRYATKfUOlDmkygrR4o4C0VOLGJKrOITKB4jijzdXygBKixyC5TDQdnk/Pz8qRw6oOWGlsTKGOQW6OH6FBWsyePxdOXLTgxiyebILZCjz+GLgMIKnXNzc49YMlcRdHXcSwxFVgTInQhC9G33UhNoJLuqq6t345p9y3eUy8OTk5PjAHuI9uo4b07FBaOhsu0A4Unc+T1TU1Nj3KsSSE5yJ65jqF2DDd8QqWYmAZrIM2VlZTdnZmb6AbpdV9V6ec9znf5Q7HjYumdRE0JOp3MjitO4SFa+cZz8Umqe3TCbSLvdfkR/kWDdNQl5InuTcysOcpFT35ZrbBxx4p3JAHlZVVW1D/634VRt+FvLBgK/v5LV9WS+10xMTEwtRw7XvqOL+e2Q8V3AYIOIAXQ26/heWVnZCVfcyKHg2CBgTpmPmjYM8l24GyaUHyaIh7XwfR9ErE8qHoDfn2LTNAVC0HX6MFcBIP8Bi+6F6cdW/DICkANRfx99fEYFQ7Nph5i/uQiA214gno7K+guhaiKg9gC62+M8eR7XsBsYJ4ilam60Fb7r7uAj8wFyuwM1oIOWgfmDy6RXEEQzJMPe23DXrVS7rtyD3Df8z/FPgAEAzWU5Ku59ZAUAAAAASUVORK5CYII="&gt;
+  &lt;/a&gt;
+
+  &lt;a href="/" class="logo logo-img-2x"&gt;
+    &lt;img width="32" height="32" title="" alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyRpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoTWFjaW50b3NoKSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDpEQUM1QkUxRUI0MUMxMUUyQUQzREIxQzRENUFFNUM5NiIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDpEQUM1QkUxRkI0MUMxMUUyQUQzREIxQzRENUFFNUM5NiI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkUxNkJENjdGQjNGMDExRTJBRDNEQjFDNEQ1QUU1Qzk2IiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOkUxNkJENjgwQjNGMDExRTJBRDNEQjFDNEQ1QUU1Qzk2Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+hfPRaQAAB6lJREFUeNrsW2mM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"&gt;
+  &lt;/a&gt;
+&lt;/div&gt;
+</code></pre>
+          <p><a href="https://forum.stackstorm.com/t/i-am-unable-to-installing-pack-using-st2-api/1029/5">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/i-am-unable-to-installing-pack-using-st2-api/1029/5</link>
+        <pubDate>Wed, 05 Feb 2020 03:22:47 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1029-5</guid>
+        <source url="https://forum.stackstorm.com/t/i-am-unable-to-installing-pack-using-st2-api/1029.rss">I am unable to installing pack using st2 api</source>
+      </item>
+      <item>
+        <title>I am unable to installing pack using st2 api</title>
+        <dc:creator><![CDATA[punkrokk]]></dc:creator>
+        <description><![CDATA[
+            <p>add a <code>-L</code> in there:</p>
+<p><code>curl -X -L GET https://github.com/StackStorm-Exchange/stackstorm-ansible.git</code>, we want to follow redirects</p>
+          <p><a href="https://forum.stackstorm.com/t/i-am-unable-to-installing-pack-using-st2-api/1029/4">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/i-am-unable-to-installing-pack-using-st2-api/1029/4</link>
+        <pubDate>Wed, 05 Feb 2020 03:19:48 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1029-4</guid>
+        <source url="https://forum.stackstorm.com/t/i-am-unable-to-installing-pack-using-st2-api/1029.rss">I am unable to installing pack using st2 api</source>
+      </item>
+      <item>
+        <title>I am unable to installing pack using st2 api</title>
+        <dc:creator><![CDATA[sharathmankala]]></dc:creator>
+        <description><![CDATA[
+            <aside class="quote no-group" data-username="punkrokk" data-post="2" data-topic="1029">
+<div class="title">
+<div class="quote-controls"></div>
+<img alt="" width="20" height="20" src="https://sjc6.discourse-cdn.com/standard10/user_avatar/forum.stackstorm.com/punkrokk/40/147_2.png" class="avatar"> punkrokk:</div>
+<blockquote>
+<p>curl -X GET <a href="https://github.com/StackStorm-Exchange/stackstorm-ansible.git" rel="nofollow noopener">https://github.com/StackStorm-Exchange/stackstorm-ansible.git</a></p>
+</blockquote>
+</aside>
+<p>curl -X GET <a href="https://github.com/StackStorm-Exchange/stackstorm-ansible.git" rel="nofollow noopener">https://github.com/StackStorm-Exchange/stackstorm-ansible.git</a></p>
+
+301 Moved Permanently
+
+<h1>301 Moved Permanently</h1>
+<hr>nginx
+          <p><a href="https://forum.stackstorm.com/t/i-am-unable-to-installing-pack-using-st2-api/1029/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/i-am-unable-to-installing-pack-using-st2-api/1029/3</link>
+        <pubDate>Wed, 05 Feb 2020 03:17:20 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1029-3</guid>
+        <source url="https://forum.stackstorm.com/t/i-am-unable-to-installing-pack-using-st2-api/1029.rss">I am unable to installing pack using st2 api</source>
+      </item>
+      <item>
+        <title>I am unable to installing pack using st2 api</title>
+        <dc:creator><![CDATA[punkrokk]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi <a class="mention" href="https://github.com/sharathmankala">@sharathmankala</a>. What is the output of:</p>
+<p><code>curl -X GET https://github.com/StackStorm-Exchange/stackstorm-ansible.git</code></p>
+<p>When ran from that box.</p>
+          <p><a href="https://forum.stackstorm.com/t/i-am-unable-to-installing-pack-using-st2-api/1029/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/i-am-unable-to-installing-pack-using-st2-api/1029/2</link>
+        <pubDate>Tue, 04 Feb 2020 20:51:47 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1029-2</guid>
+        <source url="https://forum.stackstorm.com/t/i-am-unable-to-installing-pack-using-st2-api/1029.rss">I am unable to installing pack using st2 api</source>
+      </item>
+      <item>
+        <title>I am unable to installing pack using st2 api</title>
+        <dc:creator><![CDATA[sharathmankala]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi Team,<br>
+When i am trying to installing ansible pack am getting below error.</p>
+<p>Please help me<br>
+st2 pack install ansible</p>
+<pre><code>    [  failed   ] download pack
+</code></pre>
+<p>id: 5e399a2599828f00ef69916e<br>
+action.ref: packs.install<br>
+parameters:<br>
+packs:</p>
+<ul>
+<li>ansible<br>
+python3: false<br>
+status: failed<br>
+result_task: download pack<br>
+result:<br>
+exit_code: 1<br>
+result: None<br>
+stderr: "No handlers could be found for logger “st2.st2common.services.packs”<br>
+Traceback (most recent call last):<br>
+File “/opt/stackstorm/st2/local/lib/python2.7/site-packages/python_runner/python_action_wrapper.py”, line 333, in <br>
+obj.run()<br>
+File “/opt/stackstorm/st2/local/lib/python2.7/site-packages/python_runner/python_action_wrapper.py”, line 192, in run<br>
+output = action.run(**self._parameters)<br>
+File “/opt/stackstorm/packs/packs/actions/pack_mgmt/download.py”, line 78, in run<br>
+return self._validate_result(result=result, repo_url=pack_url)<br>
+File “/opt/stackstorm/packs/packs/actions/pack_mgmt/download.py”, line 99, in _validate_result<br>
+raise Exception(message)<br>
+Exception: The pack has not been downloaded from “None”.</li>
+</ul>
+<p>Errors:<br>
+No results from the index: tried <a href="https://index.stackstorm.org/v1/index.json" rel="nofollow noopener">https://index.stackstorm.org/v1/index.json</a>.<br>
+Status: [<br>
+{<br>
+“url”: “<a href="https://index.stackstorm.org/v1/index.json" rel="nofollow noopener">https://index.stackstorm.org/v1/index.json</a>”,<br>
+“message”: “SSLError(MaxRetryError(‘HTTPSConnectionPool(host=\‘<a href="http://index.stackstorm.org" rel="nofollow noopener">index.stackstorm.org</a>\’, port=443): Max retries exceeded with url: /v1/index.json (Caused by SSLError(SSLError(“bad handshake: Error([(\‘SSL routines\’, \‘tls_process_server_certificate\’, \‘certificate verify failed\’)],)”,),))’,),)”,<br>
+“error”: “unresponsive”,<br>
+“packs”: 0<br>
+}<br>
+]<br>
+"<br>
+stdout: ‘’<br>
+error: No handlers could be found for logger “st2.st2common.services.packs”<br>
+Traceback (most recent call last):<br>
+File “/opt/stackstorm/st2/local/lib/python2.7/site-packages/python_runner/python_action_wrapper.py”, line 333, in <br>
+obj.run()<br>
+File “/opt/stackstorm/st2/local/lib/python2.7/site-packages/python_runner/python_action_wrapper.py”, line 192, in run<br>
+output = action.run(**self._parameters)<br>
+File “/opt/stackstorm/packs/packs/actions/pack_mgmt/download.py”, line 78, in run<br>
+return self._validate_result(result=result, repo_url=pack_url)<br>
+File “/opt/stackstorm/packs/packs/actions/pack_mgmt/download.py”, line 99, in _validate_result<br>
+raise Exception(message)<br>
+Exception: The pack has not been downloaded from “None”.</p>
+<p>Errors:<br>
+No results from the index: tried <a href="https://index.stackstorm.org/v1/index.json" rel="nofollow noopener">https://index.stackstorm.org/v1/index.json</a>.<br>
+Status: [<br>
+{<br>
+“url”: “<a href="https://index.stackstorm.org/v1/index.json" rel="nofollow noopener">https://index.stackstorm.org/v1/index.json</a>”,<br>
+“message”: “SSLError(MaxRetryError(‘HTTPSConnectionPool(host=‘<a href="http://index.stackstorm.org" rel="nofollow noopener">index.stackstorm.org</a>’, port=443): Max retries exceeded with url: /v1/index.json (Caused by SSLError(SSLError(“bad handshake: Error([(‘SSL routines’, ‘tls_process_server_certificate’, ‘certificate verify failed’)],)”,),))’,),)”,<br>
+“error”: “unresponsive”,<br>
+“packs”: 0<br>
+}<br>
+]</p>
+<p>traceback: None<br>
+failed_on: download pack<br>
+start_timestamp: Tue, 04 Feb 2020 16:21:57 UTC<br>
+end_timestamp: Tue, 04 Feb 2020 16:22:01 UTC<br>
+±-------------------------±--------------------±--------------±---------------±----------------+<br>
+| id                       | status              | task          | action         | start_timestamp |<br>
+±-------------------------±--------------------±--------------±---------------±----------------+<br>
+| 5e399a2599828f007fc2c55b | failed (3s elapsed) | download pack | packs.download | Tue, 04 Feb     |<br>
+|                          |                     |               |                | 2020 16:21:57   |<br>
+|                          |                     |               |                | UTC             |<br>
+±-------------------------±--------------------±--------------±---------------±----------------+</p>
+          <p><a href="https://forum.stackstorm.com/t/i-am-unable-to-installing-pack-using-st2-api/1029/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/i-am-unable-to-installing-pack-using-st2-api/1029/1</link>
+        <pubDate>Tue, 04 Feb 2020 16:27:23 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1029-1</guid>
+        <source url="https://forum.stackstorm.com/t/i-am-unable-to-installing-pack-using-st2-api/1029.rss">I am unable to installing pack using st2 api</source>
+      </item>
+  </channel>
+</rss>

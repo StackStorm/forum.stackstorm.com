@@ -1,0 +1,942 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:discourse="http://www.discourse.org/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>StackStorm Support (ARCHIVED) - Latest topics</title>
+    <link>https://forum.stackstorm.com/latest</link>
+    <description>Latest topics</description>
+    
+      <lastBuildDate>Fri, 27 Aug 2021 07:42:33 +0000</lastBuildDate>
+      <atom:link href="https://forum.stackstorm.com/latest.rss" rel="self" type="application/rss+xml" />
+        <item>
+          <title>Example of DateTimer</title>
+          <dc:creator><![CDATA[smeds]]></dc:creator>
+          <category>Uncategorized</category>
+          <description><![CDATA[
+            <p>Hi!</p>
+<p>Could someone point me to any good example where a DateTimer trigger is used?</p>
+            <p><small>1 post - 1 participant</small></p>
+            <p><a href="https://forum.stackstorm.com/t/example-of-datetimer/1830">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/example-of-datetimer/1830</link>
+          <pubDate>Fri, 27 Aug 2021 07:42:33 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1830</guid>
+          <source url="https://forum.stackstorm.com/t/example-of-datetimer/1830.rss">Example of DateTimer</source>
+        </item>
+        <item>
+          <title>Job schedulering</title>
+          <dc:creator><![CDATA[smeds]]></dc:creator>
+          <category>Workflows</category>
+          <description><![CDATA[
+            <p>I have a workflow that analysis data and after the process is done I would like to schedule a new workflow that should run one week from that the process is done. Any suggestion of how to do this?</p>
+            <p><small>2 posts - 1 participant</small></p>
+            <p><a href="https://forum.stackstorm.com/t/job-schedulering/1829">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/job-schedulering/1829</link>
+          <pubDate>Fri, 27 Aug 2021 05:56:19 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1829</guid>
+          <source url="https://forum.stackstorm.com/t/job-schedulering/1829.rss">Job schedulering</source>
+        </item>
+        <item>
+          <title>Access different pack configs in common pack</title>
+          <dc:creator><![CDATA[sarthak1996]]></dc:creator>
+          <category>Workflows</category>
+          <description><![CDATA[
+            <p>I am trying to build a central (common) pack which contains some common actions eg.</p>
+<ol>
+<li>Get Data from Postgres</li>
+<li>Get Data from some API call</li>
+</ol>
+<p>These are generic actions and these require <code>configs</code> for them to run. Eg. Postgres requires <code>host</code>, <code>port</code>, <code>username</code>, <code>password</code>, <code>db</code>. These <code>configs</code> are stored in different packs for different tenants. Each tenant has its own pack and each tenant will have its <code>configs</code>.</p>
+<p>I want to reuse the common actions instead of adding these everytime to each tenant. I want one common pack which will hold the common actions and based on the <code>tenant</code> context or <code>pack (tenant)</code> name it will fetch the <code>configs</code> from that pack.</p>
+<p>I have been struggling a lot to do this, unfortunately the only way I found was to duplicate these common actions across tenant packs. Is there any other way to do it?</p>
+            <p><small>3 posts - 2 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/access-different-pack-configs-in-common-pack/1824">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/access-different-pack-configs-in-common-pack/1824</link>
+          <pubDate>Tue, 24 Aug 2021 18:29:20 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1824</guid>
+          <source url="https://forum.stackstorm.com/t/access-different-pack-configs-in-common-pack/1824.rss">Access different pack configs in common pack</source>
+        </item>
+        <item>
+          <title>Custom created remote action not terminated after execution</title>
+          <dc:creator><![CDATA[rameshar16]]></dc:creator>
+          <category>Uncategorized</category>
+          <description><![CDATA[
+            <p>Hi All,<br>
+I have created a custom a remote action but the process not terminated after execution.</p>
+<p>Thanks and Regards,<br>
+Ramesh</p>
+            <p><small>1 post - 1 participant</small></p>
+            <p><a href="https://forum.stackstorm.com/t/custom-created-remote-action-not-terminated-after-execution/1821">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/custom-created-remote-action-not-terminated-after-execution/1821</link>
+          <pubDate>Mon, 23 Aug 2021 16:38:35 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1821</guid>
+          <source url="https://forum.stackstorm.com/t/custom-created-remote-action-not-terminated-after-execution/1821.rss">Custom created remote action not terminated after execution</source>
+        </item>
+        <item>
+          <title>Exporting history</title>
+          <dc:creator><![CDATA[smeds]]></dc:creator>
+          <category>Documentation</category>
+          <description><![CDATA[
+            <p>Hi!</p>
+<p>We are in the process of migrating our stackstorm environment to a new server and would like to keep the history. Is there any easy way of export and importing the history?</p>
+<p>Best regards<br>
+Patrik</p>
+            <p><small>2 posts - 2 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/exporting-history/1820">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/exporting-history/1820</link>
+          <pubDate>Mon, 23 Aug 2021 08:40:39 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1820</guid>
+          <source url="https://forum.stackstorm.com/t/exporting-history/1820.rss">Exporting history</source>
+        </item>
+        <item>
+          <title>How to remove the newline character from the input parameters?</title>
+          <dc:creator><![CDATA[rameshar16]]></dc:creator>
+          <category>Uncategorized</category>
+          <description><![CDATA[
+            <p>Hi All,</p>
+<p>Is there any option to remove the newline character from the input parameters?</p>
+<p>Thanks and Regards,<br>
+Ramesh</p>
+            <p><small>2 posts - 2 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/how-to-remove-the-newline-character-from-the-input-parameters/1815">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/how-to-remove-the-newline-character-from-the-input-parameters/1815</link>
+          <pubDate>Thu, 19 Aug 2021 12:32:49 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1815</guid>
+          <source url="https://forum.stackstorm.com/t/how-to-remove-the-newline-character-from-the-input-parameters/1815.rss">How to remove the newline character from the input parameters?</source>
+        </item>
+        <item>
+          <title>Is there one rule and sensor that applies to all actions?</title>
+          <dc:creator><![CDATA[Bryan]]></dc:creator>
+          <category>Rules</category>
+          <description><![CDATA[
+            <p>Hello,</p>
+<p>I’m searching for a general way to write rules and sensors.</p>
+<p>For example, I have 2 timing action: <strong>action_a, action_b</strong>:</p>
+<pre><code class="lang-auto">**action_a brief definition:**
+parameters:
+  param_a_1:
+    type: object
+    required: true
+  param_a_2:
+    type: object
+    required: true
+</code></pre>
+<pre><code class="lang-auto">**action_b brief definition:**
+parameters:
+  param_b_1:
+    type: string
+    required: true
+  param_b_2:
+    type: array
+    required: true
+  param_b_3:
+    type: string
+    required: true
+</code></pre>
+<p>I save the action and its param as key-value pair(change to yaml for human read) in stackstorm mongodb:</p>
+<pre><code class="lang-auto">deploy_time: "2021-08-19 23:00" 
+action: pack1.action_a
+params:
+  param_a_1:
+    key_1: value_1
+  param_a_2:
+    key_a_2: value_a_2
+</code></pre>
+<pre><code class="lang-auto">deploy_time: "2021-08-19 23:00"
+action: pack2.action_b
+params:
+  param_b_1: "string_1"
+  param_b_2:
+    - object_1
+    - object_2
+  param_b_3: "string_3"
+</code></pre>
+<p>Then I write a sensor to read stackstorm Datastore.  Sensor will compare current system time and <code>deploy_time</code>, if current system time is later than <code>deploy_time</code>, sensor will generate a playload to rule.</p>
+<p>As you can image, I have to write 3 very similar file( <code>sensor.py</code>; <code>sensor.yaml</code>; <code>rule.yaml</code> ) for each action. The only difference between them is <code>payload_schema</code> section of <code>sensor.yaml</code><br>
+and <code>action</code> section of <code>rule.yaml</code>.<br>
+<code>sensor.py</code> is almost exactly the same.</p>
+<p>Is there a general way to write rules and sensors?</p>
+            <p><small>1 post - 1 participant</small></p>
+            <p><a href="https://forum.stackstorm.com/t/is-there-one-rule-and-sensor-that-applies-to-all-actions/1814">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/is-there-one-rule-and-sensor-that-applies-to-all-actions/1814</link>
+          <pubDate>Thu, 19 Aug 2021 08:35:37 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1814</guid>
+          <source url="https://forum.stackstorm.com/t/is-there-one-rule-and-sensor-that-applies-to-all-actions/1814.rss">Is there one rule and sensor that applies to all actions?</source>
+        </item>
+        <item>
+          <title>How to connect remote hosts via ssh keys</title>
+          <dc:creator><![CDATA[rameshar16]]></dc:creator>
+          <category>Workflows</category>
+          <description><![CDATA[
+            <p>Hi All,<br>
+I need to connect to a remote host via ssh keys.</p>
+<p>Thanks and Regards,<br>
+Ramesh</p>
+            <p><small>3 posts - 2 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/how-to-connect-remote-hosts-via-ssh-keys/1812">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/how-to-connect-remote-hosts-via-ssh-keys/1812</link>
+          <pubDate>Wed, 18 Aug 2021 17:37:26 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1812</guid>
+          <source url="https://forum.stackstorm.com/t/how-to-connect-remote-hosts-via-ssh-keys/1812.rss">How to connect remote hosts via ssh keys</source>
+        </item>
+        <item>
+          <title>Must either be a string or None. Got \&quot;list\&quot;.&quot;</title>
+          <dc:creator><![CDATA[rameshar16]]></dc:creator>
+          <category>Uncategorized</category>
+          <description><![CDATA[
+            <p>Hi All,</p>
+<p>The publish statement assigned the output as a list to a variable and the next task is expecting string type instead of the LIST. Is it possible to convert the output from LIST to STRING.</p>
+<p>Please help me if anyone worked this kind of requirement.</p>
+<p>Thanks and Regards,<br>
+Ramesh</p>
+            <p><small>5 posts - 3 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/must-either-be-a-string-or-none-got-list/1811">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/must-either-be-a-string-or-none-got-list/1811</link>
+          <pubDate>Wed, 18 Aug 2021 17:02:40 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1811</guid>
+          <source url="https://forum.stackstorm.com/t/must-either-be-a-string-or-none-got-list/1811.rss">Must either be a string or None. Got \&quot;list\&quot;.&quot;</source>
+        </item>
+        <item>
+          <title>Specifying with node an action is run on in an HA set up?</title>
+          <dc:creator><![CDATA[jeffschulthies]]></dc:creator>
+          <category>Platform</category>
+          <description><![CDATA[
+            <p>I wanted to utilize this <a href="https://docs.stackstorm.com/reference/ha.html#reference-ha-setup" rel="noopener nofollow ugc">reference</a> for HA set up but I had a more in depth question.</p>
+<p>The HA set up will be in multiple DR sites. We need to make some optimizations to localize jobs to a certain site e.g. prevent jobs from being run on a us-east-node while interacting with hosts we have on us-west. Is this capability in StackStorm? or would be need some other solution like creating multiple st2 instances instead.</p>
+<p>Thanks,<br>
+jeff</p>
+            <p><small>3 posts - 2 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/specifying-with-node-an-action-is-run-on-in-an-ha-set-up/1810">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/specifying-with-node-an-action-is-run-on-in-an-ha-set-up/1810</link>
+          <pubDate>Mon, 16 Aug 2021 19:20:00 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1810</guid>
+          <source url="https://forum.stackstorm.com/t/specifying-with-node-an-action-is-run-on-in-an-ha-set-up/1810.rss">Specifying with node an action is run on in an HA set up?</source>
+        </item>
+        <item>
+          <title>How to read the array action with array output?</title>
+          <dc:creator><![CDATA[bharat19th]]></dc:creator>
+          <category>Workflows</category>
+          <description><![CDATA[
+            <p>Hi Folks,<br>
+I have just written the workflow with action and I want the output input command with output result. How can I achieve that in this case would appreciate if someone help here</p>
+<pre><code class="lang-auto">outer_task_shell_linux_esxi:
+    action: jas.command_shell_execution
+    input:
+      commands: '&lt;% ctx(command)[0] %&gt;'
+      host: '&lt;% item(host) %&gt;'
+      username: '&lt;% item(user) %&gt;'
+      password: '&lt;% item(pass) %&gt;'
+    with: host,user,pass in &lt;% zip(ctx(hosts),ctx(username),ctx(password)) %&gt;
+    next:
+      - when: &lt;% succeeded() %&gt;
+        publish:
+          - task_status: &lt;% result() %&gt;
+        do: print_task1
+      - when: &lt;% failed() %&gt;
+        publish:
+          - task_status: &lt;% result() %&gt;
+
+   print_task1:
+    action: core.echo
+    input:
+      message: &lt;% ctx().task_status %&gt; | to_json_string
+    next:
+      - when: &lt;% succeeded() %&gt;
+        publish:
+          - task_status1: &lt;% result().stdout %&gt;
+        do: print_task2
+
+   print_task2:
+    action: core.echo
+    input:
+      message: &lt;% ctx().task_status1 %&gt;
+</code></pre>
+            <p><small>1 post - 1 participant</small></p>
+            <p><a href="https://forum.stackstorm.com/t/how-to-read-the-array-action-with-array-output/1808">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/how-to-read-the-array-action-with-array-output/1808</link>
+          <pubDate>Wed, 11 Aug 2021 13:26:44 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1808</guid>
+          <source url="https://forum.stackstorm.com/t/how-to-read-the-array-action-with-array-output/1808.rss">How to read the array action with array output?</source>
+        </item>
+        <item>
+          <title>Config_context in rules</title>
+          <dc:creator><![CDATA[sekhars]]></dc:creator>
+          <category>Rules</category>
+          <description><![CDATA[
+            <p>I was wondering if we can use <code>config_context</code> in Rules for a given pack. I have been unsuccessful so far</p>
+            <p><small>1 post - 1 participant</small></p>
+            <p><a href="https://forum.stackstorm.com/t/config-context-in-rules/1805">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/config-context-in-rules/1805</link>
+          <pubDate>Sun, 08 Aug 2021 22:31:50 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1805</guid>
+          <source url="https://forum.stackstorm.com/t/config-context-in-rules/1805.rss">Config_context in rules</source>
+        </item>
+        <item>
+          <title>Considerations for an agent</title>
+          <dc:creator><![CDATA[minsis]]></dc:creator>
+          <category>Uncategorized</category>
+          <description><![CDATA[
+            <p>Has there been any considerations for having an agent to allow for autonomous sensors and maybe even simple local linux action executions?</p>
+            <p><small>1 post - 1 participant</small></p>
+            <p><a href="https://forum.stackstorm.com/t/considerations-for-an-agent/1803">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/considerations-for-an-agent/1803</link>
+          <pubDate>Fri, 06 Aug 2021 18:43:39 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1803</guid>
+          <source url="https://forum.stackstorm.com/t/considerations-for-an-agent/1803.rss">Considerations for an agent</source>
+        </item>
+        <item>
+          <title>Orquesta workflows || YaqlEvaluation No functi on &quot;dict&quot; matches supplied arguments</title>
+          <dc:creator><![CDATA[arul]]></dc:creator>
+          <category>Mistral</category>
+          <description><![CDATA[
+            <p>Hi Team,<br>
+we are trying to loop the dict values in the Orquesta workflows .however we got the error.</p>
+<p>Variable name : <strong>sql_server_report</strong><br>
+output:<br>
+run:<br>
+exit_code: 0<br>
+result:<br>
+output: "{1=&gt;‘DESTD01__SQLHealthCheckResults2021-08-05.html’,2=&gt;‘GSQL01__SQLHealthCheckResults2019-06-24T06.00.01.8333200-0600.html’}<br>
+"<br>
+<strong>Error :</strong><br>
+result:<br>
+errors:</p>
+<ul>
+<li>message: ‘YaqlEvaluationException: Unable to evaluate expression ‘’&lt;% dict(ctx().sql_server_report).values()  %&gt;’’. NoMatchingFunctionException: No functi<br>
+on “dict” matches supplied arguments’</li>
+</ul>
+<p>workflow design :</p>
+<p>next:<br>
+- when: “{{ succeeded() }}”<br>
+publish:<br>
+- <strong>sql_server_report</strong>: “{{ result().output.run.result.output | to_json_string }}”<br>
+- report_file_check: true<br>
+- run: “{{ result().output.run }}”<br>
+do:<br>
+- report_file_content<br>
+- when: “{{ failed() }}”<br>
+publish:<br>
+- error_message: “{{ result().output.run.result.details.result_set[0].value._error.msg + ‘\n’ }}”<br>
+- error_output: “{{ result().output.run.result.details.result_set[0].value._output if ‘_output’ in result().output.run.result.details.result_set[0].value else ‘’ }}”<br>
+- run: “{{ result().output.run.result.details.result_set[0].value._error.msg }}”<br>
+- run_error: true<br>
+- report_file_check: false<br>
+do:<br>
+- fail<br>
+report_file_content:<br>
+<strong>with: &lt;% dict(ctx().sql_server_report).values()  %&gt;</strong><br>
+action: core.echo message=&lt;% item() %&gt;<br>
+next:<br>
+- when: “{{ succeeded() }}”<br>
+do:<br>
+- noop<br>
+- when: “{{ failed() }}”<br>
+do:<br>
+- noop</p>
+<p>while execute the command  with: &lt;% dict(ctx().sql_server_report).values()  %&gt; got the below error.</p>
+<p>result:<br>
+<strong>errors:</strong></p>
+<ul>
+<li>
+<strong>message: 'YaqlEvaluationException: Unable to evaluate expression ‘’&lt;%</strong> <strong>dict(ctx().sql_server_report).values()  %&gt;’’. NoMatchingFunctionException: No functi</strong><br>
+<strong>on “dict” matches supplied arguments’</strong>
+</li>
+</ul>
+            <p><small>7 posts - 2 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/orquesta-workflows-yaqlevaluation-no-functi-on-dict-matches-supplied-arguments/1802">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/orquesta-workflows-yaqlevaluation-no-functi-on-dict-matches-supplied-arguments/1802</link>
+          <pubDate>Fri, 06 Aug 2021 14:00:34 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1802</guid>
+          <source url="https://forum.stackstorm.com/t/orquesta-workflows-yaqlevaluation-no-functi-on-dict-matches-supplied-arguments/1802.rss">Orquesta workflows || YaqlEvaluation No functi on &quot;dict&quot; matches supplied arguments</source>
+        </item>
+        <item>
+          <title>How to run complex Linux commands with core.local module?</title>
+          <dc:creator><![CDATA[rameshar16]]></dc:creator>
+          <category>Uncategorized</category>
+          <description><![CDATA[
+            <p>Hi All,<br>
+Could you please let me know how to run complex Linux commands with core.local module?</p>
+<p>I am running “st2 run core.local cmd=“echo Hello,Ramesh | awk -F’,’ ‘{print $2}’”” but it is not giving the expected output.<br>
+$ st2 run core.local cmd=“echo Hello,Ramesh | awk -F’,’ ‘{print $2}’”<br>
+2021-08-06 10:19:12,958  WARNING - Locale unknown with encoding unknown which is not UTF-8 is used. This means that some functionality which relies on outputting unicode characters won’t work. You are encouraged to use UTF-8 locale by setting LC_ALL environment variable to en_US.UTF-8 or similar.<br>
+.<br>
+id: 610d0ca1c220628e1bbe0216<br>
+action.ref: core.local<br>
+context.user: st2admin<br>
+parameters:<br>
+cmd: echo Hello,Ramesh | awk -F’,’ ‘{print }’<br>
+status: succeeded<br>
+start_timestamp: Fri, 06 Aug 2021 10:19:13 UTC<br>
+end_timestamp: Fri, 06 Aug 2021 10:19:13 UTC<br>
+result:<br>
+failed: false<br>
+return_code: 0<br>
+stderr: ‘’<br>
+stdout: Hello,Ramesh<br>
+succeeded: true</p>
+<p>Thanks and Regards,<br>
+Ramesh</p>
+            <p><small>4 posts - 3 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/how-to-run-complex-linux-commands-with-core-local-module/1801">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/how-to-run-complex-linux-commands-with-core-local-module/1801</link>
+          <pubDate>Fri, 06 Aug 2021 12:31:19 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1801</guid>
+          <source url="https://forum.stackstorm.com/t/how-to-run-complex-linux-commands-with-core-local-module/1801.rss">How to run complex Linux commands with core.local module?</source>
+        </item>
+        <item>
+          <title>Question regarding reiteration over napalm.cli workflow action</title>
+          <dc:creator><![CDATA[knight]]></dc:creator>
+          <category>Workflows</category>
+          <description><![CDATA[
+            <p>I’ve been digging around the forums and docs for a bit but haven’t come up with a good solution for this yet aside from replacing an action.</p>
+<p>I’ve got the following workflow currently able to request very basic approval, and then push commands to a single host via the napalm.cli pack action. However, when using a different netbox inventory output, it’s not reiterating over the multiple names pushed in output, but doing the first and stopping.</p>
+<p>I thought it’d be a quick “with items” fix to get the task to repeat over resulting hosts however the napalm.cli action does not support “with items” and causes an error stoppage. I can’t think of a decent method around this aside from replacing the napalm.cli task with an ansible playbook doing the legwork in it’s place.</p>
+<p>If there’s another way to do this that I’m looking over - any push to a doc/kb article or assistance would be great!</p>
+<p>Here’s my workflow being used, debug output of the “json” output parameter is simply a list of hostnames in string format for the action input.</p>
+<pre><code class="lang-auto">#version: 1.0
+
+input:
+  - site
+  - tag
+  - commands
+  
+tasks:
+  # [116, 137]
+  get_approval:
+    action: core.ask
+    input:
+      schema:
+        type: object
+        properties:
+          approved:
+            type: boolean
+            description: "Do you have Approval?"
+            required: True
+          ticket_id:
+            type: string
+            description: "Ticket (CR/IR) ID:"
+            required: True
+      ttl: 90
+    next:
+      - when: &lt;% task(get_approval).result.response.approved = true %&gt;
+        publish:
+          - approver_department_id: &lt;% task(get_approval).result.response.ticket_id %&gt;
+        do: get_inventory
+      - when: &lt;% task(get_approval).result.response.approved = false %&gt;
+        do: fail
+  # [116, 314]
+  get_inventory:
+    action: netbox.get.dcim.devices
+    next:
+      - publish:
+          - stdout: &lt;% result().exit_code %&gt;
+          - stderr: &lt;% result().stderr %&gt;
+          - json: &lt;% result().result.raw.results.name %&gt;
+        do:
+          - push_commands
+    input:
+      log_level: DEBUG
+      site: &lt;% ctx().site %&gt;
+      tag: &lt;% ctx().tag %&gt;
+      save_in_key_store: false
+  # [116, 493]
+  push_commands:
+    action: napalm.cli
+    input:
+      log_level: DEBUG
+      commands:
+        - &lt;% ctx().commands %&gt;
+      hostname: &lt;% ctx().json[0] %&gt;
+      driver: junos
+    next:
+      - do:
+          - notify
+  # [116, 629]
+  notify:
+    action: ansible.playbook
+    input:
+      cwd: {{ Redacted }}/notify/
+      playbook: main.yml
+      extra_vars:
+        - '@extras/napalm_nbx_success.json'
+ # remove success.json and get actual input next (low priority)
+</code></pre>
+            <p><small>3 posts - 2 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/question-regarding-reiteration-over-napalm-cli-workflow-action/1800">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/question-regarding-reiteration-over-napalm-cli-workflow-action/1800</link>
+          <pubDate>Fri, 06 Aug 2021 04:52:33 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1800</guid>
+          <source url="https://forum.stackstorm.com/t/question-regarding-reiteration-over-napalm-cli-workflow-action/1800.rss">Question regarding reiteration over napalm.cli workflow action</source>
+        </item>
+        <item>
+          <title>In st2 k8s deployment, getting `File does not exist` - while running script on remote server using custom pack</title>
+          <dc:creator><![CDATA[mohan28]]></dc:creator>
+          <category>Pack Management</category>
+          <description><![CDATA[
+            <p>ST2 version: 3.5</p>
+<p>While trying to run the script on the remote server, getting the below error:</p>
+<p><strong>Inside st2client:</strong><br>
+$st2 run samplepack.run_remote_script<br>
+<strong>error: Failed copying content to remote boxes. Local path /opt/stackstorm/packs/samplepack/actions/touch_test.sh does not exist.</strong><br>
+failed: true<br>
+return_code: 255<br>
+succeeded: false<br>
+traceback: "  File “/opt/stackstorm/st2/lib/python3.6/site-packages/remote_runner/remote_script_runner.py”, line 50, in _run<br>
+copy_results = self._copy_artifacts(remote_action)<br>
+File “/opt/stackstorm/st2/lib/python3.6/site-packages/remote_runner/remote_script_runner.py”, line 108, in _copy_artifacts<br>
+mode=file_mode,<br>
+File “/opt/stackstorm/st2/lib/python3.6/site-packages/st2common/runners/parallel_ssh.py”, line 177, in put<br>
+raise Exception(“Local path %s does not exist.” % local_path)<br>
+"</p>
+<h2>
+<a name="action-1" class="anchor" href="https://forum.stackstorm.com#action-1"></a>Action:</h2>
+<p>runner_type: “remote-shell-script”<br>
+description: “remote shell runner”<br>
+enabled: true<br>
+name: run_remote_script<br>
+pack: st2testclassic<br>
+entry_point: “touch_test.sh”<br>
+parameters:<br>
+cmd:<br>
+required: true<br>
+type: string<br>
+default: “date”<br>
+username:<br>
+required: true<br>
+type: string<br>
+default: “xxxx”<br>
+password:<br>
+required: true<br>
+type: string<br>
+default: “xxxx”<br>
+hosts:<br>
+type: “string”<br>
+description: “Address of the syslog server”<br>
+required: true<br>
+default: “<a href="http://xxx.com" rel="noopener nofollow ugc">xxx.com</a>”<br>
+experimental:<br>
+immutable: true<br>
+default: true</p>
+<p>But the script is present, as shwon below in the st2client :<br>
+</p><div class="lightbox-wrapper"><a class="lightbox" href="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/3162cea22613aefdd8e9a062e3b576bbe570e1f3.jpeg" data-download-href="/uploads/short-url/72T5xJceGHgEpzxllFbt5t8g72X.jpeg?dl=1" title="Screenshot 2021-08-04 at 8.42.51 PM" rel="noopener nofollow ugc"><img src="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/3162cea22613aefdd8e9a062e3b576bbe570e1f3_2_690x109.jpeg" alt="Screenshot 2021-08-04 at 8.42.51 PM" data-base62-sha1="72T5xJceGHgEpzxllFbt5t8g72X" width="690" height="109" srcset="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/3162cea22613aefdd8e9a062e3b576bbe570e1f3_2_690x109.jpeg, https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/3162cea22613aefdd8e9a062e3b576bbe570e1f3_2_1035x163.jpeg 1.5x, https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/3162cea22613aefdd8e9a062e3b576bbe570e1f3_2_1380x218.jpeg 2x" data-small-upload="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/3162cea22613aefdd8e9a062e3b576bbe570e1f3_2_10x10.png"></a></div><p></p>
+            <p><small>1 post - 1 participant</small></p>
+            <p><a href="https://forum.stackstorm.com/t/in-st2-k8s-deployment-getting-file-does-not-exist-while-running-script-on-remote-server-using-custom-pack/1798">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/in-st2-k8s-deployment-getting-file-does-not-exist-while-running-script-on-remote-server-using-custom-pack/1798</link>
+          <pubDate>Wed, 04 Aug 2021 15:24:13 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1798</guid>
+          <source url="https://forum.stackstorm.com/t/in-st2-k8s-deployment-getting-file-does-not-exist-while-running-script-on-remote-server-using-custom-pack/1798.rss">In st2 k8s deployment, getting `File does not exist` - while running script on remote server using custom pack</source>
+        </item>
+        <item>
+          <title>Stackstorm 3.5 - LDAP ,st2 pack install fails</title>
+          <dc:creator><![CDATA[nithinsubbaraj]]></dc:creator>
+          <category>Pack Management</category>
+          <description><![CDATA[
+            <p>Hi Team,</p>
+<p>Need help in resolving the LDAP error.</p>
+<p>On stackstorm 3.5 able to use the ldap by modifying the configuration in /etc/st2/st2.conf</p>
+<p>Able to list the packs but not able to install the pack with LDAP account</p>
+<p>####<a class="hashtag" href="https://forum.stackstorm.com/tag/error">#<span>error</span></a> #########<br>
+Installation may take a while for packs with many items.</p>
+<pre><code>    [ succeeded ] init_task
+    [ succeeded ] download_pack
+    [ succeeded ] make_a_prerun
+    [ succeeded ] get_pack_dependencies
+    [ succeeded ] check_dependency_and_conflict_list
+    [ succeeded ] install_pack_requirements
+    [ succeeded ] get_pack_warnings
+    [  failed   ] register_pack
+</code></pre>
+<p>##############</p>
+<p>stderr: "st2.actions.python.St2RegisterAction: DEBUG    Calling client method “register” with kwargs “{‘types’: [‘all’], ‘packs’: [‘ansible’]}”<br>
+/opt/stackstorm/st2/lib/python3.6/site-packages/urllib3/connectionpool.py:1020: InsecureRequestWarning: Unverified HTTPS request is being made to host ‘<a href="http://qc1udatast204.abacus-us.com" rel="noopener nofollow ugc">qc1udatast204.abacus-us.com</a>’. Adding certificate verification is strongly advised. See: <a href="https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings" class="inline-onebox" rel="noopener nofollow ugc">Advanced Usage - urllib3 2.0.0.dev0 documentation</a><br>
+InsecureRequestWarning,<br>
+Traceback (most recent call last):<br>
+File “/opt/stackstorm/st2/lib/python3.6/site-packages/python_runner/python_action_wrapper.py”, line 395, in <br>
+obj.run()<br>
+File “/opt/stackstorm/st2/lib/python3.6/site-packages/python_runner/python_action_wrapper.py”, line 214, in run<br>
+output = action.run(**self._parameters)<br>
+File “/opt/stackstorm/packs/packs/actions/pack_mgmt/register.py”, line 79, in run<br>
+format_func=format_result,<br>
+File “/opt/stackstorm/packs/packs/actions/pack_mgmt/register.py”, line 155, in _run_client_method<br>
+result = method(**method_kwargs)<br>
+File “/opt/stackstorm/st2/lib/python3.6/site-packages/st2client/models/core.py”, line 42, in decorate<br>
+return func(*args, **kwargs)<br>
+File “/opt/stackstorm/st2/lib/python3.6/site-packages/st2client/models/core.py”, line 630, in register<br>
+self.handle_error(response)<br>
+File “/opt/stackstorm/st2/lib/python3.6/site-packages/st2client/models/core.py”, line 195, in handle_error<br>
+response.raise_for_status()<br>
+File “/opt/stackstorm/st2/lib/python3.6/site-packages/requests/models.py”, line 943, in raise_for_status<br>
+raise HTTPError(http_error_msg, response=self)<br>
+requests.exceptions.HTTPError: 404 Client Error: Not Found<br>
+Unable to retrieve detailed message from the HTTP response. expected value at line 1 column 1: line 1 column 1 (char 0)<br>
+for url: <a href="https://host.company.com/v1/packs/register" rel="noopener nofollow ugc">https://host.company.com/v1/packs/register</a></p>
+<p>####################</p>
+            <p><small>1 post - 1 participant</small></p>
+            <p><a href="https://forum.stackstorm.com/t/stackstorm-3-5-ldap-st2-pack-install-fails/1797">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/stackstorm-3-5-ldap-st2-pack-install-fails/1797</link>
+          <pubDate>Wed, 04 Aug 2021 13:01:09 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1797</guid>
+          <source url="https://forum.stackstorm.com/t/stackstorm-3-5-ldap-st2-pack-install-fails/1797.rss">Stackstorm 3.5 - LDAP ,st2 pack install fails</source>
+        </item>
+        <item>
+          <title>Orquesta workflow API documentor to Swagger OAS definition?</title>
+          <dc:creator><![CDATA[willowhawk]]></dc:creator>
+          <category>Workflows</category>
+          <description><![CDATA[
+            <p>I’m looking to created standardized OAS v2 or v3 YAML to give to consumers of my workflows, such that they can import them into Insomnia, Postman, or other API client tools, or even just visualize in SwaggerHub.</p>
+<p>I know I can get a JSON blob of a particular action by going through the API endpoint using an api key or token, but that isn’t quite sufficient for what I’m looking for.</p>
+<p>I see that there is an OpenAPI generator for the main ST2 api created during the build process.</p>
+<p>Has anyone successfully adapted it to do “documentation-by-code” or something similar that I can feed it my Orquesta actions and it will make a nice little OAS YAML file?</p>
+            <p><small>3 posts - 2 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/orquesta-workflow-api-documentor-to-swagger-oas-definition/1796">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/orquesta-workflow-api-documentor-to-swagger-oas-definition/1796</link>
+          <pubDate>Tue, 03 Aug 2021 19:38:34 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1796</guid>
+          <source url="https://forum.stackstorm.com/t/orquesta-workflow-api-documentor-to-swagger-oas-definition/1796.rss">Orquesta workflow API documentor to Swagger OAS definition?</source>
+        </item>
+        <item>
+          <title>Reusing reference HA architecture for Centralised Controller plus worker per client setup</title>
+          <dc:creator><![CDATA[jonathangull]]></dc:creator>
+          <category>Uncategorized</category>
+          <description><![CDATA[
+            <p><img src="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/4504f3b58e421b02d76120ba83d8e1151f86aafe.png" alt="Screenshot 2021-08-02 at 10.37.53 AM" data-base62-sha1="9QzypBD994h66H9q5oyoqouoOn4" width="458" height="326"></p>
+<p>Folks,</p>
+<p>Please see attached. Trying to setup Stackstorm for a IT service provider with multiple clients, We are looking at having a Centralised controller system for service provider to administer automations, look at history etc ( Running st2web, mongodb, nginx) and each client worker will run (action runner , and other st2 processes )</p>
+<p>The problem we found is -  st2schedular , st2action runner processes rely on Mongodb to fetch ,schedule and run automations, so client 2 worker ends up running automations scheduled by client 1 worker schedular process. Is it possible to control this with any configuration changes? Are there any IT service providers using this kind of setup in multi client environment? Any inputs would be highly beneficial Thank you very much.</p>
+            <p><small>2 posts - 2 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/reusing-reference-ha-architecture-for-centralised-controller-plus-worker-per-client-setup/1795">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/reusing-reference-ha-architecture-for-centralised-controller-plus-worker-per-client-setup/1795</link>
+          <pubDate>Mon, 02 Aug 2021 15:43:38 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1795</guid>
+          <source url="https://forum.stackstorm.com/t/reusing-reference-ha-architecture-for-centralised-controller-plus-worker-per-client-setup/1795.rss">Reusing reference HA architecture for Centralised Controller plus worker per client setup</source>
+        </item>
+        <item>
+          <title>Passing output in orqestra workflow - result().result?</title>
+          <dc:creator><![CDATA[guymatz]]></dc:creator>
+          <category>Workflows</category>
+          <description><![CDATA[
+            <p>Hi!  I have this yaql that used to work:<br>
+publish:<br>
+- email: &lt;% result().result.mail[0] %&gt;</p>
+<p>I’m getting:<br>
+message: ‘YaqlEvaluationException: Unable to evaluate expression ‘’&lt;% result().result.mail[0] %&gt;’’. NoFunctionRegisteredException: Unknown function “<span class="hashtag">#property</span>#mail”’</p>
+<p>result looks like:<br>
+result: {‘cn’: [b’Redacted Redacted’], ‘gidNumber’: [b’150’], ‘givenName’: [b’Redacted’], ‘sn’: [b’Redacted’], ‘uid’: [b’red’], ‘uidNumber’: [b’10222’], ‘homeDirectory’: [b’/home/red’], ‘l’: [b’NYC’], ‘loginShell’: [b’/bin/bash’], ‘mail’: [b’aredacted.red@poopy.com’], ‘objectClass’: [b’person’, b’organizationalPerson’, b’inetOrgPerson’, b’posixAccount’, b’shadowAccount’, b’top’, b’inetOrgPersonAccount’, b’inetLocalMailRecipient’, b’ldapPublicKey’]}</p>
+<p>Any thoughts would be greatly appreciated!!</p>
+<p>$ rpm -qa st2<br>
+st2-3.5.0-1.x86_64</p>
+            <p><small>1 post - 1 participant</small></p>
+            <p><a href="https://forum.stackstorm.com/t/passing-output-in-orqestra-workflow-result-result/1792">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/passing-output-in-orqestra-workflow-result-result/1792</link>
+          <pubDate>Fri, 30 Jul 2021 15:31:55 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1792</guid>
+          <source url="https://forum.stackstorm.com/t/passing-output-in-orqestra-workflow-result-result/1792.rss">Passing output in orqestra workflow - result().result?</source>
+        </item>
+        <item>
+          <title>How to create a new runner</title>
+          <dc:creator><![CDATA[User42]]></dc:creator>
+          <category>Pack Management</category>
+          <description><![CDATA[
+            <p>Hi,</p>
+<p>I want to create a new runner, Where can i find the doc to help me for that ?</p>
+<p>Thank You</p>
+            <p><small>3 posts - 2 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/how-to-create-a-new-runner/1790">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/how-to-create-a-new-runner/1790</link>
+          <pubDate>Wed, 28 Jul 2021 18:14:18 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1790</guid>
+          <source url="https://forum.stackstorm.com/t/how-to-create-a-new-runner/1790.rss">How to create a new runner</source>
+        </item>
+        <item>
+          <title>How to store a python script output to a variable using publish in workflow scripts</title>
+          <dc:creator><![CDATA[rameshar16]]></dc:creator>
+          <category>Workflows</category>
+          <description><![CDATA[
+            <p>Hi All,</p>
+<p>Please help on how to store a python script output to a variable using publish in workflow scripts</p>
+<p>Thanks,</p>
+            <p><small>4 posts - 3 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/how-to-store-a-python-script-output-to-a-variable-using-publish-in-workflow-scripts/1788">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/how-to-store-a-python-script-output-to-a-variable-using-publish-in-workflow-scripts/1788</link>
+          <pubDate>Wed, 28 Jul 2021 06:05:18 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1788</guid>
+          <source url="https://forum.stackstorm.com/t/how-to-store-a-python-script-output-to-a-variable-using-publish-in-workflow-scripts/1788.rss">How to store a python script output to a variable using publish in workflow scripts</source>
+        </item>
+        <item>
+          <title>How to use different python version (v3.7) for actionrunner? &quot;python_binary&quot; no longer working</title>
+          <dc:creator><![CDATA[wingi]]></dc:creator>
+          <category>Uncategorized</category>
+          <description><![CDATA[
+            <p>Hi,</p>
+<p>till now we used the “python_binary” config setting in the actionrunner section to use a different python binary for action packs. This works fine till Stackstorm 3.4 and is no longer working in version 3.5</p>
+<p>If I try to execute my action in version 3.5, I get this error:</p>
+<pre><code class="lang-auto">Traceback (most recent call last):
+  File "/opt/stackstorm/st2/lib/python3.6/site-packages/python_runner/python_action_wrapper.py", line 35, in &lt;module&gt;
+    import orjson
+ModuleNotFoundError: No module named 'orjson'
+</code></pre>
+            <p><small>1 post - 1 participant</small></p>
+            <p><a href="https://forum.stackstorm.com/t/how-to-use-different-python-version-v3-7-for-actionrunner-python-binary-no-longer-working/1786">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/how-to-use-different-python-version-v3-7-for-actionrunner-python-binary-no-longer-working/1786</link>
+          <pubDate>Tue, 27 Jul 2021 08:35:23 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1786</guid>
+          <source url="https://forum.stackstorm.com/t/how-to-use-different-python-version-v3-7-for-actionrunner-python-binary-no-longer-working/1786.rss">How to use different python version (v3.7) for actionrunner? &quot;python_binary&quot; no longer working</source>
+        </item>
+        <item>
+          <title>Downgrading stackstom from 3.5 to 3.4 facing issue</title>
+          <dc:creator><![CDATA[nithinsubbaraj]]></dc:creator>
+          <category>Pack Management</category>
+          <description><![CDATA[
+            <p>Hi Team,</p>
+<p>We have installed latest version of stackstorm pack st2 3.5.0, on Python 3.6.8 on our linux 8 server ,when we try to downgrade the server to 3.4.1 ,we are facing the below error.</p>
+<p>Earlier:<br>
+st2 --version<br>
+st2 3.5.0, on Python 3.6.8</p>
+<p>Now:<br>
+st2 --version<br>
+st2 3.4.1, on Python 3.6.8</p>
+<p>The error we are facing is<br>
+st2 pack list<br>
+ERROR: (‘Connection aborted.’, ConnectionResetError(104, ‘Connection reset by peer’))<br>
+st2 pack install jira<br>
+ERROR: (‘Connection aborted.’, ConnectionResetError(104, ‘Connection reset by peer’))</p>
+<p>Logs:<br>
+Traceback (most recent call last):<br>
+File “/opt/stackstorm/st2/lib/python3.6/site-packages/st2common/metrics/base.py”, line 228, in metrics_initialize<br>
+METRICS = get_plugin_instance(PLUGIN_NAMESPACE, cfg.CONF.metrics.driver)<br>
+File “/opt/stackstorm/st2/lib/python3.6/site-packages/st2common/util/loader.py”, line 223, in get_plugin_instance<br>
+namespace=namespace, name=name, invoke_on_load=invoke_on_load<br>
+File “/opt/stackstorm/st2/lib/python3.6/site-packages/stevedore/driver.py”, line 61, in <strong>init</strong><br>
+warn_on_missing_entrypoint=warn_on_missing_entrypoint<br>
+File “/opt/stackstorm/st2/lib/python3.6/site-packages/stevedore/named.py”, line 89, in <strong>init</strong><br>
+self._init_plugins(extensions)<br>
+File “/opt/stackstorm/st2/lib/python3.6/site-packages/stevedore/driver.py”, line 113, in _init_plugins<br>
+(self.namespace, name))<br>
+stevedore.exception.NoMatches: No ‘st2common.metrics.driver’ driver found, looking for ‘noop’</p>
+<p>During handling of the above exception, another exception occurred:</p>
+            <p><small>1 post - 1 participant</small></p>
+            <p><a href="https://forum.stackstorm.com/t/downgrading-stackstom-from-3-5-to-3-4-facing-issue/1783">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/downgrading-stackstom-from-3-5-to-3-4-facing-issue/1783</link>
+          <pubDate>Mon, 19 Jul 2021 11:23:21 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1783</guid>
+          <source url="https://forum.stackstorm.com/t/downgrading-stackstom-from-3-5-to-3-4-facing-issue/1783.rss">Downgrading stackstom from 3.5 to 3.4 facing issue</source>
+        </item>
+        <item>
+          <title>Understanding how delay works</title>
+          <dc:creator><![CDATA[bretai2k]]></dc:creator>
+          <category>Workflows</category>
+          <description><![CDATA[
+            <p>Can anyone explain how delay works within a workflow?  Does the position of the delay in a specific action matter, or does it always process specific items in a specific order (like cmd always runs first, then delay, etc).</p>
+<p>As a bit more information on what I’m attempting to accomplish, I’m writing a workflow which will remotely reboot a system, pause for some period of time (30 - 60 seconds), then a subsequent action will grab the last reboot time from the targeted system and if it is within an acceptable amount of time, it will finish out the workflow as successful, otherwise it will fail out of the workflow.</p>
+<p>TIA</p>
+            <p><small>2 posts - 2 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/understanding-how-delay-works/1782">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/understanding-how-delay-works/1782</link>
+          <pubDate>Fri, 16 Jul 2021 16:43:16 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1782</guid>
+          <source url="https://forum.stackstorm.com/t/understanding-how-delay-works/1782.rss">Understanding how delay works</source>
+        </item>
+        <item>
+          <title>In k8s deployment, chatops.post_result and chatops.post_message delayed or stuck in running state</title>
+          <dc:creator><![CDATA[mohan28]]></dc:creator>
+          <category>Uncategorized</category>
+          <description><![CDATA[
+            <p>I have deployed st2 in k8s cluster using stackstorm provided helm chart for high availability. Slack is our hubot adapter.Facing the following issues in chatops</p>
+<ol>
+<li>Case : Running chatops.post_message - it’s execution shows succeeded but didn’t get the message in slack channel. This is not happening always though. Randomly occurs.</li>
+<li>Case: chatops.post_result triggered by chatops.notify - this stuck in running state for more than 5 hours then posting the result to slack. Sometimes it stuck in running state forever.</li>
+</ol>
+<p>Please let me know if you guys faced this before and how you resolved it or suggest a way to overcome this issues.</p>
+            <p><small>4 posts - 2 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/in-k8s-deployment-chatops-post-result-and-chatops-post-message-delayed-or-stuck-in-running-state/1780">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/in-k8s-deployment-chatops-post-result-and-chatops-post-message-delayed-or-stuck-in-running-state/1780</link>
+          <pubDate>Wed, 14 Jul 2021 04:41:57 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1780</guid>
+          <source url="https://forum.stackstorm.com/t/in-k8s-deployment-chatops-post-result-and-chatops-post-message-delayed-or-stuck-in-running-state/1780.rss">In k8s deployment, chatops.post_result and chatops.post_message delayed or stuck in running state</source>
+        </item>
+        <item>
+          <title>How to compare datetime in Rule</title>
+          <dc:creator><![CDATA[Bryan]]></dc:creator>
+          <category>Rules</category>
+          <description><![CDATA[
+            <p>Hello,<br>
+I want to compare trigger’s datetime with current time in rules.<br>
+For expample, some action will only execute on work time, which means trigger time should between 9:00 and 18:00, Monday - Friday.<br>
+I can’t find any jinja example <code>timediff_lt</code> or <code>timediff_gt</code> in example pack.<br>
+Any suggestions?</p>
+            <p><small>1 post - 1 participant</small></p>
+            <p><a href="https://forum.stackstorm.com/t/how-to-compare-datetime-in-rule/1778">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/how-to-compare-datetime-in-rule/1778</link>
+          <pubDate>Tue, 13 Jul 2021 12:39:08 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1778</guid>
+          <source url="https://forum.stackstorm.com/t/how-to-compare-datetime-in-rule/1778.rss">How to compare datetime in Rule</source>
+        </item>
+        <item>
+          <title>Ansible Pack Installation fails</title>
+          <dc:creator><![CDATA[Phill93]]></dc:creator>
+          <category>Pack Management</category>
+          <description><![CDATA[
+            <p>Hello,</p>
+<p>I have a strange problem. I am trying to install the Ansible Pack on a new Stackstorm instance. The process always aborts at the action “SetupVirtualEnvironmentAction”, the error message “unable to execute ‘x86_64-linux-gnu-gcc’: No such file or directory” indicates that the runner is not able to find the gcc under /usr/bin/.</p>
+<p>The installation for pykerberos runs with the root user and the system Python without problems.</p>
+<p>Greetings</p>
+<p>Phill93</p>
+            <p><small>2 posts - 2 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/ansible-pack-installation-fails/1777">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/ansible-pack-installation-fails/1777</link>
+          <pubDate>Mon, 12 Jul 2021 13:52:34 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1777</guid>
+          <source url="https://forum.stackstorm.com/t/ansible-pack-installation-fails/1777.rss">Ansible Pack Installation fails</source>
+        </item>
+        <item>
+          <title>Stackstorm HA: Multiple PollingSensor Cause Duplicated Actions</title>
+          <dc:creator><![CDATA[Bryan]]></dc:creator>
+          <category>Rules</category>
+          <description><![CDATA[
+            <p>Hello,<br>
+Did anyone try to deploy Stackstorm HA on Virtual Linux directly? I try to search in this forum, but it look like few people have the same problem as me.<br>
+Anyway, I have Stackstorm HA deploy on 3 Oracle Linux 8. But I’m facing many Duplicated <code>Actions</code> issue:</p>
+<ul>
+<li>First, I’m facing duplicated st2timersengine.</li>
+</ul>
+<p>According to <a href="https://docs.stackstorm.com/reference/ha.html" class="inline-onebox" rel="noopener nofollow ugc">High Availability Deployment — StackStorm 3.5.0 documentation</a>,</p>
+<pre><code class="lang-auto">[timer]
+enable = False
+</code></pre>
+<p>I set 2 false and 1 true on 3 vms, but it don’t work for me, very strange.<br>
+Anyway I solve this issue by using keeplived, As mentioned as <code>external monitoring</code></p>
+<ul>
+<li>Now, I find that multiple PollingSensor also cause duplicated actions</li>
+</ul>
+<p>There are 3 same rule/sensor of cause(each Stackstorm has one st2rulesengine/st2sensorcontainer), because they load the same pack.</p>
+<p>Obviously, 3 sensor polling the same system, get 3 same result and generate 3 same payloads, and then trigger 3 same actions.</p>
+<p>But I can’t kill 2 of them like st2timersengine, becasue external webhook send requset to upper Nginx, and nginx transfer the request to one of 3 stackstorm. They will cause webhook out of work.</p>
+<p>What should I do?<br>
+Otherwise, I have to use timer action instead of PollingSensor.</p>
+            <p><small>4 posts - 2 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/stackstorm-ha-multiple-pollingsensor-cause-duplicated-actions/1773">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/stackstorm-ha-multiple-pollingsensor-cause-duplicated-actions/1773</link>
+          <pubDate>Mon, 12 Jul 2021 10:56:01 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1773</guid>
+          <source url="https://forum.stackstorm.com/t/stackstorm-ha-multiple-pollingsensor-cause-duplicated-actions/1773.rss">Stackstorm HA: Multiple PollingSensor Cause Duplicated Actions</source>
+        </item>
+  </channel>
+</rss>

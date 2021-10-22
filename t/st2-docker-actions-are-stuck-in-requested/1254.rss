@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>St2-docker: Actions are stuck in &quot;Requested&quot;</title>
+    <link>https://forum.stackstorm.com/t/st2-docker-actions-are-stuck-in-requested/1254</link>
+    <description>Hi,
+
+I have setup a docker environment with the `stackstorm/stackstorm:2.10.4` image. For a while it was able to execute actions and I was able to see results, but for some unknown reason they now always stuck in &quot;Requested&quot;. Once in a while they actually execute fully, but not often. No amount of `docker-compose down -v` and restarting the container helps.
+
+How do I debug this? Tracing doesn&#39;t provide much information
+
+```
+$ st2 execution get     5ecfc9c6266dd002d9050e20
+id: 5ecfc9c6266dd002d9050e20
+status: requested
+parameters: 
+  log_level: DEBUG
+  mac_ip_mapping:
+    00:0a:95:9d:68:16:
+      ip: 193.239.116.126
+result: None
+```
+
+Rabbitmq queues are empty and the logs aren&#39;t of much help, but maybe I&#39;m grepping for the wrong thing. `tail -F -n 0 /var/log/st2/*.log | grep ERROR` keeps including the parameters sent to the api and makes the logs unreadable.
+How do I get all the logs related to one execution?</description>
+    
+    <lastBuildDate>Tue, 02 Jun 2020 12:31:03 +0000</lastBuildDate>
+    <category>Uncategorized</category>
+    <atom:link href="https://forum.stackstorm.com/t/st2-docker-actions-are-stuck-in-requested/1254.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>St2-docker: Actions are stuck in &quot;Requested&quot;</title>
+        <dc:creator><![CDATA[mike-vilante]]></dc:creator>
+        <description><![CDATA[
+            <p>That was indeed the problem, thank you! <img src="https://emoji.discourse-cdn.com/apple/+1.png?v=9" title=":+1:" class="emoji" alt=":+1:"></p>
+<p>I was running 2 stackstorm containers pointing to the same <code>rabbitmq</code> container with the same user. After creating a <code>rabbitmq</code> container per stackstorm instance (didn’t want to mess waste time finding out how to create users on <code>rabbitmq</code>) it was OK.</p>
+<p>It would’ve been nice to have some kind of logs in stackstorm.</p>
+<p>Have a good day <img src="https://emoji.discourse-cdn.com/apple/slight_smile.png?v=9" title=":slight_smile:" class="emoji" alt=":slight_smile:"></p>
+          <p><a href="https://forum.stackstorm.com/t/st2-docker-actions-are-stuck-in-requested/1254/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/st2-docker-actions-are-stuck-in-requested/1254/3</link>
+        <pubDate>Tue, 02 Jun 2020 12:31:03 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1254-3</guid>
+        <source url="https://forum.stackstorm.com/t/st2-docker-actions-are-stuck-in-requested/1254.rss">St2-docker: Actions are stuck in &quot;Requested&quot;</source>
+      </item>
+      <item>
+        <title>St2-docker: Actions are stuck in &quot;Requested&quot;</title>
+        <dc:creator><![CDATA[denis-rodionov]]></dc:creator>
+        <description><![CDATA[
+            <p>Looks like a Rabbitmq Problem for me. Restarting it helps in our case. We usually check it by RabbitMQ webui. Any other receipts guys?</p>
+          <p><a href="https://forum.stackstorm.com/t/st2-docker-actions-are-stuck-in-requested/1254/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/st2-docker-actions-are-stuck-in-requested/1254/2</link>
+        <pubDate>Sat, 30 May 2020 19:55:02 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1254-2</guid>
+        <source url="https://forum.stackstorm.com/t/st2-docker-actions-are-stuck-in-requested/1254.rss">St2-docker: Actions are stuck in &quot;Requested&quot;</source>
+      </item>
+      <item>
+        <title>St2-docker: Actions are stuck in &quot;Requested&quot;</title>
+        <dc:creator><![CDATA[mike-vilante]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi,</p>
+<p>I have setup a docker environment with the <code>stackstorm/stackstorm:2.10.4</code> image. For a while it was able to execute actions and I was able to see results, but for some unknown reason they now always stuck in “Requested”. Once in a while they actually execute fully, but not often. No amount of <code>docker-compose down -v</code> and restarting the container helps.</p>
+<p>How do I debug this? Tracing doesn’t provide much information</p>
+<pre><code class="lang-auto">$ st2 execution get     5ecfc9c6266dd002d9050e20
+id: 5ecfc9c6266dd002d9050e20
+status: requested
+parameters: 
+  log_level: DEBUG
+  mac_ip_mapping:
+    00:0a:95:9d:68:16:
+      ip: 193.239.116.126
+result: None
+</code></pre>
+<p>Rabbitmq queues are empty and the logs aren’t of much help, but maybe I’m grepping for the wrong thing. <code>tail -F -n 0 /var/log/st2/*.log | grep ERROR</code> keeps including the parameters sent to the api and makes the logs unreadable.<br>
+How do I get all the logs related to one execution?</p>
+          <p><a href="https://forum.stackstorm.com/t/st2-docker-actions-are-stuck-in-requested/1254/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/st2-docker-actions-are-stuck-in-requested/1254/1</link>
+        <pubDate>Fri, 29 May 2020 07:24:41 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1254-1</guid>
+        <source url="https://forum.stackstorm.com/t/st2-docker-actions-are-stuck-in-requested/1254.rss">St2-docker: Actions are stuck in &quot;Requested&quot;</source>
+      </item>
+  </channel>
+</rss>

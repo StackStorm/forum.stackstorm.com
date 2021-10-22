@@ -1,0 +1,936 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:discourse="http://www.discourse.org/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Workflows - StackStorm Support (ARCHIVED)</title>
+    <link>https://forum.stackstorm.com/c/workflow-related-issues/15</link>
+    <description>Topics in the &#39;Workflows&#39; category </description>
+    
+      <lastBuildDate>Fri, 27 Aug 2021 05:56:19 +0000</lastBuildDate>
+      <atom:link href="https://forum.stackstorm.com/c/workflow-related-issues/15.rss" rel="self" type="application/rss+xml" />
+        <item>
+          <title>Job schedulering</title>
+          <dc:creator><![CDATA[smeds]]></dc:creator>
+          <category>Workflows</category>
+          <description><![CDATA[
+            <p>I have a workflow that analysis data and after the process is done I would like to schedule a new workflow that should run one week from that the process is done. Any suggestion of how to do this?</p>
+            <p><small>2 posts - 1 participant</small></p>
+            <p><a href="https://forum.stackstorm.com/t/job-schedulering/1829">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/job-schedulering/1829</link>
+          <pubDate>Fri, 27 Aug 2021 05:56:19 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1829</guid>
+          <source url="https://forum.stackstorm.com/t/job-schedulering/1829.rss">Job schedulering</source>
+        </item>
+        <item>
+          <title>Access different pack configs in common pack</title>
+          <dc:creator><![CDATA[sarthak1996]]></dc:creator>
+          <category>Workflows</category>
+          <description><![CDATA[
+            <p>I am trying to build a central (common) pack which contains some common actions eg.</p>
+<ol>
+<li>Get Data from Postgres</li>
+<li>Get Data from some API call</li>
+</ol>
+<p>These are generic actions and these require <code>configs</code> for them to run. Eg. Postgres requires <code>host</code>, <code>port</code>, <code>username</code>, <code>password</code>, <code>db</code>. These <code>configs</code> are stored in different packs for different tenants. Each tenant has its own pack and each tenant will have its <code>configs</code>.</p>
+<p>I want to reuse the common actions instead of adding these everytime to each tenant. I want one common pack which will hold the common actions and based on the <code>tenant</code> context or <code>pack (tenant)</code> name it will fetch the <code>configs</code> from that pack.</p>
+<p>I have been struggling a lot to do this, unfortunately the only way I found was to duplicate these common actions across tenant packs. Is there any other way to do it?</p>
+            <p><small>3 posts - 2 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/access-different-pack-configs-in-common-pack/1824">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/access-different-pack-configs-in-common-pack/1824</link>
+          <pubDate>Tue, 24 Aug 2021 18:29:20 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1824</guid>
+          <source url="https://forum.stackstorm.com/t/access-different-pack-configs-in-common-pack/1824.rss">Access different pack configs in common pack</source>
+        </item>
+        <item>
+          <title>How to connect remote hosts via ssh keys</title>
+          <dc:creator><![CDATA[rameshar16]]></dc:creator>
+          <category>Workflows</category>
+          <description><![CDATA[
+            <p>Hi All,<br>
+I need to connect to a remote host via ssh keys.</p>
+<p>Thanks and Regards,<br>
+Ramesh</p>
+            <p><small>3 posts - 2 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/how-to-connect-remote-hosts-via-ssh-keys/1812">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/how-to-connect-remote-hosts-via-ssh-keys/1812</link>
+          <pubDate>Wed, 18 Aug 2021 17:37:26 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1812</guid>
+          <source url="https://forum.stackstorm.com/t/how-to-connect-remote-hosts-via-ssh-keys/1812.rss">How to connect remote hosts via ssh keys</source>
+        </item>
+        <item>
+          <title>How to read the array action with array output?</title>
+          <dc:creator><![CDATA[bharat19th]]></dc:creator>
+          <category>Workflows</category>
+          <description><![CDATA[
+            <p>Hi Folks,<br>
+I have just written the workflow with action and I want the output input command with output result. How can I achieve that in this case would appreciate if someone help here</p>
+<pre><code class="lang-auto">outer_task_shell_linux_esxi:
+    action: jas.command_shell_execution
+    input:
+      commands: '&lt;% ctx(command)[0] %&gt;'
+      host: '&lt;% item(host) %&gt;'
+      username: '&lt;% item(user) %&gt;'
+      password: '&lt;% item(pass) %&gt;'
+    with: host,user,pass in &lt;% zip(ctx(hosts),ctx(username),ctx(password)) %&gt;
+    next:
+      - when: &lt;% succeeded() %&gt;
+        publish:
+          - task_status: &lt;% result() %&gt;
+        do: print_task1
+      - when: &lt;% failed() %&gt;
+        publish:
+          - task_status: &lt;% result() %&gt;
+
+   print_task1:
+    action: core.echo
+    input:
+      message: &lt;% ctx().task_status %&gt; | to_json_string
+    next:
+      - when: &lt;% succeeded() %&gt;
+        publish:
+          - task_status1: &lt;% result().stdout %&gt;
+        do: print_task2
+
+   print_task2:
+    action: core.echo
+    input:
+      message: &lt;% ctx().task_status1 %&gt;
+</code></pre>
+            <p><small>1 post - 1 participant</small></p>
+            <p><a href="https://forum.stackstorm.com/t/how-to-read-the-array-action-with-array-output/1808">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/how-to-read-the-array-action-with-array-output/1808</link>
+          <pubDate>Wed, 11 Aug 2021 13:26:44 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1808</guid>
+          <source url="https://forum.stackstorm.com/t/how-to-read-the-array-action-with-array-output/1808.rss">How to read the array action with array output?</source>
+        </item>
+        <item>
+          <title>Orquesta workflows || YaqlEvaluation No functi on &quot;dict&quot; matches supplied arguments</title>
+          <dc:creator><![CDATA[arul]]></dc:creator>
+          <category>Mistral</category>
+          <description><![CDATA[
+            <p>Hi Team,<br>
+we are trying to loop the dict values in the Orquesta workflows .however we got the error.</p>
+<p>Variable name : <strong>sql_server_report</strong><br>
+output:<br>
+run:<br>
+exit_code: 0<br>
+result:<br>
+output: "{1=&gt;‘DESTD01__SQLHealthCheckResults2021-08-05.html’,2=&gt;‘GSQL01__SQLHealthCheckResults2019-06-24T06.00.01.8333200-0600.html’}<br>
+"<br>
+<strong>Error :</strong><br>
+result:<br>
+errors:</p>
+<ul>
+<li>message: ‘YaqlEvaluationException: Unable to evaluate expression ‘’&lt;% dict(ctx().sql_server_report).values()  %&gt;’’. NoMatchingFunctionException: No functi<br>
+on “dict” matches supplied arguments’</li>
+</ul>
+<p>workflow design :</p>
+<p>next:<br>
+- when: “{{ succeeded() }}”<br>
+publish:<br>
+- <strong>sql_server_report</strong>: “{{ result().output.run.result.output | to_json_string }}”<br>
+- report_file_check: true<br>
+- run: “{{ result().output.run }}”<br>
+do:<br>
+- report_file_content<br>
+- when: “{{ failed() }}”<br>
+publish:<br>
+- error_message: “{{ result().output.run.result.details.result_set[0].value._error.msg + ‘\n’ }}”<br>
+- error_output: “{{ result().output.run.result.details.result_set[0].value._output if ‘_output’ in result().output.run.result.details.result_set[0].value else ‘’ }}”<br>
+- run: “{{ result().output.run.result.details.result_set[0].value._error.msg }}”<br>
+- run_error: true<br>
+- report_file_check: false<br>
+do:<br>
+- fail<br>
+report_file_content:<br>
+<strong>with: &lt;% dict(ctx().sql_server_report).values()  %&gt;</strong><br>
+action: core.echo message=&lt;% item() %&gt;<br>
+next:<br>
+- when: “{{ succeeded() }}”<br>
+do:<br>
+- noop<br>
+- when: “{{ failed() }}”<br>
+do:<br>
+- noop</p>
+<p>while execute the command  with: &lt;% dict(ctx().sql_server_report).values()  %&gt; got the below error.</p>
+<p>result:<br>
+<strong>errors:</strong></p>
+<ul>
+<li>
+<strong>message: 'YaqlEvaluationException: Unable to evaluate expression ‘’&lt;%</strong> <strong>dict(ctx().sql_server_report).values()  %&gt;’’. NoMatchingFunctionException: No functi</strong><br>
+<strong>on “dict” matches supplied arguments’</strong>
+</li>
+</ul>
+            <p><small>7 posts - 2 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/orquesta-workflows-yaqlevaluation-no-functi-on-dict-matches-supplied-arguments/1802">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/orquesta-workflows-yaqlevaluation-no-functi-on-dict-matches-supplied-arguments/1802</link>
+          <pubDate>Fri, 06 Aug 2021 14:00:34 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1802</guid>
+          <source url="https://forum.stackstorm.com/t/orquesta-workflows-yaqlevaluation-no-functi-on-dict-matches-supplied-arguments/1802.rss">Orquesta workflows || YaqlEvaluation No functi on &quot;dict&quot; matches supplied arguments</source>
+        </item>
+        <item>
+          <title>Question regarding reiteration over napalm.cli workflow action</title>
+          <dc:creator><![CDATA[knight]]></dc:creator>
+          <category>Workflows</category>
+          <description><![CDATA[
+            <p>I’ve been digging around the forums and docs for a bit but haven’t come up with a good solution for this yet aside from replacing an action.</p>
+<p>I’ve got the following workflow currently able to request very basic approval, and then push commands to a single host via the napalm.cli pack action. However, when using a different netbox inventory output, it’s not reiterating over the multiple names pushed in output, but doing the first and stopping.</p>
+<p>I thought it’d be a quick “with items” fix to get the task to repeat over resulting hosts however the napalm.cli action does not support “with items” and causes an error stoppage. I can’t think of a decent method around this aside from replacing the napalm.cli task with an ansible playbook doing the legwork in it’s place.</p>
+<p>If there’s another way to do this that I’m looking over - any push to a doc/kb article or assistance would be great!</p>
+<p>Here’s my workflow being used, debug output of the “json” output parameter is simply a list of hostnames in string format for the action input.</p>
+<pre><code class="lang-auto">#version: 1.0
+
+input:
+  - site
+  - tag
+  - commands
+  
+tasks:
+  # [116, 137]
+  get_approval:
+    action: core.ask
+    input:
+      schema:
+        type: object
+        properties:
+          approved:
+            type: boolean
+            description: "Do you have Approval?"
+            required: True
+          ticket_id:
+            type: string
+            description: "Ticket (CR/IR) ID:"
+            required: True
+      ttl: 90
+    next:
+      - when: &lt;% task(get_approval).result.response.approved = true %&gt;
+        publish:
+          - approver_department_id: &lt;% task(get_approval).result.response.ticket_id %&gt;
+        do: get_inventory
+      - when: &lt;% task(get_approval).result.response.approved = false %&gt;
+        do: fail
+  # [116, 314]
+  get_inventory:
+    action: netbox.get.dcim.devices
+    next:
+      - publish:
+          - stdout: &lt;% result().exit_code %&gt;
+          - stderr: &lt;% result().stderr %&gt;
+          - json: &lt;% result().result.raw.results.name %&gt;
+        do:
+          - push_commands
+    input:
+      log_level: DEBUG
+      site: &lt;% ctx().site %&gt;
+      tag: &lt;% ctx().tag %&gt;
+      save_in_key_store: false
+  # [116, 493]
+  push_commands:
+    action: napalm.cli
+    input:
+      log_level: DEBUG
+      commands:
+        - &lt;% ctx().commands %&gt;
+      hostname: &lt;% ctx().json[0] %&gt;
+      driver: junos
+    next:
+      - do:
+          - notify
+  # [116, 629]
+  notify:
+    action: ansible.playbook
+    input:
+      cwd: {{ Redacted }}/notify/
+      playbook: main.yml
+      extra_vars:
+        - '@extras/napalm_nbx_success.json'
+ # remove success.json and get actual input next (low priority)
+</code></pre>
+            <p><small>3 posts - 2 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/question-regarding-reiteration-over-napalm-cli-workflow-action/1800">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/question-regarding-reiteration-over-napalm-cli-workflow-action/1800</link>
+          <pubDate>Fri, 06 Aug 2021 04:52:33 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1800</guid>
+          <source url="https://forum.stackstorm.com/t/question-regarding-reiteration-over-napalm-cli-workflow-action/1800.rss">Question regarding reiteration over napalm.cli workflow action</source>
+        </item>
+        <item>
+          <title>Orquesta workflow API documentor to Swagger OAS definition?</title>
+          <dc:creator><![CDATA[willowhawk]]></dc:creator>
+          <category>Workflows</category>
+          <description><![CDATA[
+            <p>I’m looking to created standardized OAS v2 or v3 YAML to give to consumers of my workflows, such that they can import them into Insomnia, Postman, or other API client tools, or even just visualize in SwaggerHub.</p>
+<p>I know I can get a JSON blob of a particular action by going through the API endpoint using an api key or token, but that isn’t quite sufficient for what I’m looking for.</p>
+<p>I see that there is an OpenAPI generator for the main ST2 api created during the build process.</p>
+<p>Has anyone successfully adapted it to do “documentation-by-code” or something similar that I can feed it my Orquesta actions and it will make a nice little OAS YAML file?</p>
+            <p><small>3 posts - 2 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/orquesta-workflow-api-documentor-to-swagger-oas-definition/1796">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/orquesta-workflow-api-documentor-to-swagger-oas-definition/1796</link>
+          <pubDate>Tue, 03 Aug 2021 19:38:34 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1796</guid>
+          <source url="https://forum.stackstorm.com/t/orquesta-workflow-api-documentor-to-swagger-oas-definition/1796.rss">Orquesta workflow API documentor to Swagger OAS definition?</source>
+        </item>
+        <item>
+          <title>Passing output in orqestra workflow - result().result?</title>
+          <dc:creator><![CDATA[guymatz]]></dc:creator>
+          <category>Workflows</category>
+          <description><![CDATA[
+            <p>Hi!  I have this yaql that used to work:<br>
+publish:<br>
+- email: &lt;% result().result.mail[0] %&gt;</p>
+<p>I’m getting:<br>
+message: ‘YaqlEvaluationException: Unable to evaluate expression ‘’&lt;% result().result.mail[0] %&gt;’’. NoFunctionRegisteredException: Unknown function “<span class="hashtag">#property</span>#mail”’</p>
+<p>result looks like:<br>
+result: {‘cn’: [b’Redacted Redacted’], ‘gidNumber’: [b’150’], ‘givenName’: [b’Redacted’], ‘sn’: [b’Redacted’], ‘uid’: [b’red’], ‘uidNumber’: [b’10222’], ‘homeDirectory’: [b’/home/red’], ‘l’: [b’NYC’], ‘loginShell’: [b’/bin/bash’], ‘mail’: [b’aredacted.red@poopy.com’], ‘objectClass’: [b’person’, b’organizationalPerson’, b’inetOrgPerson’, b’posixAccount’, b’shadowAccount’, b’top’, b’inetOrgPersonAccount’, b’inetLocalMailRecipient’, b’ldapPublicKey’]}</p>
+<p>Any thoughts would be greatly appreciated!!</p>
+<p>$ rpm -qa st2<br>
+st2-3.5.0-1.x86_64</p>
+            <p><small>1 post - 1 participant</small></p>
+            <p><a href="https://forum.stackstorm.com/t/passing-output-in-orqestra-workflow-result-result/1792">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/passing-output-in-orqestra-workflow-result-result/1792</link>
+          <pubDate>Fri, 30 Jul 2021 15:31:55 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1792</guid>
+          <source url="https://forum.stackstorm.com/t/passing-output-in-orqestra-workflow-result-result/1792.rss">Passing output in orqestra workflow - result().result?</source>
+        </item>
+        <item>
+          <title>How to store a python script output to a variable using publish in workflow scripts</title>
+          <dc:creator><![CDATA[rameshar16]]></dc:creator>
+          <category>Workflows</category>
+          <description><![CDATA[
+            <p>Hi All,</p>
+<p>Please help on how to store a python script output to a variable using publish in workflow scripts</p>
+<p>Thanks,</p>
+            <p><small>4 posts - 3 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/how-to-store-a-python-script-output-to-a-variable-using-publish-in-workflow-scripts/1788">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/how-to-store-a-python-script-output-to-a-variable-using-publish-in-workflow-scripts/1788</link>
+          <pubDate>Wed, 28 Jul 2021 06:05:18 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1788</guid>
+          <source url="https://forum.stackstorm.com/t/how-to-store-a-python-script-output-to-a-variable-using-publish-in-workflow-scripts/1788.rss">How to store a python script output to a variable using publish in workflow scripts</source>
+        </item>
+        <item>
+          <title>Understanding how delay works</title>
+          <dc:creator><![CDATA[bretai2k]]></dc:creator>
+          <category>Workflows</category>
+          <description><![CDATA[
+            <p>Can anyone explain how delay works within a workflow?  Does the position of the delay in a specific action matter, or does it always process specific items in a specific order (like cmd always runs first, then delay, etc).</p>
+<p>As a bit more information on what I’m attempting to accomplish, I’m writing a workflow which will remotely reboot a system, pause for some period of time (30 - 60 seconds), then a subsequent action will grab the last reboot time from the targeted system and if it is within an acceptable amount of time, it will finish out the workflow as successful, otherwise it will fail out of the workflow.</p>
+<p>TIA</p>
+            <p><small>2 posts - 2 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/understanding-how-delay-works/1782">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/understanding-how-delay-works/1782</link>
+          <pubDate>Fri, 16 Jul 2021 16:43:16 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1782</guid>
+          <source url="https://forum.stackstorm.com/t/understanding-how-delay-works/1782.rss">Understanding how delay works</source>
+        </item>
+        <item>
+          <title>Is there an easy way to trigger a timed task that execuetes once?</title>
+          <dc:creator><![CDATA[Bryan]]></dc:creator>
+          <category>Workflows</category>
+          <description><![CDATA[
+            <p>For example,<br>
+Stackstorm received a request for increase cpu/mem,<br>
+However, such events are only allowed at night.<br>
+Can stackstorm itself achieve the goal without relying on external applications?</p>
+            <p><small>5 posts - 2 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/is-there-an-easy-way-to-trigger-a-timed-task-that-execuetes-once/1763">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/is-there-an-easy-way-to-trigger-a-timed-task-that-execuetes-once/1763</link>
+          <pubDate>Mon, 05 Jul 2021 03:54:41 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1763</guid>
+          <source url="https://forum.stackstorm.com/t/is-there-an-easy-way-to-trigger-a-timed-task-that-execuetes-once/1763.rss">Is there an easy way to trigger a timed task that execuetes once?</source>
+        </item>
+        <item>
+          <title>Orquesta Workflow Join failed</title>
+          <dc:creator><![CDATA[Bryan]]></dc:creator>
+          <category>Workflows</category>
+          <description><![CDATA[
+            <p>Hello all,</p>
+<p>I try to write multi branches Qrquesta,</p>
+<p>For example</p>
+<pre><code class="lang-auto">task1:
+  action: pack1.tasks1
+  next:
+    - when: &lt;% result().result.result1 &gt; 0  %&gt;
+      do: task2
+    - when: &lt;% result().result.result1 = 0 %&gt;
+      do: task3
+task2:
+  action: pack1.task2
+  next:
+    - when: &lt;% succeeded() %&gt;
+      do: task4
+task3:
+  action: pack1.task3
+  next:
+    - when: &lt;% succeeded() %&gt;
+      do: task4
+task4:
+  action: core.noop
+  join: all
+</code></pre>
+<p>There will be a exception when task2 or task3 is not running due to not satisfy the condition.</p>
+<pre><code class="lang-auto">UnreachableJoinError: The join task|route \"task4\" is partially satisfied but unreachable
+</code></pre>
+<p>Is there another way to meet the logic?<br>
+I have to write as following order:</p>
+<pre><code class="lang-auto">task1
+task4
+task2 when task1 result meet condition
+task3 when task1 result meet condition ```</code></pre>
+            <p><small>4 posts - 2 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/orquesta-workflow-join-failed/1754">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/orquesta-workflow-join-failed/1754</link>
+          <pubDate>Tue, 29 Jun 2021 12:07:29 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1754</guid>
+          <source url="https://forum.stackstorm.com/t/orquesta-workflow-join-failed/1754.rss">Orquesta Workflow Join failed</source>
+        </item>
+        <item>
+          <title>Workflow variable comparison</title>
+          <dc:creator><![CDATA[bretai2k]]></dc:creator>
+          <category>Workflows</category>
+          <description><![CDATA[
+            <p>I am new to Stackstorm, Orquesta, YAML, pretty much all of it.  I have been tasked with creating a workflow which will check the available drive space of remote machines, clean up targetted files, and exiting.  I’ve figured out the part of getting the drive space availability, but am now trying to come up with an action (using core.noop) that will determine the result of the previous action (getting the drive space) and compare it to a predefined amount.  In the action where I gather the value, I am publishing the result to a variable called “availablediskspace”.  By looking at other examples I’ve found out in the ether, I thought maybe the following would work:</p>
+<p>action: core.noop<br>
+next:</p>
+<ul>
+<li>when: &lt;% availablediskspace &lt;= 15 %&gt;<br>
+do: nextaction</li>
+</ul>
+<p>The workflow fails and the output I get is:</p>
+<p>“YaqlEvaluationException: Unable to evaluate expression ‘&lt;% availablediskspace &lt;= 15 %&gt;’. NoMatchingFunctionException: No function “#operator_&lt;=” matches supplied arguments”,</p>
+<p>I’m not sure if the issue is that ‘availablediskspace’ isn’t seen as an integer (which brings up another question as to how I cast that as an integer for this purpose), or if you really can’t do things like this.  Any help would be greatly appreciated.</p>
+<p>TIA</p>
+            <p><small>11 posts - 2 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/workflow-variable-comparison/1741">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/workflow-variable-comparison/1741</link>
+          <pubDate>Sun, 20 Jun 2021 03:43:52 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1741</guid>
+          <source url="https://forum.stackstorm.com/t/workflow-variable-comparison/1741.rss">Workflow variable comparison</source>
+        </item>
+        <item>
+          <title>Update variable values between with loop iteration</title>
+          <dc:creator><![CDATA[bhavesh2177]]></dc:creator>
+          <category>Workflows</category>
+          <description><![CDATA[
+            <p>Expectation:<br>
+The newValue should be added to the baseValue with each iteration, so here i am expecting final value as 4.</p>
+<p>1st Iteration:<br>
+baseValue 1 + newValue 1 = 2<br>
+2nd Iteration:<br>
+(output of 1st iteration) 2 + newValue 2 = 4<br>
+Final output:<br>
+(output of 2nd iteration) 4</p>
+<p>Below is the example code,<br>
+do_sum:<br>
+action: mypack.myaction<br>
+input:<br>
+baseValue: 1<br>
+newValue: ‘{{ item() }}’<br>
+with: &lt;% range(2) %&gt;</p>
+            <p><small>1 post - 1 participant</small></p>
+            <p><a href="https://forum.stackstorm.com/t/update-variable-values-between-with-loop-iteration/1737">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/update-variable-values-between-with-loop-iteration/1737</link>
+          <pubDate>Thu, 17 Jun 2021 12:12:08 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1737</guid>
+          <source url="https://forum.stackstorm.com/t/update-variable-values-between-with-loop-iteration/1737.rss">Update variable values between with loop iteration</source>
+        </item>
+        <item>
+          <title>Creating file to share between actions?</title>
+          <dc:creator><![CDATA[VladoPortos]]></dc:creator>
+          <category>Workflows</category>
+          <description><![CDATA[
+            <p>Hello all,<br>
+I’m trying to figure out a solution for this issue:</p>
+<p>I have ansible playbook that require specially crafted inventory file. I’m not finding a way natively in stackstorm creating it before the playbook is run so I thought I make another action that call python script locally with parameters and base on that it will pop out inventory file.</p>
+<p>In workflow than the script is run first, register stdout and this is used as inventory file for ansible playbook. At least that was the idea… but I can’t create the file in the same location as the script is ( in its packs/action folder ) because I get permissions denied ( does not matter if I set the folder to 777 )… if I set the destination of the file to /tmp/something it gets created but disappear ( I think this is because stackstorm spawn temporary image to run the function in ?, I’m running the whole stackstorm in docker )</p>
+<p>So how to deal with this, I need to craft inventory file to look specific way … on google there is so little examples of using ansible with stackstorm its not even funny <img src="https://emoji.discourse-cdn.com/apple/frowning.png?v=9" title=":frowning:" class="emoji" alt=":frowning:"></p>
+<p>Any suggestions would be very appreciated.</p>
+            <p><small>2 posts - 1 participant</small></p>
+            <p><a href="https://forum.stackstorm.com/t/creating-file-to-share-between-actions/1731">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/creating-file-to-share-between-actions/1731</link>
+          <pubDate>Tue, 08 Jun 2021 16:33:01 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1731</guid>
+          <source url="https://forum.stackstorm.com/t/creating-file-to-share-between-actions/1731.rss">Creating file to share between actions?</source>
+        </item>
+        <item>
+          <title>Rules with IntervalTimer are not enforced</title>
+          <dc:creator><![CDATA[lparsy]]></dc:creator>
+          <category>Workflows</category>
+          <description><![CDATA[
+            <p>Creating a simple rule with a timer ( <code>core.st2.IntervalTimer</code> or <code>CronTimer</code>) does nothing,<br>
+It is not called. (tried with no-op action and local_command creating a test a file)</p>
+<p>Any idea of how to fix this or which logs I could investigate on this subject?</p>
+<p>rule below:</p>
+<pre><code class="lang-auto">{
+  "tags": [],
+  "uid": "rule:packs:test-timer",
+  "metadata_file": "",
+  "name": "test-timer",
+  "ref": "packs.test-timer",
+  "description": "desc",
+  "pack": "packs",
+  "type": {
+    "ref": "standard",
+    "parameters": {}
+  },
+  "trigger": {
+    "type": "core.st2.IntervalTimer",
+    "parameters": {
+      "delta": 10,
+      "unit": "seconds",
+      "timezone": "UTC"
+    },
+    "ref": "core.50338bb7-f65b-46bf-ada1-d6280f2edd37",
+    "description": "Triggers on specified intervals. e.g. every 30s, 1week etc."
+  },
+  "criteria": {},
+  "action": {
+    "ref": "core.noop",
+    "parameters": {},
+    "description": "Action that does nothing"
+  },
+  "context": {
+    "user": "username"
+  },
+  "enabled": true,
+  "id": "60b119244ac572b35efea8c1"
+}
+</code></pre>
+            <p><small>3 posts - 2 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/rules-with-intervaltimer-are-not-enforced/1720">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/rules-with-intervaltimer-are-not-enforced/1720</link>
+          <pubDate>Fri, 28 May 2021 17:32:09 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1720</guid>
+          <source url="https://forum.stackstorm.com/t/rules-with-intervaltimer-are-not-enforced/1720.rss">Rules with IntervalTimer are not enforced</source>
+        </item>
+        <item>
+          <title>How to put variable in JSON body of core.http?</title>
+          <dc:creator><![CDATA[ereT20]]></dc:creator>
+          <category>Workflows</category>
+          <description><![CDATA[
+            <p>This workflow works:<br>
+version: 1.0<br>
+tasks:</p>
+<h1>
+<a name="555-191-1" class="anchor" href="https://forum.stackstorm.com#555-191-1"></a>[555, 191]</h1>
+<p>task1:<br>
+action: core.http<br>
+input:<br>
+url: &lt;% st2kv(‘system.t20-url’) %&gt;/equipment/actions/&lt;% ctx(‘action’) %&gt;<br>
+body: “{“id”:“60ac004413e4a00082c96bbd”}”<br>
+method: POST<br>
+headers:<br>
+Content-Type: application/json</p>
+<p>input:</p>
+<ul>
+<li>equipmentId</li>
+<li>action</li>
+</ul>
+<p>But I do not want to hard code the id in the body, I want to use the ctx(“equipmentId”) variable. How can I use that variable, but still send the body as JSON? It seems like http.core requires the body to be a string.</p>
+<p>Here is what I have tried:<br>
+“{“id”:&lt;% ctx(“equipmentId”) %&gt;}”<br>
+&lt;% ‘{“id”:"’ ctx(“equipmentId”) ‘"}"’ %&gt;<br>
+‘{“id:”’&lt;% ctx(“equipmentId”)%&gt;’"}’</p>
+<p>They all fail with some parsing error.</p>
+            <p><small>2 posts - 1 participant</small></p>
+            <p><a href="https://forum.stackstorm.com/t/how-to-put-variable-in-json-body-of-core-http/1717">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/how-to-put-variable-in-json-body-of-core-http/1717</link>
+          <pubDate>Tue, 25 May 2021 17:54:29 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1717</guid>
+          <source url="https://forum.stackstorm.com/t/how-to-put-variable-in-json-body-of-core-http/1717.rss">How to put variable in JSON body of core.http?</source>
+        </item>
+        <item>
+          <title>How can I provide a list of options as a dropdown in core.ask</title>
+          <dc:creator><![CDATA[kaushikrishna]]></dc:creator>
+          <category>Workflows</category>
+          <description><![CDATA[
+            <p>Hello,<br>
+In my workflow, I’m trying to provide a list of options to the user to choose from in “core.ask” action. This list is a published variable from the previous task. How do I achieve this?</p>
+<pre><code>choose_target_state:
+    action: core.ask
+    input:
+      schema:
+        type: object
+        properties:
+          allowed_states:
+           type: string
+            description: "Target state"
+            required: true
+            enum:
+              - with: 
+                  items: &lt;% ctx(target_states) %&gt;
+</code></pre>
+<p>This does not seem to work. It causes the UI to crash/reload when the option is provided like this.</p>
+<p>in the st2debug, this is what I see -</p>
+<p>{“allowed_nss_states”: {“required”: true, “type”: “string”, “description”: “Target state”, “enum”: [{“with”: {“items”: [“InM”, “InP”, “InR”, “DR”, “D”, “InM”]}}]}}}}</p>
+            <p><small>2 posts - 1 participant</small></p>
+            <p><a href="https://forum.stackstorm.com/t/how-can-i-provide-a-list-of-options-as-a-dropdown-in-core-ask/1699">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/how-can-i-provide-a-list-of-options-as-a-dropdown-in-core-ask/1699</link>
+          <pubDate>Fri, 14 May 2021 02:06:38 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1699</guid>
+          <source url="https://forum.stackstorm.com/t/how-can-i-provide-a-list-of-options-as-a-dropdown-in-core-ask/1699.rss">How can I provide a list of options as a dropdown in core.ask</source>
+        </item>
+        <item>
+          <title>Servicenow API Returns - Read json</title>
+          <dc:creator><![CDATA[arul]]></dc:creator>
+          <category>Workflows</category>
+          <description><![CDATA[
+            <p>The  below json format i got it from Servicenow API.  i need to get “sys_id” value from the below json format in Python script.<br>
+i have tired via print(content.result[“sys_id”])  but no luck.<br>
+please help.</p>
+<p>result:<br>
+exit_code: 0<br>
+result: null<br>
+stderr: ‘’<br>
+stdout: ‘{’‘result’’: [{’‘sys_id’’: ‘‘563cb250db0c38100a340c65ca9619a0’’, ‘‘number’’: ‘‘INC10954789’’}]}</p>
+            <p><small>2 posts - 2 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/servicenow-api-returns-read-json/1688">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/servicenow-api-returns-read-json/1688</link>
+          <pubDate>Tue, 11 May 2021 17:25:30 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1688</guid>
+          <source url="https://forum.stackstorm.com/t/servicenow-api-returns-read-json/1688.rss">Servicenow API Returns - Read json</source>
+        </item>
+        <item>
+          <title>How should &quot;if elif else&quot; be implemented in Orquesta</title>
+          <dc:creator><![CDATA[Bryan]]></dc:creator>
+          <category>Workflows</category>
+          <description><![CDATA[
+            <p>Hello,<br>
+I want to write a workflow to collect alarm information and then treat them differently.<br>
+I can use <code>when</code> Conditionals to implement <code>if elif</code>:</p>
+<blockquote>
+<pre><code>-  when: &lt;% succeeded() and result().result.alert_type = 'something 1' %&gt;
+    do: something 1
+- when :&lt;% succeeded() and result().result.alert_type = 'something 2' %&gt;
+    do: something 2
+</code></pre>
+</blockquote>
+<p>But how do I implement <code>else</code> logic?</p>
+            <p><small>3 posts - 2 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/how-should-if-elif-else-be-implemented-in-orquesta/1685">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/how-should-if-elif-else-be-implemented-in-orquesta/1685</link>
+          <pubDate>Tue, 11 May 2021 07:06:41 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1685</guid>
+          <source url="https://forum.stackstorm.com/t/how-should-if-elif-else-be-implemented-in-orquesta/1685.rss">How should &quot;if elif else&quot; be implemented in Orquesta</source>
+        </item>
+        <item>
+          <title>Get result of action in Stackstorm</title>
+          <dc:creator><![CDATA[lparsy]]></dc:creator>
+          <category>Workflows</category>
+          <description><![CDATA[
+            <p>I am creating a Stackstorm workflow where I want to get the stdout result from one task and compare it in an other task.<br>
+But I can’t manage to retreive the result value of my action.<br>
+Sample code:</p>
+<p><strong>actions/workflow/do_stuff.yaml</strong></p>
+<pre><code class="lang-auto">
+version: 1.0
+description: do_stuff.
+
+input:
+  - stuff
+
+tasks:
+  do_stuff:
+    action: "core.local"
+    input:
+      cmd: "/usr/bin/do_stuff '{{ ctx('stuff') }}'"
+      timeout: 600
+
+    next:
+      - publish:
+        - stdout: "{{ result()['stdout'] }}"
+        - stderr: "{{ result()['stderr'] }}"
+      - when: &lt;% failed() %&gt;
+        do: fail
+
+
+output:
+  - stdout: "{{ ctx('stdout') }}"
+  - stderr: "{{ ctx('stderr') }}"
+
+</code></pre>
+<p><strong>actions/do_stuff.yaml</strong></p>
+<pre><code class="lang-auto">---
+name: do_stuff
+pack: stuff_pack
+description: do some stuff
+runner_type: orquesta
+entry_point: workflows/do_stuff.yaml
+enabled: true
+parameters:
+  stuff:
+    required: true
+    type: "string"
+    description: "the stuff"
+</code></pre>
+<p><strong>actions/workflow/lifecycle.yaml</strong></p>
+<pre><code class="lang-auto">version: 1.0
+
+description: The stuff workflow
+
+vars:
+  - stuff_result_stdout: null
+
+tasks:
+
+  first_task:
+    action: "stuff_pack.do_stuff"
+    input:
+      stuff: "parameter"
+
+    next:
+      - publish:
+          - stuff_result_stdout: &lt;% result().stdout %&gt;
+      - when: "{{ succeeded() }}"
+        do:
+          - "second_task"
+
+  second_task:
+      action: core.echo message="msg-{{ ctx().stuff_result_stdout }}-"
+</code></pre>
+<p>On the Stackstorm web UI, i clearly see the output of my command (<code>/usr/bin/do_stuff</code>)</p>
+<p>with this line <code>stuff_result_stdout: &lt;% result().stdout %&gt;</code><br>
+I have the error <code>YaqlEvaluationException: Unable to resolve key 'stdout' in expression '&lt;%result().stdout %&gt;' from context.</code></p>
+<p>and when I try to get only <code>result()</code>, and print it, I have <code>None</code>.</p>
+<p>How do I retreive the output of my action in <code>first_task</code>?</p>
+            <p><small>3 posts - 2 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/get-result-of-action-in-stackstorm/1681">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/get-result-of-action-in-stackstorm/1681</link>
+          <pubDate>Fri, 07 May 2021 17:47:58 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1681</guid>
+          <source url="https://forum.stackstorm.com/t/get-result-of-action-in-stackstorm/1681.rss">Get result of action in Stackstorm</source>
+        </item>
+        <item>
+          <title>How to retrieve variable in second task from first task using bash script?</title>
+          <dc:creator><![CDATA[patrik]]></dc:creator>
+          <category>Mistral</category>
+          <description><![CDATA[
+            <p>Hi there, I am new to stackstorm. I need help to resolve the problem, I am having.</p>
+<p>I am working on one workflow that will get variable information from first task and use that variable in second task using bash script. I see that is possible using python, but I would prefer to do with bash. Here is the workflow.</p>
+<pre><code class="lang-auto">input:
+  - value1
+  - value2
+  - value3
+
+output:
+  - value2: &lt;% ctx().value2 %&gt;
+  - value3: &lt;% ctx().value3 %&gt;
+
+tasks:
+  task1:
+    action: jobname.get_info value1=&lt;% ctx(value1) %&gt;
+    next:
+      - when: &lt;% succeeded() %&gt;
+        publish:
+          - stdout: &lt;% result().stdout %&gt;
+          - stderr: &lt;% result().stderr %&gt;
+          - value2: &lt;% ctx("value2") %&gt;, &lt;% result().result %&gt;
+          - value3: &lt;% ctx("value3") %&gt;, &lt;% result().result %&gt;
+      - do: task2
+      - when: &lt;% failed() %&gt;
+        publish: stderr=&lt;% result().stderr %&gt;
+        do: fail
+
+  task2:
+    action: job.name2 value2=&lt;% ctx(value2) %&gt;
+    next:
+      - when: &lt;% succeeded() %&gt;
+        publish:
+          - stdout: &lt;% result().stdout %&gt;
+          - stderr: &lt;% result().stderr %&gt;
+      - do: task3
+      - when: &lt;% failed() %&gt;
+        publish: stderr=&lt;% result().stderr %&gt;
+        do: fail
+</code></pre>
+<p>I see that the first job gets succeeded without any error, but the second job uses <code>value2</code> in the execution, so it won’t move forward in execution and errors out.</p>
+<pre><code class="lang-auto">{
+  "output": null,
+  "errors": [
+    {
+      "message": "YaqlEvaluationException: Unable to resolve key 'result' in expression '&lt;% result().result %&gt;' from context.",
+      "task_transition_id": "noop__t0",
+      "type": "error",
+      "route": 0,
+      "task_id": "task1"
+    },
+    {
+      "message": "YaqlEvaluationException: Unable to evaluate expression '&lt;% ctx(stdout) %&gt;'. VariableUndefinedError: The variable \"stdout\" is undefined.",
+      "type": "error"
+    }
+  ]
+}
+</code></pre>
+<p>Thanks in advance!! <img src="https://emoji.discourse-cdn.com/apple/slight_smile.png?v=9" title=":slight_smile:" class="emoji" alt=":slight_smile:"></p>
+            <p><small>10 posts - 3 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/how-to-retrieve-variable-in-second-task-from-first-task-using-bash-script/1675">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/how-to-retrieve-variable-in-second-task-from-first-task-using-bash-script/1675</link>
+          <pubDate>Mon, 03 May 2021 14:55:52 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1675</guid>
+          <source url="https://forum.stackstorm.com/t/how-to-retrieve-variable-in-second-task-from-first-task-using-bash-script/1675.rss">How to retrieve variable in second task from first task using bash script?</source>
+        </item>
+        <item>
+          <title>Hot to access specific value inside a json string object</title>
+          <dc:creator><![CDATA[porlock]]></dc:creator>
+          <category>Mistral</category>
+          <description><![CDATA[
+            <p>Hey,</p>
+<p>I have following ActionChain task</p>
+<pre><code>        name: "parse_payload"
+        ref: "st2_viacbs_pack.stpayload"
+        parameters:
+            payload: "{{payload}}"
+        publish:
+            output: "{{parse_payload.result|from_json_string}}"
+        on-success: "c2"
+        on-failure: "c4"
+</code></pre>
+<p>and on output i get:<br>
+“published”: {<br>
+“output”: “{‘st_enrichment’: ‘false’}”<br>
+},</p>
+<p>In next task i want to get value of st_enrichment, how i can achieve that ?  I tried<br>
+{{output.st_enrichment}}<br>
+{{output.[st_enrichment]}}<br>
+{{output.[‘st_enrichment’]}}<br>
+{{output|from_json_string[‘st_enrichment’]}}</p>
+<p>But it always return error, that object string doesn’t have st_enrichment or expected token is not valid.</p>
+            <p><small>1 post - 1 participant</small></p>
+            <p><a href="https://forum.stackstorm.com/t/hot-to-access-specific-value-inside-a-json-string-object/1665">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/hot-to-access-specific-value-inside-a-json-string-object/1665</link>
+          <pubDate>Fri, 23 Apr 2021 17:24:45 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1665</guid>
+          <source url="https://forum.stackstorm.com/t/hot-to-access-specific-value-inside-a-json-string-object/1665.rss">Hot to access specific value inside a json string object</source>
+        </item>
+        <item>
+          <title>Execution of id of task in a workflow - invalid value being returend</title>
+          <dc:creator><![CDATA[mrohith92]]></dc:creator>
+          <category>Workflows</category>
+          <description><![CDATA[
+            <p>Hi All,<br>
+I am trying to pass the execution id of an executed task to the next task. I found the details to perform this action here - <a href="https://docs.stackstorm.com/orquesta/stackstorm.html#stackstorm-context" class="inline-onebox" rel="noopener nofollow ugc">StackStorm Runtime — StackStorm 3.4.0 documentation</a>. But for some reason the execution id passed on to the next task is wrong ie it is not the same when i check in UI and the one returned is invalid (when i run $ st2 execution get &lt;execution_id&gt; )</p>
+<p>Any pointers on this topic will help. The reason i am trying to do this is so that in the case of failures i can track the failed executions later.</p>
+<p>Thanks</p>
+            <p><small>1 post - 1 participant</small></p>
+            <p><a href="https://forum.stackstorm.com/t/execution-of-id-of-task-in-a-workflow-invalid-value-being-returend/1663">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/execution-of-id-of-task-in-a-workflow-invalid-value-being-returend/1663</link>
+          <pubDate>Fri, 23 Apr 2021 14:13:39 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1663</guid>
+          <source url="https://forum.stackstorm.com/t/execution-of-id-of-task-in-a-workflow-invalid-value-being-returend/1663.rss">Execution of id of task in a workflow - invalid value being returend</source>
+        </item>
+        <item>
+          <title>Orquesta workflow stuck in running state</title>
+          <dc:creator><![CDATA[khushboobhatia01]]></dc:creator>
+          <category>Workflows</category>
+          <description><![CDATA[
+            <p>We have been seeing few random instances where workflow execution went back to running state after it had completed and is stuck in running state after that.</p>
+<p>Action execution log field:<br>
+[ { “timestamp” : ISODate(“2021-03-27T13:24:52.932Z”), “status” : “requested” }, { “timestamp” : ISODate(“2021-03-27T13:24:54.938Z”), “status” : “scheduled” }, { “timestamp” : ISODate(“2021-03-27T13:25:00.200Z”), “status” : “running” }, { “timestamp” : ISODate(“2021-03-27T13:25:40.857Z”), “status” : “succeeded” }, { “timestamp” : ISODate(“2021-03-27T13:25:43.470Z”), “status” : “running” } ]</p>
+<p>Liveaction and workflow execution object are in succeeded state. The workflow calls an action which had completed at <code>end_timestamp: Sat, 27 Mar 2021 13:25:41 UTC</code> which is after the workflow had succeeded.</p>
+<p>st2 3.2.0, on Python 3.6.9</p>
+            <p><small>1 post - 1 participant</small></p>
+            <p><a href="https://forum.stackstorm.com/t/orquesta-workflow-stuck-in-running-state/1634">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/orquesta-workflow-stuck-in-running-state/1634</link>
+          <pubDate>Sat, 03 Apr 2021 08:37:55 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1634</guid>
+          <source url="https://forum.stackstorm.com/t/orquesta-workflow-stuck-in-running-state/1634.rss">Orquesta workflow stuck in running state</source>
+        </item>
+  </channel>
+</rss>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Develop with python3 virtualenv within docker</title>
+    <link>https://forum.stackstorm.com/t/develop-with-python3-virtualenv-within-docker/856</link>
+    <description>Hi there!
+Has anyone tried developing Python Actions inside a stackstorm VM or the Docker image? 
+I&#39;m currently attaching VisualStudio Code to the running container (with the Remote Development Extension), such that I can write new Actions without imports being underlined as errors, and to get &#39;autocomplete&#39; for the Python package `st2common` contents. 
+To do that, I also configured the Pythonpath to `/opt/stackstorm/st2/bin/python`. If I see correctly, this is Python 2.7 (according to `python --version`) so I was wondering whether there&#39;s also virtualenv with Python 3 for this sort of development setup? The StackStorm version is 3.1.0, so Actions with Python 3 should be supported, if I see this correctly in the StackStorm [roadmap](https://docs.stackstorm.com/roadmap.html). 
+Feedback, questions and comments are very welcome :)</description>
+    
+    <lastBuildDate>Mon, 30 Sep 2019 11:38:53 +0000</lastBuildDate>
+    <category>Pack Management</category>
+    <atom:link href="https://forum.stackstorm.com/t/develop-with-python3-virtualenv-within-docker/856.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Develop with python3 virtualenv within docker</title>
+        <dc:creator><![CDATA[cbg]]></dc:creator>
+        <description><![CDATA[
+            <p>While the question about the ideal dependency management remains partially unresolved for me, I’ve now found the <a href="https://docs.stackstorm.com/packs.html#using-python-3-for-pack-python-virtual-environment" rel="nofollow noopener">crucial piece of documentation</a> regarding Python 3 virtual environments.</p>
+          <p><a href="https://forum.stackstorm.com/t/develop-with-python3-virtualenv-within-docker/856/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/develop-with-python3-virtualenv-within-docker/856/3</link>
+        <pubDate>Mon, 30 Sep 2019 11:38:53 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-856-3</guid>
+        <source url="https://forum.stackstorm.com/t/develop-with-python3-virtualenv-within-docker/856.rss">Develop with python3 virtualenv within docker</source>
+      </item>
+      <item>
+        <title>Develop with python3 virtualenv within docker</title>
+        <dc:creator><![CDATA[cbg]]></dc:creator>
+        <description><![CDATA[
+            <p>Alternatively, it would be very nice to have a st2common python 3 package available via PyPI – I couldn’t find this so far and would greatly appreciate any pointers. (Developing in the st2 venv makes dependency management unpleasant, at least I’ve not found a good solution so far. Also this requires to backport the existing Action code from Python 3.6 to Python 2.7; apart from convenience, it would be nice to find a solution for this since Python 2.7 will be EOL at the end of this year.)</p>
+<p>How have others dealt with this? Have you ignored the import errors while developing custom Python actions?</p>
+          <p><a href="https://forum.stackstorm.com/t/develop-with-python3-virtualenv-within-docker/856/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/develop-with-python3-virtualenv-within-docker/856/2</link>
+        <pubDate>Fri, 27 Sep 2019 11:21:12 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-856-2</guid>
+        <source url="https://forum.stackstorm.com/t/develop-with-python3-virtualenv-within-docker/856.rss">Develop with python3 virtualenv within docker</source>
+      </item>
+      <item>
+        <title>Develop with python3 virtualenv within docker</title>
+        <dc:creator><![CDATA[cbg]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi there!<br>
+Has anyone tried developing Python Actions inside a stackstorm VM or the Docker image?<br>
+I’m currently attaching VisualStudio Code to the running container (with the Remote Development Extension), such that I can write new Actions without imports being underlined as errors, and to get ‘autocomplete’ for the Python package <code>st2common</code> contents.<br>
+To do that, I also configured the Pythonpath to <code>/opt/stackstorm/st2/bin/python</code>. If I see correctly, this is Python 2.7 (according to <code>python --version</code>) so I was wondering whether there’s also virtualenv with Python 3 for this sort of development setup? The StackStorm version is 3.1.0, so Actions with Python 3 should be supported, if I see this correctly in the StackStorm <a href="https://docs.stackstorm.com/roadmap.html" rel="nofollow noopener">roadmap</a>.<br>
+Feedback, questions and comments are very welcome <img src="https://emoji.discourse-cdn.com/apple/slight_smile.png?v=9" title=":slight_smile:" class="emoji" alt=":slight_smile:"></p>
+          <p><a href="https://forum.stackstorm.com/t/develop-with-python3-virtualenv-within-docker/856/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/develop-with-python3-virtualenv-within-docker/856/1</link>
+        <pubDate>Thu, 26 Sep 2019 16:32:40 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-856-1</guid>
+        <source url="https://forum.stackstorm.com/t/develop-with-python3-virtualenv-within-docker/856.rss">Develop with python3 virtualenv within docker</source>
+      </item>
+  </channel>
+</rss>

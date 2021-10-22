@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>How to run complex Linux commands with core.local module?</title>
+    <link>https://forum.stackstorm.com/t/how-to-run-complex-linux-commands-with-core-local-module/1801</link>
+    <description>Hi All,
+Could you please let me know how to run complex Linux commands with core.local module?
+
+I am running &quot;st2 run core.local cmd=&quot;echo Hello,Ramesh | awk -F&#39;,&#39; &#39;{print $2}&#39;&quot;&quot; but it is not giving the expected output.
+$ st2 run core.local cmd=&quot;echo Hello,Ramesh | awk -F&#39;,&#39; &#39;{print $2}&#39;&quot;
+2021-08-06 10:19:12,958  WARNING - Locale unknown with encoding unknown which is not UTF-8 is used. This means that some functionality which relies on outputting unicode characters won&#39;t work. You are encouraged to use UTF-8 locale by setting LC_ALL environment variable to en_US.UTF-8 or similar.
+.
+id: 610d0ca1c220628e1bbe0216
+action.ref: core.local
+context.user: st2admin
+parameters: 
+  cmd: echo Hello,Ramesh | awk -F&#39;,&#39; &#39;{print }&#39;
+status: succeeded
+start_timestamp: Fri, 06 Aug 2021 10:19:13 UTC
+end_timestamp: Fri, 06 Aug 2021 10:19:13 UTC
+result: 
+  failed: false
+  return_code: 0
+  stderr: &#39;&#39;
+  stdout: Hello,Ramesh
+  succeeded: true
+
+
+Thanks and Regards,
+Ramesh</description>
+    
+    <lastBuildDate>Sat, 07 Aug 2021 15:29:03 +0000</lastBuildDate>
+    <category>Uncategorized</category>
+    <atom:link href="https://forum.stackstorm.com/t/how-to-run-complex-linux-commands-with-core-local-module/1801.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>How to run complex Linux commands with core.local module?</title>
+        <dc:creator><![CDATA[rameshar16]]></dc:creator>
+        <description><![CDATA[
+            <aside class="quote no-group" data-username="amanda11" data-post="3" data-topic="1801">
+<div class="title">
+<div class="quote-controls"></div>
+<img alt="" width="20" height="20" src="https://sjc6.discourse-cdn.com/standard10/user_avatar/forum.stackstorm.com/amanda11/40/325_2.png" class="avatar"> amanda11:</div>
+<blockquote>
+<p>echo Hello,Ramesh | awk -F’,’ ‘{print $2 }’</p>
+</blockquote>
+</aside>
+<p>Thank you <a class="mention" href="https://github.com/amanda11">@amanda11</a> and <a class="mention" href="https://github.com/carlos">@Carlos</a> for your quick response.</p>
+          <p><a href="https://forum.stackstorm.com/t/how-to-run-complex-linux-commands-with-core-local-module/1801/4">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-to-run-complex-linux-commands-with-core-local-module/1801/4</link>
+        <pubDate>Sat, 07 Aug 2021 15:29:03 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1801-4</guid>
+        <source url="https://forum.stackstorm.com/t/how-to-run-complex-linux-commands-with-core-local-module/1801.rss">How to run complex Linux commands with core.local module?</source>
+      </item>
+      <item>
+        <title>How to run complex Linux commands with core.local module?</title>
+        <dc:creator><![CDATA[amanda11]]></dc:creator>
+        <description><![CDATA[
+            <p>I think the problem is the $ is a special character, so they wanted to run:</p>
+<p><code>echo Hello,Ramesh | awk -F’,’ ‘{print $2}’</code></p>
+<p>but if you look stackstorm ran:</p>
+<p>echo Hello,Ramesh | awk -F’,’ ‘{print }’</p>
+<p>You’ll need to escape the $ in the command - I can never remember if you will need one \ or two \, depends on when escapging is done.<br>
+But try running command:<br>
+<code>echo Hello,Ramesh | awk -F’,’ ‘{print \$2 }’</code></p>
+          <p><a href="https://forum.stackstorm.com/t/how-to-run-complex-linux-commands-with-core-local-module/1801/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-to-run-complex-linux-commands-with-core-local-module/1801/3</link>
+        <pubDate>Fri, 06 Aug 2021 14:13:50 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1801-3</guid>
+        <source url="https://forum.stackstorm.com/t/how-to-run-complex-linux-commands-with-core-local-module/1801.rss">How to run complex Linux commands with core.local module?</source>
+      </item>
+      <item>
+        <title>How to run complex Linux commands with core.local module?</title>
+        <dc:creator><![CDATA[Carlos]]></dc:creator>
+        <description><![CDATA[
+            <p>The output looks correct to me.</p>
+<p>The command run from bash</p>
+<pre><code class="lang-auto">Hello,Ramesh
+</code></pre>
+<p>Stackstorm result<br>
+<code>stdout: Hello,Ramesh</code></p>
+          <p><a href="https://forum.stackstorm.com/t/how-to-run-complex-linux-commands-with-core-local-module/1801/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-to-run-complex-linux-commands-with-core-local-module/1801/2</link>
+        <pubDate>Fri, 06 Aug 2021 12:48:47 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1801-2</guid>
+        <source url="https://forum.stackstorm.com/t/how-to-run-complex-linux-commands-with-core-local-module/1801.rss">How to run complex Linux commands with core.local module?</source>
+      </item>
+      <item>
+        <title>How to run complex Linux commands with core.local module?</title>
+        <dc:creator><![CDATA[rameshar16]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi All,<br>
+Could you please let me know how to run complex Linux commands with core.local module?</p>
+<p>I am running “st2 run core.local cmd=“echo Hello,Ramesh | awk -F’,’ ‘{print $2}’”” but it is not giving the expected output.<br>
+$ st2 run core.local cmd=“echo Hello,Ramesh | awk -F’,’ ‘{print $2}’”<br>
+2021-08-06 10:19:12,958  WARNING - Locale unknown with encoding unknown which is not UTF-8 is used. This means that some functionality which relies on outputting unicode characters won’t work. You are encouraged to use UTF-8 locale by setting LC_ALL environment variable to en_US.UTF-8 or similar.<br>
+.<br>
+id: 610d0ca1c220628e1bbe0216<br>
+action.ref: core.local<br>
+context.user: st2admin<br>
+parameters:<br>
+cmd: echo Hello,Ramesh | awk -F’,’ ‘{print }’<br>
+status: succeeded<br>
+start_timestamp: Fri, 06 Aug 2021 10:19:13 UTC<br>
+end_timestamp: Fri, 06 Aug 2021 10:19:13 UTC<br>
+result:<br>
+failed: false<br>
+return_code: 0<br>
+stderr: ‘’<br>
+stdout: Hello,Ramesh<br>
+succeeded: true</p>
+<p>Thanks and Regards,<br>
+Ramesh</p>
+          <p><a href="https://forum.stackstorm.com/t/how-to-run-complex-linux-commands-with-core-local-module/1801/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-to-run-complex-linux-commands-with-core-local-module/1801/1</link>
+        <pubDate>Fri, 06 Aug 2021 12:31:19 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1801-1</guid>
+        <source url="https://forum.stackstorm.com/t/how-to-run-complex-linux-commands-with-core-local-module/1801.rss">How to run complex Linux commands with core.local module?</source>
+      </item>
+  </channel>
+</rss>

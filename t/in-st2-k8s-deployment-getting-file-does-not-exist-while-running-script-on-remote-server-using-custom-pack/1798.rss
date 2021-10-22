@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>In st2 k8s deployment, getting `File does not exist` - while running script on remote server using custom pack</title>
+    <link>https://forum.stackstorm.com/t/in-st2-k8s-deployment-getting-file-does-not-exist-while-running-script-on-remote-server-using-custom-pack/1798</link>
+    <description>ST2 version: 3.5
+
+
+While trying to run the script on the remote server, getting the below error:
+
+**Inside st2client:**
+$st2 run samplepack.run_remote_script
+  **error: Failed copying content to remote boxes. Local path /opt/stackstorm/packs/samplepack/actions/touch_test.sh does not exist.**
+  failed: true
+  return_code: 255
+  succeeded: false
+  traceback: &quot;  File &quot;/opt/stackstorm/st2/lib/python3.6/site-packages/remote_runner/remote_script_runner.py&quot;, line 50, in _run
+    copy_results = self._copy_artifacts(remote_action)
+  File &quot;/opt/stackstorm/st2/lib/python3.6/site-packages/remote_runner/remote_script_runner.py&quot;, line 108, in _copy_artifacts
+    mode=file_mode,
+  File &quot;/opt/stackstorm/st2/lib/python3.6/site-packages/st2common/runners/parallel_ssh.py&quot;, line 177, in put
+    raise Exception(&quot;Local path %s does not exist.&quot; % local_path)
+&quot;
+
+
+Action:
+---
+runner_type: &quot;remote-shell-script&quot;
+description: &quot;remote shell runner&quot;
+enabled: true
+name: run_remote_script
+pack: st2testclassic
+entry_point: &quot;touch_test.sh&quot;
+parameters:
+  cmd:
+    required: true
+    type: string
+    default: &quot;date&quot;
+  username: 
+    required: true
+    type: string
+    default: &quot;xxxx&quot;
+  password: 
+    required: true
+    type: string
+    default: &quot;xxxx&quot; 
+  hosts:
+    type: &quot;string&quot;
+    description: &quot;Address of the syslog server&quot;
+    required: true
+    default: &quot;xxx.com&quot;
+  experimental:
+    immutable: true
+    default: true
+
+But the script is present, as shwon below in the st2client :
+![Screenshot 2021-08-04 at 8.42.51 PM|690x109](upload://72T5xJceGHgEpzxllFbt5t8g72X.jpeg)</description>
+    
+    <lastBuildDate>Wed, 04 Aug 2021 15:24:13 +0000</lastBuildDate>
+    <category>Pack Management</category>
+    <atom:link href="https://forum.stackstorm.com/t/in-st2-k8s-deployment-getting-file-does-not-exist-while-running-script-on-remote-server-using-custom-pack/1798.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>In st2 k8s deployment, getting `File does not exist` - while running script on remote server using custom pack</title>
+        <dc:creator><![CDATA[mohan28]]></dc:creator>
+        <description><![CDATA[
+            <p>ST2 version: 3.5</p>
+<p>While trying to run the script on the remote server, getting the below error:</p>
+<p><strong>Inside st2client:</strong><br>
+$st2 run samplepack.run_remote_script<br>
+<strong>error: Failed copying content to remote boxes. Local path /opt/stackstorm/packs/samplepack/actions/touch_test.sh does not exist.</strong><br>
+failed: true<br>
+return_code: 255<br>
+succeeded: false<br>
+traceback: "  File “/opt/stackstorm/st2/lib/python3.6/site-packages/remote_runner/remote_script_runner.py”, line 50, in _run<br>
+copy_results = self._copy_artifacts(remote_action)<br>
+File “/opt/stackstorm/st2/lib/python3.6/site-packages/remote_runner/remote_script_runner.py”, line 108, in _copy_artifacts<br>
+mode=file_mode,<br>
+File “/opt/stackstorm/st2/lib/python3.6/site-packages/st2common/runners/parallel_ssh.py”, line 177, in put<br>
+raise Exception(“Local path %s does not exist.” % local_path)<br>
+"</p>
+<h2>
+<a name="action-1" class="anchor" href="https://forum.stackstorm.com#action-1"></a>Action:</h2>
+<p>runner_type: “remote-shell-script”<br>
+description: “remote shell runner”<br>
+enabled: true<br>
+name: run_remote_script<br>
+pack: st2testclassic<br>
+entry_point: “touch_test.sh”<br>
+parameters:<br>
+cmd:<br>
+required: true<br>
+type: string<br>
+default: “date”<br>
+username:<br>
+required: true<br>
+type: string<br>
+default: “xxxx”<br>
+password:<br>
+required: true<br>
+type: string<br>
+default: “xxxx”<br>
+hosts:<br>
+type: “string”<br>
+description: “Address of the syslog server”<br>
+required: true<br>
+default: “<a href="http://xxx.com" rel="noopener nofollow ugc">xxx.com</a>”<br>
+experimental:<br>
+immutable: true<br>
+default: true</p>
+<p>But the script is present, as shwon below in the st2client :<br>
+</p><div class="lightbox-wrapper"><a class="lightbox" href="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/3162cea22613aefdd8e9a062e3b576bbe570e1f3.jpeg" data-download-href="/uploads/short-url/72T5xJceGHgEpzxllFbt5t8g72X.jpeg?dl=1" title="Screenshot 2021-08-04 at 8.42.51 PM" rel="noopener nofollow ugc"><img src="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/3162cea22613aefdd8e9a062e3b576bbe570e1f3_2_690x109.jpeg" alt="Screenshot 2021-08-04 at 8.42.51 PM" data-base62-sha1="72T5xJceGHgEpzxllFbt5t8g72X" width="690" height="109" srcset="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/3162cea22613aefdd8e9a062e3b576bbe570e1f3_2_690x109.jpeg, https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/3162cea22613aefdd8e9a062e3b576bbe570e1f3_2_1035x163.jpeg 1.5x, https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/3162cea22613aefdd8e9a062e3b576bbe570e1f3_2_1380x218.jpeg 2x" data-small-upload="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/3162cea22613aefdd8e9a062e3b576bbe570e1f3_2_10x10.png"></a></div><p></p>
+          <p><a href="https://forum.stackstorm.com/t/in-st2-k8s-deployment-getting-file-does-not-exist-while-running-script-on-remote-server-using-custom-pack/1798/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/in-st2-k8s-deployment-getting-file-does-not-exist-while-running-script-on-remote-server-using-custom-pack/1798/1</link>
+        <pubDate>Wed, 04 Aug 2021 15:24:13 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1798-1</guid>
+        <source url="https://forum.stackstorm.com/t/in-st2-k8s-deployment-getting-file-does-not-exist-while-running-script-on-remote-server-using-custom-pack/1798.rss">In st2 k8s deployment, getting `File does not exist` - while running script on remote server using custom pack</source>
+      </item>
+  </channel>
+</rss>

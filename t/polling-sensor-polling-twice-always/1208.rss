@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Polling Sensor - polling twice always</title>
+    <link>https://forum.stackstorm.com/t/polling-sensor-polling-twice-always/1208</link>
+    <description>I mean to say - my polling sensor is polling twice at the same instance of time ... I doubt two instances of the sensor are running at the same time ... 
+
+Can anyone help how can i stop the current polling sensor and restart it.</description>
+    
+    <lastBuildDate>Tue, 05 May 2020 13:46:25 +0000</lastBuildDate>
+    <category>API</category>
+    <atom:link href="https://forum.stackstorm.com/t/polling-sensor-polling-twice-always/1208.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Polling Sensor - polling twice always</title>
+        <dc:creator><![CDATA[armab]]></dc:creator>
+        <description><![CDATA[
+            <p>Yes, you need to run only single replica of the sensor.</p>
+<p>You can check the running linux processes to check if there are any unexpected copies.</p>
+          <p><a href="https://forum.stackstorm.com/t/polling-sensor-polling-twice-always/1208/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/polling-sensor-polling-twice-always/1208/3</link>
+        <pubDate>Tue, 05 May 2020 13:46:25 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1208-3</guid>
+        <source url="https://forum.stackstorm.com/t/polling-sensor-polling-twice-always/1208.rss">Polling Sensor - polling twice always</source>
+      </item>
+      <item>
+        <title>Polling Sensor - polling twice always</title>
+        <dc:creator><![CDATA[NaveenKrishna]]></dc:creator>
+        <description><![CDATA[
+            <p>If sensor is ran in Debug mode - will it create a new instance of the existing one?</p>
+          <p><a href="https://forum.stackstorm.com/t/polling-sensor-polling-twice-always/1208/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/polling-sensor-polling-twice-always/1208/2</link>
+        <pubDate>Tue, 05 May 2020 09:30:35 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1208-2</guid>
+        <source url="https://forum.stackstorm.com/t/polling-sensor-polling-twice-always/1208.rss">Polling Sensor - polling twice always</source>
+      </item>
+      <item>
+        <title>Polling Sensor - polling twice always</title>
+        <dc:creator><![CDATA[NaveenKrishna]]></dc:creator>
+        <description><![CDATA[
+            <p>I mean to say - my polling sensor is polling twice at the same instance of time … I doubt two instances of the sensor are running at the same time …</p>
+<p>Can anyone help how can i stop the current polling sensor and restart it.</p>
+          <p><a href="https://forum.stackstorm.com/t/polling-sensor-polling-twice-always/1208/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/polling-sensor-polling-twice-always/1208/1</link>
+        <pubDate>Tue, 05 May 2020 09:03:07 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1208-1</guid>
+        <source url="https://forum.stackstorm.com/t/polling-sensor-polling-twice-always/1208.rss">Polling Sensor - polling twice always</source>
+      </item>
+  </channel>
+</rss>

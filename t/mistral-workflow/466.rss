@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Mistral workflow</title>
+    <link>https://forum.stackstorm.com/t/mistral-workflow/466</link>
+    <description>Trying to figure out how to call a mistral workflow from within an action within a  mistral workflow.  Think of them as nested.  Can you point me to a sample which effectively allows me to build up mistral workflows?
+
+Thanks in advance,
+
+Peter M. Gits</description>
+    
+    <lastBuildDate>Sat, 02 Feb 2019 21:50:57 +0000</lastBuildDate>
+    <category>Mistral</category>
+    <atom:link href="https://forum.stackstorm.com/t/mistral-workflow/466.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Mistral workflow</title>
+        <dc:creator><![CDATA[blag]]></dc:creator>
+        <description><![CDATA[
+            <p>Yes, workflows are types of actions - they are literally actions that are run by the specified workflow engine.</p>
+<p>You can install the st2cd pack, it’s just not available on exchange. However, it may not be that useful for you, since it is used internally for our CI/CD workflows.</p>
+<p>It would be a good pack to learn from.</p>
+<p>You can install it directly from GitHub with <code>st2 pack install https://github.com/StackStorm/st2cd.git</code>.</p>
+          <p><a href="https://forum.stackstorm.com/t/mistral-workflow/466/4">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/mistral-workflow/466/4</link>
+        <pubDate>Sat, 02 Feb 2019 21:50:57 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-466-4</guid>
+        <source url="https://forum.stackstorm.com/t/mistral-workflow/466.rss">Mistral workflow</source>
+      </item>
+      <item>
+        <title>Mistral workflow</title>
+        <dc:creator><![CDATA[petergits]]></dc:creator>
+        <description><![CDATA[
+            <aside class="quote no-group" data-post="2" data-topic="466">
+<div class="title">
+<div class="quote-controls"></div>
+<img alt="" width="20" height="20" src="https://avatars.discourse.org/v2/letter/b/ba9def/40.png" class="avatar"> blag:</div>
+<blockquote>
+<p>enterprise_tests: action: st2cd.st2_enterprise_tests</p>
+</blockquote>
+</aside>
+<p>So, enterprise_tests:<br>
+action: st2cd.st2_enterprise_tests is the one that calls out the the external action defined elsewhere.  Thanks for the clarification.  Is St2cd an available package to install into packs?  I haven’t seen it before…</p>
+<p>Thanks for the quick turnaround!</p>
+<p>Cheers,</p>
+<p>Peter M. Gits</p>
+          <p><a href="https://forum.stackstorm.com/t/mistral-workflow/466/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/mistral-workflow/466/3</link>
+        <pubDate>Sat, 02 Feb 2019 21:22:43 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-466-3</guid>
+        <source url="https://forum.stackstorm.com/t/mistral-workflow/466.rss">Mistral workflow</source>
+      </item>
+      <item>
+        <title>Mistral workflow</title>
+        <dc:creator><![CDATA[blag]]></dc:creator>
+        <description><![CDATA[
+            <p>Our <a href="https://github.com/StackStorm/st2cd/blob/4d4d7b22085075db4a420ce0fb1ed036c5a91fa0/actions/workflows/st2_e2e_tests.yaml#L6" rel="nofollow noopener">st2_e2e_tests</a> workflow demonstrates this for you.</p>
+<p>TL;DR:</p>
+<pre><code class="lang-yaml">---
+version: '2.0'
+name: st2cd.st2_e2e_tests
+description: Run the suite of end to end tests on the st2 host
+
+workflows:
+    main:
+        type: direct
+        input:
+            # ...
+
+        tasks:
+            init:
+            # ...
+            run_basic_tests:
+                workflow: test_basic
+                input:
+                    # ...
+            run_quickstart_tests:
+                workflow: test_quickstart_wf
+                input:
+                    # ...
+                on-success:
+                    # Run Mistral tests after basic and quickstart
+                    - run_mistral_tests
+            run_mistral_tests:
+                workflow: test_mistral
+                input:
+                    # ...
+                on-success:
+                    - run_inquiry_tests
+            run_inquiry_tests:
+                workflow: test_inquiry
+                input:
+                    # ...
+                on-success:
+                    - run_windows_tests
+            run_windows_tests:
+                workflow: test_windows
+                input:
+                    # ...
+                on-success:
+                    - enterprise_tests: &lt;% $.enterprise %&gt;
+            enterprise_tests:
+               action: st2cd.st2_enterprise_tests
+               input:
+                    # ...
+
+    test_basic:
+        type: direct
+        input:
+            # ...
+        tasks:
+            # ...
+
+    test_quickstart_wf:
+        type: direct
+        input:
+            # ...
+        tasks:
+            # ...
+    test_mistral:
+        type: direct
+        input:
+            # ...
+        tasks:
+            # ...
+    test_inquiry:
+        type: direct
+        input:
+            # ...
+        tasks:
+            # ...
+    test_windows:
+        type: direct
+        input:
+            # ...
+        tasks:
+            # ...
+</code></pre>
+<p>Just keep in mind that Mistral will be deprecated in StackStorm 3.0 and replace by Orquesta, which does not (yet, and possibly never will) support specifying subworkflows like this.</p>
+<p>That workflow has actually been broken up into a few different Orquesta workflows:</p>
+<ul>
+<li><a href="https://github.com/StackStorm/st2cd/blob/master/actions/workflows/st2_e2e_tests.yaml" rel="nofollow noopener">st2_e2e_tests</a></li>
+<li><a href="https://github.com/StackStorm/st2cd/blob/master/actions/workflows/st2_e2e_tests_test_basic.yaml" rel="nofollow noopener">st2_e2e_tests_test_basic</a></li>
+<li><a href="https://github.com/StackStorm/st2cd/blob/master/actions/workflows/st2_e2e_tests_test_inquiry.yaml" rel="nofollow noopener">st2_e2e_tests_test_inquiry</a></li>
+<li><a href="https://github.com/StackStorm/st2cd/blob/master/actions/workflows/st2_e2e_tests_test_mistral.yaml" rel="nofollow noopener">st2_e2e_tests_test_mistral</a></li>
+<li><a href="https://github.com/StackStorm/st2cd/blob/master/actions/workflows/st2_e2e_tests_test_quickstart.yaml" rel="nofollow noopener">st2_e2e_tests_test_quickstart</a></li>
+<li><a href="https://github.com/StackStorm/st2cd/blob/master/actions/workflows/st2_e2e_tests_test_windows.yaml" rel="nofollow noopener">st2_e2e_tests_test_windows</a></li>
+</ul>
+          <p><a href="https://forum.stackstorm.com/t/mistral-workflow/466/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/mistral-workflow/466/2</link>
+        <pubDate>Sat, 02 Feb 2019 00:50:52 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-466-2</guid>
+        <source url="https://forum.stackstorm.com/t/mistral-workflow/466.rss">Mistral workflow</source>
+      </item>
+      <item>
+        <title>Mistral workflow</title>
+        <dc:creator><![CDATA[petergits]]></dc:creator>
+        <description><![CDATA[
+            <p>Trying to figure out how to call a mistral workflow from within an action within a  mistral workflow.  Think of them as nested.  Can you point me to a sample which effectively allows me to build up mistral workflows?</p>
+<p>Thanks in advance,</p>
+<p>Peter M. Gits</p>
+          <p><a href="https://forum.stackstorm.com/t/mistral-workflow/466/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/mistral-workflow/466/1</link>
+        <pubDate>Fri, 01 Feb 2019 23:32:39 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-466-1</guid>
+        <source url="https://forum.stackstorm.com/t/mistral-workflow/466.rss">Mistral workflow</source>
+      </item>
+  </channel>
+</rss>

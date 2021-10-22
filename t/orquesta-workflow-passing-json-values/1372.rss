@@ -1,0 +1,585 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Orquesta Workflow Passing JSON values</title>
+    <link>https://forum.stackstorm.com/t/orquesta-workflow-passing-json-values/1372</link>
+    <description>Hello all.  As I am new to Stackstorm (v.3.2) and working to create workflows in orquesta, I&#39;m struggling figure out how to debug and get values dynamically passed from one task to another.  I&#39;ve read through the documentation and looked through many of the examples; however, I&#39;m not finding the right information to help me pass a particular JSON value that is received from the second task &quot;GetTenantGroup&quot;, into a variable (tgroupid), that is to be used in a third task &quot;CreateTenant&quot;
+
+&gt; input:
+&gt;   - customername
+&gt;   - customerslug
+&gt; 
+&gt; vars:
+&gt;   - tgroupid: 0
+&gt; 
+&gt; tasks:
+&gt;   CreateTenantGroup:
+&gt;     action: netbox.post.tenancy.tenant_groups name=&lt;% ctx(customername) %&gt;, slug=&lt;% ctx(customerslug) %&gt;
+&gt;     next:
+&gt;       - when: &lt;% succeeded() %&gt;
+&gt;         do: GetTenantGroup
+&gt;   GetTenantGroup:
+&gt;     action: netbox.get.tenancy.tenant_groups name=&lt;% ctx(customername) %&gt;
+&gt;     next:
+&gt;       - when: &lt;% succeeded() %&gt;
+&gt;         publish:
+&gt;           - tgroupid : &lt;% result().result.raw.results.id %&gt;
+&gt;         do: CreateTenant
+&gt;   CreateTenant:
+&gt;     action: netbox.post.tenancy.tenants name=&lt;% ctx(customername) %&gt;, slug=&lt;% ctx(customerslug) %&gt;, group=&lt;% tgroupid %&gt;
+&gt;     next:
+&gt;       - when: &lt;% succeeded() %&gt;
+
+Running the action &#39;netbox.get.tenancy.tenant_groups&#39; by itself via the UI, returns the following JSON output as a result:
+
+    {
+      &quot;stdout&quot;: &quot;&quot;,
+      &quot;stderr&quot;: &quot;&quot;,
+      &quot;exit_code&quot;: 0,
+      &quot;result&quot;: {
+        &quot;raw&quot;: {
+          &quot;count&quot;: 1,
+          &quot;next&quot;: null,
+          &quot;previous&quot;: null,
+          &quot;results&quot;: [
+            {
+              &quot;id&quot;: 3,
+              &quot;name&quot;: &quot;Some Company&quot;,
+              &quot;slug&quot;: &quot;some-company&quot;,
+              &quot;parent&quot;: null,
+              &quot;description&quot;: &quot;This is Some Company&quot;,
+              &quot;tenant_count&quot;: 1
+            }
+          ]
+        }
+      }
+    }
+
+As you can see from the JSON output above, it returns the {&quot;id&quot;: 3} value that I&#39;m trying to get assigned to the (tgroupid) variable that I have defined.  Can someone please assist?
+
+Also, I would like to understand how I can print the value of the variables at different places throughout a workflow to understand if/when they are changing.  Similar to what you can do in any python script by printing the value at any point in a script.</description>
+    
+    <lastBuildDate>Sat, 08 Aug 2020 23:58:06 +0000</lastBuildDate>
+    <category>Workflows</category>
+    <atom:link href="https://forum.stackstorm.com/t/orquesta-workflow-passing-json-values/1372.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Orquesta Workflow Passing JSON values</title>
+        <dc:creator><![CDATA[amanda11]]></dc:creator>
+        <description><![CDATA[
+            <p>I had a quick look at the forum for some advice on debugging. I did notice mention of another trick that I have used which is to put in core.echo task to see what variables are.<br>
+I am pretty sure the info is there in the logs (certainly would be if debug=True in [system] is put on in the st2.conf).</p>
+          <p><a href="https://forum.stackstorm.com/t/orquesta-workflow-passing-json-values/1372/18">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/orquesta-workflow-passing-json-values/1372/18</link>
+        <pubDate>Sat, 08 Aug 2020 23:58:06 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1372-18</guid>
+        <source url="https://forum.stackstorm.com/t/orquesta-workflow-passing-json-values/1372.rss">Orquesta Workflow Passing JSON values</source>
+      </item>
+      <item>
+        <title>Orquesta Workflow Passing JSON values</title>
+        <dc:creator><![CDATA[AutomatedChaos]]></dc:creator>
+        <description><![CDATA[
+            <p>I’ll give this a shot, thx <img src="https://emoji.discourse-cdn.com/apple/slight_smile.png?v=9" title=":slight_smile:" class="emoji" alt=":slight_smile:"></p>
+          <p><a href="https://forum.stackstorm.com/t/orquesta-workflow-passing-json-values/1372/17">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/orquesta-workflow-passing-json-values/1372/17</link>
+        <pubDate>Sat, 08 Aug 2020 22:42:25 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1372-17</guid>
+        <source url="https://forum.stackstorm.com/t/orquesta-workflow-passing-json-values/1372.rss">Orquesta Workflow Passing JSON values</source>
+      </item>
+      <item>
+        <title>Orquesta Workflow Passing JSON values</title>
+        <dc:creator><![CDATA[AutomatedChaos]]></dc:creator>
+        <description><![CDATA[
+            <p>Amanda.  If I create the dictionary and define the key (id, as in the example above) I can no longer get the value of id. Even with the yaqlator.  The <span class="math">.select([</span>.id,$]) no longer works.  So I don’t understand the logic of YAQL and what it’s doing.  In Python, it’s quite easy to walk up and down the key:values of JSON or embedded JSON, but YAQL with the select, get doesn’t make any sense.</p>
+<p>Unlike Python, where you can easily google almost anything you are trying to do, YAQL searches on google return less than 8 pages of results.</p>
+          <p><a href="https://forum.stackstorm.com/t/orquesta-workflow-passing-json-values/1372/16">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/orquesta-workflow-passing-json-values/1372/16</link>
+        <pubDate>Sat, 08 Aug 2020 22:40:57 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1372-16</guid>
+        <source url="https://forum.stackstorm.com/t/orquesta-workflow-passing-json-values/1372.rss">Orquesta Workflow Passing JSON values</source>
+      </item>
+      <item>
+        <title>Orquesta Workflow Passing JSON values</title>
+        <dc:creator><![CDATA[amanda11]]></dc:creator>
+        <description><![CDATA[
+            <p>PS To get the dictionary you wanted just use:</p>
+<p><code>result().result.raw.results.first()</code></p>
+<p></p><div class="lightbox-wrapper"><a class="lightbox" href="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/7f06719fb0eb9035d490be1ee594230f422fc083.png" data-download-href="/uploads/short-url/i7Irz6E9pl8fOeOWkUK0BzXQYrp.png?dl=1" title="image" rel="nofollow noopener"><img src="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/7f06719fb0eb9035d490be1ee594230f422fc083_2_690x474.png" alt="image" data-base62-sha1="i7Irz6E9pl8fOeOWkUK0BzXQYrp" width="690" height="474" srcset="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/7f06719fb0eb9035d490be1ee594230f422fc083_2_690x474.png, https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/7f06719fb0eb9035d490be1ee594230f422fc083_2_1035x711.png 1.5x, https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/7f06719fb0eb9035d490be1ee594230f422fc083.png 2x" data-small-upload="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/7f06719fb0eb9035d490be1ee594230f422fc083_2_10x10.png"></a></div><p></p>
+<p>Remember that resuilt.raw.results is an array of dictionaries. So the select I did was turn that into a dictionary indexed on the id for each entry. But the example that you showed was just get the dictionary of the first entry - so the above will get you a dictionary that you mentioend.</p>
+          <p><a href="https://forum.stackstorm.com/t/orquesta-workflow-passing-json-values/1372/15">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/orquesta-workflow-passing-json-values/1372/15</link>
+        <pubDate>Sat, 08 Aug 2020 22:39:58 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1372-15</guid>
+        <source url="https://forum.stackstorm.com/t/orquesta-workflow-passing-json-values/1372.rss">Orquesta Workflow Passing JSON values</source>
+      </item>
+      <item>
+        <title>Orquesta Workflow Passing JSON values</title>
+        <dc:creator><![CDATA[amanda11]]></dc:creator>
+        <description><![CDATA[
+            <p>I’m not the expert on YAQL, it’s just my preference to use the YAQL evaluator for my own use. I think once you get used to it, it’s quite powerful and you can manipulate the values without having to write code.</p>
+<p>In your example you are trying to convert an array into a dictionary, and so its not clear unless you tell it through the select what field you want the key to be - so there has to be some conversion.</p>
+<p>I’m probably not the best person to answer how to debug seeing the values output through the flow. I can’t recall whether you get the information in the audit logs in /var/log/st2 or not.  (I’ve not had a need - as I’ve just used the evaluator and the output result shown in the UI).</p>
+<p>I’m sure someone more experienced can probably answer that bit better than me. It may be worth just asking that second bit about printing the values between actions in a separate forum post or on Slack, the community is really helpful so I’m sure we can find someone to answer that bit better than me!</p>
+          <p><a href="https://forum.stackstorm.com/t/orquesta-workflow-passing-json-values/1372/14">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/orquesta-workflow-passing-json-values/1372/14</link>
+        <pubDate>Sat, 08 Aug 2020 22:23:21 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1372-14</guid>
+        <source url="https://forum.stackstorm.com/t/orquesta-workflow-passing-json-values/1372.rss">Orquesta Workflow Passing JSON values</source>
+      </item>
+      <item>
+        <title>Orquesta Workflow Passing JSON values</title>
+        <dc:creator><![CDATA[AutomatedChaos]]></dc:creator>
+        <description><![CDATA[
+            <p>Amanda, thank you for all your help here, I wouldn’t be getting anywhere without your help.</p>
+<p>But to be honest, I find the use of YAQL to be the reason to not use StackStorm at all.  The documentation and examples are terrible and have to use the “<a href="http://yaqlator.com" rel="nofollow noopener">yaqlator.com</a>” site to just keep trying random things to get something out of the product is worthless.</p>
+<p>Take the example you provided, I have to use YAQL to define a new dictionary because you can’t simply extract the one that is already there.  Using</p>
+<blockquote>
+<p>dict(result().result.raw.results.select([<span class="math">.id,</span>]))</p>
+</blockquote>
+<p>You do infact get the dictionary:</p>
+<blockquote>
+<p>{<br>
+“3”: {<br>
+“description”: “This is Some Company”,<br>
+“id”: 3,<br>
+“name”: “Some Company”,<br>
+“parent”: null,<br>
+“slug”: “some-company”,<br>
+“tenant_count”: 1<br>
+}<br>
+}</p>
+</blockquote>
+<p>Using the yaqlator, with the expression “$.get([id])” you get NULL returned.  WTF.  I’m assuming it’s because the “id” key is below that of the key “3”, but why can’t I just get a dictionary from  "dict(result().result.raw.results) that looks like this:</p>
+<blockquote>
+<p>{<br>
+“id”: 3,<br>
+“name”: “Some Company”,<br>
+“slug”: “some-company”,<br>
+“parent”: null,<br>
+“description”: “This is Some Company”,<br>
+“tenant_count”: 1<br>
+}</p>
+</blockquote>
+<p>How do I get “live output”?  Something that can tell me what the hell StackStorm is doing during the execution of the workflow.</p>
+<p>Why does StackStorm make this shit so hard?  Competing products like RunDeck (and others) make this part so much easier to debug and troubleshoot what the hell is going on during the workflow at execution to see every variable, command, timestamps, etc.  With Stackstorm you get nothing.  No documentation, examples in the software that are so basic and not real world (like adding 1+2).  No examples on how to return data, log input and output of a workflow.</p>
+          <p><a href="https://forum.stackstorm.com/t/orquesta-workflow-passing-json-values/1372/13">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/orquesta-workflow-passing-json-values/1372/13</link>
+        <pubDate>Sat, 08 Aug 2020 21:12:48 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1372-13</guid>
+        <source url="https://forum.stackstorm.com/t/orquesta-workflow-passing-json-values/1372.rss">Orquesta Workflow Passing JSON values</source>
+      </item>
+      <item>
+        <title>Orquesta Workflow Passing JSON values</title>
+        <dc:creator><![CDATA[amanda11]]></dc:creator>
+        <description><![CDATA[
+            <p>Glad that worked.</p>
+<p>Do you want to call CreateTenant for each id?</p>
+<p>In that case you could publish tgrouplist using result().result.raw.results.id (NB. the removal of first )</p>
+<p>And then make CreateTenant use a with items where the list you give is the tgrouplist.</p>
+<p>For example:</p>
+<pre><code>   CreateTenant:
+      action: netbox.post.tenancy.tenants name=&lt;% ctx(customername) %&gt;, slug=&lt;% ctx(customerslug) %&gt;, group=&lt;% item() %&gt;
+     with: 
+         items: &lt;% ctx().tgrouplist %&gt;
+</code></pre>
+<p>This would then call the action once for every item in the tgrouplist - i.e. every id that we had.</p>
+<p>–</p>
+<p>If you want to build up a dictionary of say id to results, then you could use some YAQL similar to following to publish the results to a variable.</p>
+<p><code>dict(result().result.raw.results.select([$.id,$]))</code></p>
+<p>The selector selects the id from the results, as well as the whole entry for that results item. Then we wrap it in dict, and it builds up a dictionary where the key is the id, and the value is the full entry for that id. e.g. a result similar to</p>
+<pre><code>{
+    "3": {
+        "description": "This is Some Company",
+        "id": 3,
+        "name": "Some Company",
+        "parent": null,
+        "slug": "some-company",
+        "tenant_count": 1
+    },
+    "4": {
+        "description": "This is So2me Company",
+        "id": 4,
+        "name": "Some Co222mpany",
+        "parent": null,
+        "slug": "some-com2pany",
+        "tenant_count": 2
+    }
+}</code></pre>
+          <p><a href="https://forum.stackstorm.com/t/orquesta-workflow-passing-json-values/1372/12">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/orquesta-workflow-passing-json-values/1372/12</link>
+        <pubDate>Fri, 07 Aug 2020 08:19:34 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1372-12</guid>
+        <source url="https://forum.stackstorm.com/t/orquesta-workflow-passing-json-values/1372.rss">Orquesta Workflow Passing JSON values</source>
+      </item>
+      <item>
+        <title>Orquesta Workflow Passing JSON values</title>
+        <dc:creator><![CDATA[AutomatedChaos]]></dc:creator>
+        <description><![CDATA[
+            <blockquote>
+<p>input:</p>
+<ul>
+<li>
+<p>customername</p>
+</li>
+<li>
+<p>customerslug</p>
+</li>
+</ul>
+<p>vars:</p>
+<ul>
+<li>tgroupid: null</li>
+</ul>
+<p>tasks:</p>
+<p>CreateTenantGroup:</p>
+<pre><code>action: netbox.post.tenancy.tenant_groups name=&lt;% ctx(customername) %&gt;, slug=&lt;% ctx(customerslug) %&gt;
+
+next:
+
+  - when: &lt;% succeeded() %&gt;
+
+    do: GetTenantGroup
+</code></pre>
+<p>GetTenantGroup:</p>
+<pre><code>action: netbox.get.tenancy.tenant_groups name=&lt;% ctx(customername) %&gt;
+
+next:
+
+  - when: &lt;% succeeded() %&gt;
+
+    publish:
+
+      - tgroupid : &lt;% result().result.raw.results.id.first() %&gt;
+
+    do: CreateTenant
+</code></pre>
+<p>CreateTenant:</p>
+<pre><code>action: netbox.post.tenancy.tenants name=&lt;% ctx(customername) %&gt;, slug=&lt;% ctx(customerslug) %&gt;, group=&lt;% ctx(tgroupid) %&gt;
+
+next:
+
+  - when: &lt;% succeeded() %&gt;
+</code></pre>
+</blockquote>
+<p>This worked successfully.  I wish I could just print the output or value stored in “tgroupid” as it changes from task to task.  But, it apparently only returned the integer, otherwise it wouldn’t commit on NetBox.</p>
+<p>This happens to be a simple example, so the bigger question for me will be a situation where I need multiple values from JSON output from NetBox, or as stated before multiple entries.</p>
+          <p><a href="https://forum.stackstorm.com/t/orquesta-workflow-passing-json-values/1372/11">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/orquesta-workflow-passing-json-values/1372/11</link>
+        <pubDate>Fri, 07 Aug 2020 02:28:09 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1372-11</guid>
+        <source url="https://forum.stackstorm.com/t/orquesta-workflow-passing-json-values/1372.rss">Orquesta Workflow Passing JSON values</source>
+      </item>
+      <item>
+        <title>Orquesta Workflow Passing JSON values</title>
+        <dc:creator><![CDATA[amanda11]]></dc:creator>
+        <description><![CDATA[
+            <p>Could you post through the example and result when you used the <strong>.first()</strong> call to get the first item from the list, this shouldn’t have been returning you a list when you did that?</p>
+<p>The YAQL evaluator does support select, for example you could use:<br>
+<span class="math">.result.raw.results.select(</span>.id)<br>
+but that will give you again a list to iterate through again.</p>
+<p>(NB when it’s a list you should be able to use the with-items to iterate through the ids - you wouldn’t need to have a dictionary).</p>
+<p>But for now let’s get the first item out and working. Could you show me the results when you use</p>
+<pre><code class="lang-auto">tgroupid : &lt;% result().result.raw.results.id.first() %&gt;
+</code></pre>
+          <p><a href="https://forum.stackstorm.com/t/orquesta-workflow-passing-json-values/1372/10">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/orquesta-workflow-passing-json-values/1372/10</link>
+        <pubDate>Thu, 06 Aug 2020 08:20:05 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1372-10</guid>
+        <source url="https://forum.stackstorm.com/t/orquesta-workflow-passing-json-values/1372.rss">Orquesta Workflow Passing JSON values</source>
+      </item>
+      <item>
+        <title>Orquesta Workflow Passing JSON values</title>
+        <dc:creator><![CDATA[AutomatedChaos]]></dc:creator>
+        <description><![CDATA[
+            <p>Yes, basically was using exactly what you have shown here.  However, this still doesn’t return just the integer.  According to both the yaqluator and via the error message from StackStorm.</p>
+<blockquote>
+<p>result:<br>
+errors:</p>
+<ul>
+<li>message: ‘TypeError: int() argument must be a string, a bytes-like object or a number, not ‘‘list’’’<br>
+route: 0<br>
+task_id: CreateTenant<br>
+type: error<br>
+output: null</li>
+</ul>
+</blockquote>
+<p>I’m struggling to get just the value to be returned.  I have tried to use “dict($.result.raw.results)” to get the whole thing as a dictionary so I can call it through key:value. but this isn’t working either.  Or at least, I haven’t figured out how to get this to work, the documentation for StackStorm shows the use of “.select” to call up values; however, the YAQL evaluator doesn’t recognize that as a valid function.</p>
+          <p><a href="https://forum.stackstorm.com/t/orquesta-workflow-passing-json-values/1372/9">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/orquesta-workflow-passing-json-values/1372/9</link>
+        <pubDate>Wed, 05 Aug 2020 21:37:59 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1372-9</guid>
+        <source url="https://forum.stackstorm.com/t/orquesta-workflow-passing-json-values/1372.rss">Orquesta Workflow Passing JSON values</source>
+      </item>
+      <item>
+        <title>Orquesta Workflow Passing JSON values</title>
+        <dc:creator><![CDATA[amanda11]]></dc:creator>
+        <description><![CDATA[
+            <p>So I think following might work:<br>
+`</p>
+<pre><code class="lang-auto">GetTenantGroup:
+ action: netbox.get.tenancy.tenant_groups name=&lt;% ctx(customername) %&gt;
+
+next:
+
+  - when: &lt;% succeeded() %&gt;
+
+    publish:
+
+      - tgroupid : &lt;% result().result.raw.results.id.first() %&gt;
+
+    do: CreateTenant
+      action: netbox.post.tenancy.tenants name=&lt;% ctx(customername) %&gt;, slug=&lt;% ctx(customerslug) %&gt;, group=&lt;% ctx(tgroupid) %&gt;
+
+    next:
+
+       - when: &lt;% succeeded() %&gt;
+</code></pre>
+          <p><a href="https://forum.stackstorm.com/t/orquesta-workflow-passing-json-values/1372/8">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/orquesta-workflow-passing-json-values/1372/8</link>
+        <pubDate>Wed, 05 Aug 2020 09:24:48 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1372-8</guid>
+        <source url="https://forum.stackstorm.com/t/orquesta-workflow-passing-json-values/1372.rss">Orquesta Workflow Passing JSON values</source>
+      </item>
+      <item>
+        <title>Orquesta Workflow Passing JSON values</title>
+        <dc:creator><![CDATA[amanda11]]></dc:creator>
+        <description><![CDATA[
+            <p>Note there is a difference between format in yaql evaluator and in the workflow.</p>
+<p>In Yaql you use $.result.raw.resuls.id - but in the workflow you want to use result().result.raw.results.id</p>
+<p>If you just want to get the first one out of the list, then you could use result().result.raw.results.id.first()</p>
+          <p><a href="https://forum.stackstorm.com/t/orquesta-workflow-passing-json-values/1372/7">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/orquesta-workflow-passing-json-values/1372/7</link>
+        <pubDate>Wed, 05 Aug 2020 09:21:20 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1372-7</guid>
+        <source url="https://forum.stackstorm.com/t/orquesta-workflow-passing-json-values/1372.rss">Orquesta Workflow Passing JSON values</source>
+      </item>
+      <item>
+        <title>Orquesta Workflow Passing JSON values</title>
+        <dc:creator><![CDATA[AutomatedChaos]]></dc:creator>
+        <description><![CDATA[
+            <p>This is the other error I get when dealing with the data that is returned from any query:</p>
+<p>message: ‘TypeError: int() argument must be a string, a bytes-like object or a number, not ‘‘list’’’</p>
+          <p><a href="https://forum.stackstorm.com/t/orquesta-workflow-passing-json-values/1372/6">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/orquesta-workflow-passing-json-values/1372/6</link>
+        <pubDate>Tue, 04 Aug 2020 23:00:56 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1372-6</guid>
+        <source url="https://forum.stackstorm.com/t/orquesta-workflow-passing-json-values/1372.rss">Orquesta Workflow Passing JSON values</source>
+      </item>
+      <item>
+        <title>Orquesta Workflow Passing JSON values</title>
+        <dc:creator><![CDATA[AutomatedChaos]]></dc:creator>
+        <description><![CDATA[
+            <p>From this simple output, the only value required is the value of the “id”, so as you stated and in using the yaqluator, $.result.raw.results.id does return 3 in that tool.  However, applying it in my workflow, always results in some sort of error:</p>
+<blockquote>
+<p>input:</p>
+<ul>
+<li>
+<p>customername</p>
+</li>
+<li>
+<p>customerslug</p>
+</li>
+</ul>
+<p>vars:</p>
+<ul>
+<li>tgroupid: null</li>
+</ul>
+<p>tasks:</p>
+<p>CreateTenantGroup:</p>
+<pre><code>action: netbox.post.tenancy.tenant_groups name=&lt;% ctx(customername) %&gt;, slug=&lt;% ctx(customerslug) %&gt;
+
+next:
+
+  - when: &lt;% succeeded() %&gt;
+
+    do: GetTenantGroup
+</code></pre>
+<p>GetTenantGroup:</p>
+<pre><code>action: netbox.get.tenancy.tenant_groups name=&lt;% ctx(customername) %&gt;
+
+next:
+
+  - when: &lt;% succeeded() %&gt;
+
+    publish:
+
+      - tgroupid : &lt;% $.result.raw.results.id %&gt;
+
+    do: CreateTenant
+</code></pre>
+<p>CreateTenant:</p>
+<pre><code>action: netbox.post.tenancy.tenants name=&lt;% ctx(customername) %&gt;, slug=&lt;% ctx(customerslug) %&gt;, group=&lt;% ctx(tgroupid) %&gt;
+
+next:
+
+  - when: &lt;% succeeded() %&gt;
+</code></pre>
+</blockquote>
+<p>When executing this, I always get some sort of error, most recent this:</p>
+<blockquote>
+<p>parameters:<br>
+customername: Another Company<br>
+customerslug: another-company<br>
+status: failed<br>
+start_timestamp: Tue, 04 Aug 2020 22:53:06 UTC<br>
+end_timestamp: Tue, 04 Aug 2020 22:53:07 UTC<br>
+result:<br>
+errors:</p>
+<ul>
+<li>message: ‘YaqlEvaluationException: Unable to evaluate expression ‘’&lt;% $.result.raw.results.id %&gt;’’. NoFunctionRegisteredException: Unknown function “<span class="hashtag">#property</span>#result”’<br>
+route: 0<br>
+task_id: GetTenantGroup<br>
+task_transition_id: CreateTenant__t0<br>
+type: error<br>
+output: null<br>
+±-------------------------±-----------------------±------------------±----------------------------------±------------------------------+<br>
+| id                       | status                 | task              | action                            | start_timestamp               |<br>
+±-------------------------±-----------------------±------------------±----------------------------------±------------------------------+<br>
+| 5f29e6d24fcba73398f42ff2 | succeeded (0s elapsed) | CreateTenantGroup | netbox.post.tenancy.tenant_groups | Tue, 04 Aug 2020 22:53:06 UTC |<br>
+| 5f29e6d24fcba73398f42ff5 | succeeded (1s elapsed) | GetTenantGroup    | netbox.get.tenancy.tenant_groups  | Tue, 04 Aug 2020 22:53:06 UTC |<br>
+±-------------------------±-----------------------±------------------±----------------------------------±------------------------------+</li>
+</ul>
+</blockquote>
+<p>I guess I don’t understand enough of the YAQL syntax.  Problem is this is a very basic example, what happens when I need the full returned output in a dictionary where I can iterate through (the when function) over 100+ of this.  But right now, I’d settle for getting this to work once <img src="https://emoji.discourse-cdn.com/apple/slight_smile.png?v=9" title=":slight_smile:" class="emoji" alt=":slight_smile:"></p>
+          <p><a href="https://forum.stackstorm.com/t/orquesta-workflow-passing-json-values/1372/5">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/orquesta-workflow-passing-json-values/1372/5</link>
+        <pubDate>Tue, 04 Aug 2020 22:59:02 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1372-5</guid>
+        <source url="https://forum.stackstorm.com/t/orquesta-workflow-passing-json-values/1372.rss">Orquesta Workflow Passing JSON values</source>
+      </item>
+      <item>
+        <title>Orquesta Workflow Passing JSON values</title>
+        <dc:creator><![CDATA[amanda11]]></dc:creator>
+        <description><![CDATA[
+            <p>What is the dictionary that you want to have - what is the key/values needed? I wasn’t quite sure what dictionary you wanted to get out.</p>
+<p>I normally use the yaql online evaluator to help me work out my YAQL expressions. So for example pasting in the JSON into <a href="http://yaqluator.com/" rel="nofollow noopener">http://yaqluator.com/</a>, and then using $.result.raw.results.id for the example above it allows you to see what the result is.<br>
+So you can then experiment with the YAQL commands to see what gets you the result you want.</p>
+          <p><a href="https://forum.stackstorm.com/t/orquesta-workflow-passing-json-values/1372/4">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/orquesta-workflow-passing-json-values/1372/4</link>
+        <pubDate>Tue, 04 Aug 2020 22:43:14 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1372-4</guid>
+        <source url="https://forum.stackstorm.com/t/orquesta-workflow-passing-json-values/1372.rss">Orquesta Workflow Passing JSON values</source>
+      </item>
+      <item>
+        <title>Orquesta Workflow Passing JSON values</title>
+        <dc:creator><![CDATA[AutomatedChaos]]></dc:creator>
+        <description><![CDATA[
+            <p>amanda11,</p>
+<p>I have made the adjustment/correction to calling the tgroupid variable; however, I have also narrowed down another part of my problem with getting this information out.</p>
+<blockquote>
+<pre><code>result: 
+  errors:
+  - message: 'TypeError: int() argument must be a string, a bytes-like object or a number, not ''list'''
+    route: 0
+    task_id: CreateTenant
+    type: error
+  output: null
+</code></pre>
+</blockquote>
+<p>As I have also had to work with this problem in Python, I always have to use the following in Python3 to process the returned list and get it into a dictionary.</p>
+<blockquote>
+<p>tg_group_list = json.loads(json.dumps(netboxsvr.tenancy.get_tenant_groups(name=name),indent=4))</p>
+</blockquote>
+<p>So now the question is, how can I get this information translated from a list to a dictionary in StackStorm (YAQL).  (On a side note, having the result posted into the datastore and calling up st2kv.system results in the same issue, it gets stored as a list).</p>
+<p>Any assistance would be greatly appreciated. <img src="https://emoji.discourse-cdn.com/apple/slight_smile.png?v=9" title=":slight_smile:" class="emoji" alt=":slight_smile:"></p>
+          <p><a href="https://forum.stackstorm.com/t/orquesta-workflow-passing-json-values/1372/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/orquesta-workflow-passing-json-values/1372/3</link>
+        <pubDate>Mon, 03 Aug 2020 22:45:42 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1372-3</guid>
+        <source url="https://forum.stackstorm.com/t/orquesta-workflow-passing-json-values/1372.rss">Orquesta Workflow Passing JSON values</source>
+      </item>
+      <item>
+        <title>Orquesta Workflow Passing JSON values</title>
+        <dc:creator><![CDATA[amanda11]]></dc:creator>
+        <description><![CDATA[
+            <p>I used the yaql evaluator and from what I can see this should have set your tgroupid to the value [3].</p>
+<p>When you publish your are publishing variables to the context, so I think you just need to use ctx(“tgroupid”) or ctx().tgroupid to access your tgroupid variable you have set Instead of tgroupid directly like the example above uses.</p>
+          <p><a href="https://forum.stackstorm.com/t/orquesta-workflow-passing-json-values/1372/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/orquesta-workflow-passing-json-values/1372/2</link>
+        <pubDate>Sun, 02 Aug 2020 15:25:37 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1372-2</guid>
+        <source url="https://forum.stackstorm.com/t/orquesta-workflow-passing-json-values/1372.rss">Orquesta Workflow Passing JSON values</source>
+      </item>
+      <item>
+        <title>Orquesta Workflow Passing JSON values</title>
+        <dc:creator><![CDATA[AutomatedChaos]]></dc:creator>
+        <description><![CDATA[
+            <p>Hello all.  As I am new to Stackstorm (v.3.2) and working to create workflows in orquesta, I’m struggling figure out how to debug and get values dynamically passed from one task to another.  I’ve read through the documentation and looked through many of the examples; however, I’m not finding the right information to help me pass a particular JSON value that is received from the second task “GetTenantGroup”, into a variable (tgroupid), that is to be used in a third task “CreateTenant”</p>
+<blockquote>
+<p>input:</p>
+<ul>
+<li>customername</li>
+<li>customerslug</li>
+</ul>
+<p>vars:</p>
+<ul>
+<li>tgroupid: 0</li>
+</ul>
+<p>tasks:<br>
+CreateTenantGroup:<br>
+action: netbox.post.tenancy.tenant_groups name=&lt;% ctx(customername) %&gt;, slug=&lt;% ctx(customerslug) %&gt;<br>
+next:<br>
+- when: &lt;% succeeded() %&gt;<br>
+do: GetTenantGroup<br>
+GetTenantGroup:<br>
+action: netbox.get.tenancy.tenant_groups name=&lt;% ctx(customername) %&gt;<br>
+next:<br>
+- when: &lt;% succeeded() %&gt;<br>
+publish:<br>
+- tgroupid : &lt;% result().result.raw.results.id %&gt;<br>
+do: CreateTenant<br>
+CreateTenant:<br>
+action: netbox.post.tenancy.tenants name=&lt;% ctx(customername) %&gt;, slug=&lt;% ctx(customerslug) %&gt;, group=&lt;% tgroupid %&gt;<br>
+next:<br>
+- when: &lt;% succeeded() %&gt;</p>
+</blockquote>
+<p>Running the action ‘netbox.get.tenancy.tenant_groups’ by itself via the UI, returns the following JSON output as a result:</p>
+<pre><code>{
+  "stdout": "",
+  "stderr": "",
+  "exit_code": 0,
+  "result": {
+    "raw": {
+      "count": 1,
+      "next": null,
+      "previous": null,
+      "results": [
+        {
+          "id": 3,
+          "name": "Some Company",
+          "slug": "some-company",
+          "parent": null,
+          "description": "This is Some Company",
+          "tenant_count": 1
+        }
+      ]
+    }
+  }
+}
+</code></pre>
+<p>As you can see from the JSON output above, it returns the {“id”: 3} value that I’m trying to get assigned to the (tgroupid) variable that I have defined.  Can someone please assist?</p>
+<p>Also, I would like to understand how I can print the value of the variables at different places throughout a workflow to understand if/when they are changing.  Similar to what you can do in any python script by printing the value at any point in a script.</p>
+          <p><a href="https://forum.stackstorm.com/t/orquesta-workflow-passing-json-values/1372/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/orquesta-workflow-passing-json-values/1372/1</link>
+        <pubDate>Sat, 01 Aug 2020 20:46:07 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1372-1</guid>
+        <source url="https://forum.stackstorm.com/t/orquesta-workflow-passing-json-values/1372.rss">Orquesta Workflow Passing JSON values</source>
+      </item>
+  </channel>
+</rss>

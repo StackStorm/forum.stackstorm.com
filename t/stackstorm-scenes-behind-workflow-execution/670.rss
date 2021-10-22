@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>StackStorm - scenes behind workflow execution</title>
+    <link>https://forum.stackstorm.com/t/stackstorm-scenes-behind-workflow-execution/670</link>
+    <description>how the multi-threading is implemented in StackStorm workflow executions.
+
+Currently, we are seeing a behavior where the execution times of workflows keep exponentially increasing with concurrent executions.
+
+If you can throw some insights on how the actions/workflows are dealt or configured in multi-threaded or parallel executions, we can then test a few configuration changes to improve the execution times.![workflows%20execution|690x138](upload://snRzHP9L0UC8zVrPfcm5pzSHhUM.png)</description>
+    
+    <lastBuildDate>Fri, 31 May 2019 13:55:58 +0000</lastBuildDate>
+    <category>Workflows</category>
+    <atom:link href="https://forum.stackstorm.com/t/stackstorm-scenes-behind-workflow-execution/670.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>StackStorm - scenes behind workflow execution</title>
+        <dc:creator><![CDATA[sabihatasneem]]></dc:creator>
+        <description><![CDATA[
+            <p>how the multi-threading is implemented in StackStorm workflow executions.</p>
+<p>Currently, we are seeing a behavior where the execution times of workflows keep exponentially increasing with concurrent executions.</p>
+<p>If you can throw some insights on how the actions/workflows are dealt or configured in multi-threaded or parallel executions, we can then test a few configuration changes to improve the execution times.</p><div class="lightbox-wrapper"><a class="lightbox" href="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/c6ef754ac843d2610755480c94f66a69a345ed6c.png" title="workflows execution.PNG" rel="nofollow noopener"><img src="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/c6ef754ac843d2610755480c94f66a69a345ed6c_2_690x138.png" alt="workflows%20execution" width="690" height="138" srcset="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/c6ef754ac843d2610755480c94f66a69a345ed6c_2_690x138.png, https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/c6ef754ac843d2610755480c94f66a69a345ed6c_2_1035x207.png 1.5x, https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/c6ef754ac843d2610755480c94f66a69a345ed6c.png 2x" data-small-upload="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/c6ef754ac843d2610755480c94f66a69a345ed6c_2_10x10.png"></a></div><p></p>
+          <p><a href="https://forum.stackstorm.com/t/stackstorm-scenes-behind-workflow-execution/670/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/stackstorm-scenes-behind-workflow-execution/670/1</link>
+        <pubDate>Wed, 29 May 2019 14:02:09 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-670-1</guid>
+        <source url="https://forum.stackstorm.com/t/stackstorm-scenes-behind-workflow-execution/670.rss">StackStorm - scenes behind workflow execution</source>
+      </item>
+  </channel>
+</rss>

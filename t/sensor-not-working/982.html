@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en" class="desktop-view not-mobile-device text-size-normal anon">
+<head>
+    <meta charset="utf-8">
+    <title>Sensor Not working - Pack Management - StackStorm Support (ARCHIVED)</title>
+    <meta name="description" content="I have created a sensor which will execute when some one will send mail on particular email id  with particular email subject using IMAP. 
+For this 
+I have created a gmail account where I have do setting for I map and I &amp;hellip;">
+    <meta name="discourse_theme_id" content="2">
+    <meta name="discourse_current_homepage" content="latest">
+    <meta name="generator"
+          content="Discourse 2.8.0.beta6 - https://github.com/discourse/discourse version a1daf9fe53a66e2d2cdf9757ab4812fb9a2b2787">
+    <link rel="icon" type="image/png"
+          href="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/379ced12f8326d58f1b3d2b3ff652f883e141f6a_2_32x32.PNG">
+    <link rel="apple-touch-icon" type="image/png"
+          href="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/379ced12f8326d58f1b3d2b3ff652f883e141f6a_2_180x180.PNG">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <link rel="canonical" href="982.html"/>
+    <script type="application/ld+json">{
+        "@context": "http://schema.org",
+        "@type": "WebSite",
+        "url": "https://forum.stackstorm.com",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://forum.stackstorm.com/search?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }</script>
+    <link rel="search" type="application/opensearchdescription+xml" href="../../opensearch.xml"
+          title="StackStorm Support (ARCHIVED) Search">
+
+
+    <link href="/../../stylesheets/color_definitions_base__2_3c5eec1ecf192052ea70b4afdab57a62bccc0604.css?__ws=forum.stackstorm.com"
+          media="all" rel="stylesheet" class="light-scheme"/>
+
+    <link href="/../../stylesheets/desktop_b2f2968742d41481357e0df259b51ce29f72481a.css?__ws=forum.stackstorm.com"
+          media="all" rel="stylesheet" data-target="desktop"/>
+
+
+    <meta name="fragment" content="!">
+
+
+    <link id="manifest-link" rel="manifest" href="../../manifest.webmanifest" crossorigin="use-credentials">
+
+
+    <link rel="alternate" type="application/rss+xml" title="RSS feed of &#39;Sensor Not working&#39;" href="982.rss"/>
+    <meta property="og:site_name" content="StackStorm Support (ARCHIVED)"/>
+    <meta property="og:type" content="website"/>
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:image"
+          content="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/891f00fbdb31fecb5bd9dab30c186d2fed0091ca.jpeg"/>
+    <meta property="og:image"
+          content="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/891f00fbdb31fecb5bd9dab30c186d2fed0091ca.jpeg"/>
+    <meta property="og:url" content="https://forum.stackstorm.com/t/sensor-not-working/982"/>
+    <meta name="twitter:url" content="https://forum.stackstorm.com/t/sensor-not-working/982"/>
+    <meta property="og:title" content="Sensor Not working"/>
+    <meta name="twitter:title" content="Sensor Not working"/>
+    <meta property="og:description"
+          content="I have created a sensor which will execute when some one will send mail on particular email id  with particular email subject using IMAP.  For this  I have created a gmail account where I have do setting for I map and I have create sensor , rule, and action. Action is running separately  using “st2 run &lt;pack_name&gt;.&lt;action_name&gt;”.  It is working fine. While running  sensor  using “sudo /opt/stackstorm/st2/bin/st2sensorcontainer --config-file=/etc/st2/st2.conf --sensor-ref=azure_vm_create.IMAPSens..."/>
+    <meta name="twitter:description"
+          content="I have created a sensor which will execute when some one will send mail on particular email id  with particular email subject using IMAP.  For this  I have created a gmail account where I have do setting for I map and I have create sensor , rule, and action. Action is running separately  using “st2 run &lt;pack_name&gt;.&lt;action_name&gt;”.  It is working fine. While running  sensor  using “sudo /opt/stackstorm/st2/bin/st2sensorcontainer --config-file=/etc/st2/st2.conf --sensor-ref=azure_vm_create.IMAPSens..."/>
+    <meta name="twitter:label1" value="Reading time"/>
+    <meta name="twitter:data1" value="1 mins 🕑"/>
+    <meta name="twitter:label2" value="Likes"/>
+    <meta name="twitter:data2" value="1 ❤"/>
+    <meta property="article:published_time" content="2020-01-03T12:57:43+00:00"/>
+    <meta property="og:ignore_canonical" content="true"/>
+
+
+    <script type="application/ld+json">{
+        "@context": "http://schema.org",
+        "@type": "QAPage",
+        "name": "Sensor Not working",
+        "mainEntity": {
+            "@type": "Question",
+            "name": "Sensor Not working",
+            "text": "I have created a sensor which will execute when some one will send mail on particular email id  with particular email subject using IMAP.\n\nFor this\n\nI have created a gmail account where I have do setting for I map and I have create sensor , rule, and action. Action is running separately\n\nusing “st2 &hellip;",
+            "upvoteCount": 0,
+            "answerCount": 1,
+            "dateCreated": "2020-01-03T12:57:42.997Z",
+            "author": {
+                "@type": "Person",
+                "name": "Mukesh"
+            },
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Are you able to run the sensor in the debug mode?",
+                "upvoteCount": 1,
+                "dateCreated": "2020-01-10T15:40:23.854Z",
+                "url": "https://forum.stackstorm.com/t/sensor-not-working/982/2",
+                "author": {
+                    "@type": "Person",
+                    "name": "gitsaurav"
+                }
+            }
+        }
+    }</script>
+
+    <meta id="data-discourse-setup" data-cdn="https://sjc6.discourse-cdn.com/standard10"
+          data-base-url="https://forum.stackstorm.com" data-base-uri="" data-environment="production"
+          data-letter-avatar-version="5_8fec8e114563efeaf5265573e510f08e"
+          data-markdown-it-url="https://aws1.discourse-cdn.com/standard10/assets/markdown-it-bundle-31e9a9c535ca1801c26da78b0ff465821751a98f921c5cdc5457d7e5a69e9748.js"
+          data-service-worker-url="service-worker.js" data-default-locale="en"
+          data-asset-version="597e36448c9b51d0fa3b7e43ec1fd6d5" data-disable-custom-css="false"
+          data-highlight-js-path="/highlight-js/forum.stackstorm.com/ac0f4aa001e1343346941766d72e0c1ae330832b.js"
+          data-svg-sprite-path="/svg-sprite/forum.stackstorm.com/svg-2-c2ad434b1e06079c7e282124aed9938dc95b83ea.js"
+          data-enable-js-error-reporting="true" data-color-scheme-is-dark="false" data-user-dark-scheme-id="-1"
+          data-s3-cdn="https://aws1.discourse-cdn.com/standard10"
+          data-s3-base-url="//discourse-cloud-file-uploads.s3.dualstack.us-west-2.amazonaws.com/standard10">
+
+    <meta name="discourse/config/environment"
+          content="%7B%22modulePrefix%22%3A%22discourse%22%2C%22environment%22%3A%22production%22%2C%22rootURL%22%3A%22%22%2C%22locationType%22%3A%22auto%22%2C%22historySupportMiddleware%22%3Afalse%2C%22EmberENV%22%3A%7B%22FEATURES%22%3A%7B%7D%2C%22EXTEND_PROTOTYPES%22%3A%7B%22Date%22%3Afalse%7D%2C%22_APPLICATION_TEMPLATE_WRAPPER%22%3Afalse%2C%22_DEFAULT_ASYNC_OBSERVERS%22%3Atrue%2C%22_JQUERY_INTEGRATION%22%3Atrue%7D%2C%22APP%22%3A%7B%22name%22%3A%22discourse%22%2C%22version%22%3A%222.8.0.beta6%20a1daf9fe53a66e2d2cdf9757ab4812fb9a2b2787%22%2C%22exportApplicationGlobal%22%3Atrue%7D%7D"/>
+</head>
+
+<body class="">
+
+
+<header class="d-header">
+    <div class="wrap">
+        <div class="contents clearfix">
+            <div class="title">
+                <a href="../../index.html">
+                    <picture>
+                        <img src="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png"
+                             alt="StackStorm Support (ARCHIVED)" id="site-logo"/>
+                    </picture>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</header>
+
+<div id="main-outlet" class="wrap" role="main">
+    <!-- preload-content: -->
+
+    <!-- EOF START -->
+    <div class="container" id="main-container">
+        <div id="ember11" class="ember-view"></div>
+        <div id="ember12" class="controls ember-view"><!----></div>
+        <div id="ember13" class="ember-view"><!----></div>
+        <div id="ember14" class="ember-view">
+            <div class="row">
+                <div id="global-notice-alert-read-only" class="alert alert-info alert-read-only">
+                    <!----> <span class="text">This site is in read only mode. Please continue to browse, but replying, likes, and other actions are disabled for now.</span>
+
+                    <!---->    </div>
+            </div>
+            <div class="row">
+                <div id="global-notice-alert-global-notice" class="alert alert-info alert-global-notice">
+                    <!----> <span class="text"><h3>⚠️ We've moved!</h3>  <p> Hi there!<br><br> To reduce project dependency on 3rd party paid services the StackStorm TSC has decided to move the Q/A from this forum to <a
+                        href="https://github.com/StackStorm/st2/discussions">Github Discussions</a>. This will make user experience better integrated with the native Github flow, as well as the questions closer to the community where they can provide answers. </p>  <p> Use 🔗 <b><a
+                        href="https://github.com/StackStorm/st2/discussions" class="active">Github Discussions</a></b> to ask your questions. </p></span>
+
+                    <!---->    </div>
+            </div>
+        </div>
+        <div id="ember17" class="hidden create-topics-notice ember-view"><!----></div>
+        <!---->
+    </div>
+    <!-- EOF END -->
+    <div id="topic-title">
+        <h1>
+            <a href="982.html">Sensor Not working</a>
+        </h1>
+
+        <div class="topic-category" itemscope itemtype="http://schema.org/BreadcrumbList">
+          <span itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a href="../../c/core-st2-platform-issues/6" class="badge-wrapper bullet" itemprop="item">
+              <span class='badge-category-bg' style='background-color: #AB9364'></span>
+              <span class='badge-category clear-badge'>
+                <span class='category-name' itemprop='name'>Platform</span>
+              </span>
+            </a>
+            <meta itemprop="position" content="1"/>
+          </span>
+            <span itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a href="../../c/core-st2-platform-issues/pack-management-issues/12" class="badge-wrapper bullet"
+               itemprop="item">
+              <span class='badge-category-bg' style='background-color: #BF1E2E'></span>
+              <span class='badge-category clear-badge'>
+                <span class='category-name' itemprop='name'>Pack Management</span>
+              </span>
+            </a>
+            <meta itemprop="position" content="2"/>
+          </span>
+        </div>
+
+    </div>
+
+
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/mksindri'><span itemprop='name'>mksindri</span></a>
+            (Mukesh)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="982.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2020-01-03T12:57:43Z' class='post-time'>
+                January 3, 2020, 12:57pm
+              </time>
+              <meta itemprop='dateModified' content='2020-01-03T13:04:05Z'>
+          <span itemprop='position'>#1</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>I have created a sensor which will execute when some one will send mail on particular email id with
+                particular email subject using IMAP.<br>
+                For this<br>
+                I have created a gmail account where I have do setting for I map and I have create sensor , rule, and
+                action. Action is running separately<br>
+                using “st2 run &lt;pack_name&gt;.&lt;action_name&gt;”.<br>
+                It is working fine. While running sensor<br>
+                using “sudo /opt/stackstorm/st2/bin/st2sensorcontainer --config-file=/etc/st2/st2.conf
+                --sensor-ref=azure_vm_create.IMAPSensor”<br>
+                it not showing error.<br>
+                this is my imap.yaml file<br>
+                –<br>
+                class_name: “IMAPSensor”<br>
+                entry_point: “imap_sensor.py”<br>
+                description: “Sensor that emits triggers when e-mail message is received via IMAP”<br>
+                trigger_types:</p>
+            <pre><code>name: imap.message
+description: "An e-mail receieved via the IMAP sensor"
+payload_info:
+  - uid
+  - from
+  - to
+  - headers
+  - subject
+  - date
+  - message_id
+  - body
+  - location
+  - vmname
+  - group
+</code></pre>
+            <p>imap_sensor.py</p>
+            <p>import hashlib<br>
+                import base64</p>
+            <p>import six<br>
+                import eventlet<br>
+                import easyimap<br>
+                from flanker import mime</p>
+            <p>from st2reactor.sensor.base import PollingSensor</p>
+            <p><strong>all</strong> = [<br>
+                ‘IMAPSensor’<br>
+                ]</p>
+            <p>eventlet.monkey_patch(<br>
+                os=True,<br>
+                select=True,<br>
+                socket=True,<br>
+                thread=True,<br>
+                time=True)</p>
+            <p>class IMAPSensor(PollingSensor):<br>
+                def <strong>init</strong>(self, sensor_service, config=None, poll_interval=10):<br>
+                super(IMAPSensor, self).<strong>init</strong>(sensor_service=sensor_service,<br>
+                config=config,<br>
+                poll_interval=poll_interval)</p>
+            <pre><code>    self._trigger = 'azure_vm_create.imap.message'
+    self._logger = self._sensor_service.get_logger(__name__)
+    self._accounts = {}
+    self._logger.debug('[IMAPSensor]: Init executed')
+    self._stop = False
+
+def setup(self):
+    self._logger.debug('[IMAPSensor]: entering setup')
+
+def poll(self):
+    self._logger.debug('[IMAPSensor]: entering poll')
+
+    if 'imap_accounts' in self._config:
+        self._parse_accounts(self._config['imap_accounts'])
+
+    for name, values in self._accounts.items():
+        mailbox = values['connection']
+        mailbox_metadata = values['mailbox_metadata']
+
+        self._poll_for_unread_messages(name=name, mailbox=mailbox,
+                                       mailbox_metadata=mailbox_metadata)
+        mailbox.quit()
+
+def cleanup(self):
+    self._logger.debug('[IMAPSensor]: entering cleanup')
+    self._stop = True
+
+    for name, values in self._accounts.items():
+        mailbox = values['connection']
+        self._logger.debug('[IMAPSensor]: Disconnecting from {0}'.format(name))
+        mailbox.quit()
+
+def add_trigger(self, trigger):
+    pass
+
+def update_trigger(self, trigger):
+    pass
+
+def remove_trigger(self, trigger):
+    pass
+
+def _parse_accounts(self, accounts):
+    for config in accounts:
+        mailbox = config.get('name', 'Mukesh')
+        server = config.get('server', 'imap.gmail.com')
+        port = config.get('port', 993)
+        user = config.get('username', 'test.nihilent.5375@gmail.com')
+        password = config.get('password', 'nihilent@123')
+        folder = config.get('folder', 'INBOX')
+        ssl = config.get('secure', True)
+
+        if not user or not password:
+            self._logger.debug("""[IMAPSensor]: Missing
+                username/password for {0}""".format(mailbox))
+            continue
+
+        if not server:
+            self._logger.debug("""[IMAPSensor]: Missing server
+                for {0}""".format(mailbox))
+            continue
+
+        try:
+            connection = easyimap.connect(server, user, password,
+                                          folder, ssl=ssl, port=port)
+        except Exception as e:
+            message = 'Failed to connect to mailbox "%s": %s' % (mailbox, str(e))
+            raise Exception(message)
+
+        item = {
+            'connection': connection,
+            'mailbox_metadata': {
+                'server': server,
+                'port': port,
+                'user': user,
+                'folder': folder,
+                'ssl': ssl
+            }
+        }
+        self._accounts[mailbox] = item
+
+def _poll_for_unread_messages(self, name, mailbox, mailbox_metadata):
+    self._logger.debug('[IMAPSensor]: polling mailbox {0}'.format(name))
+
+    messages = mailbox.unseen()
+
+    self._logger.debug('[IMAPSensor]: Processing {0} new messages'.format(len(messages)))
+    for message in messages:
+        self._process_message(uid=message.uid, mailbox=mailbox,
+                              mailbox_metadata=mailbox_metadata)
+
+def _process_message(self, uid, mailbox, mailbox_metadata):
+    m=[]
+    message = mailbox.mail(uid, include_raw=True)
+    mime_msg = mime.from_string(message.raw)
+
+    body = message.body
+    sent_from = message.from_addr
+    sent_to = message.to
+    subject = message.title
+    date = message.date
+    message_id = message.message_id
+    headers = mime_msg.headers.items()
+    x=body.splitlines()
+    for x1 in x:
+      res=x1.split('=')
+      m.append(res[1])
+    location=m[0]
+    vmname=m[1]
+    group=m[2]
+
+    # Flatten the headers so they can be unpickled
+    headers = self._flattern_headers(headers=headers)
+
+    payload = {
+        'uid': uid,
+        'from': sent_from,
+        'to': sent_to,
+        'headers': headers,
+        'date': date,
+        'subject': subject,
+        'message_id': message_id,
+        'body': body,
+        'mailbox_metadata': mailbox_metadata,
+        'location': location,
+        'vmname': vmname,
+        'group': group
+    }
+
+    self._sensor_service.dispatch(trigger=self._trigger, payload=payload)
+
+def _flattern_headers(self, headers):
+    # Flattern headers and make sure they only contain simple types so they
+    # can be serialized in a trigger
+    result = []
+
+    for pair in headers:
+        name = pair[0]
+        value = pair[1]
+
+        if not isinstance(value, six.string_types):
+            value = str(value)
+
+        result.append([name, value])
+
+    return result
+</code></pre>
+            <p>I dont know where I am lacking. Please tell me how sensor initiate.</p>
+        </div>
+
+        <meta itemprop='headline' content='Sensor Not working'>
+        <meta itemprop='keywords' content=''>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/gitsaurav'><span itemprop='name'>gitsaurav</span></a>
+            (saurav)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="982.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2020-01-10T15:40:23Z' class='post-time'>
+                January 10, 2020,  3:40pm
+              </time>
+              <meta itemprop='dateModified' content='2020-01-10T15:40:23Z'>
+          <span itemprop='position'>#2</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Are you able to run the sensor in the debug mode?</p>
+        </div>
+
+        <meta itemprop='headline' content='Sensor Not working'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+            <span class='post-likes'>1 Like</span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/mksindri'><span itemprop='name'>mksindri</span></a>
+            (Mukesh)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="982.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2020-01-30T13:56:11Z' class='post-time'>
+                January 30, 2020,  1:56pm
+              </time>
+              <meta itemprop='dateModified' content='2020-01-30T13:56:11Z'>
+          <span itemprop='position'>#3</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Yes , Now resolved</p>
+            <p>Thanks for comment</p>
+        </div>
+
+        <meta itemprop='headline' content='Sensor Not working'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+
+
+    <!-- :preload-content -->
+    <footer class="noscript-footer-nav">
+        <nav itemscope itemtype='http://schema.org/SiteNavigationElement'>
+            <a href='../../index.html'>Home</a>
+            <a href="../../categories.html">Categories</a>
+            <a href="https://forum.stackstorm.com/guidelines">FAQ/Guidelines</a>
+            <a href="../../tos.html">Terms of Service</a>
+            <a href="../../privacy.html">Privacy Policy</a>
+        </nav>
+    </footer>
+</div>
+
+<footer id='noscript-footer'>
+    <p>Powered by <a href="https://www.discourse.org">Discourse</a>, best viewed with JavaScript enabled</p>
+</footer>
+
+
+<section id='main'>
+</section>
+
+
+</body>
+</html>

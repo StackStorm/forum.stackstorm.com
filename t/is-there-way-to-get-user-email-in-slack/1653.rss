@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Is there way to get user email in slack</title>
+    <link>https://forum.stackstorm.com/t/is-there-way-to-get-user-email-in-slack/1653</link>
+    <description>We integrate stackstorm with slack, and we are able to get the user name with `action_context.api_user` and assign the user name as the value of one action parameter. Is there a way to get user email address associated with this user? Thanks!</description>
+    
+    <lastBuildDate>Tue, 20 Apr 2021 02:13:08 +0000</lastBuildDate>
+    <category>Chatops</category>
+    <atom:link href="https://forum.stackstorm.com/t/is-there-way-to-get-user-email-in-slack/1653.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Is there way to get user email in slack</title>
+        <dc:creator><![CDATA[yypptest]]></dc:creator>
+        <description><![CDATA[
+            <p>Thanks for your response, we will investigate the solution as you suggested!</p>
+          <p><a href="https://forum.stackstorm.com/t/is-there-way-to-get-user-email-in-slack/1653/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/is-there-way-to-get-user-email-in-slack/1653/3</link>
+        <pubDate>Tue, 20 Apr 2021 02:13:08 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1653-3</guid>
+        <source url="https://forum.stackstorm.com/t/is-there-way-to-get-user-email-in-slack/1653.rss">Is there way to get user email in slack</source>
+      </item>
+      <item>
+        <title>Is there way to get user email in slack</title>
+        <dc:creator><![CDATA[blag]]></dc:creator>
+        <description><![CDATA[
+            <p>As far as I’m aware, there is not really a good way to do this with ChatOps. ChatOps is about conversation driven development, so ChatOps aliases are meant to post back <em>into Slack</em> if they need to communicate back to the user.</p>
+<p>However, you can still get the user’s email address:</p>
+<ol>
+<li>Install the Slack pack</li>
+<li>Run a workflow action via the ChatOps alias</li>
+<li>Add a step in the workflow that searches Slack for the user with the username equal to <code>{{ action_context.api_user }}</code> and grabs the email address for that user</li>
+</ol>
+          <p><a href="https://forum.stackstorm.com/t/is-there-way-to-get-user-email-in-slack/1653/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/is-there-way-to-get-user-email-in-slack/1653/2</link>
+        <pubDate>Mon, 19 Apr 2021 20:38:38 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1653-2</guid>
+        <source url="https://forum.stackstorm.com/t/is-there-way-to-get-user-email-in-slack/1653.rss">Is there way to get user email in slack</source>
+      </item>
+      <item>
+        <title>Is there way to get user email in slack</title>
+        <dc:creator><![CDATA[yypptest]]></dc:creator>
+        <description><![CDATA[
+            <p>We integrate stackstorm with slack, and we are able to get the user name with <code>action_context.api_user</code> and assign the user name as the value of one action parameter. Is there a way to get user email address associated with this user? Thanks!</p>
+          <p><a href="https://forum.stackstorm.com/t/is-there-way-to-get-user-email-in-slack/1653/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/is-there-way-to-get-user-email-in-slack/1653/1</link>
+        <pubDate>Mon, 19 Apr 2021 11:53:10 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1653-1</guid>
+        <source url="https://forum.stackstorm.com/t/is-there-way-to-get-user-email-in-slack/1653.rss">Is there way to get user email in slack</source>
+      </item>
+  </channel>
+</rss>

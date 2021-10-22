@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:discourse="http://www.discourse.org/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>RBAC - StackStorm Support (ARCHIVED)</title>
+    <link>https://forum.stackstorm.com/c/core-st2-platform-issues/role-based-access-control-issues/19</link>
+    <description>Topics in the &#39;RBAC&#39; category </description>
+    
+      <lastBuildDate>Wed, 23 Jun 2021 15:48:29 +0000</lastBuildDate>
+      <atom:link href="https://forum.stackstorm.com/c/core-st2-platform-issues/role-based-access-control-issues/19.rss" rel="self" type="application/rss+xml" />
+        <item>
+          <title>RBAC permissions implications</title>
+          <dc:creator><![CDATA[minsis]]></dc:creator>
+          <category>RBAC</category>
+          <description><![CDATA[
+            <p>I have a limited user account that has only permissions to install and sync packs. But there seems to maybe be some implications that are missing when you’re limiting a user role like this which is failing the install the pack(s)</p>
+<pre><code class="lang-yaml">name: pack_management
+description: Allows a user to install, register, and modify packs only
+permission_grants:
+  -
+    permission_types:
+       - "pack_list"
+       - "pack_install"
+       - "pack_uninstall"
+       - "pack_create"
+       - "pack_register"
+       - "pack_config"
+       - "pack_search"
+       - "pack_views_index_health"
+  -
+    resource_uid: "action:packs.install"
+    permission_types:
+       - "action_execute"
+</code></pre>
+<p>But because there’s no execution_view permissions the pack install fails</p>
+<pre><code class="lang-auto">st2@st2appl01 ~ $ st2 pack install ansible
+
+For the "ansible" pack, the following content will be registered:
+
+actions   |  8
+rules     |  0
+sensors   |  0
+aliases   |  0
+triggers  |  0
+
+Installation may take a while for packs with many items.
+ERROR: 403 Client Error: Forbidden
+MESSAGE: User "&lt;user&gt;" doesn't have required permission "execution_view" on resource "execution:60d34c08d795d3d021105294" for url: http://127.0.0.1:9101/v1/executions/60d34c08d795d3d021105294
+</code></pre>
+<p>I’ve tried doing permissions like:</p>
+<pre><code class="lang-yaml">---
+  -
+    resource_uid: "execution:"
+    permission_types:
+       - "execution_view"
+
+---
+  -
+    resource_uid: "execution:*"
+    permission_types:
+       - "execution_view"
+</code></pre>
+<p>But none of these are working. I dont know if there’s a specific uid to use for something like this or if I need to register this as a type of permission bug.</p>
+            <p><small>2 posts - 2 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/rbac-permissions-implications/1743">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/rbac-permissions-implications/1743</link>
+          <pubDate>Wed, 23 Jun 2021 15:48:29 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1743</guid>
+          <source url="https://forum.stackstorm.com/t/rbac-permissions-implications/1743.rss">RBAC permissions implications</source>
+        </item>
+        <item>
+          <title>Timeline for RBAC</title>
+          <dc:creator><![CDATA[minsis]]></dc:creator>
+          <category>RBAC</category>
+          <description><![CDATA[
+            <p>I just wanted to see what might be the timeline on getting RBAC and/or LDAP and/or SSO integrated in?</p>
+            <p><small>4 posts - 2 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/timeline-for-rbac/1567">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/timeline-for-rbac/1567</link>
+          <pubDate>Mon, 22 Feb 2021 20:23:29 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1567</guid>
+          <source url="https://forum.stackstorm.com/t/timeline-for-rbac/1567.rss">Timeline for RBAC</source>
+        </item>
+        <item>
+          <title>EWC ldap enterprise settings: how to add a search_filter for sAMAccountName</title>
+          <dc:creator><![CDATA[petergits]]></dc:creator>
+          <category>RBAC</category>
+          <description><![CDATA[
+            <p>using the EWC ldap setup, where do I place the</p>
+<p><code>"search_filter": "(&amp;(sAMAccountName={username})(!(userAccountControl:1.2.840.113556.1.4.803:=2)))"</code><br>
+to allow uid to essentially now search of sAMAccountName?</p>
+<pre><code class="lang-auto">backend = ldap
+backend_kwargs = {"bind_dn": "ldapxxx@fnetworks.com", "bind_password": "xxxx", "base_ou": "OU=Users,OU=XXXX,DC=fnetworks,DC=com", "group_dns": ["OU=Users,OU=XXX,DC=fnetworks,DC=com", "OU=Users,OU=XXXX,DC=fnetworks,DC=com"], "scope": "subtree", "host": "xxx.fnetworks.com", "port": xxx, "debug":true, "group_dns_check": "or", **"search_filter": "(&amp;(sAMAccountName={username})(!(userAccountControl:1.2.840.113556.1.4.803:=2)))"** }
+</code></pre>
+            <p><small>3 posts - 2 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/ewc-ldap-enterprise-settings-how-to-add-a-search-filter-for-samaccountname/529">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/ewc-ldap-enterprise-settings-how-to-add-a-search-filter-for-samaccountname/529</link>
+          <pubDate>Thu, 07 Mar 2019 19:31:40 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-529</guid>
+          <source url="https://forum.stackstorm.com/t/ewc-ldap-enterprise-settings-how-to-add-a-search-filter-for-samaccountname/529.rss">EWC ldap enterprise settings: how to add a search_filter for sAMAccountName</source>
+        </item>
+        <item>
+          <title>About the RBAC category</title>
+          <dc:creator><![CDATA[lakstorm]]></dc:creator>
+          <category>RBAC</category>
+          <description><![CDATA[
+            <p>(Replace this first paragraph with a brief description of your new category. This guidance will appear in the category selection area, so try to keep it below 200 characters. <strong>Until you edit this description or create topics, this category won’t appear on the categories page.</strong>)</p>
+<p>Use the following paragraphs for a longer description, or to establish category guidelines or rules:</p>
+<ul>
+<li>
+<p>Why should people use this category? What is it for?</p>
+</li>
+<li>
+<p>How exactly is this different than the other categories we already have?</p>
+</li>
+<li>
+<p>What should topics in this category generally contain?</p>
+</li>
+<li>
+<p>Do we need this category? Can we merge with another category, or subcategory?</p>
+</li>
+</ul>
+            <p><small>1 post - 1 participant</small></p>
+            <p><a href="https://forum.stackstorm.com/t/about-the-rbac-category/88">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/about-the-rbac-category/88</link>
+          <pubDate>Thu, 15 Mar 2018 14:26:11 +0000</pubDate>
+          <discourse:topicPinned>Yes</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-88</guid>
+          <source url="https://forum.stackstorm.com/t/about-the-rbac-category/88.rss">About the RBAC category</source>
+        </item>
+  </channel>
+</rss>

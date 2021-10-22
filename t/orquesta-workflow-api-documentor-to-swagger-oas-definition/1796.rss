@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Orquesta workflow API documentor to Swagger OAS definition?</title>
+    <link>https://forum.stackstorm.com/t/orquesta-workflow-api-documentor-to-swagger-oas-definition/1796</link>
+    <description>I&#39;m looking to created standardized OAS v2 or v3 YAML to give to consumers of my workflows, such that they can import them into Insomnia, Postman, or other API client tools, or even just visualize in SwaggerHub.
+
+I know I can get a JSON blob of a particular action by going through the API endpoint using an api key or token, but that isn&#39;t quite sufficient for what I&#39;m looking for.
+
+I see that there is an OpenAPI generator for the main ST2 api created during the build process.
+
+Has anyone successfully adapted it to do &quot;documentation-by-code&quot; or something similar that I can feed it my Orquesta actions and it will make a nice little OAS YAML file?</description>
+    
+    <lastBuildDate>Wed, 04 Aug 2021 15:27:09 +0000</lastBuildDate>
+    <category>Workflows</category>
+    <atom:link href="https://forum.stackstorm.com/t/orquesta-workflow-api-documentor-to-swagger-oas-definition/1796.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Orquesta workflow API documentor to Swagger OAS definition?</title>
+        <dc:creator><![CDATA[willowhawk]]></dc:creator>
+        <description><![CDATA[
+            <p>Yes, more specifically I’m seeking if anyone has already written a tool that scans your Orquesta workflow YAML to identify the input parameters and the output schema to create an OpenAPI compliant definition.  I know that ST2’s built in API allows a JSON formatted version of this, but it’s not compatible with OpenAPI without conversion of some kind.  Thought I’d ask before I go about writing one.</p>
+          <p><a href="https://forum.stackstorm.com/t/orquesta-workflow-api-documentor-to-swagger-oas-definition/1796/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/orquesta-workflow-api-documentor-to-swagger-oas-definition/1796/3</link>
+        <pubDate>Wed, 04 Aug 2021 15:27:09 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1796-3</guid>
+        <source url="https://forum.stackstorm.com/t/orquesta-workflow-api-documentor-to-swagger-oas-definition/1796.rss">Orquesta workflow API documentor to Swagger OAS definition?</source>
+      </item>
+      <item>
+        <title>Orquesta workflow API documentor to Swagger OAS definition?</title>
+        <dc:creator><![CDATA[blag]]></dc:creator>
+        <description><![CDATA[
+            <p>I’m not 100% sure what you’re asking for, and I’m not familiar with OAS, so I don’t know if I will be of any help.</p>
+<p>AFAIK, Orquesta itself doesn’t have an HTTP API. ST2 has an HTTP API, as you’ve found:</p><aside class="onebox githubblob" data-onebox-src="https://github.com/StackStorm/st2/blob/master/st2common/st2common/openapi.yaml">
+  <header class="source">
+
+      <a href="https://github.com/StackStorm/st2/blob/master/st2common/st2common/openapi.yaml" target="_blank" rel="noopener">github.com</a>
+  </header>
+
+  <article class="onebox-body">
+    <h4><a href="https://github.com/StackStorm/st2/blob/master/st2common/st2common/openapi.yaml" target="_blank" rel="noopener">StackStorm/st2/blob/master/st2common/st2common/openapi.yaml</a></h4>
+
+
+    <pre><code class="lang-yaml"># NOTE: This file is auto-generated - DO NOT EDIT MANUALLY
+# Edit st2common/st2common/openapi.yaml.j2 and then run
+# make .generate-api-spec
+# to generate the final spec file
+swagger: '2.0'
+
+info:
+  version: "1.0.0"
+  title: StackStorm API
+  description: |
+    
+    ## Welcome
+
+    Welcome to the StackStorm API Reference documentation! You can use the StackStorm API to integrate StackStorm with 3rd-party systems and custom applications. Example integrations include writing your own self-service user portal, or integrating with other orquestation systems.
+
+    This document provides an overview of how to use the API. Use the menu on the left to look up details of specific API endpoints. For more information about how StackStorm works, and how to use it, check out the main [StackStorm documentation](https://docs.stackstorm.com).
+
+    &gt; ### A Quick Note
+    &gt; This API is intended for software developers, and those are who are comfortable working with RESTful APIs, and writing some code. You do not need to use this API to work with StackStorm, or to use and write integration packs for StackStorm.
+
+</code></pre>
+
+
+  This file has been truncated. <a href="https://github.com/StackStorm/st2/blob/master/st2common/st2common/openapi.yaml" target="_blank" rel="noopener">show original</a>
+
+  </article>
+
+  <div class="onebox-metadata">
+    
+    
+  </div>
+
+  <div style="clear: both"></div>
+</aside>
+
+<p>Are you trying to get an OAS YAML API description of ST2 actions for a particular pack?</p>
+          <p><a href="https://forum.stackstorm.com/t/orquesta-workflow-api-documentor-to-swagger-oas-definition/1796/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/orquesta-workflow-api-documentor-to-swagger-oas-definition/1796/2</link>
+        <pubDate>Tue, 03 Aug 2021 20:03:07 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1796-2</guid>
+        <source url="https://forum.stackstorm.com/t/orquesta-workflow-api-documentor-to-swagger-oas-definition/1796.rss">Orquesta workflow API documentor to Swagger OAS definition?</source>
+      </item>
+      <item>
+        <title>Orquesta workflow API documentor to Swagger OAS definition?</title>
+        <dc:creator><![CDATA[willowhawk]]></dc:creator>
+        <description><![CDATA[
+            <p>I’m looking to created standardized OAS v2 or v3 YAML to give to consumers of my workflows, such that they can import them into Insomnia, Postman, or other API client tools, or even just visualize in SwaggerHub.</p>
+<p>I know I can get a JSON blob of a particular action by going through the API endpoint using an api key or token, but that isn’t quite sufficient for what I’m looking for.</p>
+<p>I see that there is an OpenAPI generator for the main ST2 api created during the build process.</p>
+<p>Has anyone successfully adapted it to do “documentation-by-code” or something similar that I can feed it my Orquesta actions and it will make a nice little OAS YAML file?</p>
+          <p><a href="https://forum.stackstorm.com/t/orquesta-workflow-api-documentor-to-swagger-oas-definition/1796/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/orquesta-workflow-api-documentor-to-swagger-oas-definition/1796/1</link>
+        <pubDate>Tue, 03 Aug 2021 19:38:34 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1796-1</guid>
+        <source url="https://forum.stackstorm.com/t/orquesta-workflow-api-documentor-to-swagger-oas-definition/1796.rss">Orquesta workflow API documentor to Swagger OAS definition?</source>
+      </item>
+  </channel>
+</rss>

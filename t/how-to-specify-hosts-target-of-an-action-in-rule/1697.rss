@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>How to specify hosts target of an action in rule</title>
+    <link>https://forum.stackstorm.com/t/how-to-specify-hosts-target-of-an-action-in-rule/1697</link>
+    <description>Hi, 
+
+New to stackstorm. I have been following example to get myself up to speed. There is one thing that i am not too sure about. I have an action which is remote-shell-script type and able to run individually cmd against remote host using &#39;st2 run action hosts=ABC&#39;.  However, when i tried the same action with a rule, it seems falling apart, and the rule wont get executed according to the rule-enforcement list. I realized that I did not specify the target host to run against. So I am wondering to where in rule definition i could specify the hosts=ABC ???
+
+Thanks,
+Storm</description>
+    
+    <lastBuildDate>Thu, 13 May 2021 22:00:30 +0000</lastBuildDate>
+    <category>Rules</category>
+    <atom:link href="https://forum.stackstorm.com/t/how-to-specify-hosts-target-of-an-action-in-rule/1697.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>How to specify hosts target of an action in rule</title>
+        <dc:creator><![CDATA[nxstorm]]></dc:creator>
+        <description><![CDATA[
+            <p>Just tried it, it seems working. Thanks alot for the prompt response. <img src="https://emoji.discourse-cdn.com/apple/+1.png?v=9" title=":+1:" class="emoji" alt=":+1:"></p>
+          <p><a href="https://forum.stackstorm.com/t/how-to-specify-hosts-target-of-an-action-in-rule/1697/5">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-to-specify-hosts-target-of-an-action-in-rule/1697/5</link>
+        <pubDate>Thu, 13 May 2021 22:00:30 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1697-5</guid>
+        <source url="https://forum.stackstorm.com/t/how-to-specify-hosts-target-of-an-action-in-rule/1697.rss">How to specify hosts target of an action in rule</source>
+      </item>
+      <item>
+        <title>How to specify hosts target of an action in rule</title>
+        <dc:creator><![CDATA[blag]]></dc:creator>
+        <description><![CDATA[
+            <p>The <code>hosts</code> parameter should be read by the remote shell script action <em>runner</em>, and not passed to or interpreted by the script itself.</p>
+<p>So you should be able to specify <code>hosts: ABC</code> in the action parameters in the rule.</p>
+          <p><a href="https://forum.stackstorm.com/t/how-to-specify-hosts-target-of-an-action-in-rule/1697/4">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-to-specify-hosts-target-of-an-action-in-rule/1697/4</link>
+        <pubDate>Thu, 13 May 2021 21:19:33 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1697-4</guid>
+        <source url="https://forum.stackstorm.com/t/how-to-specify-hosts-target-of-an-action-in-rule/1697.rss">How to specify hosts target of an action in rule</source>
+      </item>
+      <item>
+        <title>How to specify hosts target of an action in rule</title>
+        <dc:creator><![CDATA[nxstorm]]></dc:creator>
+        <description><![CDATA[
+            <p>hmmm… checked that subsection, no where i can see a mention about. I dont think puting hosts:ABC under the action parameters in the rule section would work. it will be treated like another argument to the script.</p>
+          <p><a href="https://forum.stackstorm.com/t/how-to-specify-hosts-target-of-an-action-in-rule/1697/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-to-specify-hosts-target-of-an-action-in-rule/1697/3</link>
+        <pubDate>Thu, 13 May 2021 21:15:38 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1697-3</guid>
+        <source url="https://forum.stackstorm.com/t/how-to-specify-hosts-target-of-an-action-in-rule/1697.rss">How to specify hosts target of an action in rule</source>
+      </item>
+      <item>
+        <title>How to specify hosts target of an action in rule</title>
+        <dc:creator><![CDATA[blag]]></dc:creator>
+        <description><![CDATA[
+            <p>The <a href="https://docs.stackstorm.com/rules.html#action">Action subsection</a> of the Rules section of our docs might answer your question.</p>
+          <p><a href="https://forum.stackstorm.com/t/how-to-specify-hosts-target-of-an-action-in-rule/1697/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-to-specify-hosts-target-of-an-action-in-rule/1697/2</link>
+        <pubDate>Thu, 13 May 2021 20:51:01 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1697-2</guid>
+        <source url="https://forum.stackstorm.com/t/how-to-specify-hosts-target-of-an-action-in-rule/1697.rss">How to specify hosts target of an action in rule</source>
+      </item>
+      <item>
+        <title>How to specify hosts target of an action in rule</title>
+        <dc:creator><![CDATA[nxstorm]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi,</p>
+<p>New to stackstorm. I have been following example to get myself up to speed. There is one thing that i am not too sure about. I have an action which is remote-shell-script type and able to run individually cmd against remote host using ‘st2 run action hosts=ABC’.  However, when i tried the same action with a rule, it seems falling apart, and the rule wont get executed according to the rule-enforcement list. I realized that I did not specify the target host to run against. So I am wondering to where in rule definition i could specify the hosts=ABC ???</p>
+<p>Thanks,<br>
+Storm</p>
+          <p><a href="https://forum.stackstorm.com/t/how-to-specify-hosts-target-of-an-action-in-rule/1697/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-to-specify-hosts-target-of-an-action-in-rule/1697/1</link>
+        <pubDate>Thu, 13 May 2021 20:41:59 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1697-1</guid>
+        <source url="https://forum.stackstorm.com/t/how-to-specify-hosts-target-of-an-action-in-rule/1697.rss">How to specify hosts target of an action in rule</source>
+      </item>
+  </channel>
+</rss>

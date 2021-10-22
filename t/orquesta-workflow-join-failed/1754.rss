@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Orquesta Workflow Join failed</title>
+    <link>https://forum.stackstorm.com/t/orquesta-workflow-join-failed/1754</link>
+    <description>Hello all,
+
+I try to write multi branches Qrquesta,
+
+For example
+
+
+```
+task1:
+  action: pack1.tasks1
+  next:
+    - when: &lt;% result().result.result1 &gt; 0  %&gt;
+      do: task2
+    - when: &lt;% result().result.result1 = 0 %&gt;
+      do: task3
+task2:
+  action: pack1.task2
+  next:
+    - when: &lt;% succeeded() %&gt;
+      do: task4
+task3:
+  action: pack1.task3
+  next:
+    - when: &lt;% succeeded() %&gt;
+      do: task4
+task4:
+  action: core.noop
+  join: all
+```
+There will be a exception when task2 or task3 is not running due to not satisfy the condition.
+```
+UnreachableJoinError: The join task|route \&quot;task4\&quot; is partially satisfied but unreachable
+```
+Is there another way to meet the logic?
+I have to write as following order:
+```
+task1
+task4
+task2 when task1 result meet condition
+task3 when task1 result meet condition ```</description>
+    
+    <lastBuildDate>Wed, 30 Jun 2021 06:07:16 +0000</lastBuildDate>
+    <category>Workflows</category>
+    <atom:link href="https://forum.stackstorm.com/t/orquesta-workflow-join-failed/1754.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Orquesta Workflow Join failed</title>
+        <dc:creator><![CDATA[Bryan]]></dc:creator>
+        <description><![CDATA[
+            <p>I test<code> join: 1</code> and <code>remove join</code>, task4 is run twice when task2 and task3 all execute. This is the obvious result<br>
+I think I should avoid multi branches in the middle of orquesta.</p>
+          <p><a href="https://forum.stackstorm.com/t/orquesta-workflow-join-failed/1754/4">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/orquesta-workflow-join-failed/1754/4</link>
+        <pubDate>Wed, 30 Jun 2021 06:07:16 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1754-4</guid>
+        <source url="https://forum.stackstorm.com/t/orquesta-workflow-join-failed/1754.rss">Orquesta Workflow Join failed</source>
+      </item>
+      <item>
+        <title>Orquesta Workflow Join failed</title>
+        <dc:creator><![CDATA[Bryan]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi,<br>
+Thank you for your reply.<br>
+It is clear that <code>join: 1</code> does not qualify, if the input of task4 depends on the both result of task2 and task3.<br>
+And if I remove the <code>join:all</code> it will cause task4 run two time.<br>
+The real example is definitely more complex than this model. There will be task5, task6 or more.<br>
+Anyway, I would try this sample qrquesta  using <code>join: 1</code> or remove <code>join</code>. and post result later.</p>
+          <p><a href="https://forum.stackstorm.com/t/orquesta-workflow-join-failed/1754/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/orquesta-workflow-join-failed/1754/3</link>
+        <pubDate>Wed, 30 Jun 2021 01:50:19 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1754-3</guid>
+        <source url="https://forum.stackstorm.com/t/orquesta-workflow-join-failed/1754.rss">Orquesta Workflow Join failed</source>
+      </item>
+      <item>
+        <title>Orquesta Workflow Join failed</title>
+        <dc:creator><![CDATA[wingi]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi,</p>
+<p>in your concrete example from my point of view, you don’t need to join as there is always only one route.<br>
+In general you can define <code>join: &lt;integer&gt;</code> to specify the minimum tasks that need to be joined. It is described in the docs here: <a href="https://docs.stackstorm.com/orquesta/languages/orquesta.html?highlight=join" class="inline-onebox" rel="noopener nofollow ugc">Orquesta Workflow Definition — StackStorm 3.5.0 documentation</a></p>
+<blockquote>
+<p>An alternative use case of join is to specify an integer value such as join:  instead of join: all. In this use case, the join is satisified when the number of tasks transitioned into the join is greater than or equal to the value specified.</p>
+</blockquote>
+<p>Greets.</p>
+          <p><a href="https://forum.stackstorm.com/t/orquesta-workflow-join-failed/1754/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/orquesta-workflow-join-failed/1754/2</link>
+        <pubDate>Tue, 29 Jun 2021 13:20:11 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1754-2</guid>
+        <source url="https://forum.stackstorm.com/t/orquesta-workflow-join-failed/1754.rss">Orquesta Workflow Join failed</source>
+      </item>
+      <item>
+        <title>Orquesta Workflow Join failed</title>
+        <dc:creator><![CDATA[Bryan]]></dc:creator>
+        <description><![CDATA[
+            <p>Hello all,</p>
+<p>I try to write multi branches Qrquesta,</p>
+<p>For example</p>
+<pre><code class="lang-auto">task1:
+  action: pack1.tasks1
+  next:
+    - when: &lt;% result().result.result1 &gt; 0  %&gt;
+      do: task2
+    - when: &lt;% result().result.result1 = 0 %&gt;
+      do: task3
+task2:
+  action: pack1.task2
+  next:
+    - when: &lt;% succeeded() %&gt;
+      do: task4
+task3:
+  action: pack1.task3
+  next:
+    - when: &lt;% succeeded() %&gt;
+      do: task4
+task4:
+  action: core.noop
+  join: all
+</code></pre>
+<p>There will be a exception when task2 or task3 is not running due to not satisfy the condition.</p>
+<pre><code class="lang-auto">UnreachableJoinError: The join task|route \"task4\" is partially satisfied but unreachable
+</code></pre>
+<p>Is there another way to meet the logic?<br>
+I have to write as following order:</p>
+<pre><code class="lang-auto">task1
+task4
+task2 when task1 result meet condition
+task3 when task1 result meet condition ```</code></pre>
+          <p><a href="https://forum.stackstorm.com/t/orquesta-workflow-join-failed/1754/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/orquesta-workflow-join-failed/1754/1</link>
+        <pubDate>Tue, 29 Jun 2021 12:07:29 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1754-1</guid>
+        <source url="https://forum.stackstorm.com/t/orquesta-workflow-join-failed/1754.rss">Orquesta Workflow Join failed</source>
+      </item>
+  </channel>
+</rss>

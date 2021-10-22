@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Timeline for RBAC</title>
+    <link>https://forum.stackstorm.com/t/timeline-for-rbac/1567</link>
+    <description>I just wanted to see what might be the timeline on getting RBAC and/or LDAP and/or SSO integrated in?</description>
+    
+    <lastBuildDate>Tue, 23 Feb 2021 10:08:16 +0000</lastBuildDate>
+    <category>RBAC</category>
+    <atom:link href="https://forum.stackstorm.com/t/timeline-for-rbac/1567.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Timeline for RBAC</title>
+        <dc:creator><![CDATA[blag]]></dc:creator>
+        <description><![CDATA[
+            <p>The experimental and unfinished SAML2 SSO backend, which is the only SSO backend that I’m aware of so far, is located here:</p><aside class="onebox githubfolder">
+  <header class="source">
+      <img src="https://github.githubassets.com/favicons/favicon.svg" class="site-icon" width="32" height="32">
+      <a href="https://github.com/StackStorm/st2-auth-backend-sso-saml2" target="_blank" rel="noopener">github.com</a>
+  </header>
+  <article class="onebox-body">
+    <div class="aspect-image" style="--aspect-ratio:300/300;"><img src="https://avatars.githubusercontent.com/u/4969009?s=400&amp;amp;v=4" class="thumbnail" width="300" height="300"></div>
+
+<h3><a href="https://github.com/StackStorm/st2-auth-backend-sso-saml2" target="_blank" rel="noopener">StackStorm/st2-auth-backend-sso-saml2</a></h3>
+
+
+  <p><span class="label1">Single Sign On backend for user authentication in StackStorm</span></p>
+
+  </article>
+  <div class="onebox-metadata">
+    
+    
+  </div>
+  <div style="clear: both"></div>
+</aside>
+
+<p>There is an open issue regarding integrating it into the ST2 codebase:</p><aside class="onebox githubissue">
+  <header class="source">
+      <a href="https://github.com/StackStorm/st2-auth-backend-sso-saml2/issues/9" target="_blank" rel="noopener">github.com/StackStorm/st2-auth-backend-sso-saml2</a>
+  </header>
+  <article class="onebox-body">
+    <div class="github-row">
+  <div class="github-icon-container" title="Issue">
+	  <svg width="60" height="60" class="github-icon" viewBox="0 0 14 16" aria-hidden="true"><path d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg>
+  </div>
+
+  <div class="github-info-container">
+    <h4>
+      <a href="https://github.com/StackStorm/st2-auth-backend-sso-saml2/issues/9" target="_blank" rel="noopener">Move SSO into st2 codebase</a>
+    </h4>
+
+    <div class="github-info">
+      <div class="date">
+        opened <span class="discourse-local-date" data-format="ll" data-date="2020-05-29" data-time="12:01:37" data-timezone="UTC">12:01PM - 29 May 20 UTC</span>
+      </div>
+
+
+      <div class="user">
+        <a href="https://github.com/armab" target="_blank" rel="noopener">
+          <img alt="armab" src="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/b97f0d597fa11e0e3405161d47646e19bd4ea3b0.jpeg" class="onebox-avatar-inline" width="20" height="20">
+          armab
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="github-row">
+  <p class="github-content">Similar to RBAC, this repo code should be integrated with StackStorm.
+As module introduces new st2.conf settings it should be moved into...</p>
+</div>
+
+<div class="labels">
+    <span style="display:inline-block;margin-top:2px;background-color: #B8B8B8;padding: 2px;border-radius: 4px;color: #fff;margin-left: 3px;">enhancement</span>
+</div>
+
+  </article>
+  <div class="onebox-metadata">
+    
+    
+  </div>
+  <div style="clear: both"></div>
+</aside>
+
+<p>The community could certainly use a contribution like that if you have the time and inclination to finish it!</p>
+          <p><a href="https://forum.stackstorm.com/t/timeline-for-rbac/1567/4">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/timeline-for-rbac/1567/4</link>
+        <pubDate>Tue, 23 Feb 2021 10:08:16 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1567-4</guid>
+        <source url="https://forum.stackstorm.com/t/timeline-for-rbac/1567.rss">Timeline for RBAC</source>
+      </item>
+      <item>
+        <title>Timeline for RBAC</title>
+        <dc:creator><![CDATA[minsis]]></dc:creator>
+        <description><![CDATA[
+            <p>I would be happy to test this out. I will take a look at this week or next as I’m on holiday for the rest of this week.</p>
+<p>Thanks for the quick response!</p>
+          <p><a href="https://forum.stackstorm.com/t/timeline-for-rbac/1567/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/timeline-for-rbac/1567/3</link>
+        <pubDate>Mon, 22 Feb 2021 21:40:03 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1567-3</guid>
+        <source url="https://forum.stackstorm.com/t/timeline-for-rbac/1567.rss">Timeline for RBAC</source>
+      </item>
+      <item>
+        <title>Timeline for RBAC</title>
+        <dc:creator><![CDATA[blag]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi, that’s a particularly well timed question!</p>
+<p>RBAC, LDAP, and the workflow designer drag-and-drop web UI are already integrated into the codebase, I’m not sure about SSO backend/s.</p>
+<p>However, the integrated codebase has not yet seen a stable release. The code will be released in version 3.4, which is currently undergoing <a href="https://github.com/StackStorm/discussions/issues/66">community pre-release (user acceptance) testing</a>.</p>
+<p>If you can spare the time and effort, or if you would like to try out the integrated codebase in your environment, please follow the directions in the “TL;DR” section of the above link and report back any LDAP or RBAC issues. Doing so will help us fix any show stopping bugs before they hit production environments (including yours)!</p>
+<p>I’ll look into the SSO backends for you and report back.</p>
+          <p><a href="https://forum.stackstorm.com/t/timeline-for-rbac/1567/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/timeline-for-rbac/1567/2</link>
+        <pubDate>Mon, 22 Feb 2021 20:32:25 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1567-2</guid>
+        <source url="https://forum.stackstorm.com/t/timeline-for-rbac/1567.rss">Timeline for RBAC</source>
+      </item>
+      <item>
+        <title>Timeline for RBAC</title>
+        <dc:creator><![CDATA[minsis]]></dc:creator>
+        <description><![CDATA[
+            <p>I just wanted to see what might be the timeline on getting RBAC and/or LDAP and/or SSO integrated in?</p>
+          <p><a href="https://forum.stackstorm.com/t/timeline-for-rbac/1567/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/timeline-for-rbac/1567/1</link>
+        <pubDate>Mon, 22 Feb 2021 20:23:30 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1567-1</guid>
+        <source url="https://forum.stackstorm.com/t/timeline-for-rbac/1567.rss">Timeline for RBAC</source>
+      </item>
+  </channel>
+</rss>

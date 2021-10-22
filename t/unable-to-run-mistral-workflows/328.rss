@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Unable to run Mistral workflows</title>
+    <link>https://forum.stackstorm.com/t/unable-to-run-mistral-workflows/328</link>
+    <description>Hi All,
+I&#39;ve had a production instance of Stackstorm running for quite a while untouched, and I have gone to try and run a Mistral workflow on it, and I am getting a failure with the following error.
+
+
+```
+{
+  &quot;traceback&quot;: &quot;  File \&quot;/opt/stackstorm/st2/lib/python2.7/site-packages/st2actions/container/base.py\&quot;, line 127, in _do_run
+    (status, result, context) = runner.run(action_params)
+  File \&quot;/opt/stackstorm/st2/lib/python2.7/site-packages/retrying.py\&quot;, line 49, in wrapped_f
+    return Retrying(*dargs, **dkw).call(f, *args, **kw)
+  File \&quot;/opt/stackstorm/st2/lib/python2.7/site-packages/retrying.py\&quot;, line 206, in call
+    return attempt.get(self._wrap_exception)
+  File \&quot;/opt/stackstorm/st2/lib/python2.7/site-packages/retrying.py\&quot;, line 247, in get
+    six.reraise(self.value[0], self.value[1], self.value[2])
+  File \&quot;/opt/stackstorm/st2/lib/python2.7/site-packages/retrying.py\&quot;, line 200, in call\n    attempt = Attempt(fn(*args, **kwargs), attempt_number, False)
+  File \&quot;/opt/stackstorm/runners/mistral_v2/mistral_v2/mistral_v2.py\&quot;, line 247, in run
+    result = self.start_workflow(action_parameters=action_parameters)
+  File \&quot;/opt/stackstorm/runners/mistral_v2/mistral_v2/mistral_v2.py\&quot;, line 253, in start_workflow
+    self._client.workflows.list()\n  File \&quot;/opt/stackstorm/st2/lib/python2.7/site-packages/mistralclient/api/v2/workflows.py\&quot;, line 102, in list
+    response_key=&#39;workflows&#39;,
+  File \&quot;/opt/stackstorm/st2/lib/python2.7/site-packages/mistralclient/api/base.py\&quot;, line 125, in _list\n    self._raise_api_exception(resp)
+  File \&quot;/opt/stackstorm/st2/lib/python2.7/site-packages/mistralclient/api/base.py\&quot;, line 160, in _raise_api_exception
+    error_message=error_data)
+&quot;,
+  &quot;error&quot;: &quot;(psycopg2.ProgrammingError) column workflow_definitions_v2.namespace does not exist
+LINE 1: ...2.is_system AS workflow_definitions_v2_is_system, workflow_d...
+                                                             ^
+ [SQL: &#39;SELECT workflow_definitions_v2.scope AS workflow_definitions_v2_scope, workflow_definitions_v2.project_id AS workflow_definitions_v2_project_id, workflow_definitions_v2.created_at AS workflow_definitions_v2_created_at, workflow_definitions_v2.updated_at AS workflow_definitions_v2_updated_at, workflow_definitions_v2.id AS workflow_definitions_v2_id, workflow_definitions_v2.name AS workflow_definitions_v2_name, workflow_definitions_v2.definition AS workflow_definitions_v2_definition, workflow_definitions_v2.spec AS workflow_definitions_v2_spec, workflow_definitions_v2.tags AS workflow_definitions_v2_tags, workflow_definitions_v2.is_system AS workflow_definitions_v2_is_system, workflow_definitions_v2.namespace AS workflow_definitions_v2_namespace \
+FROM workflow_definitions_v2 \
+WHERE workflow_definitions_v2.project_id = %(project_id_1)s OR workflow_definitions_v2.scope = %(scope_1)s ORDER BY workflow_definitions_v2.created_at ASC&#39;] [parameters: {&#39;project_id_1&#39;: &#39;&lt;default-project&gt;&#39;, &#39;scope_1&#39;: &#39;public&#39;}] (Background on this error at: http://sqlalche.me/e/f405)&quot;
+}
+```
+I understand the error, however I am not sure how solve. I can&#39;t seem to connect to the database using the password that is set in /etc/mistral/mistral.conf, but all the services appear to come up and run OK.
+
+Also, it is worth noting:
+
+* I am not sure if mistral workflows have ever worked on this server - I&#39;ve never run them on there before.
+
+* If this can&#39;t be resolved, I can always uninstall everything (st2, postgres, mongo, etc) and start from scratch</description>
+    
+    <lastBuildDate>Thu, 04 Oct 2018 17:58:29 +0000</lastBuildDate>
+    <category>Mistral</category>
+    <atom:link href="https://forum.stackstorm.com/t/unable-to-run-mistral-workflows/328.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Unable to run Mistral workflows</title>
+        <dc:creator><![CDATA[lhill]]></dc:creator>
+        <description><![CDATA[
+            <p>Take a look at the browser developer console - it might shed some light on what’s going on.</p>
+          <p><a href="https://forum.stackstorm.com/t/unable-to-run-mistral-workflows/328/6">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/unable-to-run-mistral-workflows/328/6</link>
+        <pubDate>Thu, 04 Oct 2018 17:58:29 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-328-6</guid>
+        <source url="https://forum.stackstorm.com/t/unable-to-run-mistral-workflows/328.rss">Unable to run Mistral workflows</source>
+      </item>
+      <item>
+        <title>Unable to run Mistral workflows</title>
+        <dc:creator><![CDATA[Ben]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi Eugen,<br>
+I’ve since done that, and the errors have gone away. I am able to execute mistral workflows fine now.</p>
+<p>The only issue I am dealing with since running the upgrade scripts is the web UI is no longer working - it just loads a page with this as the source:</p>
+<pre><code class="lang-auto">&lt;!doctype html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="utf-8"&gt;
+  &lt;title&gt;StackStorm Web UI&lt;/title&gt;
+
+  &lt;link rel="shortcut icon" href="favicon.ico" type="image/x-icon"&gt;
+  &lt;link rel="icon" href="favicon.ico" type="image/x-icon"&gt;
+
+  &lt;!-- buils:styles --&gt;
+  &lt;link rel="stylesheet" href="css/style.css"&gt;
+  &lt;!-- endbuild --&gt;
+
+  &lt;script type="text/javascript"&gt;
+    window.angular = {
+      module: (module) =&gt; ({
+        constant: (constant, value) =&gt; {
+          if (module !== 'main') {
+            throw new Error('The st2web angular-config-polyfill only supports the "main" module.');
+          }
+
+          if (constant !== 'st2Config') {
+            throw new Error('The st2web angular-config-polyfill only supports the "st2Config" constant.');
+          }
+
+          window.st2constants = window.st2constants || {};
+          window.st2constants.st2Config = value;
+        },
+        run: (fn) =&gt; {
+          if (module !== 'main') {
+            throw new Error('The st2web angular-config-polyfill only supports the "main" module.');
+          }
+
+          window.st2constants = window.st2constants || {};
+          window.st2constants.st2Config = window.st2constants.st2Config || {};
+
+          fn(window.st2constants.st2Config);
+        },
+      }),
+    };
+  &lt;/script&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+  &lt;div class="wrapper" id="container"&gt;&lt;/div&gt;
+  &lt;script src="config.js"&gt;&lt;/script&gt;
+  &lt;script src="js/main.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;
+</code></pre>
+          <p><a href="https://forum.stackstorm.com/t/unable-to-run-mistral-workflows/328/5">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/unable-to-run-mistral-workflows/328/5</link>
+        <pubDate>Thu, 04 Oct 2018 12:10:58 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-328-5</guid>
+        <source url="https://forum.stackstorm.com/t/unable-to-run-mistral-workflows/328.rss">Unable to run Mistral workflows</source>
+      </item>
+      <item>
+        <title>Unable to run Mistral workflows</title>
+        <dc:creator><![CDATA[armab]]></dc:creator>
+        <description><![CDATA[
+            <p>Before using Mistral you have to apply DB migrations. Depending on your installation method this may already happened, but could fail due to unknown now reasons. What’s the environment and installation method initially used?</p>
+<p>I’d suggest to drop the database and do Mistral DB init/upgrade again, as described here: <a href="https://docs.stackstorm.com/troubleshooting/mistral.html#troubleshooting-mistral-database-upgrade">Mistral Issues — StackStorm 2.9.1 documentation</a> and <a href="https://docs.stackstorm.com/install/upgrades.html#general-upgrade-procedure">Upgrades — StackStorm 2.9.1 documentation</a> (Mistral DB upgrade section).</p>
+          <p><a href="https://forum.stackstorm.com/t/unable-to-run-mistral-workflows/328/4">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/unable-to-run-mistral-workflows/328/4</link>
+        <pubDate>Thu, 04 Oct 2018 12:06:32 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-328-4</guid>
+        <source url="https://forum.stackstorm.com/t/unable-to-run-mistral-workflows/328.rss">Unable to run Mistral workflows</source>
+      </item>
+      <item>
+        <title>Unable to run Mistral workflows</title>
+        <dc:creator><![CDATA[Ben]]></dc:creator>
+        <description><![CDATA[
+            <p>Update 2:<br>
+Looks like it had been updated, without the update having scripts been run properly.</p>
+<p>I’ve run the upgrade migration scripts and it looks like it is broken worse - now the webUI isn’t working.</p>
+<p>I think I’ll just blow this install away and start from scratch</p>
+          <p><a href="https://forum.stackstorm.com/t/unable-to-run-mistral-workflows/328/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/unable-to-run-mistral-workflows/328/3</link>
+        <pubDate>Thu, 04 Oct 2018 12:05:43 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-328-3</guid>
+        <source url="https://forum.stackstorm.com/t/unable-to-run-mistral-workflows/328.rss">Unable to run Mistral workflows</source>
+      </item>
+      <item>
+        <title>Unable to run Mistral workflows</title>
+        <dc:creator><![CDATA[Ben]]></dc:creator>
+        <description><![CDATA[
+            <p>Update:<br>
+I got into psql as the mistral user, and I had to run the following commands to stop the errors:</p>
+<pre><code class="lang-auto">alter table workflow_definitions_v2 add column namespace VARCHAR;
+alter table workflow_executions_v2 add column workflow_namespace VARCHAR;
+alter table workflow_executions_v2 add column root_execution_id VARCHAR;
+alter table task_executions_v2 add column workflow_namespace VARCHAR;
+</code></pre>
+<p>Workflows now “run”, but they don’t actually do anything - they just sit there - I suspect I added the columns as the incorrect types</p>
+          <p><a href="https://forum.stackstorm.com/t/unable-to-run-mistral-workflows/328/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/unable-to-run-mistral-workflows/328/2</link>
+        <pubDate>Thu, 04 Oct 2018 11:36:51 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-328-2</guid>
+        <source url="https://forum.stackstorm.com/t/unable-to-run-mistral-workflows/328.rss">Unable to run Mistral workflows</source>
+      </item>
+      <item>
+        <title>Unable to run Mistral workflows</title>
+        <dc:creator><![CDATA[Ben]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi All,<br>
+I’ve had a production instance of Stackstorm running for quite a while untouched, and I have gone to try and run a Mistral workflow on it, and I am getting a failure with the following error.</p>
+<pre><code class="lang-auto">{
+  "traceback": "  File \"/opt/stackstorm/st2/lib/python2.7/site-packages/st2actions/container/base.py\", line 127, in _do_run
+    (status, result, context) = runner.run(action_params)
+  File \"/opt/stackstorm/st2/lib/python2.7/site-packages/retrying.py\", line 49, in wrapped_f
+    return Retrying(*dargs, **dkw).call(f, *args, **kw)
+  File \"/opt/stackstorm/st2/lib/python2.7/site-packages/retrying.py\", line 206, in call
+    return attempt.get(self._wrap_exception)
+  File \"/opt/stackstorm/st2/lib/python2.7/site-packages/retrying.py\", line 247, in get
+    six.reraise(self.value[0], self.value[1], self.value[2])
+  File \"/opt/stackstorm/st2/lib/python2.7/site-packages/retrying.py\", line 200, in call\n    attempt = Attempt(fn(*args, **kwargs), attempt_number, False)
+  File \"/opt/stackstorm/runners/mistral_v2/mistral_v2/mistral_v2.py\", line 247, in run
+    result = self.start_workflow(action_parameters=action_parameters)
+  File \"/opt/stackstorm/runners/mistral_v2/mistral_v2/mistral_v2.py\", line 253, in start_workflow
+    self._client.workflows.list()\n  File \"/opt/stackstorm/st2/lib/python2.7/site-packages/mistralclient/api/v2/workflows.py\", line 102, in list
+    response_key='workflows',
+  File \"/opt/stackstorm/st2/lib/python2.7/site-packages/mistralclient/api/base.py\", line 125, in _list\n    self._raise_api_exception(resp)
+  File \"/opt/stackstorm/st2/lib/python2.7/site-packages/mistralclient/api/base.py\", line 160, in _raise_api_exception
+    error_message=error_data)
+",
+  "error": "(psycopg2.ProgrammingError) column workflow_definitions_v2.namespace does not exist
+LINE 1: ...2.is_system AS workflow_definitions_v2_is_system, workflow_d...
+                                                             ^
+ [SQL: 'SELECT workflow_definitions_v2.scope AS workflow_definitions_v2_scope, workflow_definitions_v2.project_id AS workflow_definitions_v2_project_id, workflow_definitions_v2.created_at AS workflow_definitions_v2_created_at, workflow_definitions_v2.updated_at AS workflow_definitions_v2_updated_at, workflow_definitions_v2.id AS workflow_definitions_v2_id, workflow_definitions_v2.name AS workflow_definitions_v2_name, workflow_definitions_v2.definition AS workflow_definitions_v2_definition, workflow_definitions_v2.spec AS workflow_definitions_v2_spec, workflow_definitions_v2.tags AS workflow_definitions_v2_tags, workflow_definitions_v2.is_system AS workflow_definitions_v2_is_system, workflow_definitions_v2.namespace AS workflow_definitions_v2_namespace \
+FROM workflow_definitions_v2 \
+WHERE workflow_definitions_v2.project_id = %(project_id_1)s OR workflow_definitions_v2.scope = %(scope_1)s ORDER BY workflow_definitions_v2.created_at ASC'] [parameters: {'project_id_1': '&lt;default-project&gt;', 'scope_1': 'public'}] (Background on this error at: http://sqlalche.me/e/f405)"
+}
+</code></pre>
+<p>I understand the error, however I am not sure how solve. I can’t seem to connect to the database using the password that is set in /etc/mistral/mistral.conf, but all the services appear to come up and run OK.</p>
+<p>Also, it is worth noting:</p>
+<ul>
+<li>
+<p>I am not sure if mistral workflows have ever worked on this server - I’ve never run them on there before.</p>
+</li>
+<li>
+<p>If this can’t be resolved, I can always uninstall everything (st2, postgres, mongo, etc) and start from scratch</p>
+</li>
+</ul>
+          <p><a href="https://forum.stackstorm.com/t/unable-to-run-mistral-workflows/328/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/unable-to-run-mistral-workflows/328/1</link>
+        <pubDate>Thu, 04 Oct 2018 08:16:45 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-328-1</guid>
+        <source url="https://forum.stackstorm.com/t/unable-to-run-mistral-workflows/328.rss">Unable to run Mistral workflows</source>
+      </item>
+  </channel>
+</rss>

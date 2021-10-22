@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>How to read the array action with array output?</title>
+    <link>https://forum.stackstorm.com/t/how-to-read-the-array-action-with-array-output/1808</link>
+    <description>Hi Folks,
+ I have just written the workflow with action and I want the output input command with output result. How can I achieve that in this case would appreciate if someone help here
+
+
+```
+outer_task_shell_linux_esxi:
+    action: jas.command_shell_execution
+    input:
+      commands: &#39;&lt;% ctx(command)[0] %&gt;&#39;
+      host: &#39;&lt;% item(host) %&gt;&#39;
+      username: &#39;&lt;% item(user) %&gt;&#39;
+      password: &#39;&lt;% item(pass) %&gt;&#39;
+    with: host,user,pass in &lt;% zip(ctx(hosts),ctx(username),ctx(password)) %&gt;
+    next:
+      - when: &lt;% succeeded() %&gt;
+        publish:
+          - task_status: &lt;% result() %&gt;
+        do: print_task1
+      - when: &lt;% failed() %&gt;
+        publish:
+          - task_status: &lt;% result() %&gt;
+
+   print_task1:
+    action: core.echo
+    input:
+      message: &lt;% ctx().task_status %&gt; | to_json_string
+    next:
+      - when: &lt;% succeeded() %&gt;
+        publish:
+          - task_status1: &lt;% result().stdout %&gt;
+        do: print_task2
+
+   print_task2:
+    action: core.echo
+    input:
+      message: &lt;% ctx().task_status1 %&gt;
+```</description>
+    
+    <lastBuildDate>Wed, 11 Aug 2021 13:26:44 +0000</lastBuildDate>
+    <category>Workflows</category>
+    <atom:link href="https://forum.stackstorm.com/t/how-to-read-the-array-action-with-array-output/1808.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>How to read the array action with array output?</title>
+        <dc:creator><![CDATA[bharat19th]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi Folks,<br>
+I have just written the workflow with action and I want the output input command with output result. How can I achieve that in this case would appreciate if someone help here</p>
+<pre><code class="lang-auto">outer_task_shell_linux_esxi:
+    action: jas.command_shell_execution
+    input:
+      commands: '&lt;% ctx(command)[0] %&gt;'
+      host: '&lt;% item(host) %&gt;'
+      username: '&lt;% item(user) %&gt;'
+      password: '&lt;% item(pass) %&gt;'
+    with: host,user,pass in &lt;% zip(ctx(hosts),ctx(username),ctx(password)) %&gt;
+    next:
+      - when: &lt;% succeeded() %&gt;
+        publish:
+          - task_status: &lt;% result() %&gt;
+        do: print_task1
+      - when: &lt;% failed() %&gt;
+        publish:
+          - task_status: &lt;% result() %&gt;
+
+   print_task1:
+    action: core.echo
+    input:
+      message: &lt;% ctx().task_status %&gt; | to_json_string
+    next:
+      - when: &lt;% succeeded() %&gt;
+        publish:
+          - task_status1: &lt;% result().stdout %&gt;
+        do: print_task2
+
+   print_task2:
+    action: core.echo
+    input:
+      message: &lt;% ctx().task_status1 %&gt;
+</code></pre>
+          <p><a href="https://forum.stackstorm.com/t/how-to-read-the-array-action-with-array-output/1808/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-to-read-the-array-action-with-array-output/1808/1</link>
+        <pubDate>Wed, 11 Aug 2021 13:26:44 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1808-1</guid>
+        <source url="https://forum.stackstorm.com/t/how-to-read-the-array-action-with-array-output/1808.rss">How to read the array action with array output?</source>
+      </item>
+  </channel>
+</rss>

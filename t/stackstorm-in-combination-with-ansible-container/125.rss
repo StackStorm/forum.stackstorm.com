@@ -1,0 +1,627 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Stackstorm in combination with ansible-container</title>
+    <link>https://forum.stackstorm.com/t/stackstorm-in-combination-with-ansible-container/125</link>
+    <description>Hi!
+
+I&#39;m a big fan of both ansible and stackstorm. Have been able to setup a working stackstorm system using [ansible-container](https://www.ansible.com/integrations/containers/ansible-container), st2 version 2.3 . But now when I try to use version 2.7 mistral stopped working. Everything seem to be working except the mistral part.  And it&#39;s looks like it has something to do with the mistral authentication. Don&#39;t know how to move forward from here. Anyone that can help me or point me in the correct direction?
+
+Self-check output:
+&gt; /opt/stackstorm/st2/bin/st2-self-check
+&gt; Attempting Test tests.test_inquiry_chain...OK!
+&gt; Attempting Test tests.test_inquiry_mistral...ERROR!
+&gt; Attempting Test tests.test_key_triggers...OK!
+&gt; Attempting Test tests.test_packs_pack...OK!
+&gt; Attempting Test tests.test_quickstart...ERROR!
+&gt; Attempting Test tests.test_quickstart_key...OK!
+&gt; Attempting Test tests.test_quickstart_local_script_actions...OK!
+&gt; Attempting Test tests.test_quickstart_passive_sensor...OK!
+&gt; Attempting Test tests.test_quickstart_polling_sensor...OK!
+&gt; Attempting Test tests.test_quickstart_python_actions...OK!
+&gt; Attempting Test tests.test_quickstart_remote_script_actions...ERROR!
+&gt; Attempting Test tests.test_quickstart_rules...OK!
+&gt; Attempting Test tests.test_quickstart_trace...OK!
+&gt; Attempting Test tests.test_run_pack_tests_tool...OK!
+&gt; Attempting Test tests.test_timer_rule...OK!
+&gt; Skipping tests.test_windows_runners...
+&gt; Attempting Example examples.mistral_examples...ERROR!
+&gt; SELF CHECK FAILED!
+
+Output from examples-mistral_examples
+&gt; id: 5adf3fa3585f530a3ff4f190
+&gt; action.ref: examples.mistral_examples
+&gt; parameters: None
+&gt; status: failed (32s elapsed)
+&gt; result_task: mistral-basic
+&gt; result: 
+&gt;   error: &#39;1&#39;
+&gt;   traceback: &quot;  File &quot;/opt/stackstorm/st2/local/lib/python2.7/site-packages/st2actions/container/base.py&quot;, line 119, in _do_run
+&gt;     (status, result, context) = runner.run(action_params)
+&gt;   File &quot;/opt/stackstorm/st2/local/lib/python2.7/site-packages/retrying.py&quot;, line 49, in wrapped_f
+&gt;     return Retrying(*dargs, **dkw).call(f, *args, **kw)
+&gt;   File &quot;/opt/stackstorm/st2/local/lib/python2.7/site-packages/retrying.py&quot;, line 206, in call
+&gt;     return attempt.get(self._wrap_exception)
+&gt;   File &quot;/opt/stackstorm/st2/local/lib/python2.7/site-packages/retrying.py&quot;, line 247, in get
+&gt;     six.reraise(self.value[0], self.value[1], self.value[2])
+&gt;   File &quot;/opt/stackstorm/st2/local/lib/python2.7/site-packages/retrying.py&quot;, line 200, in call
+&gt;     attempt = Attempt(fn(*args, **kwargs), attempt_number, False)
+&gt;   File &quot;/opt/stackstorm/runners/mistral_v2/mistral_v2/mistral_v2.py&quot;, line 247, in run
+&gt;     result = self.start_workflow(action_parameters=action_parameters)
+&gt;   File &quot;/opt/stackstorm/runners/mistral_v2/mistral_v2/mistral_v2.py&quot;, line 289, in start_workflow
+&gt;     **options)
+&gt;   File &quot;/opt/stackstorm/st2/local/lib/python2.7/site-packages/mistralclient/api/v2/executions.py&quot;, line 65, in create
+&gt;     return self._create(&#39;/executions&#39;, data)
+&gt;   File &quot;/opt/stackstorm/st2/local/lib/python2.7/site-packages/mistralclient/api/base.py&quot;, line 100, in _create
+&gt;     self._raise_api_exception(resp)
+&gt;   File &quot;/opt/stackstorm/st2/local/lib/python2.7/site-packages/mistralclient/api/base.py&quot;, line 160, in _raise_api_exception
+&gt;     error_message=error_data)
+&gt; &quot;
+
+Running tests.test_inquiry_mistral manually result in the following output:
+&gt; id: 5adf4105585f530a3ff4f195
+&gt; action.ref: tests.test_inquiry_mistral
+&gt; parameters: None
+&gt; status: failed (2s elapsed)
+&gt; result_task: execute_inquiry_workflow
+&gt; result: 
+&gt;   failed: true
+&gt;   return_code: 1
+&gt;   stderr: &#39;&#39;
+&gt;   stdout: &#39;ERROR: 401 Client Error: Unauthorized
+&gt;     MESSAGE: Unauthorized - One of Token or API key required. for url: http://127.0.0.1:9101/actions/examples.mistral-ask-basic
+&gt;     &#39;
+&gt;   succeeded: false
+&gt; start_timestamp: Tue, 24 Apr 2018 14:36:53 UTC
+&gt; end_timestamp: Tue, 24 Apr 2018 14:36:55 UTC
+&gt; +--------------------------+---------------------+--------------------------+------------+-------------------------------+
+&gt; | id                       | status              | task                     | action     | start_timestamp               |
+&gt; +--------------------------+---------------------+--------------------------+------------+-------------------------------+
+&gt; | 5adf4106585f530a12e4313c | failed (1s elapsed) | execute_inquiry_workflow | core.local | Tue, 24 Apr 2018 14:36:54 UTC |
+&gt; +--------------------------+---------------------+--------------------------+------------+-------------------------------+
+
+Trying to run mistral manually:
+&gt; mistral --debug -v run-action std.echo &#39;{&quot;output&quot;: &quot;Hello&quot;}&#39;
+&gt; DEBUG (extension) found extension EntryPoint.parse(&#39;table = cliff.formatters.table:TableFormatter&#39;)
+&gt; DEBUG (extension) found extension EntryPoint.parse(&#39;json = cliff.formatters.json_format:JSONFormatter&#39;)
+&gt; DEBUG (extension) found extension EntryPoint.parse(&#39;shell = cliff.formatters.shell:ShellFormatter&#39;)
+&gt; DEBUG (extension) found extension EntryPoint.parse(&#39;value = cliff.formatters.value:ValueFormatter&#39;)
+&gt; DEBUG (extension) found extension EntryPoint.parse(&#39;yaml = cliff.formatters.yaml_format:YAMLFormatter&#39;)
+&gt; DEBUG (command) run(Namespace(columns=[], fit_width=False, formatter=&#39;table&#39;, input=&#39;{&quot;output&quot;: &quot;Hello&quot;}&#39;, max_width=0, name=&#39;std.echo&#39;, noindent=False, prefix=&#39;&#39;, print_empty=False, run_sync=False, save_result=False, target=None, variables=[]))
+&gt; DEBUG (connectionpool) Starting new HTTP connection (1): 127.0.0.1
+&gt; DEBUG (connectionpool) http://127.0.0.1:8989 &quot;POST /v2/action_executions HTTP/1.1&quot; 500 62
+&gt; DEBUG (httpclient) HTTP POST http://127.0.0.1:8989/v2/action_executions 500
+&gt; ERROR (app) 1
+&gt; Traceback (most recent call last):
+&gt;   File &quot;/opt/stackstorm/mistral/local/lib/python2.7/site-packages/cliff/app.py&quot;, line 400, in run_subcommand
+&gt;     result = cmd.run(parsed_args)
+&gt;   File &quot;/opt/stackstorm/mistral/local/lib/python2.7/site-packages/osc_lib/command/command.py&quot;, line 41, in run
+&gt;     return super(Command, self).run(parsed_args)
+&gt;   File &quot;/opt/stackstorm/mistral/local/lib/python2.7/site-packages/cliff/display.py&quot;, line 116, in run
+&gt;     column_names, data = self.take_action(parsed_args)
+&gt;   File &quot;/opt/stackstorm/mistral/local/lib/python2.7/site-packages/mistralclient/commands/v2/action_executions.py&quot;, line 165, in take_action
+&gt;     **params
+&gt;   File &quot;/opt/stackstorm/mistral/local/lib/python2.7/site-packages/mistralclient/api/v2/action_executions.py&quot;, line 47, in create
+&gt;     self._raise_api_exception(resp)
+&gt;   File &quot;/opt/stackstorm/mistral/local/lib/python2.7/site-packages/mistralclient/api/base.py&quot;, line 160, in _raise_api_exception
+&gt;     error_message=error_data)
+&gt; APIException: 1
+&gt; Traceback (most recent call last):
+&gt;   File &quot;/opt/stackstorm/mistral/bin/mistral&quot;, line 10, in &lt;module&gt;
+&gt;     sys.exit(main())
+&gt;   File &quot;/opt/stackstorm/mistral/local/lib/python2.7/site-packages/mistralclient/shell.py&quot;, line 767, in main
+&gt;     return MistralShell().run(argv)
+&gt;   File &quot;/opt/stackstorm/mistral/local/lib/python2.7/site-packages/cliff/app.py&quot;, line 279, in run
+&gt;     result = self.run_subcommand(remainder)
+&gt;   File &quot;/opt/stackstorm/mistral/local/lib/python2.7/site-packages/cliff/app.py&quot;, line 400, in run_subcommand
+&gt;     result = cmd.run(parsed_args)
+&gt;   File &quot;/opt/stackstorm/mistral/local/lib/python2.7/site-packages/osc_lib/command/command.py&quot;, line 41, in run
+&gt;     return super(Command, self).run(parsed_args)
+&gt;   File &quot;/opt/stackstorm/mistral/local/lib/python2.7/site-packages/cliff/display.py&quot;, line 116, in run
+&gt;     column_names, data = self.take_action(parsed_args)
+&gt;   File &quot;/opt/stackstorm/mistral/local/lib/python2.7/site-packages/mistralclient/commands/v2/action_executions.py&quot;, line 165, in take_action
+&gt;     **params
+&gt;   File &quot;/opt/stackstorm/mistral/local/lib/python2.7/site-packages/mistralclient/api/v2/action_executions.py&quot;, line 47, in create
+&gt;     self._raise_api_exception(resp)
+&gt;   File &quot;/opt/stackstorm/mistral/local/lib/python2.7/site-packages/mistralclient/api/base.py&quot;, line 160, in _raise_api_exception
+&gt;     error_message=error_data)
+&gt; mistralclient.api.base.APIException: 1
+
+
+If anyone is wondering why I&#39;m not just using docker-compose, which would be much simpler. It&#39;s because I want to use ansible roles to configure my pack settings depending on which system I am deploying it to just using ansible var-files. Also I can encrypt my password.
+
+My container.yaml if anyone is interested
+&gt; version: &quot;2&quot;
+&gt; defaults:
+&gt;   BASE_IMAGE: grossws/centos
+&gt;   BASE_IMAGE_VERSION: 7
+&gt;   MONGO_VERSION: 3.4
+&gt;   MONGO_HOST: mongo
+&gt;   MONGO_PORT: 27017
+&gt;   MONGO_DB: st2_db
+&gt;   POSTGRES_VERSION: 9.6
+&gt;   POSTGRES_HOST: postgres
+&gt;   POSTGRES_PORT: 5432
+&gt;   POSTGRES_DB: mistral
+&gt;   RABBITMQ_VERSION: 3.6-management
+&gt;   RABBITMQ_HOST: rabbitmq
+&gt;   RABBITMQ_PORT: 5672
+&gt;   REDIS_VERSION: 4.0
+&gt;   REDIS_HOST: redis
+&gt;   REDIS_PORT: 6379
+&gt;   ST2_VERSION: 2.7.0
+&gt; 
+&gt; settings:
+&gt;   conductor:
+&gt;     base: centos:7
+&gt; 
+&gt;   project_name: test
+&gt; 
+&gt; services: 
+&gt;    mongo:
+&gt;      from: mongo:3.4
+&gt;      volumes:
+&gt;        - /data/configdb
+&gt;        - mongo-volume:/data/db
+&gt;      environment:
+&gt;        - MONGO_HOST=mongo
+&gt;        - MONGO_PORT=27017
+&gt; 
+&gt;    rabbitmq:
+&gt;      from: &#39;rabbitmq:{{ RABBITMQ_VERSION }}&#39;
+&gt;      volumes:
+&gt;        - rabbitmq-volume:/var/lib/rabbitmq
+&gt;      environment:
+&gt;        - RABBITMQ_DEFAULT_USER=admin
+&gt;        - RABBITMQ_DEFAULT_PASS=mistral-user
+&gt;        - RABBITMQ_HOST=rabbitmq
+&gt;        - RABBITMQ_PORT=5672
+&gt; 
+&gt;    postgres:
+&gt;      from: &#39;postgres:{{ POSTGRES_VERSION }}&#39;
+&gt;      volumes:
+&gt;        - postgres-volume:/var/lib/postgresql/data
+&gt;      environment:
+&gt;        - POSTGRES_USER=mistral-user
+&gt;        - POSTGRES_PASSWORD=mistral-user
+&gt;        - POSTGRES_HOST=postgres
+&gt;        - POSTGRES_PORT=5432
+&gt;        - POSTGRES_DB=mistral
+&gt;    redis:
+&gt;      from: &#39;redis:{{ REDIS_VERSION }}&#39;
+&gt;      volumes:
+&gt;        - redis-volume:/data
+&gt;      environment:
+&gt;        - REDIS_PASSWORD=redis_pass
+&gt;        - REDIS_HOST=redis
+&gt;        - REDIS_PORT=6379
+&gt;      command: [
+&gt;           &quot;bash&quot;, &quot;-c&quot;,
+&gt;           &#39;
+&gt;            docker-entrypoint.sh
+&gt;            --requirepass &quot;redis_pass&quot;
+&gt;           &#39;
+&gt;         ]
+&gt;    stackstorm:
+&gt;      from: &quot;stackstorm/stackstorm:{{ ST2_VERSION }}&quot;
+&gt;      priviliged: True
+&gt;      volumes:
+&gt;        - /home/user/workspace/test/packs.dev:/opt/stackstorm/packs.dev
+&gt;        - /home/user/workspace/st2-docker/runtime/entrypoint.d:/st2-docker/entrypoint.d
+&gt;        - /home/user/workspace/workspace/st2-docker/runtime/st2.d:/st2-docker/st2.d
+&gt;        - /home/user/workspace/workspace/st2-docker/conf/stackstorm.env:/st2-docker/env
+&gt;        - stackstorm-volume:/var/log
+&gt;      ports: #  Make sure that the web interface isn&#39;t accessible, until we have verified that we can have it.
+&gt;       - &quot;443:4443&quot;
+&gt;       - &quot;80:8080&quot;
+&gt;      environment:
+&gt;        - MONGO_HOST=mongo
+&gt;        - MONGO_PORT=27017
+&gt;        - RABBITMQ_DEFAULT_USER=admin
+&gt;        - RABBITMQ_DEFAULT_PASS=mistral-user
+&gt;        - RABBITMQ_HOST=rabbitmq
+&gt;        - RABBITMQ_PORT=5672
+&gt;        - POSTGRES_USER=mistral-user
+&gt;        - POSTGRES_PASSWORD=mistral-user
+&gt;        - POSTGRES_HOST=postgres
+&gt;        - POSTGRES_PORT=5432
+&gt;        - POSTGRES_DB=mistral
+&gt;        - REDIS_PASSWORD= redis_pass
+&gt;        - REDIS_HOST=redis
+&gt;        - REDIS_PORT=6379
+&gt;        - ST2_USER=st2admin
+&gt;        - ST2_PASSWORD=H8WHTIFe
+&gt; 
+&gt; 
+&gt; registries: {}
+&gt; 
+&gt; 
+&gt; volumes:
+&gt;   mongo-volume:
+&gt;     docker: {}
+&gt;   rabbitmq-volume:
+&gt;     docker: {}
+&gt;   postgres-volume:
+&gt;     docker: {}
+&gt;   redis-volume:
+&gt;     docker: {}
+&gt;   stackstorm-volume:
+&gt;     docker: {}</description>
+    
+    <lastBuildDate>Thu, 26 Apr 2018 12:31:08 +0000</lastBuildDate>
+    <category>Operations</category>
+    <atom:link href="https://forum.stackstorm.com/t/stackstorm-in-combination-with-ansible-container/125.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Stackstorm in combination with ansible-container</title>
+        <dc:creator><![CDATA[smeds]]></dc:creator>
+        <description><![CDATA[
+            <p>I found the cause of my problem. It’s a dns lookup problem, with ansibe-container I can’t set “dns_search: .”  which is set in the docker-compose file. Mistral is trying to do a lookup using the name of my container and that fails.</p>
+          <p><a href="https://forum.stackstorm.com/t/stackstorm-in-combination-with-ansible-container/125/5">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/stackstorm-in-combination-with-ansible-container/125/5</link>
+        <pubDate>Thu, 26 Apr 2018 12:31:08 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-125-5</guid>
+        <source url="https://forum.stackstorm.com/t/stackstorm-in-combination-with-ansible-container/125.rss">Stackstorm in combination with ansible-container</source>
+      </item>
+      <item>
+        <title>Stackstorm in combination with ansible-container</title>
+        <dc:creator><![CDATA[smeds]]></dc:creator>
+        <description><![CDATA[
+            <p>Could it be a mistral configuration that I’m missing? What kind of authentication do I need to setup for mistral to work? Everything except executing workflows seem to work.</p>
+          <p><a href="https://forum.stackstorm.com/t/stackstorm-in-combination-with-ansible-container/125/4">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/stackstorm-in-combination-with-ansible-container/125/4</link>
+        <pubDate>Thu, 26 Apr 2018 08:06:56 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-125-4</guid>
+        <source url="https://forum.stackstorm.com/t/stackstorm-in-combination-with-ansible-container/125.rss">Stackstorm in combination with ansible-container</source>
+      </item>
+      <item>
+        <title>Stackstorm in combination with ansible-container</title>
+        <dc:creator><![CDATA[smeds]]></dc:creator>
+        <description><![CDATA[
+            <p>Yes it does.</p>
+<p>Here’s my st2.conf gile:</p>
+<blockquote>
+<p><span class="hashtag">#System-wide</span> configuration</p>
+<p>[api]<br>
+<span class="hashtag">#Host</span> and port to bind the API server.<br>
+host = 127.0.0.1<br>
+port = 9101<br>
+logging = /etc/st2/logging.api.conf<br>
+mask_secrets = True<br>
+<span class="hashtag">#allow_origin</span> is required for handling CORS in st2 web UI.<br>
+<span class="hashtag">#allow_origin</span> = <a href="http://myhost1.example.com:3000" rel="nofollow noopener">http://myhost1.example.com:3000</a>,<a href="http://myhost2.example.com:3000" rel="nofollow noopener">http://myhost2.example.com:3000</a></p>
+<p>[stream]<br>
+logging = /etc/st2/logging.stream.conf</p>
+<p>[sensorcontainer]<br>
+logging = /etc/st2/logging.sensorcontainer.conf</p>
+<p>[rulesengine]<br>
+logging = /etc/st2/logging.rulesengine.conf</p>
+<p>[actionrunner]<br>
+logging = /etc/st2/logging.actionrunner.conf<br>
+virtualenv_opts = --always-copy</p>
+<p>[resultstracker]<br>
+logging = /etc/st2/logging.resultstracker.conf</p>
+<p>[notifier]<br>
+logging = /etc/st2/logging.notifier.conf</p>
+<p>[exporter]<br>
+logging = /etc/st2/logging.exporter.conf</p>
+<p>[garbagecollector]<br>
+logging = /etc/st2/logging.garbagecollector.conf</p>
+<p>[auth]<br>
+host = 127.0.0.1<br>
+port = 9100<br>
+use_ssl = False<br>
+debug = False<br>
+enable = True<br>
+logging = /etc/st2/logging.auth.conf</p>
+<p>mode = standalone</p>
+<p><span class="hashtag">#Note:</span> Settings below are only used in “standalone” mode<br>
+backend = flat_file<br>
+backend_kwargs = {“file_path”: “/etc/st2/htpasswd”}</p>
+<p><span class="hashtag">#Base</span> URL to the API endpoint excluding the version (e.g. <a href="http://myhost.net:9101/" rel="nofollow noopener">http://myhost.net:9101/</a>)<br>
+api_url =http://127.0.0.1:9101</p>
+<p>[system]<br>
+base_path = /opt/stackstorm</p>
+<p>[webui]<br>
+<span class="hashtag">#webui_base_url</span> = <a href="https://mywebhost.domain" rel="nofollow noopener">https://mywebhost.domain</a></p>
+<p>[syslog]<br>
+host = 127.0.0.1<br>
+port = 514<br>
+facility = local7<br>
+protocol = udp</p>
+<p>[log]<br>
+excludes = requests,paramiko<br>
+redirect_stderr = False<br>
+mask_secrets = True</p>
+<p>[system_user]<br>
+user = stanley<br>
+ssh_key_file = /home/stanley/.ssh/stanley_rsa</p>
+<p>[messaging]<br>
+url = amqp://admin:mistral-user@rabbitmq:5672</p>
+<p>[ssh_runner]<br>
+remote_dir = /tmp</p>
+<p>[keyvalue]<br>
+encryption_key_path = /etc/st2/keys/datastore_key.json</p>
+<p>[mistral]<br>
+api_url = <a href="http://127.0.0.1:9101" rel="nofollow noopener">http://127.0.0.1:9101</a><br>
+v2_base_url = <a href="http://127.0.0.1:8989/v2" rel="nofollow noopener">http://127.0.0.1:8989/v2</a></p>
+<p>[coordination]<br>
+url = redis://:redis_pass@redis:6379</p>
+<p>[database]<br>
+host = mongo<br>
+port = 27017</p>
+<p>[content]<br>
+packs_base_paths = /opt/stackstorm/packs.dev</p>
+</blockquote>
+          <p><a href="https://forum.stackstorm.com/t/stackstorm-in-combination-with-ansible-container/125/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/stackstorm-in-combination-with-ansible-container/125/3</link>
+        <pubDate>Wed, 25 Apr 2018 14:50:22 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-125-3</guid>
+        <source url="https://forum.stackstorm.com/t/stackstorm-in-combination-with-ansible-container/125.rss">Stackstorm in combination with ansible-container</source>
+      </item>
+      <item>
+        <title>Stackstorm in combination with ansible-container</title>
+        <dc:creator><![CDATA[warrenvw]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi <a class="mention" href="https://github.com/smeds">@smeds</a> !</p>
+<p>This may be a red herring, but I’d appreciate if you would confirm whether [coordination] url begins with “redis://:” in /etc/st2/st2.conf?</p>
+<p>See <a href="https://github.com/StackStorm/st2-docker/issues/83" rel="nofollow noopener">mistral doesn't work in Swarm mode · Issue #83 · StackStorm/st2-docker · GitHub</a> for more detail. Your issue may be related.</p>
+          <p><a href="https://forum.stackstorm.com/t/stackstorm-in-combination-with-ansible-container/125/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/stackstorm-in-combination-with-ansible-container/125/2</link>
+        <pubDate>Tue, 24 Apr 2018 21:15:44 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-125-2</guid>
+        <source url="https://forum.stackstorm.com/t/stackstorm-in-combination-with-ansible-container/125.rss">Stackstorm in combination with ansible-container</source>
+      </item>
+      <item>
+        <title>Stackstorm in combination with ansible-container</title>
+        <dc:creator><![CDATA[smeds]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi!</p>
+<p>I’m a big fan of both ansible and stackstorm. Have been able to setup a working stackstorm system using <a href="https://www.ansible.com/integrations/containers/ansible-container" rel="nofollow noopener">ansible-container</a>, st2 version 2.3 . But now when I try to use version 2.7 mistral stopped working. Everything seem to be working except the mistral part.  And it’s looks like it has something to do with the mistral authentication. Don’t know how to move forward from here. Anyone that can help me or point me in the correct direction?</p>
+<p>Self-check output:</p>
+<blockquote>
+<p>/opt/stackstorm/st2/bin/st2-self-check<br>
+Attempting Test tests.test_inquiry_chain…OK!<br>
+Attempting Test tests.test_inquiry_mistral…ERROR!<br>
+Attempting Test tests.test_key_triggers…OK!<br>
+Attempting Test tests.test_packs_pack…OK!<br>
+Attempting Test tests.test_quickstart…ERROR!<br>
+Attempting Test tests.test_quickstart_key…OK!<br>
+Attempting Test tests.test_quickstart_local_script_actions…OK!<br>
+Attempting Test tests.test_quickstart_passive_sensor…OK!<br>
+Attempting Test tests.test_quickstart_polling_sensor…OK!<br>
+Attempting Test tests.test_quickstart_python_actions…OK!<br>
+Attempting Test tests.test_quickstart_remote_script_actions…ERROR!<br>
+Attempting Test tests.test_quickstart_rules…OK!<br>
+Attempting Test tests.test_quickstart_trace…OK!<br>
+Attempting Test tests.test_run_pack_tests_tool…OK!<br>
+Attempting Test tests.test_timer_rule…OK!<br>
+Skipping tests.test_windows_runners…<br>
+Attempting Example examples.mistral_examples…ERROR!<br>
+SELF CHECK FAILED!</p>
+</blockquote>
+<p>Output from examples-mistral_examples</p>
+<blockquote>
+<p>id: 5adf3fa3585f530a3ff4f190<br>
+action.ref: examples.mistral_examples<br>
+parameters: None<br>
+status: failed (32s elapsed)<br>
+result_task: mistral-basic<br>
+result:<br>
+error: ‘1’<br>
+traceback: "  File “/opt/stackstorm/st2/local/lib/python2.7/site-packages/st2actions/container/base.py”, line 119, in _do_run<br>
+(status, result, context) = runner.run(action_params)<br>
+File “/opt/stackstorm/st2/local/lib/python2.7/site-packages/retrying.py”, line 49, in wrapped_f<br>
+return Retrying(*dargs, **dkw).call(f, *args, **kw)<br>
+File “/opt/stackstorm/st2/local/lib/python2.7/site-packages/retrying.py”, line 206, in call<br>
+return attempt.get(self._wrap_exception)<br>
+File “/opt/stackstorm/st2/local/lib/python2.7/site-packages/retrying.py”, line 247, in get<br>
+six.reraise(self.value[0], self.value[1], self.value[2])<br>
+File “/opt/stackstorm/st2/local/lib/python2.7/site-packages/retrying.py”, line 200, in call<br>
+attempt = Attempt(fn(*args, **kwargs), attempt_number, False)<br>
+File “/opt/stackstorm/runners/mistral_v2/mistral_v2/mistral_v2.py”, line 247, in run<br>
+result = self.start_workflow(action_parameters=action_parameters)<br>
+File “/opt/stackstorm/runners/mistral_v2/mistral_v2/mistral_v2.py”, line 289, in start_workflow<br>
+**options)<br>
+File “/opt/stackstorm/st2/local/lib/python2.7/site-packages/mistralclient/api/v2/executions.py”, line 65, in create<br>
+return self._create(’/executions’, data)<br>
+File “/opt/stackstorm/st2/local/lib/python2.7/site-packages/mistralclient/api/base.py”, line 100, in _create<br>
+self._raise_api_exception(resp)<br>
+File “/opt/stackstorm/st2/local/lib/python2.7/site-packages/mistralclient/api/base.py”, line 160, in _raise_api_exception<br>
+error_message=error_data)<br>
+"</p>
+</blockquote>
+<p>Running tests.test_inquiry_mistral manually result in the following output:</p>
+<blockquote>
+<p>id: 5adf4105585f530a3ff4f195<br>
+action.ref: tests.test_inquiry_mistral<br>
+parameters: None<br>
+status: failed (2s elapsed)<br>
+result_task: execute_inquiry_workflow<br>
+result:<br>
+failed: true<br>
+return_code: 1<br>
+stderr: ‘’<br>
+stdout: 'ERROR: 401 Client Error: Unauthorized<br>
+MESSAGE: Unauthorized - One of Token or API key required. for url: <a href="http://127.0.0.1:9101/actions/examples.mistral-ask-basic" rel="nofollow noopener">http://127.0.0.1:9101/actions/examples.mistral-ask-basic</a><br>
+’<br>
+succeeded: false<br>
+start_timestamp: Tue, 24 Apr 2018 14:36:53 UTC<br>
+end_timestamp: Tue, 24 Apr 2018 14:36:55 UTC<br>
+±-------------------------±--------------------±-------------------------±-----------±------------------------------+<br>
+| id                       | status              | task                     | action     | start_timestamp               |<br>
+±-------------------------±--------------------±-------------------------±-----------±------------------------------+<br>
+| 5adf4106585f530a12e4313c | failed (1s elapsed) | execute_inquiry_workflow | core.local | Tue, 24 Apr 2018 14:36:54 UTC |<br>
+±-------------------------±--------------------±-------------------------±-----------±------------------------------+</p>
+</blockquote>
+<p>Trying to run mistral manually:</p>
+<blockquote>
+<p>mistral --debug -v run-action std.echo ‘{“output”: “Hello”}’<br>
+DEBUG (extension) found extension EntryPoint.parse(‘table = cliff.formatters.table:TableFormatter’)<br>
+DEBUG (extension) found extension EntryPoint.parse(‘json = cliff.formatters.json_format:JSONFormatter’)<br>
+DEBUG (extension) found extension EntryPoint.parse(‘shell = cliff.formatters.shell:ShellFormatter’)<br>
+DEBUG (extension) found extension EntryPoint.parse(‘value = cliff.formatters.value:ValueFormatter’)<br>
+DEBUG (extension) found extension EntryPoint.parse(‘yaml = cliff.formatters.yaml_format:YAMLFormatter’)<br>
+DEBUG (command) run(Namespace(columns=[], fit_width=False, formatter=‘table’, input=’{“output”: “Hello”}’, max_width=0, name=‘std.echo’, noindent=False, prefix=’’, print_empty=False, run_sync=False, save_result=False, target=None, variables=[]))<br>
+DEBUG (connectionpool) Starting new HTTP connection (1): 127.0.0.1<br>
+DEBUG (connectionpool) <a href="http://127.0.0.1:8989" rel="nofollow noopener">http://127.0.0.1:8989</a> “POST /v2/action_executions HTTP/1.1” 500 62<br>
+DEBUG (httpclient) HTTP POST <a href="http://127.0.0.1:8989/v2/action_executions" rel="nofollow noopener">http://127.0.0.1:8989/v2/action_executions</a> 500<br>
+ERROR (app) 1<br>
+Traceback (most recent call last):<br>
+File “/opt/stackstorm/mistral/local/lib/python2.7/site-packages/cliff/app.py”, line 400, in run_subcommand<br>
+result = cmd.run(parsed_args)<br>
+File “/opt/stackstorm/mistral/local/lib/python2.7/site-packages/osc_lib/command/command.py”, line 41, in run<br>
+return super(Command, self).run(parsed_args)<br>
+File “/opt/stackstorm/mistral/local/lib/python2.7/site-packages/cliff/display.py”, line 116, in run<br>
+column_names, data = self.take_action(parsed_args)<br>
+File “/opt/stackstorm/mistral/local/lib/python2.7/site-packages/mistralclient/commands/v2/action_executions.py”, line 165, in take_action<br>
+**params<br>
+File “/opt/stackstorm/mistral/local/lib/python2.7/site-packages/mistralclient/api/v2/action_executions.py”, line 47, in create<br>
+self._raise_api_exception(resp)<br>
+File “/opt/stackstorm/mistral/local/lib/python2.7/site-packages/mistralclient/api/base.py”, line 160, in _raise_api_exception<br>
+error_message=error_data)<br>
+APIException: 1<br>
+Traceback (most recent call last):<br>
+File “/opt/stackstorm/mistral/bin/mistral”, line 10, in <br>
+sys.exit(main())<br>
+File “/opt/stackstorm/mistral/local/lib/python2.7/site-packages/mistralclient/shell.py”, line 767, in main<br>
+return MistralShell().run(argv)<br>
+File “/opt/stackstorm/mistral/local/lib/python2.7/site-packages/cliff/app.py”, line 279, in run<br>
+result = self.run_subcommand(remainder)<br>
+File “/opt/stackstorm/mistral/local/lib/python2.7/site-packages/cliff/app.py”, line 400, in run_subcommand<br>
+result = cmd.run(parsed_args)<br>
+File “/opt/stackstorm/mistral/local/lib/python2.7/site-packages/osc_lib/command/command.py”, line 41, in run<br>
+return super(Command, self).run(parsed_args)<br>
+File “/opt/stackstorm/mistral/local/lib/python2.7/site-packages/cliff/display.py”, line 116, in run<br>
+column_names, data = self.take_action(parsed_args)<br>
+File “/opt/stackstorm/mistral/local/lib/python2.7/site-packages/mistralclient/commands/v2/action_executions.py”, line 165, in take_action<br>
+**params<br>
+File “/opt/stackstorm/mistral/local/lib/python2.7/site-packages/mistralclient/api/v2/action_executions.py”, line 47, in create<br>
+self._raise_api_exception(resp)<br>
+File “/opt/stackstorm/mistral/local/lib/python2.7/site-packages/mistralclient/api/base.py”, line 160, in _raise_api_exception<br>
+error_message=error_data)<br>
+mistralclient.api.base.APIException: 1</p>
+</blockquote>
+<p>If anyone is wondering why I’m not just using docker-compose, which would be much simpler. It’s because I want to use ansible roles to configure my pack settings depending on which system I am deploying it to just using ansible var-files. Also I can encrypt my password.</p>
+<p>My container.yaml if anyone is interested</p>
+<blockquote>
+<p>version: “2”<br>
+defaults:<br>
+BASE_IMAGE: grossws/centos<br>
+BASE_IMAGE_VERSION: 7<br>
+MONGO_VERSION: 3.4<br>
+MONGO_HOST: mongo<br>
+MONGO_PORT: 27017<br>
+MONGO_DB: st2_db<br>
+POSTGRES_VERSION: 9.6<br>
+POSTGRES_HOST: postgres<br>
+POSTGRES_PORT: 5432<br>
+POSTGRES_DB: mistral<br>
+RABBITMQ_VERSION: 3.6-management<br>
+RABBITMQ_HOST: rabbitmq<br>
+RABBITMQ_PORT: 5672<br>
+REDIS_VERSION: 4.0<br>
+REDIS_HOST: redis<br>
+REDIS_PORT: 6379<br>
+ST2_VERSION: 2.7.0</p>
+<p>settings:<br>
+conductor:<br>
+base: centos:7</p>
+<p>project_name: test</p>
+<p>services:<br>
+mongo:<br>
+from: mongo:3.4<br>
+volumes:<br>
+- /data/configdb<br>
+- mongo-volume:/data/db<br>
+environment:<br>
+- MONGO_HOST=mongo<br>
+- MONGO_PORT=27017</p>
+<p>rabbitmq:<br>
+from: ‘rabbitmq:{{ RABBITMQ_VERSION }}’<br>
+volumes:<br>
+- rabbitmq-volume:/var/lib/rabbitmq<br>
+environment:<br>
+- RABBITMQ_DEFAULT_USER=admin<br>
+- RABBITMQ_DEFAULT_PASS=mistral-user<br>
+- RABBITMQ_HOST=rabbitmq<br>
+- RABBITMQ_PORT=5672</p>
+<p>postgres:<br>
+from: ‘postgres:{{ POSTGRES_VERSION }}’<br>
+volumes:<br>
+- postgres-volume:/var/lib/postgresql/data<br>
+environment:<br>
+- POSTGRES_USER=mistral-user<br>
+- POSTGRES_PASSWORD=mistral-user<br>
+- POSTGRES_HOST=postgres<br>
+- POSTGRES_PORT=5432<br>
+- POSTGRES_DB=mistral<br>
+redis:<br>
+from: ‘redis:{{ REDIS_VERSION }}’<br>
+volumes:<br>
+- redis-volume:/data<br>
+environment:<br>
+- REDIS_PASSWORD=redis_pass<br>
+- REDIS_HOST=redis<br>
+- REDIS_PORT=6379<br>
+command: [<br>
+“bash”, “-c”,<br>
+’<br>
+docker-entrypoint.sh<br>
+–requirepass “redis_pass”<br>
+’<br>
+]<br>
+stackstorm:<br>
+from: “stackstorm/stackstorm:{{ ST2_VERSION }}”<br>
+priviliged: True<br>
+volumes:<br>
+- /home/user/workspace/test/packs.dev:/opt/stackstorm/packs.dev<br>
+- /home/user/workspace/st2-docker/runtime/entrypoint.d:/st2-docker/entrypoint.d<br>
+- /home/user/workspace/workspace/st2-docker/runtime/st2.d:/st2-docker/st2.d<br>
+- /home/user/workspace/workspace/st2-docker/conf/stackstorm.env:/st2-docker/env<br>
+- stackstorm-volume:/var/log<br>
+ports: #  Make sure that the web interface isn’t accessible, until we have verified that we can have it.<br>
+- “443:4443”<br>
+- “80:8080”<br>
+environment:<br>
+- MONGO_HOST=mongo<br>
+- MONGO_PORT=27017<br>
+- RABBITMQ_DEFAULT_USER=admin<br>
+- RABBITMQ_DEFAULT_PASS=mistral-user<br>
+- RABBITMQ_HOST=rabbitmq<br>
+- RABBITMQ_PORT=5672<br>
+- POSTGRES_USER=mistral-user<br>
+- POSTGRES_PASSWORD=mistral-user<br>
+- POSTGRES_HOST=postgres<br>
+- POSTGRES_PORT=5432<br>
+- POSTGRES_DB=mistral<br>
+- REDIS_PASSWORD= redis_pass<br>
+- REDIS_HOST=redis<br>
+- REDIS_PORT=6379<br>
+- ST2_USER=st2admin<br>
+- ST2_PASSWORD=H8WHTIFe</p>
+<p>registries: {}</p>
+<p>volumes:<br>
+mongo-volume:<br>
+docker: {}<br>
+rabbitmq-volume:<br>
+docker: {}<br>
+postgres-volume:<br>
+docker: {}<br>
+redis-volume:<br>
+docker: {}<br>
+stackstorm-volume:<br>
+docker: {}</p>
+</blockquote>
+          <p><a href="https://forum.stackstorm.com/t/stackstorm-in-combination-with-ansible-container/125/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/stackstorm-in-combination-with-ansible-container/125/1</link>
+        <pubDate>Tue, 24 Apr 2018 14:43:01 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-125-1</guid>
+        <source url="https://forum.stackstorm.com/t/stackstorm-in-combination-with-ansible-container/125.rss">Stackstorm in combination with ansible-container</source>
+      </item>
+  </channel>
+</rss>

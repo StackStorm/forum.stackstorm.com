@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Cannot start mistral workflow in ST2 3.1</title>
+    <link>https://forum.stackstorm.com/t/cannot-start-mistral-workflow-in-st2-3-1/813</link>
+    <description>We upgraded to st2 3.1 and we cannot execute mistral workflows. The actions work fine. The logs show me this error:
+
+id: 5d66f520daf15a00f9054c98
+action.ref: audit_components.generic_template_audit_workflow
+parameters: 
+  audit_name: SNMP_NX7000
+  node_names:
+  - foo
+status: failed (787s elapsed)
+start_timestamp: Wed, 28 Aug 2019 21:41:52 UTC
+end_timestamp: Wed, 28 Aug 2019 21:54:59 UTC
+result: 
+  error: (&#39;Connection aborted.&#39;, BadStatusLine(&quot;&#39;&#39;&quot;,))
+  traceback: &quot;  File &quot;/opt/stackstorm/st2/lib/python2.7/site-packages/st2actions/container/base.py&quot;, line 127, in _do_run
+    (status, result, context) = runner.run(action_params)
+  File &quot;/opt/stackstorm/st2/lib/python2.7/site-packages/retrying.py&quot;, line 49, in wrapped_f
+    return Retrying(*dargs, **dkw).call(f, *args, **kw)
+  File &quot;/opt/stackstorm/st2/lib/python2.7/site-packages/retrying.py&quot;, line 212, in call
+    raise attempt.get()
+  File &quot;/opt/stackstorm/st2/lib/python2.7/site-packages/retrying.py&quot;, line 247, in get
+    six.reraise(self.value[0], self.value[1], self.value[2])
+  File &quot;/opt/stackstorm/st2/lib/python2.7/site-packages/retrying.py&quot;, line 200, in call
+    attempt = Attempt(fn(*args, **kwargs), attempt_number, False)
+  File &quot;/opt/stackstorm/st2/lib/python2.7/site-packages/mistral_v2/mistral_v2.py&quot;, line 251, in run
+    result = self.start_workflow(action_parameters=action_parameters)
+  File &quot;/opt/stackstorm/st2/lib/python2.7/site-packages/mistral_v2/mistral_v2.py&quot;, line 288, in start_workflow
+    **options)
+  File &quot;/opt/stackstorm/st2/lib/python2.7/site-packages/mistralclient/api/v2/executions.py&quot;, line 65, in create
+    return self._create(&#39;/executions&#39;, data)
+  File &quot;/opt/stackstorm/st2/lib/python2.7/site-packages/mistralclient/api/base.py&quot;, line 95, in _create
+    resp = self.http_client.post(url, data)
+  File &quot;/opt/stackstorm/st2/lib/python2.7/site-packages/mistralclient/api/httpclient.py&quot;, line 54, in decorator
+    resp = func(self, *args, **kwargs)
+  File &quot;/opt/stackstorm/st2/lib/python2.7/site-packages/mistralclient/api/httpclient.py&quot;, line 120, in post
+    return self.session.post(self.base_url + url, data=body, **options)
+  File &quot;/opt/stackstorm/st2/lib/python2.7/site-packages/requests/sessions.py&quot;, line 581, in post
+    return self.request(&#39;POST&#39;, url, data=data, json=json, **kwargs)
+  File &quot;/opt/stackstorm/st2/lib/python2.7/site-packages/requests/sessions.py&quot;, line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File &quot;/opt/stackstorm/st2/lib/python2.7/site-packages/requests/sessions.py&quot;, line 646, in send
+    r = adapter.send(request, **kwargs)
+  File &quot;/opt/stackstorm/st2/lib/python2.7/site-packages/requests/adapters.py&quot;, line 498, in send
+    raise ConnectionError(err, request=request)</description>
+    
+    <lastBuildDate>Thu, 29 Aug 2019 14:47:20 +0000</lastBuildDate>
+    <category>Mistral</category>
+    <atom:link href="https://forum.stackstorm.com/t/cannot-start-mistral-workflow-in-st2-3-1/813.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Cannot start mistral workflow in ST2 3.1</title>
+        <dc:creator><![CDATA[techdiverdown]]></dc:creator>
+        <description><![CDATA[
+            <p>We went from 2.9 to 3.1.</p>
+<p>A few more important facts. We are running in K8s, and we have deployed successfully to a DEV and INT environment, using same exact procedure (Helm Charts, etc). Both previous env’s worked without issue. When we deployed to our PROD env, that’s where things went south. Last night i followed the procedure here: <a href="https://docs.stackstorm.com/install/upgrades.html#general-upgrade-procedure" class="inline-onebox" rel="nofollow noopener">Upgrades — StackStorm 3.1.0 documentation</a><br>
+bringing down all ST2 services and running this:<br>
+/opt/stackstorm/mistral/bin/mistral-db-manage --config-file /etc/mistral/mistral.conf upgrade head<br>
+/opt/stackstorm/mistral/bin/mistral-db-manage --config-file /etc/mistral/mistral.conf populate | grep -v -e openstack -e keystone -e ironicclient</p>
+<p>Then st2ctl reload, to no avail. I will try to get some better error messages this morning.</p>
+          <p><a href="https://forum.stackstorm.com/t/cannot-start-mistral-workflow-in-st2-3-1/813/4">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/cannot-start-mistral-workflow-in-st2-3-1/813/4</link>
+        <pubDate>Thu, 29 Aug 2019 14:47:20 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-813-4</guid>
+        <source url="https://forum.stackstorm.com/t/cannot-start-mistral-workflow-in-st2-3-1/813.rss">Cannot start mistral workflow in ST2 3.1</source>
+      </item>
+      <item>
+        <title>Cannot start mistral workflow in ST2 3.1</title>
+        <dc:creator><![CDATA[armab]]></dc:creator>
+        <description><![CDATA[
+            <p>What was the old st2 version before upgrading to latest <code>v3.1</code>?</p>
+<p>Did you follow Upgrade Procedure instructions? <a href="https://docs.stackstorm.com/install/upgrades.html#general-upgrade-procedure" class="inline-onebox" rel="nofollow noopener">Upgrades — StackStorm 3.1.0 documentation</a><br>
+and Upgrade Notes: <a href="https://docs.stackstorm.com/upgrade_notes.html" class="inline-onebox" rel="nofollow noopener">Upgrade Notes — StackStorm 3.1.0 documentation</a></p>
+          <p><a href="https://forum.stackstorm.com/t/cannot-start-mistral-workflow-in-st2-3-1/813/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/cannot-start-mistral-workflow-in-st2-3-1/813/3</link>
+        <pubDate>Thu, 29 Aug 2019 13:52:43 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-813-3</guid>
+        <source url="https://forum.stackstorm.com/t/cannot-start-mistral-workflow-in-st2-3-1/813.rss">Cannot start mistral workflow in ST2 3.1</source>
+      </item>
+      <item>
+        <title>Cannot start mistral workflow in ST2 3.1</title>
+        <dc:creator><![CDATA[jinping]]></dc:creator>
+        <description><![CDATA[
+            <p>Please check <a href="https://forum.stackstorm.com/t/unable-to-run-mistral-workflows/328" class="inline-onebox">Unable to run Mistral workflows</a> and it has some steps to fix psql and some useful links related to debug.</p>
+          <p><a href="https://forum.stackstorm.com/t/cannot-start-mistral-workflow-in-st2-3-1/813/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/cannot-start-mistral-workflow-in-st2-3-1/813/2</link>
+        <pubDate>Wed, 28 Aug 2019 23:16:12 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-813-2</guid>
+        <source url="https://forum.stackstorm.com/t/cannot-start-mistral-workflow-in-st2-3-1/813.rss">Cannot start mistral workflow in ST2 3.1</source>
+      </item>
+      <item>
+        <title>Cannot start mistral workflow in ST2 3.1</title>
+        <dc:creator><![CDATA[techdiverdown]]></dc:creator>
+        <description><![CDATA[
+            <p>We upgraded to st2 3.1 and we cannot execute mistral workflows. The actions work fine. The logs show me this error:</p>
+<p>id: 5d66f520daf15a00f9054c98<br>
+action.ref: audit_components.generic_template_audit_workflow<br>
+parameters:<br>
+audit_name: SNMP_NX7000<br>
+node_names:</p>
+<ul>
+<li>foo<br>
+status: failed (787s elapsed)<br>
+start_timestamp: Wed, 28 Aug 2019 21:41:52 UTC<br>
+end_timestamp: Wed, 28 Aug 2019 21:54:59 UTC<br>
+result:<br>
+error: (‘Connection aborted.’, BadStatusLine("’’",))<br>
+traceback: "  File “/opt/stackstorm/st2/lib/python2.7/site-packages/st2actions/container/base.py”, line 127, in _do_run<br>
+(status, result, context) = runner.run(action_params)<br>
+File “/opt/stackstorm/st2/lib/python2.7/site-packages/retrying.py”, line 49, in wrapped_f<br>
+return Retrying(*dargs, **dkw).call(f, *args, **kw)<br>
+File “/opt/stackstorm/st2/lib/python2.7/site-packages/retrying.py”, line 212, in call<br>
+raise attempt.get()<br>
+File “/opt/stackstorm/st2/lib/python2.7/site-packages/retrying.py”, line 247, in get<br>
+six.reraise(self.value[0], self.value[1], self.value[2])<br>
+File “/opt/stackstorm/st2/lib/python2.7/site-packages/retrying.py”, line 200, in call<br>
+attempt = Attempt(fn(*args, **kwargs), attempt_number, False)<br>
+File “/opt/stackstorm/st2/lib/python2.7/site-packages/mistral_v2/mistral_v2.py”, line 251, in run<br>
+result = self.start_workflow(action_parameters=action_parameters)<br>
+File “/opt/stackstorm/st2/lib/python2.7/site-packages/mistral_v2/mistral_v2.py”, line 288, in start_workflow<br>
+**options)<br>
+File “/opt/stackstorm/st2/lib/python2.7/site-packages/mistralclient/api/v2/executions.py”, line 65, in create<br>
+return self._create(’/executions’, data)<br>
+File “/opt/stackstorm/st2/lib/python2.7/site-packages/mistralclient/api/base.py”, line 95, in _create<br>
+resp = self.http_client.post(url, data)<br>
+File “/opt/stackstorm/st2/lib/python2.7/site-packages/mistralclient/api/httpclient.py”, line 54, in decorator<br>
+resp = func(self, *args, **kwargs)<br>
+File “/opt/stackstorm/st2/lib/python2.7/site-packages/mistralclient/api/httpclient.py”, line 120, in post<br>
+return self.session.post(self.base_url + url, data=body, **options)<br>
+File “/opt/stackstorm/st2/lib/python2.7/site-packages/requests/sessions.py”, line 581, in post<br>
+return self.request(‘POST’, url, data=data, json=json, **kwargs)<br>
+File “/opt/stackstorm/st2/lib/python2.7/site-packages/requests/sessions.py”, line 533, in request<br>
+resp = self.send(prep, **send_kwargs)<br>
+File “/opt/stackstorm/st2/lib/python2.7/site-packages/requests/sessions.py”, line 646, in send<br>
+r = adapter.send(request, **kwargs)<br>
+File “/opt/stackstorm/st2/lib/python2.7/site-packages/requests/adapters.py”, line 498, in send<br>
+raise ConnectionError(err, request=request)</li>
+</ul>
+          <p><a href="https://forum.stackstorm.com/t/cannot-start-mistral-workflow-in-st2-3-1/813/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/cannot-start-mistral-workflow-in-st2-3-1/813/1</link>
+        <pubDate>Wed, 28 Aug 2019 22:21:38 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-813-1</guid>
+        <source url="https://forum.stackstorm.com/t/cannot-start-mistral-workflow-in-st2-3-1/813.rss">Cannot start mistral workflow in ST2 3.1</source>
+      </item>
+  </channel>
+</rss>

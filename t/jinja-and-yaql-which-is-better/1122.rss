@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>jinja and yaql which is better</title>
+    <link>https://forum.stackstorm.com/t/jinja-and-yaql-which-is-better/1122</link>
+    <description>jinja and yaql which is better
+After reading the official documents, I found that both expressions can support basic functions
+Using yaql seems to be more concise (I prefer to use yaql personally)
+Using Jinja will conflict with the symbol of JSON
+But which one is the official preferred expression ?</description>
+    
+    <lastBuildDate>Thu, 26 Mar 2020 06:52:46 +0000</lastBuildDate>
+    <category>Documentation</category>
+    <atom:link href="https://forum.stackstorm.com/t/jinja-and-yaql-which-is-better/1122.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>jinja and yaql which is better</title>
+        <dc:creator><![CDATA[Carlos]]></dc:creator>
+        <description><![CDATA[
+            <p>Both YAQL and Jinja2 are officially supported.  There are use cases with different datasets and actions where YAQL is the optimal solution and other cases where using Jinja2 is optimal.</p>
+<p>Initially, YAQL was the only expression engine (an inheritance from Mistral) but was difficult for new users to pick-up.  Jinja2 was later added to lower the entry barrier for new users.</p>
+<p>As far as I know there is no intent to drop support for YAQL.  I for one would be strongly against dropping YAQL support without very good reasons.  I’d like to see YAQL better supported throughout the core product.  <a href="https://github.com/StackStorm/st2/issues/4776" class="inline-onebox" rel="nofollow noopener">YAQL as a first class citizen - Support YAQL expressions in rule criteria · Issue #4776 · StackStorm/st2 · GitHub</a></p>
+          <p><a href="https://forum.stackstorm.com/t/jinja-and-yaql-which-is-better/1122/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/jinja-and-yaql-which-is-better/1122/2</link>
+        <pubDate>Thu, 26 Mar 2020 06:52:46 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1122-2</guid>
+        <source url="https://forum.stackstorm.com/t/jinja-and-yaql-which-is-better/1122.rss">jinja and yaql which is better</source>
+      </item>
+      <item>
+        <title>jinja and yaql which is better</title>
+        <dc:creator><![CDATA[i-cooltea]]></dc:creator>
+        <description><![CDATA[
+            <p>jinja and yaql which is better<br>
+After reading the official documents, I found that both expressions can support basic functions<br>
+Using yaql seems to be more concise (I prefer to use yaql personally)<br>
+Using Jinja will conflict with the symbol of JSON<br>
+But which one is the official preferred expression ?</p>
+          <p><a href="https://forum.stackstorm.com/t/jinja-and-yaql-which-is-better/1122/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/jinja-and-yaql-which-is-better/1122/1</link>
+        <pubDate>Wed, 25 Mar 2020 01:04:34 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1122-1</guid>
+        <source url="https://forum.stackstorm.com/t/jinja-and-yaql-which-is-better/1122.rss">jinja and yaql which is better</source>
+      </item>
+  </channel>
+</rss>

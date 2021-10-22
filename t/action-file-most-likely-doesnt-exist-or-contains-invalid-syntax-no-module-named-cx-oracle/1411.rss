@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>(action file most likely doesn&#39;t exist or contains invalid syntax): No module named cx_Oracle</title>
+    <link>https://forum.stackstorm.com/t/action-file-most-likely-doesnt-exist-or-contains-invalid-syntax-no-module-named-cx-oracle/1411</link>
+    <description>Hi all, pretty new to stackstorm, I was making a custom pack on stackstorm for a oracle use case in stackstorm, tried all sought of things but no luck.
+Pack is been made just during execution getting an error for this.
+
+# st2 execution get 5f5904b5e6db36c03ea812db
+
+id: 5f5904b5e6db36c03ea812db
+action.ref: oracle_test.Oracledbcheck
+context.user: st2admin
+parameters:
+DBName: ****
+Hostname: ****
+Password: *****
+Port: &#39;1526&#39;
+ServiceName:****
+Username:*****
+log_level: DEBUG
+status: failed (1s elapsed)
+start_timestamp: Wed, 09 Sep 2020 16:37:08 UTC
+end_timestamp: Wed, 09 Sep 2020 16:37:09 UTC
+result:
+exit_code: 1
+result: None
+stderr: &quot;Traceback (most recent call last):
+File &quot;/opt/stackstorm/st2/lib/python2.7/site-packages/python_runner/python_action_wrapper.py&quot;, line 333, in
+obj.run()
+File &quot;/opt/stackstorm/st2/lib/python2.7/site-packages/python_runner/python_action_wrapper.py&quot;, line 191, in run
+action = self._get_action_instance()
+File &quot;/opt/stackstorm/st2/lib/python2.7/site-packages/python_runner/python_action_wrapper.py&quot;, line 244, in _get_action_instance
+raise exc_cls(msg)
+ImportError: Failed to load action class from file &quot;/opt/stackstorm/packs/oracle_test/actions/Oracledbcheck.py&quot; (action file most likely doesn&#39;t exist or contains invalid syntax): No module named cx_Oracle
+
+Traceback (most recent call last):
+File &quot;/opt/stackstorm/st2/lib/python2.7/site-packages/python_runner/python_action_wrapper.py&quot;, line 237, in _get_action_instance
+actions_cls = action_loader.register_plugin(Action, self._file_path)
+File &quot;/opt/stackstorm/st2/lib/python2.7/site-packages/st2common/util/loader.py&quot;, line 167, in register_plugin
+module = imp.load_source(module_name, plugin_abs_file_path)
+File &quot;/opt/stackstorm/packs/oracle_test/actions/Oracledbcheck.py&quot;, line 3, in
+import cx_Oracle
+ImportError: No module named cx_Oracle
+
+it has the cx_oracle installed on the machine. 
+Most likely seems stackstorm isn&#39;t picking it up.
+
+Any suggestion????</description>
+    
+    <lastBuildDate>Tue, 11 May 2021 06:51:48 +0000</lastBuildDate>
+    <category>Pack Management</category>
+    <atom:link href="https://forum.stackstorm.com/t/action-file-most-likely-doesnt-exist-or-contains-invalid-syntax-no-module-named-cx-oracle/1411.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>(action file most likely doesn&#39;t exist or contains invalid syntax): No module named cx_Oracle</title>
+        <dc:creator><![CDATA[Bryan]]></dc:creator>
+        <description><![CDATA[
+            <p>I Fix my issue by develop a new pack</p>
+          <p><a href="https://forum.stackstorm.com/t/action-file-most-likely-doesnt-exist-or-contains-invalid-syntax-no-module-named-cx-oracle/1411/4">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/action-file-most-likely-doesnt-exist-or-contains-invalid-syntax-no-module-named-cx-oracle/1411/4</link>
+        <pubDate>Tue, 11 May 2021 06:51:48 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1411-4</guid>
+        <source url="https://forum.stackstorm.com/t/action-file-most-likely-doesnt-exist-or-contains-invalid-syntax-no-module-named-cx-oracle/1411.rss">(action file most likely doesn&#39;t exist or contains invalid syntax): No module named cx_Oracle</source>
+      </item>
+      <item>
+        <title>(action file most likely doesn&#39;t exist or contains invalid syntax): No module named cx_Oracle</title>
+        <dc:creator><![CDATA[Bryan]]></dc:creator>
+        <description><![CDATA[
+            <p>I have the same issue.<br>
+I already specify the required <code>fabric&gt;=2.0</code> in <code>requirements.txt</code> of <code>Linux</code> pack.<br>
+I setup virtualenv by <code>packs.setup_virtualenv</code>. And the packs does exist under the path<code>/opt/stackstorm/virtualenvs/linux/lib/python3.6/site-packages/</code><br>
+I’m using <code>st2 3.4.1, on Python 3.6.8</code><br>
+What should we do next?</p>
+          <p><a href="https://forum.stackstorm.com/t/action-file-most-likely-doesnt-exist-or-contains-invalid-syntax-no-module-named-cx-oracle/1411/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/action-file-most-likely-doesnt-exist-or-contains-invalid-syntax-no-module-named-cx-oracle/1411/3</link>
+        <pubDate>Sat, 08 May 2021 11:57:38 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1411-3</guid>
+        <source url="https://forum.stackstorm.com/t/action-file-most-likely-doesnt-exist-or-contains-invalid-syntax-no-module-named-cx-oracle/1411.rss">(action file most likely doesn&#39;t exist or contains invalid syntax): No module named cx_Oracle</source>
+      </item>
+      <item>
+        <title>(action file most likely doesn&#39;t exist or contains invalid syntax): No module named cx_Oracle</title>
+        <dc:creator><![CDATA[Carlos]]></dc:creator>
+        <description><![CDATA[
+            <p>Packs run in their own Python Virtual Environment.  They do not use system installed Python modules, which means you will need to install your Python module dependencies as part of the pack installation.  Dependencies can be declared in the packs <code>requirements.txt</code> file.  For example, here is the consul pack dependencies: <a href="https://github.com/StackStorm-Exchange/stackstorm-consul/blob/master/requirements.txt" class="inline-onebox" rel="nofollow noopener">stackstorm-consul/requirements.txt at master · StackStorm-Exchange/stackstorm-consul · GitHub</a></p>
+          <p><a href="https://forum.stackstorm.com/t/action-file-most-likely-doesnt-exist-or-contains-invalid-syntax-no-module-named-cx-oracle/1411/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/action-file-most-likely-doesnt-exist-or-contains-invalid-syntax-no-module-named-cx-oracle/1411/2</link>
+        <pubDate>Thu, 10 Sep 2020 07:23:01 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1411-2</guid>
+        <source url="https://forum.stackstorm.com/t/action-file-most-likely-doesnt-exist-or-contains-invalid-syntax-no-module-named-cx-oracle/1411.rss">(action file most likely doesn&#39;t exist or contains invalid syntax): No module named cx_Oracle</source>
+      </item>
+      <item>
+        <title>(action file most likely doesn&#39;t exist or contains invalid syntax): No module named cx_Oracle</title>
+        <dc:creator><![CDATA[Biji]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi all, pretty new to stackstorm, I was making a custom pack on stackstorm for a oracle use case in stackstorm, tried all sought of things but no luck.<br>
+Pack is been made just during execution getting an error for this.</p>
+<h1>st2 execution get 5f5904b5e6db36c03ea812db</h1>
+<p>id: 5f5904b5e6db36c03ea812db<br>
+action.ref: oracle_test.Oracledbcheck<br>
+context.user: st2admin<br>
+parameters:<br>
+DBName: ****<br>
+Hostname: ****<br>
+Password: *****<br>
+Port: ‘1526’<br>
+ServiceName:****<br>
+Username:*****<br>
+log_level: DEBUG<br>
+status: failed (1s elapsed)<br>
+start_timestamp: Wed, 09 Sep 2020 16:37:08 UTC<br>
+end_timestamp: Wed, 09 Sep 2020 16:37:09 UTC<br>
+result:<br>
+exit_code: 1<br>
+result: None<br>
+stderr: "Traceback (most recent call last):<br>
+File “/opt/stackstorm/st2/lib/python2.7/site-packages/python_runner/python_action_wrapper.py”, line 333, in<br>
+obj.run()<br>
+File “/opt/stackstorm/st2/lib/python2.7/site-packages/python_runner/python_action_wrapper.py”, line 191, in run<br>
+action = self._get_action_instance()<br>
+File “/opt/stackstorm/st2/lib/python2.7/site-packages/python_runner/python_action_wrapper.py”, line 244, in _get_action_instance<br>
+raise exc_cls(msg)<br>
+ImportError: Failed to load action class from file “/opt/stackstorm/packs/oracle_test/actions/Oracledbcheck.py” (action file most likely doesn’t exist or contains invalid syntax): No module named cx_Oracle</p>
+<p>Traceback (most recent call last):<br>
+File “/opt/stackstorm/st2/lib/python2.7/site-packages/python_runner/python_action_wrapper.py”, line 237, in _get_action_instance<br>
+actions_cls = action_loader.register_plugin(Action, self._file_path)<br>
+File “/opt/stackstorm/st2/lib/python2.7/site-packages/st2common/util/loader.py”, line 167, in register_plugin<br>
+module = imp.load_source(module_name, plugin_abs_file_path)<br>
+File “/opt/stackstorm/packs/oracle_test/actions/Oracledbcheck.py”, line 3, in<br>
+import cx_Oracle<br>
+ImportError: No module named cx_Oracle</p>
+<p>it has the cx_oracle installed on the machine.<br>
+Most likely seems stackstorm isn’t picking it up.</p>
+<p>Any suggestion???</p>
+          <p><a href="https://forum.stackstorm.com/t/action-file-most-likely-doesnt-exist-or-contains-invalid-syntax-no-module-named-cx-oracle/1411/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/action-file-most-likely-doesnt-exist-or-contains-invalid-syntax-no-module-named-cx-oracle/1411/1</link>
+        <pubDate>Thu, 10 Sep 2020 06:33:17 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1411-1</guid>
+        <source url="https://forum.stackstorm.com/t/action-file-most-likely-doesnt-exist-or-contains-invalid-syntax-no-module-named-cx-oracle/1411.rss">(action file most likely doesn&#39;t exist or contains invalid syntax): No module named cx_Oracle</source>
+      </item>
+  </channel>
+</rss>

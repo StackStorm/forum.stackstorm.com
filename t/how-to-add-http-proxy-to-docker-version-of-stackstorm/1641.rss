@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>How to add http_proxy to docker version of StackStorm?</title>
+    <link>https://forum.stackstorm.com/t/how-to-add-http-proxy-to-docker-version-of-stackstorm/1641</link>
+    <description>Hello all,
+I need to go through proxy to get to the internet. I managed to install and run the whole StackStorm set in docker using the provided docker-compose. 
+
+However I can&#39;t figure out where to setup the http_proxy so I can install/download packages from internet. Documentation is saying:
+
+*On Ubuntu systems, edit `/etc/default/st2actionrunner` and `/etc/default/st2api` to set the proxy configuration environment variables. For RHEL/CentOS systems, edit `/etc/sysconfig/st2actionrunner` and `/etc/sysconfig/st2api` .*
+
+But this files are not present in the docker images...
+
+Any ideas ? Thanks.</description>
+    
+    <lastBuildDate>Mon, 19 Apr 2021 10:54:09 +0000</lastBuildDate>
+    <category>Documentation</category>
+    <atom:link href="https://forum.stackstorm.com/t/how-to-add-http-proxy-to-docker-version-of-stackstorm/1641.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>How to add http_proxy to docker version of StackStorm?</title>
+        <dc:creator><![CDATA[VladoPortos]]></dc:creator>
+        <description><![CDATA[
+            <p>I have figured it out. Here is solution that worked for me, if somebody come across this, add these to docker-compose file:</p>
+<p>Under st2actionrunner and st2api: add:</p>
+<p>environment:<br>
+HTTP_PROXY: http://proxy_IP:port<br>
+HTTPS_PROXY: http://proxy_IP:port<br>
+NO_PROXY: 127.0.0.1,localhost,st2auth:9100,st2api:9101,st2stream:9102</p>
+<p>This was enough to make it work for me. Maybe it could be added to documentation.</p>
+          <p><a href="https://forum.stackstorm.com/t/how-to-add-http-proxy-to-docker-version-of-stackstorm/1641/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-to-add-http-proxy-to-docker-version-of-stackstorm/1641/3</link>
+        <pubDate>Mon, 19 Apr 2021 10:54:09 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1641-3</guid>
+        <source url="https://forum.stackstorm.com/t/how-to-add-http-proxy-to-docker-version-of-stackstorm/1641.rss">How to add http_proxy to docker version of StackStorm?</source>
+      </item>
+      <item>
+        <title>How to add http_proxy to docker version of StackStorm?</title>
+        <dc:creator><![CDATA[csecsi]]></dc:creator>
+        <description><![CDATA[
+            <p>unfortunately I have already removed the sandbox with similar problem (docker + proxy). If i remember correctly I had to set the proxy 3 different places in order to make it work (container, stacktorm and even in the rules).</p>
+          <p><a href="https://forum.stackstorm.com/t/how-to-add-http-proxy-to-docker-version-of-stackstorm/1641/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-to-add-http-proxy-to-docker-version-of-stackstorm/1641/2</link>
+        <pubDate>Mon, 19 Apr 2021 10:26:04 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1641-2</guid>
+        <source url="https://forum.stackstorm.com/t/how-to-add-http-proxy-to-docker-version-of-stackstorm/1641.rss">How to add http_proxy to docker version of StackStorm?</source>
+      </item>
+      <item>
+        <title>How to add http_proxy to docker version of StackStorm?</title>
+        <dc:creator><![CDATA[VladoPortos]]></dc:creator>
+        <description><![CDATA[
+            <p>Hello all,<br>
+I need to go through proxy to get to the internet. I managed to install and run the whole StackStorm set in docker using the provided docker-compose.</p>
+<p>However I can’t figure out where to setup the http_proxy so I can install/download packages from internet. Documentation is saying:</p>
+<p><em>On Ubuntu systems, edit <code>/etc/default/st2actionrunner</code> and <code>/etc/default/st2api</code> to set the proxy configuration environment variables. For RHEL/CentOS systems, edit <code>/etc/sysconfig/st2actionrunner</code> and <code>/etc/sysconfig/st2api</code> .</em></p>
+<p>But this files are not present in the docker images…</p>
+<p>Any ideas ? Thanks.</p>
+          <p><a href="https://forum.stackstorm.com/t/how-to-add-http-proxy-to-docker-version-of-stackstorm/1641/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-to-add-http-proxy-to-docker-version-of-stackstorm/1641/1</link>
+        <pubDate>Thu, 08 Apr 2021 12:57:30 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1641-1</guid>
+        <source url="https://forum.stackstorm.com/t/how-to-add-http-proxy-to-docker-version-of-stackstorm/1641.rss">How to add http_proxy to docker version of StackStorm?</source>
+      </item>
+  </channel>
+</rss>

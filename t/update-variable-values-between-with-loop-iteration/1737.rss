@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Update variable values between with loop iteration</title>
+    <link>https://forum.stackstorm.com/t/update-variable-values-between-with-loop-iteration/1737</link>
+    <description>Expectation:
+The newValue should be added to the baseValue with each iteration, so here i am expecting final value as 4.
+
+1st Iteration:
+   baseValue 1 + newValue 1 = 2
+2nd Iteration:
+   (output of 1st iteration) 2 + newValue 2 = 4
+Final output:
+   (output of 2nd iteration) 4
+
+Below is the example code,
+  do_sum:
+    action: mypack.myaction
+	input:
+	  baseValue: 1
+	  newValue: &#39;{{ item() }}&#39;
+	with: &lt;% range(2) %&gt;</description>
+    
+    <lastBuildDate>Thu, 17 Jun 2021 12:12:08 +0000</lastBuildDate>
+    <category>Workflows</category>
+    <atom:link href="https://forum.stackstorm.com/t/update-variable-values-between-with-loop-iteration/1737.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Update variable values between with loop iteration</title>
+        <dc:creator><![CDATA[bhavesh2177]]></dc:creator>
+        <description><![CDATA[
+            <p>Expectation:<br>
+The newValue should be added to the baseValue with each iteration, so here i am expecting final value as 4.</p>
+<p>1st Iteration:<br>
+baseValue 1 + newValue 1 = 2<br>
+2nd Iteration:<br>
+(output of 1st iteration) 2 + newValue 2 = 4<br>
+Final output:<br>
+(output of 2nd iteration) 4</p>
+<p>Below is the example code,<br>
+do_sum:<br>
+action: mypack.myaction<br>
+input:<br>
+baseValue: 1<br>
+newValue: ‘{{ item() }}’<br>
+with: &lt;% range(2) %&gt;</p>
+          <p><a href="https://forum.stackstorm.com/t/update-variable-values-between-with-loop-iteration/1737/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/update-variable-values-between-with-loop-iteration/1737/1</link>
+        <pubDate>Thu, 17 Jun 2021 12:12:08 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1737-1</guid>
+        <source url="https://forum.stackstorm.com/t/update-variable-values-between-with-loop-iteration/1737.rss">Update variable values between with loop iteration</source>
+      </item>
+  </channel>
+</rss>

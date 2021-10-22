@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Stackstorm installation failing using Ansible</title>
+    <link>https://forum.stackstorm.com/t/stackstorm-installation-failing-using-ansible/650</link>
+    <description>Hi, I&#39;m trying to install new version of Stackstorm and using ansible for that and playbook is failing b&#39;coz of below error. Can anyone help?
+
+TASK [StackStorm.mongodb : apt | Install mongodb] ********************************************************************************************************************************************************************************************
+FAILED - RETRYING: apt | Install mongodb (5 retries left).
+FAILED - RETRYING: apt | Install mongodb (4 retries left).
+FAILED - RETRYING: apt | Install mongodb (3 retries left).
+FAILED - RETRYING: apt | Install mongodb (2 retries left).
+FAILED - RETRYING: apt | Install mongodb (1 retries left).
+ [WARNING]: Could not find aptitude. Using apt-get instead
+
+fatal: [localhost]: FAILED! =&gt; {&quot;attempts&quot;: 5, &quot;changed&quot;: false, &quot;msg&quot;: &quot;No package matching &#39;mongodb-org&#39; is available&quot;}
+
+ST2-Ansible git: https://docs.stackstorm.com/install/ansible.html and I&#39;m running **ansible 2.9.0.dev0** ansible version and I&#39;m trying to install on **Ubuntu-16.04**</description>
+    
+    <lastBuildDate>Wed, 15 May 2019 15:37:17 +0000</lastBuildDate>
+    <category>Operations</category>
+    <atom:link href="https://forum.stackstorm.com/t/stackstorm-installation-failing-using-ansible/650.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Stackstorm installation failing using Ansible</title>
+        <dc:creator><![CDATA[armab]]></dc:creator>
+        <description><![CDATA[
+            <p>We’ve seen the same behavior today caused by upstream MongoDB repo issues.<br>
+Based on Slack conversation, it was temporary upstream failure and Ansible deployment works OK now.</p>
+          <p><a href="https://forum.stackstorm.com/t/stackstorm-installation-failing-using-ansible/650/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/stackstorm-installation-failing-using-ansible/650/2</link>
+        <pubDate>Wed, 15 May 2019 11:00:27 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-650-2</guid>
+        <source url="https://forum.stackstorm.com/t/stackstorm-installation-failing-using-ansible/650.rss">Stackstorm installation failing using Ansible</source>
+      </item>
+      <item>
+        <title>Stackstorm installation failing using Ansible</title>
+        <dc:creator><![CDATA[sammi.c30]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi, I’m trying to install new version of Stackstorm and using ansible for that and playbook is failing b’coz of below error. Can anyone help?</p>
+<p>TASK [StackStorm.mongodb : apt | Install mongodb] ********************************************************************************************************************************************************************************************<br>
+FAILED - RETRYING: apt | Install mongodb (5 retries left).<br>
+FAILED - RETRYING: apt | Install mongodb (4 retries left).<br>
+FAILED - RETRYING: apt | Install mongodb (3 retries left).<br>
+FAILED - RETRYING: apt | Install mongodb (2 retries left).<br>
+FAILED - RETRYING: apt | Install mongodb (1 retries left).<br>
+[WARNING]: Could not find aptitude. Using apt-get instead</p>
+<p>fatal: [localhost]: FAILED! =&gt; {“attempts”: 5, “changed”: false, “msg”: “No package matching ‘mongodb-org’ is available”}</p>
+<p>ST2-Ansible git: <a href="https://docs.stackstorm.com/install/ansible.html" class="inline-onebox" rel="nofollow noopener">Ansible Playbooks — StackStorm 3.0.0 documentation</a> and I’m running <strong>ansible 2.9.0.dev0</strong> ansible version and I’m trying to install on <strong>Ubuntu-16.04</strong></p>
+          <p><a href="https://forum.stackstorm.com/t/stackstorm-installation-failing-using-ansible/650/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/stackstorm-installation-failing-using-ansible/650/1</link>
+        <pubDate>Tue, 14 May 2019 21:50:33 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-650-1</guid>
+        <source url="https://forum.stackstorm.com/t/stackstorm-installation-failing-using-ansible/650.rss">Stackstorm installation failing using Ansible</source>
+      </item>
+  </channel>
+</rss>

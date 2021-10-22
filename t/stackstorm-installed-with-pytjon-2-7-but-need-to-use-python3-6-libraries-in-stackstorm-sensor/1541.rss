@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Stackstorm installed with pytjon 2.7, but need to use python3.6 libraries in Stackstorm sensor</title>
+    <link>https://forum.stackstorm.com/t/stackstorm-installed-with-pytjon-2-7-but-need-to-use-python3-6-libraries-in-stackstorm-sensor/1541</link>
+    <description>Hi,
+
+We have developed a version of our Stackstorm pack and other objects in Stackstorm Version 3.2 installed on a system that has stackstorm with Python 2.7.5 
+
+But now as part of our upgrade process, we are planning to use Python 3.6 instead of 2.7 version.
+For this 
+
+1. We installed stackstorm 3.3 and default python 2.7.5 and python3 3.6.8. 
+2. mannually placed all the python python3.6 libraries into /opt/stackstorm/st2/lib/ folder.
+3. We modified our Pack.yaml files to point to Python 3 , and forced to install using python3 virtual environment.
+
+Issue: After making the changes we are getting the following error:
+Virtual environment (/opt/stackstorm/virtualenvs/servicenow_pack) for pack &quot;servicenow_pack&quot; is using Python 3.
+Using Python 3 virtual environments in mixed deployments is only supported for Python runner
+actions and not sensors. If you want to run this sensor, please re-recreate the
+virtual environment with python2 binary:
+&quot;st2 run packs.setup_virtualenv packs=servicenow_pack python3=false&quot;
+
+Also attached the full error:
+![err|690x331](upload://bLIKohQvjDDYTXJvNPGxs1V7PAh.png) 
+
+Thanks</description>
+    
+    <lastBuildDate>Tue, 19 Jan 2021 16:53:37 +0000</lastBuildDate>
+    <category>Pack Management</category>
+    <atom:link href="https://forum.stackstorm.com/t/stackstorm-installed-with-pytjon-2-7-but-need-to-use-python3-6-libraries-in-stackstorm-sensor/1541.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Stackstorm installed with pytjon 2.7, but need to use python3.6 libraries in Stackstorm sensor</title>
+        <dc:creator><![CDATA[sp4]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi,</p>
+<p>We have developed a version of our Stackstorm pack and other objects in Stackstorm Version 3.2 installed on a system that has stackstorm with Python 2.7.5</p>
+<p>But now as part of our upgrade process, we are planning to use Python 3.6 instead of 2.7 version.<br>
+For this</p>
+<ol>
+<li>We installed stackstorm 3.3 and default python 2.7.5 and python3 3.6.8.</li>
+<li>mannually placed all the python python3.6 libraries into /opt/stackstorm/st2/lib/ folder.</li>
+<li>We modified our Pack.yaml files to point to Python 3 , and forced to install using python3 virtual environment.</li>
+</ol>
+<p>Issue: After making the changes we are getting the following error:<br>
+Virtual environment (/opt/stackstorm/virtualenvs/servicenow_pack) for pack “servicenow_pack” is using Python 3.<br>
+Using Python 3 virtual environments in mixed deployments is only supported for Python runner<br>
+actions and not sensors. If you want to run this sensor, please re-recreate the<br>
+virtual environment with python2 binary:<br>
+“st2 run packs.setup_virtualenv packs=servicenow_pack python3=false”</p>
+<p>Also attached the full error:<br>
+</p><div class="lightbox-wrapper"><a class="lightbox" href="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/527ce63d7288f9464d4fcf9e6a276c80b3b2f14d.png" data-download-href="/uploads/short-url/bLIKohQvjDDYTXJvNPGxs1V7PAh.png?dl=1" title="err" rel="noopener nofollow ugc"><img src="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/527ce63d7288f9464d4fcf9e6a276c80b3b2f14d_2_690x331.png" alt="err" data-base62-sha1="bLIKohQvjDDYTXJvNPGxs1V7PAh" width="690" height="331" srcset="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/527ce63d7288f9464d4fcf9e6a276c80b3b2f14d_2_690x331.png, https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/527ce63d7288f9464d4fcf9e6a276c80b3b2f14d_2_1035x496.png 1.5x, https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/527ce63d7288f9464d4fcf9e6a276c80b3b2f14d_2_1380x662.png 2x" data-small-upload="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/527ce63d7288f9464d4fcf9e6a276c80b3b2f14d_2_10x10.png"></a></div><p></p>
+<p>Thanks</p>
+          <p><a href="https://forum.stackstorm.com/t/stackstorm-installed-with-pytjon-2-7-but-need-to-use-python3-6-libraries-in-stackstorm-sensor/1541/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/stackstorm-installed-with-pytjon-2-7-but-need-to-use-python3-6-libraries-in-stackstorm-sensor/1541/1</link>
+        <pubDate>Tue, 19 Jan 2021 16:53:37 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1541-1</guid>
+        <source url="https://forum.stackstorm.com/t/stackstorm-installed-with-pytjon-2-7-but-need-to-use-python3-6-libraries-in-stackstorm-sensor/1541.rss">Stackstorm installed with pytjon 2.7, but need to use python3.6 libraries in Stackstorm sensor</source>
+      </item>
+  </channel>
+</rss>

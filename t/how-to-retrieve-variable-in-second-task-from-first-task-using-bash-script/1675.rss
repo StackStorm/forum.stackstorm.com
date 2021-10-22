@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>How to retrieve variable in second task from first task using bash script?</title>
+    <link>https://forum.stackstorm.com/t/how-to-retrieve-variable-in-second-task-from-first-task-using-bash-script/1675</link>
+    <description>Hi there, I am new to stackstorm. I need help to resolve the problem, I am having. 
+
+I am working on one workflow that will get variable information from first task and use that variable in second task using bash script. I see that is possible using python, but I would prefer to do with bash. Here is the workflow. 
+
+```
+input:
+  - value1
+  - value2
+  - value3
+
+output:
+  - value2: &lt;% ctx().value2 %&gt;
+  - value3: &lt;% ctx().value3 %&gt;
+
+tasks:
+  task1:
+    action: jobname.get_info value1=&lt;% ctx(value1) %&gt;
+    next:
+      - when: &lt;% succeeded() %&gt;
+        publish:
+          - stdout: &lt;% result().stdout %&gt;
+          - stderr: &lt;% result().stderr %&gt;
+          - value2: &lt;% ctx(&quot;value2&quot;) %&gt;, &lt;% result().result %&gt;
+          - value3: &lt;% ctx(&quot;value3&quot;) %&gt;, &lt;% result().result %&gt;
+      - do: task2
+      - when: &lt;% failed() %&gt;
+        publish: stderr=&lt;% result().stderr %&gt;
+        do: fail
+
+  task2:
+    action: job.name2 value2=&lt;% ctx(value2) %&gt;
+    next:
+      - when: &lt;% succeeded() %&gt;
+        publish:
+          - stdout: &lt;% result().stdout %&gt;
+          - stderr: &lt;% result().stderr %&gt;
+      - do: task3
+      - when: &lt;% failed() %&gt;
+        publish: stderr=&lt;% result().stderr %&gt;
+        do: fail
+```
+
+I see that the first job gets succeeded without any error, but the second job uses `value2` in the execution, so it won&#39;t move forward in execution and errors out. 
+
+```
+{
+  &quot;output&quot;: null,
+  &quot;errors&quot;: [
+    {
+      &quot;message&quot;: &quot;YaqlEvaluationException: Unable to resolve key &#39;result&#39; in expression &#39;&lt;% result().result %&gt;&#39; from context.&quot;,
+      &quot;task_transition_id&quot;: &quot;noop__t0&quot;,
+      &quot;type&quot;: &quot;error&quot;,
+      &quot;route&quot;: 0,
+      &quot;task_id&quot;: &quot;task1&quot;
+    },
+    {
+      &quot;message&quot;: &quot;YaqlEvaluationException: Unable to evaluate expression &#39;&lt;% ctx(stdout) %&gt;&#39;. VariableUndefinedError: The variable \&quot;stdout\&quot; is undefined.&quot;,
+      &quot;type&quot;: &quot;error&quot;
+    }
+  ]
+}
+```
+
+Thanks in advance!! :slight_smile:</description>
+    
+    <lastBuildDate>Mon, 21 Jun 2021 19:17:09 +0000</lastBuildDate>
+    <category>Mistral</category>
+    <atom:link href="https://forum.stackstorm.com/t/how-to-retrieve-variable-in-second-task-from-first-task-using-bash-script/1675.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>How to retrieve variable in second task from first task using bash script?</title>
+        <dc:creator><![CDATA[jamesdreid]]></dc:creator>
+        <description><![CDATA[
+            <p>Difficult to determine the exact fix without seeing the syntax of the action being called and how it outputs the results, but the error message posted above indicates that you are attempting assign a variable in Task1 to a key that cannot be resolved to in the output.</p>
+<pre><code class="lang-auto">    {
+      "message": "YaqlEvaluationException: Unable to resolve key 'result' in expression '&lt;% result().result %&gt;' from context.",
+      "task_transition_id": "task2__t0",
+      "type": "error",
+      "route": 0,
+      "task_id": "task1"
+    },
+</code></pre>
+<p>In order for the publish to work and the variables to be published as listed in task1, the output of the “jobname.get_info” action would have to appear as follows (sample from the Orion Node Create action):</p>
+<pre><code class="lang-auto">{
+  "stdout": "",
+  "stderr": "",
+  "exit_code": 0,
+  "result": {
+    "label": "LABEL_DATA",
+    "node_id": "9999999"
+  }
+}
+</code></pre>
+          <p><a href="https://forum.stackstorm.com/t/how-to-retrieve-variable-in-second-task-from-first-task-using-bash-script/1675/10">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-to-retrieve-variable-in-second-task-from-first-task-using-bash-script/1675/10</link>
+        <pubDate>Mon, 21 Jun 2021 19:17:09 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1675-10</guid>
+        <source url="https://forum.stackstorm.com/t/how-to-retrieve-variable-in-second-task-from-first-task-using-bash-script/1675.rss">How to retrieve variable in second task from first task using bash script?</source>
+      </item>
+      <item>
+        <title>How to retrieve variable in second task from first task using bash script?</title>
+        <dc:creator><![CDATA[patrik]]></dc:creator>
+        <description><![CDATA[
+            <p><a class="mention" href="https://github.com/blag">@blag</a> I really appreciate for taking time and replying to the issue I am having. I have verified, double checked the workflow file. Found that that is the change I am applying.</p>
+<p>I also saw that when I execute the job, it takes the whole output considers <code>value2</code> and executes the second job and fails since it doesn’t find <code>value3</code>.</p>
+<p>I honestly not sure, what else to try on this issue.</p>
+<p>Thanks again!!</p>
+          <p><a href="https://forum.stackstorm.com/t/how-to-retrieve-variable-in-second-task-from-first-task-using-bash-script/1675/9">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-to-retrieve-variable-in-second-task-from-first-task-using-bash-script/1675/9</link>
+        <pubDate>Mon, 14 Jun 2021 14:51:05 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1675-9</guid>
+        <source url="https://forum.stackstorm.com/t/how-to-retrieve-variable-in-second-task-from-first-task-using-bash-script/1675.rss">How to retrieve variable in second task from first task using bash script?</source>
+      </item>
+      <item>
+        <title>How to retrieve variable in second task from first task using bash script?</title>
+        <dc:creator><![CDATA[blag]]></dc:creator>
+        <description><![CDATA[
+            <p>Hmmm, something appears to be amiss. If you’re on ST2 3.4+, I would load up your workflow in the workflow editor and make sure that the publish section of the task transitions shows what you expect, and double check that the “cached” workflow file in <code>/opt/stackstorm/packs/&lt;pack_name&gt;/actions/workflows/&lt;workflow_file_name&gt;.yaml</code> is what you expect.</p>
+<p>I’m hoping that it’s not what you expect, because that would pinpoint the problem.</p>
+<p>But if it is what you expect, then there’s something else going on that I’m not understanding.</p>
+          <p><a href="https://forum.stackstorm.com/t/how-to-retrieve-variable-in-second-task-from-first-task-using-bash-script/1675/8">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-to-retrieve-variable-in-second-task-from-first-task-using-bash-script/1675/8</link>
+        <pubDate>Thu, 13 May 2021 20:54:34 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1675-8</guid>
+        <source url="https://forum.stackstorm.com/t/how-to-retrieve-variable-in-second-task-from-first-task-using-bash-script/1675.rss">How to retrieve variable in second task from first task using bash script?</source>
+      </item>
+      <item>
+        <title>How to retrieve variable in second task from first task using bash script?</title>
+        <dc:creator><![CDATA[patrik]]></dc:creator>
+        <description><![CDATA[
+            <p>I run a job that kicks off <code>st2 pack install</code> on the server, once I update the workflow YAML file.</p>
+          <p><a href="https://forum.stackstorm.com/t/how-to-retrieve-variable-in-second-task-from-first-task-using-bash-script/1675/7">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-to-retrieve-variable-in-second-task-from-first-task-using-bash-script/1675/7</link>
+        <pubDate>Tue, 11 May 2021 19:33:41 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1675-7</guid>
+        <source url="https://forum.stackstorm.com/t/how-to-retrieve-variable-in-second-task-from-first-task-using-bash-script/1675.rss">How to retrieve variable in second task from first task using bash script?</source>
+      </item>
+      <item>
+        <title>How to retrieve variable in second task from first task using bash script?</title>
+        <dc:creator><![CDATA[blag]]></dc:creator>
+        <description><![CDATA[
+            <p>Hmmm, neither of those two errors make sense with the workflow you just posted. How are you updating your workflow on the ST2 server? Are you running <code>st2 pack install ...</code> and <code>st2ctl reload</code> every time you update the workflow? Or are you directly editing the workflow YAML file on the YAML server?</p>
+          <p><a href="https://forum.stackstorm.com/t/how-to-retrieve-variable-in-second-task-from-first-task-using-bash-script/1675/6">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-to-retrieve-variable-in-second-task-from-first-task-using-bash-script/1675/6</link>
+        <pubDate>Tue, 11 May 2021 18:17:52 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1675-6</guid>
+        <source url="https://forum.stackstorm.com/t/how-to-retrieve-variable-in-second-task-from-first-task-using-bash-script/1675.rss">How to retrieve variable in second task from first task using bash script?</source>
+      </item>
+      <item>
+        <title>How to retrieve variable in second task from first task using bash script?</title>
+        <dc:creator><![CDATA[patrik]]></dc:creator>
+        <description><![CDATA[
+            <p><a class="mention" href="https://github.com/blag">@blag</a>  Thanks for your prompt reply on my comment. I have updated workflow and tried to execute by making changes in YAML as you suggested. The first task goes successful and then even it doesn’t initiate the second task and I get below error.</p>
+<pre><code class="lang-auto">{
+  "output": null,
+  "errors": [
+    {
+      "message": "YaqlEvaluationException: Unable to resolve key 'result' in expression '&lt;% result().result %&gt;' from context.",
+      "task_transition_id": "task2__t0",
+      "type": "error",
+      "route": 0,
+      "task_id": "task1"
+    },
+    {
+      "message": "YaqlEvaluationException: Unable to evaluate expression '&lt;% ctx(stdout) %&gt;'. VariableUndefinedError: The variable \"stdout\" is undefined.",
+      "type": "error"
+    }
+  ]
+}
+</code></pre>
+<p>FYI, here is the workflow:</p>
+<pre><code class="lang-auto">input:
+  - value1
+  - value2
+  - value3
+
+output:
+  - value2: &lt;% ctx().value2 %&gt;
+  - value3: &lt;% ctx().value3 %&gt;
+
+tasks:
+  task1:
+    action: jobname.get_info value1 =&lt;% ctx(value1) %&gt;
+    next:
+      - when: &lt;% succeeded() %&gt;
+        publish:
+          - stdout: &lt;% result().stdout %&gt;
+          - stderr: &lt;% result().stderr %&gt;
+          - value2: &lt;% ctx("value2") %&gt;, &lt;% result().result %&gt;
+          - value3: &lt;% ctx("value3") %&gt;, &lt;% result().result %&gt;
+        do: task2
+      - when: &lt;% failed() %&gt;
+        publish: stderr=&lt;% result().stderr %&gt;
+        do: fail
+
+  task2:
+    action: jobname2 value2=&lt;% ctx(value2) %&gt;
+    next:
+      - when: &lt;% succeeded() %&gt;
+        publish:
+          - stdout: &lt;% result().stdout %&gt;
+          - stderr: &lt;% result().stderr %&gt;
+        do: task3
+      - when: &lt;% failed() %&gt;
+        publish: stderr=&lt;% result().stderr %&gt;
+        do: fail
+</code></pre>
+          <p><a href="https://forum.stackstorm.com/t/how-to-retrieve-variable-in-second-task-from-first-task-using-bash-script/1675/5">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-to-retrieve-variable-in-second-task-from-first-task-using-bash-script/1675/5</link>
+        <pubDate>Tue, 11 May 2021 17:45:47 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1675-5</guid>
+        <source url="https://forum.stackstorm.com/t/how-to-retrieve-variable-in-second-task-from-first-task-using-bash-script/1675.rss">How to retrieve variable in second task from first task using bash script?</source>
+      </item>
+      <item>
+        <title>How to retrieve variable in second task from first task using bash script?</title>
+        <dc:creator><![CDATA[blag]]></dc:creator>
+        <description><![CDATA[
+            <p>Yep, I think I understand what you are trying to do, and my answer doesn’t change - you have an error in your workflow. It’s valid YAML but they way that it’s interpreted by Orquesta isn’t correct. If you change your workflow the way I suggested, then you should be able to access <code>value2</code> and <code>value3</code> in further tasks like <code>task2</code> and <code>task3</code>.</p>
+          <p><a href="https://forum.stackstorm.com/t/how-to-retrieve-variable-in-second-task-from-first-task-using-bash-script/1675/4">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-to-retrieve-variable-in-second-task-from-first-task-using-bash-script/1675/4</link>
+        <pubDate>Tue, 11 May 2021 16:12:23 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1675-4</guid>
+        <source url="https://forum.stackstorm.com/t/how-to-retrieve-variable-in-second-task-from-first-task-using-bash-script/1675.rss">How to retrieve variable in second task from first task using bash script?</source>
+      </item>
+      <item>
+        <title>How to retrieve variable in second task from first task using bash script?</title>
+        <dc:creator><![CDATA[patrik]]></dc:creator>
+        <description><![CDATA[
+            <p><a class="mention" href="https://github.com/blag">@blag</a>  Thanks for putting time and effort to help me on the issue/problem I am having.</p>
+<p>But here, I am looking solution of how do I publish <code>value2</code> and <code>value3</code> in <code>task1</code> and use those values further on in workflow in other tasks where mentioned.</p>
+<p>You can see I have used <code>value2</code> in <code>task2</code> and I am also going to use <code>value2</code> and <code>value3</code> in task 3 to accomplish the whole task.</p>
+<p>Again thanks!!</p>
+          <p><a href="https://forum.stackstorm.com/t/how-to-retrieve-variable-in-second-task-from-first-task-using-bash-script/1675/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-to-retrieve-variable-in-second-task-from-first-task-using-bash-script/1675/3</link>
+        <pubDate>Tue, 11 May 2021 13:46:52 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1675-3</guid>
+        <source url="https://forum.stackstorm.com/t/how-to-retrieve-variable-in-second-task-from-first-task-using-bash-script/1675.rss">How to retrieve variable in second task from first task using bash script?</source>
+      </item>
+      <item>
+        <title>How to retrieve variable in second task from first task using bash script?</title>
+        <dc:creator><![CDATA[blag]]></dc:creator>
+        <description><![CDATA[
+            <p>You have a bug in your YAML. The <code>task1.next</code> block looks like this (represented in JSON) to make it more apparent:</p>
+<pre><code class="lang-auto">[
+  {
+    "when": ...,
+    "publish": ...
+  },
+  {
+    "do": ...
+  },
+  {
+    "when": ...,
+    "publish": ...,
+    "do": ...
+  }
+]
+</code></pre>
+<p>The dictionary for the <code>do</code> item does not have a <code>when</code> key, and the <code>when</code> item does not have a <code>do</code> key.</p>
+<p>That is actually valid Orquesta, but it’s likely not what you want.</p>
+<p>What that does is publish some values to the workflow context (when <code>task1</code> is successful). If <code>task1</code> fails, it transitions to the builtin <code>fail</code> task. And because the <code>do</code> block doesn’t have a <code>when</code> key, Orquesta will <strong>always</strong> try to transition to <code>task2</code> regardless of whether <code>task1</code> succeeds or fails - that’s not what you want.</p>
+<p>I think you want the workflow to publish <code>stdout</code>, <code>stderr</code>, <code>value2</code>, and <code>value3</code> to the workflow context and to transition to <code>task2</code> <em>only</em> when <code>task1</code> succeeds.</p>
+<p>So to do that, you want to do the following (represented in JSON):</p>
+<pre><code class="lang-auto">[
+  {
+    "when": ...,
+    "publish": ...,
+    "do": ...
+  },
+  {
+    "when": ...,
+    "publish": ...,
+    "do": ...
+  }
+]
+</code></pre>
+<p>Or to represent that in YAML:</p>
+<pre><code class="lang-auto">      - when: &lt;% succeeded() %&gt;
+        publish:
+          - stdout: &lt;% result().stdout %&gt;
+          - stderr: &lt;% result().stderr %&gt;
+          - value2: &lt;% ctx("value2") %&gt;, &lt;% result().result %&gt;
+          - value3: &lt;% ctx("value3") %&gt;, &lt;% result().result %&gt;
+        do: task2
+      # ^ no longer a list item on its own, it's now in the
+      #   same list item as the `when` and `publish` keys
+      - when: &lt;% failed() %&gt;
+        publish: stderr=&lt;% result().stderr %&gt;
+        do: fail
+</code></pre>
+          <p><a href="https://forum.stackstorm.com/t/how-to-retrieve-variable-in-second-task-from-first-task-using-bash-script/1675/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-to-retrieve-variable-in-second-task-from-first-task-using-bash-script/1675/2</link>
+        <pubDate>Fri, 07 May 2021 17:46:54 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1675-2</guid>
+        <source url="https://forum.stackstorm.com/t/how-to-retrieve-variable-in-second-task-from-first-task-using-bash-script/1675.rss">How to retrieve variable in second task from first task using bash script?</source>
+      </item>
+      <item>
+        <title>How to retrieve variable in second task from first task using bash script?</title>
+        <dc:creator><![CDATA[patrik]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi there, I am new to stackstorm. I need help to resolve the problem, I am having.</p>
+<p>I am working on one workflow that will get variable information from first task and use that variable in second task using bash script. I see that is possible using python, but I would prefer to do with bash. Here is the workflow.</p>
+<pre><code class="lang-auto">input:
+  - value1
+  - value2
+  - value3
+
+output:
+  - value2: &lt;% ctx().value2 %&gt;
+  - value3: &lt;% ctx().value3 %&gt;
+
+tasks:
+  task1:
+    action: jobname.get_info value1=&lt;% ctx(value1) %&gt;
+    next:
+      - when: &lt;% succeeded() %&gt;
+        publish:
+          - stdout: &lt;% result().stdout %&gt;
+          - stderr: &lt;% result().stderr %&gt;
+          - value2: &lt;% ctx("value2") %&gt;, &lt;% result().result %&gt;
+          - value3: &lt;% ctx("value3") %&gt;, &lt;% result().result %&gt;
+      - do: task2
+      - when: &lt;% failed() %&gt;
+        publish: stderr=&lt;% result().stderr %&gt;
+        do: fail
+
+  task2:
+    action: job.name2 value2=&lt;% ctx(value2) %&gt;
+    next:
+      - when: &lt;% succeeded() %&gt;
+        publish:
+          - stdout: &lt;% result().stdout %&gt;
+          - stderr: &lt;% result().stderr %&gt;
+      - do: task3
+      - when: &lt;% failed() %&gt;
+        publish: stderr=&lt;% result().stderr %&gt;
+        do: fail
+</code></pre>
+<p>I see that the first job gets succeeded without any error, but the second job uses <code>value2</code> in the execution, so it won’t move forward in execution and errors out.</p>
+<pre><code class="lang-auto">{
+  "output": null,
+  "errors": [
+    {
+      "message": "YaqlEvaluationException: Unable to resolve key 'result' in expression '&lt;% result().result %&gt;' from context.",
+      "task_transition_id": "noop__t0",
+      "type": "error",
+      "route": 0,
+      "task_id": "task1"
+    },
+    {
+      "message": "YaqlEvaluationException: Unable to evaluate expression '&lt;% ctx(stdout) %&gt;'. VariableUndefinedError: The variable \"stdout\" is undefined.",
+      "type": "error"
+    }
+  ]
+}
+</code></pre>
+<p>Thanks in advance!! <img src="https://emoji.discourse-cdn.com/apple/slight_smile.png?v=9" title=":slight_smile:" class="emoji" alt=":slight_smile:"></p>
+          <p><a href="https://forum.stackstorm.com/t/how-to-retrieve-variable-in-second-task-from-first-task-using-bash-script/1675/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-to-retrieve-variable-in-second-task-from-first-task-using-bash-script/1675/1</link>
+        <pubDate>Mon, 03 May 2021 14:55:52 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1675-1</guid>
+        <source url="https://forum.stackstorm.com/t/how-to-retrieve-variable-in-second-task-from-first-task-using-bash-script/1675.rss">How to retrieve variable in second task from first task using bash script?</source>
+      </item>
+  </channel>
+</rss>

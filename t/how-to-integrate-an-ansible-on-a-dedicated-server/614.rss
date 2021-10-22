@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>How to integrate an ansible on a dedicated server?</title>
+    <link>https://forum.stackstorm.com/t/how-to-integrate-an-ansible-on-a-dedicated-server/614</link>
+    <description>Hi,
+
+is there a way to define an stackstorm endpoint for the ansible&lt;&gt;stackstorm integration pack?
+Means to have stackstorm and ansible installed on different servers
+
+Thanks
+Erik</description>
+    
+    <lastBuildDate>Mon, 06 May 2019 22:19:24 +0000</lastBuildDate>
+    <category>Exchange</category>
+    <atom:link href="https://forum.stackstorm.com/t/how-to-integrate-an-ansible-on-a-dedicated-server/614.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>How to integrate an ansible on a dedicated server?</title>
+        <dc:creator><![CDATA[eschweighofer]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi Tomaz,</p>
+<p>Not really a specific use case, the reason I was asking is just a design question as we have multiple stackstorm servers with a specific rotation due to versioning. So we need to have also the ansible playbooks distributed in the same way.</p>
+<p>Thanks<br>
+Erik</p>
+          <p><a href="https://forum.stackstorm.com/t/how-to-integrate-an-ansible-on-a-dedicated-server/614/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-to-integrate-an-ansible-on-a-dedicated-server/614/3</link>
+        <pubDate>Mon, 06 May 2019 22:19:24 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-614-3</guid>
+        <source url="https://forum.stackstorm.com/t/how-to-integrate-an-ansible-on-a-dedicated-server/614.rss">How to integrate an ansible on a dedicated server?</source>
+      </item>
+      <item>
+        <title>How to integrate an ansible on a dedicated server?</title>
+        <dc:creator><![CDATA[kami]]></dc:creator>
+        <description><![CDATA[
+            <p>Right now that’s not possible - ansible pack assumes ansible Python library is installed on the server where StackStorm action runner services run (ansible library is installed automatically when installing ansible StackStorm pack).</p>
+<p>Having said that - that shouldn’t matter much, because you can use ansible pack to run ansible commands and playbooks on arbitrary servers.</p>
+<p>Is there a specific use case / problem you have in mind?</p>
+          <p><a href="https://forum.stackstorm.com/t/how-to-integrate-an-ansible-on-a-dedicated-server/614/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-to-integrate-an-ansible-on-a-dedicated-server/614/2</link>
+        <pubDate>Tue, 23 Apr 2019 17:25:03 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-614-2</guid>
+        <source url="https://forum.stackstorm.com/t/how-to-integrate-an-ansible-on-a-dedicated-server/614.rss">How to integrate an ansible on a dedicated server?</source>
+      </item>
+      <item>
+        <title>How to integrate an ansible on a dedicated server?</title>
+        <dc:creator><![CDATA[eschweighofer]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi,</p>
+<p>is there a way to define an stackstorm endpoint for the ansible&lt;&gt;stackstorm integration pack?<br>
+Means to have stackstorm and ansible installed on different servers</p>
+<p>Thanks<br>
+Erik</p>
+          <p><a href="https://forum.stackstorm.com/t/how-to-integrate-an-ansible-on-a-dedicated-server/614/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-to-integrate-an-ansible-on-a-dedicated-server/614/1</link>
+        <pubDate>Tue, 23 Apr 2019 13:23:44 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-614-1</guid>
+        <source url="https://forum.stackstorm.com/t/how-to-integrate-an-ansible-on-a-dedicated-server/614.rss">How to integrate an ansible on a dedicated server?</source>
+      </item>
+  </channel>
+</rss>

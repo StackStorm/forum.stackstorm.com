@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>What&#39;s advantage(benefit) use (polling)sensor rather than (CronTimer)rule?</title>
+    <link>https://forum.stackstorm.com/t/whats-advantage-benefit-use-polling-sensor-rather-than-crontimer-rule/1753</link>
+    <description>For example，
+I want to know the new JIRA ticket.
+I can write a pollingsensor with 5 minutes poll_interval, send a json format string trigger, and then filter by rules, at latest a workflow will handle the new ticket.
+Why don&#39;t I just write a CronTimer rule which execute a workflow can query and process every 5 minutes?</description>
+    
+    <lastBuildDate>Tue, 29 Jun 2021 13:54:09 +0000</lastBuildDate>
+    <category>Uncategorized</category>
+    <atom:link href="https://forum.stackstorm.com/t/whats-advantage-benefit-use-polling-sensor-rather-than-crontimer-rule/1753.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>What&#39;s advantage(benefit) use (polling)sensor rather than (CronTimer)rule?</title>
+        <dc:creator><![CDATA[amanda11]]></dc:creator>
+        <description><![CDATA[
+            <p>There’s been some discussion on this in the past on the forums. Both ways work.</p>
+<p>One thing to consider is that if you have an interval timer running, and doing a query on the tickets then this could mean you have alot of workflows being executed doing not alot - and appearing in your execution list (on UI and CLI).</p>
+<p>But if you had a polling sensor that only sent the trigger when a new ticket was found, then you’d only see executions for new tickets.</p>
+          <p><a href="https://forum.stackstorm.com/t/whats-advantage-benefit-use-polling-sensor-rather-than-crontimer-rule/1753/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/whats-advantage-benefit-use-polling-sensor-rather-than-crontimer-rule/1753/2</link>
+        <pubDate>Tue, 29 Jun 2021 13:54:09 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1753-2</guid>
+        <source url="https://forum.stackstorm.com/t/whats-advantage-benefit-use-polling-sensor-rather-than-crontimer-rule/1753.rss">What&#39;s advantage(benefit) use (polling)sensor rather than (CronTimer)rule?</source>
+      </item>
+      <item>
+        <title>What&#39;s advantage(benefit) use (polling)sensor rather than (CronTimer)rule?</title>
+        <dc:creator><![CDATA[Bryan]]></dc:creator>
+        <description><![CDATA[
+            <p>For example，<br>
+I want to know the new JIRA ticket.<br>
+I can write a pollingsensor with 5 minutes poll_interval, send a json format string trigger, and then filter by rules, at latest a workflow will handle the new ticket.<br>
+Why don’t I just write a CronTimer rule which execute a workflow can query and process every 5 minutes?</p>
+          <p><a href="https://forum.stackstorm.com/t/whats-advantage-benefit-use-polling-sensor-rather-than-crontimer-rule/1753/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/whats-advantage-benefit-use-polling-sensor-rather-than-crontimer-rule/1753/1</link>
+        <pubDate>Tue, 29 Jun 2021 11:32:54 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1753-1</guid>
+        <source url="https://forum.stackstorm.com/t/whats-advantage-benefit-use-polling-sensor-rather-than-crontimer-rule/1753.rss">What&#39;s advantage(benefit) use (polling)sensor rather than (CronTimer)rule?</source>
+      </item>
+  </channel>
+</rss>

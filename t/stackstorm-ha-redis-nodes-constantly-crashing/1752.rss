@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Stackstorm HA redis nodes constantly crashing</title>
+    <link>https://forum.stackstorm.com/t/stackstorm-ha-redis-nodes-constantly-crashing/1752</link>
+    <description>After removing/deleting a stackstorm ha release on a kubernetes cluster, the redis nodes are constantly crashing when creating a new stackstorm ha release via helm. 
+
+The following errors are found in the logs for the stackstorm redis nodes. 
+
+`[stackstorm-redis-node-0 sentinel] ` Could not connect to Redis at stackstorm-redis.dev.svc.cluster.local:26379: Connection refused
+`[stackstorm-redis-node-0 sentinel] ` Could not connect to Redis at -p:6379: Name or service not known
+`[stackstorm-redis-node-0 redis] ` Could not connect to Redis at stackstorm-redis.dev.svc.cluster.local:26379: Connection refused
+`[stackstorm-redis-node-0 redis] ` Could not connect to Redis at -p:6379: Name or service not known</description>
+    
+    <lastBuildDate>Mon, 28 Jun 2021 21:11:22 +0000</lastBuildDate>
+    <category>Platform</category>
+    <atom:link href="https://forum.stackstorm.com/t/stackstorm-ha-redis-nodes-constantly-crashing/1752.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Stackstorm HA redis nodes constantly crashing</title>
+        <dc:creator><![CDATA[dsale]]></dc:creator>
+        <description><![CDATA[
+            <p>After removing/deleting a stackstorm ha release on a kubernetes cluster, the redis nodes are constantly crashing when creating a new stackstorm ha release via helm.</p>
+<p>The following errors are found in the logs for the stackstorm redis nodes.</p>
+<p><code>[stackstorm-redis-node-0 sentinel] </code> Could not connect to Redis at stackstorm-redis.dev.svc.cluster.local:26379: Connection refused<br>
+<code>[stackstorm-redis-node-0 sentinel] </code> Could not connect to Redis at -p:6379: Name or service not known<br>
+<code>[stackstorm-redis-node-0 redis] </code> Could not connect to Redis at stackstorm-redis.dev.svc.cluster.local:26379: Connection refused<br>
+<code>[stackstorm-redis-node-0 redis] </code> Could not connect to Redis at -p:6379: Name or service not known</p>
+          <p><a href="https://forum.stackstorm.com/t/stackstorm-ha-redis-nodes-constantly-crashing/1752/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/stackstorm-ha-redis-nodes-constantly-crashing/1752/1</link>
+        <pubDate>Mon, 28 Jun 2021 21:11:22 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1752-1</guid>
+        <source url="https://forum.stackstorm.com/t/stackstorm-ha-redis-nodes-constantly-crashing/1752.rss">Stackstorm HA redis nodes constantly crashing</source>
+      </item>
+  </channel>
+</rss>

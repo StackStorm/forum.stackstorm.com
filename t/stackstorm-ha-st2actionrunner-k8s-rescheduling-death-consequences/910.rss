@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>StackStorm HA st2actionrunner K8s rescheduling/death consequences</title>
+    <link>https://forum.stackstorm.com/t/stackstorm-ha-st2actionrunner-k8s-rescheduling-death-consequences/910</link>
+    <description>Hi, 
+I have installed StackStorm HA on an aks cluster. According to docs, all custom st2packs have to be baked in a docker image. As far as I&#39;ve tried, there is no option to add multiple images having packs separately. Also, every time I update the image with a new pack and do helm upgrade, the st2actionrunner pod is reloaded. Won&#39;t this affect any action executing at that time? Also, this would mean that if I want to add packs to image at a regular basis, st2actionrunner will keep on restarting. Is there any workaround to this?</description>
+    
+    <lastBuildDate>Thu, 07 Nov 2019 14:56:23 +0000</lastBuildDate>
+    <category>Uncategorized</category>
+    <atom:link href="https://forum.stackstorm.com/t/stackstorm-ha-st2actionrunner-k8s-rescheduling-death-consequences/910.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>StackStorm HA st2actionrunner K8s rescheduling/death consequences</title>
+        <dc:creator><![CDATA[armab]]></dc:creator>
+        <description><![CDATA[
+            <p>Yes, sudden re-schedule or death of <code>st2actionrunner</code> leads to broken workflow execution, according to: <a href="https://github.com/StackStorm/st2/issues/4716" class="inline-onebox">Death of st2actionrunner process causes action to remain running forever · Issue #4716 · StackStorm/st2 · GitHub</a></p>
+<p>There is no workaround for this right now yet in ST2 core or StackStorm-HA.</p>
+          <p><a href="https://forum.stackstorm.com/t/stackstorm-ha-st2actionrunner-k8s-rescheduling-death-consequences/910/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/stackstorm-ha-st2actionrunner-k8s-rescheduling-death-consequences/910/2</link>
+        <pubDate>Thu, 07 Nov 2019 14:56:23 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-910-2</guid>
+        <source url="https://forum.stackstorm.com/t/stackstorm-ha-st2actionrunner-k8s-rescheduling-death-consequences/910.rss">StackStorm HA st2actionrunner K8s rescheduling/death consequences</source>
+      </item>
+      <item>
+        <title>StackStorm HA st2actionrunner K8s rescheduling/death consequences</title>
+        <dc:creator><![CDATA[kritiksh]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi,<br>
+I have installed StackStorm HA on an aks cluster. According to docs, all custom st2packs have to be baked in a docker image. As far as I’ve tried, there is no option to add multiple images having packs separately. Also, every time I update the image with a new pack and do helm upgrade, the st2actionrunner pod is reloaded. Won’t this affect any action executing at that time? Also, this would mean that if I want to add packs to image at a regular basis, st2actionrunner will keep on restarting. Is there any workaround to this?</p>
+          <p><a href="https://forum.stackstorm.com/t/stackstorm-ha-st2actionrunner-k8s-rescheduling-death-consequences/910/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/stackstorm-ha-st2actionrunner-k8s-rescheduling-death-consequences/910/1</link>
+        <pubDate>Thu, 07 Nov 2019 06:34:44 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-910-1</guid>
+        <source url="https://forum.stackstorm.com/t/stackstorm-ha-st2actionrunner-k8s-rescheduling-death-consequences/910.rss">StackStorm HA st2actionrunner K8s rescheduling/death consequences</source>
+      </item>
+  </channel>
+</rss>

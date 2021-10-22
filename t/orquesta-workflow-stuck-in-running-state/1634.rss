@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Orquesta workflow stuck in running state</title>
+    <link>https://forum.stackstorm.com/t/orquesta-workflow-stuck-in-running-state/1634</link>
+    <description>We have been seeing few random instances where workflow execution went back to running state after it had completed and is stuck in running state after that.
+
+Action execution log field:
+[ { &quot;timestamp&quot; : ISODate(&quot;2021-03-27T13:24:52.932Z&quot;), &quot;status&quot; : &quot;requested&quot; }, { &quot;timestamp&quot; : ISODate(&quot;2021-03-27T13:24:54.938Z&quot;), &quot;status&quot; : &quot;scheduled&quot; }, { &quot;timestamp&quot; : ISODate(&quot;2021-03-27T13:25:00.200Z&quot;), &quot;status&quot; : &quot;running&quot; }, { &quot;timestamp&quot; : ISODate(&quot;2021-03-27T13:25:40.857Z&quot;), &quot;status&quot; : &quot;succeeded&quot; }, { &quot;timestamp&quot; : ISODate(&quot;2021-03-27T13:25:43.470Z&quot;), &quot;status&quot; : &quot;running&quot; } ]
+
+Liveaction and workflow execution object are in succeeded state. The workflow calls an action which had completed at `end_timestamp: Sat, 27 Mar 2021 13:25:41 UTC` which is after the workflow had succeeded.
+
+st2 3.2.0, on Python 3.6.9</description>
+    
+    <lastBuildDate>Sat, 03 Apr 2021 08:59:40 +0000</lastBuildDate>
+    <category>Workflows</category>
+    <atom:link href="https://forum.stackstorm.com/t/orquesta-workflow-stuck-in-running-state/1634.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Orquesta workflow stuck in running state</title>
+        <dc:creator><![CDATA[khushboobhatia01]]></dc:creator>
+        <description><![CDATA[
+            <p>We have been seeing few random instances where workflow execution went back to running state after it had completed and is stuck in running state after that.</p>
+<p>Action execution log field:<br>
+[ { “timestamp” : ISODate(“2021-03-27T13:24:52.932Z”), “status” : “requested” }, { “timestamp” : ISODate(“2021-03-27T13:24:54.938Z”), “status” : “scheduled” }, { “timestamp” : ISODate(“2021-03-27T13:25:00.200Z”), “status” : “running” }, { “timestamp” : ISODate(“2021-03-27T13:25:40.857Z”), “status” : “succeeded” }, { “timestamp” : ISODate(“2021-03-27T13:25:43.470Z”), “status” : “running” } ]</p>
+<p>Liveaction and workflow execution object are in succeeded state. The workflow calls an action which had completed at <code>end_timestamp: Sat, 27 Mar 2021 13:25:41 UTC</code> which is after the workflow had succeeded.</p>
+<p>st2 3.2.0, on Python 3.6.9</p>
+          <p><a href="https://forum.stackstorm.com/t/orquesta-workflow-stuck-in-running-state/1634/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/orquesta-workflow-stuck-in-running-state/1634/1</link>
+        <pubDate>Sat, 03 Apr 2021 08:37:55 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1634-1</guid>
+        <source url="https://forum.stackstorm.com/t/orquesta-workflow-stuck-in-running-state/1634.rss">Orquesta workflow stuck in running state</source>
+      </item>
+  </channel>
+</rss>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>How to exclude list from list</title>
+    <link>https://forum.stackstorm.com/t/how-to-exclude-list-from-list/786</link>
+    <description>Hi
+
+How can we exclude/substract a list from another list with mistral (yaql) and orquestra?
+
+    L1=[ &#39;a&#39;, &#39;b&#39;, &#39;c&#39; ]
+    L2= [ &#39;a&#39; ]
+
+I want 
+`L3= L1-L2= [ &#39;b&#39;, &#39;c&#39; ]`
+
+I tried with set but st2  `Can not evaluate YAQL expression`:
+
+`res: &lt;% list(set(L1) - set(L2)) %&gt;` 
+
+Stackstormly</description>
+    
+    <lastBuildDate>Wed, 31 Jul 2019 13:56:12 +0000</lastBuildDate>
+    <category>Workflows</category>
+    <atom:link href="https://forum.stackstorm.com/t/how-to-exclude-list-from-list/786.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>How to exclude list from list</title>
+        <dc:creator><![CDATA[armab]]></dc:creator>
+        <description><![CDATA[
+            <p>Follow the YAQL documentation which has this functionality covered <a href="https://yaql.readthedocs.io/en/latest/standard_library.html#working-with-collections" rel="nofollow noopener">https://yaql.readthedocs.io/en/latest/standard_library.html#working-with-collections</a></p>
+          <p><a href="https://forum.stackstorm.com/t/how-to-exclude-list-from-list/786/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-to-exclude-list-from-list/786/2</link>
+        <pubDate>Wed, 31 Jul 2019 13:56:12 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-786-2</guid>
+        <source url="https://forum.stackstorm.com/t/how-to-exclude-list-from-list/786.rss">How to exclude list from list</source>
+      </item>
+      <item>
+        <title>How to exclude list from list</title>
+        <dc:creator><![CDATA[User42]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi</p>
+<p>How can we exclude/substract a list from another list with mistral (yaql) and orquestra?</p>
+<pre><code>L1=[ 'a', 'b', 'c' ]
+L2= [ 'a' ]
+</code></pre>
+<p>I want<br>
+<code>L3= L1-L2= [ 'b', 'c' ]</code></p>
+<p>I tried with set but st2  <code>Can not evaluate YAQL expression</code>:</p>
+<p><code>res: &lt;% list(set(L1) - set(L2)) %&gt;</code></p>
+<p>Stackstormly</p>
+          <p><a href="https://forum.stackstorm.com/t/how-to-exclude-list-from-list/786/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-to-exclude-list-from-list/786/1</link>
+        <pubDate>Wed, 31 Jul 2019 12:04:55 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-786-1</guid>
+        <source url="https://forum.stackstorm.com/t/how-to-exclude-list-from-list/786.rss">How to exclude list from list</source>
+      </item>
+  </channel>
+</rss>

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Action with output_schema validation and a return with a datetime object</title>
+    <link>https://forum.stackstorm.com/t/action-with-output-schema-validation-and-a-return-with-a-datetime-object/1167</link>
+    <description>Here i will post an example because i was falling over it
+
+I defined a simple action with returns a dict and a datetime object in it
+
+Follow error i always recieve:
+```
+error: &quot;u&quot;{&#39;values&#39;: [{&#39;datestr&#39;: datetime.datetime(2020, 4, 14, 13, 51, 9, 13208), &#39;test1&#39;: &#39;test1&#39;, &#39;test2&#39;: 1}]}&quot; is not of type &#39;object&#39;
+```
+
+**Resolution:**
+ST2 always need a serialize able return object!! and datetime object is not serializeable!
+
+**test.yaml**
+```yaml
+---
+runner_type: python-script
+entry_point: test.py
+name: test
+pack: smbutils
+output_schema:
+  values:
+    type: array
+    items:
+      test1:
+        type: string
+      test2:
+        type: number
+      datestr: 
+        type: string
+```
+**test.py**
+```python
+from st2common.runners.base_action import Action
+from datetime import datetime
+import json
+
+class cleanup(Action):
+  def run(self):
+
+    output={ &#39;values&#39;: [ { &#39;test1&#39;: &#39;test1&#39;, &#39;test2&#39;: 1, &#39;datestr&#39;: datetime.utcnow() } ] }
+
+    # Datetime is not serializeable this is wy it is not working
+    # we serialize result with a json encoder and then deserialze it again(lol)
+    json.JSONEncoder.default = lambda self,obj: (obj.isoformat() if isinstance(obj, datetime) else None)
+    json_object = json.dumps(output)
+    serializeable_object = json.loads(json_object)
+    return (True, serializeable_object)
+```</description>
+    
+    <lastBuildDate>Tue, 14 Apr 2020 14:38:48 +0000</lastBuildDate>
+    <category>Platform</category>
+    <atom:link href="https://forum.stackstorm.com/t/action-with-output-schema-validation-and-a-return-with-a-datetime-object/1167.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Action with output_schema validation and a return with a datetime object</title>
+        <dc:creator><![CDATA[daBONDi]]></dc:creator>
+        <description><![CDATA[
+            <p>Here i will post an example because i was falling over it</p>
+<p>I defined a simple action with returns a dict and a datetime object in it</p>
+<p>Follow error i always recieve:</p>
+<pre><code class="lang-auto">error: "u"{'values': [{'datestr': datetime.datetime(2020, 4, 14, 13, 51, 9, 13208), 'test1': 'test1', 'test2': 1}]}" is not of type 'object'
+</code></pre>
+<p><strong>Resolution:</strong><br>
+ST2 always need a serialize able return object!! and datetime object is not serializeable!</p>
+<p><strong>test.yaml</strong></p>
+<pre><code class="lang-yaml">---
+runner_type: python-script
+entry_point: test.py
+name: test
+pack: smbutils
+output_schema:
+  values:
+    type: array
+    items:
+      test1:
+        type: string
+      test2:
+        type: number
+      datestr: 
+        type: string
+</code></pre>
+<p><strong>test.py</strong></p>
+<pre><code class="lang-python">from st2common.runners.base_action import Action
+from datetime import datetime
+import json
+
+class cleanup(Action):
+  def run(self):
+
+    output={ 'values': [ { 'test1': 'test1', 'test2': 1, 'datestr': datetime.utcnow() } ] }
+
+    # Datetime is not serializeable this is wy it is not working
+    # we serialize result with a json encoder and then deserialze it again(lol)
+    json.JSONEncoder.default = lambda self,obj: (obj.isoformat() if isinstance(obj, datetime) else None)
+    json_object = json.dumps(output)
+    serializeable_object = json.loads(json_object)
+    return (True, serializeable_object)
+</code></pre>
+          <p><a href="https://forum.stackstorm.com/t/action-with-output-schema-validation-and-a-return-with-a-datetime-object/1167/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/action-with-output-schema-validation-and-a-return-with-a-datetime-object/1167/1</link>
+        <pubDate>Tue, 14 Apr 2020 14:28:17 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1167-1</guid>
+        <source url="https://forum.stackstorm.com/t/action-with-output-schema-validation-and-a-return-with-a-datetime-object/1167.rss">Action with output_schema validation and a return with a datetime object</source>
+      </item>
+  </channel>
+</rss>

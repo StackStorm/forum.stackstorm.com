@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Variable is referenced before assignment but not everywhere</title>
+    <link>https://forum.stackstorm.com/t/variable-is-referenced-before-assignment-but-not-everywhere/1156</link>
+    <description>Hello.
+
+I am writing my first workflow and I have a really weird issue.
+
+There is the code : 
+
+    version: 1.0
+
+    input:
+      - remote_address
+
+    tasks:
+      # [513, 91]
+      get_bgp_session:
+        action: librenms.get_bgp_sessions
+        input:
+          log_level: DEBUG
+          remote_address: &lt;% ctx().remote_address %&gt;
+          debug: false
+        next:
+          - do:
+              - get_l2_ipv6_device
+            when: &lt;% &quot;:&quot; in result().result.bgp_sessions[0].bgpLocalAddr %&gt;
+            publish:
+              - address: &lt;% result().result.bgp_sessions[0].bgpLocalAddr %&gt;
+          - do:
+              - get_l3_ipv4_device
+            when: &lt;% &quot;.&quot; in result().result.bgp_sessions[0].bgpLocalAddr %&gt;
+            publish:
+              - address: &lt;% result().result.bgp_sessions[0].bgpLocalAddr %&gt;
+          - do:
+              - map_peer_ip_to_mac
+            when: &lt;% &quot;.&quot; in result().result.bgp_sessions[0].bgpPeerIdentifier %&gt;
+            publish:
+              - ip: &lt;% result().result.bgp_sessions[0].bgpPeerIdentifier %&gt;
+      # [341, 200]
+      get_l3_ipv4_device:
+        action: librenms.get_devices
+        input:
+          log_level: DEBUG
+          type: ipv4
+          query: &lt;% ctx().address %&gt;
+        next:
+          - when: &lt;% succeeded() %&gt;
+            publish:
+              - l3_hostname: &lt;% result().result[0].hostname %&gt;
+              - l3_interface: &lt;% result().result[0].ifName %&gt;
+      # [104, 199]
+      get_l2_ipv6_device:
+        action: librenms.get_devices
+        next:
+          - when: &lt;% succeeded() %&gt;
+            publish:
+              - l3_hostname: &lt;% result().result[0].hostname %&gt;
+              - l3_interface: &lt;% result().result[0].ifName %&gt;
+        input:
+          log_level: DEBUG
+          type: ipv6
+          query: &lt;% ctx().address %&gt;
+      # [678, 203]
+      map_peer_ip_to_mac:
+        action: librenms.get_ip_arp
+        input:
+          log_level: DEBUG
+          ip: &lt;% ctx().ip %&gt;
+        next:
+          - do:
+              - get_path_to_peer
+            publish:
+              - mac: &lt;% result().result.arp[0].mac_address %&gt;
+            when: &lt;% result().result.arp %&gt;
+      # [679, 344]
+      get_path_to_peer:
+        action: librenms.get_fdb
+        input:
+          log_level: DEBUG
+          mac: &lt;% ctx().mac %&gt;
+        next:
+          - do:
+              - get_l2_port
+            publish:
+              - id: &lt;% result().result.ports_fdb[0].port_id %&gt;
+          - do:
+              - get_l2_device
+            publish:
+              - id: &lt;% str(result().result.ports_fdb[0].device_id) %&gt;
+      # [794, 460]
+      get_l2_port:
+        action: librenms.get_port
+        input:
+          log_level: DEBUG
+          port_id: &lt;% ctx().id %&gt;
+        next:
+          - when: &lt;% succeeded() %&gt;
+            publish:
+              - l2_interface: &lt;% result().result.ifName %&gt;
+      # [547, 458]
+      get_l2_device:
+        action: librenms.get_device
+        input:
+          log_level: DEBUG
+          id: &lt;% ctx().id %&gt;
+        next:
+          - when: &lt;% succeeded() %&gt;
+            publish:
+              - l2_hostname: &lt;% result().result.devices[0].hostname %&gt;
+          
+
+    output:
+      - l3_hostname: &lt;% ctx().l3_hostname %&gt;
+      - l3_interface: &lt;% ctx().l3_interface %&gt;
+      - l2_hostname: &lt;% ctx().l2_hostname %&gt;
+      - l2_interface: &lt;% ctx().l2_interface %&gt;
+
+The error I am getting is : 
+
+
+    {
+      &quot;errors&quot;: [
+        {
+          &quot;expression&quot;: &quot;&lt;% ctx().l2_hostname %&gt;&quot;,
+          &quot;message&quot;: &quot;Variable \&quot;l2_hostname\&quot; is referenced before assignment.&quot;,
+          &quot;spec_path&quot;: &quot;output[2]&quot;,
+          &quot;schema_path&quot;: &quot;properties.output&quot;,
+          &quot;language&quot;: &quot;yaql&quot;,
+          &quot;type&quot;: &quot;context&quot;
+        },
+        {
+          &quot;expression&quot;: &quot;&lt;% ctx().l2_interface %&gt;&quot;,
+          &quot;message&quot;: &quot;Variable \&quot;l2_interface\&quot; is referenced before assignment.&quot;,
+          &quot;spec_path&quot;: &quot;output[3]&quot;,
+          &quot;schema_path&quot;: &quot;properties.output&quot;,
+          &quot;language&quot;: &quot;yaql&quot;,
+          &quot;type&quot;: &quot;context&quot;
+        }
+      ],
+      &quot;output&quot;: null
+    }
+
+I don&#39;t understand why l2 outputs are having those issues where l3 are defined exactly the same way and are working fine.
+
+Any idea of what could be the issue ?
+
+Thanks.</description>
+    
+    <lastBuildDate>Wed, 08 Apr 2020 18:12:10 +0000</lastBuildDate>
+    <category>Workflows</category>
+    <atom:link href="https://forum.stackstorm.com/t/variable-is-referenced-before-assignment-but-not-everywhere/1156.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Variable is referenced before assignment but not everywhere</title>
+        <dc:creator><![CDATA[m4dcoder]]></dc:creator>
+        <description><![CDATA[
+            <p>The detection is there to ensure correctness.  If the workflow is run and access the variable before it is assigned, it will result in exception anyway.  You can use the <code>vars</code> section of the workflow definition to assign default values for variables.</p>
+          <p><a href="https://forum.stackstorm.com/t/variable-is-referenced-before-assignment-but-not-everywhere/1156/4">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/variable-is-referenced-before-assignment-but-not-everywhere/1156/4</link>
+        <pubDate>Wed, 08 Apr 2020 18:12:10 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1156-4</guid>
+        <source url="https://forum.stackstorm.com/t/variable-is-referenced-before-assignment-but-not-everywhere/1156.rss">Variable is referenced before assignment but not everywhere</source>
+      </item>
+      <item>
+        <title>Variable is referenced before assignment but not everywhere</title>
+        <dc:creator><![CDATA[kedare]]></dc:creator>
+        <description><![CDATA[
+            <p>get_l2_ipv6_device is a typo, it should be get_l3_ipv6_device <img src="https://emoji.discourse-cdn.com/apple/slight_smile.png?v=9" title=":slight_smile:" class="emoji" alt=":slight_smile:"></p>
+<p>So the workflow engine detect that it can potentially miss the variables and then refuse to run it ?<br>
+How to workaround this ? Can I define default values for those output variables ?</p>
+          <p><a href="https://forum.stackstorm.com/t/variable-is-referenced-before-assignment-but-not-everywhere/1156/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/variable-is-referenced-before-assignment-but-not-everywhere/1156/3</link>
+        <pubDate>Wed, 08 Apr 2020 18:05:23 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1156-3</guid>
+        <source url="https://forum.stackstorm.com/t/variable-is-referenced-before-assignment-but-not-everywhere/1156.rss">Variable is referenced before assignment but not everywhere</source>
+      </item>
+      <item>
+        <title>Variable is referenced before assignment but not everywhere</title>
+        <dc:creator><![CDATA[m4dcoder]]></dc:creator>
+        <description><![CDATA[
+            <pre><code class="lang-auto">  get_l2_ipv6_device:
+    action: librenms.get_devices
+    next:
+      - when: &lt;% succeeded() %&gt;
+        publish:
+          - l3_hostname: &lt;% result().result[0].hostname %&gt;
+          - l3_interface: &lt;% result().result[0].ifName %&gt;
+</code></pre>
+<p>Is this task suppose to publish l2_hostname and l2_interface instead of l3_hostname and l3_interface?</p>
+<p>Also, since get_path_to_peer only runs on certain condition when  <code>&lt;% result().result.arp %&gt;</code>, it’s on a different branch.  Even if l2_hostname and l2_interface are defined there, the default branch will not have those variables defined.</p>
+          <p><a href="https://forum.stackstorm.com/t/variable-is-referenced-before-assignment-but-not-everywhere/1156/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/variable-is-referenced-before-assignment-but-not-everywhere/1156/2</link>
+        <pubDate>Wed, 08 Apr 2020 17:56:31 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1156-2</guid>
+        <source url="https://forum.stackstorm.com/t/variable-is-referenced-before-assignment-but-not-everywhere/1156.rss">Variable is referenced before assignment but not everywhere</source>
+      </item>
+      <item>
+        <title>Variable is referenced before assignment but not everywhere</title>
+        <dc:creator><![CDATA[kedare]]></dc:creator>
+        <description><![CDATA[
+            <p>Hello.</p>
+<p>I am writing my first workflow and I have a really weird issue.</p>
+<p>There is the code :</p>
+<pre><code>version: 1.0
+
+input:
+  - remote_address
+
+tasks:
+  # [513, 91]
+  get_bgp_session:
+    action: librenms.get_bgp_sessions
+    input:
+      log_level: DEBUG
+      remote_address: &lt;% ctx().remote_address %&gt;
+      debug: false
+    next:
+      - do:
+          - get_l2_ipv6_device
+        when: &lt;% ":" in result().result.bgp_sessions[0].bgpLocalAddr %&gt;
+        publish:
+          - address: &lt;% result().result.bgp_sessions[0].bgpLocalAddr %&gt;
+      - do:
+          - get_l3_ipv4_device
+        when: &lt;% "." in result().result.bgp_sessions[0].bgpLocalAddr %&gt;
+        publish:
+          - address: &lt;% result().result.bgp_sessions[0].bgpLocalAddr %&gt;
+      - do:
+          - map_peer_ip_to_mac
+        when: &lt;% "." in result().result.bgp_sessions[0].bgpPeerIdentifier %&gt;
+        publish:
+          - ip: &lt;% result().result.bgp_sessions[0].bgpPeerIdentifier %&gt;
+  # [341, 200]
+  get_l3_ipv4_device:
+    action: librenms.get_devices
+    input:
+      log_level: DEBUG
+      type: ipv4
+      query: &lt;% ctx().address %&gt;
+    next:
+      - when: &lt;% succeeded() %&gt;
+        publish:
+          - l3_hostname: &lt;% result().result[0].hostname %&gt;
+          - l3_interface: &lt;% result().result[0].ifName %&gt;
+  # [104, 199]
+  get_l2_ipv6_device:
+    action: librenms.get_devices
+    next:
+      - when: &lt;% succeeded() %&gt;
+        publish:
+          - l3_hostname: &lt;% result().result[0].hostname %&gt;
+          - l3_interface: &lt;% result().result[0].ifName %&gt;
+    input:
+      log_level: DEBUG
+      type: ipv6
+      query: &lt;% ctx().address %&gt;
+  # [678, 203]
+  map_peer_ip_to_mac:
+    action: librenms.get_ip_arp
+    input:
+      log_level: DEBUG
+      ip: &lt;% ctx().ip %&gt;
+    next:
+      - do:
+          - get_path_to_peer
+        publish:
+          - mac: &lt;% result().result.arp[0].mac_address %&gt;
+        when: &lt;% result().result.arp %&gt;
+  # [679, 344]
+  get_path_to_peer:
+    action: librenms.get_fdb
+    input:
+      log_level: DEBUG
+      mac: &lt;% ctx().mac %&gt;
+    next:
+      - do:
+          - get_l2_port
+        publish:
+          - id: &lt;% result().result.ports_fdb[0].port_id %&gt;
+      - do:
+          - get_l2_device
+        publish:
+          - id: &lt;% str(result().result.ports_fdb[0].device_id) %&gt;
+  # [794, 460]
+  get_l2_port:
+    action: librenms.get_port
+    input:
+      log_level: DEBUG
+      port_id: &lt;% ctx().id %&gt;
+    next:
+      - when: &lt;% succeeded() %&gt;
+        publish:
+          - l2_interface: &lt;% result().result.ifName %&gt;
+  # [547, 458]
+  get_l2_device:
+    action: librenms.get_device
+    input:
+      log_level: DEBUG
+      id: &lt;% ctx().id %&gt;
+    next:
+      - when: &lt;% succeeded() %&gt;
+        publish:
+          - l2_hostname: &lt;% result().result.devices[0].hostname %&gt;
+      
+
+output:
+  - l3_hostname: &lt;% ctx().l3_hostname %&gt;
+  - l3_interface: &lt;% ctx().l3_interface %&gt;
+  - l2_hostname: &lt;% ctx().l2_hostname %&gt;
+  - l2_interface: &lt;% ctx().l2_interface %&gt;
+</code></pre>
+<p>The error I am getting is :</p>
+<pre><code>{
+  "errors": [
+    {
+      "expression": "&lt;% ctx().l2_hostname %&gt;",
+      "message": "Variable \"l2_hostname\" is referenced before assignment.",
+      "spec_path": "output[2]",
+      "schema_path": "properties.output",
+      "language": "yaql",
+      "type": "context"
+    },
+    {
+      "expression": "&lt;% ctx().l2_interface %&gt;",
+      "message": "Variable \"l2_interface\" is referenced before assignment.",
+      "spec_path": "output[3]",
+      "schema_path": "properties.output",
+      "language": "yaql",
+      "type": "context"
+    }
+  ],
+  "output": null
+}
+</code></pre>
+<p>I don’t understand why l2 outputs are having those issues where l3 are defined exactly the same way and are working fine.</p>
+<p>Any idea of what could be the issue ?</p>
+<p>Thanks.</p>
+          <p><a href="https://forum.stackstorm.com/t/variable-is-referenced-before-assignment-but-not-everywhere/1156/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/variable-is-referenced-before-assignment-but-not-everywhere/1156/1</link>
+        <pubDate>Wed, 08 Apr 2020 17:49:56 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1156-1</guid>
+        <source url="https://forum.stackstorm.com/t/variable-is-referenced-before-assignment-but-not-everywhere/1156.rss">Variable is referenced before assignment but not everywhere</source>
+      </item>
+  </channel>
+</rss>

@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Orquesta workflows || Task sequence</title>
+    <link>https://forum.stackstorm.com/t/orquesta-workflows-task-sequence/1691</link>
+    <description>
+Hi Team,
+
+in Orquesta workflows, we need to run the task as a sequence of  UpdateWorklog_Incident then Escalate_Incident . However, it&#39;s running simultaneously. 
+
+Please help. how to configure sequence task call.
+
+ping_result_validate:
+        action: core.noop
+        next:
+          - when: &quot;{{ ctx().Ping_failure_msg_len &gt; ctx().Ping_failure_msg_lenCondition }}&quot;
+            publish:
+              - error_message: &quot;Device {{ ctx().ci_address }} could not be reached by ping&quot;
+              - ping_Detail_result: &quot;Result :{{ ctx().Ping_failure_msg}}&quot;
+              - Incident_Esclation: &quot;Esc&quot;
+            do:
+              - UpdateWorklog_Incident 
+              - Escalate_Incident</description>
+    
+    <lastBuildDate>Thu, 13 May 2021 13:18:06 +0000</lastBuildDate>
+    <category>Platform</category>
+    <atom:link href="https://forum.stackstorm.com/t/orquesta-workflows-task-sequence/1691.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Orquesta workflows || Task sequence</title>
+        <dc:creator><![CDATA[arul]]></dc:creator>
+        <description><![CDATA[
+            <p>thanks so much. It’s working.</p>
+          <p><a href="https://forum.stackstorm.com/t/orquesta-workflows-task-sequence/1691/7">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/orquesta-workflows-task-sequence/1691/7</link>
+        <pubDate>Thu, 13 May 2021 13:18:06 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1691-7</guid>
+        <source url="https://forum.stackstorm.com/t/orquesta-workflows-task-sequence/1691.rss">Orquesta workflows || Task sequence</source>
+      </item>
+      <item>
+        <title>Orquesta workflows || Task sequence</title>
+        <dc:creator><![CDATA[amanda11]]></dc:creator>
+        <description><![CDATA[
+            <p>So if you want both branches to go first to UpdateWorklog_Incident, then just amend your next on ping_result_validate to go to UpdateWorklog_Incidnet only in both of the dos, e.g.</p>
+<p>‘’’</p>
+<pre><code>next:
+  - when: “{{ ctx().Ping_failure_msg_len &gt; ctx().Ping_failure_msg_lenCondition }}”
+    publish:
+      - error_message: “Device {{ ctx().ci_address }} could not be reached by ping”
+      - ping_Detail_result: “Result :{{ ctx().Ping_failure_msg}}”
+      - Incident_Esclation: “Esc”
+    do:
+      - UpdateWorklog_Incident
+              
+  - when: "{{ ctx().Ping_failure_msg_len &lt;= ctx().Ping_failure_msg_lenCondition }}"
+    publish:
+      - error_message: "Device {{ ctx().ci_address }} is  reachable."
+      - ping_Detail_result: "Result :{{ ctx().ping_Detail_result }}" 
+      - Incident_Esclation: "Res"
+   
+    do:
+      - UpdateWorklog_Incident
+</code></pre>
+<p>Then in UpdateWorklog_Incidnet you would have a next statement with two conditions. You can then test the value of ctx().Incident_Escalation to go to Resolve_Incident or Incident_Escalation, e.g.</p>
+<pre><code>next:
+  - when: “{{ ctx().Incident_Escalation = 'Esc' }}”
+    do:
+      - Escalate_Incident
+  - when: “{{ ctx().Incident_Escalation = 'Res' }}” 
+    do:
+      - Resolve_Incident</code></pre>
+          <p><a href="https://forum.stackstorm.com/t/orquesta-workflows-task-sequence/1691/6">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/orquesta-workflows-task-sequence/1691/6</link>
+        <pubDate>Thu, 13 May 2021 13:05:38 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1691-6</guid>
+        <source url="https://forum.stackstorm.com/t/orquesta-workflows-task-sequence/1691.rss">Orquesta workflows || Task sequence</source>
+      </item>
+      <item>
+        <title>Orquesta workflows || Task sequence</title>
+        <dc:creator><![CDATA[arul]]></dc:creator>
+        <description><![CDATA[
+            <p>There is no issue in Yaml to call the both the task in paralle. But we need to call sequence.</p>
+          <p><a href="https://forum.stackstorm.com/t/orquesta-workflows-task-sequence/1691/5">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/orquesta-workflows-task-sequence/1691/5</link>
+        <pubDate>Thu, 13 May 2021 12:26:01 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1691-5</guid>
+        <source url="https://forum.stackstorm.com/t/orquesta-workflows-task-sequence/1691.rss">Orquesta workflows || Task sequence</source>
+      </item>
+      <item>
+        <title>Orquesta workflows || Task sequence</title>
+        <dc:creator><![CDATA[amanda11]]></dc:creator>
+        <description><![CDATA[
+            <p>So is there a problem with what you have shown above.</p>
+<p>This should publish Incident_Escalation in the first branch as “Esc”. Then it will call UpdateWorklog_Incident and Escalate_Incident in parallel. Both of those tasks should have access to what you have published.</p>
+<p>Are you getting problems with the yaml you have above?</p>
+          <p><a href="https://forum.stackstorm.com/t/orquesta-workflows-task-sequence/1691/4">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/orquesta-workflows-task-sequence/1691/4</link>
+        <pubDate>Thu, 13 May 2021 12:23:07 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1691-4</guid>
+        <source url="https://forum.stackstorm.com/t/orquesta-workflows-task-sequence/1691.rss">Orquesta workflows || Task sequence</source>
+      </item>
+      <item>
+        <title>Orquesta workflows || Task sequence</title>
+        <dc:creator><![CDATA[arul]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi</p>
+<p>Thanks for the reply,<br>
+in the task “ping_result_validate” , we have a variable  as “Incident_Esclation”. Based on the “ping_result_validate” result, the variable will publish as ‘Esc’ or ‘Res’. Based on the “Incident_Esclation” value needs to call  “Escalate_Incident” or  “Resolve_Incident”.  if i can  i get the value “Incident_Esclation” inside  “UpdateWorklog_Incident”  .</p>
+<p>ping_result_validate:<br>
+action: core.noop<br>
+next:<br>
+- when: “{{ ctx().Ping_failure_msg_len &gt; ctx().Ping_failure_msg_lenCondition }}”<br>
+publish:<br>
+- error_message: “Device {{ ctx().ci_address }} could not be reached by ping”<br>
+- ping_Detail_result: “Result :{{ ctx().Ping_failure_msg}}”<br>
+- Incident_Esclation: “Esc”</p>
+<pre><code>        do:
+          - UpdateWorklog_Incident
+          - Escalate_Incident             
+      - when: "{{ ctx().Ping_failure_msg_len &lt;= ctx().Ping_failure_msg_lenCondition }}"
+        publish:
+          - error_message: "Device {{ ctx().ci_address }} is  reachable."
+          - ping_Detail_result: "Result :{{ ctx().ping_Detail_result }}" 
+          - Incident_Esclation: "Res"
+         
+        do:
+          - UpdateWorklog_Incident
+          - Resolve_Incident</code></pre>
+          <p><a href="https://forum.stackstorm.com/t/orquesta-workflows-task-sequence/1691/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/orquesta-workflows-task-sequence/1691/3</link>
+        <pubDate>Thu, 13 May 2021 11:59:50 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1691-3</guid>
+        <source url="https://forum.stackstorm.com/t/orquesta-workflows-task-sequence/1691.rss">Orquesta workflows || Task sequence</source>
+      </item>
+      <item>
+        <title>Orquesta workflows || Task sequence</title>
+        <dc:creator><![CDATA[amanda11]]></dc:creator>
+        <description><![CDATA[
+            <p>The workflow as you have ti says to run ping_result_validate, and then it will execute all the conditions under next. So it will do UpdateWorklog_Inclident and Escalate_incident in parallel.</p>
+<p>To have it as a seqence, just have UpdateWorklog_incident as the only next listed for ping_result_validate.</p>
+<p>Then in your task UpdateWorklog)Incident then you’ll specify that it’s next condition is Escalate_Incident.</p>
+          <p><a href="https://forum.stackstorm.com/t/orquesta-workflows-task-sequence/1691/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/orquesta-workflows-task-sequence/1691/2</link>
+        <pubDate>Wed, 12 May 2021 20:21:53 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1691-2</guid>
+        <source url="https://forum.stackstorm.com/t/orquesta-workflows-task-sequence/1691.rss">Orquesta workflows || Task sequence</source>
+      </item>
+      <item>
+        <title>Orquesta workflows || Task sequence</title>
+        <dc:creator><![CDATA[arul]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi Team,</p>
+<p>in Orquesta workflows, we need to run the task as a sequence of  UpdateWorklog_Incident then Escalate_Incident . However, it’s running simultaneously.</p>
+<p>Please help. how to configure sequence task call.</p>
+<p>ping_result_validate:<br>
+action: core.noop<br>
+next:<br>
+- when: “{{ ctx().Ping_failure_msg_len &gt; ctx().Ping_failure_msg_lenCondition }}”<br>
+publish:<br>
+- error_message: “Device {{ ctx().ci_address }} could not be reached by ping”<br>
+- ping_Detail_result: “Result :{{ ctx().Ping_failure_msg}}”<br>
+- Incident_Esclation: “Esc”<br>
+do:<br>
+- UpdateWorklog_Incident<br>
+- Escalate_Incident</p>
+          <p><a href="https://forum.stackstorm.com/t/orquesta-workflows-task-sequence/1691/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/orquesta-workflows-task-sequence/1691/1</link>
+        <pubDate>Wed, 12 May 2021 12:49:38 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1691-1</guid>
+        <source url="https://forum.stackstorm.com/t/orquesta-workflows-task-sequence/1691.rss">Orquesta workflows || Task sequence</source>
+      </item>
+  </channel>
+</rss>

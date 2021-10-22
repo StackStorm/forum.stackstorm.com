@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Sns notifications to stackstorm webhook</title>
+    <link>https://forum.stackstorm.com/t/sns-notifications-to-stackstorm-webhook/691</link>
+    <description>I am trying to send AWS SNS notifications to stackstorm webhooks but unable to confirm subscription as event is not getting logged on the webhook.
+In the nginx logs, I can see that subscribe confirm event hit the nginx but cannot find the payload of the sns event on webhook to fetch confirmation token or subscribbe url ?
+Is there a way to get it ?</description>
+    
+    <lastBuildDate>Fri, 14 Jun 2019 20:40:21 +0000</lastBuildDate>
+    <category>Rules</category>
+    <atom:link href="https://forum.stackstorm.com/t/sns-notifications-to-stackstorm-webhook/691.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Sns notifications to stackstorm webhook</title>
+        <dc:creator><![CDATA[lhill]]></dc:creator>
+        <description><![CDATA[
+            <p>Couple of things come to mind:</p>
+<p>1/ You can’t use a ‘bare’ URL like <code>https:///api/v1/webhooks/?st2-api-key=</code> for an ST2 webhook. You have to have something unique within the URL there. See <a href="https://docs.stackstorm.com/webhooks.html#registering-a-webhook" class="inline-onebox" rel="nofollow noopener">Webhooks — StackStorm 3.0.1 documentation</a></p>
+<p>2/ ST2 web hooks aren’t really designed for that sort of subscription confirmation, although I think it is possible, if you use a properly constructed web hook URL. But you might be better off using the SNS sensor <a href="https://github.com/StackStorm-Exchange/stackstorm-aws/blob/master/sensors/service_notifications_sensor.yaml" class="inline-onebox" rel="nofollow noopener">stackstorm-aws/service_notifications_sensor.yaml at master · StackStorm-Exchange/stackstorm-aws · GitHub</a></p>
+          <p><a href="https://forum.stackstorm.com/t/sns-notifications-to-stackstorm-webhook/691/4">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/sns-notifications-to-stackstorm-webhook/691/4</link>
+        <pubDate>Fri, 14 Jun 2019 20:40:21 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-691-4</guid>
+        <source url="https://forum.stackstorm.com/t/sns-notifications-to-stackstorm-webhook/691.rss">Sns notifications to stackstorm webhook</source>
+      </item>
+      <item>
+        <title>Sns notifications to stackstorm webhook</title>
+        <dc:creator><![CDATA[deepakdefender264]]></dc:creator>
+        <description><![CDATA[
+            <p>Yes I did. Problem is how to confirm the subscription as it will not send notification to webhook until its confirmed<br>
+Regarding AWS SNS https subscription confirmation:<br>
+“AWS has mentioned thisAfter you subscribe your endpoint, Amazon SNS sends a subscription confirmation message to the endpoint. The code at the endpoint must retrieve the SubscribeURL from the subscription confirmation message and then either visit the location specified by the SubscribeURL or make it available to you so that you can manually visit the SubscribeURL, for example, using a web browser.”<br>
+<a href="https://docs.aws.amazon.com/sns/latest/dg/sns-http-https-endpoint-as-subscriber.html" class="onebox" target="_blank" rel="nofollow noopener">https://docs.aws.amazon.com/sns/latest/dg/sns-http-https-endpoint-as-subscriber.html</a></p>
+<p>In SNS i am putting -&gt; https:///api/v1/webhooks/?st2-api-key=</p>
+          <p><a href="https://forum.stackstorm.com/t/sns-notifications-to-stackstorm-webhook/691/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/sns-notifications-to-stackstorm-webhook/691/3</link>
+        <pubDate>Fri, 14 Jun 2019 05:00:55 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-691-3</guid>
+        <source url="https://forum.stackstorm.com/t/sns-notifications-to-stackstorm-webhook/691.rss">Sns notifications to stackstorm webhook</source>
+      </item>
+      <item>
+        <title>Sns notifications to stackstorm webhook</title>
+        <dc:creator><![CDATA[lhill]]></dc:creator>
+        <description><![CDATA[
+            <p>Did you configure a rule to match that web hook?</p>
+<p>Configure something simple like <a href="https://github.com/StackStorm/st2/blob/master/contrib/examples/rules/sample_rule_with_webhook.yaml" class="inline-onebox" rel="nofollow noopener">st2/sample_rule_with_webhook.yaml at master · StackStorm/st2 · GitHub</a>, which dumps the web hook body to file. Then you can see what content you’re receiving, and write a more specific rule to match on criteria, pass parameters to actions, etc.</p>
+          <p><a href="https://forum.stackstorm.com/t/sns-notifications-to-stackstorm-webhook/691/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/sns-notifications-to-stackstorm-webhook/691/2</link>
+        <pubDate>Thu, 13 Jun 2019 22:29:11 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-691-2</guid>
+        <source url="https://forum.stackstorm.com/t/sns-notifications-to-stackstorm-webhook/691.rss">Sns notifications to stackstorm webhook</source>
+      </item>
+      <item>
+        <title>Sns notifications to stackstorm webhook</title>
+        <dc:creator><![CDATA[deepakdefender264]]></dc:creator>
+        <description><![CDATA[
+            <p>I am trying to send AWS SNS notifications to stackstorm webhooks but unable to confirm subscription as event is not getting logged on the webhook.<br>
+In the nginx logs, I can see that subscribe confirm event hit the nginx but cannot find the payload of the sns event on webhook to fetch confirmation token or subscribbe url ?<br>
+Is there a way to get it ?</p>
+          <p><a href="https://forum.stackstorm.com/t/sns-notifications-to-stackstorm-webhook/691/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/sns-notifications-to-stackstorm-webhook/691/1</link>
+        <pubDate>Thu, 13 Jun 2019 12:15:52 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-691-1</guid>
+        <source url="https://forum.stackstorm.com/t/sns-notifications-to-stackstorm-webhook/691.rss">Sns notifications to stackstorm webhook</source>
+      </item>
+  </channel>
+</rss>

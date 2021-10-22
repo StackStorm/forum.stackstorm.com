@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Run Some Tasks Urgently on Queues</title>
+    <link>https://forum.stackstorm.com/t/run-some-tasks-urgently-on-queues/1319</link>
+    <description>We need to be able to run some workflows/actions urgently. Is there a priority option for workflows/actions? Can we configure one action runner for urgent tasks including both workflows and actions?</description>
+    
+    <lastBuildDate>Fri, 03 Jul 2020 19:20:43 +0000</lastBuildDate>
+    <category>Platform</category>
+    <atom:link href="https://forum.stackstorm.com/t/run-some-tasks-urgently-on-queues/1319.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Run Some Tasks Urgently on Queues</title>
+        <dc:creator><![CDATA[lhill]]></dc:creator>
+        <description><![CDATA[
+            <p>No, there is no mechanism today for affinity or prioritization. You might need to scale up the number of action runners</p>
+          <p><a href="https://forum.stackstorm.com/t/run-some-tasks-urgently-on-queues/1319/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/run-some-tasks-urgently-on-queues/1319/2</link>
+        <pubDate>Fri, 03 Jul 2020 19:20:43 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1319-2</guid>
+        <source url="https://forum.stackstorm.com/t/run-some-tasks-urgently-on-queues/1319.rss">Run Some Tasks Urgently on Queues</source>
+      </item>
+      <item>
+        <title>Run Some Tasks Urgently on Queues</title>
+        <dc:creator><![CDATA[kyildiz]]></dc:creator>
+        <description><![CDATA[
+            <p>We need to be able to run some workflows/actions urgently. Is there a priority option for workflows/actions? Can we configure one action runner for urgent tasks including both workflows and actions?</p>
+          <p><a href="https://forum.stackstorm.com/t/run-some-tasks-urgently-on-queues/1319/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/run-some-tasks-urgently-on-queues/1319/1</link>
+        <pubDate>Fri, 03 Jul 2020 12:24:17 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1319-1</guid>
+        <source url="https://forum.stackstorm.com/t/run-some-tasks-urgently-on-queues/1319.rss">Run Some Tasks Urgently on Queues</source>
+      </item>
+  </channel>
+</rss>

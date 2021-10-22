@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Pack configs different hosts/credentials</title>
+    <link>https://forum.stackstorm.com/t/pack-configs-different-hosts-credentials/398</link>
+    <description>Hi, I hoping someone can point me in the right direction as i have done some searches. 
+
+I am looking at using Stackstorm as our automation platform and while performing some trials. I have noticed that there appears to be a lack of ability to target multiple environments. 
+
+This seems to be an issue with the majority of packs i have used. The packs require you to config the target hosts and credentials within thier config file. Therefore if you want to target a different host or use different credentials for different rules/workflows impossible.
+
+My question is, is it possible to override the config file at runtime based on inputs or is this something that has to be designed into the pack actions?
+
+Thank you in advance.</description>
+    
+    <lastBuildDate>Thu, 22 Apr 2021 04:17:00 +0000</lastBuildDate>
+    <category>Packages</category>
+    <atom:link href="https://forum.stackstorm.com/t/pack-configs-different-hosts-credentials/398.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Pack configs different hosts/credentials</title>
+        <dc:creator><![CDATA[willowhawk]]></dc:creator>
+        <description><![CDATA[
+            <p>In the hopes to find that this thread went radio silent because it got fully implemented, I have <em>exactly</em> the same requirement.  I have a workflow that leverages several different packs ( AWS, TerraForm, some custom packs we wrote, etc. ) and intend to be able to have the actions be able to select different target enclaves based on inputs passed in the API call to the workflow.</p>
+<p>I thought there should be a “st2 action” to reconfigure a pack on-the-fly, but of course this would possible break things when multiple actions are running concurrently that would need different configurations.</p>
+<p>At least for TerraForm I’ve found a workaround to write out a .tf file with the proper AWS access key and secret and region then passing that into the  Terraform apply call, but this isn’t exactly ideal as it writes in plain text access credentials to a client enclave.  We delete it when we’re done, but that’s still not the point.</p>
+<p>I suppose another approach would be to write custom wrappers to the native tasks that add the credentials to the session create calls but that starts to get complicated…</p>
+<p>Would love to hear that this was already solved.</p>
+          <p><a href="https://forum.stackstorm.com/t/pack-configs-different-hosts-credentials/398/12">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/pack-configs-different-hosts-credentials/398/12</link>
+        <pubDate>Thu, 22 Apr 2021 04:17:00 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-398-12</guid>
+        <source url="https://forum.stackstorm.com/t/pack-configs-different-hosts-credentials/398.rss">Pack configs different hosts/credentials</source>
+      </item>
+      <item>
+        <title>Pack configs different hosts/credentials</title>
+        <dc:creator><![CDATA[LuisN]]></dc:creator>
+        <description><![CDATA[
+            <p><a class="mention" href="https://github.com/pdenning">@pdenning</a> was this implemented onto the jira pack? If so what is used during an action to specify the profile to use ? <a class="mention" href="https://github.com/blag">@blag</a> if you have any info maybe?</p>
+          <p><a href="https://forum.stackstorm.com/t/pack-configs-different-hosts-credentials/398/11">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/pack-configs-different-hosts-credentials/398/11</link>
+        <pubDate>Mon, 04 Nov 2019 14:58:27 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-398-11</guid>
+        <source url="https://forum.stackstorm.com/t/pack-configs-different-hosts-credentials/398.rss">Pack configs different hosts/credentials</source>
+      </item>
+      <item>
+        <title>Pack configs different hosts/credentials</title>
+        <dc:creator><![CDATA[pdenning]]></dc:creator>
+        <description><![CDATA[
+            <p>I have implemented multi profiles on the Jira pack. Appears to work pretty well for the actions.</p>
+<p>However I am not sure how to go about implementing it for senors. As it appears you can’t pass variables to the sensor at runtime.</p>
+<p>If so could you please point me in the direction on how to do so</p>
+          <p><a href="https://forum.stackstorm.com/t/pack-configs-different-hosts-credentials/398/10">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/pack-configs-different-hosts-credentials/398/10</link>
+        <pubDate>Thu, 13 Dec 2018 09:53:05 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-398-10</guid>
+        <source url="https://forum.stackstorm.com/t/pack-configs-different-hosts-credentials/398.rss">Pack configs different hosts/credentials</source>
+      </item>
+      <item>
+        <title>Pack configs different hosts/credentials</title>
+        <dc:creator><![CDATA[pdenning]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi Blag</p>
+<p>Thanks for that, I do understand that stackstorm doesnt use JSON and is infact yaml.<br>
+I apologies as i was using JSON to convey a data structure for a “profile” type model.</p>
+<p>Personally i tend to find JSON better at showing a data structure then YAML.</p>
+<p>I do appreciate the response and pointing out backwards compatibility and i will take that into account when presenting a PR.</p>
+<p>Thinking along the lines of defaults. I might add another option called default_profile: where default if left blank it’ll choose the inline(current  method) options or a profile name to use as the default/falls back to the inline options if it can not find the profile.</p>
+          <p><a href="https://forum.stackstorm.com/t/pack-configs-different-hosts-credentials/398/9">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/pack-configs-different-hosts-credentials/398/9</link>
+        <pubDate>Mon, 10 Dec 2018 21:04:15 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-398-9</guid>
+        <source url="https://forum.stackstorm.com/t/pack-configs-different-hosts-credentials/398.rss">Pack configs different hosts/credentials</source>
+      </item>
+      <item>
+        <title>Pack configs different hosts/credentials</title>
+        <dc:creator><![CDATA[blag]]></dc:creator>
+        <description><![CDATA[
+            <p>A few more pointers when developing a pack: shamelessly copy from other packs as much as you can, and start it with/submit it to our <a href="https://github.com/StackStorm-Exchange/exchange-incubator" rel="nofollow noopener">Exchange Incubator</a>.</p>
+          <p><a href="https://forum.stackstorm.com/t/pack-configs-different-hosts-credentials/398/8">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/pack-configs-different-hosts-credentials/398/8</link>
+        <pubDate>Mon, 10 Dec 2018 19:12:04 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-398-8</guid>
+        <source url="https://forum.stackstorm.com/t/pack-configs-different-hosts-credentials/398.rss">Pack configs different hosts/credentials</source>
+      </item>
+      <item>
+        <title>Pack configs different hosts/credentials</title>
+        <dc:creator><![CDATA[blag]]></dc:creator>
+        <description><![CDATA[
+            <p>Just to clarify - what you posted is the JSON representation of a <a href="https://github.com/StackStorm-Exchange/stackstorm-jira/blob/master/jira.yaml.example" rel="nofollow noopener">YAML example config file</a> (StackStorm pack config files are typically YAML files, not JSON, although JSON files can be interpreted by modern YAML parsers). A <a href="https://github.com/StackStorm-Exchange/stackstorm-jira/blob/master/config.schema.yaml" rel="nofollow noopener">YAML config schema</a> is different. StackStorm uses YAML representations of <a href="https://json-schema.org/understanding-json-schema" rel="nofollow noopener">JSONSchema</a> to describe what can be configured in pack config files. I hope I am making this more clear, but if not just take a look at those links until you understand what’s going on (and please feel free to ask more questions).</p>
+<p>My boss pointed me to how the AWS CLI handles this - it has what it calls <a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html" rel="nofollow noopener">“profiles”</a>. This is pretty much exactly what you are looking to implement. This allows StackStorm administrators to limit and control what config values users can use, which prevents at least account enumeration, password brute forcing, and credential disclosure attacks.</p>
+<p>The easiest way to make sure you’re on the right track is to fork a pack, start developing your fork a bit, and create a PR to the original repository on GitHub, then ask us to review what you have developed. That will allow us ST2 engineers to leave comments as you go and give you our feedback early in your development cycle.</p>
+<p>One thing I will point out before you start - the Jira pack has existing users with existing configuration files. If you can avoid forcing them to update them, that would be very very good. Remaining reverse compatible would also not force users with simpler use cases to overcomplicate their config files. So instead of explicitly creating a <code>default</code> profile, I would treat the existing config values as the <code>default</code> profile, and only add a <code>profiles</code> key that contains admin-controlled overrides. That’s a lot of prose words to describe it, so here’s an example potential config file for you:</p>
+<pre><code class="lang-auto">---
+url: "https://company.atlassian.net"
+rsa_cert_file: "/home/vagrant/jira.pem"
+auth_method: "oauth"
+oauth_token: ""
+oauth_secret: ""
+consumer_key: ""
+poll_interval: 30
+project: "MY_PROJECT"
+verify: True
+# ^^^^ current users of the Jira pack will already have these config values,
+#      so treat these values as the default profile
+
+# You would add support for the profiles key below
+# Each profile would override values from the "default" profile above
+# Values that are not overridden should be pulled from the "default" profile values above
+profiles:
+  jira-dev:  # profile name - this is what users will use to identify their configuration
+    url: dev-jira.example.com
+    auth_method: oauth
+    oauth_token: ...
+    oauth_secret: ...
+    consumer_key: ...
+  slow-jira:  # this instance is on a tiny VM so don't poll too often
+themselves
+    url: slow-jira.example.com
+    auth_method: simple
+    username: slow-admin
+    password: slow-password
+    poll_interval: 120  # Every 2 minutes
+</code></pre>
+<p>That config file only has an additional <code>profiles</code> key when compared to existing users’ config files, and new Jira pack users who only need a single profile can still have a clean looking config file.</p>
+          <p><a href="https://forum.stackstorm.com/t/pack-configs-different-hosts-credentials/398/7">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/pack-configs-different-hosts-credentials/398/7</link>
+        <pubDate>Mon, 10 Dec 2018 09:46:24 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-398-7</guid>
+        <source url="https://forum.stackstorm.com/t/pack-configs-different-hosts-credentials/398.rss">Pack configs different hosts/credentials</source>
+      </item>
+      <item>
+        <title>Pack configs different hosts/credentials</title>
+        <dc:creator><![CDATA[pdenning]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi Blag</p>
+<p>Thank you for your very concise reply.</p>
+<p>At this stage and reading from your reply, if i was to look at forking and submit a PR. I would look at doing your recommendation of method 2.</p>
+<p>IMO if they are to override the username/password they should override the url even if it is the same. That way the’ll maintain configuration control if the default is ever changed.</p>
+<p>Another method i would like to propose and get your opinion. Instead of having it overridable from a user perspective.<br>
+Have configuration sets that a user could select from</p>
+<p>Example in the config schema the endpoint details would be an object looking something along the lines of.</p>
+<pre><code class="lang-auto">"endpoints": {
+    "client1": {
+        "url": "http://jira1.com",
+        "user": "username",
+        "password": "password"
+     },
+    "client2": {
+        "url": "http://jira2.com",
+        "user": "username",
+        "password": "password"
+     },
+    "client3": {
+        "url": "http://jira3.com",
+        "user": "username",
+        "password": "password",
+        "default": true
+     }
+}
+</code></pre>
+<p>Now there would be an configuration string that would define which config to use.  If there is only 1 option it would be used by default, if there is multiple options the one defined as default would be used as default.</p>
+<p>I haven’t gone down the path of forking the packs within the exchange yet as it is still early days in product trials, however we do like the way stackstorm is performing and i’ll be looking at the Jira repo to begin with this week. As our dev and internal ticketing is currently jira.</p>
+<p>If i am to start down this path, i would like to PR. therefore i would value input on the best approach so i can contribute them back into the community.</p>
+<p>Thanks for all your advice so far.</p>
+          <p><a href="https://forum.stackstorm.com/t/pack-configs-different-hosts-credentials/398/6">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/pack-configs-different-hosts-credentials/398/6</link>
+        <pubDate>Sun, 09 Dec 2018 09:10:49 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-398-6</guid>
+        <source url="https://forum.stackstorm.com/t/pack-configs-different-hosts-credentials/398.rss">Pack configs different hosts/credentials</source>
+      </item>
+      <item>
+        <title>Pack configs different hosts/credentials</title>
+        <dc:creator><![CDATA[blag]]></dc:creator>
+        <description><![CDATA[
+            <p><a class="mention" href="https://github.com/pdenning">@pdenning</a> To answer your question directly: this is something that has to be designed into the pack actions themselves. And this does fundamentally shift the security model of StackStorm configs (more on this at the end). It is also not as easy or straightforward to implement securely as it might appear.</p>
+<p>However, as Nick noted, the vast majority of packs would benefit greatly from this, it’s just that nobody has bothered to implement it. As I’m sure you’ve seen, there are quite a few packs in <a href="https://exchange.stackstorm.org" rel="nofollow noopener">our official Exchange</a>.</p>
+<p>I can think of at least two different ways to implement this.</p>
+<p>Method <span class="hashtag">#1:</span> Add specific, optional parameters to actions that override the values specified in the central pack config. You would have to do this for every action in every pack you want to use this way, and it would be difficult to force a consistent implementation across different packs (although we <em>might</em> be able to help you update packs in the Exchange, depending on our availability). This would allow pack authors to limit what options can be overridden (more on this later). For instance, actions in the Jira pack could allow ST2 users to specify their own <code>jira_username</code> and <code>jira_password</code> options that would override the default StackStorm config values. This basically would change the way the central pack config is treated, and would treat it as a collection of “default” values for each organization that is using StackStorm.</p>
+<p>Method <span class="hashtag">#2:</span> Add a single <code>config</code> dictionary parameter to actions that overrides the <strong>entire</strong> central pack configuration. This could be implemented in fewer places than every action in every pack, but it would be slightly clunky for action users to use because they would need to know - a priori - what values to use for all values in the config dictionary. For example, actions in the Jira pack could rely on the following <code>config</code> values:</p>
+<pre><code class="lang-auto">url: ...
+username: ...
+password: ...
+</code></pre>
+<p>But this runs into issues where a ST2 user may want to override <code>username</code> and <code>password</code>, but <em>not</em> override <code>url</code>. They would need to know what the “default” value is for <code>url</code> are in the central pack config, and if that value ever changed, each action execution would need to be updated to use the new <code>url</code> value.</p>
+<p>Method <span class="hashtag">#3:</span> Allow users to override some central pack config values without having to override all config values. This sounds like a great solution, but it requires a lot more refactoring in ST2 itself than it might first appear. Consider the Jira <code>host</code> and <code>port</code> options above. This method would allow users to override <code>username</code> and <code>password</code> and let the ST2 admins specify the <code>host</code> and <code>port</code> values (which would be pulled from the central pack config).</p>
+<p>However, this could extremely easily lead to security issues. A malicious user could override only the <code>host</code> parameter and point it to a server that they control. When they run that action, StackStorm would use the <code>username</code> and <code>password</code> values from the central pack config, and attempt to login to the malicious <code>host</code>. All they have to do is capture the credentials from the login attempt and they have the default values from the central pack config. And usually you would want those values to be for a Jira account that has a lot of permissions on Jira (eg: a Jira admin account). So any user could fairly painlessly capture admin credentials using this method.</p>
+<p>The “proper” way to address this is to implement configuration inheritance in StackStorm itself, which, as the name would imply, could get very messy very quickly. Essentially, this would require support in configuration schemas for specifying configuration value dependencies. For example, if the <code>url</code> config value is overridden, the <code>username</code> and <code>password</code> values would need to be overridden as well, but <code>poll_interval</code>, <code>project</code>, and <code>verify</code> would not need to be explicitly overridden.</p>
+<p>Here’s an example config schema:</p>
+<pre><code class="lang-auto">---
+  url:
+    description: "URL of the JIRA instance (e.g. ``https://myproject.atlassian.net``)"
+    type: "string"
+    secret: false
+    required: true
+  username:
+    description: "Username if using the basic auth_method"
+    type: "string"
+    secret: false
+    required: false
+    override-with: url
+  password:
+    description: "Password if using the basic auth_method"
+    type: "string"
+    secret: true
+    required: false
+    override-with: url
+  poll_interval:
+    description: "Polling interval - default 30s"
+    type: "integer"
+    secret: false
+    required: false
+    default: 30
+  project:
+    description: "Project to be used as default for actions that don't require or allow a project"
+    type: "string"
+    secret: false
+    required: true
+</code></pre>
+<p>That config schema would allow child configs to specify their own <code>username</code> and <code>password</code> parameters without needing to override <code>url</code>, but it would force them to specify their own <code>username</code> and <code>password</code> parameters if they specified their own <code>url</code> parameter.</p>
+<p>This is definitely an advanced feature, and (as far as I know) would only be used by a small minority of StackStorm users/installations. Furthermore, because it requires a high degree of understanding, it would be easy for pack authors to incorrectly specify dependencies, or specify them in reverse order.</p>
+<p>I’m not saying the third method would be rejected, I’m just trying to explain why this isn’t as simple as it may appear on the surface.</p>
+<p>If you have PRs to add override parameters (a la method <span class="hashtag">#1</span>), I think we’d be happy to have them (just be judicious in what parameters you allow to be overridden).</p>
+<p>PRs for method <span class="hashtag">#2</span> would probably be the best payoff in terms of your investment, but I would recommend creating a PR for one pack and then getting the StackStorm team to review it, since it would be a little clunky from a StackStorm user perspective.</p>
+<p>Implementing method <span class="hashtag">#3</span> should be done with buy-in/coordination with the StackStorm team.</p>
+<p>Note: The term “central pack config” is a phrase I made up in this post simply to differentiate it from an overridden config specified by a user when running an action. It does not appear in StackStorm documentation, and people outside of this discussion will not know what it means.</p>
+          <p><a href="https://forum.stackstorm.com/t/pack-configs-different-hosts-credentials/398/5">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/pack-configs-different-hosts-credentials/398/5</link>
+        <pubDate>Fri, 07 Dec 2018 22:04:39 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-398-5</guid>
+        <source url="https://forum.stackstorm.com/t/pack-configs-different-hosts-credentials/398.rss">Pack configs different hosts/credentials</source>
+      </item>
+      <item>
+        <title>Pack configs different hosts/credentials</title>
+        <dc:creator><![CDATA[nmaludy]]></dc:creator>
+        <description><![CDATA[
+            <p><a class="mention" href="https://github.com/pdenning">@pdenning</a></p>
+<p>What you’re describing is usually a deficiency of the packs themselves.  Most of the packs are maintained by community members and would LOVE contributions for enhancements like you’re describing!</p>
+<p>Best,<br>
+Nick</p>
+          <p><a href="https://forum.stackstorm.com/t/pack-configs-different-hosts-credentials/398/4">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/pack-configs-different-hosts-credentials/398/4</link>
+        <pubDate>Fri, 07 Dec 2018 16:04:56 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-398-4</guid>
+        <source url="https://forum.stackstorm.com/t/pack-configs-different-hosts-credentials/398.rss">Pack configs different hosts/credentials</source>
+      </item>
+      <item>
+        <title>Pack configs different hosts/credentials</title>
+        <dc:creator><![CDATA[pdenning]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi Blag</p>
+<p>To give an example,<br>
+We are currently doing managed monitoring for a number of clients. One of the tasks is when an alert is generated it gets processed. Then based on a ruleset a ticket is logged into the clients servicedesk software. At the moment we have a number of clients using Jira as an example.</p>
+<p>The jira actions use a single config therefore my options are to modify the jira repo/create my own/run multiple instances of stackstorm for each client that uses Jira/ServiceNow(the pack has the same limitations).</p>
+<p>Having a quick look at the AWS pack. The region and access id and key are in the config file and i can’t change them at runtime. Which will be limited to a single client per st2 instance.</p>
+<p>So would it be fair to say, it looks to be a constraint to how stackstorm works and how packs a generally written?</p>
+<p>I can see you can use the key value store for config entries. it would be nice if you could scope rules outside of system/user and then have configs pull from those scopes or something along those lines.</p>
+<p>Thanks for your help</p>
+          <p><a href="https://forum.stackstorm.com/t/pack-configs-different-hosts-credentials/398/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/pack-configs-different-hosts-credentials/398/3</link>
+        <pubDate>Thu, 06 Dec 2018 20:43:49 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-398-3</guid>
+        <source url="https://forum.stackstorm.com/t/pack-configs-different-hosts-credentials/398.rss">Pack configs different hosts/credentials</source>
+      </item>
+      <item>
+        <title>Pack configs different hosts/credentials</title>
+        <dc:creator><![CDATA[blag]]></dc:creator>
+        <description><![CDATA[
+            <p>Can you explain a bit more why you expect to need to target different hosts on-the-fly, or give me an example or two?</p>
+<p>Some actions in some packs may allow users to override the defaults configured in the pack config file, however…</p>
+<p>I’m having a difficult time imagining a Jira server, or a Gitlab instance, or a Sensu master jumping around frequently, for example. Usually you would configure StackStorm to connect to one (or more) instances of a service and then users could run actions/workflows on those instances. Or you would run chatops with a single chat provider.</p>
+<p>If you need to segregate StackStorm in different environments, instead of targeting hosts at runtime, you can run multiple instances of StackStorm - one in each separate environment. The open source license allows you to run as many StackStorm instances as you wish across all of your environments.</p>
+<p>A notable exception to this is the <code>core.remote</code> action - that can (obviously) run commands on different remote hosts that are specified at runtime.</p>
+<p>Hope this helps!</p>
+          <p><a href="https://forum.stackstorm.com/t/pack-configs-different-hosts-credentials/398/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/pack-configs-different-hosts-credentials/398/2</link>
+        <pubDate>Thu, 06 Dec 2018 11:58:49 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-398-2</guid>
+        <source url="https://forum.stackstorm.com/t/pack-configs-different-hosts-credentials/398.rss">Pack configs different hosts/credentials</source>
+      </item>
+      <item>
+        <title>Pack configs different hosts/credentials</title>
+        <dc:creator><![CDATA[pdenning]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi, I hoping someone can point me in the right direction as i have done some searches.</p>
+<p>I am looking at using Stackstorm as our automation platform and while performing some trials. I have noticed that there appears to be a lack of ability to target multiple environments.</p>
+<p>This seems to be an issue with the majority of packs i have used. The packs require you to config the target hosts and credentials within thier config file. Therefore if you want to target a different host or use different credentials for different rules/workflows impossible.</p>
+<p>My question is, is it possible to override the config file at runtime based on inputs or is this something that has to be designed into the pack actions?</p>
+<p>Thank you in advance.</p>
+          <p><a href="https://forum.stackstorm.com/t/pack-configs-different-hosts-credentials/398/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/pack-configs-different-hosts-credentials/398/1</link>
+        <pubDate>Thu, 06 Dec 2018 10:04:37 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-398-1</guid>
+        <source url="https://forum.stackstorm.com/t/pack-configs-different-hosts-credentials/398.rss">Pack configs different hosts/credentials</source>
+      </item>
+  </channel>
+</rss>

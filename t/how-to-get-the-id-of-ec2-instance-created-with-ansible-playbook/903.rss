@@ -1,0 +1,410 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>How to get the ID of EC2 instance created with Ansible playbook</title>
+    <link>https://forum.stackstorm.com/t/how-to-get-the-id-of-ec2-instance-created-with-ansible-playbook/903</link>
+    <description>I succeeded in creating an EC2 instance by using the ansible.playbook action.
+I wanted to create a workflow to pass EC2 instances created with this playbook to new actions.
+However, after ansible execution ends, it is not linked to the next task.
+
+How can I solve it?
+
+[Playbook]
+```
+- name: &quot;create ec2 instance&quot;
+  ec2:
+    instance_tags:
+      Name: &quot;{{ ec2.name }}&quot;
+    key_name: &quot;{{ keypair.name }}&quot;
+    instance_type: &quot;{{ ec2.instance_type }}&quot;
+    image: &quot;{{ ec2.image }}&quot;
+    wait: yes
+    group: &quot;{{ secgrp.name }}&quot;
+    count: 1
+    vpc_subnet_id: &quot;{{ vpc_regst.subnet.id }}&quot;
+    assign_public_ip: yes
+  register: ec2_regst
+```
+[workflow]
+``` 
+    tasks:
+      task1:
+        action: ansible.playbook
+        input:
+          playbook: &lt;% $.param %&gt;
+        publish:
+          instance_id: ec2_regst.instances[0].id
+          ec2rr: ec2_regst
+        on-success:
+          - task2
+      task2:
+        action: core.local
+        input:
+          cmd: &quot;echo &#39;$ &lt;% $ %&gt; $.param: &lt;% $.param %&gt;, $.instance_id: &lt;% $.instance_id %&gt;, $.ec2err: &lt;% $.ec2err %&gt;&#39;&quot;
+```</description>
+    
+    <lastBuildDate>Thu, 28 Nov 2019 02:22:52 +0000</lastBuildDate>
+    <category>Uncategorized</category>
+    <atom:link href="https://forum.stackstorm.com/t/how-to-get-the-id-of-ec2-instance-created-with-ansible-playbook/903.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>How to get the ID of EC2 instance created with Ansible playbook</title>
+        <dc:creator><![CDATA[h-murakami]]></dc:creator>
+        <description><![CDATA[
+            <p>I tried to set MinCount and MaxCount to 1 instead.<br>
+This time, the error is</p>
+<pre><code class="lang-auto">botocore.exceptions.ClientError: An error occurred (AuthFailure) when calling the RunInstances operation: AWS was not able to validate the provided access credentials
+</code></pre>
+<p>It seems to be a problem with permissions, but with aws cli you can create an instance without problems, and access key and secret key are also set in /opt/stackstorm/config/aws.yaml. What is the cause?</p>
+          <p><a href="https://forum.stackstorm.com/t/how-to-get-the-id-of-ec2-instance-created-with-ansible-playbook/903/13">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-to-get-the-id-of-ec2-instance-created-with-ansible-playbook/903/13</link>
+        <pubDate>Thu, 28 Nov 2019 02:22:52 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-903-13</guid>
+        <source url="https://forum.stackstorm.com/t/how-to-get-the-id-of-ec2-instance-created-with-ansible-playbook/903.rss">How to get the ID of EC2 instance created with Ansible playbook</source>
+      </item>
+      <item>
+        <title>How to get the ID of EC2 instance created with Ansible playbook</title>
+        <dc:creator><![CDATA[h-murakami]]></dc:creator>
+        <description><![CDATA[
+            <p>I’m not familiar with yaml, but what I saw is the following error in create_vm.yaml:</p>
+<aside class="onebox githubblob">
+  <header class="source">
+      <a href="https://github.com/StackStorm-Exchange/stackstorm-aws/blob/master/actions/workflows/create_vm.yaml#L6-L11" target="_blank" rel="nofollow noopener">github.com</a>
+  </header>
+  <article class="onebox-body">
+    <h4><a href="https://github.com/StackStorm-Exchange/stackstorm-aws/blob/master/actions/workflows/create_vm.yaml#L6-L11" target="_blank" rel="nofollow noopener">StackStorm-Exchange/stackstorm-aws/blob/master/actions/workflows/create_vm.yaml#L6-L11</a></h4>
+<pre class="onebox"><code class="lang-yaml"><ol class="start lines" start="6" style="counter-reset: li-counter 5 ;">
+<li>params:</li>
+<li>  ImageId: "{{Image_id}}"</li>
+<li>  InstanceType: "{{InstanceType}}"</li>
+<li>  SubnetId: "{{SubnetId}}"</li>
+<li>  KeyName: "{{KeyName}}"</li>
+<li>on-success: "wait_for_instance"</li>
+</ol></code></pre>
+
+
+  </article>
+  <div class="onebox-metadata">
+    
+    
+  </div>
+  <div style="clear: both"></div>
+</aside>
+
+<pre><code class="lang-auto">ImageId: "{{Image_id}}"
+↓
+ImageId: "{{ImageId}}"
+</code></pre>
+<p>However, even if this is corrected, an essential parameter error occurs.</p>
+<p>Because it is a very long log, I will omit it …</p>
+<pre><code class="lang-auto"> "Traceback (most recent call last):
+  File \"/opt/stackstorm/st2/lib/python2.7/site-packages/action_chain_runner/action_chain_runner.py\", line 526, in _run_chain
+    liveaction = self._run_action(liveaction)
+  File \"/opt/stackstorm/st2/lib/python2.7/site-packages/action_chain_runner/action_chain_runner.py\", line 750, in _run_action
+    raise e
+ValidationError: u'MinCount' is a required property
+
+Failed validating 'required' in schema['properties'][u'MinCount']:
+:
+:
+On instance[u'MinCount']:
+    {'ImageId': u'ami-0ab3e16f9c414dee7',
+     'InstanceType': u't2.micro',
+     'KeyName': u'lamp2',
+     'SubnetId': u'subnet-xxxxxxxxx',
+     u'action': u'run_instances',
+     u'cls': u'ec2',
+     u'debug': False,
+     u'log_level': u'DEBUG',
+     u'module_path': u'boto3',
+     u'timeout': 600}"
+      },
+      "id": "run_instance",
+      "execution_id": null,
+      "name": "run_instance"
+    }
+  ] 
+</code></pre>
+<p>It might be good to add “mincount”, but I don’t know what this mincount is and what it does at instance creation.</p>
+<p>Looking at the AWS documentation, it seems that the maximum number of EC2 instances that can be launched within one AZ … although I never specified it when creating an EC2 instance …</p>
+          <p><a href="https://forum.stackstorm.com/t/how-to-get-the-id-of-ec2-instance-created-with-ansible-playbook/903/12">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-to-get-the-id-of-ec2-instance-created-with-ansible-playbook/903/12</link>
+        <pubDate>Wed, 27 Nov 2019 22:54:24 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-903-12</guid>
+        <source url="https://forum.stackstorm.com/t/how-to-get-the-id-of-ec2-instance-created-with-ansible-playbook/903.rss">How to get the ID of EC2 instance created with Ansible playbook</source>
+      </item>
+      <item>
+        <title>How to get the ID of EC2 instance created with Ansible playbook</title>
+        <dc:creator><![CDATA[h-murakami]]></dc:creator>
+        <description><![CDATA[
+            <p>I tried it, but I got this error.</p>
+<pre><code class="lang-auto">"Traceback (most recent call last):
+  File \"/opt/stackstorm/st2/lib/python2.7/site-packages/action_chain_runner/action_chain_runner.py\", line 496, in _run_chain
+    action_params=action_parameters, context_result=context_result)
+  File \"/opt/stackstorm/st2/lib/python2.7/site-packages/action_chain_runner/action_chain_runner.py\", line 731, in _get_next_action
+    chain_context={'parent': parent_context})
+  File \"/opt/stackstorm/st2/lib/python2.7/site-packages/action_chain_runner/action_chain_runner.py\", line 713, in _resolve_params
+    raise action_exc.ParameterRenderingFailedException(msg)
+ParameterRenderingFailedException: Failed rendering value for action parameter \"ImageId\" in task \"run_instance\" (template string={{Image_id}}): 'Image_id' is undefined
+"
+</code></pre>
+<p>imageid:ami-0ab3e16f9c414dee7<br>
+keyname:lamp2<br>
+subnet:subnet-xxxxxxxxx &lt;-Actual value is masked<br>
+hostname:test<br>
+keyfile:lamp2.pem<br>
+InstanceType:t2.micro</p>
+<p>I’m worried about where “image_id” is “undefined”.<br>
+Is something wrong?</p>
+          <p><a href="https://forum.stackstorm.com/t/how-to-get-the-id-of-ec2-instance-created-with-ansible-playbook/903/11">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-to-get-the-id-of-ec2-instance-created-with-ansible-playbook/903/11</link>
+        <pubDate>Wed, 27 Nov 2019 22:18:50 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-903-11</guid>
+        <source url="https://forum.stackstorm.com/t/how-to-get-the-id-of-ec2-instance-created-with-ansible-playbook/903.rss">How to get the ID of EC2 instance created with Ansible playbook</source>
+      </item>
+      <item>
+        <title>How to get the ID of EC2 instance created with Ansible playbook</title>
+        <dc:creator><![CDATA[h-murakami]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi, armab.</p>
+<p>Thank you for your answer.</p>
+<p>There was certainly a way to modify the original Packs.</p>
+<p>I see. I will try.</p>
+<p>Thank you!</p>
+          <p><a href="https://forum.stackstorm.com/t/how-to-get-the-id-of-ec2-instance-created-with-ansible-playbook/903/10">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-to-get-the-id-of-ec2-instance-created-with-ansible-playbook/903/10</link>
+        <pubDate>Tue, 26 Nov 2019 22:36:46 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-903-10</guid>
+        <source url="https://forum.stackstorm.com/t/how-to-get-the-id-of-ec2-instance-created-with-ansible-playbook/903.rss">How to get the ID of EC2 instance created with Ansible playbook</source>
+      </item>
+      <item>
+        <title>How to get the ID of EC2 instance created with Ansible playbook</title>
+        <dc:creator><![CDATA[armab]]></dc:creator>
+        <description><![CDATA[
+            <p>You can modify original AWS pack workflow and meta to make it non-mandatory field.<br>
+</p><aside class="onebox githubblob">
+  <header class="source">
+      <a href="https://github.com/StackStorm-Exchange/stackstorm-aws/blob/777aa4a58f7d37e16bbcebca0e466ab2d78155e7/actions/create_vm.meta.yaml#L24-L27" target="_blank">github.com</a>
+  </header>
+  <article class="onebox-body">
+    <h4><a href="https://github.com/StackStorm-Exchange/stackstorm-aws/blob/777aa4a58f7d37e16bbcebca0e466ab2d78155e7/actions/create_vm.meta.yaml#L24-L27" target="_blank">StackStorm-Exchange/stackstorm-aws/blob/777aa4a58f7d37e16bbcebca0e466ab2d78155e7/actions/create_vm.meta.yaml#L24-L27</a></h4>
+<pre class="onebox"><code class="lang-yaml"><ol class="start lines" start="24" style="counter-reset: li-counter 23 ;">
+<li>dns_zone:</li>
+<li>  type: "string"</li>
+<li>  description: "Route53 DNS Zone to add host to"</li>
+<li>  required: true</li>
+</ol></code></pre>
+
+
+  </article>
+  <div class="onebox-metadata">
+    
+    
+  </div>
+  <div style="clear: both"></div>
+</aside>
+<p></p>
+<aside class="onebox githubblob">
+  <header class="source">
+      <a href="https://github.com/StackStorm-Exchange/stackstorm-aws/blob/777aa4a58f7d37e16bbcebca0e466ab2d78155e7/actions/workflows/create_vm.yaml#L36-L43" target="_blank">github.com</a>
+  </header>
+  <article class="onebox-body">
+    <h4><a href="https://github.com/StackStorm-Exchange/stackstorm-aws/blob/777aa4a58f7d37e16bbcebca0e466ab2d78155e7/actions/workflows/create_vm.yaml#L36-L43" target="_blank">StackStorm-Exchange/stackstorm-aws/blob/777aa4a58f7d37e16bbcebca0e466ab2d78155e7/actions/workflows/create_vm.yaml#L36-L43</a></h4>
+<pre class="onebox"><code class="lang-yaml"><ol class="start lines" start="36" style="counter-reset: li-counter 35 ;">
+<li>-</li>
+<li>  name: "add_cname"</li>
+<li>  ref: "aws.r53_zone_add_cname"</li>
+<li>  params:</li>
+<li>    name: "{{hostname}}.{{dns_zone}}"</li>
+<li>    value: "{{run_instance.result[0][0].private_dns_name}}"</li>
+<li>    zone: "{{dns_zone}}"</li>
+<li>  on-success: "set_hostname"</li>
+</ol></code></pre>
+
+
+  </article>
+  <div class="onebox-metadata">
+    
+    
+  </div>
+  <div style="clear: both"></div>
+</aside>
+
+<p>AWS pack is opensource and we’ll be happy to accept contributions and enhancements: <a href="https://github.com/StackStorm-Exchange/stackstorm-aws" class="inline-onebox">GitHub - StackStorm-Exchange/stackstorm-aws: st2 content pack containing Amazon Web Services integrations.</a></p>
+          <p><a href="https://forum.stackstorm.com/t/how-to-get-the-id-of-ec2-instance-created-with-ansible-playbook/903/9">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-to-get-the-id-of-ec2-instance-created-with-ansible-playbook/903/9</link>
+        <pubDate>Tue, 26 Nov 2019 15:00:53 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-903-9</guid>
+        <source url="https://forum.stackstorm.com/t/how-to-get-the-id-of-ec2-instance-created-with-ansible-playbook/903.rss">How to get the ID of EC2 instance created with Ansible playbook</source>
+      </item>
+      <item>
+        <title>How to get the ID of EC2 instance created with Ansible playbook</title>
+        <dc:creator><![CDATA[h-murakami]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi, armab</p>
+<p>Thank you for answering.<br>
+AWS Pack seems to create an EC2 instance with the create_vm action, but at the same time, it seems necessary to specify Route53.</p>
+<p>I don’t want to specify Route53 now.<br>
+Also, I want to specify the disk volume specification.</p>
+<p>What should I do in such a case?</p>
+<p>Also, aside from disk issues, I didn’t want to specify Route53, so I tried to specify it as a dummy, but I got this error.</p>
+<pre><code class="lang-auto">{
+  "published": {},
+  "tasks": [],
+  "error": "Failed to run task \"run_instance\". Parameter rendering failed.. Failed rendering value for action parameter \"ImageId\" in task \"run_instance\" (template string={{Image_id}}): 'Image_id' is undefined",
+  "traceback": "Traceback (most recent call last):
+  File \"/opt/stackstorm/st2/lib/python2.7/site-packages/action_chain_runner/action_chain_runner.py\", line 496, in _run_chain
+    action_params=action_parameters, context_result=context_result)
+  File \"/opt/stackstorm/st2/lib/python2.7/site-packages/action_chain_runner/action_chain_runner.py\", line 731, in _get_next_action
+    chain_context={'parent': parent_context})
+  File \"/opt/stackstorm/st2/lib/python2.7/site-packages/action_chain_runner/action_chain_runner.py\", line 713, in _resolve_params
+    raise action_exc.ParameterRenderingFailedException(msg)
+ParameterRenderingFailedException: Failed rendering value for action parameter \"ImageId\" in task \"run_instance\" (template string={{Image_id}}): 'Image_id' is undefined
+"
+}
+</code></pre>
+          <p><a href="https://forum.stackstorm.com/t/how-to-get-the-id-of-ec2-instance-created-with-ansible-playbook/903/8">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-to-get-the-id-of-ec2-instance-created-with-ansible-playbook/903/8</link>
+        <pubDate>Sun, 24 Nov 2019 22:31:42 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-903-8</guid>
+        <source url="https://forum.stackstorm.com/t/how-to-get-the-id-of-ec2-instance-created-with-ansible-playbook/903.rss">How to get the ID of EC2 instance created with Ansible playbook</source>
+      </item>
+      <item>
+        <title>How to get the ID of EC2 instance created with Ansible playbook</title>
+        <dc:creator><![CDATA[armab]]></dc:creator>
+        <description><![CDATA[
+            <p>Alternatively,<br>
+you can use native ST2 AWS integration pack, see <a href="https://github.com/stackstorm-exchange/stackstorm-aws" class="inline-onebox">GitHub - StackStorm-Exchange/stackstorm-aws: st2 content pack containing Amazon Web Services integrations.</a> directly without Ansible as a middleman.</p>
+          <p><a href="https://forum.stackstorm.com/t/how-to-get-the-id-of-ec2-instance-created-with-ansible-playbook/903/7">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-to-get-the-id-of-ec2-instance-created-with-ansible-playbook/903/7</link>
+        <pubDate>Sun, 24 Nov 2019 15:42:29 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-903-7</guid>
+        <source url="https://forum.stackstorm.com/t/how-to-get-the-id-of-ec2-instance-created-with-ansible-playbook/903.rss">How to get the ID of EC2 instance created with Ansible playbook</source>
+      </item>
+      <item>
+        <title>How to get the ID of EC2 instance created with Ansible playbook</title>
+        <dc:creator><![CDATA[h-murakami]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi, armab</p>
+<p>Great!</p>
+<p>I now want to get an IP address after creating an EC2 instance with an Ansible playbook.</p>
+<p>However, since Ansible outputs PlayBook execution information to standard output, it seems difficult to pick only EC2 instance information from it.</p>
+<p>Is there any other way to output EC2 instance information to a file?</p>
+          <p><a href="https://forum.stackstorm.com/t/how-to-get-the-id-of-ec2-instance-created-with-ansible-playbook/903/6">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-to-get-the-id-of-ec2-instance-created-with-ansible-playbook/903/6</link>
+        <pubDate>Sat, 23 Nov 2019 23:59:19 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-903-6</guid>
+        <source url="https://forum.stackstorm.com/t/how-to-get-the-id-of-ec2-instance-created-with-ansible-playbook/903.rss">How to get the ID of EC2 instance created with Ansible playbook</source>
+      </item>
+      <item>
+        <title>How to get the ID of EC2 instance created with Ansible playbook</title>
+        <dc:creator><![CDATA[armab]]></dc:creator>
+        <description><![CDATA[
+            <p>Yes, you got it right.<br>
+Any json-structurred output from the Action stdout is then automatically parsed by StackStorm so you can access it via dot notation.</p>
+          <p><a href="https://forum.stackstorm.com/t/how-to-get-the-id-of-ec2-instance-created-with-ansible-playbook/903/5">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-to-get-the-id-of-ec2-instance-created-with-ansible-playbook/903/5</link>
+        <pubDate>Wed, 20 Nov 2019 23:10:25 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-903-5</guid>
+        <source url="https://forum.stackstorm.com/t/how-to-get-the-id-of-ec2-instance-created-with-ansible-playbook/903.rss">How to get the ID of EC2 instance created with Ansible playbook</source>
+      </item>
+      <item>
+        <title>How to get the ID of EC2 instance created with Ansible playbook</title>
+        <dc:creator><![CDATA[h-murakami]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi, armab</p>
+<p>Thank you for answering.</p>
+<p>So that’s it.<br>
+Is the output from Ansible the standard output?<br>
+For example, if the output is as follows:<br>
+<code>` {"HOSTS": {"NAME", "ABC"}  }</code> `<br>
+In the next action,<br>
+Is it possible to obtain it by specifying it like HOSTS.NAME?</p>
+          <p><a href="https://forum.stackstorm.com/t/how-to-get-the-id-of-ec2-instance-created-with-ansible-playbook/903/4">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-to-get-the-id-of-ec2-instance-created-with-ansible-playbook/903/4</link>
+        <pubDate>Tue, 19 Nov 2019 22:48:53 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-903-4</guid>
+        <source url="https://forum.stackstorm.com/t/how-to-get-the-id-of-ec2-instance-created-with-ansible-playbook/903.rss">How to get the ID of EC2 instance created with Ansible playbook</source>
+      </item>
+      <item>
+        <title>How to get the ID of EC2 instance created with Ansible playbook</title>
+        <dc:creator><![CDATA[armab]]></dc:creator>
+        <description><![CDATA[
+            <p>Data output from Ansible run should be json-formatted for StackStorm to be able to access/query that in a workflow as structured <code>foo.bar</code>.</p>
+<p>Try playing with <a href="https://github.com/stackstorm-exchange/stackstorm-ansible#structured-output" class="inline-onebox">GitHub - StackStorm-Exchange/stackstorm-ansible: st2 content pack containing ansible integrations</a> to make sure Ansible play result output is <code>json</code>.</p>
+          <p><a href="https://forum.stackstorm.com/t/how-to-get-the-id-of-ec2-instance-created-with-ansible-playbook/903/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-to-get-the-id-of-ec2-instance-created-with-ansible-playbook/903/3</link>
+        <pubDate>Thu, 07 Nov 2019 13:15:05 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-903-3</guid>
+        <source url="https://forum.stackstorm.com/t/how-to-get-the-id-of-ec2-instance-created-with-ansible-playbook/903.rss">How to get the ID of EC2 instance created with Ansible playbook</source>
+      </item>
+      <item>
+        <title>How to get the ID of EC2 instance created with Ansible playbook</title>
+        <dc:creator><![CDATA[h-murakami]]></dc:creator>
+        <description><![CDATA[
+            <p>The only way to link with Ansible is to pass parameters in RabbitMQ or a file.</p>
+          <p><a href="https://forum.stackstorm.com/t/how-to-get-the-id-of-ec2-instance-created-with-ansible-playbook/903/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-to-get-the-id-of-ec2-instance-created-with-ansible-playbook/903/2</link>
+        <pubDate>Thu, 07 Nov 2019 08:28:33 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-903-2</guid>
+        <source url="https://forum.stackstorm.com/t/how-to-get-the-id-of-ec2-instance-created-with-ansible-playbook/903.rss">How to get the ID of EC2 instance created with Ansible playbook</source>
+      </item>
+      <item>
+        <title>How to get the ID of EC2 instance created with Ansible playbook</title>
+        <dc:creator><![CDATA[h-murakami]]></dc:creator>
+        <description><![CDATA[
+            <p>I succeeded in creating an EC2 instance by using the ansible.playbook action.<br>
+I wanted to create a workflow to pass EC2 instances created with this playbook to new actions.<br>
+However, after ansible execution ends, it is not linked to the next task.</p>
+<p>How can I solve it?</p>
+<p>[Playbook]</p>
+<pre><code class="lang-auto">- name: "create ec2 instance"
+  ec2:
+    instance_tags:
+      Name: "{{ ec2.name }}"
+    key_name: "{{ keypair.name }}"
+    instance_type: "{{ ec2.instance_type }}"
+    image: "{{ ec2.image }}"
+    wait: yes
+    group: "{{ secgrp.name }}"
+    count: 1
+    vpc_subnet_id: "{{ vpc_regst.subnet.id }}"
+    assign_public_ip: yes
+  register: ec2_regst
+</code></pre>
+<p>[workflow]</p>
+<pre><code class="lang-auto">    tasks:
+      task1:
+        action: ansible.playbook
+        input:
+          playbook: &lt;% $.param %&gt;
+        publish:
+          instance_id: ec2_regst.instances[0].id
+          ec2rr: ec2_regst
+        on-success:
+          - task2
+      task2:
+        action: core.local
+        input:
+          cmd: "echo '$ &lt;% $ %&gt; $.param: &lt;% $.param %&gt;, $.instance_id: &lt;% $.instance_id %&gt;, $.ec2err: &lt;% $.ec2err %&gt;'"
+</code></pre>
+          <p><a href="https://forum.stackstorm.com/t/how-to-get-the-id-of-ec2-instance-created-with-ansible-playbook/903/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-to-get-the-id-of-ec2-instance-created-with-ansible-playbook/903/1</link>
+        <pubDate>Wed, 06 Nov 2019 06:16:51 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-903-1</guid>
+        <source url="https://forum.stackstorm.com/t/how-to-get-the-id-of-ec2-instance-created-with-ansible-playbook/903.rss">How to get the ID of EC2 instance created with Ansible playbook</source>
+      </item>
+  </channel>
+</rss>

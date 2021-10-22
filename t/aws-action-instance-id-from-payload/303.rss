@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>AWS Action - Instance ID from Payload</title>
+    <link>https://forum.stackstorm.com/t/aws-action-instance-id-from-payload/303</link>
+    <description>Hey there,
+
+I&#39;m currently working on an automation of our corresponding AWS account.
+The objective is, to have an automated action based on information about specific EC2 instances.
+
+I&#39;m currently trying to list all available EC2 instances, get their tags and perform an action if a specific key value pair exists.
+
+My problem however is, that I can&#39;t manage to use the Instance id as a parameter. The instance id is obtained via the payload, but the AWS action expects the instance id to be a string, so I can&#39;t use _trigger.payload_instanceId_ as it is used in the criteria field.
+
+Is there any possible way, to use information from the payload in the action section?
+
+Thanks in advance.
+
+Regards,
+Tom</description>
+    
+    <lastBuildDate>Tue, 11 Sep 2018 17:04:34 +0000</lastBuildDate>
+    <category>Rules</category>
+    <atom:link href="https://forum.stackstorm.com/t/aws-action-instance-id-from-payload/303.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>AWS Action - Instance ID from Payload</title>
+        <dc:creator><![CDATA[lhill]]></dc:creator>
+        <description><![CDATA[
+            <p>Good to hear it’s working. Would need to see the rule syntax for the other rule to see why it wasn’t working.</p>
+<p>Probably better to use the <code>boto3</code> actions, rather than the AWS pack. Amongst other things, it’s a lot less content to load in the Web UI.</p>
+          <p><a href="https://forum.stackstorm.com/t/aws-action-instance-id-from-payload/303/6">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/aws-action-instance-id-from-payload/303/6</link>
+        <pubDate>Tue, 11 Sep 2018 17:04:34 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-303-6</guid>
+        <source url="https://forum.stackstorm.com/t/aws-action-instance-id-from-payload/303.rss">AWS Action - Instance ID from Payload</source>
+      </item>
+      <item>
+        <title>AWS Action - Instance ID from Payload</title>
+        <dc:creator><![CDATA[Tom_Depunkt]]></dc:creator>
+        <description><![CDATA[
+            <p>Using the boto3 service action does work now. I don’t know why, but I can’t get it to work using the stop_instances action from the aws action pack.</p>
+<p>Following rule does work now.</p>
+<pre><code>---
+name: "tagging_compl_stop_ec2"  
+description: "Stop non-tagged EC2 instances" 
+enabled: true                       
+
+trigger:                               
+    type: "botosensor.EC2event"
+
+criteria:                             
+    trigger.payload_key:
+        type: "equals"
+        pattern : "name"
+    trigger.payload_value:
+        type: "regex"
+        pattern : "^$"
+    trigger.payload_stateCode:
+        type: "equals"
+        pattern: "16"
+
+action:                                
+    ref: "aws_boto3.boto3action"
+    parameters:                       
+       region: "eu-central-1"
+       service: "ec2"
+       action_name: "stop_instances"
+       params: "{\"InstanceIds\" : [\"{{trigger.payload_instanceId}}\"]}"</code></pre>
+          <p><a href="https://forum.stackstorm.com/t/aws-action-instance-id-from-payload/303/5">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/aws-action-instance-id-from-payload/303/5</link>
+        <pubDate>Tue, 11 Sep 2018 09:32:54 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-303-5</guid>
+        <source url="https://forum.stackstorm.com/t/aws-action-instance-id-from-payload/303.rss">AWS Action - Instance ID from Payload</source>
+      </item>
+      <item>
+        <title>AWS Action - Instance ID from Payload</title>
+        <dc:creator><![CDATA[lhill]]></dc:creator>
+        <description><![CDATA[
+            <p>What does your rule look like? It sounds like your Jinja syntax is wrong.</p>
+          <p><a href="https://forum.stackstorm.com/t/aws-action-instance-id-from-payload/303/4">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/aws-action-instance-id-from-payload/303/4</link>
+        <pubDate>Thu, 06 Sep 2018 15:43:32 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-303-4</guid>
+        <source url="https://forum.stackstorm.com/t/aws-action-instance-id-from-payload/303.rss">AWS Action - Instance ID from Payload</source>
+      </item>
+      <item>
+        <title>AWS Action - Instance ID from Payload</title>
+        <dc:creator><![CDATA[Tom_Depunkt]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi Lindsay,</p>
+<p>thanks for your reply.</p>
+<p>My payload looks like follows:</p>
+<pre><code>{
+  "payload_instanceId": "i-027466b185969573e",
+  "payload_key": "name",
+  "payload_value": ""
+}
+</code></pre>
+<p>The sensor obtains EC2 instances with an empty name tag. These tags as well as the instance Id are saved in the payload. I know want to stop the corresponding instance using the AWS integration pack’s <em>aws.ec2_stop_instances</em> action.</p>
+<p>The problem is, I can’t use the <em>trigger.payload_instanceId</em> as a parameter, as it expects it to be the instance Id as a string.</p>
+<p><code>botocore.exceptions.ClientError: An error occurred (InvalidInstanceID.Malformed) when calling the StopInstances operation: Invalid id: "trigger.payload_instanceId" (expecting "i-...")</code></p>
+<hr>
+<p>Edit:<br>
+This problem occures when using the web ui to create a rule.</p>
+          <p><a href="https://forum.stackstorm.com/t/aws-action-instance-id-from-payload/303/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/aws-action-instance-id-from-payload/303/3</link>
+        <pubDate>Thu, 06 Sep 2018 06:39:29 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-303-3</guid>
+        <source url="https://forum.stackstorm.com/t/aws-action-instance-id-from-payload/303.rss">AWS Action - Instance ID from Payload</source>
+      </item>
+      <item>
+        <title>AWS Action - Instance ID from Payload</title>
+        <dc:creator><![CDATA[lhill]]></dc:creator>
+        <description><![CDATA[
+            <p>It is very common to use payload items in the action.</p>
+<p>I’m not sure why you’re saying it can’t be used in the action because it’s used in the criteria? It can be used in both.</p>
+<p>What does your payload content look like, and what action are you trying to run?</p>
+          <p><a href="https://forum.stackstorm.com/t/aws-action-instance-id-from-payload/303/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/aws-action-instance-id-from-payload/303/2</link>
+        <pubDate>Wed, 05 Sep 2018 13:57:52 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-303-2</guid>
+        <source url="https://forum.stackstorm.com/t/aws-action-instance-id-from-payload/303.rss">AWS Action - Instance ID from Payload</source>
+      </item>
+      <item>
+        <title>AWS Action - Instance ID from Payload</title>
+        <dc:creator><![CDATA[Tom_Depunkt]]></dc:creator>
+        <description><![CDATA[
+            <p>Hey there,</p>
+<p>I’m currently working on an automation of our corresponding AWS account.<br>
+The objective is, to have an automated action based on information about specific EC2 instances.</p>
+<p>I’m currently trying to list all available EC2 instances, get their tags and perform an action if a specific key value pair exists.</p>
+<p>My problem however is, that I can’t manage to use the Instance id as a parameter. The instance id is obtained via the payload, but the AWS action expects the instance id to be a string, so I can’t use <em>trigger.payload_instanceId</em> as it is used in the criteria field.</p>
+<p>Is there any possible way, to use information from the payload in the action section?</p>
+<p>Thanks in advance.</p>
+<p>Regards,<br>
+Tom</p>
+          <p><a href="https://forum.stackstorm.com/t/aws-action-instance-id-from-payload/303/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/aws-action-instance-id-from-payload/303/1</link>
+        <pubDate>Wed, 05 Sep 2018 09:23:38 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-303-1</guid>
+        <source url="https://forum.stackstorm.com/t/aws-action-instance-id-from-payload/303.rss">AWS Action - Instance ID from Payload</source>
+      </item>
+  </channel>
+</rss>

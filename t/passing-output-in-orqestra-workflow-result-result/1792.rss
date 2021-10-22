@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Passing output in orqestra workflow - result().result?</title>
+    <link>https://forum.stackstorm.com/t/passing-output-in-orqestra-workflow-result-result/1792</link>
+    <description>Hi!  I have this yaql that used to work:
+publish:
+          - email: &lt;% result().result.mail[0] %&gt;
+
+I&#39;m getting:
+message: &#39;YaqlEvaluationException: Unable to evaluate expression &#39;&#39;&lt;% result().result.mail[0] %&gt;&#39;&#39;. NoFunctionRegisteredException: Unknown function &quot;#property#mail&quot;&#39;
+
+result looks like:
+result: {&#39;cn&#39;: [b&#39;Redacted Redacted&#39;], &#39;gidNumber&#39;: [b&#39;150&#39;], &#39;givenName&#39;: [b&#39;Redacted&#39;], &#39;sn&#39;: [b&#39;Redacted&#39;], &#39;uid&#39;: [b&#39;red&#39;], &#39;uidNumber&#39;: [b&#39;10222&#39;], &#39;homeDirectory&#39;: [b&#39;/home/red&#39;], &#39;l&#39;: [b&#39;NYC&#39;], &#39;loginShell&#39;: [b&#39;/bin/bash&#39;], &#39;mail&#39;: [b&#39;aredacted.red@poopy.com&#39;], &#39;objectClass&#39;: [b&#39;person&#39;, b&#39;organizationalPerson&#39;, b&#39;inetOrgPerson&#39;, b&#39;posixAccount&#39;, b&#39;shadowAccount&#39;, b&#39;top&#39;, b&#39;inetOrgPersonAccount&#39;, b&#39;inetLocalMailRecipient&#39;, b&#39;ldapPublicKey&#39;]}
+
+Any thoughts would be greatly appreciated!!
+
+$ rpm -qa st2
+st2-3.5.0-1.x86_64</description>
+    
+    <lastBuildDate>Fri, 30 Jul 2021 17:24:18 +0000</lastBuildDate>
+    <category>Workflows</category>
+    <atom:link href="https://forum.stackstorm.com/t/passing-output-in-orqestra-workflow-result-result/1792.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Passing output in orqestra workflow - result().result?</title>
+        <dc:creator><![CDATA[guymatz]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi!  I have this yaql that used to work:<br>
+publish:<br>
+- email: &lt;% result().result.mail[0] %&gt;</p>
+<p>I’m getting:<br>
+message: ‘YaqlEvaluationException: Unable to evaluate expression ‘’&lt;% result().result.mail[0] %&gt;’’. NoFunctionRegisteredException: Unknown function “<span class="hashtag">#property</span>#mail”’</p>
+<p>result looks like:<br>
+result: {‘cn’: [b’Redacted Redacted’], ‘gidNumber’: [b’150’], ‘givenName’: [b’Redacted’], ‘sn’: [b’Redacted’], ‘uid’: [b’red’], ‘uidNumber’: [b’10222’], ‘homeDirectory’: [b’/home/red’], ‘l’: [b’NYC’], ‘loginShell’: [b’/bin/bash’], ‘mail’: [b’aredacted.red@poopy.com’], ‘objectClass’: [b’person’, b’organizationalPerson’, b’inetOrgPerson’, b’posixAccount’, b’shadowAccount’, b’top’, b’inetOrgPersonAccount’, b’inetLocalMailRecipient’, b’ldapPublicKey’]}</p>
+<p>Any thoughts would be greatly appreciated!!</p>
+<p>$ rpm -qa st2<br>
+st2-3.5.0-1.x86_64</p>
+          <p><a href="https://forum.stackstorm.com/t/passing-output-in-orqestra-workflow-result-result/1792/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/passing-output-in-orqestra-workflow-result-result/1792/1</link>
+        <pubDate>Fri, 30 Jul 2021 15:31:55 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1792-1</guid>
+        <source url="https://forum.stackstorm.com/t/passing-output-in-orqestra-workflow-result-result/1792.rss">Passing output in orqestra workflow - result().result?</source>
+      </item>
+  </channel>
+</rss>

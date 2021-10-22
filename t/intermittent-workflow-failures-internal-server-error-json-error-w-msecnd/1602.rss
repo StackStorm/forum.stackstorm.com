@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Intermittent workflow failures. Internal server error, json error w/ msecnd</title>
+    <link>https://forum.stackstorm.com/t/intermittent-workflow-failures-internal-server-error-json-error-w-msecnd/1602</link>
+    <description>Hello,
+
+I have a workflow that is failing occasionally and I&#39;m not getting any helpful error messages. The workflow essentially uses the core.http action to make an API call. I&#39;ve checked log files and there&#39;s nothing outside of this. I don&#39;t know if this is being caused by an issue with Stackstorm or if the issue is coming from the external API service.
+
+EDIT: Version 3.3.0
+
+EDIT 2: Resolved. The issue is that the json payload included drive details, such as &quot;C:\\&quot;. The double-backslash was causing the failures. I added a jinja2 filter to the workflow to replace the &quot;\\&quot; string and all is well.
+
+```
+&quot;errors&quot;: [
+    {
+      &quot;message&quot;: &quot;Execution failed. See result for details.&quot;,
+      &quot;type&quot;: &quot;error&quot;,
+      &quot;result&quot;: {
+        &quot;body&quot;: {
+          &quot;message&quot;: &quot;&quot;,
+          &quot;code&quot;: &quot;ISM_5000&quot;,
+          &quot;description&quot;: &quot;Internal server error&quot;,
+          &quot;help&quot;: &quot;&quot;
+        },
+        &quot;status_code&quot;: 500,
+        &quot;parsed&quot;: true,
+        &quot;headers&quot;: {
+          &quot;Content-Length&quot;: &quot;102&quot;,
+          &quot;X-XSS-Protection&quot;: &quot;1; mode=block&quot;,
+          &quot;Content-Security-Policy&quot;: &quot;script-src &#39;self&#39; &#39;unsafe-inline&#39; &#39;unsafe-eval&#39; https://az416426.vo.msecnd.net https://cdvfile/localhost/&quot;,
+          &quot;X-Powered-By&quot;: &quot;Ivanti Service Manager&quot; (this is an external SaaS),
+          &quot;Set-Cookie&quot;: &quot;heatapiauth=; expires=Wed, 17 Mar 2021 18:11:03 GMT; path=/&quot;,
+          &quot;Expires&quot;: &quot;-1&quot;,
+          &quot;Server&quot;: &quot;&quot;,
+          &quot;Connection&quot;: &quot;keep-alive&quot;,
+          &quot;Feature-Policy&quot;: &quot;payment &#39;none&#39;; microphone &#39;none&#39;; geolocation &#39;none&#39;; camera &#39;none&#39;; sync-xhr &#39;self&#39;&quot;,
+          &quot;X-UA-Compatible&quot;: &quot;IE=9, IE=edge&quot;,
+          &quot;Pragma&quot;: &quot;no-cache&quot;,
+          &quot;Cache-Control&quot;: &quot;no-cache&quot;,
+          &quot;Date&quot;: &quot;Thu, 18 Mar 2021 18:11:03 GMT&quot;,
+          &quot;Strict-Transport-Security&quot;: &quot;max-age=31536000; includeSubDomains&quot;,
+          &quot;Referrer-Policy&quot;: &quot;no-referrer&quot;,
+          &quot;Content-Type&quot;: &quot;application/json&quot;,
+          &quot;WWW-Authenticate&quot;: &quot;Bearer&quot;,
+          &quot;X-Frame-Options&quot;: &quot;SAMEORIGIN&quot;
+        }
+      },
+      &quot;task_id&quot;: &quot;task1&quot;
+    }
+  ]
+```</description>
+    
+    <lastBuildDate>Thu, 18 Mar 2021 19:21:43 +0000</lastBuildDate>
+    <category>Workflows</category>
+    <atom:link href="https://forum.stackstorm.com/t/intermittent-workflow-failures-internal-server-error-json-error-w-msecnd/1602.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Intermittent workflow failures. Internal server error, json error w/ msecnd</title>
+        <dc:creator><![CDATA[KCPavon]]></dc:creator>
+        <description><![CDATA[
+            <p>That’s my current theory as well. So at least if I’m wrong I’m in good company.</p>
+          <p><a href="https://forum.stackstorm.com/t/intermittent-workflow-failures-internal-server-error-json-error-w-msecnd/1602/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/intermittent-workflow-failures-internal-server-error-json-error-w-msecnd/1602/3</link>
+        <pubDate>Thu, 18 Mar 2021 19:21:43 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1602-3</guid>
+        <source url="https://forum.stackstorm.com/t/intermittent-workflow-failures-internal-server-error-json-error-w-msecnd/1602.rss">Intermittent workflow failures. Internal server error, json error w/ msecnd</source>
+      </item>
+      <item>
+        <title>Intermittent workflow failures. Internal server error, json error w/ msecnd</title>
+        <dc:creator><![CDATA[blag]]></dc:creator>
+        <description><![CDATA[
+            <p>I think the service you are hitting is returning an HTTP 500 error - see <code>result.status_code</code> and <code>result.body.description</code>.</p>
+          <p><a href="https://forum.stackstorm.com/t/intermittent-workflow-failures-internal-server-error-json-error-w-msecnd/1602/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/intermittent-workflow-failures-internal-server-error-json-error-w-msecnd/1602/2</link>
+        <pubDate>Thu, 18 Mar 2021 19:19:45 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1602-2</guid>
+        <source url="https://forum.stackstorm.com/t/intermittent-workflow-failures-internal-server-error-json-error-w-msecnd/1602.rss">Intermittent workflow failures. Internal server error, json error w/ msecnd</source>
+      </item>
+      <item>
+        <title>Intermittent workflow failures. Internal server error, json error w/ msecnd</title>
+        <dc:creator><![CDATA[KCPavon]]></dc:creator>
+        <description><![CDATA[
+            <p>Hello,</p>
+<p>I have a workflow that is failing occasionally and I’m not getting any helpful error messages. The workflow essentially uses the core.http action to make an API call. I’ve checked log files and there’s nothing outside of this. I don’t know if this is being caused by an issue with Stackstorm or if the issue is coming from the external API service.</p>
+<p>EDIT: Version 3.3.0</p>
+<p>EDIT 2: Resolved. The issue is that the json payload included drive details, such as “C:\”. The double-backslash was causing the failures. I added a jinja2 filter to the workflow to replace the “\” string and all is well.</p>
+<pre><code class="lang-auto">"errors": [
+    {
+      "message": "Execution failed. See result for details.",
+      "type": "error",
+      "result": {
+        "body": {
+          "message": "",
+          "code": "ISM_5000",
+          "description": "Internal server error",
+          "help": ""
+        },
+        "status_code": 500,
+        "parsed": true,
+        "headers": {
+          "Content-Length": "102",
+          "X-XSS-Protection": "1; mode=block",
+          "Content-Security-Policy": "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://az416426.vo.msecnd.net https://cdvfile/localhost/",
+          "X-Powered-By": "Ivanti Service Manager" (this is an external SaaS),
+          "Set-Cookie": "heatapiauth=; expires=Wed, 17 Mar 2021 18:11:03 GMT; path=/",
+          "Expires": "-1",
+          "Server": "",
+          "Connection": "keep-alive",
+          "Feature-Policy": "payment 'none'; microphone 'none'; geolocation 'none'; camera 'none'; sync-xhr 'self'",
+          "X-UA-Compatible": "IE=9, IE=edge",
+          "Pragma": "no-cache",
+          "Cache-Control": "no-cache",
+          "Date": "Thu, 18 Mar 2021 18:11:03 GMT",
+          "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+          "Referrer-Policy": "no-referrer",
+          "Content-Type": "application/json",
+          "WWW-Authenticate": "Bearer",
+          "X-Frame-Options": "SAMEORIGIN"
+        }
+      },
+      "task_id": "task1"
+    }
+  ]
+</code></pre>
+          <p><a href="https://forum.stackstorm.com/t/intermittent-workflow-failures-internal-server-error-json-error-w-msecnd/1602/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/intermittent-workflow-failures-internal-server-error-json-error-w-msecnd/1602/1</link>
+        <pubDate>Thu, 18 Mar 2021 18:45:31 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1602-1</guid>
+        <source url="https://forum.stackstorm.com/t/intermittent-workflow-failures-internal-server-error-json-error-w-msecnd/1602.rss">Intermittent workflow failures. Internal server error, json error w/ msecnd</source>
+      </item>
+  </channel>
+</rss>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>How to get the matched criteria values into action as parameters</title>
+    <link>https://forum.stackstorm.com/t/how-to-get-the-matched-criteria-values-into-action-as-parameters/826</link>
+    <description>Hi Stackstorm Team
+
+I am inspired from search operator mentioned in https://docs.stackstorm.com/rules.html, i am using search operator to match a specific keyword from trigger which has a list of key:values
+
+payload looks like below
+
+{ &#39;issue_fields&#39;: [
+   { 
+     &#39;servername&#39;: &#39;prodweb1&#39;,
+     &#39;servicename&#39;: &#39;check_ntp&#39;
+   },
+  {
+    &#39;servername&#39;: &#39;prodapp2&#39;,
+    &#39;servicename&#39;: &#39;check_tomcat&#39;
+  }]
+}
+
+ the trigger &amp; criteria looks good and the rule works fine with some basic action i am using in my scenario. How can i pass the iterating item value info to action when the pattern matches , i need the info to  be used inside action as host parameters, i am planning to use the value using jinja. This is for using ansible as my action.ref, nagdash/icinga as my sensor. Please help
+
+
+Ex: 
+---
+criteria:
+  trigger.issue_fields:
+    type: &quot;search&quot;
+      # Controls whether all items in the trigger payload must match the child criteria,
+      # or if any single item matching the child criteria is sufficient
+      condition: any  # &lt;- *At least one* item must match all child patterns
+      pattern:
+        # Here our context is each item of the list
+        # All of these patterns must match the item for the item to be considered a match
+        # These are simply other operators applied to each item of the list
+        item.field_name:
+          type: &quot;equals&quot;
+          pattern: &quot;Status&quot;
+
+        item.to_value:
+          type: &quot;equals&quot;
+          pattern: &quot;Approved&quot;
+
+I would like to send the custom key info to a sample action whenever there is a match</description>
+    
+    <lastBuildDate>Sun, 08 Sep 2019 05:29:09 +0000</lastBuildDate>
+    <category>Rules</category>
+    <atom:link href="https://forum.stackstorm.com/t/how-to-get-the-matched-criteria-values-into-action-as-parameters/826.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>How to get the matched criteria values into action as parameters</title>
+        <dc:creator><![CDATA[srimand]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi Stackstorm Team</p>
+<p>I am inspired from search operator mentioned in <a href="https://docs.stackstorm.com/rules.html" class="inline-onebox" rel="nofollow noopener">Rules — StackStorm 3.1.0 documentation</a>, i am using search operator to match a specific keyword from trigger which has a list of key:values</p>
+<p>payload looks like below</p>
+<p>{ ‘issue_fields’: [<br>
+{<br>
+‘servername’: ‘prodweb1’,<br>
+‘servicename’: ‘check_ntp’<br>
+},<br>
+{<br>
+‘servername’: ‘prodapp2’,<br>
+‘servicename’: ‘check_tomcat’<br>
+}]<br>
+}</p>
+<p>the trigger &amp; criteria looks good and the rule works fine with some basic action i am using in my scenario. How can i pass the iterating item value info to action when the pattern matches , i need the info to  be used inside action as host parameters, i am planning to use the value using jinja. This is for using ansible as my action.ref, nagdash/icinga as my sensor. Please help</p>
+<h2>Ex:</h2>
+<p>criteria:<br>
+trigger.issue_fields:<br>
+type: “search”<br>
+# Controls whether all items in the trigger payload must match the child criteria,<br>
+# or if any single item matching the child criteria is sufficient<br>
+condition: any  # &lt;- <em>At least one</em> item must match all child patterns<br>
+pattern:<br>
+# Here our context is each item of the list<br>
+# All of these patterns must match the item for the item to be considered a match<br>
+# These are simply other operators applied to each item of the list<br>
+item.field_name:<br>
+type: “equals”<br>
+pattern: “Status”</p>
+<pre><code>    item.to_value:
+      type: "equals"
+      pattern: "Approved"
+</code></pre>
+<p>I would like to send the custom key info to a sample action whenever there is a match</p>
+          <p><a href="https://forum.stackstorm.com/t/how-to-get-the-matched-criteria-values-into-action-as-parameters/826/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-to-get-the-matched-criteria-values-into-action-as-parameters/826/1</link>
+        <pubDate>Sat, 07 Sep 2019 18:52:48 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-826-1</guid>
+        <source url="https://forum.stackstorm.com/t/how-to-get-the-matched-criteria-values-into-action-as-parameters/826.rss">How to get the matched criteria values into action as parameters</source>
+      </item>
+  </channel>
+</rss>

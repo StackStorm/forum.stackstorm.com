@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en" class="desktop-view not-mobile-device text-size-normal anon">
+<head>
+    <meta charset="utf-8">
+    <title>How to make the webUI works with the st2 Proxy Auth Mode - howto - StackStorm Support (ARCHIVED)</title>
+    <meta name="description"
+          content="I am trying to integrate the webui into our project so I need authenticate users with the SSO, which is not supported by the st2 by default. If I configure the st2 authentication as the Proxy Auth Mode, then the authetic&amp;hellip;">
+    <meta name="discourse_theme_id" content="2">
+    <meta name="discourse_current_homepage" content="latest">
+    <meta name="generator"
+          content="Discourse 2.8.0.beta6 - https://github.com/discourse/discourse version a1daf9fe53a66e2d2cdf9757ab4812fb9a2b2787">
+    <link rel="icon" type="image/png"
+          href="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/379ced12f8326d58f1b3d2b3ff652f883e141f6a_2_32x32.PNG">
+    <link rel="apple-touch-icon" type="image/png"
+          href="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/379ced12f8326d58f1b3d2b3ff652f883e141f6a_2_180x180.PNG">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <link rel="canonical" href="197.html"/>
+    <script type="application/ld+json">{
+        "@context": "http://schema.org",
+        "@type": "WebSite",
+        "url": "https://forum.stackstorm.com",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://forum.stackstorm.com/search?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }
+    </script>
+    <link rel="search" type="application/opensearchdescription+xml" href="../../opensearch.xml"
+          title="StackStorm Support (ARCHIVED) Search">
+
+
+    <link href="/../../stylesheets/color_definitions_base__2_3c5eec1ecf192052ea70b4afdab57a62bccc0604.css?__ws=forum.stackstorm.com"
+          media="all" rel="stylesheet" class="light-scheme"/>
+
+    <link href="/../../stylesheets/desktop_b2f2968742d41481357e0df259b51ce29f72481a.css?__ws=forum.stackstorm.com"
+          media="all" rel="stylesheet" data-target="desktop"/>
+
+
+    <meta name="fragment" content="!">
+
+
+    <link id="manifest-link" rel="manifest" href="../../manifest.webmanifest" crossorigin="use-credentials">
+
+
+    <link rel="alternate" type="application/rss+xml"
+          title="RSS feed of &#39;How to make the webUI works with the st2 Proxy Auth Mode&#39;"
+          href="https://forum.stackstorm.com/t/how-to-make-the-webui-works-with-the-st2-proxy-auth-mode/197.rss"/>
+    <meta property="og:site_name" content="StackStorm Support (ARCHIVED)"/>
+    <meta property="og:type" content="website"/>
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:image"
+          content="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/891f00fbdb31fecb5bd9dab30c186d2fed0091ca.jpeg"/>
+    <meta property="og:image"
+          content="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/891f00fbdb31fecb5bd9dab30c186d2fed0091ca.jpeg"/>
+    <meta property="og:url"
+          content="https://forum.stackstorm.com/t/how-to-make-the-webui-works-with-the-st2-proxy-auth-mode/197"/>
+    <meta name="twitter:url"
+          content="https://forum.stackstorm.com/t/how-to-make-the-webui-works-with-the-st2-proxy-auth-mode/197"/>
+    <meta property="og:title" content="How to make the webUI works with the st2 Proxy Auth Mode"/>
+    <meta name="twitter:title" content="How to make the webUI works with the st2 Proxy Auth Mode"/>
+    <meta property="og:description"
+          content="I am trying to integrate the webui into our project so I need authenticate users with the SSO, which is not supported by the st2 by default. If I configure the st2 authentication as the Proxy Auth Mode, then the authetication can performed on the webUI, and get the token from the st2.  Has anyone tried this method? Thanks"/>
+    <meta name="twitter:description"
+          content="I am trying to integrate the webui into our project so I need authenticate users with the SSO, which is not supported by the st2 by default. If I configure the st2 authentication as the Proxy Auth Mode, then the authetication can performed on the webUI, and get the token from the st2.  Has anyone tried this method? Thanks"/>
+    <meta name="twitter:label1" value="Reading time"/>
+    <meta name="twitter:data1" value="2 mins 🕑"/>
+    <meta name="twitter:label2" value="Likes"/>
+    <meta name="twitter:data2" value="1 ❤"/>
+    <meta property="article:published_time" content="2018-06-29T08:51:15+00:00"/>
+    <meta property="og:ignore_canonical" content="true"/>
+
+
+    <script type="application/ld+json">{
+        "@context": "http://schema.org",
+        "@type": "QAPage",
+        "name": "How to make the webUI works with the st2 Proxy Auth Mode",
+        "mainEntity": {
+            "@type": "Question",
+            "name": "How to make the webUI works with the st2 Proxy Auth Mode",
+            "text": "I am trying to integrate the webui into our project so I need authenticate users with the SSO, which is not supported by the st2 by default. If I configure the st2 authentication as the Proxy Auth Mode, then the authetication can performed on the webUI, and get the token from the st2.\n\nHas anyone tr&hellip;",
+            "upvoteCount": 0,
+            "answerCount": 0,
+            "dateCreated": "2018-06-29T08:51:15.730Z",
+            "author": {
+                "@type": "Person",
+                "name": "Jimmy0628"
+            }
+        }
+    }
+    </script>
+
+    <meta id="data-discourse-setup" data-cdn="https://sjc6.discourse-cdn.com/standard10"
+          data-base-url="https://forum.stackstorm.com" data-base-uri="" data-environment="production"
+          data-letter-avatar-version="5_8fec8e114563efeaf5265573e510f08e"
+          data-markdown-it-url="https://aws1.discourse-cdn.com/standard10/assets/markdown-it-bundle-31e9a9c535ca1801c26da78b0ff465821751a98f921c5cdc5457d7e5a69e9748.js"
+          data-service-worker-url="service-worker.js" data-default-locale="en"
+          data-asset-version="597e36448c9b51d0fa3b7e43ec1fd6d5" data-disable-custom-css="false"
+          data-highlight-js-path="/highlight-js/forum.stackstorm.com/ac0f4aa001e1343346941766d72e0c1ae330832b.js"
+          data-svg-sprite-path="/svg-sprite/forum.stackstorm.com/svg-2-c2ad434b1e06079c7e282124aed9938dc95b83ea.js"
+          data-enable-js-error-reporting="true" data-color-scheme-is-dark="false" data-user-dark-scheme-id="-1"
+          data-s3-cdn="https://aws1.discourse-cdn.com/standard10"
+          data-s3-base-url="//discourse-cloud-file-uploads.s3.dualstack.us-west-2.amazonaws.com/standard10">
+
+    <meta name="discourse/config/environment"
+          content="%7B%22modulePrefix%22%3A%22discourse%22%2C%22environment%22%3A%22production%22%2C%22rootURL%22%3A%22%22%2C%22locationType%22%3A%22auto%22%2C%22historySupportMiddleware%22%3Afalse%2C%22EmberENV%22%3A%7B%22FEATURES%22%3A%7B%7D%2C%22EXTEND_PROTOTYPES%22%3A%7B%22Date%22%3Afalse%7D%2C%22_APPLICATION_TEMPLATE_WRAPPER%22%3Afalse%2C%22_DEFAULT_ASYNC_OBSERVERS%22%3Atrue%2C%22_JQUERY_INTEGRATION%22%3Atrue%7D%2C%22APP%22%3A%7B%22name%22%3A%22discourse%22%2C%22version%22%3A%222.8.0.beta6%20a1daf9fe53a66e2d2cdf9757ab4812fb9a2b2787%22%2C%22exportApplicationGlobal%22%3Atrue%7D%7D"/>
+</head>
+
+<body class="">
+
+
+<header class="d-header">
+    <div class="wrap">
+        <div class="contents clearfix">
+            <div class="title">
+                <a href="../../index.html">
+                    <picture>
+                        <img src="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png"
+                             alt="StackStorm Support (ARCHIVED)" id="site-logo"/>
+                    </picture>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</header>
+
+<div id="main-outlet" class="wrap" role="main">
+    <!-- preload-content: -->
+
+    <!-- EOF START -->
+    <div class="container" id="main-container">
+        <div id="ember11" class="ember-view"></div>
+        <div id="ember12" class="controls ember-view"><!----></div>
+        <div id="ember13" class="ember-view"><!----></div>
+        <div id="ember14" class="ember-view">
+            <div class="row">
+                <div id="global-notice-alert-read-only" class="alert alert-info alert-read-only">
+                    <!----> <span class="text">This site is in read only mode. Please continue to browse, but replying, likes, and other actions are disabled for now.</span>
+
+                    <!---->    </div>
+            </div>
+            <div class="row">
+                <div id="global-notice-alert-global-notice" class="alert alert-info alert-global-notice">
+                    <!----> <span class="text"><h3>⚠️ We've moved!</h3>  <p> Hi there!<br><br> To reduce project dependency on 3rd party paid services the StackStorm TSC has decided to move the Q/A from this forum to <a
+                        href="https://github.com/StackStorm/st2/discussions">Github Discussions</a>. This will make user experience better integrated with the native Github flow, as well as the questions closer to the community where they can provide answers. </p>  <p> Use 🔗 <b><a
+                        href="https://github.com/StackStorm/st2/discussions" class="active">Github Discussions</a></b> to ask your questions. </p></span>
+
+                    <!---->    </div>
+            </div>
+        </div>
+        <div id="ember17" class="hidden create-topics-notice ember-view"><!----></div>
+        <!---->
+    </div>
+    <!-- EOF END -->
+    <div id="topic-title">
+        <h1>
+            <a href="197.html">How to make the webUI works with the st2 Proxy Auth Mode</a>
+        </h1>
+
+
+        <div class="topic-category">
+            <div class='discourse-tags list-tags'>
+                <a href='../../tag/howto' class='discourse-tag' rel="tag">howto</a>,
+                <a href='../../tag/webui' class='discourse-tag' rel="tag">webui</a>
+            </div>
+        </div>
+    </div>
+
+
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/jimmy0628'><span itemprop='name'>jimmy0628</span></a>
+            (Jimmy0628)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="197.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2018-06-29T08:51:15Z' class='post-time'>
+                June 29, 2018,  8:51am
+              </time>
+              <meta itemprop='dateModified' content='2019-11-01T20:58:09Z'>
+          <span itemprop='position'>#1</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>I am trying to integrate the webui into our project so I need authenticate users with the SSO, which is
+                not supported by the st2 by default. If I configure the st2 authentication as the Proxy Auth Mode, then
+                the authetication can performed on the webUI, and get the token from the st2.</p>
+            <p>Has anyone tried this method? Thanks</p>
+        </div>
+
+        <meta itemprop='headline' content='How to make the webUI works with the st2 Proxy Auth Mode'>
+        <meta itemprop='keywords' content='howto, webui'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/kami'><span itemprop='name'>kami</span></a>
+            (Tomaz Muraus)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="197.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2018-07-03T12:10:43Z' class='post-time'>
+                July 3, 2018, 12:10pm
+              </time>
+              <meta itemprop='dateModified' content='2018-07-03T12:33:07Z'>
+          <span itemprop='position'>#2</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>After more digging in, it turns out current code is indeed correct - <a
+                    href="https://github.com/StackStorm/st2/pull/4224#issuecomment-402132318" rel="nofollow noopener">Fix
+                "proxy" authentication mode by Kami · Pull Request #4224 · StackStorm/st2 · GitHub</a></p>
+            <p>The only thing which needs updating is documentation. “REMOTE_ADDR” and “REMOTE_USER” values should come
+                in as a CGI environment variable and not as header values.</p>
+            <p>In some scenarios, it might also make sense to allow proxy to pass those values as a header, but this is
+                harder to do correctly and has more safety risk - you would need to configure proxy which sits before
+                st2auth and handle authentication to always set those two headers and to make sure user can’t directly
+                overwrite those headers.</p>
+            <p>I updated documentation in <a href="https://github.com/StackStorm/st2docs/pull/761"
+                                             rel="nofollow noopener">Clarify remote_user and remote_addr need to come in
+                as a CGI environment variable by Kami · Pull Request #761 · StackStorm/st2docs · GitHub</a> to clarify
+                that.</p>
+        </div>
+
+        <meta itemprop='headline' content='How to make the webUI works with the st2 Proxy Auth Mode'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/chris'><span itemprop='name'>chris</span></a>
+            
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="197.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2019-10-30T10:32:12Z' class='post-time'>
+                October 30, 2019, 10:32am
+              </time>
+              <meta itemprop='dateModified' content='2019-10-30T16:01:07Z'>
+          <span itemprop='position'>#3</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Sorry for bumping, but I think opening a new topic is not desirable, as my question relates to this
+                one.</p>
+            <p>The documentation is lacking information about how to setup this environment correctly. Currently, I got
+                around the header passing limitation by transforming headers to variables using uwsgi and nginx. With
+                this setup I can retrieve tokens from the auth backend in json format.</p>
+            <p>I’m not sure how to continue from here. The webui does not seem to have native support for proxy mode.
+                After digging through the st2web repo, I found that the webui only grants access when localStorage
+                contains an st2session. I cannot force this through regular SSO redirects and server-side magic. The
+                only hack I could come up with is creating a login helper page, that is loaded when the auth-token
+                cookie is not set. This page could potentially load values in the local storage and reload the page,
+                loading the actual frontend.</p>
+            <p>This sounds like a very convoluted way of getting something done that should be fairly easy. Is there any
+                support for passing the token to the frontend in an elegant way?</p>
+            <p><strong>Edit</strong><br>
+                I’ve implemented the fix described above. Simply adding an extra page and forcing nginx to load this
+                page, if the auth-token cookie does not exist. The page’s sole purpose is to retrieve the token, set it
+                in the local storage and as a cookie and reload the page. This fix does what I want, but its still a
+                hack to get functionality that I expected to work out of the box.</p>
+        </div>
+
+        <meta itemprop='headline' content='How to make the webUI works with the st2 Proxy Auth Mode'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/kami'><span itemprop='name'>kami</span></a>
+            (Tomaz Muraus)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="197.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2019-10-31T19:08:54Z' class='post-time'>
+                October 31, 2019,  7:08pm
+              </time>
+              <meta itemprop='dateModified' content='2019-10-31T19:08:54Z'>
+          <span itemprop='position'>#4</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>We actually had some of the similar issues while working on SSO support for our proprietary version (EWC
+                - Extreme Workflow Composer).</p>
+            <p>In the end we went with the approach where server (st2auth) returns a piece of JavaScript which writes
+                token to local storage after successful SSO exchange before redirecting user to the main page of
+                WebUI.</p>
+        </div>
+
+        <meta itemprop='headline' content='How to make the webUI works with the st2 Proxy Auth Mode'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/chris'><span itemprop='name'>chris</span></a>
+            
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="197.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2019-11-06T12:40:19Z' class='post-time'>
+                November 6, 2019, 12:40pm
+              </time>
+              <meta itemprop='dateModified' content='2019-11-06T12:40:19Z'>
+          <span itemprop='position'>#5</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Thanks for your reply. Nice to know that SSO will be supported in the future. But what I’ve seen from the
+                PRs, it will support saml directly, while we would like to use the proxy mode.</p>
+            <p>However, according to the documentation, proxy mode should already be supported by the open source
+                version, but from my experience, this is not entirely true. I’ll share the roadblocks we stumbled upon
+                and the solutions we found.</p>
+            <p>There are three fundamental problems:</p>
+            <ol>
+                <li>st2auth only accepts “CGI” parameters. While the documentation explains that “CGI” parameters are
+                    used by st2auth, it does not explain how these should be passed.
+                </li>
+                <li>The front-end only supports standalone mode (it does not retrieve a token for you, when in proxy
+                    mode).
+                </li>
+                <li>Internal tools (the st2 command line utility) only support standalone mode (they’ll only do a basic
+                    auth request to auth backend, which is not accepted in proxy mode).
+                </li>
+            </ol>
+            <p>We wanted to run the docker setup, so we used as many components that were already in the stackstorm
+                image as possible. To fix the problems above, we created a new image based on the original stackstorm
+                image, adding some modifications.</p>
+            <p>We solved the <em>first problem</em> with <strong>uwsgi</strong>. Our SSO solution expects backends to
+                accept a header with the username. So, we used nginx to transform the incoming header to a uwsgi
+                parameter, which is passed to the st2auth backend.</p>
+            <p>The <em>second problem</em> was solved by adding an extra html file (auth.html) to the static directory,
+                which retrieves a token (simply by sending a plain post request to /auth/tokens) and storing it in the
+                local storage. After that, it sets the auth-token cookie and reloads the page. In nginx we added a rule
+                to load auth.html if the auth-token cookie was not set on the incoming request, otherwise, load the
+                normal front-end. This trick ensures the login page is never shown.</p>
+            <p>Finally, for the <em>third problem</em>, we added a modifying proxy in front of st2auth on the default
+                port (9100). Since we configured st2auth using uwsgi on a unix socket, port 9100 was still free. This
+                allowed us to setup a simple uwsgi vassal, written in python, that proxies all request to the real
+                backend. We do this by forwarding the request to <a href="https://localhost/auth/tokens"
+                                                                    rel="nofollow noopener">https://localhost/auth/tokens</a>,
+                with the cookie header set to “auth-token=”. The cookie prevents the auth.html page to be loaded. When
+                the proxy encounters a Authorization header, it extracts the username from it and passes the username in
+                the appropriate header to the backend. This trick fixes logins from the command line (st2 login ). This
+                is far from ideal, as this allows you to login as any user with any password (password doesn’t really
+                matter), it is sufficient for our current use case (the command line will only be used for debugging
+                purposes).</p>
+            <p>This setup seems to accommodate our scenario. We understand that the first problem is not a bug, but a
+                features (according to the documentation). But the second and third problem are bugs in my opinion. You
+                would expect the stackstorm front-end and tooling to know how to handle requests to the authentication
+                backend, when it runs in <em>proxy</em> mode.</p>
+        </div>
+
+        <meta itemprop='headline' content='How to make the webUI works with the st2 Proxy Auth Mode'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+            <span class='post-likes'>1 Like</span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/jeremy'><span itemprop='name'>jeremy</span></a>
+            (Jeremy)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="197.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2020-01-07T13:56:46Z' class='post-time'>
+                January 7, 2020,  1:56pm
+              </time>
+              <meta itemprop='dateModified' content='2020-01-07T13:56:46Z'>
+          <span itemprop='position'>#6</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Hi <a class="mention" href="https://github.com/chris">@chris</a></p>
+            <p>We’re having the same problem as this - we’re trying to use Auth proxy mode to generate tokens for our
+                users - but can’t figure out how to pass the required IP / Username to st2auth in order to get the
+                token.</p>
+            <p>You mention you have used uwsgi to transform a header to a CGI parameter in nginx. We’re trying to do
+                this using a uwsgi_pass to our ip:port but we get a 502. I think you mention you used a socket for
+                this.</p>
+            <p>If you could share what your nginx config looks like / how you set up the unix socket, that would be most
+                appreciated.</p>
+            <p>Thanks in advance,</p>
+            <p>Jeremy</p>
+        </div>
+
+        <meta itemprop='headline' content='How to make the webUI works with the st2 Proxy Auth Mode'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/chris'><span itemprop='name'>chris</span></a>
+            
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="197.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2020-01-09T14:17:43Z' class='post-time'>
+                January 9, 2020,  2:17pm
+              </time>
+              <meta itemprop='dateModified' content='2020-01-09T14:17:43Z'>
+          <span itemprop='position'>#7</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Hi Jeremy,</p>
+            <p>The code is a bit involved. To simplify the matter for you (and possibly others), I’ve created a small
+                repository with the a simple setup to get a basic stackstorm docker image which accepts X-Forwarded-User
+                headers correctly. You can find the repository <a href="https://github.com/chris-crunchr/docker-st2-sso"
+                                                                  rel="nofollow noopener">here</a>.</p>
+        </div>
+
+        <meta itemprop='headline' content='How to make the webUI works with the st2 Proxy Auth Mode'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/jeremy'><span itemprop='name'>jeremy</span></a>
+            (Jeremy)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="197.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2020-01-13T11:43:40Z' class='post-time'>
+                January 13, 2020, 11:43am
+              </time>
+              <meta itemprop='dateModified' content='2020-01-13T11:43:40Z'>
+          <span itemprop='position'>#8</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Hi Chris,</p>
+            <p>That is fantastic, thank you! We’ve had to tweak it a little bit to get it working on a Centos box but
+                we’ve got it working perfectly now.</p>
+            <p>You are a true and absolute legend.<br>
+                Thank you!</p>
+        </div>
+
+        <meta itemprop='headline' content='How to make the webUI works with the st2 Proxy Auth Mode'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+
+
+    <!-- :preload-content -->
+    <footer class="noscript-footer-nav">
+        <nav itemscope itemtype='http://schema.org/SiteNavigationElement'>
+            <a href='../../index.html'>Home</a>
+            <a href="../../categories.html">Categories</a>
+            <a href="https://forum.stackstorm.com/guidelines">FAQ/Guidelines</a>
+            <a href="../../tos.html">Terms of Service</a>
+            <a href="../../privacy.html">Privacy Policy</a>
+        </nav>
+    </footer>
+</div>
+
+<footer id='noscript-footer'>
+    <p>Powered by <a href="https://www.discourse.org">Discourse</a>, best viewed with JavaScript enabled</p>
+</footer>
+
+
+<section id='main'>
+</section>
+
+
+</body>
+</html>

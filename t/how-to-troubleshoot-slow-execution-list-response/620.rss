@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>How to troubleshoot slow `execution list` response?</title>
+    <link>https://forum.stackstorm.com/t/how-to-troubleshoot-slow-execution-list-response/620</link>
+    <description>```
+# st2 --version
+st2 2.10.1, on Python 2.7.6
+```
+I&#39;m facing `st2 execution` command latency issue in my single node st2 environment.
+First `st2 execution list --last 20`  spent 4 minutes to show the result.  
+Second and after it took 5 seconds only.
+
+I&#39;d like to learn how I can investigate this latency issue.  Any advice is appreciated.
+Thanks in advance.</description>
+    
+    <lastBuildDate>Thu, 16 May 2019 09:28:20 +0000</lastBuildDate>
+    <category>Mistral</category>
+    <atom:link href="https://forum.stackstorm.com/t/how-to-troubleshoot-slow-execution-list-response/620.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>How to troubleshoot slow `execution list` response?</title>
+        <dc:creator><![CDATA[Yoshi]]></dc:creator>
+        <description><![CDATA[
+            <p>Thank you very much for the comment and my apologies for delayed response.<br>
+We doubt this was caused by high workload for both st2 and postgres containers, and restarted them.<br>
+Its working much better as of now, and would like to keep it for a while and check how it goes.</p>
+          <p><a href="https://forum.stackstorm.com/t/how-to-troubleshoot-slow-execution-list-response/620/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-to-troubleshoot-slow-execution-list-response/620/3</link>
+        <pubDate>Thu, 16 May 2019 09:28:20 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-620-3</guid>
+        <source url="https://forum.stackstorm.com/t/how-to-troubleshoot-slow-execution-list-response/620.rss">How to troubleshoot slow `execution list` response?</source>
+      </item>
+      <item>
+        <title>How to troubleshoot slow `execution list` response?</title>
+        <dc:creator><![CDATA[kami]]></dc:creator>
+        <description><![CDATA[
+            <p>We’ve made a lot of API related performance improvements in the last couple of releases and <code>st2 execution list</code> should never take that long.</p>
+<p>One thing you can do is run <code>st2 execution list -n 20</code> and then copy over the curl line it prints out and time that directly (to see if the issue lies on the CLI side, API side or somewhere else - e.g. network, database, etc.).</p>
+<p>Also, is there enough free disk space on that server (especially the partition where MongoDB data files live)?</p>
+<p>We’ve seen similar behavior in the past linked to the lack of free disk space.</p>
+          <p><a href="https://forum.stackstorm.com/t/how-to-troubleshoot-slow-execution-list-response/620/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-to-troubleshoot-slow-execution-list-response/620/2</link>
+        <pubDate>Wed, 24 Apr 2019 12:06:21 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-620-2</guid>
+        <source url="https://forum.stackstorm.com/t/how-to-troubleshoot-slow-execution-list-response/620.rss">How to troubleshoot slow `execution list` response?</source>
+      </item>
+      <item>
+        <title>How to troubleshoot slow `execution list` response?</title>
+        <dc:creator><![CDATA[Yoshi]]></dc:creator>
+        <description><![CDATA[
+            <pre><code class="lang-auto"># st2 --version
+st2 2.10.1, on Python 2.7.6
+</code></pre>
+<p>I’m facing <code>st2 execution</code> command latency issue in my single node st2 environment.<br>
+First <code>st2 execution list --last 20</code>  spent 4 minutes to show the result.<br>
+Second and after it took 5 seconds only.</p>
+<p>I’d like to learn how I can investigate this latency issue.  Any advice is appreciated.<br>
+Thanks in advance.</p>
+          <p><a href="https://forum.stackstorm.com/t/how-to-troubleshoot-slow-execution-list-response/620/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-to-troubleshoot-slow-execution-list-response/620/1</link>
+        <pubDate>Wed, 24 Apr 2019 11:29:09 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-620-1</guid>
+        <source url="https://forum.stackstorm.com/t/how-to-troubleshoot-slow-execution-list-response/620.rss">How to troubleshoot slow `execution list` response?</source>
+      </item>
+  </channel>
+</rss>

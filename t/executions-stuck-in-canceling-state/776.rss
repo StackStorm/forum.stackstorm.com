@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Executions stuck in canceling state</title>
+    <link>https://forum.stackstorm.com/t/executions-stuck-in-canceling-state/776</link>
+    <description>Hi,
+
+I have an  issue with  executions  stuck in &#39;canceling&#39; state. I have a concurrency policy that  allow  20 executions. So all my new execution of this action are tagged automatically &#39;cancel&#39;. I decided to restart stackstorm but nothing changed. Someone has an idea ? 
+
+Thank</description>
+    
+    <lastBuildDate>Tue, 01 Oct 2019 19:12:14 +0000</lastBuildDate>
+    <category>Mistral</category>
+    <atom:link href="https://forum.stackstorm.com/t/executions-stuck-in-canceling-state/776.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Executions stuck in canceling state</title>
+        <dc:creator><![CDATA[EricMoody]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi User42,<br>
+This is because Mistral gets out of sync with ST2. At a past job we ran to this frequently in our development environment. In our case we would pause the workflow and they would pause in mistral, and stay in pausing in ST2.</p>
+<p>I no longer have access to the script that I wrote for this, but this is what I remember off the top of my head.</p>
+<p>You will need the mistral execution ID, which is different from the ST2 execution ID. Look in MongoDB at the action execution collection. You’ll need to find the document for the ST2 execution ID. I think the field is parent_process_id. In that document will be mistral execution ID.</p>
+<p>Once you have that you can use the mistral command to resume or cancel the process.  You can execute the command “mistral execution-update -S NEWSTATE MISTRALEXECUTIONID”. This will tell mistral to transistion the workflow. When mistral transitions the workflow, it will call home to ST2 and it will reflect the updated state.</p>
+<p>Sorry I don’t have more detailed steps.</p>
+          <p><a href="https://forum.stackstorm.com/t/executions-stuck-in-canceling-state/776/7">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/executions-stuck-in-canceling-state/776/7</link>
+        <pubDate>Tue, 01 Oct 2019 19:12:14 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-776-7</guid>
+        <source url="https://forum.stackstorm.com/t/executions-stuck-in-canceling-state/776.rss">Executions stuck in canceling state</source>
+      </item>
+      <item>
+        <title>Executions stuck in canceling state</title>
+        <dc:creator><![CDATA[User42]]></dc:creator>
+        <description><![CDATA[
+            <p>Thx,</p>
+<p>So we have to “translate” all mistral workflows into orquestra <img src="https://emoji.discourse-cdn.com/apple/frowning.png?v=9" title=":frowning:" class="emoji" alt=":frowning:"></p>
+          <p><a href="https://forum.stackstorm.com/t/executions-stuck-in-canceling-state/776/6">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/executions-stuck-in-canceling-state/776/6</link>
+        <pubDate>Wed, 31 Jul 2019 07:08:32 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-776-6</guid>
+        <source url="https://forum.stackstorm.com/t/executions-stuck-in-canceling-state/776.rss">Executions stuck in canceling state</source>
+      </item>
+      <item>
+        <title>Executions stuck in canceling state</title>
+        <dc:creator><![CDATA[armab]]></dc:creator>
+        <description><![CDATA[
+            <p>We’ll fully remove Mistral really soon in favor of Orquesta workflow. It’s there to cut some of the Mistral weakest points, including performance. No worries, you could upgrade up to st2 3.3 in any way in future which will be latest Mistral supported version and migrate your workflows to Orquesta, if you want.</p>
+<p>StackStorm version you’re using <a href="https://github.com/StackStorm/st2/releases/tag/v2.8.1" rel="nofollow noopener">v2.8.1</a> was released <code>1 year ago</code> and since that we’ve had <code>12</code> releases which fixed a lot of bugs.</p>
+<p>There is a high chance that your issue was fixed during that time.<br>
+I would suggest to try following the changelog <a href="https://github.com/StackStorm/st2/releases" class="inline-onebox" rel="nofollow noopener">Releases · StackStorm/st2 · GitHub</a> (<a href="https://github.com/StackStorm/st2/blob/master/CHANGELOG.rst" class="inline-onebox" rel="nofollow noopener">st2/CHANGELOG.rst at master · StackStorm/st2 · GitHub</a>) and if you could spot your issue fixed from that log, - upgrading st2 gradually (with <a href="https://docs.stackstorm.com/upgrade_notes.html" class="inline-onebox" rel="nofollow noopener">Upgrade Notes — StackStorm 3.1.0 documentation</a>).</p>
+          <p><a href="https://forum.stackstorm.com/t/executions-stuck-in-canceling-state/776/5">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/executions-stuck-in-canceling-state/776/5</link>
+        <pubDate>Tue, 30 Jul 2019 15:12:48 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-776-5</guid>
+        <source url="https://forum.stackstorm.com/t/executions-stuck-in-canceling-state/776.rss">Executions stuck in canceling state</source>
+      </item>
+      <item>
+        <title>Executions stuck in canceling state</title>
+        <dc:creator><![CDATA[User42]]></dc:creator>
+        <description><![CDATA[
+            <p>It’s a mistral worflows.</p>
+<p>Are you saying that we can not use  mistral for next version of st2</p>
+<p>i’m using st2 2.8.1 and for some reason I can’t upgrade this version as I want.</p>
+          <p><a href="https://forum.stackstorm.com/t/executions-stuck-in-canceling-state/776/4">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/executions-stuck-in-canceling-state/776/4</link>
+        <pubDate>Tue, 30 Jul 2019 14:42:16 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-776-4</guid>
+        <source url="https://forum.stackstorm.com/t/executions-stuck-in-canceling-state/776.rss">Executions stuck in canceling state</source>
+      </item>
+      <item>
+        <title>Executions stuck in canceling state</title>
+        <dc:creator><![CDATA[armab]]></dc:creator>
+        <description><![CDATA[
+            <p>Is that an issue with Mistral or Orquesta workflows?</p>
+<p>Just a reminder here that full Mistral deprecation will happen really soon in st2 <code>v3.3</code>: <a href="https://docs.stackstorm.com/latest/roadmap.html#roadmap" class="inline-onebox" rel="nofollow noopener">Roadmap — StackStorm 3.2dev documentation</a> and we would strongly suggest to follow the Orchestra as a workflow engine which is actively developed and supported (<a href="https://docs.stackstorm.com/orquesta/index.html" class="inline-onebox" rel="nofollow noopener">Orquesta — StackStorm 3.1.0 documentation</a>)</p>
+          <p><a href="https://forum.stackstorm.com/t/executions-stuck-in-canceling-state/776/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/executions-stuck-in-canceling-state/776/3</link>
+        <pubDate>Tue, 30 Jul 2019 14:18:54 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-776-3</guid>
+        <source url="https://forum.stackstorm.com/t/executions-stuck-in-canceling-state/776.rss">Executions stuck in canceling state</source>
+      </item>
+      <item>
+        <title>Executions stuck in canceling state</title>
+        <dc:creator><![CDATA[User42]]></dc:creator>
+        <description><![CDATA[
+            <p>I traveled in  db st2 and I found:</p>
+<p>select name,state from workflow_executions_v2  where name=“toto”</p>
+<p>I found 6 occurrences of my execution in running state since several days and it’s seems to be the same date of an issue (I had to shutdown stackstorm). I think stackstorm is in global bad state, I tried to cancel this 6 executions but they stay in ‘canceling’ state (with st2 execution list)… But now, I can run new toto executions.</p>
+<p>The only thing that makes me uncomfortable is st2 was canceling  my execution whereas the policy allows 20 executions (not 6)</p>
+          <p><a href="https://forum.stackstorm.com/t/executions-stuck-in-canceling-state/776/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/executions-stuck-in-canceling-state/776/2</link>
+        <pubDate>Tue, 30 Jul 2019 07:38:17 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-776-2</guid>
+        <source url="https://forum.stackstorm.com/t/executions-stuck-in-canceling-state/776.rss">Executions stuck in canceling state</source>
+      </item>
+      <item>
+        <title>Executions stuck in canceling state</title>
+        <dc:creator><![CDATA[User42]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi,</p>
+<p>I have an  issue with  executions  stuck in ‘canceling’ state. I have a concurrency policy that  allow  20 executions. So all my new execution of this action are tagged automatically ‘cancel’. I decided to restart stackstorm but nothing changed. Someone has an idea ?</p>
+<p>Thank</p>
+          <p><a href="https://forum.stackstorm.com/t/executions-stuck-in-canceling-state/776/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/executions-stuck-in-canceling-state/776/1</link>
+        <pubDate>Tue, 30 Jul 2019 06:42:19 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-776-1</guid>
+        <source url="https://forum.stackstorm.com/t/executions-stuck-in-canceling-state/776.rss">Executions stuck in canceling state</source>
+      </item>
+  </channel>
+</rss>

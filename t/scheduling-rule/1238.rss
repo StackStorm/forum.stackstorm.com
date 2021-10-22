@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Scheduling rule</title>
+    <link>https://forum.stackstorm.com/t/scheduling-rule/1238</link>
+    <description>finding problem in getting rule info through api as I&#39;m scheduling it using cron timer. I have created a third party UI so scheduling it through ngx cron editor.. but its not getting info from rule</description>
+    
+    <lastBuildDate>Wed, 10 Jun 2020 15:18:24 +0000</lastBuildDate>
+    <category>API</category>
+    <atom:link href="https://forum.stackstorm.com/t/scheduling-rule/1238.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Scheduling rule</title>
+        <dc:creator><![CDATA[punkrokk]]></dc:creator>
+        <description><![CDATA[
+            <p>Can you share more info <a class="mention" href="https://github.com/anshikajain">@anshikaJain</a>? Like your rule.yaml and any other relevant config?</p>
+          <p><a href="https://forum.stackstorm.com/t/scheduling-rule/1238/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/scheduling-rule/1238/2</link>
+        <pubDate>Wed, 10 Jun 2020 15:18:24 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1238-2</guid>
+        <source url="https://forum.stackstorm.com/t/scheduling-rule/1238.rss">Scheduling rule</source>
+      </item>
+      <item>
+        <title>Scheduling rule</title>
+        <dc:creator><![CDATA[anshikaJain]]></dc:creator>
+        <description><![CDATA[
+            <p>finding problem in getting rule info through api as I’m scheduling it using cron timer. I have created a third party UI so scheduling it through ngx cron editor… but its not getting info from rule</p>
+          <p><a href="https://forum.stackstorm.com/t/scheduling-rule/1238/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/scheduling-rule/1238/1</link>
+        <pubDate>Fri, 15 May 2020 11:55:43 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1238-1</guid>
+        <source url="https://forum.stackstorm.com/t/scheduling-rule/1238.rss">Scheduling rule</source>
+      </item>
+  </channel>
+</rss>

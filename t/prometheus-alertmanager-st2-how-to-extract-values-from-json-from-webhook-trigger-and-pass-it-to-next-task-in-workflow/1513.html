@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en" class="desktop-view not-mobile-device text-size-normal anon">
+<head>
+    <meta charset="utf-8">
+    <title>Prometheus/Alertmanager/ST2- How to extract values from json(from webhook trigger) and pass it to next task
+        in workflow - Workflows - StackStorm Support (ARCHIVED)</title>
+    <meta name="description"
+          content="Hello. I’m new to stackstorm. I have alertmanager setup with stackstorm webhook as receiver( when alert trigger it will post below data to st2 webhook) …I’m trying to setup a workflow to extract values( here I’m trying t&amp;hellip;">
+    <meta name="discourse_theme_id" content="2">
+    <meta name="discourse_current_homepage" content="latest">
+    <meta name="generator"
+          content="Discourse 2.8.0.beta6 - https://github.com/discourse/discourse version a1daf9fe53a66e2d2cdf9757ab4812fb9a2b2787">
+    <link rel="icon" type="image/png"
+          href="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/379ced12f8326d58f1b3d2b3ff652f883e141f6a_2_32x32.PNG">
+    <link rel="apple-touch-icon" type="image/png"
+          href="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/379ced12f8326d58f1b3d2b3ff652f883e141f6a_2_180x180.PNG">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <link rel="canonical" href="1513.html"/>
+    <script type="application/ld+json">{
+        "@context": "http://schema.org",
+        "@type": "WebSite",
+        "url": "https://forum.stackstorm.com",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://forum.stackstorm.com/search?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }
+    </script>
+    <link rel="search" type="application/opensearchdescription+xml" href="../../opensearch.xml"
+          title="StackStorm Support (ARCHIVED) Search">
+
+
+    <link href="/../../stylesheets/color_definitions_base__2_3c5eec1ecf192052ea70b4afdab57a62bccc0604.css?__ws=forum.stackstorm.com"
+          media="all" rel="stylesheet" class="light-scheme"/>
+
+    <link href="/../../stylesheets/desktop_b2f2968742d41481357e0df259b51ce29f72481a.css?__ws=forum.stackstorm.com"
+          media="all" rel="stylesheet" data-target="desktop"/>
+
+
+    <meta name="fragment" content="!">
+
+
+    <link id="manifest-link" rel="manifest" href="../../manifest.webmanifest" crossorigin="use-credentials">
+
+
+    <link rel="alternate" type="application/rss+xml"
+          title="RSS feed of &#39;Prometheus/Alertmanager/ST2- How to extract values from json(from webhook trigger) and pass it to next task in workflow&#39;"
+          href="https://forum.stackstorm.com/t/prometheus-alertmanager-st2-how-to-extract-values-from-json-from-webhook-trigger-and-pass-it-to-next-task-in-workflow/1513.rss"/>
+    <meta property="og:site_name" content="StackStorm Support (ARCHIVED)"/>
+    <meta property="og:type" content="website"/>
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:image"
+          content="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/891f00fbdb31fecb5bd9dab30c186d2fed0091ca.jpeg"/>
+    <meta property="og:image"
+          content="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/891f00fbdb31fecb5bd9dab30c186d2fed0091ca.jpeg"/>
+    <meta property="og:url"
+          content="https://forum.stackstorm.com/t/prometheus-alertmanager-st2-how-to-extract-values-from-json-from-webhook-trigger-and-pass-it-to-next-task-in-workflow/1513"/>
+    <meta name="twitter:url"
+          content="https://forum.stackstorm.com/t/prometheus-alertmanager-st2-how-to-extract-values-from-json-from-webhook-trigger-and-pass-it-to-next-task-in-workflow/1513"/>
+    <meta property="og:title"
+          content="Prometheus/Alertmanager/ST2- How to extract values from json(from webhook trigger) and pass it to next task in workflow"/>
+    <meta name="twitter:title"
+          content="Prometheus/Alertmanager/ST2- How to extract values from json(from webhook trigger) and pass it to next task in workflow"/>
+    <meta property="og:description"
+          content="Hello. I’m new to stackstorm. I have alertmanager setup with stackstorm webhook as receiver( when alert trigger it will post below data to st2 webhook) …I’m trying to setup a workflow to extract values( here I’m trying to get service and host  from below json/labels )  from the trigger json and publish it to a value which can be used in later tasks in workflow( like restart service on remot host using ansible). How can I extract values and publish ?? TIA  {  “status”: “processed”,  “occurrence_t..."/>
+    <meta name="twitter:description"
+          content="Hello. I’m new to stackstorm. I have alertmanager setup with stackstorm webhook as receiver( when alert trigger it will post below data to st2 webhook) …I’m trying to setup a workflow to extract values( here I’m trying to get service and host  from below json/labels )  from the trigger json and publish it to a value which can be used in later tasks in workflow( like restart service on remot host using ansible). How can I extract values and publish ?? TIA  {  “status”: “processed”,  “occurrence_t..."/>
+    <meta name="twitter:label1" value="Reading time"/>
+    <meta name="twitter:data1" value="1 mins 🕑"/>
+    <meta name="twitter:label2" value="Likes"/>
+    <meta name="twitter:data2" value="2 ❤"/>
+    <meta property="article:published_time" content="2020-12-16T15:31:46+00:00"/>
+    <meta property="og:ignore_canonical" content="true"/>
+
+
+    <script type="application/ld+json">{
+        "@context": "http://schema.org",
+        "@type": "QAPage",
+        "name": "Prometheus/Alertmanager/ST2- How to extract values from json(from webhook trigger) and pass it to next task in workflow",
+        "mainEntity": {
+            "@type": "Question",
+            "name": "Prometheus/Alertmanager/ST2- How to extract values from json(from webhook trigger) and pass it to next task in workflow",
+            "text": "Hello. I’m new to stackstorm. I have alertmanager setup with stackstorm webhook as receiver( when alert trigger it will post below data to st2 webhook) …I’m trying to setup a workflow to extract values( here I’m trying to get service and host  from below json/labels )  from the trigger json and publ&hellip;",
+            "upvoteCount": 0,
+            "answerCount": 0,
+            "dateCreated": "2020-12-16T15:31:46.217Z",
+            "author": {
+                "@type": "Person",
+                "name": ""
+            }
+        }
+    }
+    </script>
+
+    <meta id="data-discourse-setup" data-cdn="https://sjc6.discourse-cdn.com/standard10"
+          data-base-url="https://forum.stackstorm.com" data-base-uri="" data-environment="production"
+          data-letter-avatar-version="5_8fec8e114563efeaf5265573e510f08e"
+          data-markdown-it-url="https://aws1.discourse-cdn.com/standard10/assets/markdown-it-bundle-31e9a9c535ca1801c26da78b0ff465821751a98f921c5cdc5457d7e5a69e9748.js"
+          data-service-worker-url="service-worker.js" data-default-locale="en"
+          data-asset-version="597e36448c9b51d0fa3b7e43ec1fd6d5" data-disable-custom-css="false"
+          data-highlight-js-path="/highlight-js/forum.stackstorm.com/ac0f4aa001e1343346941766d72e0c1ae330832b.js"
+          data-svg-sprite-path="/svg-sprite/forum.stackstorm.com/svg-2-c2ad434b1e06079c7e282124aed9938dc95b83ea.js"
+          data-enable-js-error-reporting="true" data-color-scheme-is-dark="false" data-user-dark-scheme-id="-1"
+          data-s3-cdn="https://aws1.discourse-cdn.com/standard10"
+          data-s3-base-url="//discourse-cloud-file-uploads.s3.dualstack.us-west-2.amazonaws.com/standard10">
+
+    <meta name="discourse/config/environment"
+          content="%7B%22modulePrefix%22%3A%22discourse%22%2C%22environment%22%3A%22production%22%2C%22rootURL%22%3A%22%22%2C%22locationType%22%3A%22auto%22%2C%22historySupportMiddleware%22%3Afalse%2C%22EmberENV%22%3A%7B%22FEATURES%22%3A%7B%7D%2C%22EXTEND_PROTOTYPES%22%3A%7B%22Date%22%3Afalse%7D%2C%22_APPLICATION_TEMPLATE_WRAPPER%22%3Afalse%2C%22_DEFAULT_ASYNC_OBSERVERS%22%3Atrue%2C%22_JQUERY_INTEGRATION%22%3Atrue%7D%2C%22APP%22%3A%7B%22name%22%3A%22discourse%22%2C%22version%22%3A%222.8.0.beta6%20a1daf9fe53a66e2d2cdf9757ab4812fb9a2b2787%22%2C%22exportApplicationGlobal%22%3Atrue%7D%7D"/>
+</head>
+
+<body class="">
+
+
+<header class="d-header">
+    <div class="wrap">
+        <div class="contents clearfix">
+            <div class="title">
+                <a href="../../index.html">
+                    <picture>
+                        <img src="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png"
+                             alt="StackStorm Support (ARCHIVED)" id="site-logo"/>
+                    </picture>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</header>
+
+<div id="main-outlet" class="wrap" role="main">
+    <!-- preload-content: -->
+
+    <!-- EOF START -->
+    <div class="container" id="main-container">
+        <div id="ember11" class="ember-view"></div>
+        <div id="ember12" class="controls ember-view"><!----></div>
+        <div id="ember13" class="ember-view"><!----></div>
+        <div id="ember14" class="ember-view">
+            <div class="row">
+                <div id="global-notice-alert-read-only" class="alert alert-info alert-read-only">
+                    <!----> <span class="text">This site is in read only mode. Please continue to browse, but replying, likes, and other actions are disabled for now.</span>
+
+                    <!---->    </div>
+            </div>
+            <div class="row">
+                <div id="global-notice-alert-global-notice" class="alert alert-info alert-global-notice">
+                    <!----> <span class="text"><h3>⚠️ We've moved!</h3>  <p> Hi there!<br><br> To reduce project dependency on 3rd party paid services the StackStorm TSC has decided to move the Q/A from this forum to <a
+                        href="https://github.com/StackStorm/st2/discussions">Github Discussions</a>. This will make user experience better integrated with the native Github flow, as well as the questions closer to the community where they can provide answers. </p>  <p> Use 🔗 <b><a
+                        href="https://github.com/StackStorm/st2/discussions" class="active">Github Discussions</a></b> to ask your questions. </p></span>
+
+                    <!---->    </div>
+            </div>
+        </div>
+        <div id="ember17" class="hidden create-topics-notice ember-view"><!----></div>
+        <!---->
+    </div>
+    <!-- EOF END -->
+    <div id="topic-title">
+        <h1>
+            <a href="1513.html">Prometheus/Alertmanager/ST2- How to extract values from json(from webhook trigger) and
+                pass it to next task in workflow</a>
+        </h1>
+
+        <div class="topic-category" itemscope itemtype="http://schema.org/BreadcrumbList">
+          <span itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a href="../../c/workflow-related-issues/15" class="badge-wrapper bullet" itemprop="item">
+              <span class='badge-category-bg' style='background-color: #25AAE2'></span>
+              <span class='badge-category clear-badge'>
+                <span class='category-name' itemprop='name'>Workflows</span>
+              </span>
+            </a>
+            <meta itemprop="position" content="1"/>
+          </span>
+        </div>
+
+        <div class="topic-category">
+            <div class='discourse-tags list-tags'>
+                <a href='../../tag/webhooks' class='discourse-tag' rel="tag">webhooks</a>
+            </div>
+        </div>
+    </div>
+
+
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/st2user'><span itemprop='name'>st2user</span></a>
+            
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="1513.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2020-12-16T15:31:46Z' class='post-time'>
+                December 16, 2020,  3:31pm
+              </time>
+              <meta itemprop='dateModified' content='2020-12-16T15:31:46Z'>
+          <span itemprop='position'>#1</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Hello. I’m new to stackstorm. I have alertmanager setup with stackstorm webhook as receiver( when alert
+                trigger it will post below data to st2 webhook) …I’m trying to setup a workflow to extract values( here
+                I’m trying to get service and host from below json/labels ) from the trigger json and publish it to a
+                value which can be used in later tasks in workflow( like restart service on remot host using ansible).
+                How can I extract values and publish ?? TIA</p>
+            <p>{<br>
+                “status”: “processed”,<br>
+                “occurrence_time”: “2020-12-15T20:38:27.000000Z”,<br>
+                “trigger”: “core.2cdd5c9e-2c4b-427d-99a8-666dceb91da5”,<br>
+                “id”: “5fd91ec3643dbbbefdb548e1”,<br>
+                “payload”: {<br>
+                “body”: {<br>
+                “status”: “firing”,<br>
+                “groupLabels”: {<br>
+                “alertname”: “system unreachable”,<br>
+                “service”: “telegraf”<br>
+                },<br>
+                “groupKey”: “{}/{receiver=“stackstorm”}:{alertname=“system unreachable”, service=“telegraf”}”,<br>
+                “commonAnnotations”: {<br>
+                “identifier”: “<a href="http://some.fqdn.net:9126"
+                                  rel="noopener nofollow ugc">some.fqdn.net:9126</a>”,<br>
+                “description”: " system has been unreachable for more than 5 minutes."<br>
+                },<br>
+                “alerts”: [<br>
+                {<br>
+                “status”: “firing”,<br>
+                “labels”: {<br>
+                “severity”: “critical”,<br>
+                “service”: “telegraf”,<br>
+                “host”: “<a href="http://some.fqdn.net:9126" rel="noopener nofollow ugc">some.fqdn.net:9126</a>”,<br>
+                “environment”: “Development”,<br>
+                “instance”: “<a href="http://some.fqdn.net:9126"
+                                rel="noopener nofollow ugc">some.fqdn.net:9126</a>”,<br>
+                “job”: “dev-telegraf”,<br>
+                “alertname”: “system unreachable”,<br>
+                “receiver”: “stackstorm”<br>
+                },<br>
+                “endsAt”: “0001-01-01T00:00:00Z”,<br>
+                “generatorURL”: “<a
+                        href="http://prometheus.alertmanager.fqdn.net:9090/graph?g0.expr=up%7Bjob%3D%22syslog-ng-dev-telegraf%22%7D+%3D%3D+0&amp;g0.tab=1"
+                        rel="noopener nofollow ugc">http://prometheus.alertmanager.fqdn.net:9090/graph?g0.expr=up{job%3D"syslog-ng-dev-telegraf"}+%3D%3D+0&amp;g0.tab=1</a>”,<br>
+                “startsAt”: “2020-12-15T20:37:57.226891198Z”,<br>
+                “annotations”: {<br>
+                “identifier”: “<a href="http://some.fqdn.net:9126"
+                                  rel="noopener nofollow ugc">some.fqdn.net:9126</a>”,<br>
+                “description”: " has been unreachable for more than 5 minutes."<br>
+                }<br>
+                }<br>
+                ],<br>
+                “version”: “4”,<br>
+                “receiver”: “stackstorm”,<br>
+                “externalURL”: “<a href="http://10.01.12.12:9093"
+                                   rel="noopener nofollow ugc">http://10.01.12.12:9093</a>”,<br>
+                “commonLabels”: {<br>
+                “severity”: “critical”,<br>
+                “service”: “telegraf”,<br>
+                “host”: “<a href="http://some.fqdn.net:9126" rel="noopener nofollow ugc">some.fqdn.net:9126</a>”,<br>
+                “environment”: “Development”,<br>
+                “instance”: “<a href="http://some.fqdn.net:9126"
+                                rel="noopener nofollow ugc">some.fqdn.net:9126</a>”,<br>
+                “job”: “dev-telegraf”,<br>
+                “alertname”: “system unreachable”,<br>
+                “receiver”: “stackstorm”<br>
+                }<br>
+                },<br>
+                “headers”: {<br>
+                “X-Request-Id”: “97fe5a69-47a3-4291-9b68-8e512cf61e48”,<br>
+                “X-Forwarded-For”: “10.01.12.12”,<br>
+                “Content-Length”: “1342”,<br>
+                “User-Agent”: “Alertmanager/0.15.2”,<br>
+                “Host”: “<a href="http://stackstorm-dev.com" rel="noopener nofollow ugc">stackstorm-dev.com</a>”,<br>
+                “X-Real-Ip”: “10.01.12.12”,<br>
+                “Content-Type”: “application/json”<br>
+                }<br>
+                }<br>
+                }</p>
+        </div>
+
+        <meta itemprop='headline'
+              content='Prometheus/Alertmanager/ST2- How to extract values from json(from webhook trigger) and pass it to next task in workflow'>
+        <meta itemprop='keywords' content='webhooks'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/arms11'><span itemprop='name'>arms11</span></a>
+            (Arms11)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="1513.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2020-12-16T18:03:12Z' class='post-time'>
+                December 16, 2020,  6:03pm
+              </time>
+              <meta itemprop='dateModified' content='2020-12-16T18:03:12Z'>
+          <span itemprop='position'>#2</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>You can use jinja syntax to get values from your incoming JSON.<br>
+                <code>"{{ trigger.body.status }}"</code> which should result in <code>"processed"</code></p>
+            <aside class="onebox allowlistedgeneric">
+                <header class="source">
+                    <img src="https://docs.stackstorm.com/reference/jinja.html/../_static/favicon.ico?v4"
+                         class="site-icon" width="" height="">
+                    <a href="https://docs.stackstorm.com/reference/jinja.html" target="_blank"
+                       rel="noopener nofollow ugc">docs.stackstorm.com</a>
+                </header>
+                <article class="onebox-body">
+                    <img src="1513.html" class="thumbnail" width="" height="">
+
+                    <h3><a href="https://docs.stackstorm.com/reference/jinja.html" target="_blank"
+                           rel="noopener nofollow ugc">Jinja — StackStorm 3.3.0 documentation</a></h3>
+
+
+                </article>
+                <div class="onebox-metadata">
+
+
+                </div>
+                <div style="clear: both"></div>
+            </aside>
+            <p>
+                This then can be passed to the action on the Rule that had webhook as the trigger. This underlying
+                action is associated with Orquesta based workflow which should be doing most of the work you
+                intended.</p>
+        </div>
+
+        <meta itemprop='headline'
+              content='Prometheus/Alertmanager/ST2- How to extract values from json(from webhook trigger) and pass it to next task in workflow'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+            <span class='post-likes'>1 Like</span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/arms11'><span itemprop='name'>arms11</span></a>
+            (Arms11)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="1513.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2020-12-16T18:06:07Z' class='post-time'>
+                December 16, 2020,  6:06pm
+              </time>
+              <meta itemprop='dateModified' content='2020-12-16T18:06:07Z'>
+          <span itemprop='position'>#3</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>If you can hit the endpoint with postman…easiest thing to do is to use <code>core.echo</code> action with
+                the above jinja syntax to generate desired values for sanity check before you pull them in your
+                workflow. Hope that helps.</p>
+        </div>
+
+        <meta itemprop='headline'
+              content='Prometheus/Alertmanager/ST2- How to extract values from json(from webhook trigger) and pass it to next task in workflow'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+            <span class='post-likes'>1 Like</span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/st2user'><span itemprop='name'>st2user</span></a>
+            
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="1513.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2020-12-16T18:40:57Z' class='post-time'>
+                December 16, 2020,  6:40pm
+              </time>
+              <meta itemprop='dateModified' content='2020-12-17T17:41:16Z'>
+          <span itemprop='position'>#4</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Thanks <a class="mention" href="https://github.com/arms11">@arms11</a> for the response. it
+                worked</p>
+        </div>
+
+        <meta itemprop='headline'
+              content='Prometheus/Alertmanager/ST2- How to extract values from json(from webhook trigger) and pass it to next task in workflow'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/st2user'><span itemprop='name'>st2user</span></a>
+            
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="1513.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2020-12-16T19:49:31Z' class='post-time'>
+                December 16, 2020,  7:49pm
+              </time>
+              <meta itemprop='dateModified' content='2020-12-17T17:41:58Z'>
+          <span itemprop='position'>#5</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>it worked thanks again</p>
+        </div>
+
+        <meta itemprop='headline'
+              content='Prometheus/Alertmanager/ST2- How to extract values from json(from webhook trigger) and pass it to next task in workflow'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+
+
+    <!-- :preload-content -->
+    <footer class="noscript-footer-nav">
+        <nav itemscope itemtype='http://schema.org/SiteNavigationElement'>
+            <a href='../../index.html'>Home</a>
+            <a href="../../categories.html">Categories</a>
+            <a href="https://forum.stackstorm.com/guidelines">FAQ/Guidelines</a>
+            <a href="../../tos.html">Terms of Service</a>
+            <a href="../../privacy.html">Privacy Policy</a>
+        </nav>
+    </footer>
+</div>
+
+<footer id='noscript-footer'>
+    <p>Powered by <a href="https://www.discourse.org">Discourse</a>, best viewed with JavaScript enabled</p>
+</footer>
+
+
+<section id='main'>
+</section>
+
+
+</body>
+</html>

@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Question regarding reiteration over napalm.cli workflow action</title>
+    <link>https://forum.stackstorm.com/t/question-regarding-reiteration-over-napalm-cli-workflow-action/1800</link>
+    <description>I&#39;ve been digging around the forums and docs for a bit but haven&#39;t come up with a good solution for this yet aside from replacing an action.
+
+I&#39;ve got the following workflow currently able to request very basic approval, and then push commands to a single host via the napalm.cli pack action. However, when using a different netbox inventory output, it&#39;s not reiterating over the multiple names pushed in output, but doing the first and stopping.
+
+I thought it&#39;d be a quick &quot;with items&quot; fix to get the task to repeat over resulting hosts however the napalm.cli action does not support &quot;with items&quot; and causes an error stoppage. I can&#39;t think of a decent method around this aside from replacing the napalm.cli task with an ansible playbook doing the legwork in it&#39;s place.
+
+If there&#39;s another way to do this that I&#39;m looking over - any push to a doc/kb article or assistance would be great!
+
+Here&#39;s my workflow being used, debug output of the &quot;json&quot; output parameter is simply a list of hostnames in string format for the action input.
+
+~~~
+#version: 1.0
+
+input:
+  - site
+  - tag
+  - commands
+  
+tasks:
+  # [116, 137]
+  get_approval:
+    action: core.ask
+    input:
+      schema:
+        type: object
+        properties:
+          approved:
+            type: boolean
+            description: &quot;Do you have Approval?&quot;
+            required: True
+          ticket_id:
+            type: string
+            description: &quot;Ticket (CR/IR) ID:&quot;
+            required: True
+      ttl: 90
+    next:
+      - when: &lt;% task(get_approval).result.response.approved = true %&gt;
+        publish:
+          - approver_department_id: &lt;% task(get_approval).result.response.ticket_id %&gt;
+        do: get_inventory
+      - when: &lt;% task(get_approval).result.response.approved = false %&gt;
+        do: fail
+  # [116, 314]
+  get_inventory:
+    action: netbox.get.dcim.devices
+    next:
+      - publish:
+          - stdout: &lt;% result().exit_code %&gt;
+          - stderr: &lt;% result().stderr %&gt;
+          - json: &lt;% result().result.raw.results.name %&gt;
+        do:
+          - push_commands
+    input:
+      log_level: DEBUG
+      site: &lt;% ctx().site %&gt;
+      tag: &lt;% ctx().tag %&gt;
+      save_in_key_store: false
+  # [116, 493]
+  push_commands:
+    action: napalm.cli
+    input:
+      log_level: DEBUG
+      commands:
+        - &lt;% ctx().commands %&gt;
+      hostname: &lt;% ctx().json[0] %&gt;
+      driver: junos
+    next:
+      - do:
+          - notify
+  # [116, 629]
+  notify:
+    action: ansible.playbook
+    input:
+      cwd: {{ Redacted }}/notify/
+      playbook: main.yml
+      extra_vars:
+        - &#39;@extras/napalm_nbx_success.json&#39;
+ # remove success.json and get actual input next (low priority)
+~~~</description>
+    
+    <lastBuildDate>Fri, 06 Aug 2021 15:54:13 +0000</lastBuildDate>
+    <category>Workflows</category>
+    <atom:link href="https://forum.stackstorm.com/t/question-regarding-reiteration-over-napalm-cli-workflow-action/1800.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Question regarding reiteration over napalm.cli workflow action</title>
+        <dc:creator><![CDATA[knight]]></dc:creator>
+        <description><![CDATA[
+            <p>Thanks for the help!</p>
+<p>Your answer got it working immediately. Comparing a backup of the workflow to yours, I had placed the with:items in an incorrect spot within the action (placed it at the bottom just above “next -do” and I guess it was parsing improperly.</p>
+<p>Sorry for leaving in the [0], that was from a test pushing to just one device (and forcing it to stay that way). I didn’t catch that I left it there.</p>
+          <p><a href="https://forum.stackstorm.com/t/question-regarding-reiteration-over-napalm-cli-workflow-action/1800/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/question-regarding-reiteration-over-napalm-cli-workflow-action/1800/3</link>
+        <pubDate>Fri, 06 Aug 2021 15:54:13 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1800-3</guid>
+        <source url="https://forum.stackstorm.com/t/question-regarding-reiteration-over-napalm-cli-workflow-action/1800.rss">Question regarding reiteration over napalm.cli workflow action</source>
+      </item>
+      <item>
+        <title>Question regarding reiteration over napalm.cli workflow action</title>
+        <dc:creator><![CDATA[jamesdreid]]></dc:creator>
+        <description><![CDATA[
+            <aside class="quote no-group" data-username="knight" data-post="1" data-topic="1800">
+<div class="title">
+<div class="quote-controls"></div>
+<img alt="" width="20" height="20" src="https://sjc6.discourse-cdn.com/standard10/user_avatar/forum.stackstorm.com/knight/40/432_2.png" class="avatar"> knight:</div>
+<blockquote>
+<p><code>hostname: &lt;% ctx().json[0] %&gt;</code></p>
+</blockquote>
+</aside>
+<p>That line  is selecting just the first entry in the JSON list of hosts so it will only run the action the single time.</p>
+<p>You were correct that it should need the “with:items” setup to iterate over your list of hosts and run the command on all.  I think the task will need to look something like the following:</p>
+<pre><code class="lang-auto">push_commands:
+    with:
+      items: &lt;% ctx().json %&gt;
+      concurrency: 10
+    action: napalm.cli
+    input:
+      log_level: DEBUG
+      commands:
+        - &lt;% ctx().commands %&gt;
+      hostname: &lt;% item() %&gt;
+      driver: junos
+    next:
+      - do:
+          - notify
+  # [116, 629]
+  notify:
+    action: ansible.playbook
+    input:
+      cwd: {{ Redacted }}/notify/
+      playbook: main.yml
+      extra_vars:
+        - '@extras/napalm_nbx_success.json'
+ # remove success.json and get actual input next (low priority)
+</code></pre>
+<p>I copied and paste your text so the indentation may be off but the commands and variables should be correct so YMMV.  Also, with the concurrency option set to 10 will run 10 actions at a time and may need to be tweaked for your environment.</p>
+          <p><a href="https://forum.stackstorm.com/t/question-regarding-reiteration-over-napalm-cli-workflow-action/1800/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/question-regarding-reiteration-over-napalm-cli-workflow-action/1800/2</link>
+        <pubDate>Fri, 06 Aug 2021 12:27:36 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1800-2</guid>
+        <source url="https://forum.stackstorm.com/t/question-regarding-reiteration-over-napalm-cli-workflow-action/1800.rss">Question regarding reiteration over napalm.cli workflow action</source>
+      </item>
+      <item>
+        <title>Question regarding reiteration over napalm.cli workflow action</title>
+        <dc:creator><![CDATA[knight]]></dc:creator>
+        <description><![CDATA[
+            <p>I’ve been digging around the forums and docs for a bit but haven’t come up with a good solution for this yet aside from replacing an action.</p>
+<p>I’ve got the following workflow currently able to request very basic approval, and then push commands to a single host via the napalm.cli pack action. However, when using a different netbox inventory output, it’s not reiterating over the multiple names pushed in output, but doing the first and stopping.</p>
+<p>I thought it’d be a quick “with items” fix to get the task to repeat over resulting hosts however the napalm.cli action does not support “with items” and causes an error stoppage. I can’t think of a decent method around this aside from replacing the napalm.cli task with an ansible playbook doing the legwork in it’s place.</p>
+<p>If there’s another way to do this that I’m looking over - any push to a doc/kb article or assistance would be great!</p>
+<p>Here’s my workflow being used, debug output of the “json” output parameter is simply a list of hostnames in string format for the action input.</p>
+<pre><code class="lang-auto">#version: 1.0
+
+input:
+  - site
+  - tag
+  - commands
+  
+tasks:
+  # [116, 137]
+  get_approval:
+    action: core.ask
+    input:
+      schema:
+        type: object
+        properties:
+          approved:
+            type: boolean
+            description: "Do you have Approval?"
+            required: True
+          ticket_id:
+            type: string
+            description: "Ticket (CR/IR) ID:"
+            required: True
+      ttl: 90
+    next:
+      - when: &lt;% task(get_approval).result.response.approved = true %&gt;
+        publish:
+          - approver_department_id: &lt;% task(get_approval).result.response.ticket_id %&gt;
+        do: get_inventory
+      - when: &lt;% task(get_approval).result.response.approved = false %&gt;
+        do: fail
+  # [116, 314]
+  get_inventory:
+    action: netbox.get.dcim.devices
+    next:
+      - publish:
+          - stdout: &lt;% result().exit_code %&gt;
+          - stderr: &lt;% result().stderr %&gt;
+          - json: &lt;% result().result.raw.results.name %&gt;
+        do:
+          - push_commands
+    input:
+      log_level: DEBUG
+      site: &lt;% ctx().site %&gt;
+      tag: &lt;% ctx().tag %&gt;
+      save_in_key_store: false
+  # [116, 493]
+  push_commands:
+    action: napalm.cli
+    input:
+      log_level: DEBUG
+      commands:
+        - &lt;% ctx().commands %&gt;
+      hostname: &lt;% ctx().json[0] %&gt;
+      driver: junos
+    next:
+      - do:
+          - notify
+  # [116, 629]
+  notify:
+    action: ansible.playbook
+    input:
+      cwd: {{ Redacted }}/notify/
+      playbook: main.yml
+      extra_vars:
+        - '@extras/napalm_nbx_success.json'
+ # remove success.json and get actual input next (low priority)
+</code></pre>
+          <p><a href="https://forum.stackstorm.com/t/question-regarding-reiteration-over-napalm-cli-workflow-action/1800/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/question-regarding-reiteration-over-napalm-cli-workflow-action/1800/1</link>
+        <pubDate>Fri, 06 Aug 2021 04:52:33 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1800-1</guid>
+        <source url="https://forum.stackstorm.com/t/question-regarding-reiteration-over-napalm-cli-workflow-action/1800.rss">Question regarding reiteration over napalm.cli workflow action</source>
+      </item>
+  </channel>
+</rss>

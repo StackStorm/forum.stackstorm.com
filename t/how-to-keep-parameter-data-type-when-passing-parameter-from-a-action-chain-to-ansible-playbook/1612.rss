@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>How to keep parameter data type when passing parameter from a action-chain to ansible playbook?</title>
+    <link>https://forum.stackstorm.com/t/how-to-keep-parameter-data-type-when-passing-parameter-from-a-action-chain-to-ansible-playbook/1612</link>
+    <description>Hi all,
+I&#39;m writing a action-chain, one step is  running a playbook
+some part of code is like this:
+&gt;     -
+&gt;       name: &#39;run_playbook&#39;
+&gt;       ref: ansible.playbook
+&gt;       parameters:
+&gt;         playbook: ./os_user/main.yaml
+&gt;         cwd: /opt/stackstorm/packs/ansible/actions/playbooks
+&gt;         inventory_file: &quot;../unstable/{{ inventory_name }}&quot;  
+&gt;         extra_vars:
+&gt;           - os_user: &quot;{{ os_user }}&quot;
+&gt;           - os_passwd: &quot;{{ os_passwd }}&quot;
+&gt;           - operation: &quot;{{ operation }}&quot;
+&gt;           - user_sudo: &quot;{{ user_sudo }}&quot;
+&gt;           - user_groups: &quot;{{ user_groups }}&quot;
+&gt;           - user_uid: &quot;{{ user_uid }}&quot;
+&gt;       on-success: &#39;delete_inventory&#39;
+&gt;       on-failure: &#39;delete_inventory&#39;
+
+
+
+ansible always handle vars as a string, for example {{user_groups}}, it is should be a array in stackstorm action metadata yaml. {{user_sudo}} should be a boolean. It will be annoying when do a conditional judgments.
+   For example, I have to write my playbook like this:
+ 
+&gt;     - role: groups
+&gt;       when: operation == &quot;present&quot; and user_groups != &quot;[&#39;EmptyGroup&#39;]&quot;
+&gt;     - role: sudo
+&gt;       when: user_sudo != &quot;False&quot; and operation == &quot;present&quot;
+
+
+ What should I do?</description>
+    
+    <lastBuildDate>Thu, 25 Mar 2021 05:09:33 +0000</lastBuildDate>
+    <category>Uncategorized</category>
+    <atom:link href="https://forum.stackstorm.com/t/how-to-keep-parameter-data-type-when-passing-parameter-from-a-action-chain-to-ansible-playbook/1612.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>How to keep parameter data type when passing parameter from a action-chain to ansible playbook?</title>
+        <dc:creator><![CDATA[Bryan]]></dc:creator>
+        <description><![CDATA[
+            <p>Done by<br>
+<a href="https://docs.stackstorm.com/reference/jinja.html" class="onebox" target="_blank" rel="noopener nofollow ugc">https://docs.stackstorm.com/reference/jinja.html</a><br>
+and examples in st2/contrib/examples/actions/chains/</p>
+<p>Use stackstorm filter from_yaml_string and use_none to sovle this issue<br>
+Thank you.</p>
+          <p><a href="https://forum.stackstorm.com/t/how-to-keep-parameter-data-type-when-passing-parameter-from-a-action-chain-to-ansible-playbook/1612/4">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-to-keep-parameter-data-type-when-passing-parameter-from-a-action-chain-to-ansible-playbook/1612/4</link>
+        <pubDate>Thu, 25 Mar 2021 04:52:53 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1612-4</guid>
+        <source url="https://forum.stackstorm.com/t/how-to-keep-parameter-data-type-when-passing-parameter-from-a-action-chain-to-ansible-playbook/1612.rss">How to keep parameter data type when passing parameter from a action-chain to ansible playbook?</source>
+      </item>
+      <item>
+        <title>How to keep parameter data type when passing parameter from a action-chain to ansible playbook?</title>
+        <dc:creator><![CDATA[Bryan]]></dc:creator>
+        <description><![CDATA[
+            <p>No, I want to keep Stackstorm array/boolean/object data type. But ansible treat them as string</p>
+          <p><a href="https://forum.stackstorm.com/t/how-to-keep-parameter-data-type-when-passing-parameter-from-a-action-chain-to-ansible-playbook/1612/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-to-keep-parameter-data-type-when-passing-parameter-from-a-action-chain-to-ansible-playbook/1612/3</link>
+        <pubDate>Thu, 25 Mar 2021 02:06:10 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1612-3</guid>
+        <source url="https://forum.stackstorm.com/t/how-to-keep-parameter-data-type-when-passing-parameter-from-a-action-chain-to-ansible-playbook/1612.rss">How to keep parameter data type when passing parameter from a action-chain to ansible playbook?</source>
+      </item>
+      <item>
+        <title>How to keep parameter data type when passing parameter from a action-chain to ansible playbook?</title>
+        <dc:creator><![CDATA[blag]]></dc:creator>
+        <description><![CDATA[
+            <p>Use a Jinja filter to convert the StackStorm array/boolean/object to a string. Check the StackStorm documentation for how to do this.</p>
+          <p><a href="https://forum.stackstorm.com/t/how-to-keep-parameter-data-type-when-passing-parameter-from-a-action-chain-to-ansible-playbook/1612/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-to-keep-parameter-data-type-when-passing-parameter-from-a-action-chain-to-ansible-playbook/1612/2</link>
+        <pubDate>Wed, 24 Mar 2021 19:04:52 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1612-2</guid>
+        <source url="https://forum.stackstorm.com/t/how-to-keep-parameter-data-type-when-passing-parameter-from-a-action-chain-to-ansible-playbook/1612.rss">How to keep parameter data type when passing parameter from a action-chain to ansible playbook?</source>
+      </item>
+      <item>
+        <title>How to keep parameter data type when passing parameter from a action-chain to ansible playbook?</title>
+        <dc:creator><![CDATA[Bryan]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi all,<br>
+I’m writing a action-chain, one step is  running a playbook<br>
+some part of code is like this:</p>
+<blockquote>
+<pre><code>-
+  name: 'run_playbook'
+  ref: ansible.playbook
+  parameters:
+    playbook: ./os_user/main.yaml
+    cwd: /opt/stackstorm/packs/ansible/actions/playbooks
+    inventory_file: "../unstable/{{ inventory_name }}"  
+    extra_vars:
+      - os_user: "{{ os_user }}"
+      - os_passwd: "{{ os_passwd }}"
+      - operation: "{{ operation }}"
+      - user_sudo: "{{ user_sudo }}"
+      - user_groups: "{{ user_groups }}"
+      - user_uid: "{{ user_uid }}"
+  on-success: 'delete_inventory'
+  on-failure: 'delete_inventory'
+</code></pre>
+</blockquote>
+<p>ansible always handle vars as a string, for example {{user_groups}}, it is should be a array in stackstorm action metadata yaml. {{user_sudo}} should be a boolean. It will be annoying when do a conditional judgments.<br>
+For example, I have to write my playbook like this:</p>
+<blockquote>
+<pre><code>- role: groups
+  when: operation == "present" and user_groups != "['EmptyGroup']"
+- role: sudo
+  when: user_sudo != "False" and operation == "present"
+</code></pre>
+</blockquote>
+<p>What should I do?</p>
+          <p><a href="https://forum.stackstorm.com/t/how-to-keep-parameter-data-type-when-passing-parameter-from-a-action-chain-to-ansible-playbook/1612/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-to-keep-parameter-data-type-when-passing-parameter-from-a-action-chain-to-ansible-playbook/1612/1</link>
+        <pubDate>Wed, 24 Mar 2021 08:39:43 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1612-1</guid>
+        <source url="https://forum.stackstorm.com/t/how-to-keep-parameter-data-type-when-passing-parameter-from-a-action-chain-to-ansible-playbook/1612.rss">How to keep parameter data type when passing parameter from a action-chain to ansible playbook?</source>
+      </item>
+  </channel>
+</rss>

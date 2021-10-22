@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Various questions about workflows</title>
+    <link>https://forum.stackstorm.com/t/various-questions-about-workflows/1106</link>
+    <description>Hello.
+
+I am currently evaluating StackStorm and quite like it so far, we are comparing it against other more generic process workflow engines like Camunda for self-remediation on a network environment,
+
+I have been playing with workflows but I got a few questions
+
+On this kind of workflow, how could I for example on, make the loop only run the action when a specific condition is matched (for example `item().status != &quot;closed&quot;`
+
+``` yaml
+version: 1.0
+
+description: Close all the Opsgenie alerts
+
+tasks:
+  list_alerts:
+    action: opsgenie.list_alerts
+    next:
+      - when: &lt;% succeeded() %&gt;
+        do: close_alerts
+        publish:
+          - alerts: &lt;% result().result.data %&gt;
+
+  close_alerts:
+    with:
+      items: &lt;% ctx(alerts) %&gt;
+      concurrency: 3
+    action: opsgenie.close_alert alert_id=&lt;% item().id %&gt;
+```
+
+Also there is a interesting feature on Camunda that I could not find here : https://docs.camunda.org/manual/7.12/reference/bpmn20/events/message-events/#message-intermediate-catching-event
+
+It would allow for a workflow to pause somewhere in a step and wait for an external event (typically a webhook) to trigger to continue, I could not find a way to do the same here ?
+
+Thanks.</description>
+    
+    <lastBuildDate>Fri, 13 Mar 2020 14:04:01 +0000</lastBuildDate>
+    <category>Workflows</category>
+    <atom:link href="https://forum.stackstorm.com/t/various-questions-about-workflows/1106.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Various questions about workflows</title>
+        <dc:creator><![CDATA[punkrokk]]></dc:creator>
+        <description><![CDATA[
+            <p><a class="mention" href="https://github.com/kedare">@kedare</a> start here:</p>
+<p><a href="https://docs.stackstorm.com/orquesta/expressions.html" class="onebox" target="_blank">https://docs.stackstorm.com/orquesta/expressions.html</a></p>
+          <p><a href="https://forum.stackstorm.com/t/various-questions-about-workflows/1106/6">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/various-questions-about-workflows/1106/6</link>
+        <pubDate>Fri, 13 Mar 2020 14:04:01 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1106-6</guid>
+        <source url="https://forum.stackstorm.com/t/various-questions-about-workflows/1106.rss">Various questions about workflows</source>
+      </item>
+      <item>
+        <title>Various questions about workflows</title>
+        <dc:creator><![CDATA[kedare]]></dc:creator>
+        <description><![CDATA[
+            <p>Can you give me an example ? I though YaQL and Jinja were only in Mistral.</p>
+          <p><a href="https://forum.stackstorm.com/t/various-questions-about-workflows/1106/5">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/various-questions-about-workflows/1106/5</link>
+        <pubDate>Fri, 13 Mar 2020 09:04:59 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1106-5</guid>
+        <source url="https://forum.stackstorm.com/t/various-questions-about-workflows/1106.rss">Various questions about workflows</source>
+      </item>
+      <item>
+        <title>Various questions about workflows</title>
+        <dc:creator><![CDATA[m4dcoder]]></dc:creator>
+        <description><![CDATA[
+            <p>On making with-items only run the action when a specific condition is matched (item().status != “closed”), you can use a YAQL or Jinja expression to filter the items based on the status in your use case before passing that into with-items.</p>
+          <p><a href="https://forum.stackstorm.com/t/various-questions-about-workflows/1106/4">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/various-questions-about-workflows/1106/4</link>
+        <pubDate>Thu, 12 Mar 2020 21:14:50 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1106-4</guid>
+        <source url="https://forum.stackstorm.com/t/various-questions-about-workflows/1106.rss">Various questions about workflows</source>
+      </item>
+      <item>
+        <title>Various questions about workflows</title>
+        <dc:creator><![CDATA[m4dcoder]]></dc:creator>
+        <description><![CDATA[
+            <p>On checkpoint/pause, you can take a look at inquiries at <a href="https://docs.stackstorm.com/inquiries.html?highlight=inquiry#" class="inline-onebox" rel="nofollow noopener">Inquiries — StackStorm 3.1.0 documentation</a> and see if that solve your use case. You can call the inquiry API or CLI to resume the workflow if it needs to be automated.</p>
+          <p><a href="https://forum.stackstorm.com/t/various-questions-about-workflows/1106/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/various-questions-about-workflows/1106/3</link>
+        <pubDate>Thu, 12 Mar 2020 21:12:07 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1106-3</guid>
+        <source url="https://forum.stackstorm.com/t/various-questions-about-workflows/1106.rss">Various questions about workflows</source>
+      </item>
+      <item>
+        <title>Various questions about workflows</title>
+        <dc:creator><![CDATA[armab]]></dc:creator>
+        <description><![CDATA[
+            <p>I think StackStorm Inquiries is what you’re looking for. Check out <a href="https://docs.stackstorm.com/inquiries.html" class="inline-onebox">Inquiries — StackStorm 3.1.0 documentation</a></p>
+          <p><a href="https://forum.stackstorm.com/t/various-questions-about-workflows/1106/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/various-questions-about-workflows/1106/2</link>
+        <pubDate>Thu, 12 Mar 2020 19:16:43 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1106-2</guid>
+        <source url="https://forum.stackstorm.com/t/various-questions-about-workflows/1106.rss">Various questions about workflows</source>
+      </item>
+      <item>
+        <title>Various questions about workflows</title>
+        <dc:creator><![CDATA[kedare]]></dc:creator>
+        <description><![CDATA[
+            <p>Hello.</p>
+<p>I am currently evaluating StackStorm and quite like it so far, we are comparing it against other more generic process workflow engines like Camunda for self-remediation on a network environment,</p>
+<p>I have been playing with workflows but I got a few questions</p>
+<p>On this kind of workflow, how could I for example on, make the loop only run the action when a specific condition is matched (for example <code>item().status != "closed"</code></p>
+<pre><code class="lang-yaml">version: 1.0
+
+description: Close all the Opsgenie alerts
+
+tasks:
+  list_alerts:
+    action: opsgenie.list_alerts
+    next:
+      - when: &lt;% succeeded() %&gt;
+        do: close_alerts
+        publish:
+          - alerts: &lt;% result().result.data %&gt;
+
+  close_alerts:
+    with:
+      items: &lt;% ctx(alerts) %&gt;
+      concurrency: 3
+    action: opsgenie.close_alert alert_id=&lt;% item().id %&gt;
+</code></pre>
+<p>Also there is a interesting feature on Camunda that I could not find here : <a href="https://docs.camunda.org/manual/7.12/reference/bpmn20/events/message-events/#message-intermediate-catching-event" rel="nofollow noopener">https://docs.camunda.org/manual/7.12/reference/bpmn20/events/message-events/#message-intermediate-catching-event</a></p>
+<p>It would allow for a workflow to pause somewhere in a step and wait for an external event (typically a webhook) to trigger to continue, I could not find a way to do the same here ?</p>
+<p>Thanks.</p>
+          <p><a href="https://forum.stackstorm.com/t/various-questions-about-workflows/1106/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/various-questions-about-workflows/1106/1</link>
+        <pubDate>Thu, 12 Mar 2020 14:30:34 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1106-1</guid>
+        <source url="https://forum.stackstorm.com/t/various-questions-about-workflows/1106.rss">Various questions about workflows</source>
+      </item>
+  </channel>
+</rss>

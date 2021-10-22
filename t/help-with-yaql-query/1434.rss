@@ -1,0 +1,673 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Help with YAQL query</title>
+    <link>https://forum.stackstorm.com/t/help-with-yaql-query/1434</link>
+    <description>I have hit a brick wall trying to publish a yaql expression from output data and documentation on yaql is somewhat sparse
+
+From the below output, I am trying to publish virtualmachine.id where virtualmachine.nic.networkname = lan-net
+
+Any pointers to what the expression should look like would be appreciated
+
+virtualmachine:
+       - account: user
+         affinitygroup: []
+         cpunumber: 1
+         cpuspeed: 1000
+         cpuused: 0.41%
+         created: 2020-08-31T12:00:16+0800
+         details:
+           Message.ReservedCapacityFreed.Flag: &#39;true&#39;
+           SSH.PublicKey: ssh-rsa AAAB35555yc2E1234DAQABAAABAQCAc1xLjLaxrSIVVFF8ihBX0yZxYgtVT5zmn7XxghTZvB40yeeCqQRaxLT1I2cKSKijA+jkxudgRAJzdeqk6c3EoBk3e2/Q+1o9QO/8xaHIXPKu5JoTKyCi8jq5FkqUxSf3/KHrDMk24/kgj5CGG3S0WeFSp3MORoVBxVSW+BDE5XIDBycQjWxEDSQOgbrOt6Ywmbkf955jh77Kcf/v8IqhLg1a94txmbDI+oaKyrzbVOisErI4/k7GzbyxjiozbQZ6ISp+SlcFsms5ecUGpM04WmIt6r7Hwli40kzcj4NGAN1lm3pK9+0Hp7tab/IJsgTmp7T9N3ICc60nBmdtoc3l
+         diskioread: 92512
+         diskiowrite: 34501
+         diskkbsread: 3167073
+         diskkbswrite: 3920315
+         diskofferingid: c8e23623-3c9c-4cf0-877b-92491560629b
+         diskofferingname: Custom
+         displayname: localhost
+         displayvm: true
+         domain: ROOT
+         domainid: b6155e47-64e7-11e9-3333-f2f9c859b603
+         guestosid: ebf3934c-3333-11e9-81d3-964f98ffb0e4
+         haenable: false
+         hypervisor: KVM
+         id: 3bc967ba-3402-3333-8206-4d005e469978
+         instancename: i-2-3748-VM
+         isdynamicallyscalable: false
+         keypair: ssh-keypair
+         memory: 1024
+         memoryintfreekbs: 644136
+         memorykbs: 1048576
+         memorytargetkbs: 1048576
+         name: localhost
+         networkkbsread: 234858
+         networkkbswrite: 4791
+         nic:
+         - broadcasturi: vlan://10
+           extradhcpoption: []
+           gateway: 10.10.10.2
+           id: 15aa2e71-2c93-4d98-94ea-46635109eced
+           ipaddress: 10.10.10.153
+           isdefault: true
+           isolationuri: vlan://10
+           macaddress: 1e:00:41:00:01:d4
+           netmask: 255.255.255.0
+           networkid: 07521c6d-17b4-4236-8f1d-87a61d4e770d
+           networkname: lan-net
+           secondaryip: []
+           traffictype: Guest
+           type: Shared
+         ostypeid: ebf3934c-fc51-11e9-81d3-964f98ffb0e4
+         passwordenabled: false
+         rootdeviceid: 0
+         rootdevicetype: ROOT
+         securitygroup: []
+         serviceofferingid: 4dea8ee3-3ce7-4d8b-ad45-46e6a769c6b6
+         serviceofferingname: Medium Instance
+         state: Stopped
+         tags: []
+         templatedisplaytext: CentOS 8
+         templateid: df40c1ff-9cbc-4e35-93bb-02dd3f68ccae
+         templatename: centos-8.2.2004-server
+         userid: d8b93f19-64e7-11e9-b6e7-f2f9c859b603
+         username: user
+         zoneid: bd43ff6e-ecaf-45ad-955c-9b1e28b5aeef
+         zonename: zone1
+       - account: user
+         affinitygroup: []
+         cpunumber: 1
+         cpuspeed: 500
+         cpuused: 1.04%
+         created: 2020-08-11T08:04:00+0800
+         details:
+           Message.ReservedCapacityFreed.Flag: &#39;false&#39;
+           SSH.PublicKey: ssh-rsa 1234B3NzaC1yc2E1234DAQABAAABAQCAc1xLjLaxrSIVVFF8ihBX0yZxYgtVT5zmn7XxghTZvB40yeeCqQRaxLT1I2cKSKijA+jkxudgRAJzdeqk6c3EoBk3e2/Q+1o9QO/8xaHIXPKu5JoTKyCi8jq5FkqUxSf3/KHrDMk24/kgj5CGG3S0WeFSp3MORoVBxVSW+BDE5XIDBycQjWxEDSQOgbrOt6Ywmbkf955jh77Kcf/v8IqhLg1a94txmbDI+oaKyrzbVOisErI4/k7GzbyxjiozbQZ6ISp+SlcFsms5ecUGpM04WmIt6r7Hwli40kzcj4NGAN1lm3pK9+0Hp7tab/IJsgTmp7T9N3ICc60nBmdtoc3l
+           rootDiskController: virtio
+         diskioread: 26918540
+         diskiowrite: 10790879
+         diskkbsread: 344913468
+         diskkbswrite: 76971660
+         displayname: VM-7afaecba-1dab-46e0-8f63-dfdd57f2f289
+         displayvm: true
+         domain: ROOT
+         domainid: b3355e55-63e7-11e9-b6e7-f2f9c859b603
+         guestosid: d2a6d04b-64e7-11e9-b6e7-f2f9c859b603
+         haenable: false
+         hostid: 03081bfd-b1ba-4c62-8771-bf4e01ce44c4
+         hostname: cloudstack2.mydomain.internal
+         hypervisor: KVM
+         id: 7afaecba-1dab-46e0-8f63-dfdd57f2f289
+         instancename: i-2-3446-VM
+         isdynamicallyscalable: false
+         keypair: ssh-keypair
+         memory: 512
+         memoryintfreekbs: 601684
+         memorykbs: 524288
+         memorytargetkbs: 524288
+         name: VM-7afaecba-1dab-46e0-8f63-dfdd57f2f289
+         networkkbsread: 1236463
+         networkkbswrite: 445667
+         nic:
+         - broadcasturi: vlan://567
+           extradhcpoption: []
+           gateway: 10.1.90.1
+           id: 862bbc94-fe3f-412d-bae1-d6a0808bd2c7
+           ipaddress: 10.1.90.251
+           isdefault: true
+           isolationuri: vlan://567
+           macaddress: 02:00:74:df:00:01
+           netmask: 255.255.255.0
+           networkid: 8e09d5d5-4fd1-4edb-8e4b-a4fc91ff1212
+           networkname: plexstats-net
+           secondaryip: []
+           traffictype: Guest
+           type: Isolated
+         ostypeid: d2a6d04b-64e7-11e9-b6e7-f2f9c859b603
+         passwordenabled: false
+         rootdeviceid: 1
+         rootdevicetype: DATADISK
+         securitygroup: []
+         serviceofferingid: eaf6a3db-6725-4eba-9dc8-ed3313cd470b
+         serviceofferingname: Small Instance
+         state: Running
+         tags:
+         - account: user
+           domain: ROOT
+           domainid: b3355e55-63e7-11e9-b6e7-f2f9c859b603
+           key: application
+           resourceid: 7afaecba-1dab-46e0-8f63-dfdd57f2f289
+           resourcetype: UserVm
+           value: plexstats
+         templatedisplaytext: Debian plexstats Server
+         templateid: fb86cf28-e32c-4bec-b09d-18a130fb482b
+         templatename: debian-10.0-plexstats-latest
+         userid: d8b93f19-64e7-11e9-b6e7-f2f9c859b603
+         username: user
+         zoneid: bd43ff6e-ecaf-45ad-955c-9b1e28b5aeef
+         zonename: zone1
+       - account: user
+         affinitygroup: []
+         cpunumber: 1
+         cpuspeed: 1000
+         cpuused: 0.95%
+         created: 2020-09-30T02:45:25+0800
+         details:
+           Message.ReservedCapacityFreed.Flag: &#39;false&#39;
+           SSH.PublicKey: ssh-rsa 1234B3NzaC1yc2E1234DAQABAAABAQCAc1xLjLaxrSIVVFF8ihBX0yZxYgtVT5zmn7XxghTZvB40yeeCqQRaxLT1I2cKSKijA+jkxudgRAJzdeqk6c3EoBk3e2/Q+1o9QO/8xaHIXPKu5JoTKyCi8jq5FkqUxSf3/KHrDMk24/kgj5CGG3S0WeFSp3MORoVBxVSW+BDE5XIDBycQjWxEDSQOgbrOt6Ywmbkf955jh77Kcf/v8IqhLg1a94txmbDI+oaKyrzbVOisErI4/k7GzbyxjiozbQZ6ISp+SlcFsms5ecUGpM04WmIt6r7Hwli40kzcj4NGAN1lm3pK9+0Hp7tab/IJsgTmp7T9N3ICc60nBmdtoc3l
+           rootDiskController: virtio
+         diskioread: 4047
+         diskiowrite: 7797
+         diskkbsread: 158040
+         diskkbswrite: 71824
+         displayname: VM-be958ccd-74cf-4993-a314-a92337d027fe
+         displayvm: true
+         domain: ROOT
+         domainid: b3355e55-63e7-11e9-b6e7-f2f9c859b603
+         guestosid: d2a6d04b-64e7-11e9-b6e7-f2f9c859b603
+         haenable: false
+         hostid: 03081bfd-b1ba-4c62-8771-bf4e01ce44c4
+         hostname: cloudstack2.mydomain.internal
+         hypervisor: KVM
+         id: be958ccd-74cf-4993-a314-a92337d027fe
+         instancename: i-2-4458-VM
+         isdynamicallyscalable: false
+         keypair: ssh-keypair
+         memory: 1024
+         memoryintfreekbs: 1129512
+         memorykbs: 1048576
+         memorytargetkbs: 1048576
+         name: VM-be958ccd-74cf-4993-a314-a92337d027fe
+         networkkbsread: 102652
+         networkkbswrite: 24906
+         nic:
+         - broadcasturi: vlan://10
+           extradhcpoption: []
+           gateway: 10.10.10.2
+           id: 4b44bbc6-ba31-4c0f-92ff-3628598cbb50
+           ipaddress: 10.10.10.174
+           isdefault: true
+           isolationuri: vlan://10
+           macaddress: 1e:00:f8:00:01:e9
+           netmask: 255.255.255.0
+           networkid: 07521c6d-17b4-4236-8f1d-87a61d4e770d
+           networkname: lan-net
+           secondaryip: []
+           traffictype: Guest
+           type: Shared
+         ostypeid: d2a6d04b-64e7-11e9-b6e7-f2f9c859b603
+         passwordenabled: false
+         rootdeviceid: 1
+         rootdevicetype: DATADISK
+         securitygroup: []
+         serviceofferingid: 4dea8ee3-3ce7-4d8b-ad45-46e6a769c6b6
+         serviceofferingname: Medium Instance
+         state: Running
+         tags:
+         - account: user
+           domain: ROOT
+           domainid: b3355e55-63e7-11e9-b6e7-f2f9c859b603
+           key: application
+           resourceid: be958ccd-74cf-4993-a314-a92337d027fe
+           resourcetype: UserVm
+           value: 
+         templatedisplaytext: Debian Server
+         templateid: e9468c29-38cd-499a-b959-502468400b93
+         templatename: debian-10.0--latest
+         userid: d8b93f19-64e7-11e9-b6e7-f2f9c859b603
+         username: user
+         zoneid: bd43ff6e-ecaf-45ad-955c-9b1e28b5aeef
+         zonename: zone1
+       - account: user
+         affinitygroup: []
+         cpunumber: 2
+         cpuspeed: 2000
+         cpuused: 1.06%
+         created: 2020-08-08T15:49:25+0800
+         details:
+           Message.ReservedCapacityFreed.Flag: &#39;false&#39;
+           SSH.PublicKey: ssh-rsa 1234B3NzaC1yc2E1234DAQABAAABAQCAc1xLjLaxrSIVVFF8ihBX0yZxYgtVT5zmn7XxghTZvB40yeeCqQRaxLT1I2cKSKijA+jkxudgRAJzdeqk6c3EoBk3e2/Q+1o9QO/8xaHIXPKu5JoTKyCi8jq5FkqUxSf3/KHrDMk24/kgj5CGG3S0WeFSp3MORoVBxVSW+BDE5XIDBycQjWxEDSQOgbrOt6Ywmbkf955jh77Kcf/v8IqhLg1a94txmbDI+oaKyrzbVOisErI4/k7GzbyxjiozbQZ6ISp+SlcFsms5ecUGpM04WmIt6r7Hwli40kzcj4NGAN1lm3pK9+0Hp7tab/IJsgTmp7T9N3ICc60nBmdtoc3l
+           rootDiskController: virtio
+         diskioread: 724131
+         diskiowrite: 2206871
+         diskkbsread: 35246384
+         diskkbswrite: 29790544
+         displayname: VM-af0a53f8-ec1d-4602-9fe2-8940cf05ba8e
+         displayvm: true
+         domain: ROOT
+         domainid: b3355e55-63e7-11e9-b6e7-f2f9c859b603
+         guestosid: d2a6d04b-64e7-11e9-b6e7-f2f9c859b603
+         haenable: false
+         hostid: 03081bfd-b1ba-4c62-8771-bf4e01ce44c4
+         hostname: cloudstack2.mydomain.internal
+         hypervisor: KVM
+         id: af0a53f8-ec1d-4602-9fe2-8940cf05ba8e
+         instancename: i-2-3399-VM
+         isdynamicallyscalable: false
+         keypair: ssh-keypair
+         memory: 4000
+         memoryintfreekbs: 4178404
+         memorykbs: 4096000
+         memorytargetkbs: 4096000
+         name: VM-af0a53f8-ec1d-4602-9fe2-8940cf05ba8e
+         networkkbsread: 1890289
+         networkkbswrite: 2065908
+         nic:
+         - broadcasturi: vlan://533
+           extradhcpoption: []
+           gateway: 10.1.70.1
+           id: 83fabe61-aa7b-432f-9db6-9767e9c3a065
+           ipaddress: 10.1.70.56
+           isdefault: true
+           isolationuri: vlan://534
+           macaddress: 02:00:09:26:00:01
+           netmask: 255.255.255.0
+           networkid: 7117ff2f-3c24-4ea6-a8e4-f96404b7a9ce
+           networkname: elk-net
+           secondaryip: []
+           traffictype: Guest
+           type: Isolated
+         ostypeid: d2a6d04b-64e7-11e9-b6e7-f2f9c859b603
+         passwordenabled: false
+         rootdeviceid: 1
+         rootdevicetype: DATADISK
+         securitygroup: []
+         serviceofferingid: 703cf223-0410-4b5d-87b9-4bb2cfe8f131
+         serviceofferingname: XX-Large Instance
+         state: Running
+         tags:
+         - account: user
+           domain: ROOT
+           domainid: b3355e55-63e7-11e9-b6e7-f2f9c859b603
+           key: application
+           resourceid: af0a53f8-ec1d-4602-9fe2-8940cf05ba8e
+           resourcetype: UserVm
+           value: elk
+         templatedisplaytext: Debian Server
+         templateid: 924e7779-88b8-4bbd-8c9a-bfa36c32365f
+         templatename: debian-10.0-elk-latest
+         userid: d8b93f19-64e7-11e9-b6e7-f2f9c859b603
+         username: user
+         zoneid: bd43ff6e-ecaf-45ad-955c-9b1e28b5aeef
+         zonename: zone1
+       nename: zone1</description>
+    
+    <lastBuildDate>Thu, 01 Oct 2020 15:49:34 +0000</lastBuildDate>
+    <category>Workflows</category>
+    <atom:link href="https://forum.stackstorm.com/t/help-with-yaql-query/1434.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Help with YAQL query</title>
+        <dc:creator><![CDATA[Carlos]]></dc:creator>
+        <description><![CDATA[
+            <p>Use the button for preformatted text inside the editor.</p>
+<pre><code>indent preformatted text by 4 spaces
+</code></pre>
+<p>So you just paste in the text you want preformatted.  Select the pasted text in the editor and click the prefomatted text button.  Here’s an example using some of your inital text.</p>
+<pre><code>virtualmachine:
+	- account: user
+		affinitygroup: []
+		cpunumber: 1
+		cpuspeed: 1000
+		cpuused: 0.41%
+		created: 2020-08-31T12:00:16+0800
+		details:
+		Message.ReservedCapacityFreed.Flag: ‘true’
+		SSH.PublicKey: ssh-rsa AAAB35555yc2E1234DAQABAAABAQCAc1xLjLaxrSIVVFF8ihBX0yZxYgtVT5zmn7XxghTZvB40yeeCqQRaxLT1I2cKSKijA+jkxudgRAJzdeqk6c3EoBk3e2/Q+1o9QO/8xaHIXPKu5JoTKyCi8jq5FkqUxSf3/KHrDMk24/kgj5CGG3S0WeFSp3MORoVBxVSW+BDE5XIDBycQjWxEDSQOgbrOt6Ywmbkf955jh77Kcf/v8IqhLg1a94txmbDI+oaKyrzbVOisErI4/k7GzbyxjiozbQZ6ISp+SlcFsms5ecUGpM04WmIt6r7Hwli40kzcj4NGAN1lm3pK9+0Hp7tab/IJsgTmp7T9N3ICc60nBmdtoc3l
+		diskioread: 92512
+		diskiowrite: 34501
+		diskkbsread: 3167073
+		diskkbswrite: 3920315
+		diskofferingid: c8e23623-3c9c-4cf0-877b-92491560629b
+		diskofferingname: Custom
+		displayname: localhost
+		displayvm: true</code></pre>
+          <p><a href="https://forum.stackstorm.com/t/help-with-yaql-query/1434/5">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/help-with-yaql-query/1434/5</link>
+        <pubDate>Thu, 01 Oct 2020 15:49:34 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1434-5</guid>
+        <source url="https://forum.stackstorm.com/t/help-with-yaql-query/1434.rss">Help with YAQL query</source>
+      </item>
+      <item>
+        <title>Help with YAQL query</title>
+        <dc:creator><![CDATA[nick]]></dc:creator>
+        <description><![CDATA[
+            <p>Apologies, the data was actually a copy paste from yaqulator, but it appears it didn’t format correctly. The solution to the problem based on amanda11 response was</p>
+<p><span class="math">.virtualmachine.where(</span>.nic.networkname.contains(“lan-net”)).id</p>
+<p>I can’t work out how to post the data and maintain the formatting, if someone can tell me how I’ll post it again for other to reference</p>
+<p>Thanks for your help &amp; support</p>
+          <p><a href="https://forum.stackstorm.com/t/help-with-yaql-query/1434/4">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/help-with-yaql-query/1434/4</link>
+        <pubDate>Thu, 01 Oct 2020 02:28:34 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1434-4</guid>
+        <source url="https://forum.stackstorm.com/t/help-with-yaql-query/1434.rss">Help with YAQL query</source>
+      </item>
+      <item>
+        <title>Help with YAQL query</title>
+        <dc:creator><![CDATA[amanda11]]></dc:creator>
+        <description><![CDATA[
+            <p>Have you tried using the where / select. Is nic just a dict or an array of dictionaries? As indention has gone funny I wasn’t sure. I’m assuming virtuamachine is an array, that includes properties id and nic.</p>
+<p>Not sure if this is the simplest, but I think if nic is just a dictionary then you could use:</p>
+<p><code>ctx().virtualmachine.where($.nic.networkname="lan.net").select($.id)</code></p>
+<p>But if its an array of dictionaries then maybe something like:<br>
+<code>ctx().virtualmachine.where($.nic.networkname.contains("lan.net")).select($.id)</code></p>
+<p>But as Carlos mentioned the yaqluator is really useful, I generally type in the JSON into there, and then build up my YAQL querie s- and using the YAQL doc site he has pointed at.</p>
+          <p><a href="https://forum.stackstorm.com/t/help-with-yaql-query/1434/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/help-with-yaql-query/1434/3</link>
+        <pubDate>Wed, 30 Sep 2020 15:50:03 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1434-3</guid>
+        <source url="https://forum.stackstorm.com/t/help-with-yaql-query/1434.rss">Help with YAQL query</source>
+      </item>
+      <item>
+        <title>Help with YAQL query</title>
+        <dc:creator><![CDATA[Carlos]]></dc:creator>
+        <description><![CDATA[
+            <p>It will be hard to help since the YAML you’ve posted is not formatted.  The structure of the dataset is important.  Can you update your post so it’s formatted correctly?</p>
+<p>In general when working with YAQL, the YAQL evaluator website <a href="http://yaqluator.com/" rel="noopener nofollow ugc">http://yaqluator.com/</a> and YAQL documentation <a href="https://yaql.readthedocs.io/en/latest/" rel="noopener nofollow ugc">https://yaql.readthedocs.io/en/latest/</a> are very useful</p>
+          <p><a href="https://forum.stackstorm.com/t/help-with-yaql-query/1434/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/help-with-yaql-query/1434/2</link>
+        <pubDate>Wed, 30 Sep 2020 15:42:56 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1434-2</guid>
+        <source url="https://forum.stackstorm.com/t/help-with-yaql-query/1434.rss">Help with YAQL query</source>
+      </item>
+      <item>
+        <title>Help with YAQL query</title>
+        <dc:creator><![CDATA[nick]]></dc:creator>
+        <description><![CDATA[
+            <p>I have hit a brick wall trying to publish a yaql expression from output data and documentation on yaql is somewhat sparse</p>
+<p>From the below output, I am trying to publish virtualmachine.id where virtualmachine.nic.networkname = lan-net</p>
+<p>Any pointers to what the expression should look like would be appreciated</p>
+<p>virtualmachine:<br>
+- account: user<br>
+affinitygroup: []<br>
+cpunumber: 1<br>
+cpuspeed: 1000<br>
+cpuused: 0.41%<br>
+created: 2020-08-31T12:00:16+0800<br>
+details:<br>
+Message.ReservedCapacityFreed.Flag: ‘true’<br>
+SSH.PublicKey: ssh-rsa AAAB35555yc2E1234DAQABAAABAQCAc1xLjLaxrSIVVFF8ihBX0yZxYgtVT5zmn7XxghTZvB40yeeCqQRaxLT1I2cKSKijA+jkxudgRAJzdeqk6c3EoBk3e2/Q+1o9QO/8xaHIXPKu5JoTKyCi8jq5FkqUxSf3/KHrDMk24/kgj5CGG3S0WeFSp3MORoVBxVSW+BDE5XIDBycQjWxEDSQOgbrOt6Ywmbkf955jh77Kcf/v8IqhLg1a94txmbDI+oaKyrzbVOisErI4/k7GzbyxjiozbQZ6ISp+SlcFsms5ecUGpM04WmIt6r7Hwli40kzcj4NGAN1lm3pK9+0Hp7tab/IJsgTmp7T9N3ICc60nBmdtoc3l<br>
+diskioread: 92512<br>
+diskiowrite: 34501<br>
+diskkbsread: 3167073<br>
+diskkbswrite: 3920315<br>
+diskofferingid: c8e23623-3c9c-4cf0-877b-92491560629b<br>
+diskofferingname: Custom<br>
+displayname: localhost<br>
+displayvm: true<br>
+domain: ROOT<br>
+domainid: b6155e47-64e7-11e9-3333-f2f9c859b603<br>
+guestosid: ebf3934c-3333-11e9-81d3-964f98ffb0e4<br>
+haenable: false<br>
+hypervisor: KVM<br>
+id: 3bc967ba-3402-3333-8206-4d005e469978<br>
+instancename: i-2-3748-VM<br>
+isdynamicallyscalable: false<br>
+keypair: ssh-keypair<br>
+memory: 1024<br>
+memoryintfreekbs: 644136<br>
+memorykbs: 1048576<br>
+memorytargetkbs: 1048576<br>
+name: localhost<br>
+networkkbsread: 234858<br>
+networkkbswrite: 4791<br>
+nic:<br>
+- broadcasturi: vlan://10<br>
+extradhcpoption: []<br>
+gateway: 10.10.10.2<br>
+id: 15aa2e71-2c93-4d98-94ea-46635109eced<br>
+ipaddress: 10.10.10.153<br>
+isdefault: true<br>
+isolationuri: vlan://10<br>
+macaddress: 1e:00:41:00:01:d4<br>
+netmask: 255.255.255.0<br>
+networkid: 07521c6d-17b4-4236-8f1d-87a61d4e770d<br>
+networkname: lan-net<br>
+secondaryip: []<br>
+traffictype: Guest<br>
+type: Shared<br>
+ostypeid: ebf3934c-fc51-11e9-81d3-964f98ffb0e4<br>
+passwordenabled: false<br>
+rootdeviceid: 0<br>
+rootdevicetype: ROOT<br>
+securitygroup: []<br>
+serviceofferingid: 4dea8ee3-3ce7-4d8b-ad45-46e6a769c6b6<br>
+serviceofferingname: Medium Instance<br>
+state: Stopped<br>
+tags: []<br>
+templatedisplaytext: CentOS 8<br>
+templateid: df40c1ff-9cbc-4e35-93bb-02dd3f68ccae<br>
+templatename: centos-8.2.2004-server<br>
+userid: d8b93f19-64e7-11e9-b6e7-f2f9c859b603<br>
+username: user<br>
+zoneid: bd43ff6e-ecaf-45ad-955c-9b1e28b5aeef<br>
+zonename: zone1<br>
+- account: user<br>
+affinitygroup: []<br>
+cpunumber: 1<br>
+cpuspeed: 500<br>
+cpuused: 1.04%<br>
+created: 2020-08-11T08:04:00+0800<br>
+details:<br>
+Message.ReservedCapacityFreed.Flag: ‘false’<br>
+SSH.PublicKey: ssh-rsa 1234B3NzaC1yc2E1234DAQABAAABAQCAc1xLjLaxrSIVVFF8ihBX0yZxYgtVT5zmn7XxghTZvB40yeeCqQRaxLT1I2cKSKijA+jkxudgRAJzdeqk6c3EoBk3e2/Q+1o9QO/8xaHIXPKu5JoTKyCi8jq5FkqUxSf3/KHrDMk24/kgj5CGG3S0WeFSp3MORoVBxVSW+BDE5XIDBycQjWxEDSQOgbrOt6Ywmbkf955jh77Kcf/v8IqhLg1a94txmbDI+oaKyrzbVOisErI4/k7GzbyxjiozbQZ6ISp+SlcFsms5ecUGpM04WmIt6r7Hwli40kzcj4NGAN1lm3pK9+0Hp7tab/IJsgTmp7T9N3ICc60nBmdtoc3l<br>
+rootDiskController: virtio<br>
+diskioread: 26918540<br>
+diskiowrite: 10790879<br>
+diskkbsread: 344913468<br>
+diskkbswrite: 76971660<br>
+displayname: VM-7afaecba-1dab-46e0-8f63-dfdd57f2f289<br>
+displayvm: true<br>
+domain: ROOT<br>
+domainid: b3355e55-63e7-11e9-b6e7-f2f9c859b603<br>
+guestosid: d2a6d04b-64e7-11e9-b6e7-f2f9c859b603<br>
+haenable: false<br>
+hostid: 03081bfd-b1ba-4c62-8771-bf4e01ce44c4<br>
+hostname: cloudstack2.mydomain.internal<br>
+hypervisor: KVM<br>
+id: 7afaecba-1dab-46e0-8f63-dfdd57f2f289<br>
+instancename: i-2-3446-VM<br>
+isdynamicallyscalable: false<br>
+keypair: ssh-keypair<br>
+memory: 512<br>
+memoryintfreekbs: 601684<br>
+memorykbs: 524288<br>
+memorytargetkbs: 524288<br>
+name: VM-7afaecba-1dab-46e0-8f63-dfdd57f2f289<br>
+networkkbsread: 1236463<br>
+networkkbswrite: 445667<br>
+nic:<br>
+- broadcasturi: vlan://567<br>
+extradhcpoption: []<br>
+gateway: 10.1.90.1<br>
+id: 862bbc94-fe3f-412d-bae1-d6a0808bd2c7<br>
+ipaddress: 10.1.90.251<br>
+isdefault: true<br>
+isolationuri: vlan://567<br>
+macaddress: 02:00:74:df:00:01<br>
+netmask: 255.255.255.0<br>
+networkid: 8e09d5d5-4fd1-4edb-8e4b-a4fc91ff1212<br>
+networkname: plexstats-net<br>
+secondaryip: []<br>
+traffictype: Guest<br>
+type: Isolated<br>
+ostypeid: d2a6d04b-64e7-11e9-b6e7-f2f9c859b603<br>
+passwordenabled: false<br>
+rootdeviceid: 1<br>
+rootdevicetype: DATADISK<br>
+securitygroup: []<br>
+serviceofferingid: eaf6a3db-6725-4eba-9dc8-ed3313cd470b<br>
+serviceofferingname: Small Instance<br>
+state: Running<br>
+tags:<br>
+- account: user<br>
+domain: ROOT<br>
+domainid: b3355e55-63e7-11e9-b6e7-f2f9c859b603<br>
+key: application<br>
+resourceid: 7afaecba-1dab-46e0-8f63-dfdd57f2f289<br>
+resourcetype: UserVm<br>
+value: plexstats<br>
+templatedisplaytext: Debian plexstats Server<br>
+templateid: fb86cf28-e32c-4bec-b09d-18a130fb482b<br>
+templatename: debian-10.0-plexstats-latest<br>
+userid: d8b93f19-64e7-11e9-b6e7-f2f9c859b603<br>
+username: user<br>
+zoneid: bd43ff6e-ecaf-45ad-955c-9b1e28b5aeef<br>
+zonename: zone1<br>
+- account: user<br>
+affinitygroup: []<br>
+cpunumber: 1<br>
+cpuspeed: 1000<br>
+cpuused: 0.95%<br>
+created: 2020-09-30T02:45:25+0800<br>
+details:<br>
+Message.ReservedCapacityFreed.Flag: ‘false’<br>
+SSH.PublicKey: ssh-rsa 1234B3NzaC1yc2E1234DAQABAAABAQCAc1xLjLaxrSIVVFF8ihBX0yZxYgtVT5zmn7XxghTZvB40yeeCqQRaxLT1I2cKSKijA+jkxudgRAJzdeqk6c3EoBk3e2/Q+1o9QO/8xaHIXPKu5JoTKyCi8jq5FkqUxSf3/KHrDMk24/kgj5CGG3S0WeFSp3MORoVBxVSW+BDE5XIDBycQjWxEDSQOgbrOt6Ywmbkf955jh77Kcf/v8IqhLg1a94txmbDI+oaKyrzbVOisErI4/k7GzbyxjiozbQZ6ISp+SlcFsms5ecUGpM04WmIt6r7Hwli40kzcj4NGAN1lm3pK9+0Hp7tab/IJsgTmp7T9N3ICc60nBmdtoc3l<br>
+rootDiskController: virtio<br>
+diskioread: 4047<br>
+diskiowrite: 7797<br>
+diskkbsread: 158040<br>
+diskkbswrite: 71824<br>
+displayname: VM-be958ccd-74cf-4993-a314-a92337d027fe<br>
+displayvm: true<br>
+domain: ROOT<br>
+domainid: b3355e55-63e7-11e9-b6e7-f2f9c859b603<br>
+guestosid: d2a6d04b-64e7-11e9-b6e7-f2f9c859b603<br>
+haenable: false<br>
+hostid: 03081bfd-b1ba-4c62-8771-bf4e01ce44c4<br>
+hostname: cloudstack2.mydomain.internal<br>
+hypervisor: KVM<br>
+id: be958ccd-74cf-4993-a314-a92337d027fe<br>
+instancename: i-2-4458-VM<br>
+isdynamicallyscalable: false<br>
+keypair: ssh-keypair<br>
+memory: 1024<br>
+memoryintfreekbs: 1129512<br>
+memorykbs: 1048576<br>
+memorytargetkbs: 1048576<br>
+name: VM-be958ccd-74cf-4993-a314-a92337d027fe<br>
+networkkbsread: 102652<br>
+networkkbswrite: 24906<br>
+nic:<br>
+- broadcasturi: vlan://10<br>
+extradhcpoption: []<br>
+gateway: 10.10.10.2<br>
+id: 4b44bbc6-ba31-4c0f-92ff-3628598cbb50<br>
+ipaddress: 10.10.10.174<br>
+isdefault: true<br>
+isolationuri: vlan://10<br>
+macaddress: 1e:00:f8:00:01:e9<br>
+netmask: 255.255.255.0<br>
+networkid: 07521c6d-17b4-4236-8f1d-87a61d4e770d<br>
+networkname: lan-net<br>
+secondaryip: []<br>
+traffictype: Guest<br>
+type: Shared<br>
+ostypeid: d2a6d04b-64e7-11e9-b6e7-f2f9c859b603<br>
+passwordenabled: false<br>
+rootdeviceid: 1<br>
+rootdevicetype: DATADISK<br>
+securitygroup: []<br>
+serviceofferingid: 4dea8ee3-3ce7-4d8b-ad45-46e6a769c6b6<br>
+serviceofferingname: Medium Instance<br>
+state: Running<br>
+tags:<br>
+- account: user<br>
+domain: ROOT<br>
+domainid: b3355e55-63e7-11e9-b6e7-f2f9c859b603<br>
+key: application<br>
+resourceid: be958ccd-74cf-4993-a314-a92337d027fe<br>
+resourcetype: UserVm<br>
+value:<br>
+templatedisplaytext: Debian Server<br>
+templateid: e9468c29-38cd-499a-b959-502468400b93<br>
+templatename: debian-10.0–latest<br>
+userid: d8b93f19-64e7-11e9-b6e7-f2f9c859b603<br>
+username: user<br>
+zoneid: bd43ff6e-ecaf-45ad-955c-9b1e28b5aeef<br>
+zonename: zone1<br>
+- account: user<br>
+affinitygroup: []<br>
+cpunumber: 2<br>
+cpuspeed: 2000<br>
+cpuused: 1.06%<br>
+created: 2020-08-08T15:49:25+0800<br>
+details:<br>
+Message.ReservedCapacityFreed.Flag: ‘false’<br>
+SSH.PublicKey: ssh-rsa 1234B3NzaC1yc2E1234DAQABAAABAQCAc1xLjLaxrSIVVFF8ihBX0yZxYgtVT5zmn7XxghTZvB40yeeCqQRaxLT1I2cKSKijA+jkxudgRAJzdeqk6c3EoBk3e2/Q+1o9QO/8xaHIXPKu5JoTKyCi8jq5FkqUxSf3/KHrDMk24/kgj5CGG3S0WeFSp3MORoVBxVSW+BDE5XIDBycQjWxEDSQOgbrOt6Ywmbkf955jh77Kcf/v8IqhLg1a94txmbDI+oaKyrzbVOisErI4/k7GzbyxjiozbQZ6ISp+SlcFsms5ecUGpM04WmIt6r7Hwli40kzcj4NGAN1lm3pK9+0Hp7tab/IJsgTmp7T9N3ICc60nBmdtoc3l<br>
+rootDiskController: virtio<br>
+diskioread: 724131<br>
+diskiowrite: 2206871<br>
+diskkbsread: 35246384<br>
+diskkbswrite: 29790544<br>
+displayname: VM-af0a53f8-ec1d-4602-9fe2-8940cf05ba8e<br>
+displayvm: true<br>
+domain: ROOT<br>
+domainid: b3355e55-63e7-11e9-b6e7-f2f9c859b603<br>
+guestosid: d2a6d04b-64e7-11e9-b6e7-f2f9c859b603<br>
+haenable: false<br>
+hostid: 03081bfd-b1ba-4c62-8771-bf4e01ce44c4<br>
+hostname: cloudstack2.mydomain.internal<br>
+hypervisor: KVM<br>
+id: af0a53f8-ec1d-4602-9fe2-8940cf05ba8e<br>
+instancename: i-2-3399-VM<br>
+isdynamicallyscalable: false<br>
+keypair: ssh-keypair<br>
+memory: 4000<br>
+memoryintfreekbs: 4178404<br>
+memorykbs: 4096000<br>
+memorytargetkbs: 4096000<br>
+name: VM-af0a53f8-ec1d-4602-9fe2-8940cf05ba8e<br>
+networkkbsread: 1890289<br>
+networkkbswrite: 2065908<br>
+nic:<br>
+- broadcasturi: vlan://533<br>
+extradhcpoption: []<br>
+gateway: 10.1.70.1<br>
+id: 83fabe61-aa7b-432f-9db6-9767e9c3a065<br>
+ipaddress: 10.1.70.56<br>
+isdefault: true<br>
+isolationuri: vlan://534<br>
+macaddress: 02:00:09:26:00:01<br>
+netmask: 255.255.255.0<br>
+networkid: 7117ff2f-3c24-4ea6-a8e4-f96404b7a9ce<br>
+networkname: elk-net<br>
+secondaryip: []<br>
+traffictype: Guest<br>
+type: Isolated<br>
+ostypeid: d2a6d04b-64e7-11e9-b6e7-f2f9c859b603<br>
+passwordenabled: false<br>
+rootdeviceid: 1<br>
+rootdevicetype: DATADISK<br>
+securitygroup: []<br>
+serviceofferingid: 703cf223-0410-4b5d-87b9-4bb2cfe8f131<br>
+serviceofferingname: XX-Large Instance<br>
+state: Running<br>
+tags:<br>
+- account: user<br>
+domain: ROOT<br>
+domainid: b3355e55-63e7-11e9-b6e7-f2f9c859b603<br>
+key: application<br>
+resourceid: af0a53f8-ec1d-4602-9fe2-8940cf05ba8e<br>
+resourcetype: UserVm<br>
+value: elk<br>
+templatedisplaytext: Debian Server<br>
+templateid: 924e7779-88b8-4bbd-8c9a-bfa36c32365f<br>
+templatename: debian-10.0-elk-latest<br>
+userid: d8b93f19-64e7-11e9-b6e7-f2f9c859b603<br>
+username: user<br>
+zoneid: bd43ff6e-ecaf-45ad-955c-9b1e28b5aeef<br>
+zonename: zone1<br>
+nename: zone1</p>
+          <p><a href="https://forum.stackstorm.com/t/help-with-yaql-query/1434/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/help-with-yaql-query/1434/1</link>
+        <pubDate>Wed, 30 Sep 2020 08:26:34 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1434-1</guid>
+        <source url="https://forum.stackstorm.com/t/help-with-yaql-query/1434.rss">Help with YAQL query</source>
+      </item>
+  </channel>
+</rss>

@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Getting &#39;Connection aborted&#39; with long running workflows</title>
+    <link>https://forum.stackstorm.com/t/getting-connection-aborted-with-long-running-workflows/333</link>
+    <description>We have a a long running task which can take up to 8 days to complete. Most of our executions complete successfully but we run into an issue where all of our executions start failing. Upon investigating the logs, we see that we are receiving HTTP errors due to an expired token. The TTL for our auth tokens in our st2.conf is set to 10 days but we are seeing this issue for task running less than 4 days.
+
+**Mistral log snippet:**
+
+```
+2018-10-08 12:32:40.571 497 WARNING st2mistral.utils.http [req-315de175-21ab-40c5-ba20-70d95798be0e - - - - -] [stackstorm] HTTP request returned connection error. Retrying...: ConnectionError: (&#39;Connection aborted.&#39;, BadStatusLine(&quot;&#39;&#39;&quot;,))
+```
+
+**st2 log snippet:**
+
+```
+/var/log/st2/st2api.log:72022064:2018-10-08 12:32:04,844 140599707325296 INFO logging [-] e2cf5d4b-a847-4413-8bf5-cb3e9fc3a95a - POST /v1/executions with query={} (remote_addr=&#39;127.0.0.1&#39;,method=&#39;POST&#39;,request_id=&#39;e2cf5d4b-a847-4413-8bf5-cb3e9fc3a95a&#39;,query={},path=&#39;/v1/executions&#39;)
+/var/log/st2/st2api.log:72022065:2018-10-08 12:32:04,847 140599707325296 AUDIT auth [-] Token with id &quot;5ba5c9482b79db008f58c297&quot; has expired.
+/var/log/st2/st2api.log:72022066:2018-10-08 12:32:04,848 140599707325296 ERROR router [-] Token has expired.
+/var/log/st2/st2api.log:72022073:2018-10-08 12:32:04,849 140599707325296 INFO logging [-] e2cf5d4b-a847-4413-8bf5-cb3e9fc3a95a - 401 58 5.014ms (content_length=58,request_id=&#39;e2cf5d4b-a847-4413-8bf5-cb3e9fc3a95a&#39;,runtime=5.014,remote_addr=&#39;127.0.0.1&#39;,status=401,method=&#39;POST&#39;,path=&#39;/v1/executions&#39;)
+/var/log/st2/st2api.log:72022074:2018-10-08 12:32:09,596 140599707315728 INFO logging [-] 030974bc-5181-491b-b8ca-8bef57aea37d - POST /v1/executions with query={} (remote_addr=&#39;127.0.0.1&#39;,method=&#39;POST&#39;,request_id=&#39;030974bc-5181-491b-b8ca-8bef57aea37d&#39;,query={},path=&#39;/v1/executions&#39;)
+/var/log/st2/st2api.log:72022075:2018-10-08 12:32:09,599 140599707315728 AUDIT auth [-] Token with id &quot;5ba4e4492b79db009206d556&quot; has expired.
+/var/log/st2/st2api.log:72022076:2018-10-08 12:32:09,599 140599707315728 ERROR router [-] Token has expired.
+/var/log/st2/st2api.log:72022083:2018-10-08 12:32:09,600 140599707315728 INFO logging [-] 030974bc-5181-491b-b8ca-8bef57aea37d - 401 58 4.493ms (content_length=58,request_id=&#39;030974bc-5181-491b-b8ca-8bef57aea37d&#39;,runtime=4.493,remote_addr=&#39;127.0.0.1&#39;,status=401,method=&#39;POST&#39;,path=&#39;/v1/executions&#39;)
+/var/log/st2/st2api.log:72022084:2018-10-08 12:32:18,950 140599706935856 INFO logging [-] ffd0f7b1-a62b-4cd2-b014-cef078e6113d - POST /v1/executions with query={} (remote_addr=&#39;127.0.0.1&#39;,method=&#39;POST&#39;,request_id=&#39;ffd0f7b1-a62b-4cd2-b014-cef078e6113d&#39;,query={},path=&#39;/v1/executions&#39;)
+/var/log/st2/st2api.log:72022085:2018-10-08 12:32:18,953 140599706935856 AUDIT auth [-] Token with id &quot;5ba884d92b79db00a3f15097&quot; has expired.
+/var/log/st2/st2api.log:72022086:2018-10-08 12:32:18,953 140599706935856 ERROR router [-] Token has expired.
+```
+
+**st2 conf snippet:**
+
+```ini
+api_url =http://127.0.0.1:9101
+token_ttl = 864000
+service_token_ttl = 864000
+```
+
+We are currently running a single-box deployment with st2auth enabled. The workaround we currently have for this is to restart all the running services then kicking off all the stuck workflows manually.
+
+Any help is gladly appreciated. Thank you!</description>
+    
+    <lastBuildDate>Thu, 09 May 2019 10:27:37 +0000</lastBuildDate>
+    <category>API</category>
+    <atom:link href="https://forum.stackstorm.com/t/getting-connection-aborted-with-long-running-workflows/333.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Getting &#39;Connection aborted&#39; with long running workflows</title>
+        <dc:creator><![CDATA[armab]]></dc:creator>
+        <description><![CDATA[
+            <p><a class="mention" href="https://github.com/vsrikanth">@vsrikanth</a> Please avoid using the same Forum thread if your question is different comparing to initial posting/issue described which is “‘Connection aborted’ with long running workflows”.</p>
+<hr>
+<p>For StackStorm inquiries see <a href="https://docs.stackstorm.com/inquiries.html" class="inline-onebox" rel="nofollow noopener">Inquiries — StackStorm 3.0.0 documentation</a><br>
+More examples of StackStorm Inquiries in action, take a look at <a href="https://stackstorm.com/2017/10/31/new-stackstorm-2-5-inquiries/" class="inline-onebox" rel="nofollow noopener">New in StackStorm 2.5: Inquiries - StackStorm</a> and <a href="https://encoretechnologies.github.io/blog/2017/10/stackstorm-inquiries/" rel="nofollow noopener">https://encoretechnologies.github.io/blog/2017/10/stackstorm-inquiries/</a></p>
+          <p><a href="https://forum.stackstorm.com/t/getting-connection-aborted-with-long-running-workflows/333/6">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/getting-connection-aborted-with-long-running-workflows/333/6</link>
+        <pubDate>Thu, 09 May 2019 10:27:37 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-333-6</guid>
+        <source url="https://forum.stackstorm.com/t/getting-connection-aborted-with-long-running-workflows/333.rss">Getting &#39;Connection aborted&#39; with long running workflows</source>
+      </item>
+      <item>
+        <title>Getting &#39;Connection aborted&#39; with long running workflows</title>
+        <dc:creator><![CDATA[vsrikanth]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi, I am evaluating Stackstorm. I am not able to figure out how to configure a workflow to wait on user input? Can you please guide me to some documentation.</p>
+          <p><a href="https://forum.stackstorm.com/t/getting-connection-aborted-with-long-running-workflows/333/5">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/getting-connection-aborted-with-long-running-workflows/333/5</link>
+        <pubDate>Thu, 09 May 2019 10:07:05 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-333-5</guid>
+        <source url="https://forum.stackstorm.com/t/getting-connection-aborted-with-long-running-workflows/333.rss">Getting &#39;Connection aborted&#39; with long running workflows</source>
+      </item>
+      <item>
+        <title>Getting &#39;Connection aborted&#39; with long running workflows</title>
+        <dc:creator><![CDATA[blag]]></dc:creator>
+        <description><![CDATA[
+            <p>Can you explain (or even post a redacted version of) your workflow?</p>
+          <p><a href="https://forum.stackstorm.com/t/getting-connection-aborted-with-long-running-workflows/333/4">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/getting-connection-aborted-with-long-running-workflows/333/4</link>
+        <pubDate>Wed, 10 Oct 2018 18:14:00 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-333-4</guid>
+        <source url="https://forum.stackstorm.com/t/getting-connection-aborted-with-long-running-workflows/333.rss">Getting &#39;Connection aborted&#39; with long running workflows</source>
+      </item>
+      <item>
+        <title>Getting &#39;Connection aborted&#39; with long running workflows</title>
+        <dc:creator><![CDATA[migsmartinez]]></dc:creator>
+        <description><![CDATA[
+            <p>It was an original requirement for us to wait up to 7 days for user input before continuing the workflow. We are planning on dropping the wait time to around 2 days.</p>
+<p>We’ll try doubling the TTL to see if that helps.</p>
+<p>I’m still wondering though if this has something to do with the way auth tokens are cached and used by workflows. When we re-run the failed execution, the execution that is generated immediately fails with the same error.</p>
+          <p><a href="https://forum.stackstorm.com/t/getting-connection-aborted-with-long-running-workflows/333/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/getting-connection-aborted-with-long-running-workflows/333/3</link>
+        <pubDate>Tue, 09 Oct 2018 22:19:09 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-333-3</guid>
+        <source url="https://forum.stackstorm.com/t/getting-connection-aborted-with-long-running-workflows/333.rss">Getting &#39;Connection aborted&#39; with long running workflows</source>
+      </item>
+      <item>
+        <title>Getting &#39;Connection aborted&#39; with long running workflows</title>
+        <dc:creator><![CDATA[blag]]></dc:creator>
+        <description><![CDATA[
+            <p>Eight days is a rather long time to run a workflow. Have you considered breaking them up into different workflows, triggering on different events?</p>
+<p>The feedback cycle for fixing this is going to be on the order of multiple days, because we won’t know if it’s fixed until the workflow fails. So breaking up workflows is going to be the most helpful thing to help troubleshoot this issue.</p>
+<p>But to respond directly to your issue, the first thing I would try is to double your token TTL to 20 days and see if that fixes it. I assume that the reason the workflows are running for so long is because they are pausing for long periods before being resumed. Is that correct?</p>
+          <p><a href="https://forum.stackstorm.com/t/getting-connection-aborted-with-long-running-workflows/333/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/getting-connection-aborted-with-long-running-workflows/333/2</link>
+        <pubDate>Tue, 09 Oct 2018 19:16:10 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-333-2</guid>
+        <source url="https://forum.stackstorm.com/t/getting-connection-aborted-with-long-running-workflows/333.rss">Getting &#39;Connection aborted&#39; with long running workflows</source>
+      </item>
+      <item>
+        <title>Getting &#39;Connection aborted&#39; with long running workflows</title>
+        <dc:creator><![CDATA[migsmartinez]]></dc:creator>
+        <description><![CDATA[
+            <p>We have a a long running task which can take up to 8 days to complete. Most of our executions complete successfully but we run into an issue where all of our executions start failing. Upon investigating the logs, we see that we are receiving HTTP errors due to an expired token. The TTL for our auth tokens in our st2.conf is set to 10 days but we are seeing this issue for task running less than 4 days.</p>
+<p><strong>Mistral log snippet:</strong></p>
+<pre><code class="lang-auto">2018-10-08 12:32:40.571 497 WARNING st2mistral.utils.http [req-315de175-21ab-40c5-ba20-70d95798be0e - - - - -] [stackstorm] HTTP request returned connection error. Retrying...: ConnectionError: ('Connection aborted.', BadStatusLine("''",))
+</code></pre>
+<p><strong>st2 log snippet:</strong></p>
+<pre><code class="lang-auto">/var/log/st2/st2api.log:72022064:2018-10-08 12:32:04,844 140599707325296 INFO logging [-] e2cf5d4b-a847-4413-8bf5-cb3e9fc3a95a - POST /v1/executions with query={} (remote_addr='127.0.0.1',method='POST',request_id='e2cf5d4b-a847-4413-8bf5-cb3e9fc3a95a',query={},path='/v1/executions')
+/var/log/st2/st2api.log:72022065:2018-10-08 12:32:04,847 140599707325296 AUDIT auth [-] Token with id "5ba5c9482b79db008f58c297" has expired.
+/var/log/st2/st2api.log:72022066:2018-10-08 12:32:04,848 140599707325296 ERROR router [-] Token has expired.
+/var/log/st2/st2api.log:72022073:2018-10-08 12:32:04,849 140599707325296 INFO logging [-] e2cf5d4b-a847-4413-8bf5-cb3e9fc3a95a - 401 58 5.014ms (content_length=58,request_id='e2cf5d4b-a847-4413-8bf5-cb3e9fc3a95a',runtime=5.014,remote_addr='127.0.0.1',status=401,method='POST',path='/v1/executions')
+/var/log/st2/st2api.log:72022074:2018-10-08 12:32:09,596 140599707315728 INFO logging [-] 030974bc-5181-491b-b8ca-8bef57aea37d - POST /v1/executions with query={} (remote_addr='127.0.0.1',method='POST',request_id='030974bc-5181-491b-b8ca-8bef57aea37d',query={},path='/v1/executions')
+/var/log/st2/st2api.log:72022075:2018-10-08 12:32:09,599 140599707315728 AUDIT auth [-] Token with id "5ba4e4492b79db009206d556" has expired.
+/var/log/st2/st2api.log:72022076:2018-10-08 12:32:09,599 140599707315728 ERROR router [-] Token has expired.
+/var/log/st2/st2api.log:72022083:2018-10-08 12:32:09,600 140599707315728 INFO logging [-] 030974bc-5181-491b-b8ca-8bef57aea37d - 401 58 4.493ms (content_length=58,request_id='030974bc-5181-491b-b8ca-8bef57aea37d',runtime=4.493,remote_addr='127.0.0.1',status=401,method='POST',path='/v1/executions')
+/var/log/st2/st2api.log:72022084:2018-10-08 12:32:18,950 140599706935856 INFO logging [-] ffd0f7b1-a62b-4cd2-b014-cef078e6113d - POST /v1/executions with query={} (remote_addr='127.0.0.1',method='POST',request_id='ffd0f7b1-a62b-4cd2-b014-cef078e6113d',query={},path='/v1/executions')
+/var/log/st2/st2api.log:72022085:2018-10-08 12:32:18,953 140599706935856 AUDIT auth [-] Token with id "5ba884d92b79db00a3f15097" has expired.
+/var/log/st2/st2api.log:72022086:2018-10-08 12:32:18,953 140599706935856 ERROR router [-] Token has expired.
+</code></pre>
+<p><strong>st2 conf snippet:</strong></p>
+<pre><code class="lang-ini">api_url =http://127.0.0.1:9101
+token_ttl = 864000
+service_token_ttl = 864000
+</code></pre>
+<p>We are currently running a single-box deployment with st2auth enabled. The workaround we currently have for this is to restart all the running services then kicking off all the stuck workflows manually.</p>
+<p>Any help is gladly appreciated. Thank you!</p>
+          <p><a href="https://forum.stackstorm.com/t/getting-connection-aborted-with-long-running-workflows/333/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/getting-connection-aborted-with-long-running-workflows/333/1</link>
+        <pubDate>Mon, 08 Oct 2018 22:40:25 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-333-1</guid>
+        <source url="https://forum.stackstorm.com/t/getting-connection-aborted-with-long-running-workflows/333.rss">Getting &#39;Connection aborted&#39; with long running workflows</source>
+      </item>
+  </channel>
+</rss>

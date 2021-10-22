@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Problem sensors kubernetes</title>
+    <link>https://forum.stackstorm.com/t/problem-sensors-kubernetes/628</link>
+    <description>Hi!
+
+I have a problem with kubernetes pack.
+
+When I try the sensors, they don&#39;t work automatically, however, when I use them manually they respond correctly.
+
+Here&#39;s an example of the log when this happens:
+
+
+        2019-04-29 13:00:18,410 139880156627184 WARNING sensor_wrapper [-] Sensor &quot;watchBatchV1JobListForAllNamespaces&quot; run method raised an exception: [(&#39;system library&#39;, &#39;fopen&#39;, &#39;Permission denied&#39;), (&#39;BIO routines&#39;, &#39;file_ctrl&#39;, &#39;system lib&#39;), (&#39;SSL routines&#39;, &#39;SSL_CTX_use_PrivateKey_file&#39;, &#39;system lib&#39;)].
+    Traceback (most recent call last):
+      File &quot;/opt/stackstorm/st2/lib/python2.7/site-packages/st2reactor/container/sensor_wrapper.py&quot;, line 250, in run
+        self._sensor_instance.run()
+      File &quot;/opt/stackstorm/packs/kubernetes/sensors/sensor_base.py&quot;, line 89, in run
+        certfile=self.config[&#39;client_cert_path&#39;])
+      File &quot;/opt/stackstorm/virtualenvs/kubernetes/lib/python2.7/site-packages/backports/ssl/core.py&quot;, line 689, in wrap_socket
+        ctx.load_cert_chain(certfile, keyfile)
+      File &quot;/opt/stackstorm/virtualenvs/kubernetes/lib/python2.7/site-packages/backports/ssl/core.py&quot;, line 662, in load_cert_chain
+        self._ctx.use_privatekey_file(keyfile or certfile)
+      File &quot;/opt/stackstorm/st2/lib/python2.7/site-packages/OpenSSL/SSL.py&quot;, line 995, in use_privatekey_file
+        self._raise_passphrase_exception()
+      File &quot;/opt/stackstorm/st2/lib/python2.7/site-packages/OpenSSL/SSL.py&quot;, line 972, in _raise_passphrase_exception
+        _raise_current_error()
+      File &quot;/opt/stackstorm/st2/lib/python2.7/site-packages/OpenSSL/_util.py&quot;, line 54, in exception_from_error_queue
+        raise exception_type(errors)
+    Error: [(&#39;system library&#39;, &#39;fopen&#39;, &#39;Permission denied&#39;), (&#39;BIO routines&#39;, &#39;file_ctrl&#39;, &#39;system lib&#39;), (&#39;SSL routines&#39;, &#39;SSL_CTX_use_PrivateKey_file&#39;, &#39;system lib&#39;)]
+    2019-04-29 13:00:18,412 139880156627184 ERROR (unknown file) [-] Traceback (most recent call last):
+
+    2019-04-29 13:00:18,412 139880156627184 ERROR (unknown file) [-]   File &quot;/opt/stackstorm/st2/lib/python2.7/site-packages/st2reactor/container/sensor_wrapper.py&quot;, line 382, in &lt;module&gt;
+
+    2019-04-29 13:00:18,412 139880156627184 ERROR (unknown file) [-]
+    2019-04-29 13:00:18,412 139880156627184 ERROR (unknown file) [-] obj.run()
+
+    2019-04-29 13:00:18,412 139880156627184 ERROR (unknown file) [-]   File &quot;/opt/stackstorm/st2/lib/python2.7/site-packages/st2reactor/container/sensor_wrapper.py&quot;, line 256, in run
+
+    2019-04-29 13:00:18,413 139880156627184 ERROR (unknown file) [-]
+    2019-04-29 13:00:18,413 139880156627184 ERROR (unknown file) [-] raise Exception(msg)
+
+    2019-04-29 13:00:18,413 139880156627184 ERROR (unknown file) [-] Exception
+    2019-04-29 13:00:18,413 139880156627184 ERROR (unknown file) [-] :</description>
+    
+    <lastBuildDate>Mon, 06 May 2019 12:29:58 +0000</lastBuildDate>
+    <category>API</category>
+    <atom:link href="https://forum.stackstorm.com/t/problem-sensors-kubernetes/628.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Problem sensors kubernetes</title>
+        <dc:creator><![CDATA[kami]]></dc:creator>
+        <description><![CDATA[
+            <p>On a related note - we should probably also update the sensor to catch such potential issues and throw a more user-friendly error message <img src="https://emoji.discourse-cdn.com/apple/slight_smile.png?v=9" title=":slight_smile:" class="emoji" alt=":slight_smile:"></p>
+          <p><a href="https://forum.stackstorm.com/t/problem-sensors-kubernetes/628/5">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/problem-sensors-kubernetes/628/5</link>
+        <pubDate>Mon, 06 May 2019 12:29:58 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-628-5</guid>
+        <source url="https://forum.stackstorm.com/t/problem-sensors-kubernetes/628.rss">Problem sensors kubernetes</source>
+      </item>
+      <item>
+        <title>Problem sensors kubernetes</title>
+        <dc:creator><![CDATA[dfamicom]]></dc:creator>
+        <description><![CDATA[
+            <p>I LOVE YOU GUYS!!!</p>
+<p>That was the problem, the certificates did not have the appropriate user permissions (root in this case).</p>
+<p>Thank you.</p>
+          <p><a href="https://forum.stackstorm.com/t/problem-sensors-kubernetes/628/4">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/problem-sensors-kubernetes/628/4</link>
+        <pubDate>Fri, 03 May 2019 23:51:57 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-628-4</guid>
+        <source url="https://forum.stackstorm.com/t/problem-sensors-kubernetes/628.rss">Problem sensors kubernetes</source>
+      </item>
+      <item>
+        <title>Problem sensors kubernetes</title>
+        <dc:creator><![CDATA[lhill]]></dc:creator>
+        <description><![CDATA[
+            <p>Sensors run as the <code>st2</code> user by default. But if you’re running it manually, you might be running it as root.</p>
+<p>Like Warren says, probably something related to permissions on that client_cert_path file. Should be easy enough to change</p>
+          <p><a href="https://forum.stackstorm.com/t/problem-sensors-kubernetes/628/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/problem-sensors-kubernetes/628/3</link>
+        <pubDate>Fri, 03 May 2019 18:35:59 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-628-3</guid>
+        <source url="https://forum.stackstorm.com/t/problem-sensors-kubernetes/628.rss">Problem sensors kubernetes</source>
+      </item>
+      <item>
+        <title>Problem sensors kubernetes</title>
+        <dc:creator><![CDATA[warrenvw]]></dc:creator>
+        <description><![CDATA[
+            <p>Hello. I’m curious if you have checked whether the file specified by <code>client_cert_path</code> has the correct permissions? The above trace seems to indicate a permission denied error. I suspect when you run manually the permissions are okay. Let us know whether this helps!</p>
+          <p><a href="https://forum.stackstorm.com/t/problem-sensors-kubernetes/628/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/problem-sensors-kubernetes/628/2</link>
+        <pubDate>Fri, 03 May 2019 17:43:45 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-628-2</guid>
+        <source url="https://forum.stackstorm.com/t/problem-sensors-kubernetes/628.rss">Problem sensors kubernetes</source>
+      </item>
+      <item>
+        <title>Problem sensors kubernetes</title>
+        <dc:creator><![CDATA[dfamicom]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi!</p>
+<p>I have a problem with kubernetes pack.</p>
+<p>When I try the sensors, they don’t work automatically, however, when I use them manually they respond correctly.</p>
+<p>Here’s an example of the log when this happens:</p>
+<pre><code>    2019-04-29 13:00:18,410 139880156627184 WARNING sensor_wrapper [-] Sensor "watchBatchV1JobListForAllNamespaces" run method raised an exception: [('system library', 'fopen', 'Permission denied'), ('BIO routines', 'file_ctrl', 'system lib'), ('SSL routines', 'SSL_CTX_use_PrivateKey_file', 'system lib')].
+Traceback (most recent call last):
+  File "/opt/stackstorm/st2/lib/python2.7/site-packages/st2reactor/container/sensor_wrapper.py", line 250, in run
+    self._sensor_instance.run()
+  File "/opt/stackstorm/packs/kubernetes/sensors/sensor_base.py", line 89, in run
+    certfile=self.config['client_cert_path'])
+  File "/opt/stackstorm/virtualenvs/kubernetes/lib/python2.7/site-packages/backports/ssl/core.py", line 689, in wrap_socket
+    ctx.load_cert_chain(certfile, keyfile)
+  File "/opt/stackstorm/virtualenvs/kubernetes/lib/python2.7/site-packages/backports/ssl/core.py", line 662, in load_cert_chain
+    self._ctx.use_privatekey_file(keyfile or certfile)
+  File "/opt/stackstorm/st2/lib/python2.7/site-packages/OpenSSL/SSL.py", line 995, in use_privatekey_file
+    self._raise_passphrase_exception()
+  File "/opt/stackstorm/st2/lib/python2.7/site-packages/OpenSSL/SSL.py", line 972, in _raise_passphrase_exception
+    _raise_current_error()
+  File "/opt/stackstorm/st2/lib/python2.7/site-packages/OpenSSL/_util.py", line 54, in exception_from_error_queue
+    raise exception_type(errors)
+Error: [('system library', 'fopen', 'Permission denied'), ('BIO routines', 'file_ctrl', 'system lib'), ('SSL routines', 'SSL_CTX_use_PrivateKey_file', 'system lib')]
+2019-04-29 13:00:18,412 139880156627184 ERROR (unknown file) [-] Traceback (most recent call last):
+
+2019-04-29 13:00:18,412 139880156627184 ERROR (unknown file) [-]   File "/opt/stackstorm/st2/lib/python2.7/site-packages/st2reactor/container/sensor_wrapper.py", line 382, in &lt;module&gt;
+
+2019-04-29 13:00:18,412 139880156627184 ERROR (unknown file) [-]
+2019-04-29 13:00:18,412 139880156627184 ERROR (unknown file) [-] obj.run()
+
+2019-04-29 13:00:18,412 139880156627184 ERROR (unknown file) [-]   File "/opt/stackstorm/st2/lib/python2.7/site-packages/st2reactor/container/sensor_wrapper.py", line 256, in run
+
+2019-04-29 13:00:18,413 139880156627184 ERROR (unknown file) [-]
+2019-04-29 13:00:18,413 139880156627184 ERROR (unknown file) [-] raise Exception(msg)
+
+2019-04-29 13:00:18,413 139880156627184 ERROR (unknown file) [-] Exception
+2019-04-29 13:00:18,413 139880156627184 ERROR (unknown file) [-] :</code></pre>
+          <p><a href="https://forum.stackstorm.com/t/problem-sensors-kubernetes/628/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/problem-sensors-kubernetes/628/1</link>
+        <pubDate>Fri, 03 May 2019 11:54:11 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-628-1</guid>
+        <source url="https://forum.stackstorm.com/t/problem-sensors-kubernetes/628.rss">Problem sensors kubernetes</source>
+      </item>
+  </channel>
+</rss>

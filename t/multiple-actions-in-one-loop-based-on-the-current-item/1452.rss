@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Multiple actions in one loop based on the current item</title>
+    <link>https://forum.stackstorm.com/t/multiple-actions-in-one-loop-based-on-the-current-item/1452</link>
+    <description>Hi,
+
+what I am trying to do is a workflow that at some point needs to loop over a list of dictionary items. In this loop I need to start several actions using values from the current item as input. As the last step of one iteration of the loop I want to use all results in an final action.
+
+I created a picture for better understanding:
+![grafik|307x499](upload://r6xuIWP8eQRQhCaE4mhoVVkFEfs.png) 
+
+So far I was not able to identify a solution. I tried multiple actions in a with statement but it looks like only the last action definition is used. 
+Also publishing the current item value and starting another action via next was not possible as the next statement is only executed once after all iterations are done.
+
+Maybe subworkflow might be a solution, but I wanted to ask you for the best approach. It would also be nice to have it in one workflow.
+
+Any idea is appreciated.
+
+Thanks.</description>
+    
+    <lastBuildDate>Wed, 28 Oct 2020 17:11:30 +0000</lastBuildDate>
+    <category>Workflows</category>
+    <atom:link href="https://forum.stackstorm.com/t/multiple-actions-in-one-loop-based-on-the-current-item/1452.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Multiple actions in one loop based on the current item</title>
+        <dc:creator><![CDATA[wingi]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi,</p>
+<p>during further development I have a follow-up question.<br>
+How can I go on with the WFL after all loops are done like shown in my flow chart?<br>
+For now the WFL goes on after every iteration of the loop. What I want to achieve is that “other_things” and following tasks are only executed once.<br>
+“Join: all” was not working, I can imagine it is because of there are no different branches before.</p>
+<p>My current WFL:</p>
+<pre><code>tasks:
+   Loop_over_hosts:
+    action: my_pack.subworkflow
+    with:
+      items: &lt;% ctx().Hosts %&gt;
+      concurrency: 1
+    input:
+      ...
+    next:
+      - when: &lt;% suceeded %&gt;
+        do: other_things
+
+
+  other_things:
+    action: st2.kv.set
+    input:
+      key: some_key
+      value: "foo"</code></pre>
+          <p><a href="https://forum.stackstorm.com/t/multiple-actions-in-one-loop-based-on-the-current-item/1452/4">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/multiple-actions-in-one-loop-based-on-the-current-item/1452/4</link>
+        <pubDate>Wed, 28 Oct 2020 17:11:30 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1452-4</guid>
+        <source url="https://forum.stackstorm.com/t/multiple-actions-in-one-loop-based-on-the-current-item/1452.rss">Multiple actions in one loop based on the current item</source>
+      </item>
+      <item>
+        <title>Multiple actions in one loop based on the current item</title>
+        <dc:creator><![CDATA[wingi]]></dc:creator>
+        <description><![CDATA[
+            <p>yes this works so far. Just wanted to know if there is another possibility as well. There might be some use cases where it is easier to have it in one workflow, to use several variables without passing them force and back.</p>
+          <p><a href="https://forum.stackstorm.com/t/multiple-actions-in-one-loop-based-on-the-current-item/1452/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/multiple-actions-in-one-loop-based-on-the-current-item/1452/3</link>
+        <pubDate>Tue, 20 Oct 2020 09:26:41 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1452-3</guid>
+        <source url="https://forum.stackstorm.com/t/multiple-actions-in-one-loop-based-on-the-current-item/1452.rss">Multiple actions in one loop based on the current item</source>
+      </item>
+      <item>
+        <title>Multiple actions in one loop based on the current item</title>
+        <dc:creator><![CDATA[nmaludy]]></dc:creator>
+        <description><![CDATA[
+            <p><a class="mention" href="https://github.com/wingi">@wingi</a> You can make another workflow with those “several actions” in it, then your main workflow can use <code>with-items</code> to invoke that workflow once per item in your dictionary.</p>
+<p>Does this make sense?</p>
+          <p><a href="https://forum.stackstorm.com/t/multiple-actions-in-one-loop-based-on-the-current-item/1452/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/multiple-actions-in-one-loop-based-on-the-current-item/1452/2</link>
+        <pubDate>Wed, 14 Oct 2020 15:56:28 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1452-2</guid>
+        <source url="https://forum.stackstorm.com/t/multiple-actions-in-one-loop-based-on-the-current-item/1452.rss">Multiple actions in one loop based on the current item</source>
+      </item>
+      <item>
+        <title>Multiple actions in one loop based on the current item</title>
+        <dc:creator><![CDATA[wingi]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi,</p>
+<p>what I am trying to do is a workflow that at some point needs to loop over a list of dictionary items. In this loop I need to start several actions using values from the current item as input. As the last step of one iteration of the loop I want to use all results in an final action.</p>
+<p>I created a picture for better understanding:<br>
+</p><div class="lightbox-wrapper"><a class="lightbox" href="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/bdf7f5f99a3926e7475d9fc40728685cc2096b76.png" data-download-href="/uploads/short-url/r6xuIWP8eQRQhCaE4mhoVVkFEfs.png?dl=1" title="grafik" rel="noopener nofollow ugc"><img src="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/bdf7f5f99a3926e7475d9fc40728685cc2096b76_2_307x499.png" alt="grafik" data-base62-sha1="r6xuIWP8eQRQhCaE4mhoVVkFEfs" width="307" height="499" srcset="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/bdf7f5f99a3926e7475d9fc40728685cc2096b76_2_307x499.png, https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/bdf7f5f99a3926e7475d9fc40728685cc2096b76_2_460x748.png 1.5x, https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/bdf7f5f99a3926e7475d9fc40728685cc2096b76_2_614x998.png 2x" data-small-upload="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/bdf7f5f99a3926e7475d9fc40728685cc2096b76_2_10x10.png"></a></div><p></p>
+<p>So far I was not able to identify a solution. I tried multiple actions in a with statement but it looks like only the last action definition is used.<br>
+Also publishing the current item value and starting another action via next was not possible as the next statement is only executed once after all iterations are done.</p>
+<p>Maybe subworkflow might be a solution, but I wanted to ask you for the best approach. It would also be nice to have it in one workflow.</p>
+<p>Any idea is appreciated.</p>
+<p>Thanks.</p>
+          <p><a href="https://forum.stackstorm.com/t/multiple-actions-in-one-loop-based-on-the-current-item/1452/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/multiple-actions-in-one-loop-based-on-the-current-item/1452/1</link>
+        <pubDate>Wed, 14 Oct 2020 10:55:10 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1452-1</guid>
+        <source url="https://forum.stackstorm.com/t/multiple-actions-in-one-loop-based-on-the-current-item/1452.rss">Multiple actions in one loop based on the current item</source>
+      </item>
+  </channel>
+</rss>

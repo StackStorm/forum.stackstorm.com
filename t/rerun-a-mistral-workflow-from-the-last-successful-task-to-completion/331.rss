@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Rerun a mistral workflow from the last successful task to completion</title>
+    <link>https://forum.stackstorm.com/t/rerun-a-mistral-workflow-from-the-last-successful-task-to-completion/331</link>
+    <description>Now that I am running some production jobs in stackstorm, I have made an underlying fix to one of the sub tasks and would like to run the workflow from a specific sub_task to completion.  Is there a way to request that?  I know how to rerun the individual task, but how can I get it to finish the rest of the tasks that come after said task?
+
+Cheers,
+
+Peter M. Gits</description>
+    
+    <lastBuildDate>Fri, 05 Oct 2018 16:25:09 +0000</lastBuildDate>
+    <category>Mistral</category>
+    <atom:link href="https://forum.stackstorm.com/t/rerun-a-mistral-workflow-from-the-last-successful-task-to-completion/331.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Rerun a mistral workflow from the last successful task to completion</title>
+        <dc:creator><![CDATA[petergits]]></dc:creator>
+        <description><![CDATA[
+            <aside class="quote no-group" data-post="2" data-topic="331">
+<div class="title">
+<div class="quote-controls"></div>
+<img alt="" width="20" height="20" src="https://sjc6.discourse-cdn.com/standard10/user_avatar/forum.stackstorm.com/m4dcoder/40/20_1.png" class="avatar"> m4dcoder:</div>
+<blockquote>
+<p>st2 execution re-run &lt;execution-id&gt; --tasks &lt;name of subtask&gt;</p>
+</blockquote>
+</aside>
+<p>Thanks for the assist, apparently, “Only tasks in error state can be rerun.”  While the task itself succeeded, it wasn’t successful in doing the proper processing due to a message that said, it wasn’t able to get a reservation.  I suppose I need to trap this message and have it fail properly not succeed, only then can I rerun with the --tasks.</p>
+<p>Thanks again,</p>
+<p>Peter M. Gits</p>
+          <p><a href="https://forum.stackstorm.com/t/rerun-a-mistral-workflow-from-the-last-successful-task-to-completion/331/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/rerun-a-mistral-workflow-from-the-last-successful-task-to-completion/331/3</link>
+        <pubDate>Fri, 05 Oct 2018 16:25:09 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-331-3</guid>
+        <source url="https://forum.stackstorm.com/t/rerun-a-mistral-workflow-from-the-last-successful-task-to-completion/331.rss">Rerun a mistral workflow from the last successful task to completion</source>
+      </item>
+      <item>
+        <title>Rerun a mistral workflow from the last successful task to completion</title>
+        <dc:creator><![CDATA[m4dcoder]]></dc:creator>
+        <description><![CDATA[
+            <p>For a Mistral workflow, have you try <code>st2 execution re-run &lt;execution-id&gt; --tasks &lt;name of subtask&gt;</code>?</p>
+          <p><a href="https://forum.stackstorm.com/t/rerun-a-mistral-workflow-from-the-last-successful-task-to-completion/331/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/rerun-a-mistral-workflow-from-the-last-successful-task-to-completion/331/2</link>
+        <pubDate>Thu, 04 Oct 2018 21:17:22 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-331-2</guid>
+        <source url="https://forum.stackstorm.com/t/rerun-a-mistral-workflow-from-the-last-successful-task-to-completion/331.rss">Rerun a mistral workflow from the last successful task to completion</source>
+      </item>
+      <item>
+        <title>Rerun a mistral workflow from the last successful task to completion</title>
+        <dc:creator><![CDATA[petergits]]></dc:creator>
+        <description><![CDATA[
+            <p>Now that I am running some production jobs in stackstorm, I have made an underlying fix to one of the sub tasks and would like to run the workflow from a specific sub_task to completion.  Is there a way to request that?  I know how to rerun the individual task, but how can I get it to finish the rest of the tasks that come after said task?</p>
+<p>Cheers,</p>
+<p>Peter M. Gits</p>
+          <p><a href="https://forum.stackstorm.com/t/rerun-a-mistral-workflow-from-the-last-successful-task-to-completion/331/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/rerun-a-mistral-workflow-from-the-last-successful-task-to-completion/331/1</link>
+        <pubDate>Thu, 04 Oct 2018 19:35:22 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-331-1</guid>
+        <source url="https://forum.stackstorm.com/t/rerun-a-mistral-workflow-from-the-last-successful-task-to-completion/331.rss">Rerun a mistral workflow from the last successful task to completion</source>
+      </item>
+  </channel>
+</rss>

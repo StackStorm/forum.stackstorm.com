@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Setting a key, value inside mistral workflow</title>
+    <link>https://forum.stackstorm.com/t/setting-a-key-value-inside-mistral-workflow/451</link>
+    <description>Can I set a key, value inside mistral workflow without calling out the st2client?  (I didn&#39;t see this in the source for mistral under [stackstorm source for mistral st2kv](https://github.com/StackStorm/st2mistral/blob/master/st2mistral/functions/stackstorm.py)
+
+Cheers,
+
+Peter</description>
+    
+    <lastBuildDate>Tue, 22 Jan 2019 22:13:34 +0000</lastBuildDate>
+    <category>Mistral</category>
+    <atom:link href="https://forum.stackstorm.com/t/setting-a-key-value-inside-mistral-workflow/451.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Setting a key, value inside mistral workflow</title>
+        <dc:creator><![CDATA[petergits]]></dc:creator>
+        <description><![CDATA[
+            <p>Thanks, I will git that a try right away.  Appreciate the quick response.</p>
+          <p><a href="https://forum.stackstorm.com/t/setting-a-key-value-inside-mistral-workflow/451/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/setting-a-key-value-inside-mistral-workflow/451/3</link>
+        <pubDate>Tue, 22 Jan 2019 22:13:34 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-451-3</guid>
+        <source url="https://forum.stackstorm.com/t/setting-a-key-value-inside-mistral-workflow/451.rss">Setting a key, value inside mistral workflow</source>
+      </item>
+      <item>
+        <title>Setting a key, value inside mistral workflow</title>
+        <dc:creator><![CDATA[armab]]></dc:creator>
+        <description><![CDATA[
+            <p>You can use the <code>st2</code> integration pack inside the Mistral workflow which has st2kv datastore operators.</p>
+<p>See documentation: <a href="https://github.com/stackstorm-exchange/stackstorm-st2#datastore" class="inline-onebox" rel="nofollow noopener">GitHub - StackStorm-Exchange/stackstorm-st2: StackStorm pack management</a></p>
+          <p><a href="https://forum.stackstorm.com/t/setting-a-key-value-inside-mistral-workflow/451/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/setting-a-key-value-inside-mistral-workflow/451/2</link>
+        <pubDate>Tue, 22 Jan 2019 22:12:43 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-451-2</guid>
+        <source url="https://forum.stackstorm.com/t/setting-a-key-value-inside-mistral-workflow/451.rss">Setting a key, value inside mistral workflow</source>
+      </item>
+      <item>
+        <title>Setting a key, value inside mistral workflow</title>
+        <dc:creator><![CDATA[petergits]]></dc:creator>
+        <description><![CDATA[
+            <p>Can I set a key, value inside mistral workflow without calling out the st2client?  (I didn’t see this in the source for mistral under <a href="https://github.com/StackStorm/st2mistral/blob/master/st2mistral/functions/stackstorm.py" rel="nofollow noopener">stackstorm source for mistral st2kv</a></p>
+<p>Cheers,</p>
+<p>Peter</p>
+          <p><a href="https://forum.stackstorm.com/t/setting-a-key-value-inside-mistral-workflow/451/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/setting-a-key-value-inside-mistral-workflow/451/1</link>
+        <pubDate>Tue, 22 Jan 2019 22:07:01 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-451-1</guid>
+        <source url="https://forum.stackstorm.com/t/setting-a-key-value-inside-mistral-workflow/451.rss">Setting a key, value inside mistral workflow</source>
+      </item>
+  </channel>
+</rss>

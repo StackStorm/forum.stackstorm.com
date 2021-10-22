@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>How to convert list of dict to dict of dict using yaql syntax</title>
+    <link>https://forum.stackstorm.com/t/how-to-convert-list-of-dict-to-dict-of-dict-using-yaql-syntax/521</link>
+    <description>I have some results back from another subtask called using &quot;with items&quot; which basically return a list containing results of each item.
+Output back to main workflow is like below:
+
+`  [{u&#39;Test1&#39;: u&#39;starting sub workflow Test1&#39;}, {u&#39;Test2&#39;: u&#39;starting sub workflow Test2&#39;}]`
+  
+I prefer to have it converted to:
+` {&#39;Test1&#39;: &#39;starting sub workflow Test1&#39;,  &#39;Test2&#39;: &#39;starting sub workflow Test2&#39;}`
+
+Can anyone help?,  not able to figure out right syntax.</description>
+    
+    <lastBuildDate>Mon, 03 Aug 2020 23:55:27 +0000</lastBuildDate>
+    <category>Uncategorized</category>
+    <atom:link href="https://forum.stackstorm.com/t/how-to-convert-list-of-dict-to-dict-of-dict-using-yaql-syntax/521.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>How to convert list of dict to dict of dict using yaql syntax</title>
+        <dc:creator><![CDATA[AutomatedChaos]]></dc:creator>
+        <description><![CDATA[
+            <p>I’ve been struggling with this same basic issue as well, how to convert a list to a dict with YAQL.  Has anyone figured this out?</p>
+          <p><a href="https://forum.stackstorm.com/t/how-to-convert-list-of-dict-to-dict-of-dict-using-yaql-syntax/521/4">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-to-convert-list-of-dict-to-dict-of-dict-using-yaql-syntax/521/4</link>
+        <pubDate>Mon, 03 Aug 2020 23:55:27 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-521-4</guid>
+        <source url="https://forum.stackstorm.com/t/how-to-convert-list-of-dict-to-dict-of-dict-using-yaql-syntax/521.rss">How to convert list of dict to dict of dict using yaql syntax</source>
+      </item>
+      <item>
+        <title>How to convert list of dict to dict of dict using yaql syntax</title>
+        <dc:creator><![CDATA[Sandeepsr]]></dc:creator>
+        <description><![CDATA[
+            <p>Thanks , I will try that</p>
+          <p><a href="https://forum.stackstorm.com/t/how-to-convert-list-of-dict-to-dict-of-dict-using-yaql-syntax/521/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-to-convert-list-of-dict-to-dict-of-dict-using-yaql-syntax/521/3</link>
+        <pubDate>Tue, 05 Mar 2019 05:04:29 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-521-3</guid>
+        <source url="https://forum.stackstorm.com/t/how-to-convert-list-of-dict-to-dict-of-dict-using-yaql-syntax/521.rss">How to convert list of dict to dict of dict using yaql syntax</source>
+      </item>
+      <item>
+        <title>How to convert list of dict to dict of dict using yaql syntax</title>
+        <dc:creator><![CDATA[m4dcoder]]></dc:creator>
+        <description><![CDATA[
+            <p>Did you know there’s an online tool to easily test YAQL expression at <a href="http://yaqluator.com" rel="nofollow noopener">http://yaqluator.com</a>?  Have you given that a try?</p>
+          <p><a href="https://forum.stackstorm.com/t/how-to-convert-list-of-dict-to-dict-of-dict-using-yaql-syntax/521/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-to-convert-list-of-dict-to-dict-of-dict-using-yaql-syntax/521/2</link>
+        <pubDate>Mon, 04 Mar 2019 20:35:52 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-521-2</guid>
+        <source url="https://forum.stackstorm.com/t/how-to-convert-list-of-dict-to-dict-of-dict-using-yaql-syntax/521.rss">How to convert list of dict to dict of dict using yaql syntax</source>
+      </item>
+      <item>
+        <title>How to convert list of dict to dict of dict using yaql syntax</title>
+        <dc:creator><![CDATA[Sandeepsr]]></dc:creator>
+        <description><![CDATA[
+            <p>I have some results back from another subtask called using “with items” which basically return a list containing results of each item.<br>
+Output back to main workflow is like below:</p>
+<p><code>[{u'Test1': u'starting sub workflow Test1'}, {u'Test2': u'starting sub workflow Test2'}]</code></p>
+<p>I prefer to have it converted to:<br>
+<code>{'Test1': 'starting sub workflow Test1', 'Test2': 'starting sub workflow Test2'}</code></p>
+<p>Can anyone help?,  not able to figure out right syntax.</p>
+          <p><a href="https://forum.stackstorm.com/t/how-to-convert-list-of-dict-to-dict-of-dict-using-yaql-syntax/521/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-to-convert-list-of-dict-to-dict-of-dict-using-yaql-syntax/521/1</link>
+        <pubDate>Sun, 03 Mar 2019 18:31:20 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-521-1</guid>
+        <source url="https://forum.stackstorm.com/t/how-to-convert-list-of-dict-to-dict-of-dict-using-yaql-syntax/521.rss">How to convert list of dict to dict of dict using yaql syntax</source>
+      </item>
+  </channel>
+</rss>

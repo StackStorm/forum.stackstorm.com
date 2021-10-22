@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>In k8s deployment, chatops.post_result and chatops.post_message delayed or stuck in running state</title>
+    <link>https://forum.stackstorm.com/t/in-k8s-deployment-chatops-post-result-and-chatops-post-message-delayed-or-stuck-in-running-state/1780</link>
+    <description>I have deployed st2 in k8s cluster using stackstorm provided helm chart for high availability. Slack is our hubot adapter.Facing the following issues in chatops
+
+1. Case : Running chatops.post_message - it&#39;s execution shows succeeded but didn&#39;t get the message in slack channel. This is not happening always though. Randomly occurs.
+2. Case: chatops.post_result triggered by chatops.notify - this stuck in running state for more than 5 hours then posting the result to slack. Sometimes it stuck in running state forever.
+
+Please let me know if you guys faced this before and how you resolved it or suggest a way to overcome this issues.</description>
+    
+    <lastBuildDate>Sat, 17 Jul 2021 18:32:16 +0000</lastBuildDate>
+    <category>Uncategorized</category>
+    <atom:link href="https://forum.stackstorm.com/t/in-k8s-deployment-chatops-post-result-and-chatops-post-message-delayed-or-stuck-in-running-state/1780.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>In k8s deployment, chatops.post_result and chatops.post_message delayed or stuck in running state</title>
+        <dc:creator><![CDATA[blag]]></dc:creator>
+        <description><![CDATA[
+            <blockquote>
+<p>I think issue is with Hubot event listener which is not getting the announcement event and posting the data back to slack.</p>
+</blockquote>
+<p>Double check that st2chatops has the correct credentials to ST2. It is a normal ST2 API user, and the credentials are specified in <code>/opt/stackstorm/chatops/st2chatops.env</code>.</p>
+          <p><a href="https://forum.stackstorm.com/t/in-k8s-deployment-chatops-post-result-and-chatops-post-message-delayed-or-stuck-in-running-state/1780/4">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/in-k8s-deployment-chatops-post-result-and-chatops-post-message-delayed-or-stuck-in-running-state/1780/4</link>
+        <pubDate>Sat, 17 Jul 2021 18:32:16 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1780-4</guid>
+        <source url="https://forum.stackstorm.com/t/in-k8s-deployment-chatops-post-result-and-chatops-post-message-delayed-or-stuck-in-running-state/1780.rss">In k8s deployment, chatops.post_result and chatops.post_message delayed or stuck in running state</source>
+      </item>
+      <item>
+        <title>In k8s deployment, chatops.post_result and chatops.post_message delayed or stuck in running state</title>
+        <dc:creator><![CDATA[mohan28]]></dc:creator>
+        <description><![CDATA[
+            <p>Thank you for the updates.</p>
+<p>We are using the classic app bot token.<br>
+Now, chatops.post_result is getting succeeded but slack channel is not receiving the result message. Sometimes it receives message though.<br>
+I think issue is with Hubot event listener which is not getting the announcement event and posting the data back to slack.</p>
+<p>As mentioned in the st2 HA doc, Hubot does have some limitations so single instance of chatops is used. Not sure if that’s causing this problem though.</p>
+<p>Please suggest if any work around can be done in this regard.</p>
+          <p><a href="https://forum.stackstorm.com/t/in-k8s-deployment-chatops-post-result-and-chatops-post-message-delayed-or-stuck-in-running-state/1780/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/in-k8s-deployment-chatops-post-result-and-chatops-post-message-delayed-or-stuck-in-running-state/1780/3</link>
+        <pubDate>Fri, 16 Jul 2021 04:32:47 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1780-3</guid>
+        <source url="https://forum.stackstorm.com/t/in-k8s-deployment-chatops-post-result-and-chatops-post-message-delayed-or-stuck-in-running-state/1780.rss">In k8s deployment, chatops.post_result and chatops.post_message delayed or stuck in running state</source>
+      </item>
+      <item>
+        <title>In k8s deployment, chatops.post_result and chatops.post_message delayed or stuck in running state</title>
+        <dc:creator><![CDATA[blag]]></dc:creator>
+        <description><![CDATA[
+            <p>This is a known issue.</p>
+<p>StackStorm ChatOps is configured in two<sup>1</sup> steps:</p>
+<ul>
+<li>StackStorm &lt;–&gt; st2chatops</li>
+<li>st2chatops &lt;–&gt; Slack</li>
+</ul>
+<p>You seem to have the StackStorm &lt;–&gt; st2chatops working, although it can’t hurt to double check that.</p>
+<p>But the st2chatops &lt;–&gt; Slack integration doesn’t appear to be working for you. You must use a Legacy Bot Token from Slack, a modern token will not work.</p>
+<p><sup>1</sup> Technically it’s three steps, as you need to ensure that the Slack → st2chatops websockets connection works, and that the st2chatops → Slack HTTP connection works, but both use the same authentication token from Slack.</p>
+          <p><a href="https://forum.stackstorm.com/t/in-k8s-deployment-chatops-post-result-and-chatops-post-message-delayed-or-stuck-in-running-state/1780/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/in-k8s-deployment-chatops-post-result-and-chatops-post-message-delayed-or-stuck-in-running-state/1780/2</link>
+        <pubDate>Thu, 15 Jul 2021 19:48:59 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1780-2</guid>
+        <source url="https://forum.stackstorm.com/t/in-k8s-deployment-chatops-post-result-and-chatops-post-message-delayed-or-stuck-in-running-state/1780.rss">In k8s deployment, chatops.post_result and chatops.post_message delayed or stuck in running state</source>
+      </item>
+      <item>
+        <title>In k8s deployment, chatops.post_result and chatops.post_message delayed or stuck in running state</title>
+        <dc:creator><![CDATA[mohan28]]></dc:creator>
+        <description><![CDATA[
+            <p>I have deployed st2 in k8s cluster using stackstorm provided helm chart for high availability. Slack is our hubot adapter.Facing the following issues in chatops</p>
+<ol>
+<li>Case : Running chatops.post_message - it’s execution shows succeeded but didn’t get the message in slack channel. This is not happening always though. Randomly occurs.</li>
+<li>Case: chatops.post_result triggered by chatops.notify - this stuck in running state for more than 5 hours then posting the result to slack. Sometimes it stuck in running state forever.</li>
+</ol>
+<p>Please let me know if you guys faced this before and how you resolved it or suggest a way to overcome this issues.</p>
+          <p><a href="https://forum.stackstorm.com/t/in-k8s-deployment-chatops-post-result-and-chatops-post-message-delayed-or-stuck-in-running-state/1780/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/in-k8s-deployment-chatops-post-result-and-chatops-post-message-delayed-or-stuck-in-running-state/1780/1</link>
+        <pubDate>Wed, 14 Jul 2021 04:41:57 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1780-1</guid>
+        <source url="https://forum.stackstorm.com/t/in-k8s-deployment-chatops-post-result-and-chatops-post-message-delayed-or-stuck-in-running-state/1780.rss">In k8s deployment, chatops.post_result and chatops.post_message delayed or stuck in running state</source>
+      </item>
+  </channel>
+</rss>

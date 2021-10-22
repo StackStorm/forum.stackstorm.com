@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>StackStorm.st2repo : Add keys to keyring</title>
+    <link>https://forum.stackstorm.com/t/stackstorm-st2repo-add-keys-to-keyring/652</link>
+    <description>Hi, I&#39;m trying to install new version of St2 via Ansible and facing issues, some issues are fixed and now facing this new issue where I&#39;m not able to get the gpgkey from packagecloud.io b&#39;coz of firewalls. Any one have any workaround to fix this issue?
+
+TASK [StackStorm.st2repo : Including ID variable for stable] *******************************************************************************************************************************************************************************
+task path: /data/ansible-st2/roles/StackStorm.st2repo/tasks/st2repo_apt.yml:15
+ok: [localhost] =&gt; {
+    &quot;ansible_facts&quot;: {
+        &quot;key_id&quot;: &quot;3CE01873543A4CCE&quot;
+    },
+    &quot;ansible_included_var_files&quot;: [
+        &quot;/data/ansible-st2/roles/StackStorm.st2repo/vars/stable.yml&quot;
+    ],
+    &quot;changed&quot;: false
+}
+
+TASK [StackStorm.st2repo : Add keys to keyring] ********************************************************************************************************************************************************************************************
+task path: /data/ansible-st2/roles/StackStorm.st2repo/tasks/st2repo_apt.yml:19
+&lt;localhost&gt; ESTABLISH LOCAL CONNECTION FOR USER: root
+&lt;localhost&gt; EXEC /bin/sh -c &#39;echo ~root &amp;&amp; sleep 0&#39;
+&lt;localhost&gt; EXEC /bin/sh -c &#39;( umask 77 &amp;&amp; mkdir -p &quot;` echo /root/.ansible/tmp/ansible-tmp-1557947289.3-149048032450793 `&quot; &amp;&amp; echo ansible-tmp-1557947289.3-149048032450793=&quot;` echo /root/.ansible/tmp/ansible-tmp-1557947289.3-149048032450793 `&quot; ) &amp;&amp; sleep 0&#39;
+Using module file /usr/local/lib/python2.7/dist-packages/ansible/modules/packaging/os/apt_key.py
+&lt;localhost&gt; PUT /root/.ansible/tmp/ansible-local-18958ObbJzA/tmp43h611 TO /root/.ansible/tmp/ansible-tmp-1557947289.3-149048032450793/AnsiballZ_apt_key.py
+&lt;localhost&gt; EXEC /bin/sh -c &#39;chmod u+x /root/.ansible/tmp/ansible-tmp-1557947289.3-149048032450793/ /root/.ansible/tmp/ansible-tmp-1557947289.3-149048032450793/AnsiballZ_apt_key.py &amp;&amp; sleep 0&#39;
+&lt;localhost&gt; EXEC /bin/sh -c &#39;/usr/bin/python /root/.ansible/tmp/ansible-tmp-1557947289.3-149048032450793/AnsiballZ_apt_key.py &amp;&amp; sleep 0&#39;
+&lt;localhost&gt; EXEC /bin/sh -c &#39;rm -f -r /root/.ansible/tmp/ansible-tmp-1557947289.3-149048032450793/ &gt; /dev/null 2&gt;&amp;1 &amp;&amp; sleep 0&#39;
+FAILED - RETRYING: Add keys to keyring (5 retries left).Result was: {
+    &quot;attempts&quot;: 1,
+    &quot;changed&quot;: false,
+    &quot;invocation&quot;: {
+        &quot;module_args&quot;: {
+            &quot;data&quot;: null,
+            &quot;file&quot;: null,
+            &quot;id&quot;: &quot;3CE01873543A4CCE&quot;,
+            &quot;key&quot;: null,
+            &quot;keyring&quot;: null,
+            &quot;keyserver&quot;: null,
+            &quot;state&quot;: &quot;present&quot;,
+            &quot;url&quot;: &quot;https://packagecloud.io/StackStorm/stable/gpgkey&quot;,
+            &quot;validate_certs&quot;: true
+        }
+    },
+    &quot;msg&quot;: &quot;Failed to connect to packagecloud.io at port 443: [Errno 104] Connection reset by peer&quot;,
+    &quot;retries&quot;: 6
+}</description>
+    
+    <lastBuildDate>Thu, 16 May 2019 10:58:06 +0000</lastBuildDate>
+    <category>Uncategorized</category>
+    <atom:link href="https://forum.stackstorm.com/t/stackstorm-st2repo-add-keys-to-keyring/652.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>StackStorm.st2repo : Add keys to keyring</title>
+        <dc:creator><![CDATA[armab]]></dc:creator>
+        <description><![CDATA[
+            <p>You need to have access to <a href="http://packagecloud.io" rel="nofollow noopener">packagecloud.io</a> from the system, otherwise you’ll be unable to add the APT repository and download StackStorm packages from it. There is no workaround. Ask your administrator to whitelist <a href="http://packagecloud.io" rel="nofollow noopener">packagecloud.io</a> access or adjust firewalls.</p>
+<p>Alternative solution is to use different deployment method if you’re behind firewalls/proxy. For example, Virtual Appliance/OVA which already has preinstalled StackStorm system and ready to be downloaded as artifact <a href="https://docs.stackstorm.com/install/vagrant.html" class="inline-onebox" rel="nofollow noopener">Vagrant &amp; Virtual Appliance — StackStorm 3.0.0 documentation</a></p>
+          <p><a href="https://forum.stackstorm.com/t/stackstorm-st2repo-add-keys-to-keyring/652/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/stackstorm-st2repo-add-keys-to-keyring/652/3</link>
+        <pubDate>Thu, 16 May 2019 10:43:11 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-652-3</guid>
+        <source url="https://forum.stackstorm.com/t/stackstorm-st2repo-add-keys-to-keyring/652.rss">StackStorm.st2repo : Add keys to keyring</source>
+      </item>
+      <item>
+        <title>StackStorm.st2repo : Add keys to keyring</title>
+        <dc:creator><![CDATA[sammi.c30]]></dc:creator>
+        <description><![CDATA[
+            <p>I did the workaround for now by downloading the key and add it manually, but looking for better solution.</p>
+          <p><a href="https://forum.stackstorm.com/t/stackstorm-st2repo-add-keys-to-keyring/652/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/stackstorm-st2repo-add-keys-to-keyring/652/2</link>
+        <pubDate>Wed, 15 May 2019 22:31:32 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-652-2</guid>
+        <source url="https://forum.stackstorm.com/t/stackstorm-st2repo-add-keys-to-keyring/652.rss">StackStorm.st2repo : Add keys to keyring</source>
+      </item>
+      <item>
+        <title>StackStorm.st2repo : Add keys to keyring</title>
+        <dc:creator><![CDATA[sammi.c30]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi, I’m trying to install new version of St2 via Ansible and facing issues, some issues are fixed and now facing this new issue where I’m not able to get the gpgkey from <a href="http://packagecloud.io" rel="nofollow noopener">packagecloud.io</a> b’coz of firewalls. Any one have any workaround to fix this issue?</p>
+<p>TASK [StackStorm.st2repo : Including ID variable for stable] *******************************************************************************************************************************************************************************<br>
+task path: /data/ansible-st2/roles/StackStorm.st2repo/tasks/st2repo_apt.yml:15<br>
+ok: [localhost] =&gt; {<br>
+“ansible_facts”: {<br>
+“key_id”: “3CE01873543A4CCE”<br>
+},<br>
+“ansible_included_var_files”: [<br>
+“/data/ansible-st2/roles/StackStorm.st2repo/vars/stable.yml”<br>
+],<br>
+“changed”: false<br>
+}</p>
+<p>TASK [StackStorm.st2repo : Add keys to keyring] ********************************************************************************************************************************************************************************************<br>
+task path: /data/ansible-st2/roles/StackStorm.st2repo/tasks/st2repo_apt.yml:19<br>
+ ESTABLISH LOCAL CONNECTION FOR USER: root<br>
+ EXEC /bin/sh -c ‘echo ~root &amp;&amp; sleep 0’<br>
+ EXEC /bin/sh -c ‘( umask 77 &amp;&amp; mkdir -p “<code>echo /root/.ansible/tmp/ansible-tmp-1557947289.3-149048032450793</code>” &amp;&amp; echo ansible-tmp-1557947289.3-149048032450793="<code>echo /root/.ansible/tmp/ansible-tmp-1557947289.3-149048032450793</code>" ) &amp;&amp; sleep 0’<br>
+Using module file /usr/local/lib/python2.7/dist-packages/ansible/modules/packaging/os/apt_key.py<br>
+ PUT /root/.ansible/tmp/ansible-local-18958ObbJzA/tmp43h611 TO /root/.ansible/tmp/ansible-tmp-1557947289.3-149048032450793/AnsiballZ_apt_key.py<br>
+ EXEC /bin/sh -c ‘chmod u+x /root/.ansible/tmp/ansible-tmp-1557947289.3-149048032450793/ /root/.ansible/tmp/ansible-tmp-1557947289.3-149048032450793/AnsiballZ_apt_key.py &amp;&amp; sleep 0’<br>
+ EXEC /bin/sh -c ‘/usr/bin/python /root/.ansible/tmp/ansible-tmp-1557947289.3-149048032450793/AnsiballZ_apt_key.py &amp;&amp; sleep 0’<br>
+ EXEC /bin/sh -c ‘rm -f -r /root/.ansible/tmp/ansible-tmp-1557947289.3-149048032450793/ &gt; /dev/null 2&gt;&amp;1 &amp;&amp; sleep 0’<br>
+FAILED - RETRYING: Add keys to keyring (5 retries left).Result was: {<br>
+“attempts”: 1,<br>
+“changed”: false,<br>
+“invocation”: {<br>
+“module_args”: {<br>
+“data”: null,<br>
+“file”: null,<br>
+“id”: “3CE01873543A4CCE”,<br>
+“key”: null,<br>
+“keyring”: null,<br>
+“keyserver”: null,<br>
+“state”: “present”,<br>
+“url”: “<a href="https://packagecloud.io/StackStorm/stable/gpgkey" rel="nofollow noopener">https://packagecloud.io/StackStorm/stable/gpgkey</a>”,<br>
+“validate_certs”: true<br>
+}<br>
+},<br>
+“msg”: “Failed to connect to <a href="http://packagecloud.io" rel="nofollow noopener">packagecloud.io</a> at port 443: [Errno 104] Connection reset by peer”,<br>
+“retries”: 6<br>
+}</p>
+          <p><a href="https://forum.stackstorm.com/t/stackstorm-st2repo-add-keys-to-keyring/652/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/stackstorm-st2repo-add-keys-to-keyring/652/1</link>
+        <pubDate>Wed, 15 May 2019 20:30:36 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-652-1</guid>
+        <source url="https://forum.stackstorm.com/t/stackstorm-st2repo-add-keys-to-keyring/652.rss">StackStorm.st2repo : Add keys to keyring</source>
+      </item>
+  </channel>
+</rss>

@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Development of python action</title>
+    <link>https://forum.stackstorm.com/t/development-of-python-action/741</link>
+    <description>Hello!  Does anyone have recommendations for steps on writing a python action?  Is there a good way to set up a development environment?  Is there a way to test the action outside of st2?</description>
+    
+    <lastBuildDate>Thu, 25 Feb 2021 03:24:27 +0000</lastBuildDate>
+    <category>Documentation</category>
+    <atom:link href="https://forum.stackstorm.com/t/development-of-python-action/741.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Development of python action</title>
+        <dc:creator><![CDATA[badchad]]></dc:creator>
+        <description><![CDATA[
+            <aside class="quote no-group" data-username="blag" data-post="2" data-topic="741">
+<div class="title">
+<div class="quote-controls"></div>
+<img alt="" width="20" height="20" src="https://avatars.discourse-cdn.com/v4/letter/b/ba9def/40.png" class="avatar"> blag:</div>
+<blockquote>
+<p><code>args[...] = os.environ.get('...')</code></p>
+</blockquote>
+</aside>
+<p>Just found this and now I can remotely debug this new action using intellij!  Thanks a ton.</p>
+          <p><a href="https://forum.stackstorm.com/t/development-of-python-action/741/8">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/development-of-python-action/741/8</link>
+        <pubDate>Thu, 25 Feb 2021 03:24:27 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-741-8</guid>
+        <source url="https://forum.stackstorm.com/t/development-of-python-action/741.rss">Development of python action</source>
+      </item>
+      <item>
+        <title>Development of python action</title>
+        <dc:creator><![CDATA[blag]]></dc:creator>
+        <description><![CDATA[
+            <p><a class="mention" href="https://github.com/eazysnatch">@eazysnatch</a> If you write your script how I explained then you can run it as if it is a normal Python script, or you can run it as a StackStorm action, without modifying the script at all.</p>
+          <p><a href="https://forum.stackstorm.com/t/development-of-python-action/741/7">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/development-of-python-action/741/7</link>
+        <pubDate>Sat, 14 Sep 2019 01:25:25 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-741-7</guid>
+        <source url="https://forum.stackstorm.com/t/development-of-python-action/741.rss">Development of python action</source>
+      </item>
+      <item>
+        <title>Development of python action</title>
+        <dc:creator><![CDATA[eazysnatch]]></dc:creator>
+        <description><![CDATA[
+            <p><a class="mention" href="https://github.com/blag">@blag</a> I develop the same way as you do create a script with cli arguments and then transfer it to stack storm action.<br>
+<a href="https://docs.stackstorm.com/actions.html#converting-existing-scripts-into-actions" class="onebox" target="_blank" rel="nofollow noopener">https://docs.stackstorm.com/actions.html#converting-existing-scripts-into-actions</a></p>
+<p>and then go to</p>
+<p><a href="https://docs.stackstorm.com/actions.html#writing-custom-python-actions" class="onebox" target="_blank" rel="nofollow noopener">https://docs.stackstorm.com/actions.html#writing-custom-python-actions</a></p>
+<p>The main problem I face is that there is NO ‘pdb’ Python debugger into the st2 action. It will be very nice if I could run somehow action in pdb shell or any other way to debug the script. Because sometimes you need to update or change the logic of the script but you already transform it to action and you don’t have the original script. You can always modify it to become a script again but you get my point.</p>
+          <p><a href="https://forum.stackstorm.com/t/development-of-python-action/741/6">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/development-of-python-action/741/6</link>
+        <pubDate>Wed, 11 Sep 2019 09:11:08 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-741-6</guid>
+        <source url="https://forum.stackstorm.com/t/development-of-python-action/741.rss">Development of python action</source>
+      </item>
+      <item>
+        <title>Development of python action</title>
+        <dc:creator><![CDATA[blag]]></dc:creator>
+        <description><![CDATA[
+            <p>Yes, you absolutely can do that, but it slows down development since then (unless you add some hacks to the code) you can only really run the code through StackStorm. So your REPL latency is higher.</p>
+<p>I developed the script I linked to just running in a local virtualenv on my laptop, and then grafted the StackStorm integration in later, which let me debug the script first, and then once I knew the script was working as intended I knew that whatever bugs remained were in the StackStorm integration section. So it can be helpful to organize the code that way to make it easier to divide and conquer when troubleshooting.</p>
+<p>Once your script is written out and pretty well debugged, and you have the StackStorm integration setup and working, then yes, you can certainly simply move the meat of your script into the <code>run</code> function:</p>
+<pre><code class="lang-auto">import ...
+
+from st2common.runners.base_action import Action
+
+
+class MyAction(Action):
+    def run(self, *args, **kwargs):
+        # your script logic goes here
+        return ...
+</code></pre>
+<p>Personally, I didn’t find it beneficial enough to do that, especially since I do still run that script outside of StackStorm. But I could certainly see it being beneficial if the Python script is small and simple enough.</p>
+<p>I <strong>highly</strong> recommend adding tests for your action. There’s an entire section in our documentation on <a href="https://docs.stackstorm.com/development/pack_testing.html" rel="nofollow noopener">testing packs</a>.</p>
+<p>I did not add tests for the action I linked to because the action itself was a test for some of our other code. Otherwise I definitely would have done so.</p>
+          <p><a href="https://forum.stackstorm.com/t/development-of-python-action/741/5">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/development-of-python-action/741/5</link>
+        <pubDate>Thu, 11 Jul 2019 22:07:16 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-741-5</guid>
+        <source url="https://forum.stackstorm.com/t/development-of-python-action/741.rss">Development of python action</source>
+      </item>
+      <item>
+        <title>Development of python action</title>
+        <dc:creator><![CDATA[guymatz]]></dc:creator>
+        <description><![CDATA[
+            <p>Thanks!!  Is it more proper / useful to write the action as a subclass of BaseAction?  Any tips on development with that paradigm?</p>
+          <p><a href="https://forum.stackstorm.com/t/development-of-python-action/741/4">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/development-of-python-action/741/4</link>
+        <pubDate>Thu, 11 Jul 2019 18:35:48 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-741-4</guid>
+        <source url="https://forum.stackstorm.com/t/development-of-python-action/741.rss">Development of python action</source>
+      </item>
+      <item>
+        <title>Development of python action</title>
+        <dc:creator><![CDATA[blag]]></dc:creator>
+        <description><![CDATA[
+            <p>Oh, and you will also still need an action metadata file, just like every other StackStorm action, setting the <code>runner_type</code> to <code>python-script</code> and defining the action parameters like normal.</p>
+<p>Here is the metadata file for the script I linked to in the previous post:</p>
+<aside class="onebox githubblob">
+  <header class="source">
+      <a href="https://github.com/StackStorm/st2tests/blob/master/packs/chatops_tests/actions/test_aliases_with_slack.yaml" target="_blank" rel="nofollow noopener">github.com</a>
+  </header>
+  <article class="onebox-body">
+    <h4><a href="https://github.com/StackStorm/st2tests/blob/master/packs/chatops_tests/actions/test_aliases_with_slack.yaml" target="_blank" rel="nofollow noopener">StackStorm/st2tests/blob/master/packs/chatops_tests/actions/test_aliases_with_slack.yaml</a></h4>
+<pre><code class="lang-yaml">---
+name: test_aliases_with_slack
+description: Run the ChatOps end-to-end tests with the Slack hubot adapter
+enabled: true
+runner_type: python-script
+entry_point: test_aliases_with_slack.py
+parameters:
+  sudo:
+    type: boolean
+    immutable: true
+    default: false
+</code></pre>
+
+
+  </article>
+  <div class="onebox-metadata">
+    
+    
+  </div>
+  <div style="clear: both"></div>
+</aside>
+
+          <p><a href="https://forum.stackstorm.com/t/development-of-python-action/741/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/development-of-python-action/741/3</link>
+        <pubDate>Thu, 11 Jul 2019 18:17:42 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-741-3</guid>
+        <source url="https://forum.stackstorm.com/t/development-of-python-action/741.rss">Development of python action</source>
+      </item>
+      <item>
+        <title>Development of python action</title>
+        <dc:creator><![CDATA[blag]]></dc:creator>
+        <description><![CDATA[
+            <p>You can write your Python script like any other script, and then graft on StackStorm support. Similar to <a href="https://github.com/StackStorm/st2tests/blob/master/packs/chatops_tests/actions/test_aliases_with_slack.py" rel="nofollow noopener">this action from our end-to-end tests</a> (the only interesting parts of that for you will be the top of that file and the bottom of that file, the details of the test case aren’t relevant).</p>
+<p>First, write your script normally:</p>
+<pre><code class="lang-auto">import ...
+
+args = {}
+# parse arguments from the environment here
+args[...] = os.environ.get('...')
+
+# parse arguments from the command line here with argparse, click, etc.
+args = ...
+
+# your script logic goes here
+</code></pre>
+<p>Then wrap up the logic into its own function and call that function directly, like so:</p>
+<pre><code class="lang-auto">import ...
+
+def do_things():
+    # your script logic goes here
+
+
+# If this script is being run directly, parse the command line arguments
+# and then pass them to the do_things function
+if __name__ == '__main__':
+    args = {}
+    # parse arguments from the environment here
+    args[...] = os.environ.get('...')
+
+    # Parse script arguments here with argparse, click, etc.
+    args = ...
+    do_things(...)
+</code></pre>
+<p>Then you can graft StackStorm support onto it by adding a subclass of <code>st2common.actions.Action</code>, defining a <code>run</code> function on it, and having the <code>run</code> function call the <code>do_things</code> function itself:</p>
+<pre><code class="lang-auto">import ...
+
+def do_things():
+    # your script logic goes here
+
+
+try:
+    # If this script is being run from a StackStorm python-script runner,
+    # get the arguments from StackStorm and pass them to the do_things
+    # function
+    from st2common.runners.base_action import Action
+
+    class DoThingsAction(Action):
+        def run(self, *args, **kwargs):
+            return do_things(*args, **kwargs)
+
+except ImportError:
+    pass
+
+
+# If this script is being run directly, parse the command line arguments
+# and then pass them to the do_things function
+if __name__ == '__main__':
+    args = {}
+    # parse arguments from the environment here
+    args[...] = os.environ.get('...')
+
+    # Parse script arguments here with argparse, click, etc.
+    args = ...
+    do_things(...)
+</code></pre>
+<p>Hope this helps. Please feel free to ask further questions that may arise.</p>
+          <p><a href="https://forum.stackstorm.com/t/development-of-python-action/741/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/development-of-python-action/741/2</link>
+        <pubDate>Thu, 11 Jul 2019 18:13:26 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-741-2</guid>
+        <source url="https://forum.stackstorm.com/t/development-of-python-action/741.rss">Development of python action</source>
+      </item>
+      <item>
+        <title>Development of python action</title>
+        <dc:creator><![CDATA[guymatz]]></dc:creator>
+        <description><![CDATA[
+            <p>Hello!  Does anyone have recommendations for steps on writing a python action?  Is there a good way to set up a development environment?  Is there a way to test the action outside of st2?</p>
+          <p><a href="https://forum.stackstorm.com/t/development-of-python-action/741/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/development-of-python-action/741/1</link>
+        <pubDate>Thu, 11 Jul 2019 17:27:49 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-741-1</guid>
+        <source url="https://forum.stackstorm.com/t/development-of-python-action/741.rss">Development of python action</source>
+      </item>
+  </channel>
+</rss>

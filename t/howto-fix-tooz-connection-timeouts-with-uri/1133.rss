@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>[HOWTO] Fix tooz connection timeouts with uri</title>
+    <link>https://forum.stackstorm.com/t/howto-fix-tooz-connection-timeouts-with-uri/1133</link>
+    <description>There are optional settings you can add to your coordinator uri to fix errors like socket timeouts.
+
+For redis see:
+[https://github.com/openstack/tooz/blob/6e7a8508fbcbe9ceacb04490dc8330501bfa2477/tooz/drivers/redis.py#L141](https://github.com/openstack/tooz/blob/6e7a8508fbcbe9ceacb04490dc8330501bfa2477/tooz/drivers/redis.py#L141)
+
+In my specific situation I set my coordinator setting in st2.conf to:
+```
+[coordination]
+url = redis://127.0.0.1:6379?socket_timeout=90
+lock_timeout = 180
+```</description>
+    
+    <lastBuildDate>Fri, 03 Apr 2020 03:29:48 +0000</lastBuildDate>
+    <category>Documentation</category>
+    <atom:link href="https://forum.stackstorm.com/t/howto-fix-tooz-connection-timeouts-with-uri/1133.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>[HOWTO] Fix tooz connection timeouts with uri</title>
+        <dc:creator><![CDATA[punkrokk]]></dc:creator>
+        <description><![CDATA[
+            <p>Thanks <a class="mention" href="https://github.com/guzzijones">@guzzijones</a>, would you add this to the docs on the policies page?</p>
+          <p><a href="https://forum.stackstorm.com/t/howto-fix-tooz-connection-timeouts-with-uri/1133/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/howto-fix-tooz-connection-timeouts-with-uri/1133/2</link>
+        <pubDate>Fri, 03 Apr 2020 03:29:48 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1133-2</guid>
+        <source url="https://forum.stackstorm.com/t/howto-fix-tooz-connection-timeouts-with-uri/1133.rss">[HOWTO] Fix tooz connection timeouts with uri</source>
+      </item>
+      <item>
+        <title>[HOWTO] Fix tooz connection timeouts with uri</title>
+        <dc:creator><![CDATA[guzzijones]]></dc:creator>
+        <description><![CDATA[
+            <p>There are optional settings you can add to your coordinator uri to fix errors like socket timeouts.</p>
+<p>For redis see:<br>
+<a href="https://github.com/openstack/tooz/blob/6e7a8508fbcbe9ceacb04490dc8330501bfa2477/tooz/drivers/redis.py#L141" rel="nofollow noopener">https://github.com/openstack/tooz/blob/6e7a8508fbcbe9ceacb04490dc8330501bfa2477/tooz/drivers/redis.py#L141</a></p>
+<p>In my specific situation I set my coordinator setting in st2.conf to:</p>
+<pre><code class="lang-auto">[coordination]
+url = redis://127.0.0.1:6379?socket_timeout=90
+lock_timeout = 180
+</code></pre>
+          <p><a href="https://forum.stackstorm.com/t/howto-fix-tooz-connection-timeouts-with-uri/1133/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/howto-fix-tooz-connection-timeouts-with-uri/1133/1</link>
+        <pubDate>Tue, 31 Mar 2020 18:58:31 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1133-1</guid>
+        <source url="https://forum.stackstorm.com/t/howto-fix-tooz-connection-timeouts-with-uri/1133.rss">[HOWTO] Fix tooz connection timeouts with uri</source>
+      </item>
+  </channel>
+</rss>

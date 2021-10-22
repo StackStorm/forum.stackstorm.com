@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Accessing Nagios triggers from stackstorm running on different WM&#39;s</title>
+    <link>https://forum.stackstorm.com/t/accessing-nagios-triggers-from-stackstorm-running-on-different-wms/1097</link>
+    <description>Hey, 
+I am trying to integrate Nagios(running on a different vm via vagrant) and stackstorm in a different vm.
+I want to call auth API from Nagios vm to stackstorm vm via [st2service_handler.py] but I can&#39;t resolve hosts or connect to stackstorm&#39;s vm IP
+
+Can any please help me how can I send Nagios trigger to stackstorm running on different vagrant VM&#39;s, please.
+
+I am new to stackstorm and exploring it for an organization.
+Any help will be appreciated</description>
+    
+    <lastBuildDate>Thu, 05 Mar 2020 22:02:08 +0000</lastBuildDate>
+    <category>Uncategorized</category>
+    <atom:link href="https://forum.stackstorm.com/t/accessing-nagios-triggers-from-stackstorm-running-on-different-wms/1097.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Accessing Nagios triggers from stackstorm running on different WM&#39;s</title>
+        <dc:creator><![CDATA[piyush.a]]></dc:creator>
+        <description><![CDATA[
+            <p>Hey,<br>
+I am trying to integrate Nagios(running on a different vm via vagrant) and stackstorm in a different vm.<br>
+I want to call auth API from Nagios vm to stackstorm vm via [st2service_handler.py] but I can’t resolve hosts or connect to stackstorm’s vm IP</p>
+<p>Can any please help me how can I send Nagios trigger to stackstorm running on different vagrant VM’s, please.</p>
+<p>I am new to stackstorm and exploring it for an organization.<br>
+Any help will be appreciated</p>
+          <p><a href="https://forum.stackstorm.com/t/accessing-nagios-triggers-from-stackstorm-running-on-different-wms/1097/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/accessing-nagios-triggers-from-stackstorm-running-on-different-wms/1097/1</link>
+        <pubDate>Thu, 05 Mar 2020 22:02:08 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1097-1</guid>
+        <source url="https://forum.stackstorm.com/t/accessing-nagios-triggers-from-stackstorm-running-on-different-wms/1097.rss">Accessing Nagios triggers from stackstorm running on different WM&#39;s</source>
+      </item>
+  </channel>
+</rss>

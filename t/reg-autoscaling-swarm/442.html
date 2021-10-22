@@ -1,0 +1,1163 @@
+<!DOCTYPE html>
+<html lang="en" class="desktop-view not-mobile-device text-size-normal anon">
+<head>
+    <meta charset="utf-8">
+    <title>Reg AutoScaling Swarm - Rules - StackStorm Support (ARCHIVED)</title>
+    <meta name="description" content="Hello Dimitri, 
+We are able to configure StackStorm however the rule swarm.on_pending_scaleup_aws is not running due to DesiredCapacity: “{{ st2kv.system.count | int + 1 }}”, we don’t have any action under st2 action lis&amp;hellip;">
+    <meta name="discourse_theme_id" content="2">
+    <meta name="discourse_current_homepage" content="latest">
+    <meta name="generator"
+          content="Discourse 2.8.0.beta6 - https://github.com/discourse/discourse version a1daf9fe53a66e2d2cdf9757ab4812fb9a2b2787">
+    <link rel="icon" type="image/png"
+          href="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/379ced12f8326d58f1b3d2b3ff652f883e141f6a_2_32x32.PNG">
+    <link rel="apple-touch-icon" type="image/png"
+          href="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/379ced12f8326d58f1b3d2b3ff652f883e141f6a_2_180x180.PNG">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <link rel="canonical" href="442.html"/>
+    <script type="application/ld+json">{
+        "@context": "http://schema.org",
+        "@type": "WebSite",
+        "url": "https://forum.stackstorm.com",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://forum.stackstorm.com/search?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }</script>
+    <link rel="search" type="application/opensearchdescription+xml" href="../../opensearch.xml"
+          title="StackStorm Support (ARCHIVED) Search">
+
+
+    <link href="/../../stylesheets/color_definitions_base__2_3c5eec1ecf192052ea70b4afdab57a62bccc0604.css?__ws=forum.stackstorm.com"
+          media="all" rel="stylesheet" class="light-scheme"/>
+
+    <link href="/../../stylesheets/desktop_b2f2968742d41481357e0df259b51ce29f72481a.css?__ws=forum.stackstorm.com"
+          media="all" rel="stylesheet" data-target="desktop"/>
+
+
+    <meta name="fragment" content="!">
+
+
+    <link id="manifest-link" rel="manifest" href="../../manifest.webmanifest" crossorigin="use-credentials">
+
+
+    <link rel="alternate" type="application/rss+xml" title="RSS feed of &#39;Reg AutoScaling Swarm&#39;"
+          href="442.rss"/>
+    <meta property="og:site_name" content="StackStorm Support (ARCHIVED)"/>
+    <meta property="og:type" content="website"/>
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:image"
+          content="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/891f00fbdb31fecb5bd9dab30c186d2fed0091ca.jpeg"/>
+    <meta property="og:image"
+          content="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/891f00fbdb31fecb5bd9dab30c186d2fed0091ca.jpeg"/>
+    <meta property="og:url" content="https://forum.stackstorm.com/t/reg-autoscaling-swarm/442"/>
+    <meta name="twitter:url" content="https://forum.stackstorm.com/t/reg-autoscaling-swarm/442"/>
+    <meta property="og:title" content="Reg AutoScaling Swarm"/>
+    <meta name="twitter:title" content="Reg AutoScaling Swarm"/>
+    <meta property="og:description"
+          content="Hello Dimitri,  We are able to configure StackStorm however the rule swarm.on_pending_scaleup_aws is not running due to DesiredCapacity: “{{ st2kv.system.count | int + 1 }}”, we don’t have any action under st2 action list -p st2 with a name st2kv.system.count.  Could you please share the .py so we may create an action &amp; use the auto scaling.  Thanks &amp; Regards  Sumit Roopchandani"/>
+    <meta name="twitter:description"
+          content="Hello Dimitri,  We are able to configure StackStorm however the rule swarm.on_pending_scaleup_aws is not running due to DesiredCapacity: “{{ st2kv.system.count | int + 1 }}”, we don’t have any action under st2 action list -p st2 with a name st2kv.system.count.  Could you please share the .py so we may create an action &amp; use the auto scaling.  Thanks &amp; Regards  Sumit Roopchandani"/>
+    <meta property="article:published_time" content="2019-01-17T19:45:09+00:00"/>
+    <meta property="og:ignore_canonical" content="true"/>
+
+
+    <script type="application/ld+json">{
+        "@context": "http://schema.org",
+        "@type": "QAPage",
+        "name": "Reg AutoScaling Swarm",
+        "mainEntity": {
+            "@type": "Question",
+            "name": "Reg AutoScaling Swarm",
+            "text": "Hello Dimitri,\n\nWe are able to configure StackStorm however the rule swarm.on_pending_scaleup_aws is not running due to DesiredCapacity: “{{ st2kv.system.count | int + 1 }}”, we don’t have any action under st2 action list -p st2 with a name st2kv.system.count.\n\nCould you please share the .py so we m&hellip;",
+            "upvoteCount": 0,
+            "answerCount": 0,
+            "dateCreated": "2019-01-17T19:45:09.057Z",
+            "author": {
+                "@type": "Person",
+                "name": "Sumit Roopchandani"
+            }
+        }
+    }</script>
+
+    <meta id="data-discourse-setup" data-cdn="https://sjc6.discourse-cdn.com/standard10"
+          data-base-url="https://forum.stackstorm.com" data-base-uri="" data-environment="production"
+          data-letter-avatar-version="5_8fec8e114563efeaf5265573e510f08e"
+          data-markdown-it-url="https://aws1.discourse-cdn.com/standard10/assets/markdown-it-bundle-31e9a9c535ca1801c26da78b0ff465821751a98f921c5cdc5457d7e5a69e9748.js"
+          data-service-worker-url="service-worker.js" data-default-locale="en"
+          data-asset-version="597e36448c9b51d0fa3b7e43ec1fd6d5" data-disable-custom-css="false"
+          data-highlight-js-path="/highlight-js/forum.stackstorm.com/ac0f4aa001e1343346941766d72e0c1ae330832b.js"
+          data-svg-sprite-path="/svg-sprite/forum.stackstorm.com/svg-2-c2ad434b1e06079c7e282124aed9938dc95b83ea.js"
+          data-enable-js-error-reporting="true" data-color-scheme-is-dark="false" data-user-dark-scheme-id="-1"
+          data-s3-cdn="https://aws1.discourse-cdn.com/standard10"
+          data-s3-base-url="//discourse-cloud-file-uploads.s3.dualstack.us-west-2.amazonaws.com/standard10">
+
+    <meta name="discourse/config/environment"
+          content="%7B%22modulePrefix%22%3A%22discourse%22%2C%22environment%22%3A%22production%22%2C%22rootURL%22%3A%22%22%2C%22locationType%22%3A%22auto%22%2C%22historySupportMiddleware%22%3Afalse%2C%22EmberENV%22%3A%7B%22FEATURES%22%3A%7B%7D%2C%22EXTEND_PROTOTYPES%22%3A%7B%22Date%22%3Afalse%7D%2C%22_APPLICATION_TEMPLATE_WRAPPER%22%3Afalse%2C%22_DEFAULT_ASYNC_OBSERVERS%22%3Atrue%2C%22_JQUERY_INTEGRATION%22%3Atrue%7D%2C%22APP%22%3A%7B%22name%22%3A%22discourse%22%2C%22version%22%3A%222.8.0.beta6%20a1daf9fe53a66e2d2cdf9757ab4812fb9a2b2787%22%2C%22exportApplicationGlobal%22%3Atrue%7D%7D"/>
+</head>
+
+<body class="">
+
+
+<header class="d-header">
+    <div class="wrap">
+        <div class="contents clearfix">
+            <div class="title">
+                <a href="../../index.html">
+                    <picture>
+                        <img src="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png"
+                             alt="StackStorm Support (ARCHIVED)" id="site-logo"/>
+                    </picture>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</header>
+
+<div id="main-outlet" class="wrap" role="main">
+    <!-- preload-content: -->
+
+    <!-- EOF START -->
+    <div class="container" id="main-container">
+        <div id="ember11" class="ember-view"></div>
+        <div id="ember12" class="controls ember-view"><!----></div>
+        <div id="ember13" class="ember-view"><!----></div>
+        <div id="ember14" class="ember-view">
+            <div class="row">
+                <div id="global-notice-alert-read-only" class="alert alert-info alert-read-only">
+                    <!----> <span class="text">This site is in read only mode. Please continue to browse, but replying, likes, and other actions are disabled for now.</span>
+
+                    <!---->    </div>
+            </div>
+            <div class="row">
+                <div id="global-notice-alert-global-notice" class="alert alert-info alert-global-notice">
+                    <!----> <span class="text"><h3>⚠️ We've moved!</h3>  <p> Hi there!<br><br> To reduce project dependency on 3rd party paid services the StackStorm TSC has decided to move the Q/A from this forum to <a
+                        href="https://github.com/StackStorm/st2/discussions">Github Discussions</a>. This will make user experience better integrated with the native Github flow, as well as the questions closer to the community where they can provide answers. </p>  <p> Use 🔗 <b><a
+                        href="https://github.com/StackStorm/st2/discussions" class="active">Github Discussions</a></b> to ask your questions. </p></span>
+
+                    <!---->    </div>
+            </div>
+        </div>
+        <div id="ember17" class="hidden create-topics-notice ember-view"><!----></div>
+        <!---->
+    </div>
+    <!-- EOF END -->
+    <div id="topic-title">
+        <h1>
+            <a href="442.html">Reg AutoScaling Swarm</a>
+        </h1>
+
+        <div class="topic-category" itemscope itemtype="http://schema.org/BreadcrumbList">
+          <span itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a href="../../c/core-st2-platform-issues/6" class="badge-wrapper bullet" itemprop="item">
+              <span class='badge-category-bg' style='background-color: #AB9364'></span>
+              <span class='badge-category clear-badge'>
+                <span class='category-name' itemprop='name'>Platform</span>
+              </span>
+            </a>
+            <meta itemprop="position" content="1"/>
+          </span>
+            <span itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a href="../../c/core-st2-platform-issues/rule-related-issues/13" class="badge-wrapper bullet"
+               itemprop="item">
+              <span class='badge-category-bg' style='background-color: #F1592A'></span>
+              <span class='badge-category clear-badge'>
+                <span class='category-name' itemprop='name'>Rules</span>
+              </span>
+            </a>
+            <meta itemprop="position" content="2"/>
+          </span>
+        </div>
+
+        <div class="topic-category">
+            <div class='discourse-tags list-tags'>
+                <a href='../../tag/docker' class='discourse-tag' rel="tag">docker</a>
+            </div>
+        </div>
+    </div>
+
+
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/sumitchandani'><span
+                    itemprop='name'>sumitchandani</span></a>
+            (Sumit Roopchandani)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="442.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2019-01-17T19:45:09Z' class='post-time'>
+                January 17, 2019,  7:45pm
+              </time>
+              <meta itemprop='dateModified' content='2019-01-17T19:45:09Z'>
+          <span itemprop='position'>#1</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Hello Dimitri,</p>
+            <p>We are able to configure StackStorm however the rule swarm.on_pending_scaleup_aws is not running due to
+                DesiredCapacity: “{{ st2kv.system.count | int + 1 }}”, we don’t have any action under st2 action list -p
+                st2 with a name st2kv.system.count.</p>
+            <p>Could you please share the .py so we may create an action &amp; use the auto scaling.</p>
+            <p>Thanks &amp; Regards<br>
+                Sumit Roopchandani</p>
+        </div>
+
+        <meta itemprop='headline' content='Reg AutoScaling Swarm'>
+        <meta itemprop='keywords' content='docker'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/lhill'><span itemprop='name'>lhill</span></a>
+            (Lindsay Hill)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="442.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2019-01-17T20:18:19Z' class='post-time'>
+                January 17, 2019,  8:18pm
+              </time>
+              <meta itemprop='dateModified' content='2019-01-17T20:18:19Z'>
+          <span itemprop='position'>#2</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>That’s not an action - that’s a way of referencing a datastore value. See <a
+                    href="https://docs.stackstorm.com/datastore.html#referencing-key-value-pairs-in-action-definitions"
+                    class="inline-onebox" rel="nofollow noopener">Datastore — StackStorm 2.10.1 documentation</a></p>
+        </div>
+
+        <meta itemprop='headline' content='Reg AutoScaling Swarm'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/sumitchandani'><span
+                    itemprop='name'>sumitchandani</span></a>
+            (Sumit Roopchandani)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="442.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2019-01-17T21:06:03Z' class='post-time'>
+                January 17, 2019,  9:06pm
+              </time>
+              <meta itemprop='dateModified' content='2019-01-22T15:00:55Z'>
+          <span itemprop='position'>#3</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Hello Lindsay,</p>
+            <p>I was able to get that after some research, we ran the below steps</p>
+            <blockquote>
+                <p>st2 key set asg.workers 2</p>
+            </blockquote>
+            <p>the output of that is below</p>
+            <pre><code>st2 run core.local cmd="echo {{ st2kv.system.asg.workers }}"
+
+id: 5c40ea696614950198562556
+status: succeeded
+parameters: 
+  cmd: echo 2
+result: 
+  failed: false
+  return_code: 0
+  stderr: ''
+  stdout: 2
+  succeeded: true
+</code></pre>
+            <p>We have used the StackStorm link “<a
+                    href="https://stackstorm.com/2017/06/22/autoscaling-swarm-aws-stackstorm/" class="inline-onebox"
+                    rel="nofollow noopener">Autoscaling Swarm on AWS with StackStorm - StackStorm</a>” for reference.
+            </p>
+            <p>Along with that have used GitHub link “<a href="https://github.com/dzimine/swarm_scaling"
+                                                         class="inline-onebox" rel="nofollow noopener">GitHub -
+                dzimine/swarm_scaling: StackStorm Automation pack for auto scaling Docker Swarm Cluster based on
+                container load. https://youtu.be/2tQlfxRrtXo</a>”.</p>
+            <p>Some changes that we have done as we were not able to register the swarm pack due to old runner_type:
+                “run-python” changed to runner_type: “python-script” .</p>
+            <hr>
+            <p>We are still not able to scale out, however if we manually run “<code>st2 run swarm.pending_queue</code>”
+                it gives the output</p>
+            <pre><code>id: 5c40ec086614950198562559
+status: succeeded
+parameters: None
+result: 
+  exit_code: 0
+  result:
+    result:
+      **pending_count: 2**
+  stderr: ''
+  stdout: ''
+</code></pre>
+            <p>Also if we manually scale out using “<code>st2 run aws.autoscaling_update_auto_scaling_group
+                AutoScalingGroupName=swarm-workers-tf DesiredCapacity=2</code>”</p>
+            <pre><code>id: 5c40ec59661495019856255c
+status: succeeded
+parameters: 
+  AutoScalingGroupName: swarm-workers-tf
+  **DesiredCapacity: 2**
+result: 
+  exit_code: 0
+  result:
+  - ResponseMetadata:
+      HTTPHeaders:
+        content-length: '231'
+        content-type: text/xml
+        date: Thu, 17 Jan 2019 20:58:02 GMT
+        x-amzn-requestid: 94450e97-1a9a-11e9-9519-1344f237d568
+      HTTPStatusCode: 200
+      RequestId: 94450e97-1a9a-11eAWS.9-1344f237d568
+      RetryAttempts: 0
+  stderr: ''
+  stdout: ''
+</code></pre>
+            <p>This changes the desired capacity &amp; creates a new node in AWS.</p>
+            <p>Now either the sensor is not working or trigger is not working, when we reload action / rules using
+                st2ctl reload it gives the below output .</p>
+            <pre><code>root@ip-10-12-4-78:/opt/stackstorm/packs/swarm/rules# st2ctl reload
+
+Registering content...[flags = --config-file /etc/st2/st2.conf --register-runners --register-actions --register-aliases --register-sensors --register-triggers --register-configs --register-rules]
+
+2019-01-17 20:39:59,855 INFO [-] Connecting to database "st2" @ "127.0.0.1:27017" as user "None".
+
+2019-01-17 20:39:59,859 INFO [-] Successfully connected to database "st2" @ "127.0.0.1:27017" as user "None".
+
+2019-01-17 20:40:00,171 INFO [-] =========================================================
+
+2019-01-17 20:40:00,172 INFO [-] ############## Registering triggers #####################
+
+2019-01-17 20:40:00,172 INFO [-] =========================================================
+
+2019-01-17 20:40:00,434 INFO [-] Registered 0 triggers.
+
+2019-01-17 20:40:00,434 INFO [-] =========================================================
+
+2019-01-17 20:40:00,434 INFO [-] ############## Registering sensors ######################
+
+2019-01-17 20:40:00,434 INFO [-] =========================================================
+
+2019-01-17 20:40:00,556 INFO [-] Registered 4 sensors.
+
+2019-01-17 20:40:00,556 INFO [-] =========================================================
+
+2019-01-17 20:40:00,556 INFO [-] ############## Registering runners ######################
+
+2019-01-17 20:40:00,556 INFO [-] =========================================================
+
+2019-01-17 20:40:01,457 INFO [-] Registered 18 runners.
+
+2019-01-17 20:40:01,458 INFO [-] =========================================================
+
+2019-01-17 20:40:01,458 INFO [-] ############## Registering actions ######################
+
+2019-01-17 20:40:01,458 INFO [-] =========================================================
+
+2019-01-17 20:41:34,480 INFO [-] Registered 3673 actions.
+
+2019-01-17 20:41:34,480 INFO [-] =========================================================
+
+2019-01-17 20:41:34,480 INFO [-] ############## Registering rules ########################
+
+2019-01-17 20:41:34,480 INFO [-] =========================================================
+
+2019-01-17 20:41:34,600 INFO [-] Registered 6 rules.
+
+2019-01-17 20:41:34,600 INFO [-] =========================================================
+
+2019-01-17 20:41:34,601 INFO [-] ############## Registering aliases ######################
+
+2019-01-17 20:41:34,601 INFO [-] =========================================================
+
+2019-01-17 20:41:34,774 INFO [-] Registered 14 aliases.
+
+2019-01-17 20:41:34,774 INFO [-] =========================================================
+
+2019-01-17 20:41:34,774 INFO [-] ############## Registering configs ######################
+
+2019-01-17 20:41:34,774 INFO [-] =========================================================
+
+2019-01-17 20:41:34,774 INFO [-] Registered 0 configs.
+
+##### st2 components status #####
+
+st2actionrunner PID: 32576
+
+st2actionrunner PID: 32579
+
+st2actionrunner PID: 32583
+
+st2actionrunner PID: 32586
+
+st2actionrunner PID: 32589
+
+st2actionrunner PID: 32592
+
+st2actionrunner PID: 32595
+
+st2actionrunner PID: 32598
+
+st2actionrunner PID: 32602
+
+st2actionrunner PID: 32605
+
+st2api PID: 408
+
+st2api PID: 32611
+
+st2stream PID: 409
+
+st2stream PID: 32615
+
+st2auth PID: 410
+
+st2auth PID: 32620
+
+st2garbagecollector PID: 32624
+
+st2notifier PID: 32628
+
+st2resultstracker PID: 32632
+
+st2rulesengine PID: 32636
+
+st2sensorcontainer PID: 32640
+
+st2chatops is not running.
+
+st2timersengine PID: 32651
+
+st2workflowengine PID: 32655
+
+st2scheduler PID: 32659
+
+mistral-server PID: 32721
+
+mistral.api PID: 441
+
+mistral.api PID: 442
+
+mistral.api PID: 32684
+</code></pre>
+            <p>It says registering triggers &amp; the registers 0 trigger however when we run “<code>st2 trigger
+                list</code>” it shows below output</p>
+            <pre><code>+--------------------------------------+-------+------------------------------------------------------+
+| ref                                  | pack  | description                                          |
++--------------------------------------+-------+------------------------------------------------------+
+| aws.service_notification             | aws   | Trigger which represents a service notification      |
+| aws.sqs_new_message                  | aws   | Trigger which indicates that a new message has       |
+|                                      |       | arrived                                              |
+| core.st2.CronTimer                   | core  | Triggers whenever current time matches the specified |
+|                                      |       | time constaints like a UNIX cron scheduler.          |
+| core.st2.DateTimer                   | core  | Triggers exactly once when the current time matches  |
+|                                      |       | the specified time. e.g. timezone:UTC                |
+|                                      |       | date:2014-12-31 23:59:59.                            |
+| core.st2.IntervalTimer               | core  | Triggers on specified intervals. e.g. every 30s,     |
+|                                      |       | 1week etc.                                           |
+| core.st2.action.file_writen          | core  | Trigger encapsulating action file being written on   |
+|                                      |       | disk.                                                |
+| core.st2.generic.actiontrigger       | core  | Trigger encapsulating the completion of an action    |
+|                                      |       | execution.                                           |
+| core.st2.generic.inquiry             | core  | Trigger indicating a new "inquiry" has entered       |
+|                                      |       | "pending" status                                     |
+| core.st2.generic.notifytrigger       | core  | Notification trigger.                                |
+| core.st2.key_value_pair.create       | core  | Trigger encapsulating datastore item creation.       |
+| core.st2.key_value_pair.delete       | core  | Trigger encapsulating datastore item deletion.       |
+| core.st2.key_value_pair.update       | core  | Trigger encapsulating datastore set action.          |
+| core.st2.key_value_pair.value_change | core  | Trigger encapsulating a change of datastore item     |
+|                                      |       | value.                                               |
+| core.st2.sensor.process_exit         | core  | Trigger indicating sensor process is stopped.        |
+| core.st2.sensor.process_spawn        | core  | Trigger indicating sensor process is started up.     |
+| core.st2.webhook                     | core  | Trigger type for registering webhooks that can       |
+|                                      |       | consume arbitrary payload.                           |
+| linux.file_watch.line                | linux | Trigger which indicates a new line has been detected |
+| swarm.pending_tasks                  | swarm | Swarm pending tasks count cross over/under threshold |
++--------------------------------------+-------+------------------------------------------------------+
+</code></pre>
+            <p>The output of “st2 sensor list” is below</p>
+            <pre><code>+--------------------------------+-------+-----------------------------------------+---------+
+| ref                            | pack  | description                             | enabled |
++--------------------------------+-------+-----------------------------------------+---------+
+| linux.FileWatchSensor          | linux | Sensor which monitors files for new     | True    |
+|                                |       | lines                                   |         |
+| swarm.SwarmPendingTasksSensor  | swarm | Swarm pending queue sensor              | True    |
+| aws.ServiceNotificationsSensor | aws   | Sensor which exposes an HTTP interface  | True    |
+|                                |       | and listens for AWS service             |         |
+|                                |       | notifications delivered via AWS SNS     |         |
+| aws.AWSSQSSensor               | aws   | Sensor which monitors a SQS queue for   | True    |
+|                                |       | new messages                            |         |
++--------------------------------+-------+-----------------------------------------+---------+
+</code></pre>
+            <p>Thanks &amp; Regards<br>
+                Sumit Roopchandani</p>
+        </div>
+
+        <meta itemprop='headline' content='Reg AutoScaling Swarm'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/sumitchandani'><span
+                    itemprop='name'>sumitchandani</span></a>
+            (Sumit Roopchandani)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="442.html">
+
+            <link itemprop="image"
+                  href="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/977849a073eea44cc9ba55f076cdbf169a836a58.png">
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2019-01-18T19:56:38Z' class='post-time'>
+                January 18, 2019,  7:56pm
+              </time>
+              <meta itemprop='dateModified' content='2019-01-22T14:54:38Z'>
+          <span itemprop='position'>#4</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Hello Lindsay,</p>
+            <p>Yesterday I shared some details, however, did some more digging in the issue. Below are the findings</p>
+            <ol>
+                <li>
+                    <p>Have to manually start a sensor container in order to make the sensor work, used the follwoing
+                        command to run the sensor in debug mode:</p>
+                    <blockquote>
+                        <p>/opt/stackstorm/st2/bin/st2sensorcontainer --config-file=/etc/st2/st2.conf --debug
+                            --sensor-ref=swarm.SwarmPendingTasksSensor</p>
+                    </blockquote>
+                </li>
+                <li>
+                    <p>The trigger only works once even if there are pending tasks sensor shows, it gives this
+                        particular error:<br>
+                        <img src="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/977849a073eea44cc9ba55f076cdbf169a836a58.png"
+                             alt="49%20AM" width="690" height="370"><br>
+                        Have uploaded the screenshot of the success of trigger. However, post that it keep on giving
+                        below error</p>
+                    <blockquote>
+                        <p>2019-01-18 19:47:02,284 DEBUG [-] 1 active sensor(s)</p>
+                        <p>2019-01-18 19:47:03,432 DEBUG [-] <a href="http://localhost" rel="nofollow noopener">http://localhost</a>:None
+                            “GET /v1.35/tasks?filters=%7B%22desired-state%22%3A+%5B%22running%22%5D%7D HTTP/1.1” 200
+                            None</p>
+                        <p>2019-01-18 19:47:03,433 DEBUG [-] Not dispatching trigger swarm.pending_tasks: over=True
+                            threshold=0 count=1</p>
+                    </blockquote>
+                </li>
+                <li>
+                    <p>The datastore value is a fix value, &amp; need a method to update the value once the rule is
+                        run.</p>
+                    <blockquote>
+                        <p>root@ip-10-12-4-78:~# st2 key list<br>
+                            ±------------±------±-------±----------±-------------±-----±-----------------+<br>
+                            | name | value | secret | encrypted | scope | user | expire_timestamp |<br>
+                            ±------------±------±-------±----------±-------------±-----±-----------------+<br>
+                            | asg.workers | 3 | False | False | st2kv.system | | |<br>
+                            ±------------±------±-------±----------±-------------±-----±-----------------+</p>
+                    </blockquote>
+                    <p>Below are the outputs of rule-enforcement list , rule-tester, trigger-instance list &amp;
+                        execution list</p>
+                    <blockquote>
+                        <p>root@ip-10-12-4-78:~# st2 rule-enforcement list --rule=swarm.on_pending_scaleup_aws</p>
+                        <p>
+                            ±-------------------------±---------------------------±-------------------------±-------------------------±---------------------------+<br>
+                            | id | rule.ref | trigger_instance_id | execution_id | enforced_at |<br>
+                            ±-------------------------±---------------------------±-------------------------±-------------------------±---------------------------+<br>
+                            | 5c422c746614957f7cae56c3 | swarm.on_pending_scaleup_a | 5c422c746614957f7cae56bf |
+                            5c422c746614957f7cae56c2 | 2019-01-18T19:43:48.461298 |<br>
+                            | | ws | | | Z |<br>
+                            | 5c41cc1a6614957f7cae56af | swarm.on_pending_scaleup_a | 5c41cc1a6614957f7cae56ab |
+                            5c41cc1a6614957f7cae56ae | 2019-01-18T12:52:42.577356 |<br>
+                            | | ws | | | Z |<br>
+                            | 5c41c9ba6614957f7cae5699 | swarm.on_pending_scaleup_a | 5c41c9ba6614957f7cae5695 |
+                            5c41c9ba6614957f7cae5698 | 2019-01-18T12:42:34.763958 |<br>
+                            | | ws | | | Z |<br>
+                            | 5c41c8486614957f7cae567d | swarm.on_pending_scaleup_a | 5c41c8486614957f7cae5679 |
+                            5c41c8486614957f7cae567c | 2019-01-18T12:36:24.470565 |<br>
+                            | | ws | | | Z |<br>
+                            | 5c41c7126614957f7cae5661 | swarm.on_pending_scaleup_a | 5c41c7126614957f7cae565d |
+                            5c41c7126614957f7cae5660 | 2019-01-18T12:31:14.186136 |<br>
+                            | | ws | | | Z |<br>
+                            | 5c41c5aa6614957f7cae564d | swarm.on_pending_scaleup_a | 5c41c5a96614957f7cae5649 |
+                            5c41c5aa6614957f7cae564c | 2019-01-18T12:25:13.935784 |<br>
+                            | | ws | | | Z |<br>
+                            | 5c41c3bb6614957f7cae563d | swarm.on_pending_scaleup_a | 5c41c3ba6614957f7cae5639 |
+                            5c41c3bb6614957f7cae563c | 2019-01-18T12:16:58.843185 |<br>
+                            | | ws | | | Z |<br>
+                            | 5c41c32e6614957f7cae562d | swarm.on_pending_scaleup_a | 5c41c32e6614957f7cae5629 |
+                            5c41c32e6614957f7cae562c | 2019-01-18T12:14:38.386350 |<br>
+                            | | ws | | | Z |<br>
+                            ±-------------------------±---------------------------±-------------------------±-------------------------±---------------------------+
+                        </p>
+                        <hr>
+                        <p>root@ip-10-12-4-78:~# st2-rule-tester --trigger-instance-id=5c422c746614957f7cae56bf
+                            --rule-ref=swarm.on_pending_scaleup_aws</p>
+                        <p>2019-01-18 19:53:08,631 INFO [-] Connecting to database “st2” @ “127.0.0.1:27017” as user
+                            “None”.</p>
+                        <p>2019-01-18 19:53:08,634 INFO [-] Successfully connected to database “st2” @ “127.0.0.1:27017”
+                            as user “None”.</p>
+                        <p>2019-01-18 19:53:08,781 INFO [-] Validating rule swarm.on_pending_scaleup_aws for
+                            pending_tasks.</p>
+                        <p>2019-01-18 19:53:08,804 INFO [-] 1 rule(s) found to enforce for pending_tasks.</p>
+                        <p>2019-01-18 19:53:08,808 INFO [-] Failed to retrieve config for pack &lt;Mock name=‘mock.pack’
+                            id=‘140359798560976’&gt; and user stanley: ‘Mock’ object is not iterable</p>
+                        <p>2019-01-18 19:53:08,816 INFO [-] Action parameters resolved to:</p>
+                        <p>2019-01-18 19:53:08,816 INFO [-] AutoScalingGroupName: swarm-workers-tf</p>
+                        <p>2019-01-18 19:53:08,816 INFO [-] DesiredCapacity: 3</p>
+                        <p>2019-01-18 19:53:08,817 INFO [-] === RULE MATCHES ===</p>
+                        <hr>
+                        <p>oot@ip-10-12-4-78:~# st2 trigger-instance list --trigger=swarm.pending_tasks</p>
+                        <p>
+                            ±-------------------------±--------------------±------------------------------±----------+<br>
+                            | id | trigger | occurrence_time | status |<br>
+                            ±-------------------------±--------------------±------------------------------±----------+<br>
+                            | 5c41c32e6614957f7cae5629 | swarm.pending_tasks | Fri, 18 Jan 2019 12:14:38 UTC | processed
+                            |<br>
+                            | 5c41c3926614957f7cae5633 | swarm.pending_tasks | Fri, 18 Jan 2019 12:16:18 UTC | processed
+                            |<br>
+                            | 5c41c3ba6614957f7cae5639 | swarm.pending_tasks | Fri, 18 Jan 2019 12:16:58 UTC | processed
+                            |<br>
+                            | 5c41c41e6614957f7cae5643 | swarm.pending_tasks | Fri, 18 Jan 2019 12:18:38 UTC | processed
+                            |<br>
+                            | 5c41c5a96614957f7cae5649 | swarm.pending_tasks | Fri, 18 Jan 2019 12:25:13 UTC | processed
+                            |<br>
+                            | 5c41c6c26614957f7cae5657 | swarm.pending_tasks | Fri, 18 Jan 2019 12:29:54 UTC | processed
+                            |<br>
+                            | 5c41c7126614957f7cae565d | swarm.pending_tasks | Fri, 18 Jan 2019 12:31:14 UTC | processed
+                            |<br>
+                            | 5c41c83e6614957f7cae5673 | swarm.pending_tasks | Fri, 18 Jan 2019 12:36:14 UTC | processed
+                            |<br>
+                            | 5c41c8486614957f7cae5679 | swarm.pending_tasks | Fri, 18 Jan 2019 12:36:24 UTC | processed
+                            |<br>
+                            | 5c41c9ab6614957f7cae568f | swarm.pending_tasks | Fri, 18 Jan 2019 12:42:19 UTC | processed
+                            |<br>
+                            | 5c41c9ba6614957f7cae5695 | swarm.pending_tasks | Fri, 18 Jan 2019 12:42:34 UTC | processed
+                            |<br>
+                            | 5c41ca056614957f7cae569f | swarm.pending_tasks | Fri, 18 Jan 2019 12:43:49 UTC | processed
+                            |<br>
+                            | 5c41cc1a6614957f7cae56ab | swarm.pending_tasks | Fri, 18 Jan 2019 12:52:42 UTC | processed
+                            |<br>
+                            | 5c422c746614957f7cae56bf | swarm.pending_tasks | Fri, 18 Jan 2019 19:43:48 UTC | processed
+                            |<br>
+                            ±-------------------------±--------------------±------------------------------±----------+
+                        </p>
+                        <hr>
+                        <p>root@ip-10-12-4-78:~# st2 execution list</p>
+                        <p>
+                            ±-------------------------±-----------------------±-------------±------------------------±-----------------------±---------------------+<br>
+                            | id | action.ref | context.user | status | start_timestamp | end_timestamp |<br>
+                            ±-------------------------±-----------------------±-------------±------------------------±-----------------------±---------------------+<br>
+                            | 5c40a6df6614950198562476 | aws.autoscaling_update | testu | succeeded (1s elapsed) | Thu,
+                            17 Jan 2019 | Thu, 17 Jan 2019 |<br>
+                            | | _auto_scaling_group | | | 16:01:34 UTC | 16:01:35 UTC |<br>
+                            | 5c40a7406614950198562479 | aws.autoscaling_update | testu | succeeded (1s elapsed) | Thu,
+                            17 Jan 2019 | Thu, 17 Jan 2019 |<br>
+                            | | _auto_scaling_group | | | 16:03:12 UTC | 16:03:13 UTC |<br>
+                            | 5c40a7c1661495019856247c | aws.autoscaling_update | testu | succeeded (1s elapsed) | Thu,
+                            17 Jan 2019 | Thu, 17 Jan 2019 |<br>
+                            | | _auto_scaling_group | | | 16:05:21 UTC | 16:05:22 UTC |<br>
+                            | 5c40bbb5661495019856247f | swarm.pending_queue | testu | succeeded (0s elapsed) | Thu, 17
+                            Jan 2019 | Thu, 17 Jan 2019 |<br>
+                            | | | | | 17:30:29 UTC | 17:30:29 UTC |<br>
+                            | 5c40bbd56614950198562482 | swarm.pending_queue | testu | succeeded (1s elapsed) | Thu, 17
+                            Jan 2019 | Thu, 17 Jan 2019 |<br>
+                            | | | | | 17:31:01 UTC | 17:31:02 UTC |<br>
+                            | 5c40bc126614950198562485 | swarm.pending_queue | testu | succeeded (1s elapsed) | Thu, 17
+                            Jan 2019 | Thu, 17 Jan 2019 |<br>
+                            | | | | | 17:32:02 UTC | 17:32:03 UTC |<br>
+                            | 5c40bcaf6614950198562488 | aws.autoscaling_update | testu | succeeded (2s elapsed) | Thu,
+                            17 Jan 2019 | Thu, 17 Jan 2019 |<br>
+                            | | _auto_scaling_group | | | 17:34:39 UTC | 17:34:41 UTC |<br>
+                            | 5c40bf8c661495019856248b | aws.autoscaling_update | testu | succeeded (1s elapsed) | Thu,
+                            17 Jan 2019 | Thu, 17 Jan 2019 |<br>
+                            | | _auto_scaling_group | | | 17:46:52 UTC | 17:46:53 UTC |<br>
+                            | 5c40c115661495019856248e | packs.install | testu | succeeded (18s elapsed) | Thu, 17 Jan
+                            2019 | Thu, 17 Jan 2019 |<br>
+                            | | | | | 17:53:25 UTC | 17:53:43 UTC |<br>
+                            | 5c40c19b6614950198562525 | packs.uninstall | testu | succeeded (4s elapsed) | Thu, 17 Jan
+                            2019 | Thu, 17 Jan 2019 |<br>
+                            | | | | | 17:55:39 UTC | 17:55:43 UTC |<br>
+                            | 5c40c4306614950198562528 | swarm.pending_queue | testu | succeeded (1s elapsed) | Thu, 17
+                            Jan 2019 | Thu, 17 Jan 2019 |<br>
+                            | | | | | 18:06:40 UTC | 18:06:41 UTC |<br>
+                            | 5c40d7b3661495019856252b | swarm.node_count | testu | succeeded (1s elapsed) | Thu, 17 Jan
+                            2019 | Thu, 17 Jan 2019 |<br>
+                            | | | | | 19:29:55 UTC | 19:29:56 UTC |<br>
+                            | 5c40dce4661495019856252f | core.local | testu | succeeded (0s elapsed) | Thu, 17 Jan 2019
+                            | Thu, 17 Jan 2019 |<br>
+                            | | | | | 19:52:04 UTC | 19:52:04 UTC |<br>
+                            | 5c40dcef6614950198562532 | core.local | testu | succeeded (0s elapsed) | Thu, 17 Jan 2019
+                            | Thu, 17 Jan 2019 |<br>
+                            | | | | | 19:52:15 UTC | 19:52:15 UTC |<br>
+                            | 5c40e1a36614950198562535 | core.local | testu | succeeded (0s elapsed) | Thu, 17 Jan 2019
+                            | Thu, 17 Jan 2019 |<br>
+                            | | | | | 20:12:19 UTC | 20:12:19 UTC |<br>
+                            | 5c40e1aa6614950198562538 | core.local | testu | succeeded (0s elapsed) | Thu, 17 Jan 2019
+                            | Thu, 17 Jan 2019 |<br>
+                            | | | | | 20:12:26 UTC | 20:12:26 UTC |<br>
+                            | 5c40e1b0661495019856253b | core.local | testu | succeeded (0s elapsed) | Thu, 17 Jan 2019
+                            | Thu, 17 Jan 2019 |<br>
+                            | | | | | 20:12:32 UTC | 20:12:32 UTC |<br>
+                            | 5c40e1fc661495019856253e | core.local | testu | failed (0s elapsed) | Thu, 17 Jan 2019 |
+                            Thu, 17 Jan 2019 |<br>
+                            | | | | | 20:13:48 UTC | 20:13:48 UTC |<br>
+                            | 5c40e2026614950198562541 | core.local | testu | succeeded (0s elapsed) | Thu, 17 Jan 2019
+                            | Thu, 17 Jan 2019 |<br>
+                            | | | | | 20:13:54 UTC | 20:13:54 UTC |<br>
+                            | 5c40e2486614950198562544 | swarm.node_count | testu | succeeded (0s elapsed) | Thu, 17 Jan
+                            2019 | Thu, 17 Jan 2019 |<br>
+                            | | | | | 20:15:04 UTC | 20:15:04 UTC |<br>
+                            | 5c40e2856614950198562547 | core.local | testu | failed (0s elapsed) | Thu, 17 Jan 2019 |
+                            Thu, 17 Jan 2019 |<br>
+                            | | | | | 20:16:05 UTC | 20:16:05 UTC |<br>
+                            | 5c40e6bf661495019856254a | core.local | testu | succeeded (0s elapsed) | Thu, 17 Jan 2019
+                            | Thu, 17 Jan 2019 |<br>
+                            | | | | | 20:34:07 UTC | 20:34:07 UTC |<br>
+                            | 5c40e6ca661495019856254d | core.local | testu | succeeded (0s elapsed) | Thu, 17 Jan 2019
+                            | Thu, 17 Jan 2019 |<br>
+                            | | | | | 20:34:18 UTC | 20:34:18 UTC |<br>
+                            | 5c40e7a46614950198562550 | core.local | testu | succeeded (0s elapsed) | Thu, 17 Jan 2019
+                            | Thu, 17 Jan 2019 |<br>
+                            | | | | | 20:37:56 UTC | 20:37:56 UTC |<br>
+                            | 5c40e9226614950198562553 | core.local | testu | succeeded (0s elapsed) | Thu, 17 Jan 2019
+                            | Thu, 17 Jan 2019 |<br>
+                            | | | | | 20:44:18 UTC | 20:44:18 UTC |<br>
+                            | 5c40ea696614950198562556 | core.local | testu | succeeded (0s elapsed) | Thu, 17 Jan 2019
+                            | Thu, 17 Jan 2019 |<br>
+                            | | | | | 20:49:45 UTC | 20:49:45 UTC |<br>
+                            | 5c40ec086614950198562559 | swarm.pending_queue | testu | succeeded (0s elapsed) | Thu, 17
+                            Jan 2019 | Thu, 17 Jan 2019 |<br>
+                            | | | | | 20:56:40 UTC | 20:56:40 UTC |<br>
+                            | 5c40ec59661495019856255c | aws.autoscaling_update | testu | succeeded (1s elapsed) | Thu,
+                            17 Jan 2019 | Thu, 17 Jan 2019 |<br>
+                            | | _auto_scaling_group | | | 20:58:01 UTC | 20:58:02 UTC |<br>
+                            | 5c41c32e6614957f7cae562c | aws.autoscaling_update | stanley | succeeded (2s elapsed) |
+                            Fri, 18 Jan 2019 | Fri, 18 Jan 2019 |<br>
+                            | | _auto_scaling_group | | | 12:14:38 UTC | 12:14:40 UTC |<br>
+                            | 5c41c32e6614957f7cae562f | core.local | stanley | succeeded (1s elapsed) | Fri, 18 Jan
+                            2019 | Fri, 18 Jan 2019 |<br>
+                            | | | | | 12:14:38 UTC | 12:14:39 UTC |<br>
+                            | 5c41c3926614957f7cae5636 | core.local | stanley | succeeded (0s elapsed) | Fri, 18 Jan
+                            2019 | Fri, 18 Jan 2019 |<br>
+                            | | | | | 12:16:18 UTC | 12:16:18 UTC |<br>
+                            | 5c41c3bb6614957f7cae563c | aws.autoscaling_update | stanley | succeeded (3s elapsed) |
+                            Fri, 18 Jan 2019 | Fri, 18 Jan 2019 |<br>
+                            | | _auto_scaling_group | | | 12:16:58 UTC | 12:17:01 UTC |<br>
+                            | 5c41c3bb6614957f7cae563f | core.local | stanley | succeeded (1s elapsed) | Fri, 18 Jan
+                            2019 | Fri, 18 Jan 2019 |<br>
+                            | | | | | 12:16:59 UTC | 12:17:00 UTC |<br>
+                            | 5c41c41e6614957f7cae5646 | core.local | stanley | succeeded (0s elapsed) | Fri, 18 Jan
+                            2019 | Fri, 18 Jan 2019 |<br>
+                            | | | | | 12:18:38 UTC | 12:18:38 UTC |<br>
+                            | 5c41c5aa6614957f7cae564c | aws.autoscaling_update | stanley | succeeded (2s elapsed) |
+                            Fri, 18 Jan 2019 | Fri, 18 Jan 2019 |<br>
+                            | | _auto_scaling_group | | | 12:25:13 UTC | 12:25:15 UTC |<br>
+                            | 5c41c5aa6614957f7cae564f | core.local | stanley | succeeded (0s elapsed) | Fri, 18 Jan
+                            2019 | Fri, 18 Jan 2019 |<br>
+                            | | | | | 12:25:14 UTC | 12:25:14 UTC |<br>
+                            | 5c41c6c26614957f7cae565a | core.local | stanley | succeeded (0s elapsed) | Fri, 18 Jan
+                            2019 | Fri, 18 Jan 2019 |<br>
+                            | | | | | 12:29:54 UTC | 12:29:54 UTC |<br>
+                            | 5c41c7126614957f7cae5660 | aws.autoscaling_update | stanley | succeeded (2s elapsed) |
+                            Fri, 18 Jan 2019 | Fri, 18 Jan 2019 |<br>
+                            | | _auto_scaling_group | | | 12:31:14 UTC | 12:31:16 UTC |<br>
+                            | 5c41c7126614957f7cae5663 | core.local | stanley | succeeded (1s elapsed) | Fri, 18 Jan
+                            2019 | Fri, 18 Jan 2019 |<br>
+                            | | | | | 12:31:14 UTC | 12:31:15 UTC |<br>
+                            | 5c41c83e6614957f7cae5676 | core.local | stanley | succeeded (0s elapsed) | Fri, 18 Jan
+                            2019 | Fri, 18 Jan 2019 |<br>
+                            | | | | | 12:36:14 UTC | 12:36:14 UTC |<br>
+                            | 5c41c8486614957f7cae567c | aws.autoscaling_update | stanley | succeeded (1s elapsed) |
+                            Fri, 18 Jan 2019 | Fri, 18 Jan 2019 |<br>
+                            | | _auto_scaling_group | | | 12:36:24 UTC | 12:36:25 UTC |<br>
+                            | 5c41c8486614957f7cae567f | core.local | stanley | succeeded (1s elapsed) | Fri, 18 Jan
+                            2019 | Fri, 18 Jan 2019 |<br>
+                            | | | | | 12:36:24 UTC | 12:36:25 UTC |<br>
+                            | 5c41c9ab6614957f7cae5692 | core.local | stanley | succeeded (1s elapsed) | Fri, 18 Jan
+                            2019 | Fri, 18 Jan 2019 |<br>
+                            | | | | | 12:42:19 UTC | 12:42:20 UTC |<br>
+                            | 5c41c9ba6614957f7cae5698 | aws.autoscaling_update | stanley | succeeded (1s elapsed) |
+                            Fri, 18 Jan 2019 | Fri, 18 Jan 2019 |<br>
+                            | | _auto_scaling_group | | | 12:42:34 UTC | 12:42:35 UTC |<br>
+                            | 5c41c9ba6614957f7cae569b | core.local | stanley | succeeded (1s elapsed) | Fri, 18 Jan
+                            2019 | Fri, 18 Jan 2019 |<br>
+                            | | | | | 12:42:34 UTC | 12:42:35 UTC |<br>
+                            | 5c41ca056614957f7cae56a2 | core.local | stanley | succeeded (1s elapsed) | Fri, 18 Jan
+                            2019 | Fri, 18 Jan 2019 |<br>
+                            | | | | | 12:43:49 UTC | 12:43:50 UTC |<br>
+                            | 5c41cc1a6614957f7cae56ae | aws.autoscaling_update | stanley | succeeded (2s elapsed) |
+                            Fri, 18 Jan 2019 | Fri, 18 Jan 2019 |<br>
+                            | | _auto_scaling_group | | | 12:52:42 UTC | 12:52:44 UTC |<br>
+                            | 5c41cc1a6614957f7cae56b1 | core.local | stanley | succeeded (1s elapsed) | Fri, 18 Jan
+                            2019 | Fri, 18 Jan 2019 |<br>
+                            | | | | | 12:52:42 UTC | 12:52:43 UTC |<br>
+                            | 5c422c746614957f7cae56c2 | aws.autoscaling_update | stanley | succeeded (2s elapsed) |
+                            Fri, 18 Jan 2019 | Fri, 18 Jan 2019 |<br>
+                            | | _auto_scaling_group | | | 19:43:48 UTC | 19:43:50 UTC |<br>
+                            | 5c422c746614957f7cae56c5 | core.local | stanley | succeeded (1s elapsed) | Fri, 18 Jan
+                            2019 | Fri, 18 Jan 2019 |<br>
+                            | | | | | 19:43:48 UTC | 19:43:49 UTC |<br>
+                            ±-------------------------±-----------------------±-------------±------------------------±-----------------------±---------------------+<br>
+                            ±-------------------------------------------------------------------------------------------------------------------------------------------+<br>
+                            | Note: Only first 50 action executions are displayed. Use -n/–last flag for more results. |<br>
+                            ±-------------------------------------------------------------------------------------------------------------------------------------------+
+                        </p>
+                    </blockquote>
+                </li>
+            </ol>
+        </div>
+
+        <meta itemprop='headline' content='Reg AutoScaling Swarm'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/lhill'><span itemprop='name'>lhill</span></a>
+            (Lindsay Hill)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="442.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2019-01-19T00:57:08Z' class='post-time'>
+                January 19, 2019, 12:57am
+              </time>
+              <meta itemprop='dateModified' content='2019-01-19T00:57:08Z'>
+          <span itemprop='position'>#5</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>The forum supports markdown for formatting code &amp; logs. Or you can use the formatting buttons. Can
+                you edit that post to use code blocks for the code &amp; logs content? It makes it much easier to
+                read.</p>
+        </div>
+
+        <meta itemprop='headline' content='Reg AutoScaling Swarm'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/dzimine1'><span itemprop='name'>dzimine1</span></a>
+            (Dmitri Zimin(E))
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="442.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2019-01-19T02:57:38Z' class='post-time'>
+                January 19, 2019,  2:57am
+              </time>
+              <meta itemprop='dateModified' content='2019-01-19T03:08:49Z'>
+          <span itemprop='position'>#6</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p><a class="mention" href="https://github.com/sumitchandani">@sumitchandani</a> I’ll try and
+                find time to look at the details next week (hope you’ll mark-down the logs by then for better read as <a
+                        class="mention" href="https://github.com/lhill">@lhill</a> suggested); given it’s
+                been done over a year ago it might be a bit too involving and it’s not easy to make time to it… but
+                we’ll see.</p>
+            <p>Meantime coupe of pointers.</p>
+            <ol>
+                <li>The threshold must be set up first, by setting up the configuration according to this <a
+                        href="https://github.com/dzimine/swarm_scaling/blob/master/config.schema.yaml"
+                        rel="nofollow noopener">schema</a>
+                </li>
+                <li>Based on your screenshot I don’t see the error - the trigger fired an instance. “No suitable node”
+                    is likely (again, I am forgetting) the payload of Swarm call, it should be ok.
+                </li>
+                <li>New StackStorm WebUI has great facilities for looking at rule invocations and trigger instances that
+                    makes it immensely easier to find out if the trigger fired, if a fired trigger tripped a rule, if
+                    the rule worked or errored out, and if the action had been scheduled or not - the whole pipeline.
+                    Take a closer look.
+                </li>
+            </ol>
+        </div>
+
+        <meta itemprop='headline' content='Reg AutoScaling Swarm'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/sumitchandani'><span
+                    itemprop='name'>sumitchandani</span></a>
+            (Sumit Roopchandani)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="442.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2019-01-21T10:55:16Z' class='post-time'>
+                January 21, 2019, 10:55am
+              </time>
+              <meta itemprop='dateModified' content='2019-01-21T10:55:16Z'>
+          <span itemprop='position'>#7</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Hello Lindsay,</p>
+            <p>I have emailed the entire details as was not able to format the logs here at forum in real time</p>
+            <p>Regards<br>
+                Sumit Roopchandani</p>
+        </div>
+
+        <meta itemprop='headline' content='Reg AutoScaling Swarm'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/lhill'><span itemprop='name'>lhill</span></a>
+            (Lindsay Hill)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="442.html">
+
+            <link itemprop="image"
+                  href="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/01eb5b0bf4f70c89a508b3e9130142e26736941a.png">
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2019-01-21T16:42:34Z' class='post-time'>
+                January 21, 2019,  4:42pm
+              </time>
+              <meta itemprop='dateModified' content='2019-01-21T16:42:34Z'>
+          <span itemprop='position'>#8</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>There’s a “pencil” icon on your posts. Click that</p>
+            <p>
+            <div class="lightbox-wrapper"><a class="lightbox"
+                                             href="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/01eb5b0bf4f70c89a508b3e9130142e26736941a.png"
+                                             title="edit_icon.png" rel="nofollow noopener"><img
+                    src="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/01eb5b0bf4f70c89a508b3e9130142e26736941a_2_690x149.png"
+                    alt="edit_icon" width="690" height="149"
+                    srcset="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/01eb5b0bf4f70c89a508b3e9130142e26736941a_2_690x149.png, https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/01eb5b0bf4f70c89a508b3e9130142e26736941a_2_1035x223.png 1.5x, https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/01eb5b0bf4f70c89a508b3e9130142e26736941a_2_1380x298.png 2x"
+                    data-small-upload="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/01eb5b0bf4f70c89a508b3e9130142e26736941a_2_10x10.png">
+                <div class="meta">
+                    <svg class="fa d-icon d-icon-far-image svg-icon" aria-hidden="true">
+                        <use xlink:href="#far-image"></use>
+                    </svg>
+                    <span class="filename">edit_icon.png</span><span class="informations">1648×356 34.5 KB</span>
+                    <svg class="fa d-icon d-icon-discourse-expand svg-icon" aria-hidden="true">
+                        <use xlink:href="#discourse-expand"></use>
+                    </svg>
+                </div>
+            </a></div>
+            </p>
+            <p>You can then edit your post, including using the “code” block button.</p>
+            <p>
+            <div class="lightbox-wrapper"><a class="lightbox"
+                                             href="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/d6a7366788b579f5405f1a22e8896ed41582a7b8.png"
+                                             title="edit_button.png" rel="nofollow noopener"><img
+                    src="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/d6a7366788b579f5405f1a22e8896ed41582a7b8_2_690x292.png"
+                    alt="edit_button" width="690" height="292"
+                    srcset="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/d6a7366788b579f5405f1a22e8896ed41582a7b8_2_690x292.png, https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/d6a7366788b579f5405f1a22e8896ed41582a7b8_2_1035x438.png 1.5x, https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/d6a7366788b579f5405f1a22e8896ed41582a7b8.png 2x"
+                    data-small-upload="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/d6a7366788b579f5405f1a22e8896ed41582a7b8_2_10x10.png">
+                <div class="meta">
+                    <svg class="fa d-icon d-icon-far-image svg-icon" aria-hidden="true">
+                        <use xlink:href="#far-image"></use>
+                    </svg>
+                    <span class="filename">edit_button.png</span><span class="informations">1276×540 49.7 KB</span>
+                    <svg class="fa d-icon d-icon-discourse-expand svg-icon" aria-hidden="true">
+                        <use xlink:href="#discourse-expand"></use>
+                    </svg>
+                </div>
+            </a></div>
+            </p>
+            <p>Or just use markdown syntax. It’s the same as Github markdown. Just takes a few seconds to add the right
+                formatting, makes it <strong>much</strong> easier for people to read.</p>
+        </div>
+
+        <meta itemprop='headline' content='Reg AutoScaling Swarm'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+
+
+    <!-- :preload-content -->
+    <footer class="noscript-footer-nav">
+        <nav itemscope itemtype='http://schema.org/SiteNavigationElement'>
+            <a href='../../index.html'>Home</a>
+            <a href="../../categories.html">Categories</a>
+            <a href="https://forum.stackstorm.com/guidelines">FAQ/Guidelines</a>
+            <a href="../../tos.html">Terms of Service</a>
+            <a href="../../privacy.html">Privacy Policy</a>
+        </nav>
+    </footer>
+</div>
+
+<footer id='noscript-footer'>
+    <p>Powered by <a href="https://www.discourse.org">Discourse</a>, best viewed with JavaScript enabled</p>
+</footer>
+
+
+<section id='main'>
+</section>
+
+
+</body>
+</html>

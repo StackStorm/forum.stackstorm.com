@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Howto: Write rule to trigger action that takes an array parameter</title>
+    <link>https://forum.stackstorm.com/t/howto-write-rule-to-trigger-action-that-takes-an-array-parameter/62</link>
+    <description>If you are writing a rule that runs an action that takes an array parameter, you need to use JSON-style notation for your array. 
+
+So your rule should look something like this:
+```
+---
+name: &quot;myrule&quot;
+pack: &quot;default&quot;
+description: &quot;example rule to trigger action taking an array&quot;
+enabled: true
+trigger:
+  type: &quot;my.trigger&quot;
+criteria:
+  trigger.body:
+    type: &quot;iequals&quot;
+    pattern: &quot;testing&quot;
+action:
+  ref: &quot;default.myaction&quot;
+  parameters:
+    ArrayParameter: [&quot;foo&quot;, &quot;bar&quot;]
+```</description>
+    
+    <lastBuildDate>Wed, 14 Mar 2018 15:09:18 +0000</lastBuildDate>
+    <category>Rules</category>
+    <atom:link href="https://forum.stackstorm.com/t/howto-write-rule-to-trigger-action-that-takes-an-array-parameter/62.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Howto: Write rule to trigger action that takes an array parameter</title>
+        <dc:creator><![CDATA[armab]]></dc:creator>
+        <description><![CDATA[
+            
+          <p><a href="https://forum.stackstorm.com/t/howto-write-rule-to-trigger-action-that-takes-an-array-parameter/62/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/howto-write-rule-to-trigger-action-that-takes-an-array-parameter/62/2</link>
+        <pubDate>Thu, 22 Mar 2018 11:52:59 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-62-2</guid>
+        <source url="https://forum.stackstorm.com/t/howto-write-rule-to-trigger-action-that-takes-an-array-parameter/62.rss">Howto: Write rule to trigger action that takes an array parameter</source>
+      </item>
+      <item>
+        <title>Howto: Write rule to trigger action that takes an array parameter</title>
+        <dc:creator><![CDATA[lhill]]></dc:creator>
+        <description><![CDATA[
+            <p>If you are writing a rule that runs an action that takes an array parameter, you need to use JSON-style notation for your array.</p>
+<p>So your rule should look something like this:</p>
+<pre><code class="lang-auto">---
+name: "myrule"
+pack: "default"
+description: "example rule to trigger action taking an array"
+enabled: true
+trigger:
+  type: "my.trigger"
+criteria:
+  trigger.body:
+    type: "iequals"
+    pattern: "testing"
+action:
+  ref: "default.myaction"
+  parameters:
+    ArrayParameter: ["foo", "bar"]
+</code></pre>
+          <p><a href="https://forum.stackstorm.com/t/howto-write-rule-to-trigger-action-that-takes-an-array-parameter/62/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/howto-write-rule-to-trigger-action-that-takes-an-array-parameter/62/1</link>
+        <pubDate>Mon, 12 Mar 2018 20:08:58 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-62-1</guid>
+        <source url="https://forum.stackstorm.com/t/howto-write-rule-to-trigger-action-that-takes-an-array-parameter/62.rss">Howto: Write rule to trigger action that takes an array parameter</source>
+      </item>
+  </channel>
+</rss>

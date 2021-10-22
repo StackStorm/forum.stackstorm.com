@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Execution of id of task in a workflow - invalid value being returend</title>
+    <link>https://forum.stackstorm.com/t/execution-of-id-of-task-in-a-workflow-invalid-value-being-returend/1663</link>
+    <description>Hi All,
+I am trying to pass the execution id of an executed task to the next task. I found the details to perform this action here - https://docs.stackstorm.com/orquesta/stackstorm.html#stackstorm-context. But for some reason the execution id passed on to the next task is wrong ie it is not the same when i check in UI and the one returned is invalid (when i run $ st2 execution get &lt;execution_id&gt; )
+
+Any pointers on this topic will help. The reason i am trying to do this is so that in the case of failures i can track the failed executions later.
+
+Thanks</description>
+    
+    <lastBuildDate>Fri, 23 Apr 2021 14:13:39 +0000</lastBuildDate>
+    <category>Workflows</category>
+    <atom:link href="https://forum.stackstorm.com/t/execution-of-id-of-task-in-a-workflow-invalid-value-being-returend/1663.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Execution of id of task in a workflow - invalid value being returend</title>
+        <dc:creator><![CDATA[mrohith92]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi All,<br>
+I am trying to pass the execution id of an executed task to the next task. I found the details to perform this action here - <a href="https://docs.stackstorm.com/orquesta/stackstorm.html#stackstorm-context" class="inline-onebox" rel="noopener nofollow ugc">StackStorm Runtime — StackStorm 3.4.0 documentation</a>. But for some reason the execution id passed on to the next task is wrong ie it is not the same when i check in UI and the one returned is invalid (when i run $ st2 execution get &lt;execution_id&gt; )</p>
+<p>Any pointers on this topic will help. The reason i am trying to do this is so that in the case of failures i can track the failed executions later.</p>
+<p>Thanks</p>
+          <p><a href="https://forum.stackstorm.com/t/execution-of-id-of-task-in-a-workflow-invalid-value-being-returend/1663/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/execution-of-id-of-task-in-a-workflow-invalid-value-being-returend/1663/1</link>
+        <pubDate>Fri, 23 Apr 2021 14:13:39 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1663-1</guid>
+        <source url="https://forum.stackstorm.com/t/execution-of-id-of-task-in-a-workflow-invalid-value-being-returend/1663.rss">Execution of id of task in a workflow - invalid value being returend</source>
+      </item>
+  </channel>
+</rss>

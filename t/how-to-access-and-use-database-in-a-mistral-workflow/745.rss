@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>How to access and use database in a mistral workflow?</title>
+    <link>https://forum.stackstorm.com/t/how-to-access-and-use-database-in-a-mistral-workflow/745</link>
+    <description>I have a postgres database. I want to query a particular table in the database and send texts to the contact of each selected people(row) from mistral workflow. I am new to mistral workflows, help!</description>
+    
+    <lastBuildDate>Tue, 16 Jul 2019 18:14:48 +0000</lastBuildDate>
+    <category>Mistral</category>
+    <atom:link href="https://forum.stackstorm.com/t/how-to-access-and-use-database-in-a-mistral-workflow/745.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>How to access and use database in a mistral workflow?</title>
+        <dc:creator><![CDATA[blag]]></dc:creator>
+        <description><![CDATA[
+            <p>There’s isn’t a pack that is specific to PostgreSQL (there is one for MySQL), but there is a generic <a href="https://github.com/StackStorm-Exchange/stackstorm-sql" rel="nofollow noopener">SQL pack</a> that can connect to PostgreSQL databases and has actions for insert, bulk insert, update, and delete, as well as a generic query action if you need to do anything more specific.</p>
+          <p><a href="https://forum.stackstorm.com/t/how-to-access-and-use-database-in-a-mistral-workflow/745/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-to-access-and-use-database-in-a-mistral-workflow/745/3</link>
+        <pubDate>Tue, 16 Jul 2019 18:14:48 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-745-3</guid>
+        <source url="https://forum.stackstorm.com/t/how-to-access-and-use-database-in-a-mistral-workflow/745.rss">How to access and use database in a mistral workflow?</source>
+      </item>
+      <item>
+        <title>How to access and use database in a mistral workflow?</title>
+        <dc:creator><![CDATA[m4dcoder]]></dc:creator>
+        <description><![CDATA[
+            <p>We will be deprecating Mistral soon. You should use <a href="https://docs.stackstorm.com/orquesta/index.html" rel="nofollow noopener">orquesta workflow</a> instead.</p>
+<p>As for your specific use case, you can search the <a href="https://exchange.stackstorm.org" rel="nofollow noopener">StackStorm Exchange</a> to see if there’s already a PostgreSQL pack. If there isn’t, you can write your own PostgreSQL pack with read and write actions that you can reference from the orquesta workflow.</p>
+<p>If you need additional help, we have professional services option available.</p>
+<p>Good luck.</p>
+          <p><a href="https://forum.stackstorm.com/t/how-to-access-and-use-database-in-a-mistral-workflow/745/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-to-access-and-use-database-in-a-mistral-workflow/745/2</link>
+        <pubDate>Tue, 16 Jul 2019 17:37:55 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-745-2</guid>
+        <source url="https://forum.stackstorm.com/t/how-to-access-and-use-database-in-a-mistral-workflow/745.rss">How to access and use database in a mistral workflow?</source>
+      </item>
+      <item>
+        <title>How to access and use database in a mistral workflow?</title>
+        <dc:creator><![CDATA[ayushpallav]]></dc:creator>
+        <description><![CDATA[
+            <p>I have a postgres database. I want to query a particular table in the database and send texts to the contact of each selected people(row) from mistral workflow. I am new to mistral workflows, help!</p>
+          <p><a href="https://forum.stackstorm.com/t/how-to-access-and-use-database-in-a-mistral-workflow/745/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-to-access-and-use-database-in-a-mistral-workflow/745/1</link>
+        <pubDate>Tue, 16 Jul 2019 12:17:16 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-745-1</guid>
+        <source url="https://forum.stackstorm.com/t/how-to-access-and-use-database-in-a-mistral-workflow/745.rss">How to access and use database in a mistral workflow?</source>
+      </item>
+  </channel>
+</rss>

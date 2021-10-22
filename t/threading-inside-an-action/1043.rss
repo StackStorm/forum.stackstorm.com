@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Threading inside an Action</title>
+    <link>https://forum.stackstorm.com/t/threading-inside-an-action/1043</link>
+    <description>Can we safely thread inside an action provided we handle that correctly?</description>
+    
+    <lastBuildDate>Fri, 21 Feb 2020 17:40:11 +0000</lastBuildDate>
+    <category>Platform</category>
+    <atom:link href="https://forum.stackstorm.com/t/threading-inside-an-action/1043.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Threading inside an Action</title>
+        <dc:creator><![CDATA[smurugu]]></dc:creator>
+        <description><![CDATA[
+            <p>Within the action implementation, can i create threadpool and manage execution lifecycle, is that allowed? I thought action scripts are executed as command line scripts in the subprocess?</p>
+          <p><a href="https://forum.stackstorm.com/t/threading-inside-an-action/1043/6">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/threading-inside-an-action/1043/6</link>
+        <pubDate>Fri, 21 Feb 2020 17:40:11 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1043-6</guid>
+        <source url="https://forum.stackstorm.com/t/threading-inside-an-action/1043.rss">Threading inside an Action</source>
+      </item>
+      <item>
+        <title>Threading inside an Action</title>
+        <dc:creator><![CDATA[armab]]></dc:creator>
+        <description><![CDATA[
+            <p>Just updated the URLs to show as code snippet, looks like forum breaks them.</p>
+          <p><a href="https://forum.stackstorm.com/t/threading-inside-an-action/1043/5">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/threading-inside-an-action/1043/5</link>
+        <pubDate>Tue, 18 Feb 2020 13:01:22 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1043-5</guid>
+        <source url="https://forum.stackstorm.com/t/threading-inside-an-action/1043.rss">Threading inside an Action</source>
+      </item>
+      <item>
+        <title>Threading inside an Action</title>
+        <dc:creator><![CDATA[punkrokk]]></dc:creator>
+        <description><![CDATA[
+            <p><a class="mention" href="https://github.com/techdiverdown">@techdiverdown</a> I’m mobile - but was able to get one of them to work by removing the + in the Blank search result bar on github: <a href="https://github.com/search?utf8=%E2%9C%93&amp;q=org%3AStackStorm-Exchange+threading&amp;type=Code" rel="nofollow noopener">https://github.com/search?utf8=✓&amp;q=org%3AStackStorm-Exchange+threading&amp;type=Code</a></p>
+          <p><a href="https://forum.stackstorm.com/t/threading-inside-an-action/1043/4">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/threading-inside-an-action/1043/4</link>
+        <pubDate>Tue, 18 Feb 2020 00:43:34 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1043-4</guid>
+        <source url="https://forum.stackstorm.com/t/threading-inside-an-action/1043.rss">Threading inside an Action</source>
+      </item>
+      <item>
+        <title>Threading inside an Action</title>
+        <dc:creator><![CDATA[techdiverdown]]></dc:creator>
+        <description><![CDATA[
+            <p>Hmm…all these links not working for me…</p>
+          <p><a href="https://forum.stackstorm.com/t/threading-inside-an-action/1043/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/threading-inside-an-action/1043/3</link>
+        <pubDate>Mon, 17 Feb 2020 23:17:46 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1043-3</guid>
+        <source url="https://forum.stackstorm.com/t/threading-inside-an-action/1043.rss">Threading inside an Action</source>
+      </item>
+      <item>
+        <title>Threading inside an Action</title>
+        <dc:creator><![CDATA[armab]]></dc:creator>
+        <description><![CDATA[
+            <p>Yes, see existing packs with somewhat similar approach:</p>
+<pre><code class="lang-auto">https://github.com/search?q=org%3AStackStorm-Exchange+threading&amp;type=Code
+https://github.com/search?q=org%3AStackStorm-Exchange+flask&amp;type=Code
+https://github.com/search?q=org%3AStackStorm-Exchange+eventlet&amp;type=Code
+</code></pre>
+<p>Also note</p>
+<pre><code class="lang-auto">https://github.com/search?p=1&amp;q=org%3AStackStorm-Exchange+monkey&amp;type=Code
+</code></pre>
+          <p><a href="https://forum.stackstorm.com/t/threading-inside-an-action/1043/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/threading-inside-an-action/1043/2</link>
+        <pubDate>Fri, 07 Feb 2020 16:54:10 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1043-2</guid>
+        <source url="https://forum.stackstorm.com/t/threading-inside-an-action/1043.rss">Threading inside an Action</source>
+      </item>
+      <item>
+        <title>Threading inside an Action</title>
+        <dc:creator><![CDATA[techdiverdown]]></dc:creator>
+        <description><![CDATA[
+            <p>Can we safely thread inside an action provided we handle that correctly?</p>
+          <p><a href="https://forum.stackstorm.com/t/threading-inside-an-action/1043/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/threading-inside-an-action/1043/1</link>
+        <pubDate>Fri, 07 Feb 2020 16:38:16 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1043-1</guid>
+        <source url="https://forum.stackstorm.com/t/threading-inside-an-action/1043.rss">Threading inside an Action</source>
+      </item>
+  </channel>
+</rss>

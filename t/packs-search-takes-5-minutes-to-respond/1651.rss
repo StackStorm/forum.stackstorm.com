@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Packs search takes 5 minutes to respond</title>
+    <link>https://forum.stackstorm.com/t/packs-search-takes-5-minutes-to-respond/1651</link>
+    <description>I&#39;ve deployed Stackstorm-HA (helm v0.60.0) and noticed that after logging into the Web UI that the Packs tab is completely blank while other tabs like Actions and Rules etc have all populated correctly 
+
+I then discovered that /api/v1/packs/index returns a 504 response (/api/packs/ however returns my installed packs no problem)
+
+On the cli if i run &quot;st2 pack search xxx&quot; then it does eventually return the result but it takes around 5mins to complete every time
+
+I&#39;ve now enabled Debug mode and this is what I&#39;m seeing in the API service
+
+    2021-04-16 03:30:48,279 DEBUG [-] Proxy configuration: {&#39;http_proxy&#39;: None, &#39;https_proxy&#39;: None, &#39;proxy_ca_bundle_path&#39;: None, &#39;no_proxy&#39;: None}
+    2021-04-16 03:30:48,280 DEBUG [-] Starting new HTTPS connection (1): index.stackstorm.org:443
+    2021-04-16 03:35:08,804 DEBUG [-] https://index.stackstorm.org:443 &quot;GET /v1/index.json HTTP/1.1&quot; 200 76037
+    2021-04-16 03:35:08,812 DEBUG [-] Using response spec &quot;200&quot; for endpoint st2api.controllers.v1.packs:packs_controller.index.search.post and status code 200
+    2021-04-16 03:35:08,813 DEBUG [-] Match path: /packs/index/search
+
+I couldn&#39;t find any errors but I can see that it really is waiting 5 minutes between &quot;Starting new HTTPS Connection&quot; and actually issuing the GET request
+
+If I run &#39;curl https://index.stackstorm.org/v1/index.json&#39; from the API container it pulls the full json file in less than a second so I don&#39;t understand why the API service is taking so long!
+
+Any ideas?
+
+Thanks,
+Chris</description>
+    
+    <lastBuildDate>Fri, 16 Apr 2021 04:16:39 +0000</lastBuildDate>
+    <category>API</category>
+    <atom:link href="https://forum.stackstorm.com/t/packs-search-takes-5-minutes-to-respond/1651.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Packs search takes 5 minutes to respond</title>
+        <dc:creator><![CDATA[nerv]]></dc:creator>
+        <description><![CDATA[
+            <p>I’ve deployed Stackstorm-HA (helm v0.60.0) and noticed that after logging into the Web UI that the Packs tab is completely blank while other tabs like Actions and Rules etc have all populated correctly</p>
+<p>I then discovered that /api/v1/packs/index returns a 504 response (/api/packs/ however returns my installed packs no problem)</p>
+<p>On the cli if i run “st2 pack search xxx” then it does eventually return the result but it takes around 5mins to complete every time</p>
+<p>I’ve now enabled Debug mode and this is what I’m seeing in the API service</p>
+<pre><code>2021-04-16 03:30:48,279 DEBUG [-] Proxy configuration: {'http_proxy': None, 'https_proxy': None, 'proxy_ca_bundle_path': None, 'no_proxy': None}
+2021-04-16 03:30:48,280 DEBUG [-] Starting new HTTPS connection (1): index.stackstorm.org:443
+2021-04-16 03:35:08,804 DEBUG [-] https://index.stackstorm.org:443 "GET /v1/index.json HTTP/1.1" 200 76037
+2021-04-16 03:35:08,812 DEBUG [-] Using response spec "200" for endpoint st2api.controllers.v1.packs:packs_controller.index.search.post and status code 200
+2021-04-16 03:35:08,813 DEBUG [-] Match path: /packs/index/search
+</code></pre>
+<p>I couldn’t find any errors but I can see that it really is waiting 5 minutes between “Starting new HTTPS Connection” and actually issuing the GET request</p>
+<p>If I run ‘curl <a href="https://index.stackstorm.org/v1/index.json" rel="noopener nofollow ugc">https://index.stackstorm.org/v1/index.json</a>’ from the API container it pulls the full json file in less than a second so I don’t understand why the API service is taking so long!</p>
+<p>Any ideas?</p>
+<p>Thanks,<br>
+Chris</p>
+          <p><a href="https://forum.stackstorm.com/t/packs-search-takes-5-minutes-to-respond/1651/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/packs-search-takes-5-minutes-to-respond/1651/1</link>
+        <pubDate>Fri, 16 Apr 2021 04:16:39 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1651-1</guid>
+        <source url="https://forum.stackstorm.com/t/packs-search-takes-5-minutes-to-respond/1651.rss">Packs search takes 5 minutes to respond</source>
+      </item>
+  </channel>
+</rss>

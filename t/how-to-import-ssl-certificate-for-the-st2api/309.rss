@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>How to import ssl certificate for the st2api</title>
+    <link>https://forum.stackstorm.com/t/how-to-import-ssl-certificate-for-the-st2api/309</link>
+    <description>Dear all
+
+I am trying to import SSL for the st2api, but failed. I uploaded the crt and key file and restarted the ngix, the webportal works fine. 
+However, when I try to connect through st2api, an error prompted. 
+
+curl: (60) Peer&#39;s Certificate issuer is not recognized.
+
+here is the configuration file st2.conf changed under folder of /etc/nginx/sites-enabled
+
+ssl_certificate           /etc/ssl/st2/cert.crt;
+ssl_certificate_key       /etc/ssl/st2/cert.key;</description>
+    
+    <lastBuildDate>Tue, 11 Sep 2018 05:37:55 +0000</lastBuildDate>
+    <category>API</category>
+    <atom:link href="https://forum.stackstorm.com/t/how-to-import-ssl-certificate-for-the-st2api/309.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>How to import ssl certificate for the st2api</title>
+        <dc:creator><![CDATA[jimmy0628]]></dc:creator>
+        <description><![CDATA[
+            <p>Thank you, the certificate chain solved my problem. <img src="https://emoji.discourse-cdn.com/apple/slight_smile.png?v=6" title=":slight_smile:" class="emoji" alt=":slight_smile:"></p>
+          <p><a href="https://forum.stackstorm.com/t/how-to-import-ssl-certificate-for-the-st2api/309/6">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-to-import-ssl-certificate-for-the-st2api/309/6</link>
+        <pubDate>Tue, 11 Sep 2018 05:37:55 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-309-6</guid>
+        <source url="https://forum.stackstorm.com/t/how-to-import-ssl-certificate-for-the-st2api/309.rss">How to import ssl certificate for the st2api</source>
+      </item>
+      <item>
+        <title>How to import ssl certificate for the st2api</title>
+        <dc:creator><![CDATA[jimmy0628]]></dc:creator>
+        <description><![CDATA[
+            <p>Yes, the certificate chain solved my problem <img src="https://emoji.discourse-cdn.com/apple/slight_smile.png?v=6" title=":slight_smile:" class="emoji" alt=":slight_smile:"> Thank you</p>
+          <p><a href="https://forum.stackstorm.com/t/how-to-import-ssl-certificate-for-the-st2api/309/5">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-to-import-ssl-certificate-for-the-st2api/309/5</link>
+        <pubDate>Tue, 11 Sep 2018 05:37:20 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-309-5</guid>
+        <source url="https://forum.stackstorm.com/t/how-to-import-ssl-certificate-for-the-st2api/309.rss">How to import ssl certificate for the st2api</source>
+      </item>
+      <item>
+        <title>How to import ssl certificate for the st2api</title>
+        <dc:creator><![CDATA[lhill]]></dc:creator>
+        <description><![CDATA[
+            <p>Your browser has a different set of CAs it uses to what curl trusts. Either update the bundle that curl uses, to include your Internal CA, or tell curl to verify against a CA file that includes your companys CA.</p>
+<p>Check with your local sysadmins. If they have their own CA, they will know how to get systems to use that CA.</p>
+<p>This is all generic SSL information - it is not specific to ST2.</p>
+          <p><a href="https://forum.stackstorm.com/t/how-to-import-ssl-certificate-for-the-st2api/309/4">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-to-import-ssl-certificate-for-the-st2api/309/4</link>
+        <pubDate>Tue, 11 Sep 2018 02:36:10 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-309-4</guid>
+        <source url="https://forum.stackstorm.com/t/how-to-import-ssl-certificate-for-the-st2api/309.rss">How to import ssl certificate for the st2api</source>
+      </item>
+      <item>
+        <title>How to import ssl certificate for the st2api</title>
+        <dc:creator><![CDATA[jimmy0628]]></dc:creator>
+        <description><![CDATA[
+            <aside class="quote no-group" data-post="2" data-topic="309">
+<div class="title">
+<div class="quote-controls"></div>
+<img alt="" width="20" height="20" src="https://sjc6.discourse-cdn.com/standard10/user_avatar/forum.stackstorm.com/armab/40/13_1.png" class="avatar"> armab:</div>
+<blockquote>
+<p>You may want to ensure that you configured full certificate chain. Follow the <a href="http://nginx.org/en/docs/http/configuring_https_servers.html#chains" rel="nofollow noopener">http://nginx.org/en/docs/http/configuring_https_servers.html#chains</a> to understand how to set it up and debug.</p>
+</blockquote>
+</aside>
+<p>Thank you for your feedback, actually I am trying to use curl to call the st2api with a post method.</p>
+<pre><code class="lang-auto">curl -X POST -H  'Accept: */*' -H  'content-type: application/json' -H  'St2-Api-Key: ***'  --data-binary '{"action": "faultdesign.ApiAdapter","parameters": {"srNo": "456789","taskName": "201809030000","country": "","operator": "","productFamily": "Huawei Storage","subType": "Huawei Storage","selectedNodes": {"l2Name": "Disk Alarm","l1Name": "ISM/Device Manager Alarm","l3Name": ""},"product": "OceanStorage","productLine": "IT","logfiles": "","createUser": "","reStart": "","summary": ""}}' https://wesre.***.com/api/v1/executions
+
+and I got the error like this:
+
+curl: (60) Peer's Certificate issuer is not recognized.
+More details here: http://curl.haxx.se/docs/sslcerts.html
+
+curl performs SSL certificate verification by default, using a "bundle"
+ of Certificate Authority (CA) public keys (CA certs). If the default
+ bundle file isn't adequate, you can specify an alternate file
+ using the --cacert option.
+If this HTTPS server uses a certificate signed by a CA represented in
+ the bundle, the certificate verification probably failed due to a
+ problem with the certificate (it might be expired, or the name might
+ not match the domain name in the URL).
+If you'd like to turn off curl's verification of the certificate, use
+ the -k (or --insecure) option.
+</code></pre>
+<p>However, when I use browser to open the portal, it works fine and the site displays as safe sites which means the certificate was trusted by my browser.</p>
+<p>My company issued the CA certificate as a pfx file,and I export the key and crt file by the following commands.</p>
+<pre><code class="lang-auto">openssl pkcs12 -in ./cert.pfx -out public.crt -clcerts -nokeys
+openssl pkcs12 -in ./cert.pfx -out public.key.pem -nodes -nocerts
+</code></pre>
+<p>and I updated the ngnix configuration file under folder of vi /etc/nginx/conf.d/st2.conf like below</p>
+<pre><code class="lang-auto">server {
+  listen       *:443 ssl;
+
+  ssl on;
+
+  ssl_certificate           /etc/ssl/st2/public.crt;
+  ssl_certificate_key       /etc/ssl/st2/public.key.pem;
+  ssl_session_cache         shared:SSL:10m;
+  ssl_session_timeout       5m;
+  ssl_protocols             TLSv1 TLSv1.1 TLSv1.2;
+</code></pre>
+          <p><a href="https://forum.stackstorm.com/t/how-to-import-ssl-certificate-for-the-st2api/309/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-to-import-ssl-certificate-for-the-st2api/309/3</link>
+        <pubDate>Tue, 11 Sep 2018 01:24:54 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-309-3</guid>
+        <source url="https://forum.stackstorm.com/t/how-to-import-ssl-certificate-for-the-st2api/309.rss">How to import ssl certificate for the st2api</source>
+      </item>
+      <item>
+        <title>How to import ssl certificate for the st2api</title>
+        <dc:creator><![CDATA[armab]]></dc:creator>
+        <description><![CDATA[
+            <blockquote>
+<p>However, when I try to connect through st2api, an error prompted.</p>
+</blockquote>
+<p>Can you clarify what does it mean “to connect through st2api”? Does it mean <code>https://your-domain.tld</code> works and <code>https://yor-domain.tld/api/</code> shows errors for you? What was the client that was used to make a request to https endpoint (<code>curl</code>, browser, anything else)?</p>
+<p>What is the provider that issued the SSL certificates for you?<br>
+You may want to ensure that you configured full certificate chain. Follow the <a href="http://nginx.org/en/docs/http/configuring_https_servers.html#chains">http://nginx.org/en/docs/http/configuring_https_servers.html#chains</a> to understand how to set it up and debug.</p>
+          <p><a href="https://forum.stackstorm.com/t/how-to-import-ssl-certificate-for-the-st2api/309/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-to-import-ssl-certificate-for-the-st2api/309/2</link>
+        <pubDate>Mon, 10 Sep 2018 10:26:13 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-309-2</guid>
+        <source url="https://forum.stackstorm.com/t/how-to-import-ssl-certificate-for-the-st2api/309.rss">How to import ssl certificate for the st2api</source>
+      </item>
+      <item>
+        <title>How to import ssl certificate for the st2api</title>
+        <dc:creator><![CDATA[jimmy0628]]></dc:creator>
+        <description><![CDATA[
+            <p>Dear all</p>
+<p>I am trying to import SSL for the st2api, but failed. I uploaded the crt and key file and restarted the ngix, the webportal works fine.<br>
+However, when I try to connect through st2api, an error prompted.</p>
+<p>curl: (60) Peer’s Certificate issuer is not recognized.</p>
+<p>here is the configuration file st2.conf changed under folder of /etc/nginx/sites-enabled</p>
+<p>ssl_certificate           /etc/ssl/st2/cert.crt;<br>
+ssl_certificate_key       /etc/ssl/st2/cert.key;</p>
+          <p><a href="https://forum.stackstorm.com/t/how-to-import-ssl-certificate-for-the-st2api/309/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-to-import-ssl-certificate-for-the-st2api/309/1</link>
+        <pubDate>Mon, 10 Sep 2018 09:41:15 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-309-1</guid>
+        <source url="https://forum.stackstorm.com/t/how-to-import-ssl-certificate-for-the-st2api/309.rss">How to import ssl certificate for the st2api</source>
+      </item>
+  </channel>
+</rss>

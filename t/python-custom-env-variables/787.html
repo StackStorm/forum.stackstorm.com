@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en" class="desktop-view not-mobile-device text-size-normal anon">
+<head>
+    <meta charset="utf-8">
+    <title>Python custom env variables - Mistral - StackStorm Support (ARCHIVED)</title>
+    <meta name="description" content="Does anyone achieve Python runner env passing to mistral workflow. Here is what i mean 
+ST2_PUBLIC_URL=&amp;#39;https://192.168.16.20&amp;#39;
+➜  st2 st2 run core.local cmd=env | grep -i st2_public_url
+    ST2_PUBLIC_URL=https://192.168&amp;hellip;">
+    <meta name="discourse_theme_id" content="2">
+    <meta name="discourse_current_homepage" content="latest">
+    <meta name="generator"
+          content="Discourse 2.8.0.beta6 - https://github.com/discourse/discourse version a1daf9fe53a66e2d2cdf9757ab4812fb9a2b2787">
+    <link rel="icon" type="image/png"
+          href="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/379ced12f8326d58f1b3d2b3ff652f883e141f6a_2_32x32.PNG">
+    <link rel="apple-touch-icon" type="image/png"
+          href="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/379ced12f8326d58f1b3d2b3ff652f883e141f6a_2_180x180.PNG">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <link rel="canonical" href="787.html"/>
+    <script type="application/ld+json">{
+        "@context": "http://schema.org",
+        "@type": "WebSite",
+        "url": "https://forum.stackstorm.com",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://forum.stackstorm.com/search?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }</script>
+    <link rel="search" type="application/opensearchdescription+xml" href="../../opensearch.xml"
+          title="StackStorm Support (ARCHIVED) Search">
+
+
+    <link href="/../../stylesheets/color_definitions_base__2_3c5eec1ecf192052ea70b4afdab57a62bccc0604.css?__ws=forum.stackstorm.com"
+          media="all" rel="stylesheet" class="light-scheme"/>
+
+    <link href="/../../stylesheets/desktop_b2f2968742d41481357e0df259b51ce29f72481a.css?__ws=forum.stackstorm.com"
+          media="all" rel="stylesheet" data-target="desktop"/>
+
+
+    <meta name="fragment" content="!">
+
+
+    <link id="manifest-link" rel="manifest" href="../../manifest.webmanifest" crossorigin="use-credentials">
+
+
+    <link rel="alternate" type="application/rss+xml" title="RSS feed of &#39;Python custom env variables&#39;"
+          href="787.rss"/>
+    <meta property="og:site_name" content="StackStorm Support (ARCHIVED)"/>
+    <meta property="og:type" content="website"/>
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:image"
+          content="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/891f00fbdb31fecb5bd9dab30c186d2fed0091ca.jpeg"/>
+    <meta property="og:image"
+          content="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/891f00fbdb31fecb5bd9dab30c186d2fed0091ca.jpeg"/>
+    <meta property="og:url" content="https://forum.stackstorm.com/t/python-custom-env-variables/787"/>
+    <meta name="twitter:url" content="https://forum.stackstorm.com/t/python-custom-env-variables/787"/>
+    <meta property="og:title" content="Python custom env variables"/>
+    <meta name="twitter:title" content="Python custom env variables"/>
+    <meta property="og:description"
+          content="Does anyone achieve Python runner env passing to mistral workflow. Here is what i mean  ST2_PUBLIC_URL=&#39;https://192.168.16.20&#39; ➜  st2 st2 run core.local cmd=env | grep -i st2_public_url     ST2_PUBLIC_URL=https://192.168.16.20 ➜  st2``` for core.local runner ENV variable ST2_PUBLIC_URL is fine but for Python its not  ```PIException: RemoteError: Remote error: UndefinedError &#39;dict object&#39; has no attribute &#39;st2_public_url&#39;``` In my workflow i use it as: ```Execution URL is: {{ env().st2_public_url..."/>
+    <meta name="twitter:description"
+          content="Does anyone achieve Python runner env passing to mistral workflow. Here is what i mean  ST2_PUBLIC_URL=&#39;https://192.168.16.20&#39; ➜  st2 st2 run core.local cmd=env | grep -i st2_public_url     ST2_PUBLIC_URL=https://192.168.16.20 ➜  st2``` for core.local runner ENV variable ST2_PUBLIC_URL is fine but for Python its not  ```PIException: RemoteError: Remote error: UndefinedError &#39;dict object&#39; has no attribute &#39;st2_public_url&#39;``` In my workflow i use it as: ```Execution URL is: {{ env().st2_public_url..."/>
+    <meta property="article:published_time" content="2019-07-31T14:16:39+00:00"/>
+    <meta property="og:ignore_canonical" content="true"/>
+
+
+    <script type="application/ld+json">{
+        "@context": "http://schema.org",
+        "@type": "QAPage",
+        "name": "Python custom env variables",
+        "mainEntity": {
+            "@type": "Question",
+            "name": "Python custom env variables",
+            "text": "Does anyone achieve Python runner env passing to mistral workflow. Here is what i mean\n\nST2_PUBLIC_URL=&#39;https://192.168.16.20&#39;\n\n➜  st2 st2 run core.local cmd=env | grep -i st2_public_url\n\nST2_PUBLIC_URL=https://192.168.16.20\n\n➜  st2```\n\nfor core.local runner ENV variable ST2_PUBLIC_URL is fine but f&hellip;",
+            "upvoteCount": 0,
+            "answerCount": 0,
+            "dateCreated": "2019-07-31T14:16:39.738Z",
+            "author": {
+                "@type": "Person",
+                "name": "eazysnatch"
+            }
+        }
+    }</script>
+
+    <meta id="data-discourse-setup" data-cdn="https://sjc6.discourse-cdn.com/standard10"
+          data-base-url="https://forum.stackstorm.com" data-base-uri="" data-environment="production"
+          data-letter-avatar-version="5_8fec8e114563efeaf5265573e510f08e"
+          data-markdown-it-url="https://aws1.discourse-cdn.com/standard10/assets/markdown-it-bundle-31e9a9c535ca1801c26da78b0ff465821751a98f921c5cdc5457d7e5a69e9748.js"
+          data-service-worker-url="service-worker.js" data-default-locale="en"
+          data-asset-version="597e36448c9b51d0fa3b7e43ec1fd6d5" data-disable-custom-css="false"
+          data-highlight-js-path="/highlight-js/forum.stackstorm.com/ac0f4aa001e1343346941766d72e0c1ae330832b.js"
+          data-svg-sprite-path="/svg-sprite/forum.stackstorm.com/svg-2-c2ad434b1e06079c7e282124aed9938dc95b83ea.js"
+          data-enable-js-error-reporting="true" data-color-scheme-is-dark="false" data-user-dark-scheme-id="-1"
+          data-s3-cdn="https://aws1.discourse-cdn.com/standard10"
+          data-s3-base-url="//discourse-cloud-file-uploads.s3.dualstack.us-west-2.amazonaws.com/standard10">
+
+    <meta name="discourse/config/environment"
+          content="%7B%22modulePrefix%22%3A%22discourse%22%2C%22environment%22%3A%22production%22%2C%22rootURL%22%3A%22%22%2C%22locationType%22%3A%22auto%22%2C%22historySupportMiddleware%22%3Afalse%2C%22EmberENV%22%3A%7B%22FEATURES%22%3A%7B%7D%2C%22EXTEND_PROTOTYPES%22%3A%7B%22Date%22%3Afalse%7D%2C%22_APPLICATION_TEMPLATE_WRAPPER%22%3Afalse%2C%22_DEFAULT_ASYNC_OBSERVERS%22%3Atrue%2C%22_JQUERY_INTEGRATION%22%3Atrue%7D%2C%22APP%22%3A%7B%22name%22%3A%22discourse%22%2C%22version%22%3A%222.8.0.beta6%20a1daf9fe53a66e2d2cdf9757ab4812fb9a2b2787%22%2C%22exportApplicationGlobal%22%3Atrue%7D%7D"/>
+</head>
+
+<body class="">
+
+
+<header class="d-header">
+    <div class="wrap">
+        <div class="contents clearfix">
+            <div class="title">
+                <a href="../../index.html">
+                    <picture>
+                        <img src="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png"
+                             alt="StackStorm Support (ARCHIVED)" id="site-logo"/>
+                    </picture>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</header>
+
+<div id="main-outlet" class="wrap" role="main">
+    <!-- preload-content: -->
+
+    <!-- EOF START -->
+    <div class="container" id="main-container">
+        <div id="ember11" class="ember-view"></div>
+        <div id="ember12" class="controls ember-view"><!----></div>
+        <div id="ember13" class="ember-view"><!----></div>
+        <div id="ember14" class="ember-view">
+            <div class="row">
+                <div id="global-notice-alert-read-only" class="alert alert-info alert-read-only">
+                    <!----> <span class="text">This site is in read only mode. Please continue to browse, but replying, likes, and other actions are disabled for now.</span>
+
+                    <!---->    </div>
+            </div>
+            <div class="row">
+                <div id="global-notice-alert-global-notice" class="alert alert-info alert-global-notice">
+                    <!----> <span class="text"><h3>⚠️ We've moved!</h3>  <p> Hi there!<br><br> To reduce project dependency on 3rd party paid services the StackStorm TSC has decided to move the Q/A from this forum to <a
+                        href="https://github.com/StackStorm/st2/discussions">Github Discussions</a>. This will make user experience better integrated with the native Github flow, as well as the questions closer to the community where they can provide answers. </p>  <p> Use 🔗 <b><a
+                        href="https://github.com/StackStorm/st2/discussions" class="active">Github Discussions</a></b> to ask your questions. </p></span>
+
+                    <!---->    </div>
+            </div>
+        </div>
+        <div id="ember17" class="hidden create-topics-notice ember-view"><!----></div>
+        <!---->
+    </div>
+    <!-- EOF END -->
+    <div id="topic-title">
+        <h1>
+            <a href="787.html">Python custom env variables</a>
+        </h1>
+
+        <div class="topic-category" itemscope itemtype="http://schema.org/BreadcrumbList">
+          <span itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a href="../../c/workflow-related-issues/15" class="badge-wrapper bullet" itemprop="item">
+              <span class='badge-category-bg' style='background-color: #25AAE2'></span>
+              <span class='badge-category clear-badge'>
+                <span class='category-name' itemprop='name'>Workflows</span>
+              </span>
+            </a>
+            <meta itemprop="position" content="1"/>
+          </span>
+            <span itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a href="../../c/workflow-related-issues/mistral-related-issues/16" class="badge-wrapper bullet"
+               itemprop="item">
+              <span class='badge-category-bg' style='background-color: #652D90'></span>
+              <span class='badge-category clear-badge'>
+                <span class='category-name' itemprop='name'>Mistral</span>
+              </span>
+            </a>
+            <meta itemprop="position" content="2"/>
+          </span>
+        </div>
+
+    </div>
+
+
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/eazysnatch'><span
+                    itemprop='name'>eazysnatch</span></a>
+            (eazysnatch)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="787.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2019-07-31T14:16:39Z' class='post-time'>
+                July 31, 2019,  2:16pm
+              </time>
+              <meta itemprop='dateModified' content='2019-07-31T14:16:39Z'>
+          <span itemprop='position'>#1</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Does anyone achieve Python runner env passing to mistral workflow. Here is what i mean</p>
+            <pre><code class="lang-auto">ST2_PUBLIC_URL='https://192.168.16.20'
+➜  st2 st2 run core.local cmd=env | grep -i st2_public_url
+    ST2_PUBLIC_URL=https://192.168.16.20
+➜  st2```
+for core.local runner ENV variable ST2_PUBLIC_URL is fine but for Python its not
+
+```PIException: RemoteError: Remote error: UndefinedError 'dict object' has no attribute 'st2_public_url'```
+In my workflow i use it as:
+```Execution URL is: {{ env().st2_public_url }}"```
+
+If i use for example {{ env().st2_execution_id }} its OK but custom vars are not
+
+My plan is to have Jira comment which will provide public URL with execution ID:
+```Execution URL is: {{ env().st2_public_url }}"//actionexecutions/{{ env().st2_execution_id }}```
+
+Which will generate: https://192.168.16.20/actionexecutions/TASK_ID
+I can easy put var inside the workflow but i need to do it in any of my workflows which is not a good idea i want to have public URL Env var and use it in my actions</code></pre>
+        </div>
+
+        <meta itemprop='headline' content='Python custom env variables'>
+        <meta itemprop='keywords' content=''>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/armab'><span itemprop='name'>armab</span></a>
+            (Eugen Cusmaunsa)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="787.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2019-07-31T14:33:11Z' class='post-time'>
+                July 31, 2019,  2:33pm
+              </time>
+              <meta itemprop='dateModified' content='2019-07-31T14:33:11Z'>
+          <span itemprop='position'>#2</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p><code>st2 run</code> has <code>-e</code> option to pass env variable:</p>
+            <pre><code class="lang-auto">  -e, --inherit-env     Pass all the environment variables which are
+                        accessible to the CLI as "env" parameter to the
+                        action. Note: Only works with python, local and remote
+                        runners.
+</code></pre>
+            <p>Try that.</p>
+        </div>
+
+        <meta itemprop='headline' content='Python custom env variables'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/eazysnatch'><span
+                    itemprop='name'>eazysnatch</span></a>
+            (eazysnatch)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="787.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2019-07-31T14:36:01Z' class='post-time'>
+                July 31, 2019,  2:36pm
+              </time>
+              <meta itemprop='dateModified' content='2019-07-31T14:36:01Z'>
+          <span itemprop='position'>#3</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>its a workflow I must check how to specify --inherit-env option inside action YAML. My sensors start the
+                trigger &gt; then workflow is kicked off ,so I don’t use RUN from CMD.</p>
+        </div>
+
+        <meta itemprop='headline' content='Python custom env variables'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/armab'><span itemprop='name'>armab</span></a>
+            (Eugen Cusmaunsa)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="787.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2019-07-31T15:30:46Z' class='post-time'>
+                July 31, 2019,  3:30pm
+              </time>
+              <meta itemprop='dateModified' content='2019-07-31T15:30:46Z'>
+          <span itemprop='position'>#4</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>You can read ENV variable during the <code>core.local</code> action run. Use that within workflow to pass
+                <code>ENV</code> variable further or write any conditional logic around ENV value.</p>
+        </div>
+
+        <meta itemprop='headline' content='Python custom env variables'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/eazysnatch'><span
+                    itemprop='name'>eazysnatch</span></a>
+            (eazysnatch)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="787.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2019-07-31T16:05:49Z' class='post-time'>
+                July 31, 2019,  4:05pm
+              </time>
+              <meta itemprop='dateModified' content='2019-07-31T16:11:25Z'>
+          <span itemprop='position'>#5</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Main goal:<br>
+                get entire history URL from a workflow action task example:</p>
+            <pre><code class="lang-auto">https://192.168.16.20/#/history/5d41b94f52364c4ab1889dde
+</code></pre>
+            <p>5d41b94f52364c4ab1889dde = st2_execution_id or st2_action_execiton_id</p>
+            <p>Im searching for a VAR which will give me web public IP in which we login for GUI. I’m not talking about
+                “env().st2_action_api_url” which is 127.0.0.1:9101/v1/</p>
+            <p>Let me explain it in more details.</p>
+            <p>I have a workflow and in my notification task I put line below … notice {{ env().st2_public_url }} :</p>
+            <pre><code class="lang-auto">notify:
+        action: MY_PACK.jira_comment_issue_with_role
+        input:
+          issue_key: "{{ _.issue_name }}"
+          role: "MY ROLE"
+          comment: |
+              {{ _.fail_message }}
+              =========================================================
+              {{ _.fail_message_detail }}
+              =========================================================
+              Stackstorm execution task URL is: {{ env().st2_public_url }}/#/history/{{ env().st2_execution_id }}
+</code></pre>
+            <p>st2_public_url is my personal env which I put in:</p>
+            <pre><code class="lang-auto">#cat /etc/default/st2actionrunner
+ST2_PUBLIC_URL='https://192.168.16.20'
+</code></pre>
+            <p>When I run core.local I can see the ENV variable.</p>
+            <p>When my sensors catch jira ticket and pass the trigger it run the workflow and I get the errors below In
+                which you can see ( last line ) it complain from "st2_public_url</p>
+            <p>P.S. There is no problem that env is in capital chars.</p>
+            <pre><code class="lang-auto">2019-07-31 15:35:04,899 140322733357488 WARNING mistral [-] Determining if &lt;class 'mistralclient.api.base.APIException'&gt; should be retried...
+2019-07-31 15:35:04,899 140322733357488 ERROR callback [-] RemoteError: Remote error: UndefinedError 'dict object' has no attribute 'st2_public_url'
+[u'Traceback (most recent call last):\n', u'  File "/opt/stackstorm/mistral/local/lib/python2.7/site-packages/oslo_messaging/rpc/server.py", line 157, in _process_incoming\n    res = self.dispatcher.dispatch(message)\n', u'  File "/opt/stackstorm/mistral/local/lib/python2.7/site-packages/oslo_messaging/rpc/dispatcher.py", line 213, in dispatch\n    return self._do_dispatch(endpoint, method, ctxt, args)\n', u'  File "/opt/stackstorm/mistral/local/lib/python2.7/site-packages/oslo_messaging/rpc/dispatcher.py", line 183, in _do_dispatch\n    result = func(ctxt, **new_args)\n', u'  File "/opt/stackstorm/mistral/local/lib/python2.7/site-packages/mistral/engine/engine_server.py", line 157, in on_action_complete\n    return self.engine.on_action_complete(action_ex_id, result, wf_action)\n', u'  File "/opt/stackstorm/mistral/local/lib/python2.7/site-packages/mistral/db/utils.py", line 81, in decorate\n    return _with_auth_context(auth_ctx, func, *args, **kw)\n', u'  File "/opt/stackstorm/mistral/local/lib/python2.7/site-packages/tenacity/__init__.py", line 292, in wrapped_f\n    return self.call(f, *args, **kw)\n', u'  File "/opt/stackstorm/mistral/local/lib/python2.7/site-packages/tenacity/__init__.py", line 358, in call\n    do = self.iter(retry_state=retry_state)\n', u'  File "/opt/stackstorm/mistral/local/lib/python2.7/site-packages/tenacity/__init__.py", line 319, in iter\n    return fut.result()\n', u'  File "/opt/stackstorm/mistral/local/lib/python2.7/site-packages/concurrent/futures/_base.py", line 455, in result\n    return self.__get_result()\n', u'  File "/opt/stackstorm/mistral/local/lib/python2.7/site-packages/tenacity/__init__.py", line 361, in call\n    result = fn(*args, **kwargs)\n', u'  File "/opt/stackstorm/mistral/local/lib/python2.7/site-packages/mistral/db/utils.py", line 50, in _with_auth_context\n    return func(*args, **kw)\n', u'  File "/opt/stackstorm/mistral/local/lib/python2.7/site-packages/mistral/engine/action_queue.py", line 94, in decorate\n    res = func(*args, **kw)\n', u'  File "/opt/stackstorm/mistral/local/lib/python2.7/site-packages/osprofiler/profiler.py", line 159, in wrapper\n    result = f(*args, **kwargs)\n', u'  File "/opt/stackstorm/mistral/local/lib/python2.7/site-packages/mistral/engine/default_engine.py", line 140, in on_action_complete\n    action_handler.on_action_complete(action_ex, result)\n', u'  File "/opt/stackstorm/mistral/local/lib/python2.7/site-packages/osprofiler/profiler.py", line 159, in wrapper\n    result = f(*args, **kwargs)\n', u'  File "/opt/stackstorm/mistral/local/lib/python2.7/site-packages/mistral/engine/action_handler.py", line 54, in on_action_complete\n    task_handler.schedule_on_action_complete(action_ex)\n', u'  File "/opt/stackstorm/mistral/local/lib/python2.7/site-packages/mistral/engine/task_handler.py", line 437, in schedule_on_action_complete\n    _on_action_complete(action_ex)\n', u'  File "/opt/stackstorm/mistral/local/lib/python2.7/site-packages/osprofiler/profiler.py", line 159, in wrapper\n    result = f(*args, **kwargs)\n', u'  File "/opt/stackstorm/mistral/local/lib/python2.7/site-packages/mistral/engine/task_handler.py", line 110, in _on_action_complete\n    task.on_action_complete(action_ex)\n', u'  File "/opt/stackstorm/mistral/local/lib/python2.7/site-packages/osprofiler/profiler.py", line 159, in wrapper\n    result = f(*args, **kwargs)\n', u'  File "/opt/stackstorm/mistral/local/lib/python2.7/site-packages/mistral/engine/tasks.py", line 365, in on_action_complete\n    self.complete(state, state_info)\n', u'  File "/opt/stackstorm/mistral/local/lib/python2.7/site-packages/osprofiler/profiler.py", line 159, in wrapper\n    result = f(*args, **kwargs)\n', u'  File "/opt/stackstorm/mistral/local/lib/python2.7/site-packages/mistral/engine/tasks.py", line 219, in complete\n    data_flow.publish_variables(self.task_ex, self.task_spec)\n', u'  File "/opt/stackstorm/mistral/local/lib/python2.7/site-packages/mistral/workflow/data_flow.py", line 210, in publish_variables\n    task_ex.published = expr.evaluate_recursively(branch_vars, expr_ctx)\n', u'  File "/opt/stackstorm/mistral/local/lib/python2.7/site-packages/mistral/expressions/__init__.py", line 100, in evaluate_recursively\n    data[key] = _evaluate_item(data[key], context)\n', u'  File "/opt/stackstorm/mistral/local/lib/python2.7/site-packages/mistral/expressions/__init__.py", line 79, in _evaluate_item\n    return evaluate(item, context)\n', u'  File "/opt/stackstorm/mistral/local/lib/python2.7/site-packages/mistral/expressions/__init__.py", line 71, in evaluate\n    return evaluator.evaluate(expression, context)\n', u'  File "/opt/stackstorm/mistral/local/lib/python2.7/site-packages/mistral/expressions/jinja_expression.py", line 150, in evaluate\n    result = cls._env.from_string(expression).render(**ctx)\n', u'  File "/opt/stackstorm/mistral/local/lib/python2.7/site-packages/jinja2/environment.py", line 1008, in render\n    return self.environment.handle_exception(exc_info, True)\n', u'  File "/opt/stackstorm/mistral/local/lib/python2.7/site-packages/jinja2/environment.py", line 780, in handle_exception\n    reraise(exc_type, exc_value, tb)\n', u'  File "&lt;template&gt;", line 1, in top-level template code\n', u"UndefinedError: 'dict object' has no attribute 'st2_public_url'\n"].
+Traceback (most recent call last):
+  File "/opt/stackstorm/st2/local/lib/python2.7/site-packages/mistral_v2/callback.py", line 138, in callback
+    cls._update_action_execution(url, data)
+  File "/opt/stackstorm/st2/local/lib/python2.7/site-packages/retrying.py", line 49, in wrapped_f
+    return Retrying(*dargs, **dkw).call(f, *args, **kw)
+  File "/opt/stackstorm/st2/local/lib/python2.7/site-packages/retrying.py", line 206, in call
+    return attempt.get(self._wrap_exception)
+  File "/opt/stackstorm/st2/local/lib/python2.7/site-packages/retrying.py", line 247, in get
+    six.reraise(self.value[0], self.value[1], self.value[2])
+  File "/opt/stackstorm/st2/local/lib/python2.7/site-packages/retrying.py", line 200, in call
+    attempt = Attempt(fn(*args, **kwargs), attempt_number, False)
+  File "/opt/stackstorm/st2/local/lib/python2.7/site-packages/mistral_v2/callback.py", line 91, in _update_action_execution
+    client.action_executions.update(action_execution_id, **data)
+  File "/opt/stackstorm/st2/local/lib/python2.7/site-packages/mistralclient/api/v2/action_executions.py", line 67, in update
+    return self._update('/action_executions/%s' % id, data)
+  File "/opt/stackstorm/st2/local/lib/python2.7/site-packages/mistralclient/api/base.py", line 114, in _update
+    self._raise_api_exception(resp)
+  File "/opt/stackstorm/st2/local/lib/python2.7/site-packages/mistralclient/api/base.py", line 160, in _raise_api_exception
+    error_message=error_data)
+**APIException: RemoteError: Remote error: UndefinedError 'dict object' has no attribute 'st2_public_url'**```</code></pre>
+        </div>
+
+        <meta itemprop='headline' content='Python custom env variables'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/armab'><span itemprop='name'>armab</span></a>
+            (Eugen Cusmaunsa)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="787.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2019-07-31T18:26:27Z' class='post-time'>
+                July 31, 2019,  6:26pm
+              </time>
+              <meta itemprop='dateModified' content='2019-07-31T18:26:27Z'>
+          <span itemprop='position'>#6</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>You can workaround that by saving public_url in st2 K/V storage and accessing it from mistral
+                workflow.<br>
+                Another way is to use <code>core.local</code> to print the ENV value and passing that task output to the
+                next action within workflow.</p>
+        </div>
+
+        <meta itemprop='headline' content='Python custom env variables'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/eazysnatch'><span
+                    itemprop='name'>eazysnatch</span></a>
+            (eazysnatch)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="787.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2019-07-31T18:51:44Z' class='post-time'>
+                July 31, 2019,  6:51pm
+              </time>
+              <meta itemprop='dateModified' content='2019-07-31T18:51:44Z'>
+          <span itemprop='position'>#7</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Thank you for your advices. For Datastore im aware I was thinking of that. core.local is a good option I
+                didn’t think of that.</p>
+            <p>How I didn’t it till now is one of my python actions I did</p>
+            <p>Action name: process_fields</p>
+            <p>import os<br>
+                st2_public_url = os.environ[‘ST2_PUBLIC_URL’]<br>
+                “st2_public_url”: st2_public_url &lt;&lt;&lt;&lt; here I publish it as task result.</p>
+            <p>then from workflow.</p>
+            <p>st2_public_url: “{{ task(‘process_fields’).result.result.st2_public_url }}”</p>
+            <p>I think the datastore is the more clean because its not tide with specific action.</p>
+            <p>The question is why is not working in doc it says it pass env also to Python runner</p>
+        </div>
+
+        <meta itemprop='headline' content='Python custom env variables'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/armab'><span itemprop='name'>armab</span></a>
+            (Eugen Cusmaunsa)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="787.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2019-07-31T21:24:33Z' class='post-time'>
+                July 31, 2019,  9:24pm
+              </time>
+              <meta itemprop='dateModified' content='2019-07-31T21:24:33Z'>
+          <span itemprop='position'>#8</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Understood.<br>
+                I found there is somewhat related bug reported in StackStorm: <a
+                        href="https://github.com/StackStorm/st2/issues/4676" class="inline-onebox"
+                        rel="nofollow noopener">st2 run --inherit-env does not work for actions run with python-script
+                    runner · Issue #4676 · StackStorm/st2 · GitHub</a><br>
+                Please include in that bug report that python runner doesn’t read ENV variables from outside at all, -
+                that’ll bring a bit more info to the issue.</p>
+        </div>
+
+        <meta itemprop='headline' content='Python custom env variables'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/eazysnatch'><span
+                    itemprop='name'>eazysnatch</span></a>
+            (eazysnatch)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="787.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2019-08-01T06:45:26Z' class='post-time'>
+                August 1, 2019,  6:45am
+              </time>
+              <meta itemprop='dateModified' content='2019-08-01T06:45:26Z'>
+          <span itemprop='position'>#9</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Thank you for your support. I found that issue but nobody respond there also “–inherit-en” is just a CLI
+                option which does not work for me. Im trying to debug why is not working as we expect.</p>
+            <p>The main idea must be straight forward:</p>
+            <ul>
+                <li>Put your custom vars in /etc/default/st2actionrunner</li>
+                <li>restart action runner - st2ctl restart-component st2actionrunner</li>
+                <li>you are done now all runners will have access to those vars with {{ env().MYVAR }}</li>
+            </ul>
+        </div>
+
+        <meta itemprop='headline' content='Python custom env variables'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/armab'><span itemprop='name'>armab</span></a>
+            (Eugen Cusmaunsa)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="787.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2019-08-01T13:54:33Z' class='post-time'>
+                August 1, 2019,  1:54pm
+              </time>
+              <meta itemprop='dateModified' content='2019-08-01T13:54:33Z'>
+          <span itemprop='position'>#10</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>I think that’s a perfectly valid use case.<br>
+                If you think there is an improvement that will make workflows more useful, - please submit a feature
+                request.</p>
+            <p>In a meantime, you have a workaround with <code>core.local</code>.</p>
+            <p>Talking about Mistral, - we’re deprecating that workflow engine in next releases (<a
+                    href="https://docs.stackstorm.com/latest/roadmap.html#id2" class="inline-onebox"
+                    rel="nofollow noopener">Roadmap — StackStorm 3.2dev documentation</a>) in favor of Orquesta (<a
+                    href="https://docs.stackstorm.com/orquesta/index.html" class="inline-onebox"
+                    rel="nofollow noopener">Orquesta — StackStorm 3.1.0 documentation</a>), so it makes more sense to
+                compose your feature request around new engine.</p>
+        </div>
+
+        <meta itemprop='headline' content='Python custom env variables'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+
+
+    <!-- :preload-content -->
+    <footer class="noscript-footer-nav">
+        <nav itemscope itemtype='http://schema.org/SiteNavigationElement'>
+            <a href='../../index.html'>Home</a>
+            <a href="../../categories.html">Categories</a>
+            <a href="https://forum.stackstorm.com/guidelines">FAQ/Guidelines</a>
+            <a href="../../tos.html">Terms of Service</a>
+            <a href="../../privacy.html">Privacy Policy</a>
+        </nav>
+    </footer>
+</div>
+
+<footer id='noscript-footer'>
+    <p>Powered by <a href="https://www.discourse.org">Discourse</a>, best viewed with JavaScript enabled</p>
+</footer>
+
+
+<section id='main'>
+</section>
+
+
+</body>
+</html>

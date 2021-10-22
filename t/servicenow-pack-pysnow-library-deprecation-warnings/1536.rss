@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>ServiceNow pack PySnow library deprecation warnings</title>
+    <link>https://forum.stackstorm.com/t/servicenow-pack-pysnow-library-deprecation-warnings/1536</link>
+    <description>Hello! New to the forum and to Stackstorm, so please forgive any faux pas. I appreciate any guidance about etiquette and rules, as appropriate. :slight_smile: 
+
+I&#39;m using the [ServiceNow pack from Stackstorm Exchange](https://github.com/StackStorm-Exchange/stackstorm-servicenow/) with version 3.2.0 of Stackstorm and whenever I run most any action, the [PySnow library](https://github.com/rbw/pysnow/) that it&#39;s based on returns a deprecation warning:
+```
+  &quot;stderr&quot;: &quot;/opt/stackstorm/virtualenvs/servicenow/lib/python2.7/site-packages/pysnow/client.py:120: DeprecationWarning: `query` is deprecated and will be removed in a future release. Please use `resource()` instead.
+  \&quot;Please use `resource()` instead.\&quot; % inspect.stack()[1][3], DeprecationWarning)
+/opt/stackstorm/virtualenvs/servicenow/lib/python2.7/site-packages/pysnow/legacy_request.py:99: DeprecationWarning: get_all() is deprecated, please use get_multiple() instead
+  warnings.warn(\&quot;get_all() is deprecated, please use get_multiple() instead\&quot;, DeprecationWarning)
+&quot;,
+  &quot;exit_code&quot;: 0
+```
+I was considering forking the pack and adding a configuration parameter for the `/api/now/` &quot;version&quot; for the ServiceNow API and then updating the pack action Python methods to call the &quot;newer&quot; methods based on the configuration parameter (i.e., &quot;strategy&quot; pattern). Would that be the appropriate approach? (Of course, I would submit a pull request for the updated code to share with community. I just wasn&#39;t sure of philosophy.)
+
+Thanks!
+Tim Jones</description>
+    
+    <lastBuildDate>Tue, 19 Jan 2021 16:45:38 +0000</lastBuildDate>
+    <category>Pack Management</category>
+    <atom:link href="https://forum.stackstorm.com/t/servicenow-pack-pysnow-library-deprecation-warnings/1536.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>ServiceNow pack PySnow library deprecation warnings</title>
+        <dc:creator><![CDATA[TimothyDJones]]></dc:creator>
+        <description><![CDATA[
+            <p>Perfect! Thanks so much for your response. I will follow this approach.</p>
+          <p><a href="https://forum.stackstorm.com/t/servicenow-pack-pysnow-library-deprecation-warnings/1536/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/servicenow-pack-pysnow-library-deprecation-warnings/1536/3</link>
+        <pubDate>Tue, 19 Jan 2021 16:45:38 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1536-3</guid>
+        <source url="https://forum.stackstorm.com/t/servicenow-pack-pysnow-library-deprecation-warnings/1536.rss">ServiceNow pack PySnow library deprecation warnings</source>
+      </item>
+      <item>
+        <title>ServiceNow pack PySnow library deprecation warnings</title>
+        <dc:creator><![CDATA[blag]]></dc:creator>
+        <description><![CDATA[
+            <p>Welcome to the StackStorm Forum!</p>
+<p>Forking the pack and creating a PR to update the dependency and updating the code to call more modern methods is exactly the right approach. Thank you for giving back to the community!</p>
+<p>Feel free to ask questions here, or in the <code>#community</code> channel on our Slack community:<br>
+<a href="http://stackstorm-community.slack.com" class="onebox" target="_blank" rel="noopener">stackstorm-community.slack.com</a></p>
+          <p><a href="https://forum.stackstorm.com/t/servicenow-pack-pysnow-library-deprecation-warnings/1536/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/servicenow-pack-pysnow-library-deprecation-warnings/1536/2</link>
+        <pubDate>Sat, 16 Jan 2021 00:04:21 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1536-2</guid>
+        <source url="https://forum.stackstorm.com/t/servicenow-pack-pysnow-library-deprecation-warnings/1536.rss">ServiceNow pack PySnow library deprecation warnings</source>
+      </item>
+      <item>
+        <title>ServiceNow pack PySnow library deprecation warnings</title>
+        <dc:creator><![CDATA[TimothyDJones]]></dc:creator>
+        <description><![CDATA[
+            <p>Hello! New to the forum and to Stackstorm, so please forgive any faux pas. I appreciate any guidance about etiquette and rules, as appropriate. <img src="https://emoji.discourse-cdn.com/apple/slight_smile.png?v=9" title=":slight_smile:" class="emoji" alt=":slight_smile:"></p>
+<p>I’m using the <a href="https://github.com/StackStorm-Exchange/stackstorm-servicenow/" rel="noopener nofollow ugc">ServiceNow pack from Stackstorm Exchange</a> with version 3.2.0 of Stackstorm and whenever I run most any action, the <a href="https://github.com/rbw/pysnow/" rel="noopener nofollow ugc">PySnow library</a> that it’s based on returns a deprecation warning:</p>
+<pre><code class="lang-auto">  "stderr": "/opt/stackstorm/virtualenvs/servicenow/lib/python2.7/site-packages/pysnow/client.py:120: DeprecationWarning: `query` is deprecated and will be removed in a future release. Please use `resource()` instead.
+  \"Please use `resource()` instead.\" % inspect.stack()[1][3], DeprecationWarning)
+/opt/stackstorm/virtualenvs/servicenow/lib/python2.7/site-packages/pysnow/legacy_request.py:99: DeprecationWarning: get_all() is deprecated, please use get_multiple() instead
+  warnings.warn(\"get_all() is deprecated, please use get_multiple() instead\", DeprecationWarning)
+",
+  "exit_code": 0
+</code></pre>
+<p>I was considering forking the pack and adding a configuration parameter for the <code>/api/now/</code> “version” for the ServiceNow API and then updating the pack action Python methods to call the “newer” methods based on the configuration parameter (i.e., “strategy” pattern). Would that be the appropriate approach? (Of course, I would submit a pull request for the updated code to share with community. I just wasn’t sure of philosophy.)</p>
+<p>Thanks!<br>
+Tim Jones</p>
+          <p><a href="https://forum.stackstorm.com/t/servicenow-pack-pysnow-library-deprecation-warnings/1536/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/servicenow-pack-pysnow-library-deprecation-warnings/1536/1</link>
+        <pubDate>Fri, 15 Jan 2021 21:18:47 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1536-1</guid>
+        <source url="https://forum.stackstorm.com/t/servicenow-pack-pysnow-library-deprecation-warnings/1536.rss">ServiceNow pack PySnow library deprecation warnings</source>
+      </item>
+  </channel>
+</rss>

@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>How do I manipulate data to pass to the next task?</title>
+    <link>https://forum.stackstorm.com/t/how-do-i-manipulate-data-to-pass-to-the-next-task/1632</link>
+    <description>Thanks for y&#39;alls patience as I teach myself YAQL and Orquesta...
+
+I now have a semi-fuinctioning workflow.  Here&#39;s where I&#39;m stuck:
+
+I&#39;m publishing dictionaries of result() data from tasks into variables.  Now I want to use part of that information as input to a pre-defined task in a pack (AWS in this case).
+
+The task has two input variables.  The data I need for one of those input variables has to be derived by identifying one value from a dictionary, and then looking up another dictionary value in a list that has an element matching that value, and then returning the desired ID string.  Logic dictates I would declare a variable like:
+
+      dxcon_parse:
+        action: core.noop
+        input:
+          dxlist: &lt;% dxcon_info().get(&quot;connections&quot;) %&gt;
+          dxcons: &lt;% dict(dxlist=&gt;dict(ctx(dxlist).select([$.vlan, $]))) %&gt;
+          aws_vlan: &lt;% ctx(pf_vc_info).get(pf_csp_vlan) %&gt;
+          aws_con_id: &lt;% dxcons().get(aws_dx_con_vlan) %&gt;
+        next:
+          - do:
+              - dxcon_accept
+          - publish:
+            - aws_dx_con_vlan: &lt;% ctx(aws_vlan) %&gt;
+            - aws_dx_con_id: &lt;% ctx(aws_con_id) %&gt;
+
+Syntactically I believe that is proper.  However, my problem is that when I execute, the engine complains:
+
+```
+  &quot;errors&quot;: [
+    {
+      &quot;type&quot;: &quot;content&quot;,
+      &quot;message&quot;: &quot;Action \&quot;aws.directconnect_confirm_connection\&quot; has unexpected input \&quot;aws_vlan\&quot;.&quot;,
+      &quot;spec_path&quot;: &quot;tasks.dxcon_accept.input.aws_vlan&quot;,
+      &quot;schema_path&quot;: &quot;properties.tasks.patternProperties.^\\w+$.properties.input.patternProperties.^\\w+$&quot;
+    }
+```
+
+It seems I can&#39;t add new input variables, and I can&#39;t (or don&#39;t know how) declare derived variables that eventually feed the input of the task.  I tried making up a new task, but it complained there was no action, and I tried using `core.noop` but it similarly complained of unexpected inputs.
+
+Surely I can&#39;t be the only person ever to need to massage some data out of one variable to feed into another?</description>
+    
+    <lastBuildDate>Sat, 03 Apr 2021 19:08:24 +0000</lastBuildDate>
+    <category>Workflows</category>
+    <atom:link href="https://forum.stackstorm.com/t/how-do-i-manipulate-data-to-pass-to-the-next-task/1632.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>How do I manipulate data to pass to the next task?</title>
+        <dc:creator><![CDATA[willowhawk]]></dc:creator>
+        <description><![CDATA[
+            <p>So I worked out how to properly pass the data… I need to publish the result or derived values as exit criteria from whatever process is acquiring the source data.  Got it.  Cool.</p>
+<p>My new problem is that the raw YAQL interpreter properly produces the string value I need derived from the list of dictionary objects.  Unfortunately the Orquesta engine does NOT produce the same result.  In other words the YAQL syntax is valid, but isn’t working in the engine.  This smells like an expression evaluation bug with Orquestra that I will open an Issue for.</p>
+          <p><a href="https://forum.stackstorm.com/t/how-do-i-manipulate-data-to-pass-to-the-next-task/1632/5">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-do-i-manipulate-data-to-pass-to-the-next-task/1632/5</link>
+        <pubDate>Sat, 03 Apr 2021 19:08:24 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1632-5</guid>
+        <source url="https://forum.stackstorm.com/t/how-do-i-manipulate-data-to-pass-to-the-next-task/1632.rss">How do I manipulate data to pass to the next task?</source>
+      </item>
+      <item>
+        <title>How do I manipulate data to pass to the next task?</title>
+        <dc:creator><![CDATA[willowhawk]]></dc:creator>
+        <description><![CDATA[
+            <p>So I’m publishing the values I want to use as inputs to the aws.directconnect_confirm_connection action in the dxcon_parse task.  The problem is that it won’t actually execute anything because I’m making up variables in the parse task that core.noop isn’t expecting and so it pukes.  I don’t know how to manipulate values in serial and then pass them to the next task…thats the crux of what I’m trying to accomplish.</p>
+          <p><a href="https://forum.stackstorm.com/t/how-do-i-manipulate-data-to-pass-to-the-next-task/1632/4">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-do-i-manipulate-data-to-pass-to-the-next-task/1632/4</link>
+        <pubDate>Fri, 02 Apr 2021 22:38:57 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1632-4</guid>
+        <source url="https://forum.stackstorm.com/t/how-do-i-manipulate-data-to-pass-to-the-next-task/1632.rss">How do I manipulate data to pass to the next task?</source>
+      </item>
+      <item>
+        <title>How do I manipulate data to pass to the next task?</title>
+        <dc:creator><![CDATA[willowhawk]]></dc:creator>
+        <description><![CDATA[
+            <p>I’m using v2.0.0 of the aws pack.</p>
+<p>Here’s the full workflow with some bits redacted:</p>
+<pre><code>version: 1.0
+
+input:
+  - aws_account_id: '111111111111'
+  - fabric_onprem_vlan: '1111'
+
+vars:
+  - dxlist: null
+  - dxcons: null
+  - aws_vlan: null
+  - aws_con_id: null
+
+tasks:
+  # [226, 53]
+  fabric_query:
+    action: fabric.get_info
+    next:
+      # #d14c83
+      - do:
+          - dxcon_create
+        when: succeeded()
+        publish:
+          - fabric_info: &lt;% result().result %&gt;
+  # [76, 203]
+  dxcon_create:
+    action: fabric.create_aws_conn
+    input:
+      log_level: DEBUG
+      account_uuid: &lt;% ctx(fabric_info).get(account_uuid) %&gt;
+      pop: CHI11
+      aws_account_id: &lt;% ctx(aws_account_id) %&gt;
+      connection_desc: pfdemo-cst_de1_to_aws
+      fabric_port: &lt;% ctx(fabric_info).get(port_circuit_id) %&gt;
+      speed: 50Mbps
+      vlan: &lt;% ctx(fabric_onprem_vlan) %&gt;
+      zone: A
+    next:
+      # #fd9d32
+      - do:
+          - dxcon_query
+        when: succeeded()
+        publish:
+          - fabric_vc_info: &lt;% result().result %&gt;
+  # [226, 353]
+  dxcon_query:
+    action: aws.directconnect_describe_connections
+    next:
+      - do:
+          - dxcon_parse
+        publish:
+          - dxcon_info: &lt;% result().result[0] %&gt;
+  # [26, 553]
+  dxcon_parse:
+    action: core.noop
+    input:
+      dxlist: &lt;% dxcon_info().get("connections") %&gt;
+      dxcons: &lt;% dict(dxlist=&gt;dict(ctx(dxlist).select([$.vlan, $]))) %&gt;
+      aws_vlan: &lt;% ctx(fabric_vc_info).get(fabric_csp_vlan) %&gt;
+      aws_con_id: &lt;% dxcons().get(aws_dx_con_vlan) %&gt;
+    next:
+      - do:
+          - dxcon_accept
+      - publish:
+        - aws_dx_con_vlan: &lt;% ctx(aws_vlan) %&gt;
+        - aws_dx_con_id: &lt;% ctx(aws_con_id) %&gt;
+  # [126, 753]
+  dxcon_accept:
+    action: aws.directconnect_confirm_connection
+    input:
+      log_level: DEBUG
+      account_id: &lt;% ctx(aws_account_id) %&gt;
+      connectionId: &lt;% ctx(aws_dx_con_id) %&gt;
+
+output:
+  - success: "yay, it worked"</code></pre>
+          <p><a href="https://forum.stackstorm.com/t/how-do-i-manipulate-data-to-pass-to-the-next-task/1632/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-do-i-manipulate-data-to-pass-to-the-next-task/1632/3</link>
+        <pubDate>Fri, 02 Apr 2021 21:59:41 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1632-3</guid>
+        <source url="https://forum.stackstorm.com/t/how-do-i-manipulate-data-to-pass-to-the-next-task/1632.rss">How do I manipulate data to pass to the next task?</source>
+      </item>
+      <item>
+        <title>How do I manipulate data to pass to the next task?</title>
+        <dc:creator><![CDATA[blag]]></dc:creator>
+        <description><![CDATA[
+            <p>Look closely at the error message. It’s not complaining that it cannot dig out and render the values from the context variables you’ve published, it’s complaining that there is no <code>aws_vlan</code> parameter to the <code>aws.directconnect_confirm_connection</code> action specified in/by the <code>dxcon_accept</code> task.</p>
+<p>It’s the equivalent of this Python code:</p>
+<pre><code class="lang-python">&gt;&gt;&gt; def dxcon_accept(arg1, arg2):
+...     pass
+...
+&gt;&gt;&gt; dxcon_accept(aws_vlan=None)
+Traceback (most recent call last):
+  File "&lt;stdin&gt;", line 1, in &lt;module&gt;
+TypeError: dxcon_accept() got an unexpected keyword argument 'aws_vlan'
+</code></pre>
+<p>I took a look at <a href="https://github.com/StackStorm-Exchange/stackstorm-aws/blob/master/actions/directconnect_confirm_connection.yaml">that action in the AWS pack</a>, and I didn’t see an <code>aws_vlan</code> parameter to that action, or the <code>python-script</code> action runner:</p>
+<pre><code class="lang-yaml">---
+description: 
+pack: aws
+enabled: true
+entry_point: run.py
+name: directconnect_confirm_connection
+runner_type: python-script
+parameters:
+  account_id:
+    type: string
+  region:
+    type: string
+  action:
+    default: confirm_connection
+    immutable: true
+    type: string
+  cls:
+    default: directconnect
+    type: string
+  headers:
+    type: string
+  module_path:
+    default: boto3
+    immutable: true
+    type: string
+  connectionId:
+    type: string
+    description: ""
+    required: true
+</code></pre>
+<p>Can you post the <code>dxcon_accept</code> task as well? That might help us figure out what parameter you should be using.</p>
+<p>Also, the AWS pack sees a lot of updates. What version of the AWS pack are you running?</p>
+          <p><a href="https://forum.stackstorm.com/t/how-do-i-manipulate-data-to-pass-to-the-next-task/1632/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-do-i-manipulate-data-to-pass-to-the-next-task/1632/2</link>
+        <pubDate>Fri, 02 Apr 2021 21:35:57 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1632-2</guid>
+        <source url="https://forum.stackstorm.com/t/how-do-i-manipulate-data-to-pass-to-the-next-task/1632.rss">How do I manipulate data to pass to the next task?</source>
+      </item>
+      <item>
+        <title>How do I manipulate data to pass to the next task?</title>
+        <dc:creator><![CDATA[willowhawk]]></dc:creator>
+        <description><![CDATA[
+            <p>Thanks for y’alls patience as I teach myself YAQL and Orquesta…</p>
+<p>I now have a semi-fuinctioning workflow.  Here’s where I’m stuck:</p>
+<p>I’m publishing dictionaries of result() data from tasks into variables.  Now I want to use part of that information as input to a pre-defined task in a pack (AWS in this case).</p>
+<p>The task has two input variables.  The data I need for one of those input variables has to be derived by identifying one value from a dictionary, and then looking up another dictionary value in a list that has an element matching that value, and then returning the desired ID string.  Logic dictates I would declare a variable like:</p>
+<pre><code>  dxcon_parse:
+    action: core.noop
+    input:
+      dxlist: &lt;% dxcon_info().get("connections") %&gt;
+      dxcons: &lt;% dict(dxlist=&gt;dict(ctx(dxlist).select([$.vlan, $]))) %&gt;
+      aws_vlan: &lt;% ctx(pf_vc_info).get(pf_csp_vlan) %&gt;
+      aws_con_id: &lt;% dxcons().get(aws_dx_con_vlan) %&gt;
+    next:
+      - do:
+          - dxcon_accept
+      - publish:
+        - aws_dx_con_vlan: &lt;% ctx(aws_vlan) %&gt;
+        - aws_dx_con_id: &lt;% ctx(aws_con_id) %&gt;
+</code></pre>
+<p>Syntactically I believe that is proper.  However, my problem is that when I execute, the engine complains:</p>
+<pre><code class="lang-auto">  "errors": [
+    {
+      "type": "content",
+      "message": "Action \"aws.directconnect_confirm_connection\" has unexpected input \"aws_vlan\".",
+      "spec_path": "tasks.dxcon_accept.input.aws_vlan",
+      "schema_path": "properties.tasks.patternProperties.^\\w+$.properties.input.patternProperties.^\\w+$"
+    }
+</code></pre>
+<p>It seems I can’t add new input variables, and I can’t (or don’t know how) declare derived variables that eventually feed the input of the task.  I tried making up a new task, but it complained there was no action, and I tried using <code>core.noop</code> but it similarly complained of unexpected inputs.</p>
+<p>Surely I can’t be the only person ever to need to massage some data out of one variable to feed into another?</p>
+          <p><a href="https://forum.stackstorm.com/t/how-do-i-manipulate-data-to-pass-to-the-next-task/1632/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-do-i-manipulate-data-to-pass-to-the-next-task/1632/1</link>
+        <pubDate>Fri, 02 Apr 2021 21:14:25 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1632-1</guid>
+        <source url="https://forum.stackstorm.com/t/how-do-i-manipulate-data-to-pass-to-the-next-task/1632.rss">How do I manipulate data to pass to the next task?</source>
+      </item>
+  </channel>
+</rss>

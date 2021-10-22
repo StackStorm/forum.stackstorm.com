@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Trigger a remote server reboot from NewRelic Alert</title>
+    <link>https://forum.stackstorm.com/t/trigger-a-remote-server-reboot-from-newrelic-alert/1748</link>
+    <description>Hello all,
+
+I&#39;ve been trying for a few days to get this flow to work: NR CPU Alarm ---&gt; Remote Server Reboot
+
+I&#39;m having trouble figuring out if the Sensor from the St2 New Relic pack is working the way I think it is.  I&#39;ve been to the github and I made the /opt/stackstorm/configs edits but I was curious when it defines host and port ... is it asking for the host of the IP to listen for the incoming webhook or the IP given to the sensor for listening... and is the port default fine?
+
+When I attempt to stress the server I run the little stress script and I have integration from NR to slack so I see the alarm being sent to slack alerting for CPU but my sensor never seems to pick up anything...
+
+Any help would be really great, thanks!</description>
+    
+    <lastBuildDate>Fri, 25 Jun 2021 03:33:43 +0000</lastBuildDate>
+    <category>Exchange</category>
+    <atom:link href="https://forum.stackstorm.com/t/trigger-a-remote-server-reboot-from-newrelic-alert/1748.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Trigger a remote server reboot from NewRelic Alert</title>
+        <dc:creator><![CDATA[DrLoverLover]]></dc:creator>
+        <description><![CDATA[
+            <p>Hello all,</p>
+<p>I’ve been trying for a few days to get this flow to work: NR CPU Alarm —&gt; Remote Server Reboot</p>
+<p>I’m having trouble figuring out if the Sensor from the St2 New Relic pack is working the way I think it is.  I’ve been to the github and I made the /opt/stackstorm/configs edits but I was curious when it defines host and port … is it asking for the host of the IP to listen for the incoming webhook or the IP given to the sensor for listening… and is the port default fine?</p>
+<p>When I attempt to stress the server I run the little stress script and I have integration from NR to slack so I see the alarm being sent to slack alerting for CPU but my sensor never seems to pick up anything…</p>
+<p>Any help would be really great, thanks!</p>
+          <p><a href="https://forum.stackstorm.com/t/trigger-a-remote-server-reboot-from-newrelic-alert/1748/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/trigger-a-remote-server-reboot-from-newrelic-alert/1748/1</link>
+        <pubDate>Fri, 25 Jun 2021 03:33:43 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1748-1</guid>
+        <source url="https://forum.stackstorm.com/t/trigger-a-remote-server-reboot-from-newrelic-alert/1748.rss">Trigger a remote server reboot from NewRelic Alert</source>
+      </item>
+  </channel>
+</rss>

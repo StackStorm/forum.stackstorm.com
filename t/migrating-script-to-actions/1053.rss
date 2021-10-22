@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Migrating script to actions</title>
+    <link>https://forum.stackstorm.com/t/migrating-script-to-actions/1053</link>
+    <description>I have a script that has multiple functions and does multiple different tasks.
+When migrating to a pack with st2 actions, am I correct that each task/function in the original script migrates to a single action in a single py file and yaml file within the pack?
+Thanks.</description>
+    
+    <lastBuildDate>Thu, 13 Feb 2020 22:08:12 +0000</lastBuildDate>
+    <category>Operations</category>
+    <atom:link href="https://forum.stackstorm.com/t/migrating-script-to-actions/1053.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Migrating script to actions</title>
+        <dc:creator><![CDATA[blag]]></dc:creator>
+        <description><![CDATA[
+            <p>Yep, exactly. And it’s a good idea to keep things as simple as possible when you’re learning how to put a pack together!</p>
+<p>We do respond (mostly) to questions in these forums, but you will receive more timely and detailed answers from StackStorm contributors, other users, and seasoned pack developers in our <a href="https://forum.stackstorm.com">Slack Community</a>.</p>
+          <p><a href="https://forum.stackstorm.com/t/migrating-script-to-actions/1053/5">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/migrating-script-to-actions/1053/5</link>
+        <pubDate>Thu, 13 Feb 2020 22:08:12 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1053-5</guid>
+        <source url="https://forum.stackstorm.com/t/migrating-script-to-actions/1053.rss">Migrating script to actions</source>
+      </item>
+      <item>
+        <title>Migrating script to actions</title>
+        <dc:creator><![CDATA[jezk]]></dc:creator>
+        <description><![CDATA[
+            <p>Ahh I get it. Just looked at the AWS.<br>
+Single script that does the heavy lifting and then just individual yaml files defining the action.<br>
+That looks like an easy way to go for me. This will be my first pack so don’t want to over complicate it.</p>
+          <p><a href="https://forum.stackstorm.com/t/migrating-script-to-actions/1053/4">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/migrating-script-to-actions/1053/4</link>
+        <pubDate>Thu, 13 Feb 2020 21:51:31 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1053-4</guid>
+        <source url="https://forum.stackstorm.com/t/migrating-script-to-actions/1053.rss">Migrating script to actions</source>
+      </item>
+      <item>
+        <title>Migrating script to actions</title>
+        <dc:creator><![CDATA[jezk]]></dc:creator>
+        <description><![CDATA[
+            <p>Thanks for the explanation, that’s helps a lot.<br>
+I’ll check out the AWS pack.</p>
+          <p><a href="https://forum.stackstorm.com/t/migrating-script-to-actions/1053/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/migrating-script-to-actions/1053/3</link>
+        <pubDate>Thu, 13 Feb 2020 21:45:34 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1053-3</guid>
+        <source url="https://forum.stackstorm.com/t/migrating-script-to-actions/1053.rss">Migrating script to actions</source>
+      </item>
+      <item>
+        <title>Migrating script to actions</title>
+        <dc:creator><![CDATA[blag]]></dc:creator>
+        <description><![CDATA[
+            <p>Short answer: not necessarily.</p>
+<p>Long answer: this is completely up to you. You can either make a single ST2 action that simply translates action inputs to the inputs of your task, or you can create multiple ST2 actions that define immutable inputs that get passed to your script. If you create multiple ST2 actions for your script, you can specify that some of the action inputs are immutable (such as which part of the script to run), and some action inputs can be mutable (the default), which would allow ST2 users to specify their own values for those inputs that would then get passed to your script.</p>
+<p>StackStorm is very flexible in what it supports.</p>
+<p>If you are looking for advice on how to implement it, I would go with the second option, where you have multiple ST2 actions all calling the same script with different inputs. Implementing it that way immediately gives your users an explicit list of actions they can run, instead of having to dig through your script or read any documentation to figure it out for themselves. How exactly it is implemented (eg: with a single script or a collection of scripts) is an implementation detail that they should not have to know or care about to use your pack/script.</p>
+<p>And that’s actually how a lot of packs on <a href="https://exchange.stackstorm.com" rel="nofollow noopener">StackStorm Exchange</a> are implemented, such as the <a href="https://github.com/StackStorm-Exchange/stackstorm-aws" rel="nofollow noopener">AWS pack</a>.</p>
+          <p><a href="https://forum.stackstorm.com/t/migrating-script-to-actions/1053/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/migrating-script-to-actions/1053/2</link>
+        <pubDate>Thu, 13 Feb 2020 21:41:18 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1053-2</guid>
+        <source url="https://forum.stackstorm.com/t/migrating-script-to-actions/1053.rss">Migrating script to actions</source>
+      </item>
+      <item>
+        <title>Migrating script to actions</title>
+        <dc:creator><![CDATA[jezk]]></dc:creator>
+        <description><![CDATA[
+            <p>I have a script that has multiple functions and does multiple different tasks.<br>
+When migrating to a pack with st2 actions, am I correct that each task/function in the original script migrates to a single action in a single py file and yaml file within the pack?<br>
+Thanks.</p>
+          <p><a href="https://forum.stackstorm.com/t/migrating-script-to-actions/1053/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/migrating-script-to-actions/1053/1</link>
+        <pubDate>Thu, 13 Feb 2020 21:18:26 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1053-1</guid>
+        <source url="https://forum.stackstorm.com/t/migrating-script-to-actions/1053.rss">Migrating script to actions</source>
+      </item>
+  </channel>
+</rss>

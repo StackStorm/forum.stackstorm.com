@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Dependency in sensor&#39;s venv intersects with stackstorm internal python package</title>
+    <link>https://forum.stackstorm.com/t/dependency-in-sensors-venv-intersects-with-stackstorm-internal-python-package/1521</link>
+    <description>Hello!
+I have &quot;cryptography&quot; module dependency in my sensor. I&#39;ve installed proper version of this library into my pack&#39;s virtual environment.
+But i&#39;ve found that loaded version is from st2 sensor container environment.
+Is there any way to totally isolate pack&#39;s venv?
+Module reloading is not very helpful cause there a lot of submodules intersection in this library and also versions of C-bindings are in mismatch.</description>
+    
+    <lastBuildDate>Thu, 31 Dec 2020 08:29:58 +0000</lastBuildDate>
+    <category>Pack Management</category>
+    <atom:link href="https://forum.stackstorm.com/t/dependency-in-sensors-venv-intersects-with-stackstorm-internal-python-package/1521.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Dependency in sensor&#39;s venv intersects with stackstorm internal python package</title>
+        <dc:creator><![CDATA[insomnes]]></dc:creator>
+        <description><![CDATA[
+            <p>Hello!<br>
+I have “cryptography” module dependency in my sensor. I’ve installed proper version of this library into my pack’s virtual environment.<br>
+But i’ve found that loaded version is from st2 sensor container environment.<br>
+Is there any way to totally isolate pack’s venv?<br>
+Module reloading is not very helpful cause there a lot of submodules intersection in this library and also versions of C-bindings are in mismatch.</p>
+          <p><a href="https://forum.stackstorm.com/t/dependency-in-sensors-venv-intersects-with-stackstorm-internal-python-package/1521/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/dependency-in-sensors-venv-intersects-with-stackstorm-internal-python-package/1521/1</link>
+        <pubDate>Thu, 31 Dec 2020 08:29:58 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1521-1</guid>
+        <source url="https://forum.stackstorm.com/t/dependency-in-sensors-venv-intersects-with-stackstorm-internal-python-package/1521.rss">Dependency in sensor&#39;s venv intersects with stackstorm internal python package</source>
+      </item>
+  </channel>
+</rss>

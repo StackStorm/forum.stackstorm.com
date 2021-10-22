@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Python Task return Json || Parse in orquesta workflows</title>
+    <link>https://forum.stackstorm.com/t/python-task-return-json-parse-in-orquesta-workflows/1695</link>
+    <description>hi Team
+
+in my workflow, calling one of the Python script tasks &amp; got the stdout as JSON format.
+
+ stdout: &#39;{&#39;&#39;short_description&#39;&#39;: &#39;&#39;host1 is not responding to Ping&#39;&#39;, &#39;&#39;description&#39;&#39;: &#39;&#39;host1   is not re
+sponding to Ping&#39;&#39;, &#39;&#39;cmdb_ci.name&#39;&#39;: &#39;&#39;host1&#39;&#39;, &#39;&#39;state&#39;&#39;: &#39;&#39;7&#39;&#39;, &#39;&#39;assignment_group.name&#39;&#39;: &#39;&#39;Wintel L1&#39;&#39;}
+
+we need to parse the json values inside the workflow. i have tried to get the description as below 
+ - inc_description: &quot;{{ result().stdout.description }}&quot;       
+however i got an error  -  - message: &#39;JinjaEvaluationException: There are unresolved variables: result().stdout.description&#39;
+
+Please help.
+
+tasks:
+    Collecting_info:
+        action: arul_automation.GetIncident 
+        input:
+            Incident_Number: &quot;{{ ctx().incident_no }}&quot;
+            Field_name: &quot;number,description,short_description&quot;
+        next:
+          - when: &quot;{{ succeeded() }}&quot;
+            publish:
+              - inc_description: &quot;{{ result().stdout.description }}&quot;             
+              - error_message: &quot;{{ result().stderr }}&quot;
+            do:
+              - noop
+          - when: &quot;{{ failed() }}&quot;
+            publish:
+              - error_message: &quot;Could not get the details for this incidnet {{ ctx().incident_no }}&quot;
+            do:
+              - noop</description>
+    
+    <lastBuildDate>Mon, 17 May 2021 14:01:56 +0000</lastBuildDate>
+    <category>Platform</category>
+    <atom:link href="https://forum.stackstorm.com/t/python-task-return-json-parse-in-orquesta-workflows/1695.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Python Task return Json || Parse in orquesta workflows</title>
+        <dc:creator><![CDATA[amanda11]]></dc:creator>
+        <description><![CDATA[
+            <p>It’s difficult to say without seeing the output from the first task.</p>
+<p>But it indicates that it can’t find description under stdout.</p>
+<p>What you see in the return from "st2 execution get " under the result field, is what result() should return, and be able to handle.</p>
+<p>Some things to check:</p>
+<ul>
+<li>Check stdout is at the level you expect, and not at something like result().result.stdout</li>
+<li>Check that it is being picked up as JSON (in execution get - has it unpacked it as JSON), I’ve known some tasks return a string encoding of the JSON rather than the JSON itself</li>
+<li>Perhaps start higher up with your variables, e.g. check what result() returns, then result().stdout - to see exactly what you are getting.</li>
+</ul>
+          <p><a href="https://forum.stackstorm.com/t/python-task-return-json-parse-in-orquesta-workflows/1695/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/python-task-return-json-parse-in-orquesta-workflows/1695/2</link>
+        <pubDate>Mon, 17 May 2021 14:01:56 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1695-2</guid>
+        <source url="https://forum.stackstorm.com/t/python-task-return-json-parse-in-orquesta-workflows/1695.rss">Python Task return Json || Parse in orquesta workflows</source>
+      </item>
+      <item>
+        <title>Python Task return Json || Parse in orquesta workflows</title>
+        <dc:creator><![CDATA[arul]]></dc:creator>
+        <description><![CDATA[
+            <p>hi Team</p>
+<p>in my workflow, calling one of the Python script tasks &amp; got the stdout as JSON format.</p>
+<p>stdout: ‘{’‘short_description’’: ‘‘host1 is not responding to Ping’’, ‘‘description’’: ‘‘host1   is not re<br>
+sponding to Ping’’, ‘‘cmdb_ci.name’’: ‘‘host1’’, ‘‘state’’: ‘‘7’’, ‘‘assignment_group.name’’: ‘‘Wintel L1’’}</p>
+<p>we need to parse the json values inside the workflow. i have tried to get the description as below</p>
+<ul>
+<li>inc_description: “{{ result().stdout.description }}”<br>
+however i got an error  -  - message: ‘JinjaEvaluationException: There are unresolved variables: result().stdout.description’</li>
+</ul>
+<p>Please help.</p>
+<p>tasks:<br>
+Collecting_info:<br>
+action: arul_automation.GetIncident<br>
+input:<br>
+Incident_Number: “{{ ctx().incident_no }}”<br>
+Field_name: “number,description,short_description”<br>
+next:<br>
+- when: “{{ succeeded() }}”<br>
+publish:<br>
+- inc_description: “{{ result().stdout.description }}”<br>
+- error_message: “{{ result().stderr }}”<br>
+do:<br>
+- noop<br>
+- when: “{{ failed() }}”<br>
+publish:<br>
+- error_message: “Could not get the details for this incidnet {{ ctx().incident_no }}”<br>
+do:<br>
+- noop</p>
+          <p><a href="https://forum.stackstorm.com/t/python-task-return-json-parse-in-orquesta-workflows/1695/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/python-task-return-json-parse-in-orquesta-workflows/1695/1</link>
+        <pubDate>Thu, 13 May 2021 13:53:56 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1695-1</guid>
+        <source url="https://forum.stackstorm.com/t/python-task-return-json-parse-in-orquesta-workflows/1695.rss">Python Task return Json || Parse in orquesta workflows</source>
+      </item>
+  </channel>
+</rss>

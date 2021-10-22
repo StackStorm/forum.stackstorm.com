@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Need to execute Dynamic Actions</title>
+    <link>https://forum.stackstorm.com/t/need-to-execute-dynamic-actions/173</link>
+    <description>I have a requirement for executing some task, but the task name and their parameters are dynamic.  We have stored the task name and parameter in DB and a sensor polls the DB and trigger a rule for it.
+
+In rule, In action section we specify the action name and their parameters. 
+Action Parameters are dynamic as can be specified as {{ trigger.payload }} etc., but the action ref is static. I tried to find, how i can make it dynamic but invain. 
+
+Is it possible currently in StackStorm, i am using version 2.6
+
+Also I found their is way of doing using mistral, but that is also static and i have to create an action for each action.  
+https://github.com/StackStorm/st2/issues/3798
+
+
+Thanks
+Virender Kumar</description>
+    
+    <lastBuildDate>Mon, 18 Jun 2018 18:53:53 +0000</lastBuildDate>
+    <category>Rules</category>
+    <atom:link href="https://forum.stackstorm.com/t/need-to-execute-dynamic-actions/173.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Need to execute Dynamic Actions</title>
+        <dc:creator><![CDATA[m4dcoder]]></dc:creator>
+        <description><![CDATA[
+            <p>This feature will be included in StackStorm new workflow engine, beta due v2.8. This feature will not be available before v2.8 and we will not be pursuing this feature in Mistral.</p>
+          <p><a href="https://forum.stackstorm.com/t/need-to-execute-dynamic-actions/173/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/need-to-execute-dynamic-actions/173/2</link>
+        <pubDate>Mon, 18 Jun 2018 18:53:53 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-173-2</guid>
+        <source url="https://forum.stackstorm.com/t/need-to-execute-dynamic-actions/173.rss">Need to execute Dynamic Actions</source>
+      </item>
+      <item>
+        <title>Need to execute Dynamic Actions</title>
+        <dc:creator><![CDATA[virenderdubey]]></dc:creator>
+        <description><![CDATA[
+            <p>I have a requirement for executing some task, but the task name and their parameters are dynamic.  We have stored the task name and parameter in DB and a sensor polls the DB and trigger a rule for it.</p>
+<p>In rule, In action section we specify the action name and their parameters.<br>
+Action Parameters are dynamic as can be specified as {{ trigger.payload }} etc., but the action ref is static. I tried to find, how i can make it dynamic but invain.</p>
+<p>Is it possible currently in StackStorm, i am using version 2.6</p>
+<p>Also I found their is way of doing using mistral, but that is also static and i have to create an action for each action.<br>
+</p><aside class="onebox githubissue">
+  <header class="source">
+      <a href="https://github.com/StackStorm/st2/issues/3798" target="_blank" rel="nofollow noopener">github.com/StackStorm/st2</a>
+  </header>
+  <article class="onebox-body">
+    <a href="https://github.com/nmaludy" rel="nofollow noopener">
+<img src="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/beb82902608411704abc4d190cd4cbd42c749b3f.png" class="thumbnail onebox-avatar" width="96" height="96">
+</a>
+
+<h4><a href="https://github.com/StackStorm/st2/issues/3798" target="_blank" rel="nofollow noopener">Issue: Feature Request - Dynamic Mistral Tasks</a></h4>
+
+<div class="date" style="margin-top:10px;">
+	<div class="user" style="margin-top:10px;">
+	opened by <a href="https://github.com/nmaludy" target="_blank" rel="nofollow noopener">nmaludy</a>
+	on <a href="https://github.com/StackStorm/st2/issues/3798" target="_blank" rel="nofollow noopener">2017-10-20</a>
+	</div>
+	<div class="user">
+	closed by <a href="https://github.com/m4dcoder" target="_blank" rel="nofollow noopener">m4dcoder</a>
+	on <a href="https://github.com/StackStorm/st2/issues/3798" target="_blank" rel="nofollow noopener">2018-06-19</a>
+	</div>
+</div>
+
+<pre class="content" style="white-space: pre-wrap;">High-level
+I'm trying to create a Mistral workflow that has action and input values specified dynamically via input parameters from the execution...</pre>
+
+<div class="labels">
+ 	<span style="display:inline-block;margin-top:2px;background-color: #B8B8B8;padding: 2px;border-radius: 4px;color: #fff;margin-left: 3px;">feature</span>
+ 	<span style="display:inline-block;margin-top:2px;background-color: #B8B8B8;padding: 2px;border-radius: 4px;color: #fff;margin-left: 3px;">workflows: mistral</span>
+</div>
+
+  </article>
+  <div class="onebox-metadata">
+    
+    
+  </div>
+  <div style="clear: both"></div>
+</aside>
+<p></p>
+<p>Thanks<br>
+Virender Kumar</p>
+          <p><a href="https://forum.stackstorm.com/t/need-to-execute-dynamic-actions/173/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/need-to-execute-dynamic-actions/173/1</link>
+        <pubDate>Mon, 18 Jun 2018 13:57:07 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-173-1</guid>
+        <source url="https://forum.stackstorm.com/t/need-to-execute-dynamic-actions/173.rss">Need to execute Dynamic Actions</source>
+      </item>
+  </channel>
+</rss>

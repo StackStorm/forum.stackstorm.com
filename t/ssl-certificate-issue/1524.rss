@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>SSL Certificate Issue</title>
+    <link>https://forum.stackstorm.com/t/ssl-certificate-issue/1524</link>
+    <description>Hi All - 
+Happy New Year !!!
+Self-signed certificate of stackstorm expired few months ago and new one was generated using the following command:
+&quot;sudo openssl req -x509 -newkey rsa:2048 -keyout /etc/ssl/st2/st2.key -out /etc/ssl/st2/st2.crt \
+&gt; -days 365 -nodes -subj &quot;/C=US/ST=California/L=Palo Alto/O=StackStorm/OU=Information \&quot;
+
+Although the new certificate was generated, middleware team is receiving errors after installing them. Middleware platform is 3rd party and IP address is masked. Below is the latest error
+
+pending events=
+faults=BridgeFault: Type=TEMPORARY_FAILURE, time=2020-12-29 03:10:54, message=sun.security.validator.ValidatorException: PKIX path validation failed: java.security.cert.CertPathValidatorException: Path does not chain with any of the trust anchors, throwable=javax.net.ssl.SSLHandshakeException: sun.security.validator.ValidatorException: PKIX path validation failed: java.security.cert.CertPathValidatorException: **Path does not chain with any of the trust anchors**
+
+Can someone please advise on how to generate new certificate and overcome the above error</description>
+    
+    <lastBuildDate>Mon, 04 Jan 2021 07:35:31 +0000</lastBuildDate>
+    <category>Platform</category>
+    <atom:link href="https://forum.stackstorm.com/t/ssl-certificate-issue/1524.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>SSL Certificate Issue</title>
+        <dc:creator><![CDATA[Suraj]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi All -<br>
+Happy New Year !!!<br>
+Self-signed certificate of stackstorm expired few months ago and new one was generated using the following command:<br>
+"sudo openssl req -x509 -newkey rsa:2048 -keyout /etc/ssl/st2/st2.key -out /etc/ssl/st2/st2.crt \</p>
+<blockquote>
+<p>-days 365 -nodes -subj "/C=US/ST=California/L=Palo Alto/O=StackStorm/OU=Information "</p>
+</blockquote>
+<p>Although the new certificate was generated, middleware team is receiving errors after installing them. Middleware platform is 3rd party and IP address is masked. Below is the latest error</p>
+<p>pending events=<br>
+faults=BridgeFault: Type=TEMPORARY_FAILURE, time=2020-12-29 03:10:54, message=sun.security.validator.ValidatorException: PKIX path validation failed: java.security.cert.CertPathValidatorException: Path does not chain with any of the trust anchors, throwable=javax.net.ssl.SSLHandshakeException: sun.security.validator.ValidatorException: PKIX path validation failed: java.security.cert.CertPathValidatorException: <strong>Path does not chain with any of the trust anchors</strong></p>
+<p>Can someone please advise on how to generate new certificate and overcome the above error</p>
+          <p><a href="https://forum.stackstorm.com/t/ssl-certificate-issue/1524/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/ssl-certificate-issue/1524/1</link>
+        <pubDate>Mon, 04 Jan 2021 07:35:31 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1524-1</guid>
+        <source url="https://forum.stackstorm.com/t/ssl-certificate-issue/1524.rss">SSL Certificate Issue</source>
+      </item>
+  </channel>
+</rss>

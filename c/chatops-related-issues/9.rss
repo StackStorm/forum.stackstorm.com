@@ -1,0 +1,934 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:discourse="http://www.discourse.org/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Chatops - StackStorm Support (ARCHIVED)</title>
+    <link>https://forum.stackstorm.com/c/chatops-related-issues/9</link>
+    <description>Topics in the &#39;Chatops&#39; category </description>
+    
+      <lastBuildDate>Mon, 19 Apr 2021 11:53:10 +0000</lastBuildDate>
+      <atom:link href="https://forum.stackstorm.com/c/chatops-related-issues/9.rss" rel="self" type="application/rss+xml" />
+        <item>
+          <title>Is there way to get user email in slack</title>
+          <dc:creator><![CDATA[yypptest]]></dc:creator>
+          <category>Chatops</category>
+          <description><![CDATA[
+            <p>We integrate stackstorm with slack, and we are able to get the user name with <code>action_context.api_user</code> and assign the user name as the value of one action parameter. Is there a way to get user email address associated with this user? Thanks!</p>
+            <p><small>3 posts - 2 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/is-there-way-to-get-user-email-in-slack/1653">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/is-there-way-to-get-user-email-in-slack/1653</link>
+          <pubDate>Mon, 19 Apr 2021 11:53:10 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1653</guid>
+          <source url="https://forum.stackstorm.com/t/is-there-way-to-get-user-email-in-slack/1653.rss">Is there way to get user email in slack</source>
+        </item>
+        <item>
+          <title>Jira integration</title>
+          <dc:creator><![CDATA[deebika]]></dc:creator>
+          <category>Chatops</category>
+          <description><![CDATA[
+            <p>Is stackstorm with jira integration possible using webhooks? Is there any documentation</p>
+            <p><small>2 posts - 2 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/jira-integration/1647">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/jira-integration/1647</link>
+          <pubDate>Sat, 10 Apr 2021 15:23:34 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1647</guid>
+          <source url="https://forum.stackstorm.com/t/jira-integration/1647.rss">Jira integration</source>
+        </item>
+        <item>
+          <title>ChatOps for Hubot, Slack And StackStorm</title>
+          <dc:creator><![CDATA[kanu]]></dc:creator>
+          <category>Chatops</category>
+          <description><![CDATA[
+            <p>Hi,<br>
+how can we add ansible script to automatic reply of hubot with event driven action.<br>
+like if we are sending message to hubot AWS instance then it should to AWS portal and should create an instance using stackstorm.<br>
+please help me to take this forward. Thanks</p>
+            <p><small>2 posts - 2 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/chatops-for-hubot-slack-and-stackstorm/1280">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/chatops-for-hubot-slack-and-stackstorm/1280</link>
+          <pubDate>Fri, 19 Jun 2020 05:38:24 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1280</guid>
+          <source url="https://forum.stackstorm.com/t/chatops-for-hubot-slack-and-stackstorm/1280.rss">ChatOps for Hubot, Slack And StackStorm</source>
+        </item>
+        <item>
+          <title>404 error for chatops messages path</title>
+          <dc:creator><![CDATA[AdamEldred]]></dc:creator>
+          <category>Chatops</category>
+          <description><![CDATA[
+            <p>I am trying to get chatops working with MSTeams and feel like I have everything in place, but the messaging endpoint fails with error 404:</p>
+<pre><code>curl -k https://localhost/api/messages
+{
+    "faultstring": "The resource could not be found."
+}
+</code></pre>
+<p>in st2api.log:</p>
+<blockquote>
+<p>2020-06-11 15:29:44,780 139844007625232 INFO (unknown file) [-] 82a90a3f-de5f-4ac7-856e-e6770f2c4cdc - 404 57 1.136ms (method=‘POST’,path=’/messages’,remote_addr=‘127.0.0.1’,status=404,runtime=1.136,content_length=57,request_id=‘82a90a3f-de5f-4ac7-856e-e6770f2c4cdc’)</p>
+</blockquote>
+<p>Is there a step to connect the api path to hubot?</p>
+            <p><small>2 posts - 2 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/404-error-for-chatops-messages-path/1269">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/404-error-for-chatops-messages-path/1269</link>
+          <pubDate>Thu, 11 Jun 2020 22:49:40 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1269</guid>
+          <source url="https://forum.stackstorm.com/t/404-error-for-chatops-messages-path/1269.rss">404 error for chatops messages path</source>
+        </item>
+        <item>
+          <title>Integration stackstorm with Microsoft team</title>
+          <dc:creator><![CDATA[rajeeb]]></dc:creator>
+          <category>Chatops</category>
+          <description><![CDATA[
+            <p>I had an integrated stackstorm with the Microsoft team. from azure bot to team message is going but I need to send a message from the centos server to the team. could you share the step or and command?</p>
+            <p><small>4 posts - 2 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/integration-stackstorm-with-microsoft-team/1242">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/integration-stackstorm-with-microsoft-team/1242</link>
+          <pubDate>Mon, 18 May 2020 07:59:11 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1242</guid>
+          <source url="https://forum.stackstorm.com/t/integration-stackstorm-with-microsoft-team/1242.rss">Integration stackstorm with Microsoft team</source>
+        </item>
+        <item>
+          <title>Reg the format of display on slack or mattermost for larger output produced from stdout</title>
+          <dc:creator><![CDATA[kaarunyapooven]]></dc:creator>
+          <category>Chatops</category>
+          <description><![CDATA[
+            <p>Hi Team,</p>
+<p>When the stdout is produced with larger lines of output when it is shown in the slack channel, the new line, break, tabs are not properly recognized and displayed as expected as in the st2client.</p>
+<p>How the output is posted to the Slack channel is properly formatted. Please help to guide.</p>
+            <p><small>1 post - 1 participant</small></p>
+            <p><a href="https://forum.stackstorm.com/t/reg-the-format-of-display-on-slack-or-mattermost-for-larger-output-produced-from-stdout/1212">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/reg-the-format-of-display-on-slack-or-mattermost-for-larger-output-produced-from-stdout/1212</link>
+          <pubDate>Wed, 06 May 2020 08:28:03 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1212</guid>
+          <source url="https://forum.stackstorm.com/t/reg-the-format-of-display-on-slack-or-mattermost-for-larger-output-produced-from-stdout/1212.rss">Reg the format of display on slack or mattermost for larger output produced from stdout</source>
+        </item>
+        <item>
+          <title>Integration stackstorm with microsoft team</title>
+          <dc:creator><![CDATA[rajeeb]]></dc:creator>
+          <category>Chatops</category>
+          <description><![CDATA[
+            <p>I am going to integrate a stackstorm with the Microsoft team and I am not getting exact documentation. can anyone provide me exact details?</p>
+            <p><small>5 posts - 2 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/integration-stackstorm-with-microsoft-team/1161">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/integration-stackstorm-with-microsoft-team/1161</link>
+          <pubDate>Sat, 11 Apr 2020 03:10:21 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1161</guid>
+          <source url="https://forum.stackstorm.com/t/integration-stackstorm-with-microsoft-team/1161.rss">Integration stackstorm with microsoft team</source>
+        </item>
+        <item>
+          <title>Test Stackstorm Alias Output</title>
+          <dc:creator><![CDATA[roboticpuppies]]></dc:creator>
+          <category>Chatops</category>
+          <description><![CDATA[
+            <p>Hello, is there any way to quickly show the output of <code>result</code> in Chatops Alias? I usually run actual command to hubot then wait for Stackstorm to reply to it, then see the output of the <code>result</code>. I need it because I usually have a problem when calling a false variable for the <code>result</code>.</p>
+<pre><code class="lang-auto"># How to quickly see the output of these?
+result:
+  format: | 
+      *Execution Overview*
+      &lt;% ctx().abcd %&gt;
+</code></pre>
+<p>Thank you.</p>
+            <p><small>2 posts - 2 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/test-stackstorm-alias-output/1129">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/test-stackstorm-alias-output/1129</link>
+          <pubDate>Mon, 30 Mar 2020 07:03:59 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1129</guid>
+          <source url="https://forum.stackstorm.com/t/test-stackstorm-alias-output/1129.rss">Test Stackstorm Alias Output</source>
+        </item>
+        <item>
+          <title>St2chatops service not running</title>
+          <dc:creator><![CDATA[Jes]]></dc:creator>
+          <category>Chatops</category>
+          <description><![CDATA[
+            <p>I installed chatops in my centos7 machine by following the documentation. But the service doesn’t start.</p>
+            <p><small>4 posts - 3 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/st2chatops-service-not-running/1091">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/st2chatops-service-not-running/1091</link>
+          <pubDate>Wed, 04 Mar 2020 10:08:24 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1091</guid>
+          <source url="https://forum.stackstorm.com/t/st2chatops-service-not-running/1091.rss">St2chatops service not running</source>
+        </item>
+        <item>
+          <title>Support for bigpanda</title>
+          <dc:creator><![CDATA[Jes]]></dc:creator>
+          <category>Chatops</category>
+          <description><![CDATA[
+            <p>Will stackstorm have support for bigpanda in the future?If it does already could anyone please help me with it cause I couldn’t find anything on it.</p>
+            <p><small>2 posts - 2 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/support-for-bigpanda/1069">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/support-for-bigpanda/1069</link>
+          <pubDate>Thu, 20 Feb 2020 09:32:23 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1069</guid>
+          <source url="https://forum.stackstorm.com/t/support-for-bigpanda/1069.rss">Support for bigpanda</source>
+        </item>
+        <item>
+          <title>St2chatops in docker configuration issue</title>
+          <dc:creator><![CDATA[jma]]></dc:creator>
+          <category>Chatops</category>
+          <description><![CDATA[
+            <p>I have Stackstorm running in a Docker container in an AWS EC2 instance. I was able to successfully get Stackstorm setup as well as Chatops. I am using chatops for integration with Slack. This is how my st2chatop.env currently looks:</p>
+<pre><code>export ST2_HOSTNAME="${ST2_HOSTNAME:-localhost/}"
+export ST2_API_URL="${ST2_API_URL:-https://${localhost}/api}"
+export ST2_AUTH_URL="${ST2_AUTH_URL:-https://${localhost}/auth}"
+export ST2_STREAM_URL="${ST2_STREAM_URL:-https://${localhost}/stream}"
+export ST2_WEBUI_URL="${ST2_WEBUI_URL:-https://${localhost}}"
+export ST2_API_KEY=&lt;masked&gt;
+</code></pre>
+<p>I am able to get my hubot in the channel and it is responding to commands. !help is able to list all of my default and created aliases. However, certain commands are not displaying output properly. For example, I installed the Google pack to test functionality of the bot. Running <code>!google Stackstorm</code> returns the following in the Slack channel:</p>
+<pre><code>Action google.get_search_results completed.
+status : succeeded
+execution: 5e39a46019a92d0123216646
+web_url: https://&lt;DockerContainerID&gt;/#/history/5e39a46019a92d0123216646/general
+Took 1s to complete.
+result 
+--------
+result : []
+</code></pre>
+<p>Note how instead of showing the IP of the host in the web_url, it shows my docker container id. However, commands such as !pack install <em>packname</em> work fine and display their output to the Slack channel correctly. Additionally, trying to do <code>!run &lt;cmd&gt; on localhost</code> will return this to the Slack channel:</p>
+<pre><code>Ran command  **whoami**  on  **2**  hosts.Details are as follows:
+Host:  **traceback**
+   ---&gt; stdout:
+   ---&gt; stderr:
+Host:  **error**
+   ---&gt; stdout:
+   ---&gt; stderr:
+</code></pre>
+<p>This is also reflected in the web UI about the whoami command:</p>
+<p>Host: traceback</p>
+<pre><code class="lang-auto">// Action produced no data
+</code></pre>
+<p>Host: error</p>
+<pre><code class="lang-auto">// Action produced no data
+</code></pre>
+            <p><small>2 posts - 2 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/st2chatops-in-docker-configuration-issue/1039">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/st2chatops-in-docker-configuration-issue/1039</link>
+          <pubDate>Wed, 05 Feb 2020 16:02:13 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1039</guid>
+          <source url="https://forum.stackstorm.com/t/st2chatops-in-docker-configuration-issue/1039.rss">St2chatops in docker configuration issue</source>
+        </item>
+        <item>
+          <title>Stackstorm Chatops with Hangouts Chat</title>
+          <dc:creator><![CDATA[Sibi]]></dc:creator>
+          <category>Chatops</category>
+          <description><![CDATA[
+            <p>Hello Team,</p>
+<p>We are planning to use Hangouts Chat as a messenger for our Operations team.</p>
+<p>Currently, we are using Slack with hubot in Stackstorm for Chatops driven automation.</p>
+<p>We would like to check the possibility of Chatops with Hangouts Chat.</p>
+<p>So that we can migrate our Chatops automation to use the Hangouts Chat.</p>
+            <p><small>2 posts - 2 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/stackstorm-chatops-with-hangouts-chat/895">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/stackstorm-chatops-with-hangouts-chat/895</link>
+          <pubDate>Thu, 31 Oct 2019 04:07:56 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-895</guid>
+          <source url="https://forum.stackstorm.com/t/stackstorm-chatops-with-hangouts-chat/895.rss">Stackstorm Chatops with Hangouts Chat</source>
+        </item>
+        <item>
+          <title>St2chatops - MS Teams and botframework web chat no response from hubot</title>
+          <dc:creator><![CDATA[seanw83]]></dc:creator>
+          <category>Chatops</category>
+          <description><![CDATA[
+            <p>I have followed the guides to integrate st2chatops with MS Teams. i have run the self-check.sh script which shows no problems, i can also see my message reaches the server but i dont get any response within MS Teams or even the web chat. here are the logs from journalctl --unit=st2chatops</p>
+<p>(British Summer Time)] DEBUG Added command: pack search  - Search for packs in StackStorm Exchange and other directories.<br>
+00 (British Summer Time)] DEBUG Added command: pack search {{ query }} - Search for packs in StackStorm Exchange and other directories.<br>
+00 (British Summer Time)] DEBUG Added command: pack show  - Show information about the pack from StackStorm Exchange.<br>
+00 (British Summer Time)] DEBUG Added command: pack show {{ pack }} - Show information about the pack from StackStorm Exchange.<br>
+00 (British Summer Time)] DEBUG Added command: st2 list {{ limit=10 }} actions - List available StackStorm actions.<br>
+00 (British Summer Time)] DEBUG Added command: st2 list {{ limit=10 }} actions from {{ pack }} - List available StackStorm actions.<br>
+00 (British Summer Time)] DEBUG Added command: st2 get execution {{ id }} - Retrieve details for a single execution.<br>
+00 (British Summer Time)] DEBUG Added command: st2 show execution {{ id }} - Retrieve details for a single execution.<br>
+00 (British Summer Time)] DEBUG Added command: st2 executions get {{ id }} - Retrieve details for a single execution.<br>
+00 (British Summer Time)] DEBUG Added command: st2 executions show {{ id }} - Retrieve details for a single execution.<br>
+00 (British Summer Time)] DEBUG Added command: st2 list {{ limit=10 }} executions - List available StackStorm executions.<br>
+00 (British Summer Time)] DEBUG Added command: st2 list {{ limit=10 }} executions with status {{ status }} - List available StackStorm executions.<br>
+00 (British Summer Time)] DEBUG Added command: st2 list {{ limit=10 }} executions for action {{ action }} - List available StackStorm executions.<br>
+00 (British Summer Time)] DEBUG Added command: st2 re-run execution {{ id }} - Re-run an action execution.<br>
+00 (British Summer Time)] DEBUG Added command: st2 executions re-run {{ id }} - Re-run an action execution.<br>
+00 (British Summer Time)] DEBUG Added command: st2 respond to inquiry {{ id }} with {{ response }} - Respond to an Inquiry<br>
+00 (British Summer Time)] DEBUG Added command: st2 list {{ limit=10 }} rules - List available StackStorm rules.<br>
+00 (British Summer Time)] DEBUG Added command: st2 list {{ limit=10 }} rules from {{ pack }} - List available StackStorm rules.<br>
+00 (British Summer Time)] DEBUG Added command: st2 list {{ limit=10 }} sensors - List available StackStorm sensors.<br>
+00 (British Summer Time)] DEBUG Added command: st2 list {{ limit=10 }} sensors from {{ pack }} - List available StackStorm sensors.<br>
+00 (British Summer Time)] INFO 20 commands are loaded<br>
+00 (British Summer Time)] INFO hubot-botframework-adapter: onBotEvents<br>
+00 (British Summer Time)] INFO hubot-botframework-adapter: Handling activity Channel: msteams; type: message<br>
+00 (British Summer Time)] INFO hubot-botframework-middleware: creating middleware…<br>
+00 (British Summer Time)] INFO hubot-msteams: Restricting tenants to [“62d71ced-3a63-4055-9d95-32d3c3a31714”]<br>
+00 (British Summer Time)] INFO hubot-msteams: toReceivable<br>
+00 (British Summer Time)] DEBUG Message ‘hubot hlep’ matched regex //^\s*[@]?(?:hubot[:,]?|![:,]?)\s*(?:([\s\S]+?)<span class="math">)/i/; listener.options = { id: null }
+00 (British Summer Time)] DEBUG Executing listener callback for Message 'hubot hlep'
+00 (British Summer Time)] DEBUG Got command in normalizeCommand: "hlep"
+00 (British Summer Time)] INFO hubot-botframework-adapter: onBotEvents
+00 (British Summer Time)] INFO hubot-botframework-adapter: Handling activity Channel: msteams; type: message
+00 (British Summer Time)] INFO hubot-botframework-middleware: creating middleware...
+00 (British Summer Time)] INFO hubot-msteams: Restricting tenants to ["62d71ced-3a63-4055-9d95-32d3c3a31714"]
+00 (British Summer Time)] INFO hubot-msteams: toReceivable
+00 (British Summer Time)] DEBUG Message 'hubot help' matched regex //^\s*[@]?(?:hubot[:,]?|![:,]?)\s*(?:([\s\S]+?)</span>)/i/; listener.options = { id: null }<br>
+00 (British Summer Time)] DEBUG Executing listener callback for Message ‘hubot help’<br>
+00 (British Summer Time)] DEBUG Got command in normalizeCommand: “help”<br>
+00 (British Summer Time)] DEBUG Message ‘hubot help’ matched regex //^\s*[@]?(?:hubot[:,]?|![:,]?)\s*(?:help(?:\s+(.*))?$)/i/; listener.options = { id: null }<br>
+00 (British Summer Time)] DEBUG Executing listener callback for Message ‘hubot help’<br>
+00 (British Summer Time)] INFO hubot-botframework-adapter: send<br>
+00 (British Summer Time)] INFO hubot-botframework-adapter: reply<br>
+00 (British Summer Time)] INFO hubot-botframework-middleware: creating middleware…<br>
+00 (British Summer Time)] INFO hubot-msteams: Restricting tenants to [“62d71ced-3a63-4055-9d95-32d3c3a31714”]<br>
+00 (British Summer Time)] INFO hubot-msteams: toSendable</p>
+            <p><small>5 posts - 3 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/st2chatops-ms-teams-and-botframework-web-chat-no-response-from-hubot/833">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/st2chatops-ms-teams-and-botframework-web-chat-no-response-from-hubot/833</link>
+          <pubDate>Fri, 13 Sep 2019 09:45:21 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-833</guid>
+          <source url="https://forum.stackstorm.com/t/st2chatops-ms-teams-and-botframework-web-chat-no-response-from-hubot/833.rss">St2chatops - MS Teams and botframework web chat no response from hubot</source>
+        </item>
+        <item>
+          <title>Hubot dies with The user has sent too many requests</title>
+          <dc:creator><![CDATA[EricMoody]]></dc:creator>
+          <category>Chatops</category>
+          <description><![CDATA[
+            <p>I am trying to setup chatops using the Cisco Spark (Webex Teams) plug. After about 30 seconds Hubot dies with the following.</p>
+<p>[Tue Jul 30 2019 12:02:32 GMT-0400 (Eastern Daylight Time)] ERROR BadRequest: The user has sent too many requests in a given amount of time. Please refer to the Retry-After response header to wait before making a new request.<br>
+undefined <a href="https://api.ciscospark.com/v1/messages" rel="nofollow noopener">https://api.ciscospark.com/v1/messages</a><br>
+WEBEX_TRACKING_ID: spark-js-sdk_*******</p>
+<pre><code>at BadRequest.ExtendableBuiltin (/opt/stackstorm/chatops/node_modules/@ciscospark/common/dist/exception.js:50:44)
+at BadRequest.Exception (/opt/stackstorm/chatops/node_modules/@ciscospark/common/dist/exception.js:99:142)
+at BadRequest.HttpError (/opt/stackstorm/chatops/node_modules/@ciscospark/http-core/dist/http-error.js:70:125)
+at BadRequest.SparkHttpError (/opt/stackstorm/chatops/node_modules/@ciscospark/spark-core/dist/lib/spark-http-error.js:48:135)
+at new BadRequest (/opt/stackstorm/chatops/node_modules/@ciscospark/http-core/dist/http-error-subtypes.js:64:129)
+at HttpStatusInterceptor.onResponse (/opt/stackstorm/chatops/node_modules/@ciscospark/http-core/dist/interceptors/http-status.js:99:39)
+at /opt/stackstorm/chatops/node_modules/@ciscospark/http-core/dist/request/index.js:72:41
+at process._tickCallback (internal/process/next_tick.js:68:7)
+</code></pre>
+<p>[Tue Jul 30 2019 12:02:32 GMT-0400 (Eastern Daylight Time)] ERROR BadRequest: The user has sent too many requests in a given amount of time. Please refer to the Retry-After response header to wait before making a new request.<br>
+undefined <a href="https://api.ciscospark.com/v1/messages" rel="nofollow noopener">https://api.ciscospark.com/v1/messages</a><br>
+WEBEX_TRACKING_ID: spark-js-sdk_*********</p>
+<pre><code>at BadRequest.ExtendableBuiltin (/opt/stackstorm/chatops/node_modules/@ciscospark/common/dist/exception.js:50:44)
+at BadRequest.Exception (/opt/stackstorm/chatops/node_modules/@ciscospark/common/dist/exception.js:99:142)
+at BadRequest.HttpError (/opt/stackstorm/chatops/node_modules/@ciscospark/http-core/dist/http-error.js:70:125)
+at BadRequest.SparkHttpError (/opt/stackstorm/chatops/node_modules/@ciscospark/spark-core/dist/lib/spark-http-error.js:48:135)
+at new BadRequest (/opt/stackstorm/chatops/node_modules/@ciscospark/http-core/dist/http-error-subtypes.js:64:129)
+at HttpStatusInterceptor.onResponse (/opt/stackstorm/chatops/node_modules/@ciscospark/http-core/dist/interceptors/http-status.js:99:39)
+at /opt/stackstorm/chatops/node_modules/@ciscospark/http-core/dist/request/index.js:72:41
+at process._tickCallback (internal/process/next_tick.js:68:7)
+</code></pre>
+<p>[Tue Jul 30 2019 12:02:32 GMT-0400 (Eastern Daylight Time)] INFO Hubot will shut down</p>
+<p>The interesting things is that I wrote a script to try sending messages directly to the API and I was able to send 100 as fast as it could execute.  Is their a setting for the Spark plugin that needs to be adjusted?</p>
+            <p><small>3 posts - 2 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/hubot-dies-with-the-user-has-sent-too-many-requests/780">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/hubot-dies-with-the-user-has-sent-too-many-requests/780</link>
+          <pubDate>Tue, 30 Jul 2019 16:20:48 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-780</guid>
+          <source url="https://forum.stackstorm.com/t/hubot-dies-with-the-user-has-sent-too-many-requests/780.rss">Hubot dies with The user has sent too many requests</source>
+        </item>
+        <item>
+          <title>Passing yaml list(dict) to alias</title>
+          <dc:creator><![CDATA[LuisN]]></dc:creator>
+          <category>Chatops</category>
+          <description><![CDATA[
+            <p>I have a task that for now publishes a variable (interface_field) that is a dict within a list</p>
+<pre><code class="lang-auto">        get_device_interface_info:
+            action: mypack.get_device_interface_info hostname=&lt;% $.hostname %&gt;
+            publish:
+                interface_stdout: &lt;% task(get_device_interface_info).result.stdout  %&gt;
+                interface_field: &lt;% list(dict('title'=&gt; server1, 'value'=&gt; test1, 'short'=&gt; True)) %&gt;
+</code></pre>
+<p>During the task I see the output as such</p>
+<pre><code class="lang-auto">        "interface_field": [
+          {
+            "short": "True",
+            "value": "test1",
+            "title": "server1"
+          }
+        ]
+</code></pre>
+<p>But once that is called inside the alias (msg being sent to chatops/slack)</p>
+<pre><code class="lang-auto">          fields: "{{ execution.result.interface_field }}"
+</code></pre>
+<p>the output is not the same</p>
+<pre><code class="lang-auto">            "fields": "[{u'short': u'True', u'value': u'test1', u'title': u'server1'}]",
+</code></pre>
+<p>The reason I am doing this is because I can’t create a for loop to create each “fields” as this is the format being sent to slack</p>
+<pre><code class="lang-auto">    "extra": {
+      "slack": {
+        "attachments": [
+          {
+            "color": "#00AA00",
+            "text": "Host Details:",
+            "fields": [
+              {
+                "short": true,
+                "value": "test",
+                "title": "Hostname"
+              }
+</code></pre>
+<p>Have searched and tried many diff variations</p>
+            <p><small>10 posts - 3 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/passing-yaml-list-dict-to-alias/714">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/passing-yaml-list-dict-to-alias/714</link>
+          <pubDate>Wed, 26 Jun 2019 15:21:28 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-714</guid>
+          <source url="https://forum.stackstorm.com/t/passing-yaml-list-dict-to-alias/714.rss">Passing yaml list(dict) to alias</source>
+        </item>
+        <item>
+          <title>St2chatops with Mattermost not replying</title>
+          <dc:creator><![CDATA[ChickenNotHD]]></dc:creator>
+          <category>Chatops</category>
+          <description><![CDATA[
+            <p>Good afternoon,</p>
+<p>For the past couple weeks, I’ve been attemping to troubleshoot st2chatops/hubot connected to Mattermost not replying with the output after running a command except for help. I believe that this is caused by the bot not being connected to the event stream, but I am unsure how to fix this.</p>
+<p>I have installed StackStorm by following the Centos 7 install guide in your documentation.</p>
+<p>Running <em>!help</em> returns the help output as expected.<br>
+Running, for example, <em>!pack get docker</em> returns nothing at all. I can see, however, that in the StackStorm history tab on the web ui, that both the packs.get action and the chatops.post_result action resulted in a <em>Succeeded</em> status.</p>
+<p>The following will contain my config files/log files. If you need any more of them, do let me know.</p>
+<blockquote>
+<p>/opt/stackstorm/chatops/st2chatops.env</p>
+</blockquote>
+<pre><code>export ST2_HOSTNAME="127.0.0.1"
+export NODE_TLS_REJECT_UNAUTHORIZED="${NODE_TLS_REJECT_UNAUTHORIZED:-0}"
+export EXPRESS_PORT="${EXPRESS_PORT:-8081}"
+export HUBOT_LOG_LEVEL="${HUBOT_LOG_LEVEL:-debug}"
+export HUBOT_NAME="${HUBOT_NAME:-hubot}"
+export HUBOT_ALIAS="${HUBOT_ALIAS:-!}"
+export ST2_API_URL="https://${ST2_HOSTNAME}/api"
+export ST2_AUTH_URL="https://${ST2_HOSTNAME}/auth"
+export ST2_STREAM_URL="https://${ST2_HOSTNAME}/stream"
+export ST2_API_KEY="API_KEY"
+export ST2_AUTH_USERNAME="st2admin"
+export ST2_AUTH_PASSWORD="PASSWORD"
+export ST2_WEBUI_URL="https://STACKSTORM"
+export HUBOT_ADAPTER=matteruser
+export MATTERMOST_HOST=HOST
+export MATTERMOST_GROUP=StackStorm
+export MATTERMOST_USER=hubot
+export MATTERMOST_PASSWORD="PASSWORD"
+export MATTERMOST_WSS_PORT=443
+export MATTERMOST_HTTP_PORT=443
+export MATTERMOST_TLS_VERIFY=false
+export MATTERMOST_USE_TLS=true
+export MATTERMOST_LOG_LEVEL=debug
+export MATTERMOST_REPLY=true
+</code></pre>
+<blockquote>
+<p>/etc/st2/st2.conf</p>
+</blockquote>
+<pre><code>[api]
+host = 127.0.0.1
+port = 9101
+logging = /etc/st2/logging.api.gunicorn.conf
+mask_secrets = True
+debug = True
+[stream]
+logging = /etc/st2/logging.stream.gunicorn.conf
+host = 127.0.0.1
+port = 9102
+debug = True
+[sensorcontainer]
+logging = /etc/st2/logging.sensorcontainer.conf
+[rulesengine]
+logging = /etc/st2/logging.rulesengine.conf
+[actionrunner]
+logging = /etc/st2/logging.actionrunner.conf
+virtualenv_opts =
+[resultstracker]
+logging = /etc/st2/logging.resultstracker.conf
+[notifier]
+logging = /etc/st2/logging.notifier.conf
+[exporter]
+logging = /etc/st2/logging.exporter.conf
+[garbagecollector]
+logging = /etc/st2/logging.garbagecollector.conf
+[timersengine]
+logging = /etc/st2/logging.timersengine.conf
+[auth]
+host = 127.0.0.1
+port = 9100
+use_ssl = True
+debug = False
+enable = True
+cert = /etc/ssl/st2/st2.crt
+key = /etc/ssl/st2/st2.key
+logging = /etc/st2/logging.auth.gunicorn.conf
+debug = True
+mode = standalone
+backend = flat_file
+backend_kwargs = {"file_path": "/etc/st2/htpasswd"}
+api_url = http://127.0.0.1:9101/
+[system]
+base_path = /opt/stackstorm
+[webui]
+webui_base_url = https://STACKSTORM
+[syslog]
+host = 127.0.0.1
+port = 514
+facility = local7
+protocol = udp
+[log]
+excludes = requests,paramiko
+redirect_stderr = False
+mask_secrets = True
+[system_user]
+user = stanley
+ssh_key_file = /home/stanley/.ssh/stanley_rsa
+[messaging]
+url = amqp://guest:guest@127.0.0.1:5672/
+[ssh_runner]
+remote_dir = /tmp
+[workflow_engine]
+logging = /etc/st2/logging.workflowengine.conf
+[scheduler]
+logging = /etc/st2/logging.scheduler.conf
+[keyvalue]
+encryption_key_path = /etc/st2/keys/datastore_key.json
+</code></pre>
+<blockquote>
+<p>/etc/nginx/conf.d/st2.conf</p>
+</blockquote>
+<blockquote>
+<p>output of journalctl after systemctl restart st2chatops</p>
+</blockquote>
+<pre><code>-- Logs begin at Mon 2019-06-24 05:40:30 UTC, end at Tue 2019-06-25 16:04:25 UTC. --
+Jun 25 15:54:55 SERVER systemd[1]: Started StackStorm service st2chatops.
+-- Subject: Unit st2chatops.service has finished start-up
+-- Defined-By: systemd
+-- Support: http://lists.freedesktop.org/mailman/listinfo/systemd-devel
+-- 
+-- Unit st2chatops.service has finished starting up.
+-- 
+-- The start-up result is done.
+Jun 25 15:54:55 SERVER hubot[40886]: Tue, 25 Jun 2019 15:54:55 GMT body-parser deprecated undefined extended: provide extended option at node_modules/hubot/src/robot.js:445:21
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] DEBUG Loading adapter matteruser
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] INFO Logging in...
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] DEBUG POST /users/login
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] INFO api url:https://MATTERMOST:443/api/v4/users/login
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] INFO Websocket URL: wss://MATTERMOST:443/api/v4/websocket
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] INFO Logged in as user "hubot" but not connected yet.
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] INFO Loading /users/me
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] DEBUG GET /users/me
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] INFO api url:https://MATTERMOST:443/api/v4/users/me
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] INFO Loading /users/me/preferences
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] DEBUG GET /users/me/preferences
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] INFO api url:https://MATTERMOST:443/api/v4/users/me/preferences
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] INFO Loading /users/me/teams
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] DEBUG GET /users/me/teams
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] INFO api url:https://MATTERMOST:443/api/v4/users/me/teams
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] INFO Loaded Me...
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] INFO Found 1 teams.
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] DEBUG Testing stackstorm == StackStorm
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] INFO Found team! bkt3m3ah3bdb7p4asyoporaafe
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] INFO Loading /users?page=0&amp;per_page=200&amp;in_team=bkt3m3ah3bdb7p4asyoporaafe
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] DEBUG GET /users?page=0&amp;per_page=200&amp;in_team=bkt3m3ah3bdb7p4asyoporaafe
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] INFO api url:https://MATTERMOST:443/api/v4/users?page=0&amp;per_page=200&amp;in_team=bkt3m3ah3bdb7p4asyoporaafe
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] INFO Loading /users/me/teams/bkt3m3ah3bdb7p4asyoporaafe/channels
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] DEBUG GET /users/me/teams/bkt3m3ah3bdb7p4asyoporaafe/channels
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] INFO api url:https://MATTERMOST:443/api/v4/users/me/teams/bkt3m3ah3bdb7p4asyoporaafe/channels
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] INFO Connecting...
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] INFO Loaded Preferences...
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] INFO Found 5 subscribed channels.
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] INFO Found 2 profiles.
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] DEBUG Adding user 1dwugfdxui8sjfrz7q5a15snah
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] DEBUG Adding user c1tjrej1pibk9xgxnajo3br8rw
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] INFO Loading /users?page=1&amp;per_page=200&amp;in_team=bkt3m3ah3bdb7p4asyoporaafe
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] DEBUG GET /users?page=1&amp;per_page=200&amp;in_team=bkt3m3ah3bdb7p4asyoporaafe
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] INFO api url:https://MATTERMOST:443/api/v4/users?page=1&amp;per_page=200&amp;in_team=bkt3m3ah3bdb7p4asyoporaafe
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] INFO Found 0 profiles.
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] INFO Connected to Mattermost.
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] DEBUG Loading scripts from /opt/stackstorm/chatops/scripts
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] DEBUG Loading scripts from /opt/stackstorm/chatops/src/scripts
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] INFO Sending challenge...
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] INFO Starting pinger...
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] INFO Mattermost server: 5.9.0.5.9.1.9f13f073fc130ee6975f57c436fabfee.false
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] DEBUG Received unhandled message:
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] DEBUG { status: 'OK', seq_reply: 1 }
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] DEBUG Loading external-scripts from npm packages
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] INFO Using ST2_API_KEY as authentication. Expiry will lead to bot exit.
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] DEBUG Using matteruser post data handler.
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] DEBUG Parsing help for /opt/stackstorm/chatops/node_modules/hubot-stackstorm/scripts/stackstorm.js
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] INFO Loading commands....
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] DEBUG Parsing help for /opt/stackstorm/chatops/node_modules/hubot-help/src/help.coffee
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] DEBUG Added command: pack get &lt;pack&gt; - Get information about installed StackStorm pack.
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] DEBUG Added command: pack get {{ pack }} - Get information about installed StackStorm pack.
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] DEBUG Added command: pack install &lt;pack_name|git_url&gt;[,&lt;pack_name|git_url&gt;] - Install/upgrade StackStorm packs.
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] DEBUG Added command: pack install {{ packs }} - Install/upgrade StackStorm packs.
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] DEBUG Added command: pack search &lt;query&gt; - Search for packs in StackStorm Exchange and other directories.
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] DEBUG Added command: pack search {{ query }} - Search for packs in StackStorm Exchange and other directories.
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] DEBUG Added command: pack show &lt;pack&gt; - Show information about the pack from StackStorm Exchange.
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] DEBUG Added command: pack show {{ pack }} - Show information about the pack from StackStorm Exchange.
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] INFO 4 commands are loaded</code></pre>
+            <p><small>34 posts - 8 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/st2chatops-with-mattermost-not-replying/711">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/st2chatops-with-mattermost-not-replying/711</link>
+          <pubDate>Tue, 25 Jun 2019 16:58:00 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-711</guid>
+          <source url="https://forum.stackstorm.com/t/st2chatops-with-mattermost-not-replying/711.rss">St2chatops with Mattermost not replying</source>
+        </item>
+        <item>
+          <title>Email of user executing job in chatops</title>
+          <dc:creator><![CDATA[pvyaka01]]></dc:creator>
+          <category>Chatops</category>
+          <description><![CDATA[
+            <p>Hi,</p>
+<p>We can get the user name of the user that started a job in chatops with ‘api_user’ in st2 context. Is there a way we can get the email associated with the user profile?  I am trying to send an email to the user after job completion with complete log. Thanks for the help!</p>
+            <p><small>4 posts - 2 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/email-of-user-executing-job-in-chatops/684">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/email-of-user-executing-job-in-chatops/684</link>
+          <pubDate>Fri, 07 Jun 2019 12:20:14 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-684</guid>
+          <source url="https://forum.stackstorm.com/t/email-of-user-executing-job-in-chatops/684.rss">Email of user executing job in chatops</source>
+        </item>
+        <item>
+          <title>Multiple instances of st2chatops?</title>
+          <dc:creator><![CDATA[cognifloyd]]></dc:creator>
+          <category>Chatops</category>
+          <description><![CDATA[
+            <p>Has anyone tried to run multiple instances of st2chatops? I would like to try running two separate copies of st2chatops with each connected to a different Slack community, and have them both talk to the same install of st2. Is that possible?</p>
+<p>I’m thinking of duplicating the st2chatops systemd service file, and pointing it at a different copy of st2chatops.env</p>
+<p><strong>Why I’m looking at this:</strong></p>
+<p>There are a bunch of people where I work moving from Slack to Microsoft Teams (for which support is Beta in ST2 3.0). I don’t use Teams because I exclusively use linux, and they don’t have a client for linux. But, I want our st2 instance to support people that do use Teams, even though I will continue to just use Slack.</p>
+<p>So, ignoring Teams for now, I figure hooking up two st2chatops instances to two different Slack organizations now should let me deal with Teams when it hits GA.</p>
+            <p><small>2 posts - 2 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/multiple-instances-of-st2chatops/645">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/multiple-instances-of-st2chatops/645</link>
+          <pubDate>Sat, 11 May 2019 02:24:13 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-645</guid>
+          <source url="https://forum.stackstorm.com/t/multiple-instances-of-st2chatops/645.rss">Multiple instances of st2chatops?</source>
+        </item>
+        <item>
+          <title>Mattermost chatops with ST2 2.10</title>
+          <dc:creator><![CDATA[ivan]]></dc:creator>
+          <category>Chatops</category>
+          <description><![CDATA[
+            <p>Hi, I can’t connect ST2 with Mattermost after change st2 version.</p>
+<p>st2 2.10.0, on Python 2.7.6<br>
+Mattermost Version: 5.8.0</p>
+<p>tailf /var/log/st2/st2chatops.log<br>
+[Mon Mar 11 2019 18:21:30 GMT+0000 (Coordinated Universal Time)] INFO Attempting reconnect<br>
+[Mon Mar 11 2019 18:21:30 GMT+0000 (Coordinated Universal Time)] INFO Logging in…<br>
+[Mon Mar 11 2019 18:21:30 GMT+0000 (Coordinated Universal Time)] INFO api url:<a href="http://192.168.3.150:80/api/v4/users/login" rel="nofollow noopener">http://192.168.3.150:80/api/v4/users/login</a><br>
+[Mon Mar 11 2019 18:21:30 GMT+0000 (Coordinated Universal Time)] ERROR Login call failed<br>
+[Mon Mar 11 2019 18:21:30 GMT+0000 (Coordinated Universal Time)] INFO Reconnecting in 28000ms<br>
+[Mon Mar 11 2019 18:21:58 GMT+0000 (Coordinated Universal Time)] INFO Attempting reconnect<br>
+[Mon Mar 11 2019 18:21:58 GMT+0000 (Coordinated Universal Time)] INFO Logging in…<br>
+[Mon Mar 11 2019 18:21:58 GMT+0000 (Coordinated Universal Time)] INFO api url:<a href="http://192.168.3.150:80/api/v4/users/login" rel="nofollow noopener">http://192.168.3.150:80/api/v4/users/login</a><br>
+[Mon Mar 11 2019 18:21:58 GMT+0000 (Coordinated Universal Time)] ERROR Login call failed<br>
+[Mon Mar 11 2019 18:21:58 GMT+0000 (Coordinated Universal Time)] INFO Reconnecting in 29000ms</p>
+<p>Mattermost Log:</p>
+<p>192.168.61.109 - - [11/Mar/2019:15:20:37 -0300] “POST /api/v4/users/login HTTP/1.1” 400 262 “-” “-” “-”</p>
+<p>I was using st2.9 and worked fine. But hubot-matteruser adapter is other version.</p>
+<p>ST2 2.9 hubot-matteruser - “version”: “3.10.0”</p>
+<p>ST2 2.10 hubot-matteruser - “version”: “4.4.0”</p>
+            <p><small>9 posts - 3 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/mattermost-chatops-with-st2-2-10/543">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/mattermost-chatops-with-st2-2-10/543</link>
+          <pubDate>Mon, 11 Mar 2019 18:32:10 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-543</guid>
+          <source url="https://forum.stackstorm.com/t/mattermost-chatops-with-st2-2-10/543.rss">Mattermost chatops with ST2 2.10</source>
+        </item>
+        <item>
+          <title>Chatops with Mattermost</title>
+          <dc:creator><![CDATA[ivan]]></dc:creator>
+          <category>Chatops</category>
+          <description><![CDATA[
+            <p>Hi I tried use Mattermost with Chatops but can’t connect between them. I get the follow message on chatops logs:<br>
+<code>[Fri Feb 22 2019 13:14:30 GMT+0000 (UTC)] INFO Attempting reconnect [Fri Feb 22 2019 13:14:30 GMT+0000 (UTC)] INFO Logging in... [Fri Feb 22 2019 13:14:30 GMT+0000 (UTC)] ERROR Login call failed [Fri Feb 22 2019 13:14:30 GMT+0000 (UTC)] INFO Reconnecting in 10000ms</code><br>
+My st2chatops.env:<br>
+<code>export HUBOT_ADAPTER=matteruser export MATTERMOST_HOST=http://192.168.3.150 export MATTERMOST_GROUP=test export MATTERMOST_USER=bot export MATTERMOST_PASSWORD=skynet</code><br>
+st2 2.9.2, on Python 2.7.6<br>
+Mattermost 5.8.0</p>
+<p>But if I use Rocketchat works fine, both Rocketchat and Mattermost run on the same VM.</p>
+            <p><small>3 posts - 2 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/chatops-with-mattermost/501">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/chatops-with-mattermost/501</link>
+          <pubDate>Fri, 22 Feb 2019 13:24:33 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-501</guid>
+          <source url="https://forum.stackstorm.com/t/chatops-with-mattermost/501.rss">Chatops with Mattermost</source>
+        </item>
+        <item>
+          <title>ChatOps is online but &quot;!help&quot; only works</title>
+          <dc:creator><![CDATA[afoninsky]]></dc:creator>
+          <category>Chatops</category>
+          <description><![CDATA[
+            <p>Greetings.</p>
+<p>I have a problem during chatops setup. Looks like I’ve missed something small but important.</p>
+<p><strong>What I did:</strong></p>
+<ol>
+<li>Installed stackstorm locally using this guide on macos: <a href="https://docs.stackstorm.com/install/docker.html" class="inline-onebox" rel="nofollow noopener">Docker — StackStorm 2.10.1 documentation</a>
+</li>
+<li>Set up basic chat flow using this guide: <a href="https://docs.stackstorm.com/chatops/chatops.html" class="inline-onebox" rel="nofollow noopener">What is ChatOps? — StackStorm 2.10.1 documentation</a>
+</li>
+<li>Enabled chatops in docker image:</li>
+</ol>
+<blockquote>
+<p>sudo rm /etc/init/st2chatops.override<br>
+st2ctl reload --register-all</p>
+</blockquote>
+<p><strong>What I expect:</strong><br>
+<code>!run date on localhost</code> and/or <code>!st2 list actions</code> should return some result in chat</p>
+<p><strong>What I have:</strong><br>
+The bot is online and answering, but only <code>!help</code> works.</p>
+<p>I’ve tried slack hubot adapter and telegram - same result. Tested on docker images <code>stackstorm/stackstorm:2.10</code> and <code>stackstorm/stackstorm:latest</code>.</p>
+<p>Followed instructions - does not help <a href="https://docs.stackstorm.com/troubleshooting/basic_chatops_troubleshooting.html" class="inline-onebox" rel="nofollow noopener">ChatOps Troubleshooting Guide — StackStorm 2.10.1 documentation</a></p>
+<pre><code class="lang-auto">vkfont [7:19 PM]
+!run date on localhost
+!st2 list actions
+!help
+
+hubot APP [7:20 PM]
+!help - Displays all of the help commands that this bot knows about.
+!help &lt;query&gt; - Displays all help commands that match &lt;query&gt;.
+</code></pre>
+<p><em>Additional debug information:</em></p>
+<blockquote>
+<p>docker -v<br>
+Docker version 18.09.1, build 4c52b90</p>
+</blockquote>
+<blockquote>
+<p>st2 --version<br>
+st2 2.10.1, on Python 2.7.6</p>
+</blockquote>
+<blockquote>
+<p>uname -a<br>
+Linux 2c24744518b1 4.9.125-linuxkit <span class="hashtag">#1</span> SMP Fri Sep 7 08:20:28 UTC 2018 x86_64 x86_64 x86_64 GNU/Linux</p>
+</blockquote>
+<blockquote>
+<p>python --version<br>
+Python 2.7.6</p>
+</blockquote>
+<blockquote>
+<p>st2-submit-debug-info<br>
+st2-debug-output-2c24744518b1-2019-01-28-163346.tar.gz.asc</p>
+</blockquote>
+<blockquote>
+<p>st2 action-alias list<br>
+±--------------------------±---------±-------------------------------------------±--------+<br>
+| ref                       | pack     | description                                | enabled |<br>
+±--------------------------±---------±-------------------------------------------±--------+<br>
+| examples.remote_shell_cmd | examples | Execute a command on a remote host via     | True    |<br>
+|                           |          | SSH.                                       |         |<br>
+| packs.pack_get            | packs    | Get information about installed StackStorm | True    |<br>
+|                           |          | pack.                                      |         |<br>
+| packs.pack_install        | packs    | Install/upgrade StackStorm packs.          | True    |<br>
+| packs.pack_search         | packs    | Search for packs in StackStorm Exchange    | True    |<br>
+|                           |          | and other directories.                     |         |<br>
+| packs.pack_show           | packs    | Show information about the pack from       | True    |<br>
+|                           |          | StackStorm Exchange.                       |         |<br>
+±--------------------------±---------±-------------------------------------------±--------+</p>
+</blockquote>
+<blockquote>
+<p>tail /var/log/st2/st2chatops.log<br>
+<a href="https://gist.github.com/afoninsky/a1c2acf906230f8f5a0df76dff2aca72" rel="nofollow noopener">https://gist.github.com/afoninsky/a1c2acf906230f8f5a0df76dff2aca72</a></p>
+</blockquote>
+            <p><small>3 posts - 2 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/chatops-is-online-but-help-only-works/456">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/chatops-is-online-but-help-only-works/456</link>
+          <pubDate>Mon, 28 Jan 2019 16:36:51 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-456</guid>
+          <source url="https://forum.stackstorm.com/t/chatops-is-online-but-help-only-works/456.rss">ChatOps is online but &quot;!help&quot; only works</source>
+        </item>
+        <item>
+          <title>Generate API Key - Error</title>
+          <dc:creator><![CDATA[anand.joshi]]></dc:creator>
+          <category>Chatops</category>
+          <description><![CDATA[
+            <p>Hello,<br>
+While generating the st2 api key, I’m getting following error.</p>
+<p>ERROR: 401 Client Error: Unauthorized<br>
+MESSAGE: Unauthorized for url: <a href="http://127.0.0.1:9101/v1/apikeys" rel="nofollow noopener">http://127.0.0.1:9101/v1/apikeys</a></p>
+            <p><small>2 posts - 2 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/generate-api-key-error/432">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/generate-api-key-error/432</link>
+          <pubDate>Mon, 14 Jan 2019 14:55:35 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-432</guid>
+          <source url="https://forum.stackstorm.com/t/generate-api-key-error/432.rss">Generate API Key - Error</source>
+        </item>
+        <item>
+          <title>No reply in rocketchat</title>
+          <dc:creator><![CDATA[anand.joshi]]></dc:creator>
+          <category>Chatops</category>
+          <description><![CDATA[
+            <p>Hello,<br>
+I have installed stackstorm and chatops following all steps.<br>
+After setting up the parameters in stackstorm.env, I can see the bot online in rocketchat client.<br>
+But if I execute ‘post_message’ from cli or web, I don’t get any message in rocketchat.<br>
+Similary, even though I can see my bot user online in rocketchat, I don’t get any reply for ‘help’</p>
+<p>I checked this again and found that it was failing to connect to stackstorm/api</p>
+<p>After generating the API key, now that error is gone.</p>
+<p>But when I run post_message from CLI, getting following error now…</p>
+<p>Jan 15 06:40:44  hubot[23188]: [Tue Jan 15 2019 06:40:44 GMT+0000 (Coordinated Universal Time)] ERROR Stream error: Event { type: ‘error’ }<br>
+Jan 15 06:40:45  hubot[23188]: [Tue Jan 15 2019 06:40:45 GMT+0000 (Coordinated Universal Time)] ERROR TypeError: Cannot read property ‘roomID’ of undefined</p>
+            <p><small>2 posts - 2 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/no-reply-in-rocketchat/430">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/no-reply-in-rocketchat/430</link>
+          <pubDate>Mon, 14 Jan 2019 14:00:25 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-430</guid>
+          <source url="https://forum.stackstorm.com/t/no-reply-in-rocketchat/430.rss">No reply in rocketchat</source>
+        </item>
+        <item>
+          <title>Slack extra feature to get different colours</title>
+          <dc:creator><![CDATA[Carlos]]></dc:creator>
+          <category>Chatops</category>
+          <description><![CDATA[
+            <p>This useful tip was seen in the <span class="hashtag">#community</span> stackstorm channel by cygnetix.  It allows <code>extra.slack.color</code> to hold a jinja templates but treated as a string by the StackStorm core. The template is processed by <code>chatops.format_message</code>'s jinja engine.</p>
+<blockquote>
+<p>Hey all. I’m trying to get an alias to show a different color in slack depending on the returned value. Slack looks like it’ll only work if the value is all one one line but I’m having some trouble getting my Jinja formatting to do this.</p>
+</blockquote>
+<blockquote>
+<p>Here’s an example which fails because (I suspect) it introduces multiple lines in the color value:</p>
+</blockquote>
+<pre><code class="lang-auto">    slack:
+      color: |
+        {%- if execution.result.positives &gt; 0 -%}
+        danger
+        {%- else -%}
+        good
+        {%- endif -%}
+</code></pre>
+<blockquote>
+<p>This example results in a failure when I try to register the pack:</p>
+</blockquote>
+<pre><code class="lang-auto">    slack:
+      color: {%- if execution.result.positives &gt; 0 -%} danger{%- else -%}good{%- endif -%}
+</code></pre>
+<blockquote>
+<p>Just FYI. I found a solution that works (use <code>&gt;-</code>):</p>
+</blockquote>
+<pre><code class="lang-auto">    slack:                                                                       
+      color: &gt;-                                                                  
+        {%- if execution.result.result.results.positives == 0 -%}                
+        good                                                                     
+        {%- else -%}                                                             
+        danger                                                                   
+        {%- endif -%}
+</code></pre>
+            <p><small>2 posts - 2 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/slack-extra-feature-to-get-different-colours/413">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/slack-extra-feature-to-get-different-colours/413</link>
+          <pubDate>Fri, 04 Jan 2019 10:29:33 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-413</guid>
+          <source url="https://forum.stackstorm.com/t/slack-extra-feature-to-get-different-colours/413.rss">Slack extra feature to get different colours</source>
+        </item>
+        <item>
+          <title>HIP Chat integration is not working | Chatops</title>
+          <dc:creator><![CDATA[hishanxp]]></dc:creator>
+          <category>Chatops</category>
+          <description><![CDATA[
+            <p>I tried to use the help command but did not get a reply</p>
+<p>I tried to contact the bot with "help " command</p>
+<p>used the folwing guide  but didn’t help<br>
+<a href="https://docs.stackstorm.com/troubleshooting/basic_chatops_troubleshooting.html" class="onebox" target="_blank" rel="nofollow noopener">https://docs.stackstorm.com/troubleshooting/basic_chatops_troubleshooting.html</a></p>
+<p>i managed to connect with slack but no luck with hip chat</p>
+<p>Please help<br>
+Here are my settings</p>
+<h1>HipChat settings (<a href="https://github.com/hipchat/hubot-hipchat" rel="nofollow noopener">GitHub - hipchat/hubot-hipchat: HipChat adapter for GitHub's Hubot</a>):</h1>
+<h1></h1>
+<p>export HUBOT_ADAPTER=hipchat<br>
+export HUBOT_HIPCHAT_JID=<span class="mention">@chat.hipchat.com</span><br>
+export HUBOT_HIPCHAT_PASSWORD=<br>
+<span class="hashtag">#export</span> HUBOT_HIPCHAT_ROOMS=<br>
+export HUBOT_HIPCHAT_JOIN_ROOMS_ON_INVITE=true</p>
+            <p><small>2 posts - 2 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/hip-chat-integration-is-not-working-chatops/377">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/hip-chat-integration-is-not-working-chatops/377</link>
+          <pubDate>Wed, 21 Nov 2018 10:43:49 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-377</guid>
+          <source url="https://forum.stackstorm.com/t/hip-chat-integration-is-not-working-chatops/377.rss">HIP Chat integration is not working | Chatops</source>
+        </item>
+  </channel>
+</rss>

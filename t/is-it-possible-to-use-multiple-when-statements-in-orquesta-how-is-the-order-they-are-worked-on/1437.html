@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en" class="desktop-view not-mobile-device text-size-normal anon">
+<head>
+    <meta charset="utf-8">
+    <title>Is it possible to use multiple when statements in orquesta/how is the order they are worked on? - Workflows -
+        StackStorm Support (ARCHIVED)</title>
+    <meta name="description" content="Hi, 
+I wanted to build a orquesta workflow that has two (multiple) “when” statements that can all be true and should be executed. For now I was not successful. Is there any order how the “when” statements are worked on? &amp;hellip;">
+    <meta name="discourse_theme_id" content="2">
+    <meta name="discourse_current_homepage" content="latest">
+    <meta name="generator"
+          content="Discourse 2.8.0.beta6 - https://github.com/discourse/discourse version a1daf9fe53a66e2d2cdf9757ab4812fb9a2b2787">
+    <link rel="icon" type="image/png"
+          href="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/379ced12f8326d58f1b3d2b3ff652f883e141f6a_2_32x32.PNG">
+    <link rel="apple-touch-icon" type="image/png"
+          href="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/379ced12f8326d58f1b3d2b3ff652f883e141f6a_2_180x180.PNG">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <link rel="canonical" href="1437.html"/>
+    <script type="application/ld+json">{
+        "@context": "http://schema.org",
+        "@type": "WebSite",
+        "url": "https://forum.stackstorm.com",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://forum.stackstorm.com/search?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }
+    </script>
+    <link rel="search" type="application/opensearchdescription+xml" href="../../opensearch.xml"
+          title="StackStorm Support (ARCHIVED) Search">
+
+
+    <link href="/../../stylesheets/color_definitions_base__2_3c5eec1ecf192052ea70b4afdab57a62bccc0604.css?__ws=forum.stackstorm.com"
+          media="all" rel="stylesheet" class="light-scheme"/>
+
+    <link href="/../../stylesheets/desktop_b2f2968742d41481357e0df259b51ce29f72481a.css?__ws=forum.stackstorm.com"
+          media="all" rel="stylesheet" data-target="desktop"/>
+
+
+    <meta name="fragment" content="!">
+
+
+    <link id="manifest-link" rel="manifest" href="../../manifest.webmanifest" crossorigin="use-credentials">
+
+
+    <link rel="alternate" type="application/rss+xml"
+          title="RSS feed of &#39;Is it possible to use multiple when statements in orquesta/how is the order they are worked on?&#39;"
+          href="1437.rss"/>
+    <meta property="og:site_name" content="StackStorm Support (ARCHIVED)"/>
+    <meta property="og:type" content="website"/>
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:image"
+          content="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/891f00fbdb31fecb5bd9dab30c186d2fed0091ca.jpeg"/>
+    <meta property="og:image"
+          content="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/891f00fbdb31fecb5bd9dab30c186d2fed0091ca.jpeg"/>
+    <meta property="og:url"
+          content="https://forum.stackstorm.com/t/is-it-possible-to-use-multiple-when-statements-in-orquesta-how-is-the-order-they-are-worked-on/1437"/>
+    <meta name="twitter:url"
+          content="https://forum.stackstorm.com/t/is-it-possible-to-use-multiple-when-statements-in-orquesta-how-is-the-order-they-are-worked-on/1437"/>
+    <meta property="og:title"
+          content="Is it possible to use multiple when statements in orquesta/how is the order they are worked on?"/>
+    <meta name="twitter:title"
+          content="Is it possible to use multiple when statements in orquesta/how is the order they are worked on?"/>
+    <meta property="og:description"
+          content="Hi,  I wanted to build a orquesta workflow that has two (multiple) “when” statements that can all be true and should be executed. For now I was not successful. Is there any order how the “when” statements are worked on? I tried like in the code below and got the error   YaqlEvaluationException: Unable to evaluate expression ‘&lt;% ctx(regex_result[0]) = “12” %&gt;’. NoMatchingFunctionException: No function “#indexer” matches supplied arguments   For me it looks like the “regex_rseult” variable I creat..."/>
+    <meta name="twitter:description"
+          content="Hi,  I wanted to build a orquesta workflow that has two (multiple) “when” statements that can all be true and should be executed. For now I was not successful. Is there any order how the “when” statements are worked on? I tried like in the code below and got the error   YaqlEvaluationException: Unable to evaluate expression ‘&lt;% ctx(regex_result[0]) = “12” %&gt;’. NoMatchingFunctionException: No function “#indexer” matches supplied arguments   For me it looks like the “regex_rseult” variable I creat..."/>
+    <meta property="article:published_time" content="2020-10-06T16:10:20+00:00"/>
+    <meta property="og:ignore_canonical" content="true"/>
+
+
+    <script type="application/ld+json">{
+        "@context": "http://schema.org",
+        "@type": "QAPage",
+        "name": "Is it possible to use multiple when statements in orquesta/how is the order they are worked on?",
+        "mainEntity": {
+            "@type": "Question",
+            "name": "Is it possible to use multiple when statements in orquesta/how is the order they are worked on?",
+            "text": "Hi,\n\nI wanted to build a orquesta workflow that has two (multiple) “when” statements that can all be true and should be executed. For now I was not successful. Is there any order how the “when” statements are worked on? I tried like in the code below and got the error\n\nYaqlEvaluationException: Unab&hellip;",
+            "upvoteCount": 0,
+            "answerCount": 0,
+            "dateCreated": "2020-10-06T16:10:20.575Z",
+            "author": {
+                "@type": "Person",
+                "name": "Nikolas"
+            }
+        }
+    }
+    </script>
+
+    <meta id="data-discourse-setup" data-cdn="https://sjc6.discourse-cdn.com/standard10"
+          data-base-url="https://forum.stackstorm.com" data-base-uri="" data-environment="production"
+          data-letter-avatar-version="5_8fec8e114563efeaf5265573e510f08e"
+          data-markdown-it-url="https://aws1.discourse-cdn.com/standard10/assets/markdown-it-bundle-31e9a9c535ca1801c26da78b0ff465821751a98f921c5cdc5457d7e5a69e9748.js"
+          data-service-worker-url="service-worker.js" data-default-locale="en"
+          data-asset-version="597e36448c9b51d0fa3b7e43ec1fd6d5" data-disable-custom-css="false"
+          data-highlight-js-path="/highlight-js/forum.stackstorm.com/ac0f4aa001e1343346941766d72e0c1ae330832b.js"
+          data-svg-sprite-path="/svg-sprite/forum.stackstorm.com/svg-2-c2ad434b1e06079c7e282124aed9938dc95b83ea.js"
+          data-enable-js-error-reporting="true" data-color-scheme-is-dark="false" data-user-dark-scheme-id="-1"
+          data-s3-cdn="https://aws1.discourse-cdn.com/standard10"
+          data-s3-base-url="//discourse-cloud-file-uploads.s3.dualstack.us-west-2.amazonaws.com/standard10">
+
+    <meta name="discourse/config/environment"
+          content="%7B%22modulePrefix%22%3A%22discourse%22%2C%22environment%22%3A%22production%22%2C%22rootURL%22%3A%22%22%2C%22locationType%22%3A%22auto%22%2C%22historySupportMiddleware%22%3Afalse%2C%22EmberENV%22%3A%7B%22FEATURES%22%3A%7B%7D%2C%22EXTEND_PROTOTYPES%22%3A%7B%22Date%22%3Afalse%7D%2C%22_APPLICATION_TEMPLATE_WRAPPER%22%3Afalse%2C%22_DEFAULT_ASYNC_OBSERVERS%22%3Atrue%2C%22_JQUERY_INTEGRATION%22%3Atrue%7D%2C%22APP%22%3A%7B%22name%22%3A%22discourse%22%2C%22version%22%3A%222.8.0.beta6%20a1daf9fe53a66e2d2cdf9757ab4812fb9a2b2787%22%2C%22exportApplicationGlobal%22%3Atrue%7D%7D"/>
+</head>
+
+<body class="">
+
+
+<header class="d-header">
+    <div class="wrap">
+        <div class="contents clearfix">
+            <div class="title">
+                <a href="../../index.html">
+                    <picture>
+                        <img src="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png"
+                             alt="StackStorm Support (ARCHIVED)" id="site-logo"/>
+                    </picture>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</header>
+
+<div id="main-outlet" class="wrap" role="main">
+    <!-- preload-content: -->
+
+    <!-- EOF START -->
+    <div class="container" id="main-container">
+        <div id="ember11" class="ember-view"></div>
+        <div id="ember12" class="controls ember-view"><!----></div>
+        <div id="ember13" class="ember-view"><!----></div>
+        <div id="ember14" class="ember-view">
+            <div class="row">
+                <div id="global-notice-alert-read-only" class="alert alert-info alert-read-only">
+                    <!----> <span class="text">This site is in read only mode. Please continue to browse, but replying, likes, and other actions are disabled for now.</span>
+
+                    <!---->    </div>
+            </div>
+            <div class="row">
+                <div id="global-notice-alert-global-notice" class="alert alert-info alert-global-notice">
+                    <!----> <span class="text"><h3>⚠️ We've moved!</h3>  <p> Hi there!<br><br> To reduce project dependency on 3rd party paid services the StackStorm TSC has decided to move the Q/A from this forum to <a
+                        href="https://github.com/StackStorm/st2/discussions">Github Discussions</a>. This will make user experience better integrated with the native Github flow, as well as the questions closer to the community where they can provide answers. </p>  <p> Use 🔗 <b><a
+                        href="https://github.com/StackStorm/st2/discussions" class="active">Github Discussions</a></b> to ask your questions. </p></span>
+
+                    <!---->    </div>
+            </div>
+        </div>
+        <div id="ember17" class="hidden create-topics-notice ember-view"><!----></div>
+        <!---->
+    </div>
+    <!-- EOF END -->
+    <div id="topic-title">
+        <h1>
+            <a href="1437.html">Is it possible to use multiple when statements in orquesta/how is the order they are
+                worked on?</a>
+        </h1>
+
+        <div class="topic-category" itemscope itemtype="http://schema.org/BreadcrumbList">
+          <span itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a href="../../c/workflow-related-issues/15" class="badge-wrapper bullet" itemprop="item">
+              <span class='badge-category-bg' style='background-color: #25AAE2'></span>
+              <span class='badge-category clear-badge'>
+                <span class='category-name' itemprop='name'>Workflows</span>
+              </span>
+            </a>
+            <meta itemprop="position" content="1"/>
+          </span>
+        </div>
+
+        <div class="topic-category">
+            <div class='discourse-tags list-tags'>
+                <a href='../../tag/orquesta' class='discourse-tag' rel="tag">orquesta</a>,
+                <a href='../../tag/workflows' class='discourse-tag' rel="tag">workflows</a>
+            </div>
+        </div>
+    </div>
+
+
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/wingi'><span itemprop='name'>wingi</span></a>
+            (Nikolas)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="1437.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2020-10-06T16:10:20Z' class='post-time'>
+                October 6, 2020,  4:10pm
+              </time>
+              <meta itemprop='dateModified' content='2020-10-06T16:10:20Z'>
+          <span itemprop='position'>#1</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Hi,</p>
+            <p>I wanted to build a orquesta workflow that has two (multiple) “when” statements that can all be true and
+                should be executed. For now I was not successful. Is there any order how the “when” statements are
+                worked on? I tried like in the code below and got the error</p>
+            <blockquote>
+                <p>YaqlEvaluationException: Unable to evaluate expression ‘&lt;% ctx(regex_result[0]) = “12” %&gt;’.
+                    NoMatchingFunctionException: No function “<span class="hashtag">#indexer</span>” matches supplied
+                    arguments</p>
+            </blockquote>
+            <p>For me it looks like the “regex_rseult” variable I created before is not available during the execution
+                of the second “when” statement.<br>
+                If I exchange the second when statement for testing purposes by “when: &lt;% succeeded() %&gt;”, it is
+                executed but the following tasks are failing, because variables from there first statement were not
+                defined.</p>
+            <pre><code>tasks:
+  Task1:
+    action: some.action
+    input:
+      ticket_id: &lt;% ctx().ticket_id %&gt;
+    next:
+      - when: &lt;% regex_match(result().result.Ticket.Article[0].Body, "^Some content.*") %&gt;
+        publish:
+          - article_dict: &lt;% result().result.Ticket.Article %&gt;
+          - regex_result: &lt;% regex_substring(result().result.Ticket.Article[0].Body, '.*Details:(\d{1,3}) (.*)') %&gt;
+      - when: &lt;% ctx(regex_result[0]) = "12" %&gt;
+        publish:  
+          - some_value: "test123"
+        do: Task2
+  Task2:
+    action: core.http
+</code></pre>
+            <p>Any ideas?<br>
+                Thanks.</p>
+        </div>
+
+        <meta itemprop='headline'
+              content='Is it possible to use multiple when statements in orquesta/how is the order they are worked on?'>
+        <meta itemprop='keywords' content='orquesta, workflows'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/nmaludy'><span itemprop='name'>nmaludy</span></a>
+            (Nick Maludy)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="1437.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2020-10-06T16:25:48Z' class='post-time'>
+                October 6, 2020,  4:25pm
+              </time>
+              <meta itemprop='dateModified' content='2020-10-06T16:25:48Z'>
+          <span itemprop='position'>#2</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p><a class="mention" href="https://github.com/wingi">@wingi</a> The variables published in the
+                first <code>when</code> branch are isolated to that specific branch and not accessible in the second
+                <code>when</code> clause. You are probably thinking that these statements run sequentially, however they
+                are instead run in parallel so state across the branches is not shared.</p>
+            <p>Does this make sense?</p>
+            <p>If you need to access that <code>regex_result</code> variable you’ll need to transition to another task
+                and access it there.</p>
+        </div>
+
+        <meta itemprop='headline'
+              content='Is it possible to use multiple when statements in orquesta/how is the order they are worked on?'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/wingi'><span itemprop='name'>wingi</span></a>
+            (Nikolas)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="1437.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2020-10-07T09:38:45Z' class='post-time'>
+                October 7, 2020,  9:38am
+              </time>
+              <meta itemprop='dateModified' content='2020-10-07T13:17:40Z'>
+          <span itemprop='position'>#3</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Thanks for your response. Ok this is understood now, so I changed the code like this:</p>
+            <pre><code>tasks:
+  Task1:
+    action: some.action
+    input:
+      ticket_id: &lt;% ctx().ticket_id %&gt;
+    next:
+      - when: &lt;% regex_match(result().result.Ticket.Article[0].Body, "^Some content.*") %&gt;
+        publish:
+          - article_dict: &lt;% result().result.Ticket.Article %&gt;
+          - regex_result: &lt;% regex_substring(result().result.Ticket.Article[0].Body, '.*Details:(\d{1,3}) (.*)') %&gt;
+      - when: &lt;% regex_substring(result().result.Ticket.Article[0].Body, '.*Details:(\d{1,3})') = "12" %&gt;
+        publish:  
+          - some_value: "test123"
+        do: Task2
+  Task2:
+    action: core.echo message="&lt;% ctx(article_dict) %&gt; +++++ &lt;% ctx(some_value) %&gt;"
+</code></pre>
+            <p>If I do it like this, both when clauses are true and executed successful.<br>
+                But in Task2 I can now only access the variables which are included in the when clause which also
+                includes the “do” step. In the example above only “some value” is available in Task2, “article_dict” is
+                unknown.<br>
+                I though that all variables are published now and can be accessed in the second task. If I access both
+                variables in the output part to check for the value, they are successfully there.</p>
+            <pre><code>output:
+  - Article: &lt;% ctx().article_dict %&gt;
+  - SomeValue: &lt;% ctx().some_value %&gt;
+</code></pre>
+            <p>I also tried if it works if I have a step in between and use the values in step 3. Also not
+                successful.</p>
+            <p>By the way, is there a possibility to cascade when clauses? Any else pathes available?</p>
+        </div>
+
+        <meta itemprop='headline'
+              content='Is it possible to use multiple when statements in orquesta/how is the order they are worked on?'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/nmaludy'><span itemprop='name'>nmaludy</span></a>
+            (Nick Maludy)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="1437.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2020-10-07T14:17:58Z' class='post-time'>
+                October 7, 2020,  2:17pm
+              </time>
+              <meta itemprop='dateModified' content='2020-10-07T14:17:58Z'>
+          <span itemprop='position'>#4</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p><a class="mention" href="https://github.com/wingi">@wingi</a> Each when clause is a
+                completely separate and independent branch, context is not shared between them. In your workflow above
+                your first <code>when</code> clause publishes variables, but that happens independently of your second
+                <code>when</code> clause. This is why <code>task2</code> doesn’t see the value for
+                <code>article_dict</code> being set.</p>
+            <p>No, there is no <code>else</code> option for <code>when</code> clauses either.</p>
+        </div>
+
+        <meta itemprop='headline'
+              content='Is it possible to use multiple when statements in orquesta/how is the order they are worked on?'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/wingi'><span itemprop='name'>wingi</span></a>
+            (Nikolas)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="1437.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2020-10-07T15:01:57Z' class='post-time'>
+                October 7, 2020,  3:01pm
+              </time>
+              <meta itemprop='dateModified' content='2020-10-07T15:01:57Z'>
+          <span itemprop='position'>#5</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Ok thanks. What would be your solution for following two use cases I try to solve?</p>
+            <p>Description:<br>
+                First task is executed.<br>
+                If something is contained in the result I want to publish a variable which can be used in the later
+                steps of the workflow.<br>
+                If something else is contained as well, I want to publish a additional variable which can be used in the
+                later steps of the workflow.</p>
+            <p>Use Case1:<br>
+                Both conditions can be met or only one.</p>
+            <p>Use Case2:<br>
+                Condition two should only be checked if condition 1 is fulfilled.</p>
+            <p>Any possibility to fulfil this in the next part of the first task or do I need to create additional
+                “decision” tasks including joins and so on?</p>
+            <p>I thought if I have two when clauses (understood now that they are checked in parallel and not serial)
+                and they are true, the variables are published and are “globally” available for the following steps of
+                the workflow as they can also be used in the output part of the workflow.</p>
+        </div>
+
+        <meta itemprop='headline'
+              content='Is it possible to use multiple when statements in orquesta/how is the order they are worked on?'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/amanda11'><span itemprop='name'>amanda11</span></a>
+            
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="1437.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2020-10-07T15:57:29Z' class='post-time'>
+                October 7, 2020,  3:57pm
+              </time>
+              <meta itemprop='dateModified' content='2020-10-07T15:57:29Z'>
+          <span itemprop='position'>#6</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Have you tried using the YAQL select on the publishes?<br>
+                For your first case that you might be able to do it with the YAQL switch function on the publish, so
+                that from task1 you go to task2 without specifying any when. But then in the publish use the yaql switch
+                so the variable is set to your value “test123” if the condition is met, or null if it’s not - see <a
+                        href="https://yaql.readthedocs.io/en/latest/standard_library.html#switch"
+                        rel="noopener nofollow ugc">https://yaql.readthedocs.io/en/latest/standard_library.html#switch</a>.
+            </p>
+        </div>
+
+        <meta itemprop='headline'
+              content='Is it possible to use multiple when statements in orquesta/how is the order they are worked on?'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+
+
+    <!-- :preload-content -->
+    <footer class="noscript-footer-nav">
+        <nav itemscope itemtype='http://schema.org/SiteNavigationElement'>
+            <a href='../../index.html'>Home</a>
+            <a href="../../categories.html">Categories</a>
+            <a href="https://forum.stackstorm.com/guidelines">FAQ/Guidelines</a>
+            <a href="../../tos.html">Terms of Service</a>
+            <a href="../../privacy.html">Privacy Policy</a>
+        </nav>
+    </footer>
+</div>
+
+<footer id='noscript-footer'>
+    <p>Powered by <a href="https://www.discourse.org">Discourse</a>, best viewed with JavaScript enabled</p>
+</footer>
+
+
+<section id='main'>
+</section>
+
+
+</body>
+</html>

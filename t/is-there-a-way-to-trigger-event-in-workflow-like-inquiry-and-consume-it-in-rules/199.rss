@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Is there a way to trigger event in workflow like inquiry and consume it in rules?</title>
+    <link>https://forum.stackstorm.com/t/is-there-a-way-to-trigger-event-in-workflow-like-inquiry-and-consume-it-in-rules/199</link>
+    <description>Hi there,
+
+Just wondering if there is a way to trigger an event in workflow1, and such event could be inspected by rules in order to trigger workflow2? I know that this could be done by calling workflow2 directly in workflow1, but if we can trigger event we don&#39;t need to know the workflow2. That will be asynchronous and the failure of workflow2 won&#39;t impact workflow1.
+
+In inquiry we can specify &#39;route: route_name&#39;, and we can define rules to catch the &#39;trigger.route&#39; and consume that event once an inquiry is created.  So could we do it the same way in our workflows?
+
+I&#39;ve looked thorough the sensor and it looks like the sensor can poll or accept passively from external system, then trigger event. But it seems that it could not be used for such scenario.
+
+Thanks a lot.</description>
+    
+    <lastBuildDate>Fri, 26 Oct 2018 19:21:35 +0000</lastBuildDate>
+    <category>Rules</category>
+    <atom:link href="https://forum.stackstorm.com/t/is-there-a-way-to-trigger-event-in-workflow-like-inquiry-and-consume-it-in-rules/199.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Is there a way to trigger event in workflow like inquiry and consume it in rules?</title>
+        <dc:creator><![CDATA[cognifloyd]]></dc:creator>
+        <description><![CDATA[
+            <p>As of StackStorm 2.9, there is a new action: <code>core.inject_trigger</code></p>
+<p>The PR that added it: <a href="https://github.com/StackStorm/st2/pull/4259" rel="nofollow noopener">https://github.com/StackStorm/st2/pull/4259</a><br>
+The E2E test for it: <a href="https://github.com/StackStorm/st2tests/pull/140/files" rel="nofollow noopener">Add some end to end tests for core.inject_trigger by Kami · Pull Request #140 · StackStorm/st2tests · GitHub</a></p>
+<p>That E2E test shows some nifty things I didn’t know were possible. It uses a trigger defined in the <code>examples</code> pack, just like any action, rule, sensor, etc would be defined. <em>edit: and I see <a class="mention" href="https://github.com/kami">@kami</a> mentioned this trigger above. However did I miss that? LOL</em></p>
+<aside class="onebox githubblob">
+  <header class="source">
+      <a href="https://github.com/StackStorm/st2/blob/f4937b75/contrib/examples/triggers/sample-trigger.yaml" target="_blank" rel="nofollow noopener">github.com</a>
+  </header>
+  <article class="onebox-body">
+    <h4><a href="https://github.com/StackStorm/st2/blob/f4937b75/contrib/examples/triggers/sample-trigger.yaml" target="_blank" rel="nofollow noopener">StackStorm/st2/blob/f4937b75/contrib/examples/triggers/sample-trigger.yaml</a></h4>
+<pre><code class="lang-yaml">---
+name: sample_trigger
+description: Sample trigger
+payload_schema:
+  type: "object"
+  properties:
+    value:
+      type: "string"
+      required: true
+    executed_at:
+      type: "string"
+      format: "date-time"
+      default: "2014-07-30 05:04:24.578325"
+      required: true
+  additionalProperties: false
+</code></pre>
+
+
+  </article>
+  <div class="onebox-metadata">
+    
+    
+  </div>
+  <div style="clear: both"></div>
+</aside>
+
+<p>And the actionchain task that injects that trigger:</p>
+<aside class="onebox githubblob">
+  <header class="source">
+      <a href="https://github.com/StackStorm/st2tests/blob/d1276f47c8cad3e/packs/tests/actions/chains/test_key_triggers.yaml#L248-L254" target="_blank" rel="nofollow noopener">github.com</a>
+  </header>
+  <article class="onebox-body">
+    <h4><a href="https://github.com/StackStorm/st2tests/blob/d1276f47c8cad3e/packs/tests/actions/chains/test_key_triggers.yaml#L248-L254" target="_blank" rel="nofollow noopener">StackStorm/st2tests/blob/d1276f47c8cad3e/packs/tests/actions/chains/test_key_triggers.yaml#L248-L254</a></h4>
+<pre class="onebox"><code class="lang-yaml"><ol class="start lines" start="248" style="counter-reset: li-counter 247 ;">
+<li>name: run_core_inject_trigger_action</li>
+<li>ref: core.inject_trigger</li>
+<li>params:</li>
+<li>    trigger: examples.sample_trigger</li>
+<li>    payload:</li>
+<li>      value: "test core.inject_trigger"</li>
+<li>    trace_tag: tag-core-inject-trigger</li>
+</ol></code></pre>
+
+
+  </article>
+  <div class="onebox-metadata">
+    
+    
+  </div>
+  <div style="clear: both"></div>
+</aside>
+
+          <p><a href="https://forum.stackstorm.com/t/is-there-a-way-to-trigger-event-in-workflow-like-inquiry-and-consume-it-in-rules/199/8">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/is-there-a-way-to-trigger-event-in-workflow-like-inquiry-and-consume-it-in-rules/199/8</link>
+        <pubDate>Fri, 26 Oct 2018 05:45:43 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-199-8</guid>
+        <source url="https://forum.stackstorm.com/t/is-there-a-way-to-trigger-event-in-workflow-like-inquiry-and-consume-it-in-rules/199.rss">Is there a way to trigger event in workflow like inquiry and consume it in rules?</source>
+      </item>
+      <item>
+        <title>Is there a way to trigger event in workflow like inquiry and consume it in rules?</title>
+        <dc:creator><![CDATA[jeff]]></dc:creator>
+        <description><![CDATA[
+            <p>Thanks alot <a class="mention" href="https://github.com/kami">@kami</a>, that really helps!</p>
+          <p><a href="https://forum.stackstorm.com/t/is-there-a-way-to-trigger-event-in-workflow-like-inquiry-and-consume-it-in-rules/199/7">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/is-there-a-way-to-trigger-event-in-workflow-like-inquiry-and-consume-it-in-rules/199/7</link>
+        <pubDate>Wed, 04 Jul 2018 13:01:38 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-199-7</guid>
+        <source url="https://forum.stackstorm.com/t/is-there-a-way-to-trigger-event-in-workflow-like-inquiry-and-consume-it-in-rules/199.rss">Is there a way to trigger event in workflow like inquiry and consume it in rules?</source>
+      </item>
+      <item>
+        <title>Is there a way to trigger event in workflow like inquiry and consume it in rules?</title>
+        <dc:creator><![CDATA[kami]]></dc:creator>
+        <description><![CDATA[
+            <p>Yes, it can be consumed / used by rules from multiple packs.</p>
+<p>And triggers can be registered independently outside of sensors. Here is an example - <a href="https://github.com/StackStorm/st2/blob/master/contrib/examples/triggers/sample-trigger.yaml" rel="nofollow noopener">st2/sample-trigger.yaml at master · StackStorm/st2 · GitHub</a> (it uses the same format as trigger_types array in sensor metadata yaml file).</p>
+          <p><a href="https://forum.stackstorm.com/t/is-there-a-way-to-trigger-event-in-workflow-like-inquiry-and-consume-it-in-rules/199/6">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/is-there-a-way-to-trigger-event-in-workflow-like-inquiry-and-consume-it-in-rules/199/6</link>
+        <pubDate>Tue, 03 Jul 2018 19:11:54 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-199-6</guid>
+        <source url="https://forum.stackstorm.com/t/is-there-a-way-to-trigger-event-in-workflow-like-inquiry-and-consume-it-in-rules/199.rss">Is there a way to trigger event in workflow like inquiry and consume it in rules?</source>
+      </item>
+      <item>
+        <title>Is there a way to trigger event in workflow like inquiry and consume it in rules?</title>
+        <dc:creator><![CDATA[jeff]]></dc:creator>
+        <description><![CDATA[
+            <p>Thanks. And event triggered from pack1 could be consumed by the rule in pack2 right? If yes could an event be consumed by multiple rules in different packs?<br>
+And for the second approach do we need to create and register a custom trigger?It seems that it can only be done in a sensor so we need to create a sensor as well?</p>
+          <p><a href="https://forum.stackstorm.com/t/is-there-a-way-to-trigger-event-in-workflow-like-inquiry-and-consume-it-in-rules/199/5">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/is-there-a-way-to-trigger-event-in-workflow-like-inquiry-and-consume-it-in-rules/199/5</link>
+        <pubDate>Tue, 03 Jul 2018 14:36:09 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-199-5</guid>
+        <source url="https://forum.stackstorm.com/t/is-there-a-way-to-trigger-event-in-workflow-like-inquiry-and-consume-it-in-rules/199.rss">Is there a way to trigger event in workflow like inquiry and consume it in rules?</source>
+      </item>
+      <item>
+        <title>Is there a way to trigger event in workflow like inquiry and consume it in rules?</title>
+        <dc:creator><![CDATA[kami]]></dc:creator>
+        <description><![CDATA[
+            <p>You are welcome.</p>
+<p>That’s correct (and that’s the downside of that approach).</p>
+<p>We do actually generate temporary auth token which is available to every action execution via “ST2_ACTION_AUTH_TOKEN” environment variable during the life-time of that execution (<a href="https://docs.stackstorm.com/actions.html#environment-variables-available-to-actions" rel="nofollow noopener">Actions — StackStorm 2.7.2 documentation</a>).</p>
+<p>Sadly though, that only applies to python, local and remote runner actions and not workflow actions.</p>
+<p>For Mistral workflows, token is available via “{{ env()[’__actions’][‘st2.action’][‘st2_context’][‘auth_token’] }}”, but unlike “ST2_ACTION_AUTH_TOKEN” environment variable, that’s really an implementation detail and not something I would rely on.</p>
+          <p><a href="https://forum.stackstorm.com/t/is-there-a-way-to-trigger-event-in-workflow-like-inquiry-and-consume-it-in-rules/199/4">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/is-there-a-way-to-trigger-event-in-workflow-like-inquiry-and-consume-it-in-rules/199/4</link>
+        <pubDate>Tue, 03 Jul 2018 14:27:40 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-199-4</guid>
+        <source url="https://forum.stackstorm.com/t/is-there-a-way-to-trigger-event-in-workflow-like-inquiry-and-consume-it-in-rules/199.rss">Is there a way to trigger event in workflow like inquiry and consume it in rules?</source>
+      </item>
+      <item>
+        <title>Is there a way to trigger event in workflow like inquiry and consume it in rules?</title>
+        <dc:creator><![CDATA[jeff]]></dc:creator>
+        <description><![CDATA[
+            <p>Thanks <a class="mention" href="https://github.com/kami">@kami</a> for your kindly support.  Using webhook is the simplest way.<br>
+The difference between webhook and sensor_wrapper is that using webhook we need to provide the x-auth-token in the header, which means we need to configure username/password of stackstorm in config.yaml,  read them and call the auth API to get the token then put in the header, right?</p>
+<p>In sensor_wrapper it seems that we only to use TriggerDispatcher and which doesn’t need any credential, I want to try both of them.</p>
+          <p><a href="https://forum.stackstorm.com/t/is-there-a-way-to-trigger-event-in-workflow-like-inquiry-and-consume-it-in-rules/199/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/is-there-a-way-to-trigger-event-in-workflow-like-inquiry-and-consume-it-in-rules/199/3</link>
+        <pubDate>Tue, 03 Jul 2018 13:36:32 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-199-3</guid>
+        <source url="https://forum.stackstorm.com/t/is-there-a-way-to-trigger-event-in-workflow-like-inquiry-and-consume-it-in-rules/199.rss">Is there a way to trigger event in workflow like inquiry and consume it in rules?</source>
+      </item>
+      <item>
+        <title>Is there a way to trigger event in workflow like inquiry and consume it in rules?</title>
+        <dc:creator><![CDATA[kami]]></dc:creator>
+        <description><![CDATA[
+            <p>Right now there is no way to directly dispatch an event (trigger) inside a workflow, but there are multiple ways to achieve the same end result.</p>
+<p>The best one probably is to add a new action to the workflow which sends an event / trigger using a webhook - <a href="https://docs.stackstorm.com/webhooks.html#using-a-generic-webhook" rel="nofollow noopener">Webhooks — StackStorm 2.7.2 documentation</a>.</p>
+<p>For that, you can use the existing “core.http” action. Something along those lines:</p>
+<pre><code class="lang-auto">   ---
+    chain:
+        ....
+        -
+            name: "send_trigger_via_webhook"
+            ref: "core.http"
+            parameters:
+                url: "https://localhost/api/v1/webhooks/st2"
+                method: "POST"
+                headers: {"Content-Type": "application/json"}
+                body: '{"trigger": "mypack.mytrigger", "payload": {"key1": "value1"}}"
+            on-success: "..."
+        ....
+</code></pre>
+<p>Then you can match on this trigger inside a rule.</p>
+<p>Other options include adding a new Python action which dispatches a trigger using the same code which is used by sensors - <a href="https://github.com/StackStorm/st2/blob/master/st2reactor/st2reactor/container/sensor_wrapper.py#L112" rel="nofollow noopener">st2/sensor_wrapper.py at master · StackStorm/st2 · GitHub</a> (this requires a lot more work though).</p>
+<p>And depending on your workflow composition, you might also be able to utilize “st2.generic.actiontrigger” trigger (<a href="https://docs.stackstorm.com/sensors.html#internal-triggers" rel="nofollow noopener">Sensors and Triggers — StackStorm 2.7.2 documentation</a>). This trigger is dispatched every time an action execution completes.</p>
+          <p><a href="https://forum.stackstorm.com/t/is-there-a-way-to-trigger-event-in-workflow-like-inquiry-and-consume-it-in-rules/199/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/is-there-a-way-to-trigger-event-in-workflow-like-inquiry-and-consume-it-in-rules/199/2</link>
+        <pubDate>Tue, 03 Jul 2018 10:14:52 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-199-2</guid>
+        <source url="https://forum.stackstorm.com/t/is-there-a-way-to-trigger-event-in-workflow-like-inquiry-and-consume-it-in-rules/199.rss">Is there a way to trigger event in workflow like inquiry and consume it in rules?</source>
+      </item>
+      <item>
+        <title>Is there a way to trigger event in workflow like inquiry and consume it in rules?</title>
+        <dc:creator><![CDATA[jeff]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi there,</p>
+<p>Just wondering if there is a way to trigger an event in workflow1, and such event could be inspected by rules in order to trigger workflow2? I know that this could be done by calling workflow2 directly in workflow1, but if we can trigger event we don’t need to know the workflow2. That will be asynchronous and the failure of workflow2 won’t impact workflow1.</p>
+<p>In inquiry we can specify ‘route: route_name’, and we can define rules to catch the ‘trigger.route’ and consume that event once an inquiry is created.  So could we do it the same way in our workflows?</p>
+<p>I’ve looked thorough the sensor and it looks like the sensor can poll or accept passively from external system, then trigger event. But it seems that it could not be used for such scenario.</p>
+<p>Thanks a lot.</p>
+          <p><a href="https://forum.stackstorm.com/t/is-there-a-way-to-trigger-event-in-workflow-like-inquiry-and-consume-it-in-rules/199/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/is-there-a-way-to-trigger-event-in-workflow-like-inquiry-and-consume-it-in-rules/199/1</link>
+        <pubDate>Tue, 03 Jul 2018 06:44:38 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-199-1</guid>
+        <source url="https://forum.stackstorm.com/t/is-there-a-way-to-trigger-event-in-workflow-like-inquiry-and-consume-it-in-rules/199.rss">Is there a way to trigger event in workflow like inquiry and consume it in rules?</source>
+      </item>
+  </channel>
+</rss>

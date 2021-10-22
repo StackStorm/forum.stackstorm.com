@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:discourse="http://www.discourse.org/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>CLI - StackStorm Support (ARCHIVED)</title>
+    <link>https://forum.stackstorm.com/c/core-st2-platform-issues/cli-related-issues/11</link>
+    <description>Topics in the &#39;CLI&#39; category </description>
+    
+      <lastBuildDate>Tue, 18 May 2021 16:53:25 +0000</lastBuildDate>
+      <atom:link href="https://forum.stackstorm.com/c/core-st2-platform-issues/cli-related-issues/11.rss" rel="self" type="application/rss+xml" />
+        <item>
+          <title>St2 python client remote access issue</title>
+          <dc:creator><![CDATA[nxstorm]]></dc:creator>
+          <category>CLI</category>
+          <description><![CDATA[
+            <p>Hi,<br>
+I am new to stackstorm. Trying out the st2client for the remote connectivity. I had some issue on the establishment. Apparently all others seem ok including the access through API, eg https://{host}/api. Would appreciate if anyone can give me some pointer.</p>
+<p><strong>My client config is:</strong><br>
+[general]<br>
+base_url = <a href="https://192.168.1.3/api" rel="noopener nofollow ugc">https://192.168.1.3/api</a><br>
+<span class="hashtag">#api_version</span> = v1<br>
+# Path to the CA cert bundle used to validate the SSL certificates<br>
+cacert =</p>
+<pre><code>[cli]
+debug = True
+# True to cache the retrieved auth token during authentication in ~/.st2/token
+# and use the cached token in the subsequent API requests
+cache_token = True
+# Timezone used for timestamps displayed in the CLI. If not provided it defaults
+# to UTC
+timezone = Europe/Ljubljana
+
+[credentials]
+# Credentials used to authenticate against the auth API and retrieve the auth
+# token
+username = st2admin
+password = changeme
+
+[api]
+url = https://192.168.1.3:9101/api
+# or for a remote instance
+# url = https://example.com/api/v1
+
+[auth]
+url = https://192.168.1.2:9100/auth
+# or for a remote instance
+#url = https://example.com/auth/v1
+
+[stream]
+url = http://192.168.1.2:9102
+# or for a remote instance
+# url = https://example.com/stream/v1
+</code></pre>
+<p><strong>Issue:</strong><br>
+~/st2client/.st2#  st2 --config-file=./config action list<br>
+2021-05-18 09:48:45,777  WARNING - Auth API server is not available, skipping authentication.<br>
+ERROR: HTTPSConnectionPool(host=‘192.168.1.3’, port=9101): Max retries exceeded with url: /api/actions?include_attributes=ref%2Cpack%2Cdescription (Caused by NewConnectionError(’&lt;urllib3.connection.HTTPSConnection object at 0x7f4992178668&gt;: Failed to establish a new connection: [Errno 111] Connection refused’,))</p>
+            <p><small>2 posts - 2 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/st2-python-client-remote-access-issue/1710">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/st2-python-client-remote-access-issue/1710</link>
+          <pubDate>Tue, 18 May 2021 16:53:25 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1710</guid>
+          <source url="https://forum.stackstorm.com/t/st2-python-client-remote-access-issue/1710.rss">St2 python client remote access issue</source>
+        </item>
+        <item>
+          <title>Error setting datastore variable</title>
+          <dc:creator><![CDATA[lordpengwin]]></dc:creator>
+          <category>CLI</category>
+          <description><![CDATA[
+            <p>I’m having trouble setting a datastore key/value. I’m logged into the st2client pod as st2admin and am doing the following:</p>
+<blockquote>
+<p>st2 key set foo boo</p>
+</blockquote>
+<p>and getting this error:</p>
+<blockquote>
+<pre><code>ERROR: 400 Client Error: Bad Request
+MESSAGE: Extra data: line 1 column 5 - line 2 column 1 (char 4 - 19) for url: http://stackstorm-st2api:9101/keys/foo
+</code></pre>
+</blockquote>
+<p>Am I doing something that is obviously wrong?</p>
+            <p><small>3 posts - 2 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/error-setting-datastore-variable/1527">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/error-setting-datastore-variable/1527</link>
+          <pubDate>Mon, 04 Jan 2021 19:14:05 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1527</guid>
+          <source url="https://forum.stackstorm.com/t/error-setting-datastore-variable/1527.rss">Error setting datastore variable</source>
+        </item>
+        <item>
+          <title>How to configuring Redis in cluster</title>
+          <dc:creator><![CDATA[Balaji.p.s]]></dc:creator>
+          <category>CLI</category>
+          <description><![CDATA[
+            <p>Hi All,<br>
+I am trying to configure redis in cluster mode to make working continuously if one server of redis get down then the remaining will take care of executions without failing. can you please let me know if any configuration for redis cluster done by you.<br>
+Can you confirm are we able to add multiple instances of redis in st2 configuration file ?</p>
+<p>Thanks<br>
+Balaji</p>
+            <p><small>4 posts - 3 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/how-to-configuring-redis-in-cluster/1378">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/how-to-configuring-redis-in-cluster/1378</link>
+          <pubDate>Thu, 06 Aug 2020 13:14:58 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1378</guid>
+          <source url="https://forum.stackstorm.com/t/how-to-configuring-redis-in-cluster/1378.rss">How to configuring Redis in cluster</source>
+        </item>
+        <item>
+          <title>What&#39;s the reason behind not having &quot;st2 sensor delete&quot;? I see that &quot;st2 action delete&quot; is provided but not &quot;st2 sensor delete&quot;</title>
+          <dc:creator><![CDATA[RaviTezu]]></dc:creator>
+          <category>CLI</category>
+          <description><![CDATA[
+            <p>Hi,</p>
+<p>What’s the reason behind not having “st2 sensor delete”? I see that “st2 action delete” is provided but not “st2 sensor delete”.</p>
+<p>I have a sensor defined in my pack which was later deleted or renamed to something else, but when I install the latest version of the pack, the old reference is not going away. I see errors also while st2 tries to load the deleted/renamed sensor. Thank you.</p>
+            <p><small>2 posts - 2 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/whats-the-reason-behind-not-having-st2-sensor-delete-i-see-that-st2-action-delete-is-provided-but-not-st2-sensor-delete/1246">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/whats-the-reason-behind-not-having-st2-sensor-delete-i-see-that-st2-action-delete-is-provided-but-not-st2-sensor-delete/1246</link>
+          <pubDate>Tue, 19 May 2020 10:17:42 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1246</guid>
+          <source url="https://forum.stackstorm.com/t/whats-the-reason-behind-not-having-st2-sensor-delete-i-see-that-st2-action-delete-is-provided-but-not-st2-sensor-delete/1246.rss">What&#39;s the reason behind not having &quot;st2 sensor delete&quot;? I see that &quot;st2 action delete&quot; is provided but not &quot;st2 sensor delete&quot;</source>
+        </item>
+        <item>
+          <title>Insecure request warning - python 3 action</title>
+          <dc:creator><![CDATA[guzzijones]]></dc:creator>
+          <category>CLI</category>
+          <description><![CDATA[
+            <p>when I run an action through a workflow it is run by stanley user.  I always see insecurerequestwarning in the stderr.  Is there a way in python3 to disable this warning since stanley is connecting to localhost?</p>
+<pre><code class="lang-auto">  InsecureRequestWarning,```</code></pre>
+            <p><small>3 posts - 2 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/insecure-request-warning-python-3-action/905">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/insecure-request-warning-python-3-action/905</link>
+          <pubDate>Wed, 06 Nov 2019 14:18:16 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-905</guid>
+          <source url="https://forum.stackstorm.com/t/insecure-request-warning-python-3-action/905.rss">Insecure request warning - python 3 action</source>
+        </item>
+        <item>
+          <title>St2 client won&#39;t run remotely</title>
+          <dc:creator><![CDATA[guymatz]]></dc:creator>
+          <category>CLI</category>
+          <description><![CDATA[
+            <p>Does anyone know how to configure st2 to allow for remote connections?  I’ve tried this sort of thing in my server’s st2.conf:<br>
+[api]<br>
+# Host and port to bind the API server.<br>
+<span class="hashtag">#host</span> = 127.0.0.1<br>
+host = 172.18.4.13<br>
+port = 9101</p>
+<p>But the processes still bind to localhost, so I can’t connect remotely . . .  any ideas?</p>
+<p>Thanks!!</p>
+            <p><small>3 posts - 2 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/st2-client-wont-run-remotely/819">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/st2-client-wont-run-remotely/819</link>
+          <pubDate>Thu, 29 Aug 2019 17:38:08 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-819</guid>
+          <source url="https://forum.stackstorm.com/t/st2-client-wont-run-remotely/819.rss">St2 client won&#39;t run remotely</source>
+        </item>
+        <item>
+          <title>How to connect Cisco servers on Stackstorm</title>
+          <dc:creator><![CDATA[Sri1]]></dc:creator>
+          <category>CLI</category>
+          <description><![CDATA[
+            <p>is there any default package or action to connect Cisco servers? Like wise to connect Remote Linux i.e core.remote.</p>
+<p>Thanks,<br>
+Sri</p>
+            <p><small>2 posts - 2 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/how-to-connect-cisco-servers-on-stackstorm/474">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/how-to-connect-cisco-servers-on-stackstorm/474</link>
+          <pubDate>Tue, 05 Feb 2019 08:06:23 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-474</guid>
+          <source url="https://forum.stackstorm.com/t/how-to-connect-cisco-servers-on-stackstorm/474.rss">How to connect Cisco servers on Stackstorm</source>
+        </item>
+        <item>
+          <title>I want to cancel multiple running executions at once either from GUI or CLI</title>
+          <dc:creator><![CDATA[puneet]]></dc:creator>
+          <category>CLI</category>
+          <description><![CDATA[
+            <p>I want to cancel multiple running executions at once either from GUI or CLI. It is taking too much time cancelling a single execution at once. How can we do that?<br>
+Also how can we get rid of multiple hung executions at once. The executions are not timing out not completing, just hung from last few days.</p>
+<p>Please help.</p>
+            <p><small>2 posts - 2 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/i-want-to-cancel-multiple-running-executions-at-once-either-from-gui-or-cli/339">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/i-want-to-cancel-multiple-running-executions-at-once-either-from-gui-or-cli/339</link>
+          <pubDate>Thu, 11 Oct 2018 14:29:19 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-339</guid>
+          <source url="https://forum.stackstorm.com/t/i-want-to-cancel-multiple-running-executions-at-once-either-from-gui-or-cli/339.rss">I want to cancel multiple running executions at once either from GUI or CLI</source>
+        </item>
+        <item>
+          <title>ERROR: &#39;unicodeescape&#39; codec can&#39;t decode bytes in position 7689-7690: truncated \uXXXX escape</title>
+          <dc:creator><![CDATA[petergits]]></dc:creator>
+          <category>CLI</category>
+          <description><![CDATA[
+            <p>When interrogating prior failed jobs from the command line, running <code>st2 execution get stackstormId</code> it produces this output.  I am wondering if there is either a patch, upgrade or have my logs filled up my allowed space?</p>
+<p>I am running st2 2.7.1, on Python 2.7 under a docker installation</p>
+<p>Cheers,</p>
+<p>Peter Gits</p>
+            <p><small>5 posts - 3 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/error-unicodeescape-codec-cant-decode-bytes-in-position-7689-7690-truncated-uxxxx-escape/335">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/error-unicodeescape-codec-cant-decode-bytes-in-position-7689-7690-truncated-uxxxx-escape/335</link>
+          <pubDate>Wed, 10 Oct 2018 16:48:40 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-335</guid>
+          <source url="https://forum.stackstorm.com/t/error-unicodeescape-codec-cant-decode-bytes-in-position-7689-7690-truncated-uxxxx-escape/335.rss">ERROR: &#39;unicodeescape&#39; codec can&#39;t decode bytes in position 7689-7690: truncated \uXXXX escape</source>
+        </item>
+        <item>
+          <title>About the CLI category</title>
+          <dc:creator><![CDATA[lakstorm]]></dc:creator>
+          <category>CLI</category>
+          <description><![CDATA[
+            <p>(Replace this first paragraph with a brief description of your new category. This guidance will appear in the category selection area, so try to keep it below 200 characters. <strong>Until you edit this description or create topics, this category won’t appear on the categories page.</strong>)</p>
+<p>Use the following paragraphs for a longer description, or to establish category guidelines or rules:</p>
+<ul>
+<li>
+<p>Why should people use this category? What is it for?</p>
+</li>
+<li>
+<p>How exactly is this different than the other categories we already have?</p>
+</li>
+<li>
+<p>What should topics in this category generally contain?</p>
+</li>
+<li>
+<p>Do we need this category? Can we merge with another category, or subcategory?</p>
+</li>
+</ul>
+            <p><small>1 post - 1 participant</small></p>
+            <p><a href="https://forum.stackstorm.com/t/about-the-cli-category/79">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/about-the-cli-category/79</link>
+          <pubDate>Wed, 14 Mar 2018 15:04:43 +0000</pubDate>
+          <discourse:topicPinned>Yes</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-79</guid>
+          <source url="https://forum.stackstorm.com/t/about-the-cli-category/79.rss">About the CLI category</source>
+        </item>
+  </channel>
+</rss>

@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en" class="desktop-view not-mobile-device text-size-normal anon">
+<head>
+    <meta charset="utf-8">
+    <title>St2client issue - StackStorm Support (ARCHIVED)</title>
+    <meta name="description" content="Hi, 
+I am new to stackstorm. I have some trouble running st2client remotely. I have no issue accessing the api which is https://{REMOTE}/api. Also i have read some of the old post with similar issue but i still could not&amp;hellip;">
+    <meta name="discourse_theme_id" content="2">
+    <meta name="discourse_current_homepage" content="latest">
+    <meta name="generator"
+          content="Discourse 2.8.0.beta6 - https://github.com/discourse/discourse version a1daf9fe53a66e2d2cdf9757ab4812fb9a2b2787">
+    <link rel="icon" type="image/png"
+          href="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/379ced12f8326d58f1b3d2b3ff652f883e141f6a_2_32x32.PNG">
+    <link rel="apple-touch-icon" type="image/png"
+          href="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/379ced12f8326d58f1b3d2b3ff652f883e141f6a_2_180x180.PNG">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <link rel="canonical" href="1707.html"/>
+    <script type="application/ld+json">{
+        "@context": "http://schema.org",
+        "@type": "WebSite",
+        "url": "https://forum.stackstorm.com",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://forum.stackstorm.com/search?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }</script>
+    <link rel="search" type="application/opensearchdescription+xml" href="../../opensearch.xml"
+          title="StackStorm Support (ARCHIVED) Search">
+
+
+    <link href="/../../stylesheets/color_definitions_base__2_3c5eec1ecf192052ea70b4afdab57a62bccc0604.css?__ws=forum.stackstorm.com"
+          media="all" rel="stylesheet" class="light-scheme"/>
+
+    <link href="/../../stylesheets/desktop_b2f2968742d41481357e0df259b51ce29f72481a.css?__ws=forum.stackstorm.com"
+          media="all" rel="stylesheet" data-target="desktop"/>
+
+
+    <meta name="fragment" content="!">
+
+
+    <link id="manifest-link" rel="manifest" href="../../manifest.webmanifest" crossorigin="use-credentials">
+
+
+    <link rel="alternate" type="application/rss+xml" title="RSS feed of &#39;St2client issue&#39;"
+          href="https://forum.stackstorm.com/t/st2client-issue/1707.rss"/>
+    <meta property="og:site_name" content="StackStorm Support (ARCHIVED)"/>
+    <meta property="og:type" content="website"/>
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:image"
+          content="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/891f00fbdb31fecb5bd9dab30c186d2fed0091ca.jpeg"/>
+    <meta property="og:image"
+          content="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/891f00fbdb31fecb5bd9dab30c186d2fed0091ca.jpeg"/>
+    <meta property="og:url" content="https://forum.stackstorm.com/t/st2client-issue/1707"/>
+    <meta name="twitter:url" content="https://forum.stackstorm.com/t/st2client-issue/1707"/>
+    <meta property="og:title" content="St2client issue"/>
+    <meta name="twitter:title" content="St2client issue"/>
+    <meta property="og:description"
+          content="Hi,  I am new to stackstorm. I have some trouble running st2client remotely. I have no issue accessing the api which is https://{REMOTE}/api. Also i have read some of the old post with similar issue but i still could not get around it.  On my config in .st2/conf  [general]  base_url = http://192.168.1.3/api  api_version = None   Path to the CA cert bundle used to validate the SSL certificates #cacert =  [cli]  debug = True   True to cache the retrieved auth token during authentication in ~/.st2/..."/>
+    <meta name="twitter:description"
+          content="Hi,  I am new to stackstorm. I have some trouble running st2client remotely. I have no issue accessing the api which is https://{REMOTE}/api. Also i have read some of the old post with similar issue but i still could not get around it.  On my config in .st2/conf  [general]  base_url = http://192.168.1.3/api  api_version = None   Path to the CA cert bundle used to validate the SSL certificates #cacert =  [cli]  debug = True   True to cache the retrieved auth token during authentication in ~/.st2/..."/>
+    <meta property="article:published_time" content="2021-05-18T06:28:28+00:00"/>
+    <meta property="og:ignore_canonical" content="true"/>
+
+
+    <script type="application/ld+json">{
+        "@context": "http://schema.org",
+        "@type": "QAPage",
+        "name": "St2client issue",
+        "mainEntity": {
+            "@type": "Question",
+            "name": "St2client issue",
+            "text": "Hi,\n\nI am new to stackstorm. I have some trouble running st2client remotely. I have no issue accessing the api which is https://{REMOTE}/api. Also i have read some of the old post with similar issue but i still could not get around it.\n\nOn my config in .st2/conf\n\n[general]\n\nbase_url = <a href="
+            https://forum.stackstorm.com/t/st2client-issue/\&quot;http://192.168.1.3/api\&quot;" rel=\"noopener nofollow ugc\">http://192.168&hellip;<\/a>","upvoteCount":0,"answerCount":0,"dateCreated":"2021-05-18T06:28:28.745Z","author":{"@type":"Person","name":""}}}</script>
+
+    <meta id="data-discourse-setup" data-cdn="https://sjc6.discourse-cdn.com/standard10"
+          data-base-url="https://forum.stackstorm.com" data-base-uri="" data-environment="production"
+          data-letter-avatar-version="5_8fec8e114563efeaf5265573e510f08e"
+          data-markdown-it-url="https://aws1.discourse-cdn.com/standard10/assets/markdown-it-bundle-31e9a9c535ca1801c26da78b0ff465821751a98f921c5cdc5457d7e5a69e9748.js"
+          data-service-worker-url="service-worker.js" data-default-locale="en"
+          data-asset-version="597e36448c9b51d0fa3b7e43ec1fd6d5" data-disable-custom-css="false"
+          data-highlight-js-path="/highlight-js/forum.stackstorm.com/ac0f4aa001e1343346941766d72e0c1ae330832b.js"
+          data-svg-sprite-path="/svg-sprite/forum.stackstorm.com/svg-2-c2ad434b1e06079c7e282124aed9938dc95b83ea.js"
+          data-enable-js-error-reporting="true" data-color-scheme-is-dark="false" data-user-dark-scheme-id="-1"
+          data-s3-cdn="https://aws1.discourse-cdn.com/standard10"
+          data-s3-base-url="//discourse-cloud-file-uploads.s3.dualstack.us-west-2.amazonaws.com/standard10">
+
+    <meta name="discourse/config/environment"
+          content="%7B%22modulePrefix%22%3A%22discourse%22%2C%22environment%22%3A%22production%22%2C%22rootURL%22%3A%22%22%2C%22locationType%22%3A%22auto%22%2C%22historySupportMiddleware%22%3Afalse%2C%22EmberENV%22%3A%7B%22FEATURES%22%3A%7B%7D%2C%22EXTEND_PROTOTYPES%22%3A%7B%22Date%22%3Afalse%7D%2C%22_APPLICATION_TEMPLATE_WRAPPER%22%3Afalse%2C%22_DEFAULT_ASYNC_OBSERVERS%22%3Atrue%2C%22_JQUERY_INTEGRATION%22%3Atrue%7D%2C%22APP%22%3A%7B%22name%22%3A%22discourse%22%2C%22version%22%3A%222.8.0.beta6%20a1daf9fe53a66e2d2cdf9757ab4812fb9a2b2787%22%2C%22exportApplicationGlobal%22%3Atrue%7D%7D"/>
+</head>
+
+<body class="">
+
+
+<header class="d-header">
+    <div class="wrap">
+        <div class="contents clearfix">
+            <div class="title">
+                <a href="../../index.html">
+                    <picture>
+                        <img src="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png"
+                             alt="StackStorm Support (ARCHIVED)" id="site-logo"/>
+                    </picture>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</header>
+
+<div id="main-outlet" class="wrap" role="main">
+    <!-- preload-content: -->
+
+    <!-- EOF START -->
+    <div class="container" id="main-container">
+        <div id="ember11" class="ember-view"></div>
+        <div id="ember12" class="controls ember-view"><!----></div>
+        <div id="ember13" class="ember-view"><!----></div>
+        <div id="ember14" class="ember-view">
+            <div class="row">
+                <div id="global-notice-alert-read-only" class="alert alert-info alert-read-only">
+                    <!----> <span class="text">This site is in read only mode. Please continue to browse, but replying, likes, and other actions are disabled for now.</span>
+
+                    <!---->    </div>
+            </div>
+            <div class="row">
+                <div id="global-notice-alert-global-notice" class="alert alert-info alert-global-notice">
+                    <!----> <span class="text"><h3>⚠️ We've moved!</h3>  <p> Hi there!<br><br> To reduce project dependency on 3rd party paid services the StackStorm TSC has decided to move the Q/A from this forum to <a
+                        href="https://github.com/StackStorm/st2/discussions">Github Discussions</a>. This will make user experience better integrated with the native Github flow, as well as the questions closer to the community where they can provide answers. </p>  <p> Use 🔗 <b><a
+                        href="https://github.com/StackStorm/st2/discussions" class="active">Github Discussions</a></b> to ask your questions. </p></span>
+
+                    <!---->    </div>
+            </div>
+        </div>
+        <div id="ember17" class="hidden create-topics-notice ember-view"><!----></div>
+        <!---->
+    </div>
+    <!-- EOF END -->
+    <div id="topic-title">
+        <h1>
+            <a href="1707.html">St2client issue</a>
+        </h1>
+
+
+    </div>
+
+
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/nxstorm'><span itemprop='name'>nxstorm</span></a>
+            
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="1707.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2021-05-18T06:28:28Z' class='post-time'>
+                May 18, 2021,  6:28am
+              </time>
+              <meta itemprop='dateModified' content='2021-05-18T06:28:28Z'>
+          <span itemprop='position'>#1</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Hi,<br>
+                I am new to stackstorm. I have some trouble running st2client remotely. I have no issue accessing the
+                api which is https://{REMOTE}/api. Also i have read some of the old post with similar issue but i still
+                could not get around it.</p>
+            <p>On my config in .st2/conf</p>
+            <p>[general]<br>
+                base_url = <a href="http://192.168.1.3/api" rel="noopener nofollow ugc">http://192.168.1.3/api</a><br>
+                api_version = None</p>
+            <h1>
+                <a name="path-to-the-ca-cert-bundle-used-to-validate-the-ssl-certificates-1" class="anchor"
+                   href="1707.html#path-to-the-ca-cert-bundle-used-to-validate-the-ssl-certificates-1"></a>Path to the
+                CA cert bundle used to validate the SSL certificates</h1>
+            <p><span class="hashtag">#cacert</span> =</p>
+            <p>[cli]<br>
+                debug = True</p>
+            <h1>
+                <a name="true-to-cache-the-retrieved-auth-token-during-authentication-in-st2token-2" class="anchor"
+                   href="1707.html#true-to-cache-the-retrieved-auth-token-during-authentication-in-st2token-2"></a>True
+                to cache the retrieved auth token during authentication in ~/.st2/token</h1>
+            <h1>
+                <a name="and-use-the-cached-token-in-the-subsequent-api-requests-3" class="anchor"
+                   href="1707.html#and-use-the-cached-token-in-the-subsequent-api-requests-3"></a>and use the cached
+                token in the subsequent API requests</h1>
+            <p>cache_token = True</p>
+            <h1>
+                <a name="timezone-used-for-timestamps-displayed-in-the-cli-if-not-provided-it-defaults-4" class="anchor"
+                   href="1707.html#timezone-used-for-timestamps-displayed-in-the-cli-if-not-provided-it-defaults-4"></a>Timezone
+                used for timestamps displayed in the CLI. If not provided it defaults</h1>
+            <h1>
+                <a name="to-utc-5" class="anchor" href="1707.html#to-utc-5"></a>to UTC</h1>
+            <p>timezone = Europe/Ljubljana</p>
+            <p>[credentials]</p>
+            <h1>
+                <a name="credentials-used-to-authenticate-against-the-auth-api-and-retrieve-the-auth-6" class="anchor"
+                   href="1707.html#credentials-used-to-authenticate-against-the-auth-api-and-retrieve-the-auth-6"></a>Credentials
+                used to authenticate against the auth API and retrieve the auth</h1>
+            <h1>
+                <a name="token-7" class="anchor" href="1707.html#token-7"></a>token</h1>
+            <p>username = “st2admin”<br>
+                password = “changeme”</p>
+            <p>[api]<br>
+                url = <a href="http://192.168.1.3/api" rel="noopener nofollow ugc">http://192.168.1.3/api</a></p>
+            <h1>
+                <a name="or-for-a-remote-instance-8" class="anchor" href="1707.html#or-for-a-remote-instance-8"></a>or
+                for a remote instance</h1>
+            <h1>
+                <a name="url-httpsexamplecomapiv1-9" class="anchor" href="1707.html#url-httpsexamplecomapiv1-9"></a>url
+                = <a href="https://example.com/api/v1" rel="noopener nofollow ugc">https://example.com/api/v1</a>
+            </h1>
+            <p>[auth]<br>
+                url = <a href="http://192.168.1.3:9100/auth"
+                         rel="noopener nofollow ugc">http://192.168.1.3:9100/auth</a></p>
+            <h1>
+                <a name="or-for-a-remote-instance-10" class="anchor" href="1707.html#or-for-a-remote-instance-10"></a>or
+                for a remote instance</h1>
+            <p><span class="hashtag">#url</span> = <a href="https://example.com/auth/v1" rel="noopener nofollow ugc">https://example.com/auth/v1</a>
+            </p>
+            <p>[stream]<br>
+                url = <a href="http://192.168.1.3:9102" rel="noopener nofollow ugc">http://192.168.1.3:9102</a></p>
+            <h1>
+                <a name="or-for-a-remote-instance-11" class="anchor" href="1707.html#or-for-a-remote-instance-11"></a>or
+                for a remote instance</h1>
+            <h1>
+                <a name="url-httpsexamplecomstreamv1-12" class="anchor"
+                   href="1707.html#url-httpsexamplecomstreamv1-12"></a>url = <a href="https://example.com/stream/v1"
+                                                                                rel="noopener nofollow ugc">https://example.com/stream/v1</a>
+            </h1>
+            <p>When i run it i get</p>
+            <p>(st2client) root@h1:~/st2client/.st2# st2 --config-file=./config action list<br>
+                2021-05-17 23:15:33,289 WARNING - Auth API server is not available, skipping authentication.<br>
+                ERROR: HTTPSConnectionPool(host=‘192.168.1.3’, port=443): Max retries exceeded with url:
+                /api/actions?include_attributes=ref%2Cpack%2Cdescription (Caused by SSLError(SSLError(“bad handshake:
+                Error([(‘SSL routines’, ‘tls_process_server_certificate’, ‘certificate verify failed’)],)”,),))</p>
+            <p>Would very much appreciate if anyone can give me some pointer.<br>
+                Thanks</p>
+        </div>
+
+        <meta itemprop='headline' content='St2client issue'>
+        <meta itemprop='keywords' content=''>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/blag'><span itemprop='name'>blag</span></a>
+            
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="1707.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2021-05-19T19:34:50Z' class='post-time'>
+                May 19, 2021,  7:34pm
+              </time>
+              <meta itemprop='dateModified' content='2021-05-19T19:34:50Z'>
+          <span itemprop='position'>#2</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>This got caught in our spam filter. I approved the post, but it looks like a duplicate of your other
+                question:</p>
+            <aside class="quote quote-modified" data-post="1" data-topic="1710">
+                <div class="title">
+                    <div class="quote-controls"></div>
+                    <img alt="" width="20" height="20" src="https://avatars.discourse-cdn.com/v4/letter/n/e5b9ba/40.png"
+                         class="avatar">
+                    <a href="../st2-python-client-remote-access-issue/1710.html">St2 python client remote access
+                        issue</a> <a class="badge-wrapper  bullet"
+                                     href="../../c/core-st2-platform-issues/cli-related-issues/11"><span
+                        class="badge-category-parent-bg" style="background-color: #AB9364;"></span><span
+                        class="badge-category-bg" style="background-color: #AB9364;"></span><span style=""
+                                                                                                  data-drop-close="true"
+                                                                                                  class="badge-category clear-badge">CLI</span></a>
+                </div>
+                <blockquote>
+                    Hi,
+                    I am new to stackstorm. Trying out the st2client for the remote connectivity. I had some issue on
+                    the establishment. Apparently all others seem ok including the access through API, eg
+                    https://{host}/api. Would appreciate if anyone can give me some pointer.
+                    My client config is:
+                    [general]
+                    base_url = <a href="https://192.168.1.3/api" rel="noopener nofollow ugc">https://192.168.1.3/api</a>
+                    #api_version = v1
+                    # Path to the CA cert bundle used to validate the SSL certificates
+                    cacert =
+                    [cli]
+                    debug = True
+                    # True to cache the retrieved auth token during auth…
+                </blockquote>
+            </aside>
+
+        </div>
+
+        <meta itemprop='headline' content='St2client issue'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/nxstorm'><span itemprop='name'>nxstorm</span></a>
+            
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="1707.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2021-05-19T19:36:35Z' class='post-time'>
+                May 19, 2021,  7:36pm
+              </time>
+              <meta itemprop='dateModified' content='2021-05-19T19:36:35Z'>
+          <span itemprop='position'>#3</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>yes, i made another one on the same topic, so this can be closed.<br>
+                Thanks,</p>
+        </div>
+
+        <meta itemprop='headline' content='St2client issue'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/blag'><span itemprop='name'>blag</span></a>
+            
+              closed 
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="1707.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2021-05-21T17:55:55Z' class='post-time'>
+                May 21, 2021,  5:55pm
+              </time>
+              <meta itemprop='dateModified' content='2021-05-21T17:55:55Z'>
+          <span itemprop='position'>#4</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+
+        </div>
+
+        <meta itemprop='headline' content='St2client issue'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+
+
+    <!-- :preload-content -->
+    <footer class="noscript-footer-nav">
+        <nav itemscope itemtype='http://schema.org/SiteNavigationElement'>
+            <a href='../../index.html'>Home</a>
+            <a href="../../categories.html">Categories</a>
+            <a href="https://forum.stackstorm.com/guidelines">FAQ/Guidelines</a>
+            <a href="../../tos.html">Terms of Service</a>
+            <a href="../../privacy.html">Privacy Policy</a>
+        </nav>
+    </footer>
+</div>
+
+<footer id='noscript-footer'>
+    <p>Powered by <a href="https://www.discourse.org">Discourse</a>, best viewed with JavaScript enabled</p>
+</footer>
+
+
+<section id='main'>
+</section>
+
+
+</body>
+</html>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Clarification on st2ctl reload --register-rules</title>
+    <link>https://forum.stackstorm.com/t/clarification-on-st2ctl-reload-register-rules/877</link>
+    <description>Just wanted a clarification on st2ctl reload --register-rules. 
+
+(1)  If one has added 1 new rule and there exist &#39;n&#39; other rules, which remain unmodified, will only the new rule be loaded and the other rules will be untouched?  Or will all the rules actually be reloaded by this operation?   Is &#39;st2 rule create` less disruptive?
+
+(2) Could any of existing, unmodified  &#39;n&#39; rules possibly miss triggers during the time it takes to run st2ctl reload --register-rules?
+
+I&#39;m not entirely new to stackstorm, but  haven&#39;t added rules until recently and wondered about operation of st2ctl reload vs say,  &#39;st2 rule create&#39;.
+
+Many thanks in advance.
+
+   Mike</description>
+    
+    <lastBuildDate>Tue, 15 Oct 2019 19:33:20 +0000</lastBuildDate>
+    <category>Rules</category>
+    <atom:link href="https://forum.stackstorm.com/t/clarification-on-st2ctl-reload-register-rules/877.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Clarification on st2ctl reload --register-rules</title>
+        <dc:creator><![CDATA[mike.dailey]]></dc:creator>
+        <description><![CDATA[
+            <p>Just wanted a clarification on st2ctl reload --register-rules.</p>
+<p>(1)  If one has added 1 new rule and there exist ‘n’ other rules, which remain unmodified, will only the new rule be loaded and the other rules will be untouched?  Or will all the rules actually be reloaded by this operation?   Is 'st2 rule create` less disruptive?</p>
+<p>(2) Could any of existing, unmodified  ‘n’ rules possibly miss triggers during the time it takes to run st2ctl reload --register-rules?</p>
+<p>I’m not entirely new to stackstorm, but  haven’t added rules until recently and wondered about operation of st2ctl reload vs say,  ‘st2 rule create’.</p>
+<p>Many thanks in advance.</p>
+<p>Mike</p>
+          <p><a href="https://forum.stackstorm.com/t/clarification-on-st2ctl-reload-register-rules/877/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/clarification-on-st2ctl-reload-register-rules/877/1</link>
+        <pubDate>Tue, 15 Oct 2019 19:33:20 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-877-1</guid>
+        <source url="https://forum.stackstorm.com/t/clarification-on-st2ctl-reload-register-rules/877.rss">Clarification on st2ctl reload --register-rules</source>
+      </item>
+  </channel>
+</rss>

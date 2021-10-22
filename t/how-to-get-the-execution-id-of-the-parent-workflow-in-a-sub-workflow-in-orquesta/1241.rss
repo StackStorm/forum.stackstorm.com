@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>How to get the execution_id of the parent workflow in a sub-workflow in Orquesta</title>
+    <link>https://forum.stackstorm.com/t/how-to-get-the-execution-id-of-the-parent-workflow-in-a-sub-workflow-in-orquesta/1241</link>
+    <description>We can get the execution_id of the current workflow through &lt;% ctx(st2).action_execution_id %&gt;, but if we include a sub-workflow in a workflow, how can we get the execution_id of the outermost workflow in the sub-workflow.
+
+![苏宁豆芽图片20200518113005055|690x110](upload://4ys1acU5x0KvzzGnkArVCRBu8AC.png)</description>
+    
+    <lastBuildDate>Tue, 19 May 2020 02:01:38 +0000</lastBuildDate>
+    <category>Workflows</category>
+    <atom:link href="https://forum.stackstorm.com/t/how-to-get-the-execution-id-of-the-parent-workflow-in-a-sub-workflow-in-orquesta/1241.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>How to get the execution_id of the parent workflow in a sub-workflow in Orquesta</title>
+        <dc:creator><![CDATA[sixteenyears]]></dc:creator>
+        <description><![CDATA[
+            <p>We can get the execution_id of the current workflow through &lt;% ctx(st2).action_execution_id %&gt;, but if we include a sub-workflow in a workflow, how can we get the execution_id of the outermost workflow in the sub-workflow.</p>
+<p></p><div class="lightbox-wrapper"><a class="lightbox" href="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/1fedace7287cd2e3119e37aadedb4fc09c7cb9be.png" data-download-href="/uploads/short-url/4ys1acU5x0KvzzGnkArVCRBu8AC.png?dl=1" title="苏宁豆芽图片20200518113005055" rel="nofollow noopener"><img src="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/1fedace7287cd2e3119e37aadedb4fc09c7cb9be_2_690x110.png" alt="苏宁豆芽图片20200518113005055" data-base62-sha1="4ys1acU5x0KvzzGnkArVCRBu8AC" width="690" height="110" srcset="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/1fedace7287cd2e3119e37aadedb4fc09c7cb9be_2_690x110.png, https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/1fedace7287cd2e3119e37aadedb4fc09c7cb9be_2_1035x165.png 1.5x, https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/1fedace7287cd2e3119e37aadedb4fc09c7cb9be.png 2x" data-small-upload="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/1fedace7287cd2e3119e37aadedb4fc09c7cb9be_2_10x10.png"></a></div><p></p>
+          <p><a href="https://forum.stackstorm.com/t/how-to-get-the-execution-id-of-the-parent-workflow-in-a-sub-workflow-in-orquesta/1241/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-to-get-the-execution-id-of-the-parent-workflow-in-a-sub-workflow-in-orquesta/1241/1</link>
+        <pubDate>Mon, 18 May 2020 03:30:52 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1241-1</guid>
+        <source url="https://forum.stackstorm.com/t/how-to-get-the-execution-id-of-the-parent-workflow-in-a-sub-workflow-in-orquesta/1241.rss">How to get the execution_id of the parent workflow in a sub-workflow in Orquesta</source>
+      </item>
+  </channel>
+</rss>

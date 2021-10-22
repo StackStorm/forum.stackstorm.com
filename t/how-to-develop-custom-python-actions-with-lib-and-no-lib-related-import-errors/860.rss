@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>How to develop custom Python actions with `lib` AND no `lib`-related import errors</title>
+    <link>https://forum.stackstorm.com/t/how-to-develop-custom-python-actions-with-lib-and-no-lib-related-import-errors/860</link>
+    <description>Hi! 
+If you&#39;re developing custom Python actions and use a `lib` directory in `actions`, you may have seen that all imports related to `lib` start with `from lib.&lt;submodule&gt; import &lt;something&gt;` or `import lib`.
+However, 
+a) your IDE is likely to report this import statement as invalid. 
+b) (afaik) you can&#39;t test the code outside of StackStorm.
+The proposed solution: 
+* add a `setup.py` file to the `actions` directory with the following content:
+```python
+from setuptools import setup, find_packages
+
+setup(
+    name=&#39;lib&#39;,
+    packages=find_packages(&#39;.&#39;),
+)
+
+```
+* add this file to `.gitignore`
+* open a terminal (if you haven&#39;t already :slight_smile:) and go into the `actions` directory
+* run either `pip install -e ./` or `python setup.py develop`
+* ATTENTION: if you&#39;re deducing your `requirements.txt` via `pip freeze`, exclude the line corresponding to `lib` (it&#39;s a line starting with `-e`, and containing a reference to the git repo)
+* maybe restart the IDE if the IDE still reports the `lib` import statements as wrong
+
+Done :) 
+Now your `lib` imports should &quot;work&quot;, and also your IDE&#39;s autocomplete/inspection features. Furthermore, you can now test your library code with ease :) 
+
+If you&#39;re wondering what this was all about, check out [Python Packaging](https://packaging.python.org/). It&#39;s straightforward and powerful. 
+
+Feedback, questions and comments on this procedure are very welcome.</description>
+    
+    <lastBuildDate>Fri, 27 Sep 2019 14:53:56 +0000</lastBuildDate>
+    <category>Platform</category>
+    <atom:link href="https://forum.stackstorm.com/t/how-to-develop-custom-python-actions-with-lib-and-no-lib-related-import-errors/860.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>How to develop custom Python actions with `lib` AND no `lib`-related import errors</title>
+        <dc:creator><![CDATA[cbg]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi!<br>
+If you’re developing custom Python actions and use a <code>lib</code> directory in <code>actions</code>, you may have seen that all imports related to <code>lib</code> start with <code>from lib.&lt;submodule&gt; import &lt;something&gt;</code> or <code>import lib</code>.<br>
+However,<br>
+a) your IDE is likely to report this import statement as invalid.<br>
+b) (afaik) you can’t test the code outside of StackStorm.<br>
+The proposed solution:</p>
+<ul>
+<li>add a <code>setup.py</code> file to the <code>actions</code> directory with the following content:</li>
+</ul>
+<pre><code class="lang-python">from setuptools import setup, find_packages
+
+setup(
+    name='lib',
+    packages=find_packages('.'),
+)
+
+</code></pre>
+<ul>
+<li>add this file to <code>.gitignore</code>
+</li>
+<li>open a terminal (if you haven’t already <img src="https://emoji.discourse-cdn.com/apple/slight_smile.png?v=9" title=":slight_smile:" class="emoji" alt=":slight_smile:">) and go into the <code>actions</code> directory</li>
+<li>run either <code>pip install -e ./</code> or <code>python setup.py develop</code>
+</li>
+<li>ATTENTION: if you’re deducing your <code>requirements.txt</code> via <code>pip freeze</code>, exclude the line corresponding to <code>lib</code> (it’s a line starting with <code>-e</code>, and containing a reference to the git repo)</li>
+<li>maybe restart the IDE if the IDE still reports the <code>lib</code> import statements as wrong</li>
+</ul>
+<p>Done <img src="https://emoji.discourse-cdn.com/apple/slight_smile.png?v=9" title=":slight_smile:" class="emoji" alt=":slight_smile:"><br>
+Now your <code>lib</code> imports should “work”, and also your IDE’s autocomplete/inspection features. Furthermore, you can now test your library code with ease <img src="https://emoji.discourse-cdn.com/apple/slight_smile.png?v=9" title=":slight_smile:" class="emoji" alt=":slight_smile:"></p>
+<p>If you’re wondering what this was all about, check out <a href="https://packaging.python.org/" rel="nofollow noopener">Python Packaging</a>. It’s straightforward and powerful.</p>
+<p>Feedback, questions and comments on this procedure are very welcome.</p>
+          <p><a href="https://forum.stackstorm.com/t/how-to-develop-custom-python-actions-with-lib-and-no-lib-related-import-errors/860/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-to-develop-custom-python-actions-with-lib-and-no-lib-related-import-errors/860/1</link>
+        <pubDate>Fri, 27 Sep 2019 14:53:56 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-860-1</guid>
+        <source url="https://forum.stackstorm.com/t/how-to-develop-custom-python-actions-with-lib-and-no-lib-related-import-errors/860.rss">How to develop custom Python actions with `lib` AND no `lib`-related import errors</source>
+      </item>
+  </channel>
+</rss>

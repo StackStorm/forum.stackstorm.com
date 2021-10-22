@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>How to install pack from private git repository using ssh when deployed on docker</title>
+    <link>https://forum.stackstorm.com/t/how-to-install-pack-from-private-git-repository-using-ssh-when-deployed-on-docker/1500</link>
+    <description>Hi guys
+I&#39;m having trouble with ssh when i try to install pack from private repo using docker;
+- which container should contain the ssh key (st2client or st2actionrunner or st2api) ?
+- which user should be owner (stanley or root)
+
+If it&#39;s possible to put this in the documentation or in the readme file it would be very helpfull
+Thanks</description>
+    
+    <lastBuildDate>Tue, 08 Dec 2020 12:35:16 +0000</lastBuildDate>
+    <category>Pack Management</category>
+    <atom:link href="https://forum.stackstorm.com/t/how-to-install-pack-from-private-git-repository-using-ssh-when-deployed-on-docker/1500.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>How to install pack from private git repository using ssh when deployed on docker</title>
+        <dc:creator><![CDATA[wajih-ats]]></dc:creator>
+        <description><![CDATA[
+            <p>Thanks, I’ll give it a try and be back to you</p>
+          <p><a href="https://forum.stackstorm.com/t/how-to-install-pack-from-private-git-repository-using-ssh-when-deployed-on-docker/1500/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-to-install-pack-from-private-git-repository-using-ssh-when-deployed-on-docker/1500/3</link>
+        <pubDate>Tue, 08 Dec 2020 12:35:16 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1500-3</guid>
+        <source url="https://forum.stackstorm.com/t/how-to-install-pack-from-private-git-repository-using-ssh-when-deployed-on-docker/1500.rss">How to install pack from private git repository using ssh when deployed on docker</source>
+      </item>
+      <item>
+        <title>How to install pack from private git repository using ssh when deployed on docker</title>
+        <dc:creator><![CDATA[armab]]></dc:creator>
+        <description><![CDATA[
+            <p><a href="https://docs.stackstorm.com/packs.html#installing-packs-from-private-repositories" class="inline-onebox">Packs — StackStorm 3.3.0 documentation</a> covers it.</p>
+<p>The user which runs the pack install is <code>root</code> and the container where it’s executed is <code>st2actionrunner</code>. So you need to share SSH key for the st2actionrunner container.</p>
+<p>Hope that helps.</p>
+<p>Both Docker and Documentation repositories are opensource, we’d love to accept PRs to improve the documentation around this.</p>
+          <p><a href="https://forum.stackstorm.com/t/how-to-install-pack-from-private-git-repository-using-ssh-when-deployed-on-docker/1500/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-to-install-pack-from-private-git-repository-using-ssh-when-deployed-on-docker/1500/2</link>
+        <pubDate>Tue, 08 Dec 2020 11:44:27 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1500-2</guid>
+        <source url="https://forum.stackstorm.com/t/how-to-install-pack-from-private-git-repository-using-ssh-when-deployed-on-docker/1500.rss">How to install pack from private git repository using ssh when deployed on docker</source>
+      </item>
+      <item>
+        <title>How to install pack from private git repository using ssh when deployed on docker</title>
+        <dc:creator><![CDATA[wajih-ats]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi guys<br>
+I’m having trouble with ssh when i try to install pack from private repo using docker;</p>
+<ul>
+<li>which container should contain the ssh key (st2client or st2actionrunner or st2api) ?</li>
+<li>which user should be owner (stanley or root)</li>
+</ul>
+<p>If it’s possible to put this in the documentation or in the readme file it would be very helpfull<br>
+Thanks</p>
+          <p><a href="https://forum.stackstorm.com/t/how-to-install-pack-from-private-git-repository-using-ssh-when-deployed-on-docker/1500/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-to-install-pack-from-private-git-repository-using-ssh-when-deployed-on-docker/1500/1</link>
+        <pubDate>Tue, 08 Dec 2020 09:16:33 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1500-1</guid>
+        <source url="https://forum.stackstorm.com/t/how-to-install-pack-from-private-git-repository-using-ssh-when-deployed-on-docker/1500.rss">How to install pack from private git repository using ssh when deployed on docker</source>
+      </item>
+  </channel>
+</rss>

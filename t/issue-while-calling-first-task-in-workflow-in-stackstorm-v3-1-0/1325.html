@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en" class="desktop-view not-mobile-device text-size-normal anon">
+<head>
+    <meta charset="utf-8">
+    <title>Issue while calling first task in workflow in stackstorm v3.1.0 - Workflows - StackStorm Support
+        (ARCHIVED)</title>
+    <meta name="description" content="Hi Can we handle timeout action within the workflow by rerunning timeout action by calling action with the attribute “do” in st2 v3.1.0. 
+I am using below code 
+version: 1.0
+vars:
+  - ActionReTry: 0
+  - MaxActionReTry: 1&amp;hellip;">
+    <meta name="discourse_theme_id" content="2">
+    <meta name="discourse_current_homepage" content="latest">
+    <meta name="generator"
+          content="Discourse 2.8.0.beta6 - https://github.com/discourse/discourse version a1daf9fe53a66e2d2cdf9757ab4812fb9a2b2787">
+    <link rel="icon" type="image/png"
+          href="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/379ced12f8326d58f1b3d2b3ff652f883e141f6a_2_32x32.PNG">
+    <link rel="apple-touch-icon" type="image/png"
+          href="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/379ced12f8326d58f1b3d2b3ff652f883e141f6a_2_180x180.PNG">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <link rel="canonical" href="1325.html"/>
+    <script type="application/ld+json">{
+        "@context": "http://schema.org",
+        "@type": "WebSite",
+        "url": "https://forum.stackstorm.com",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://forum.stackstorm.com/search?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }
+    </script>
+    <link rel="search" type="application/opensearchdescription+xml" href="../../opensearch.xml"
+          title="StackStorm Support (ARCHIVED) Search">
+
+
+    <link href="/../../stylesheets/color_definitions_base__2_3c5eec1ecf192052ea70b4afdab57a62bccc0604.css?__ws=forum.stackstorm.com"
+          media="all" rel="stylesheet" class="light-scheme"/>
+
+    <link href="/../../stylesheets/desktop_b2f2968742d41481357e0df259b51ce29f72481a.css?__ws=forum.stackstorm.com"
+          media="all" rel="stylesheet" data-target="desktop"/>
+
+
+    <meta name="fragment" content="!">
+
+
+    <link id="manifest-link" rel="manifest" href="../../manifest.webmanifest" crossorigin="use-credentials">
+
+
+    <link rel="alternate" type="application/rss+xml"
+          title="RSS feed of &#39;Issue while calling first task in workflow in stackstorm v3.1.0&#39;"
+          href="1325.rss"/>
+    <meta property="og:site_name" content="StackStorm Support (ARCHIVED)"/>
+    <meta property="og:type" content="website"/>
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:image"
+          content="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/891f00fbdb31fecb5bd9dab30c186d2fed0091ca.jpeg"/>
+    <meta property="og:image"
+          content="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/891f00fbdb31fecb5bd9dab30c186d2fed0091ca.jpeg"/>
+    <meta property="og:url"
+          content="https://forum.stackstorm.com/t/issue-while-calling-first-task-in-workflow-in-stackstorm-v3-1-0/1325"/>
+    <meta name="twitter:url"
+          content="https://forum.stackstorm.com/t/issue-while-calling-first-task-in-workflow-in-stackstorm-v3-1-0/1325"/>
+    <meta property="og:title" content="Issue while calling first task in workflow in stackstorm v3.1.0"/>
+    <meta name="twitter:title" content="Issue while calling first task in workflow in stackstorm v3.1.0"/>
+    <meta property="og:description"
+          content="Hi Can we handle timeout action within the workflow by rerunning timeout action by calling action with the attribute “do” in st2 v3.1.0.  I am using below code  version: 1.0 vars:   - ActionReTry: 0   - MaxActionReTry: 1 tasks:   task1:     action: core.local     input:       cmd: ping 127.2.14.34       timeout: 10     next:       - when: &lt;% result().return_code=-9 and ctx(ActionReTry)=0%&gt;         publish:            - data2: &quot;Yes&quot;           - ActioncountStr: &quot;{% set count = ctx(&#39;ActionReTry&#39;)+1..."/>
+    <meta name="twitter:description"
+          content="Hi Can we handle timeout action within the workflow by rerunning timeout action by calling action with the attribute “do” in st2 v3.1.0.  I am using below code  version: 1.0 vars:   - ActionReTry: 0   - MaxActionReTry: 1 tasks:   task1:     action: core.local     input:       cmd: ping 127.2.14.34       timeout: 10     next:       - when: &lt;% result().return_code=-9 and ctx(ActionReTry)=0%&gt;         publish:            - data2: &quot;Yes&quot;           - ActioncountStr: &quot;{% set count = ctx(&#39;ActionReTry&#39;)+1..."/>
+    <meta property="article:published_time" content="2020-07-06T04:15:29+00:00"/>
+    <meta property="og:ignore_canonical" content="true"/>
+
+
+    <script type="application/ld+json">{
+        "@context": "http://schema.org",
+        "@type": "QAPage",
+        "name": "Issue while calling first task in workflow in stackstorm v3.1.0",
+        "mainEntity": {
+            "@type": "Question",
+            "name": "Issue while calling first task in workflow in stackstorm v3.1.0",
+            "text": "Hi Can we handle timeout action within the workflow by rerunning timeout action by calling action with the attribute “do” in st2 v3.1.0.\n\nI am using below code\n\nversion: 1.0\n\nvars:\n\n- ActionReTry: 0\n\n- MaxActionReTry: 1\n\ntasks:\n\ntask1:\n\naction: core.local\n\ninput:\n\ncmd: ping 127.2.14.34\n\n&hellip;",
+            "upvoteCount": 0,
+            "answerCount": 0,
+            "dateCreated": "2020-07-06T04:15:29.268Z",
+            "author": {
+                "@type": "Person",
+                "name": "Balaji"
+            }
+        }
+    }
+    </script>
+
+    <meta id="data-discourse-setup" data-cdn="https://sjc6.discourse-cdn.com/standard10"
+          data-base-url="https://forum.stackstorm.com" data-base-uri="" data-environment="production"
+          data-letter-avatar-version="5_8fec8e114563efeaf5265573e510f08e"
+          data-markdown-it-url="https://aws1.discourse-cdn.com/standard10/assets/markdown-it-bundle-31e9a9c535ca1801c26da78b0ff465821751a98f921c5cdc5457d7e5a69e9748.js"
+          data-service-worker-url="service-worker.js" data-default-locale="en"
+          data-asset-version="597e36448c9b51d0fa3b7e43ec1fd6d5" data-disable-custom-css="false"
+          data-highlight-js-path="/highlight-js/forum.stackstorm.com/ac0f4aa001e1343346941766d72e0c1ae330832b.js"
+          data-svg-sprite-path="/svg-sprite/forum.stackstorm.com/svg-2-c2ad434b1e06079c7e282124aed9938dc95b83ea.js"
+          data-enable-js-error-reporting="true" data-color-scheme-is-dark="false" data-user-dark-scheme-id="-1"
+          data-s3-cdn="https://aws1.discourse-cdn.com/standard10"
+          data-s3-base-url="//discourse-cloud-file-uploads.s3.dualstack.us-west-2.amazonaws.com/standard10">
+
+    <meta name="discourse/config/environment"
+          content="%7B%22modulePrefix%22%3A%22discourse%22%2C%22environment%22%3A%22production%22%2C%22rootURL%22%3A%22%22%2C%22locationType%22%3A%22auto%22%2C%22historySupportMiddleware%22%3Afalse%2C%22EmberENV%22%3A%7B%22FEATURES%22%3A%7B%7D%2C%22EXTEND_PROTOTYPES%22%3A%7B%22Date%22%3Afalse%7D%2C%22_APPLICATION_TEMPLATE_WRAPPER%22%3Afalse%2C%22_DEFAULT_ASYNC_OBSERVERS%22%3Atrue%2C%22_JQUERY_INTEGRATION%22%3Atrue%7D%2C%22APP%22%3A%7B%22name%22%3A%22discourse%22%2C%22version%22%3A%222.8.0.beta6%20a1daf9fe53a66e2d2cdf9757ab4812fb9a2b2787%22%2C%22exportApplicationGlobal%22%3Atrue%7D%7D"/>
+</head>
+
+<body class="">
+
+
+<header class="d-header">
+    <div class="wrap">
+        <div class="contents clearfix">
+            <div class="title">
+                <a href="../../index.html">
+                    <picture>
+                        <img src="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png"
+                             alt="StackStorm Support (ARCHIVED)" id="site-logo"/>
+                    </picture>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</header>
+
+<div id="main-outlet" class="wrap" role="main">
+    <!-- preload-content: -->
+
+    <!-- EOF START -->
+    <div class="container" id="main-container">
+        <div id="ember11" class="ember-view"></div>
+        <div id="ember12" class="controls ember-view"><!----></div>
+        <div id="ember13" class="ember-view"><!----></div>
+        <div id="ember14" class="ember-view">
+            <div class="row">
+                <div id="global-notice-alert-read-only" class="alert alert-info alert-read-only">
+                    <!----> <span class="text">This site is in read only mode. Please continue to browse, but replying, likes, and other actions are disabled for now.</span>
+
+                    <!---->    </div>
+            </div>
+            <div class="row">
+                <div id="global-notice-alert-global-notice" class="alert alert-info alert-global-notice">
+                    <!----> <span class="text"><h3>⚠️ We've moved!</h3>  <p> Hi there!<br><br> To reduce project dependency on 3rd party paid services the StackStorm TSC has decided to move the Q/A from this forum to <a
+                        href="https://github.com/StackStorm/st2/discussions">Github Discussions</a>. This will make user experience better integrated with the native Github flow, as well as the questions closer to the community where they can provide answers. </p>  <p> Use 🔗 <b><a
+                        href="https://github.com/StackStorm/st2/discussions" class="active">Github Discussions</a></b> to ask your questions. </p></span>
+
+                    <!---->    </div>
+            </div>
+        </div>
+        <div id="ember17" class="hidden create-topics-notice ember-view"><!----></div>
+        <!---->
+    </div>
+    <!-- EOF END -->
+    <div id="topic-title">
+        <h1>
+            <a href="1325.html">Issue while calling first task in workflow in stackstorm v3.1.0</a>
+        </h1>
+
+        <div class="topic-category" itemscope itemtype="http://schema.org/BreadcrumbList">
+          <span itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a href="../../c/workflow-related-issues/15" class="badge-wrapper bullet" itemprop="item">
+              <span class='badge-category-bg' style='background-color: #25AAE2'></span>
+              <span class='badge-category clear-badge'>
+                <span class='category-name' itemprop='name'>Workflows</span>
+              </span>
+            </a>
+            <meta itemprop="position" content="1"/>
+          </span>
+        </div>
+
+        <div class="topic-category">
+            <div class='discourse-tags list-tags'>
+                <a href='../../tag/orquesta' class='discourse-tag' rel="tag">orquesta</a>,
+                <a href='../../tag/howto' class='discourse-tag' rel="tag">howto</a>,
+                <a href='../../tag/actions' class='discourse-tag' rel="tag">actions</a>,
+                <a href='../../tag/python' class='discourse-tag' rel="tag">python</a>,
+                <a href='../../tag/workflows' class='discourse-tag' rel="tag">workflows</a>
+            </div>
+        </div>
+    </div>
+
+
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/Balaji.p.s'><span
+                    itemprop='name'>Balaji.p.s</span></a>
+            (Balaji)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="1325.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2020-07-06T04:15:29Z' class='post-time'>
+                July 6, 2020,  4:15am
+              </time>
+              <meta itemprop='dateModified' content='2020-07-06T04:15:29Z'>
+          <span itemprop='position'>#1</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Hi Can we handle timeout action within the workflow by rerunning timeout action by calling action with
+                the attribute “do” in st2 v3.1.0.<br>
+                I am using below code</p>
+            <pre><code class="lang-auto">version: 1.0
+vars:
+  - ActionReTry: 0
+  - MaxActionReTry: 1
+tasks:
+  task1:
+    action: core.local
+    input:
+      cmd: ping 127.2.14.34
+      timeout: 10
+    next:
+      - when: &lt;% result().return_code=-9 and ctx(ActionReTry)=0%&gt;
+        publish: 
+          - data2: "Yes"
+          - ActioncountStr: "{% set count = ctx('ActionReTry')+1 %}{{count}}"
+          - ActionReTry: "{{ ctx('ActioncountStr') | int }}"
+        do: 
+          - task1
+      - when: &lt;% result().return_code=-9 and ctx(ActionReTry) = ctx(MaxActionReTry) %&gt;
+        publish:
+          - data2: "Reached Max and timedout"
+        do: 
+          - task3
+  task3:
+    action: core.echo
+    input:
+      message: 'stop'
+</code></pre>
+            <p>In this case it is not taking task1 to run when the condition satisfied.<br>
+                the same logic is working if I add a another action before task1 and make the present task1 as task2 it
+                is working for rerunning the action when action get timeout i.e by using attribute “do” I am able to run
+                from task2 but can’t able to run as task1 don’t know why that is happening. May I know why is that
+                behaviour?</p>
+            <p>Thanks in advance</p>
+        </div>
+
+        <meta itemprop='headline' content='Issue while calling first task in workflow in stackstorm v3.1.0'>
+        <meta itemprop='keywords' content='orquesta, howto, actions, python, workflows'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/Sheshagiri'><span
+                    itemprop='name'>Sheshagiri</span></a>
+            (Sheshagiri Rao Mallipedhi)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="1325.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2020-07-07T18:01:24Z' class='post-time'>
+                July 7, 2020,  6:01pm
+              </time>
+              <meta itemprop='dateModified' content='2020-07-07T18:30:43Z'>
+          <span itemprop='position'>#2</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p><a class="mention" href="https://github.com/balaji.p.s">@Balaji.p.s</a> Orquesta supports
+                task retry since <code>v3.2.0</code>. <a
+                        href="https://docs.stackstorm.com/orquesta/languages/orquesta.html#task-retry-model"
+                        class="inline-onebox" rel="nofollow noopener">Orquesta Workflow Definition — StackStorm 3.2.0
+                    documentation</a> has an example as well.</p>
+        </div>
+
+        <meta itemprop='headline' content='Issue while calling first task in workflow in stackstorm v3.1.0'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/Balaji.p.s'><span
+                    itemprop='name'>Balaji.p.s</span></a>
+            (Balaji)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="1325.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2020-07-08T07:28:20Z' class='post-time'>
+                July 8, 2020,  7:28am
+              </time>
+              <meta itemprop='dateModified' content='2020-07-08T07:28:20Z'>
+          <span itemprop='position'>#3</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p><a class="mention" href="https://github.com/sheshagiri">@Sheshagiri</a> if we want to use
+                retry option in code it will possible from v3.2.0, but my issue is When I am calling the task1 with do
+                attribute based on variable comparision in when condition it is not executing through a error like no
+                task to execute. Can’t we call task1 with do attribute ?<br>
+                It is giving following error in logs file when I was running the above code and keep the workflow in
+                running status.</p>
+            <pre><code class="lang-auto">2020-07-07 17:19:34,427 140497650797296 INFO workflows [-] [5f04614db55eb7205f2503a4] Processing request for workflow execution.
+2020-07-07 17:19:34,449 140497650797296 INFO workflows [-] [5f04614db55eb7205f2503a4] Requesting conductor to start running workflow execution.
+2020-07-07 17:19:34,449 140497650797296 INFO workflows [-] [5f04614db55eb7205f2503a4] Identifying next set (0) of tasks for workflow execution in status "running".
+2020-07-07 17:19:34,450 140497650797296 INFO workflows [-] [5f04614db55eb7205f2503a4] No tasks identified to execute next.
+2020-07-07 17:19:34,450 140497650797296 INFO workflows [-] [5f04614db55eb7205f2503a4] Updating workflow execution from status "requested" to "running".
+</code></pre>
+        </div>
+
+        <meta itemprop='headline' content='Issue while calling first task in workflow in stackstorm v3.1.0'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/Sheshagiri'><span
+                    itemprop='name'>Sheshagiri</span></a>
+            (Sheshagiri Rao Mallipedhi)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="1325.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2020-07-08T10:38:02Z' class='post-time'>
+                July 8, 2020, 10:38am
+              </time>
+              <meta itemprop='dateModified' content='2020-07-08T10:38:02Z'>
+          <span itemprop='position'>#4</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p><a class="mention" href="https://github.com/balaji.p.s">@Balaji.p.s</a> I haven’t tried this
+                but I don’t think a task can call itself(i.e it has to transition to another task). The example you
+                cited looks like an ideal fit for <code>retry</code> but as you said that’s only available in <code>3.2.0</code>.
+            </p>
+            <p>That said I think if a cyclic loop is detected then it should at least throw an error. Probably worth
+                creating an issue on <a href="https://github.com/StackStorm/orquesta/issues" rel="nofollow noopener">orquesta</a>.
+            </p>
+        </div>
+
+        <meta itemprop='headline' content='Issue while calling first task in workflow in stackstorm v3.1.0'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/Balaji.p.s'><span
+                    itemprop='name'>Balaji.p.s</span></a>
+            (Balaji)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="1325.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2020-07-08T10:52:56Z' class='post-time'>
+                July 8, 2020, 10:52am
+              </time>
+              <meta itemprop='dateModified' content='2020-07-08T10:52:56Z'>
+          <span itemprop='position'>#5</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>I tried that a task can call itself. If we add simple echo task before task1 and call task2 in that case
+                it is working fine, but when we are calling intial task then only it is giving error as above.<br>
+                So we can call any tasks except task1 ? as it is throwing the error while we are calling task1 only.<br>
+                Thanks</p>
+        </div>
+
+        <meta itemprop='headline' content='Issue while calling first task in workflow in stackstorm v3.1.0'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/Sheshagiri'><span
+                    itemprop='name'>Sheshagiri</span></a>
+            (Sheshagiri Rao Mallipedhi)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="1325.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2020-07-08T14:45:54Z' class='post-time'>
+                July 8, 2020,  2:45pm
+              </time>
+              <meta itemprop='dateModified' content='2020-07-08T14:45:54Z'>
+          <span itemprop='position'>#6</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>to be clear what you are saying is <code>task1</code> can call <code>task1</code>. something along the
+                lines of</p>
+            <pre><code class="lang-auto">---
+    version: '1.0'
+    tasks:
+      task1:
+        action: core.http url='&lt;URL&gt;'
+        next:
+          - when: &lt;% succeeded() %&gt;
+            publish:
+              - http_response: &lt;% result().body %&gt;
+          - do: task1
+</code></pre>
+        </div>
+
+        <meta itemprop='headline' content='Issue while calling first task in workflow in stackstorm v3.1.0'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/Balaji.p.s'><span
+                    itemprop='name'>Balaji.p.s</span></a>
+            (Balaji)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="1325.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2020-07-08T15:25:07Z' class='post-time'>
+                July 8, 2020,  3:25pm
+              </time>
+              <meta itemprop='dateModified' content='2020-07-08T15:25:07Z'>
+          <span itemprop='position'>#7</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Yes <a class="mention" href="https://github.com/sheshagiri">@Sheshagiri</a>. That’s the
+                clarification I need is this possible to call task1 or not ?</p>
+        </div>
+
+        <meta itemprop='headline' content='Issue while calling first task in workflow in stackstorm v3.1.0'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/Sheshagiri'><span
+                    itemprop='name'>Sheshagiri</span></a>
+            (Sheshagiri Rao Mallipedhi)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="1325.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2020-07-08T17:41:59Z' class='post-time'>
+                July 8, 2020,  5:41pm
+              </time>
+              <meta itemprop='dateModified' content='2020-07-08T17:41:59Z'>
+          <span itemprop='position'>#8</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>I did some digging in the source code and found this example<br>
+            </p>
+            <aside class="onebox githubblob">
+                <header class="source">
+                    <a href="https://github.com/StackStorm/orquesta/blob/master/orquesta/tests/fixtures/workflows/native/cycles.yaml"
+                       target="_blank" rel="nofollow noopener">github.com</a>
+                </header>
+                <article class="onebox-body">
+                    <h4>
+                        <a href="https://github.com/StackStorm/orquesta/blob/master/orquesta/tests/fixtures/workflows/native/cycles.yaml"
+                           target="_blank" rel="nofollow noopener">StackStorm/orquesta/blob/master/orquesta/tests/fixtures/workflows/native/cycles.yaml</a>
+                    </h4>
+                    <pre><code class="lang-yaml">version: 1.0
+
+description: A sample workflow with multiple cycles.
+
+input:
+  - count: 0
+
+tasks:
+  prep:
+    action: core.noop
+    next:
+      - when: &lt;% succeeded() %&gt;
+        do: task1
+  task1:
+    action: core.noop
+    next:
+      - when: &lt;% succeeded() %&gt;
+        publish:
+          - proceed: false
+        do: task2
+</code></pre>
+
+                    This file has been truncated. <a
+                        href="https://github.com/StackStorm/orquesta/blob/master/orquesta/tests/fixtures/workflows/native/cycles.yaml"
+                        target="_blank" rel="nofollow noopener">show original</a>
+
+                </article>
+                <div class="onebox-metadata">
+
+
+                </div>
+                <div style="clear: both"></div>
+            </aside>
+            <br>
+            as you rightly mentioned looks like the first task cannot call itself, my theory is because its a root task
+            and doesn’t have a parent associated with it. I could be wrong here.
+            <p>Based on the above example I put together the following workflow that will print the greeting <code>max_retry</code>
+                number of times.</p>
+            <pre><code class="lang-auto">---
+    version: '1.0'
+    input:
+        - action_retry: 1
+        - max_retry: 2
+        - greeting: 'hello'
+    output:
+        - greeting: &lt;% ctx().greeting %&gt;
+        - action_retry: &lt;% ctx().action_retry %&gt;
+    tasks:
+      setup:
+        action: core.noop
+        next:
+            - when: &lt;% succeeded() %&gt;
+              do: task1
+      task1:
+        action: core.echo message=&lt;% ctx().greeting %&gt;
+        next:
+            - when: &lt;% succeeded() and ctx().action_retry = ctx().max_retry %&gt;
+              do: finish
+            - when: &lt;% succeeded() and not ctx().action_retry = ctx().max_retry %&gt;
+              publish: 
+                - action_retry:  &lt;% ctx().action_retry + 1 %&gt;
+                - greeting: &lt;% ctx().greeting %&gt;, &lt;% result().stdout %&gt;
+              do: task1
+      finish:
+        action: core.noop
+</code></pre>
+            <p>so following is the output</p>
+            <pre><code class="lang-auto">root@2da88f4a3f92:/opt/stackstorm/packs/default# st2 run http.task_recursion
+..
+id: 5f0603b2c1c83bf95e23e53f
+action.ref: http.task_recursion
+parameters: None
+status: succeeded
+start_timestamp: Wed, 08 Jul 2020 17:34:42 UTC
+end_timestamp: Wed, 08 Jul 2020 17:34:44 UTC
+result:
+  output:
+    action_retry: 2
+    greeting: hello, hello
++--------------------------+------------------------+--------+-----------+------------------------------+
+| id                       | status                 | task   | action    | start_timestamp              |
++--------------------------+------------------------+--------+-----------+------------------------------+
+| 5f0603b2feda037f18a0693a | succeeded (0s elapsed) | setup  | core.noop | Wed, 08 Jul 2020 17:34:42    |
+|                          |                        |        |           | UTC                          |
+| 5f0603b2feda037f18a0693d | succeeded (1s elapsed) | task1  | core.echo | Wed, 08 Jul 2020 17:34:42    |
+|                          |                        |        |           | UTC                          |
+| 5f0603b3feda037f18a06940 | succeeded (0s elapsed) | task1  | core.echo | Wed, 08 Jul 2020 17:34:43    |
+|                          |                        |        |           | UTC                          |
+| 5f0603b3feda037f18a06943 | succeeded (1s elapsed) | finish | core.noop | Wed, 08 Jul 2020 17:34:43    |
+|                          |                        |        |           | UTC                          |
++--------------------------+------------------------+--------+-----------+------------------------------+
+root@2da88f4a3f92:/opt/stackstorm/packs/default#
+</code></pre>
+            <p>I hope this helps.</p>
+        </div>
+
+        <meta itemprop='headline' content='Issue while calling first task in workflow in stackstorm v3.1.0'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/Balaji.p.s'><span
+                    itemprop='name'>Balaji.p.s</span></a>
+            (Balaji)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="1325.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2020-07-10T13:11:13Z' class='post-time'>
+                July 10, 2020,  1:11pm
+              </time>
+              <meta itemprop='dateModified' content='2020-07-10T13:11:13Z'>
+          <span itemprop='position'>#9</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Thanks for the information <a class="mention" href="https://github.com/sheshagiri">@Sheshagiri</a>.
+                So as per your theory if the task don’t have associated with any parent it won’t be callable right ?<br>
+                For all the tasks in workflow parent task is task1 ?</p>
+        </div>
+
+        <meta itemprop='headline' content='Issue while calling first task in workflow in stackstorm v3.1.0'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+
+
+    <!-- :preload-content -->
+    <footer class="noscript-footer-nav">
+        <nav itemscope itemtype='http://schema.org/SiteNavigationElement'>
+            <a href='../../index.html'>Home</a>
+            <a href="../../categories.html">Categories</a>
+            <a href="https://forum.stackstorm.com/guidelines">FAQ/Guidelines</a>
+            <a href="../../tos.html">Terms of Service</a>
+            <a href="../../privacy.html">Privacy Policy</a>
+        </nav>
+    </footer>
+</div>
+
+<footer id='noscript-footer'>
+    <p>Powered by <a href="https://www.discourse.org">Discourse</a>, best viewed with JavaScript enabled</p>
+</footer>
+
+
+<section id='main'>
+</section>
+
+
+</body>
+</html>

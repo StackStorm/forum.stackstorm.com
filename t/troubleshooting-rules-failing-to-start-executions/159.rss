@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Troubleshooting rules failing to start executions</title>
+    <link>https://forum.stackstorm.com/t/troubleshooting-rules-failing-to-start-executions/159</link>
+    <description>I have a rule that has stopped working. The rule tries to start an execution but fails.
+
+The following traceback is in my rules engine log:
+
+```
+Traceback (most recent call last):
+  File &quot;/opt/stackstorm/st2/lib/python2.7/site-packages/st2reactor/rules/enforcer.py&quot;, line 94, in enforce
+    execution_db = self._do_enforce()
+  File &quot;/opt/stackstorm/st2/lib/python2.7/site-packages/st2reactor/rules/enforcer.py&quot;, line 143, in _do_enforce
+    additional_contexts=additional_contexts)
+  File &quot;/opt/stackstorm/st2/lib/python2.7/site-packages/st2reactor/rules/enforcer.py&quot;, line 196, in _invoke_action
+    additional_contexts=additional_contexts)
+  File &quot;/opt/stackstorm/st2/lib/python2.7/site-packages/st2reactor/rules/enforcer.py&quot;, line 80, in get_resolved_parameters
+    additional_contexts=additional_contexts)
+  File &quot;/opt/stackstorm/st2/lib/python2.7/site-packages/st2common/util/param.py&quot;, line 298, in render_live_params
+    live_params = _cast_params_from(params, context, [action_parameters, runner_parameters])
+  File &quot;/opt/stackstorm/st2/lib/python2.7/site-packages/st2common/util/param.py&quot;, line 232, in _cast_params_from
+    result[name] = _cast(context[name], param_schema)
+  File &quot;/opt/stackstorm/st2/lib/python2.7/site-packages/st2common/util/param.py&quot;, line 75, in _cast
+    return cast(v)
+  File &quot;/opt/stackstorm/st2/lib/python2.7/site-packages/st2common/util/casts.py&quot;, line 39, in _cast_object
+    return ast.literal_eval(x)
+  File &quot;/usr/lib64/python2.7/ast.py&quot;, line 49, in literal_eval
+    node_or_string = parse(node_or_string, mode=&#39;eval&#39;)
+  File &quot;/usr/lib64/python2.7/ast.py&quot;, line 37, in parse
+    return compile(source, filename, mode, PyCF_ONLY_AST)
+  File &quot;&lt;unknown&gt;&quot;, line 1
+    &lt;built-in method keys of BaseDict object at 0x57be940&gt;
+    ^
+```
+relevant output of rule-enforcement:
+```
++--------------------------+--------------------------------------+--------------------------+--------------------------+-----------------------------+
+| id                       | rule.ref                             | trigger_instance_id      | execution_id             | enforced_at                 |
++--------------------------+--------------------------------------+--------------------------+--------------------------+-----------------------------+
+| 5b07c28402ebd54ce6865159 | pharoslaas.on_end_deployment_trigger | 5b07c28402ebd54ce6865156 |                          | 2018-05-25T08:00:04.151003Z |
+| 5b078a4602ebd54ce6863fb0 | pharoslaas.on_end_deployment_trigger | 5b078a4602ebd54ce6863fae |                          | 2018-05-25T04:00:06.067578Z |
+| 5b0735e902ebd54ce6862587 | pharoslaas.on_end_deployment_trigger | 5b0735e902ebd54ce6862584 |                          | 2018-05-24T22:00:09.247676Z |
+| 5b06008002ebd54ce685c5b6 | pharoslaas.on_end_deployment_trigger | 5b06008002ebd54ce685c5b3 |                          | 2018-05-24T00:00:00.779763Z |
+| 5afeea8502ebd54ce683403f | pharoslaas.on_end_deployment_trigger | 5afeea8502ebd54ce683403c |                          | 2018-05-18T15:00:21.166756Z |
+| 5afea43802ebd54ce68331a0 | pharoslaas.on_end_deployment_trigger | 5afea43702ebd54ce683319d |                          | 2018-05-18T10:00:24.003795Z |
+| 5afbec2802ebd54ce682a537 | pharoslaas.on_end_deployment_trigger | 5afbec2802ebd54ce682a533 | 5afbec2802ebd54ce682a536 | 2018-05-16T08:30:32.414416Z |
+| 5afbc1f902ebd54ce682a01a | pharoslaas.on_end_deployment_trigger | 5afbc1f902ebd54ce682a015 | 5afbc1f902ebd54ce682a019 | 2018-05-16T05:30:33.624886Z |
+```
+
+And trigger-list
+```
++--------------------------+-----------------------------------+-------------------------------+-----------+
+| id                       | trigger                           | occurrence_time               | status    |
++--------------------------+-----------------------------------+-------------------------------+-----------+
+| 5afbec2802ebd54ce682a533 | pharoslaas.end_deployment_trigger | Wed, 16 May 2018 08:30:32 UTC | processed |
+| 5afea43702ebd54ce683319d | pharoslaas.end_deployment_trigger | Fri, 18 May 2018 10:00:23 UTC | processed |
+| 5afeea8502ebd54ce683403c | pharoslaas.end_deployment_trigger | Fri, 18 May 2018 15:00:21 UTC | processed |
+| 5b06008002ebd54ce685c5b3 | pharoslaas.end_deployment_trigger | Thu, 24 May 2018 00:00:00 UTC | processed |
+| 5b0735e902ebd54ce6862584 | pharoslaas.end_deployment_trigger | Thu, 24 May 2018 22:00:09 UTC | processed |
+| 5b078a4602ebd54ce6863fae | pharoslaas.end_deployment_trigger | Fri, 25 May 2018 04:00:06 UTC | processed |
+| 5b07c28402ebd54ce6865156 | pharoslaas.end_deployment_trigger | Fri, 25 May 2018 08:00:04 UTC | processed |
++--------------------------+-----------------------------------+-------------------------------+-----------+
+```
+And the rule itself: 
+```yaml
+---
+name: on_end_deployment_trigger
+pack: pharoslaas
+description: dummy rule to link end deployment trigger to clean action
+enabled: true
+trigger:
+    type: pharoslaas.end_deployment_trigger
+action:
+    ref: pharoslaas.clean-workflow
+    parameters:
+        host: &quot;{{ trigger.host }}&quot;
+        key: &quot;{{trigger.key}}&quot;
+        user: &quot;{{trigger.user}}&quot;
+        keys: &quot;{{trigger.keys}}&quot;
+```</description>
+    
+    <lastBuildDate>Mon, 04 Jun 2018 15:29:18 +0000</lastBuildDate>
+    <category>Rules</category>
+    <atom:link href="https://forum.stackstorm.com/t/troubleshooting-rules-failing-to-start-executions/159.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Troubleshooting rules failing to start executions</title>
+        <dc:creator><![CDATA[parkerberb-nfv]]></dc:creator>
+        <description><![CDATA[
+            <p>It seems that changing the name in the trigger payload to <code>extra_keys</code> fixes this problem</p>
+          <p><a href="https://forum.stackstorm.com/t/troubleshooting-rules-failing-to-start-executions/159/6">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/troubleshooting-rules-failing-to-start-executions/159/6</link>
+        <pubDate>Mon, 04 Jun 2018 15:29:18 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-159-6</guid>
+        <source url="https://forum.stackstorm.com/t/troubleshooting-rules-failing-to-start-executions/159.rss">Troubleshooting rules failing to start executions</source>
+      </item>
+      <item>
+        <title>Troubleshooting rules failing to start executions</title>
+        <dc:creator><![CDATA[lhill]]></dc:creator>
+        <description><![CDATA[
+            <p>The other thing that’s going on here is your use of ‘keys’ - this is almost certainly getting confused with the Python dict built-in keys. I would recommend using a different name.</p>
+          <p><a href="https://forum.stackstorm.com/t/troubleshooting-rules-failing-to-start-executions/159/5">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/troubleshooting-rules-failing-to-start-executions/159/5</link>
+        <pubDate>Fri, 25 May 2018 19:34:47 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-159-5</guid>
+        <source url="https://forum.stackstorm.com/t/troubleshooting-rules-failing-to-start-executions/159.rss">Troubleshooting rules failing to start executions</source>
+      </item>
+      <item>
+        <title>Troubleshooting rules failing to start executions</title>
+        <dc:creator><![CDATA[lhill]]></dc:creator>
+        <description><![CDATA[
+            <p>It’s <em>possible</em> that the empty array is causing a problem. I haven’t tried using an empty array. As a test, what happens if you remove the <code>keys: “{{trigger.keys}}”</code> line from the rule?</p>
+<blockquote>
+<p>This did correspond with a change in structure of the trigger.</p>
+</blockquote>
+<p>What was the structure change?</p>
+          <p><a href="https://forum.stackstorm.com/t/troubleshooting-rules-failing-to-start-executions/159/4">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/troubleshooting-rules-failing-to-start-executions/159/4</link>
+        <pubDate>Fri, 25 May 2018 19:28:51 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-159-4</guid>
+        <source url="https://forum.stackstorm.com/t/troubleshooting-rules-failing-to-start-executions/159.rss">Troubleshooting rules failing to start executions</source>
+      </item>
+      <item>
+        <title>Troubleshooting rules failing to start executions</title>
+        <dc:creator><![CDATA[parkerberb-nfv]]></dc:creator>
+        <description><![CDATA[
+            <p>Yes. It’s hard to see in the output, but the rule enforcement shows that the trigger stopped successfully causing executions around a week ago. This did correspond with a change in structure of the trigger.</p>
+<pre><code class="lang-auto">+-----------------+-----------------------------------+
+| Property        | Value                             |
++-----------------+-----------------------------------+
+| id              | 5afeea8502ebd54ce683403c          |
+| trigger         | pharoslaas.end_deployment_trigger |
+| occurrence_time | 2018-05-18T15:00:21.132000Z       |
+| payload         | {                                 |
+|                 |     "keys": [],                   |
+|                 |     "host": "hpe16",              |
+|                 |     "user": 22,                   |
+|                 |     "key": "vpn_yCxgJZp0",        |
+|                 |     "booking": 145                |
+|                 | }                                 |
+| status          | processed                         |
++-----------------+-----------------------------------+
+</code></pre>
+<p>is the trigger instance. Is having an empty array invalid?</p>
+          <p><a href="https://forum.stackstorm.com/t/troubleshooting-rules-failing-to-start-executions/159/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/troubleshooting-rules-failing-to-start-executions/159/3</link>
+        <pubDate>Fri, 25 May 2018 18:54:22 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-159-3</guid>
+        <source url="https://forum.stackstorm.com/t/troubleshooting-rules-failing-to-start-executions/159.rss">Troubleshooting rules failing to start executions</source>
+      </item>
+      <item>
+        <title>Troubleshooting rules failing to start executions</title>
+        <dc:creator><![CDATA[lhill]]></dc:creator>
+        <description><![CDATA[
+            <blockquote>
+<p>I have a rule that has stopped working</p>
+</blockquote>
+<p>So it did work in the past, but no longer works? What has changed since? Different ST2 version, or change in the trigger content?</p>
+<p>My guess is that something’s failing to render due to some problem with the trigger body - e.g. maybe it doesn’t contain the expected <code>keys</code> value.</p>
+<p>What does <code>st2 trigger-instance get &lt;ID&gt;</code> look like, for one of your trigger instances?</p>
+          <p><a href="https://forum.stackstorm.com/t/troubleshooting-rules-failing-to-start-executions/159/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/troubleshooting-rules-failing-to-start-executions/159/2</link>
+        <pubDate>Fri, 25 May 2018 18:49:38 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-159-2</guid>
+        <source url="https://forum.stackstorm.com/t/troubleshooting-rules-failing-to-start-executions/159.rss">Troubleshooting rules failing to start executions</source>
+      </item>
+      <item>
+        <title>Troubleshooting rules failing to start executions</title>
+        <dc:creator><![CDATA[parkerberb-nfv]]></dc:creator>
+        <description><![CDATA[
+            <p>I have a rule that has stopped working. The rule tries to start an execution but fails.</p>
+<p>The following traceback is in my rules engine log:</p>
+<pre><code class="lang-auto">Traceback (most recent call last):
+  File "/opt/stackstorm/st2/lib/python2.7/site-packages/st2reactor/rules/enforcer.py", line 94, in enforce
+    execution_db = self._do_enforce()
+  File "/opt/stackstorm/st2/lib/python2.7/site-packages/st2reactor/rules/enforcer.py", line 143, in _do_enforce
+    additional_contexts=additional_contexts)
+  File "/opt/stackstorm/st2/lib/python2.7/site-packages/st2reactor/rules/enforcer.py", line 196, in _invoke_action
+    additional_contexts=additional_contexts)
+  File "/opt/stackstorm/st2/lib/python2.7/site-packages/st2reactor/rules/enforcer.py", line 80, in get_resolved_parameters
+    additional_contexts=additional_contexts)
+  File "/opt/stackstorm/st2/lib/python2.7/site-packages/st2common/util/param.py", line 298, in render_live_params
+    live_params = _cast_params_from(params, context, [action_parameters, runner_parameters])
+  File "/opt/stackstorm/st2/lib/python2.7/site-packages/st2common/util/param.py", line 232, in _cast_params_from
+    result[name] = _cast(context[name], param_schema)
+  File "/opt/stackstorm/st2/lib/python2.7/site-packages/st2common/util/param.py", line 75, in _cast
+    return cast(v)
+  File "/opt/stackstorm/st2/lib/python2.7/site-packages/st2common/util/casts.py", line 39, in _cast_object
+    return ast.literal_eval(x)
+  File "/usr/lib64/python2.7/ast.py", line 49, in literal_eval
+    node_or_string = parse(node_or_string, mode='eval')
+  File "/usr/lib64/python2.7/ast.py", line 37, in parse
+    return compile(source, filename, mode, PyCF_ONLY_AST)
+  File "&lt;unknown&gt;", line 1
+    &lt;built-in method keys of BaseDict object at 0x57be940&gt;
+    ^
+</code></pre>
+<p>relevant output of rule-enforcement:</p>
+<pre><code class="lang-auto">+--------------------------+--------------------------------------+--------------------------+--------------------------+-----------------------------+
+| id                       | rule.ref                             | trigger_instance_id      | execution_id             | enforced_at                 |
++--------------------------+--------------------------------------+--------------------------+--------------------------+-----------------------------+
+| 5b07c28402ebd54ce6865159 | pharoslaas.on_end_deployment_trigger | 5b07c28402ebd54ce6865156 |                          | 2018-05-25T08:00:04.151003Z |
+| 5b078a4602ebd54ce6863fb0 | pharoslaas.on_end_deployment_trigger | 5b078a4602ebd54ce6863fae |                          | 2018-05-25T04:00:06.067578Z |
+| 5b0735e902ebd54ce6862587 | pharoslaas.on_end_deployment_trigger | 5b0735e902ebd54ce6862584 |                          | 2018-05-24T22:00:09.247676Z |
+| 5b06008002ebd54ce685c5b6 | pharoslaas.on_end_deployment_trigger | 5b06008002ebd54ce685c5b3 |                          | 2018-05-24T00:00:00.779763Z |
+| 5afeea8502ebd54ce683403f | pharoslaas.on_end_deployment_trigger | 5afeea8502ebd54ce683403c |                          | 2018-05-18T15:00:21.166756Z |
+| 5afea43802ebd54ce68331a0 | pharoslaas.on_end_deployment_trigger | 5afea43702ebd54ce683319d |                          | 2018-05-18T10:00:24.003795Z |
+| 5afbec2802ebd54ce682a537 | pharoslaas.on_end_deployment_trigger | 5afbec2802ebd54ce682a533 | 5afbec2802ebd54ce682a536 | 2018-05-16T08:30:32.414416Z |
+| 5afbc1f902ebd54ce682a01a | pharoslaas.on_end_deployment_trigger | 5afbc1f902ebd54ce682a015 | 5afbc1f902ebd54ce682a019 | 2018-05-16T05:30:33.624886Z |
+</code></pre>
+<p>And trigger-list</p>
+<pre><code class="lang-auto">+--------------------------+-----------------------------------+-------------------------------+-----------+
+| id                       | trigger                           | occurrence_time               | status    |
++--------------------------+-----------------------------------+-------------------------------+-----------+
+| 5afbec2802ebd54ce682a533 | pharoslaas.end_deployment_trigger | Wed, 16 May 2018 08:30:32 UTC | processed |
+| 5afea43702ebd54ce683319d | pharoslaas.end_deployment_trigger | Fri, 18 May 2018 10:00:23 UTC | processed |
+| 5afeea8502ebd54ce683403c | pharoslaas.end_deployment_trigger | Fri, 18 May 2018 15:00:21 UTC | processed |
+| 5b06008002ebd54ce685c5b3 | pharoslaas.end_deployment_trigger | Thu, 24 May 2018 00:00:00 UTC | processed |
+| 5b0735e902ebd54ce6862584 | pharoslaas.end_deployment_trigger | Thu, 24 May 2018 22:00:09 UTC | processed |
+| 5b078a4602ebd54ce6863fae | pharoslaas.end_deployment_trigger | Fri, 25 May 2018 04:00:06 UTC | processed |
+| 5b07c28402ebd54ce6865156 | pharoslaas.end_deployment_trigger | Fri, 25 May 2018 08:00:04 UTC | processed |
++--------------------------+-----------------------------------+-------------------------------+-----------+
+</code></pre>
+<p>And the rule itself:</p>
+<pre><code class="lang-auto">---
+name: on_end_deployment_trigger
+pack: pharoslaas
+description: dummy rule to link end deployment trigger to clean action
+enabled: true
+trigger:
+    type: pharoslaas.end_deployment_trigger
+action:
+    ref: pharoslaas.clean-workflow
+    parameters:
+        host: "{{ trigger.host }}"
+        key: "{{trigger.key}}"
+        user: "{{trigger.user}}"
+        keys: "{{trigger.keys}}"
+</code></pre>
+          <p><a href="https://forum.stackstorm.com/t/troubleshooting-rules-failing-to-start-executions/159/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/troubleshooting-rules-failing-to-start-executions/159/1</link>
+        <pubDate>Fri, 25 May 2018 14:50:52 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-159-1</guid>
+        <source url="https://forum.stackstorm.com/t/troubleshooting-rules-failing-to-start-executions/159.rss">Troubleshooting rules failing to start executions</source>
+      </item>
+  </channel>
+</rss>

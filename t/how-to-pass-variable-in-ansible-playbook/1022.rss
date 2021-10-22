@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>How to pass variable in ansible.playbook</title>
+    <link>https://forum.stackstorm.com/t/how-to-pass-variable-in-ansible-playbook/1022</link>
+    <description>I am running ansible into stackstorm. My workflow is working when i will comment the inputs that is ip, username and password. That means It is not excepting ip, username and password as input, So please suggest me any other way to pass input to playbook.
+----------------------------------------------------------------------------
+HERE is the code error message:
+result:
+  errors:
+  - message: Action &quot;ansible.playbook&quot; has unexpected input &quot;ip&quot;.
+    schema_path: properties.tasks.patternProperties.^\w+$.properties.input.patternProperties.^\w+$
+    spec_path: tasks.task1.input.ip
+    type: content
+  output: null
+-----------------------------------------------------------------
+
+Here is my workflow code:
+---
+version: &quot;1.0&quot;
+description: &quot;A domain controller workflow that demonstrates disk space and compress log files.&quot;
+input:
+  - ip
+  - username
+  - password
+
+tasks:
+  check_vm_status:
+    action: ntt_windows_domain_controllers.check_disk_space
+    input:
+      ip: &lt;% ctx().ip %&gt;
+      username: &lt;% ctx().username %&gt;
+      password: &lt;% ctx().password %&gt;
+    next:
+      - when: &lt;% succeeded() %&gt;
+        publish:
+          - stdout: &lt;% result() %&gt;
+      - when: &lt;% failed() %&gt;
+        publish:
+          - stdout: &lt;% result() %&gt;</description>
+    
+    <lastBuildDate>Tue, 04 Feb 2020 21:03:19 +0000</lastBuildDate>
+    <category>Workflows</category>
+    <atom:link href="https://forum.stackstorm.com/t/how-to-pass-variable-in-ansible-playbook/1022.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>How to pass variable in ansible.playbook</title>
+        <dc:creator><![CDATA[punkrokk]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi <a class="mention" href="https://github.com/mksindri">@mksindri</a>.</p>
+<p>It looks like your workflow properties file in the actions folder is incorrect. Can you share that file here, using the <code>Preformatted text</code> button?</p>
+          <p><a href="https://forum.stackstorm.com/t/how-to-pass-variable-in-ansible-playbook/1022/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-to-pass-variable-in-ansible-playbook/1022/2</link>
+        <pubDate>Tue, 04 Feb 2020 21:03:19 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1022-2</guid>
+        <source url="https://forum.stackstorm.com/t/how-to-pass-variable-in-ansible-playbook/1022.rss">How to pass variable in ansible.playbook</source>
+      </item>
+      <item>
+        <title>How to pass variable in ansible.playbook</title>
+        <dc:creator><![CDATA[mksindri]]></dc:creator>
+        <description><![CDATA[
+            <h2>I am running ansible into stackstorm. My workflow is working when i will comment the inputs that is ip, username and password. That means It is not excepting ip, username and password as input, So please suggest me any other way to pass input to playbook.</h2>
+<p>HERE is the code error message:<br>
+result:<br>
+errors:</p>
+<ul>
+<li>message: Action “ansible.playbook” has unexpected input “ip”.<br>
+schema_path: properties.tasks.patternProperties.^\w+<span class="math">.properties.input.patternProperties.^\w+</span><br>
+spec_path: tasks.task1.input.ip<br>
+type: content<br>
+output: null</li>
+</ul>
+<hr>
+<h2>Here is my workflow code:</h2>
+<p>version: “1.0”<br>
+description: “A domain controller workflow that demonstrates disk space and compress log files.”<br>
+input:</p>
+<ul>
+<li>ip</li>
+<li>username</li>
+<li>password</li>
+</ul>
+<p>tasks:<br>
+check_vm_status:<br>
+action: ntt_windows_domain_controllers.check_disk_space<br>
+input:<br>
+ip: &lt;% ctx().ip %&gt;<br>
+username: &lt;% ctx().username %&gt;<br>
+password: &lt;% ctx().password %&gt;<br>
+next:<br>
+- when: &lt;% succeeded() %&gt;<br>
+publish:<br>
+- stdout: &lt;% result() %&gt;<br>
+- when: &lt;% failed() %&gt;<br>
+publish:<br>
+- stdout: &lt;% result() %&gt;</p>
+          <p><a href="https://forum.stackstorm.com/t/how-to-pass-variable-in-ansible-playbook/1022/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-to-pass-variable-in-ansible-playbook/1022/1</link>
+        <pubDate>Thu, 30 Jan 2020 13:59:53 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1022-1</guid>
+        <source url="https://forum.stackstorm.com/t/how-to-pass-variable-in-ansible-playbook/1022.rss">How to pass variable in ansible.playbook</source>
+      </item>
+  </channel>
+</rss>

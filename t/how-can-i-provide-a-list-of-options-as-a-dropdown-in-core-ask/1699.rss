@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>How can I provide a list of options as a dropdown in core.ask</title>
+    <link>https://forum.stackstorm.com/t/how-can-i-provide-a-list-of-options-as-a-dropdown-in-core-ask/1699</link>
+    <description>Hello, 
+In my workflow, I&#39;m trying to provide a list of options to the user to choose from in &quot;core.ask&quot; action. This list is a published variable from the previous task. How do I achieve this?
+
+    choose_target_state:
+        action: core.ask
+        input:
+          schema:
+            type: object
+            properties:
+              allowed_states:
+               type: string
+                description: &quot;Target state&quot;
+                required: true
+                enum:
+                  - with: 
+                      items: &lt;% ctx(target_states) %&gt;
+
+This does not seem to work. It causes the UI to crash/reload when the option is provided like this. 
+
+in the st2debug, this is what I see - 
+
+{&quot;allowed_nss_states&quot;: {&quot;required&quot;: true, &quot;type&quot;: &quot;string&quot;, &quot;description&quot;: &quot;Target state&quot;, &quot;enum&quot;: [{&quot;with&quot;: {&quot;items&quot;: [&quot;InM&quot;, &quot;InP&quot;, &quot;InR&quot;, &quot;DR&quot;, &quot;D&quot;, &quot;InM&quot;]}}]}}}}</description>
+    
+    <lastBuildDate>Fri, 14 May 2021 02:57:47 +0000</lastBuildDate>
+    <category>Workflows</category>
+    <atom:link href="https://forum.stackstorm.com/t/how-can-i-provide-a-list-of-options-as-a-dropdown-in-core-ask/1699.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>How can I provide a list of options as a dropdown in core.ask</title>
+        <dc:creator><![CDATA[kaushikrishna]]></dc:creator>
+        <description><![CDATA[
+            <p>Turns out it was quite simple, I just had to do it the following way -</p>
+<pre><code>enum: &lt;% ctx(target_states) %&gt;</code></pre>
+          <p><a href="https://forum.stackstorm.com/t/how-can-i-provide-a-list-of-options-as-a-dropdown-in-core-ask/1699/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-can-i-provide-a-list-of-options-as-a-dropdown-in-core-ask/1699/2</link>
+        <pubDate>Fri, 14 May 2021 02:57:47 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1699-2</guid>
+        <source url="https://forum.stackstorm.com/t/how-can-i-provide-a-list-of-options-as-a-dropdown-in-core-ask/1699.rss">How can I provide a list of options as a dropdown in core.ask</source>
+      </item>
+      <item>
+        <title>How can I provide a list of options as a dropdown in core.ask</title>
+        <dc:creator><![CDATA[kaushikrishna]]></dc:creator>
+        <description><![CDATA[
+            <p>Hello,<br>
+In my workflow, I’m trying to provide a list of options to the user to choose from in “core.ask” action. This list is a published variable from the previous task. How do I achieve this?</p>
+<pre><code>choose_target_state:
+    action: core.ask
+    input:
+      schema:
+        type: object
+        properties:
+          allowed_states:
+           type: string
+            description: "Target state"
+            required: true
+            enum:
+              - with: 
+                  items: &lt;% ctx(target_states) %&gt;
+</code></pre>
+<p>This does not seem to work. It causes the UI to crash/reload when the option is provided like this.</p>
+<p>in the st2debug, this is what I see -</p>
+<p>{“allowed_nss_states”: {“required”: true, “type”: “string”, “description”: “Target state”, “enum”: [{“with”: {“items”: [“InM”, “InP”, “InR”, “DR”, “D”, “InM”]}}]}}}}</p>
+          <p><a href="https://forum.stackstorm.com/t/how-can-i-provide-a-list-of-options-as-a-dropdown-in-core-ask/1699/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-can-i-provide-a-list-of-options-as-a-dropdown-in-core-ask/1699/1</link>
+        <pubDate>Fri, 14 May 2021 02:06:38 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1699-1</guid>
+        <source url="https://forum.stackstorm.com/t/how-can-i-provide-a-list-of-options-as-a-dropdown-in-core-ask/1699.rss">How can I provide a list of options as a dropdown in core.ask</source>
+      </item>
+  </channel>
+</rss>

@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>ModuleNotFoundError: No module named &#39;pyVmomi&#39;</title>
+    <link>https://forum.stackstorm.com/t/modulenotfounderror-no-module-named-pyvmomi/1687</link>
+    <description>Hi,
+
+I started to use SS in docker (st2 3.4.1, on Python 3.6.9) trying to use the vSphere pack (https://github.com/StackStorm-Exchange/stackstorm-vsphere). 
+
+Anybody know if this stackstorm-vsphere is compatible with the docker version I have? For instance, trying to run this one gives:
+
+&gt; root@4c6f59446f79:/opt/stackstorm/st2/lib/python3.6/site-packages# st2 run vsphere.hello_vsphere
+&gt; .
+&gt; id: 609aa2612947a0547d7341e5
+&gt; action.ref: vsphere.hello_vsphere
+&gt; context.user: st2admin
+&gt; parameters: None
+&gt; status: failed
+&gt; start_timestamp: Tue, 11 May 2021 15:27:29 UTC
+&gt; end_timestamp: Tue, 11 May 2021 15:27:31 UTC
+&gt; result:
+&gt;   exit_code: 1
+&gt;   result: None
+&gt;   stderr: &quot;Traceback (most recent call last):
+&gt;   File &quot;/opt/stackstorm/st2/lib/python3.6/site-packages/python_runner/python_action_wrapper.py&quot;, line 238, in _get_action_instance
+&gt;     actions_cls = action_loader.register_plugin(Action, self._file_path)
+&gt;   File &quot;/opt/stackstorm/st2/lib/python3.6/site-packages/st2common/util/loader.py&quot;, line 166, in register_plugin
+&gt;     module = imp.load_source(module_name, plugin_abs_file_path)
+&gt;   File &quot;/opt/stackstorm/virtualenvs/vsphere/lib/python3.6/imp.py&quot;, line 172, in load_source
+&gt;     module = _load(spec)
+&gt;   File &quot;&lt;frozen importlib._bootstrap&gt;&quot;, line 684, in _load
+&gt;   File &quot;&lt;frozen importlib._bootstrap&gt;&quot;, line 665, in _load_unlocked
+&gt;   File &quot;&lt;frozen importlib._bootstrap_external&gt;&quot;, line 678, in exec_module
+&gt;   File &quot;&lt;frozen importlib._bootstrap&gt;&quot;, line 219, in _call_with_frames_removed
+&gt;   File &quot;/opt/stackstorm/packs/vsphere/actions/hello_vsphere.py&quot;, line 16, in &lt;module&gt;
+&gt;     from vmwarelib.actions import BaseAction
+&gt;   File &quot;/opt/stackstorm/packs/vsphere/actions/vmwarelib/actions.py&quot;, line 21, in &lt;module&gt;
+&gt;     from pyVim import connect
+&gt;   File &quot;/opt/stackstorm/virtualenvs/vsphere/lib/python3.6/site-packages/pyVim/connect.py&quot;, line 230
+&gt;     except ValueError, ve:
+&gt;                      ^
+&gt; SyntaxError: invalid syntax
+&gt; 
+&gt; During handling of the above exception, another exception occurred:
+&gt; 
+&gt; Traceback (most recent call last):
+&gt;   File &quot;/opt/stackstorm/st2/lib/python3.6/site-packages/python_runner/python_action_wrapper.py&quot;, line 334, in &lt;module&gt;
+&gt;     obj.run()
+&gt;   File &quot;/opt/stackstorm/st2/lib/python3.6/site-packages/python_runner/python_action_wrapper.py&quot;, line 192, in run
+&gt;     action = self._get_action_instance()
+&gt;   File &quot;/opt/stackstorm/st2/lib/python3.6/site-packages/python_runner/python_action_wrapper.py&quot;, line 245, in _get_action_instance
+&gt;     raise exc_cls(msg)
+&gt; SyntaxError: Failed to load action class from file &quot;/opt/stackstorm/packs/vsphere/actions/hello_vsphere.py&quot; (action file most likely doesn&#39;t exist or contains invalid syntax): invalid syntax (connect.py, line 230)
+&gt; 
+&gt; Traceback (most recent call last):
+&gt;   File &quot;/opt/stackstorm/st2/lib/python3.6/site-packages/python_runner/python_action_wrapper.py&quot;, line 238, in _get_action_instance
+&gt;     actions_cls = action_loader.register_plugin(Action, self._file_path)
+&gt;   File &quot;/opt/stackstorm/st2/lib/python3.6/site-packages/st2common/util/loader.py&quot;, line 166, in register_plugin
+&gt;     module = imp.load_source(module_name, plugin_abs_file_path)
+&gt;   File &quot;/opt/stackstorm/virtualenvs/vsphere/lib/python3.6/imp.py&quot;, line 172, in load_source
+&gt;     module = _load(spec)
+&gt;   File &quot;&lt;frozen importlib._bootstrap&gt;&quot;, line 684, in _load
+&gt;   File &quot;&lt;frozen importlib._bootstrap&gt;&quot;, line 665, in _load_unlocked
+&gt;   File &quot;&lt;frozen importlib._bootstrap_external&gt;&quot;, line 678, in exec_module
+&gt;   File &quot;&lt;frozen importlib._bootstrap&gt;&quot;, line 219, in _call_with_frames_removed
+&gt;   File &quot;/opt/stackstorm/packs/vsphere/actions/hello_vsphere.py&quot;, line 16, in &lt;module&gt;
+&gt;     from vmwarelib.actions import BaseAction
+&gt;   File &quot;/opt/stackstorm/packs/vsphere/actions/vmwarelib/actions.py&quot;, line 21, in &lt;module&gt;
+&gt;     from pyVim import connect
+&gt;   File &quot;/opt/stackstorm/virtualenvs/vsphere/lib/python3.6/site-packages/pyVim/connect.py&quot;, line 230
+&gt;     except ValueError, ve:
+&gt;                      ^
+&gt; SyntaxError: invalid syntax
+&gt; 
+&gt; &quot;
+&gt;   stdout: &#39;&#39;
+
+This pyVim/connect.py is not found in the virtualenvs directory. I assume this is referring to /opt/stackstorm/st2/lib/python3.6/site-packages/pyVim/connect.py??
+
+&gt; root@4c6f59446f79:/opt/stackstorm/st2/lib/python3.6/site-packages# ls -l /opt/stackstorm/virtualenvs/vsphere/lib/python3.6/site-packages/pyVim/connect.py
+&gt; ls: cannot access &#39;/opt/stackstorm/virtualenvs/vsphere/lib/python3.6/site-packages/pyVim/connect.py&#39;: No such file or directory
+&gt; root@4c6f59446f79:/opt/stackstorm/st2/lib/python3.6/site-packages# find / -name connect.py
+&gt; /opt/stackstorm/st2/lib/python3.6/site-packages/pyVim/connect.py
+&gt; /usr/local/lib/python3.6/dist-packages/pyVim/connect.py
+
+In the source file, connect.py, I see:
+
+&gt; except ValueError as ve:
+
+This seems like a correct syntax for Python3, but the error above shows:
+
+&gt; except ValueError, ve:
+
+So I am pretty confused about where the error is actually coming from.
+
+
+Furthermore, In the latest VMware vSphere Python SDK, while running sample scripts converted as SS actions, I get ModuleNotFoundError: No module named &#39;pyVmomi&#39; even after installing pyvmoni locally (I have pyvmomi (7.0.2)). These samples files with main in them run ok if I directly run it as python3 file_name.
+
+This is because the code has the top import as:
+&gt; from pyVmomi import vmodl
+&gt; from tools import cli, service_instance
+
+Do I need to modify PYTHONPATH or what am I missing to get vSphere actions running? Is this a docker specific issue possibly??
+
+I must be missing something simple... Any info is appreciated. Thanks!</description>
+    
+    <lastBuildDate>Thu, 13 May 2021 13:55:53 +0000</lastBuildDate>
+    <category>Platform</category>
+    <atom:link href="https://forum.stackstorm.com/t/modulenotfounderror-no-module-named-pyvmomi/1687.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>ModuleNotFoundError: No module named &#39;pyVmomi&#39;</title>
+        <dc:creator><![CDATA[duoduo]]></dc:creator>
+        <description><![CDATA[
+            <p>I ran:<br>
+st2 run packs.setup_virtualenv packs=vsphere, activated the vsphere’s virtualenv and pip3 install --upgrade pyvmomi.<br>
+Though the virtualenv is not accessible under /opt/stackstorm/virtualenvs (vsphere doesn’t exist), st2 vsphere actions appear to run ok now.</p>
+<p>Thank you for your input.</p>
+          <p><a href="https://forum.stackstorm.com/t/modulenotfounderror-no-module-named-pyvmomi/1687/4">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/modulenotfounderror-no-module-named-pyvmomi/1687/4</link>
+        <pubDate>Thu, 13 May 2021 13:55:53 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1687-4</guid>
+        <source url="https://forum.stackstorm.com/t/modulenotfounderror-no-module-named-pyvmomi/1687.rss">ModuleNotFoundError: No module named &#39;pyVmomi&#39;</source>
+      </item>
+      <item>
+        <title>ModuleNotFoundError: No module named &#39;pyVmomi&#39;</title>
+        <dc:creator><![CDATA[duoduo]]></dc:creator>
+        <description><![CDATA[
+            <p>No, it does not. Should I create one with “st2 run packs.setup_virtualenv packs=vsphere”, activate the vsphere’s virtualenv and pip3 install pyvmomi and retry?</p>
+<p>Does this virtualenv have to be manually created for any docker pack?</p>
+<p>Thank you for your response.</p>
+          <p><a href="https://forum.stackstorm.com/t/modulenotfounderror-no-module-named-pyvmomi/1687/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/modulenotfounderror-no-module-named-pyvmomi/1687/3</link>
+        <pubDate>Tue, 11 May 2021 21:31:36 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1687-3</guid>
+        <source url="https://forum.stackstorm.com/t/modulenotfounderror-no-module-named-pyvmomi/1687.rss">ModuleNotFoundError: No module named &#39;pyVmomi&#39;</source>
+      </item>
+      <item>
+        <title>ModuleNotFoundError: No module named &#39;pyVmomi&#39;</title>
+        <dc:creator><![CDATA[blag]]></dc:creator>
+        <description><![CDATA[
+            <p>Does <code>/opt/stackstorm/virtualenvs/vsphere</code> exist within the Docker container?</p>
+          <p><a href="https://forum.stackstorm.com/t/modulenotfounderror-no-module-named-pyvmomi/1687/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/modulenotfounderror-no-module-named-pyvmomi/1687/2</link>
+        <pubDate>Tue, 11 May 2021 18:21:44 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1687-2</guid>
+        <source url="https://forum.stackstorm.com/t/modulenotfounderror-no-module-named-pyvmomi/1687.rss">ModuleNotFoundError: No module named &#39;pyVmomi&#39;</source>
+      </item>
+      <item>
+        <title>ModuleNotFoundError: No module named &#39;pyVmomi&#39;</title>
+        <dc:creator><![CDATA[duoduo]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi,</p>
+<p>I started to use SS in docker (st2 3.4.1, on Python 3.6.9) trying to use the vSphere pack (<a href="https://github.com/StackStorm-Exchange/stackstorm-vsphere" class="inline-onebox" rel="noopener nofollow ugc">GitHub - StackStorm-Exchange/stackstorm-vsphere</a>).</p>
+<p>Anybody know if this stackstorm-vsphere is compatible with the docker version I have? For instance, trying to run this one gives:</p>
+<blockquote>
+<p>root@4c6f59446f79:/opt/stackstorm/st2/lib/python3.6/site-packages# st2 run vsphere.hello_vsphere<br>
+.<br>
+id: 609aa2612947a0547d7341e5<br>
+action.ref: vsphere.hello_vsphere<br>
+context.user: st2admin<br>
+parameters: None<br>
+status: failed<br>
+start_timestamp: Tue, 11 May 2021 15:27:29 UTC<br>
+end_timestamp: Tue, 11 May 2021 15:27:31 UTC<br>
+result:<br>
+exit_code: 1<br>
+result: None<br>
+stderr: "Traceback (most recent call last):<br>
+File “/opt/stackstorm/st2/lib/python3.6/site-packages/python_runner/python_action_wrapper.py”, line 238, in _get_action_instance<br>
+actions_cls = action_loader.register_plugin(Action, self._file_path)<br>
+File “/opt/stackstorm/st2/lib/python3.6/site-packages/st2common/util/loader.py”, line 166, in register_plugin<br>
+module = imp.load_source(module_name, plugin_abs_file_path)<br>
+File “/opt/stackstorm/virtualenvs/vsphere/lib/python3.6/imp.py”, line 172, in load_source<br>
+module = _load(spec)<br>
+File “”, line 684, in _load<br>
+File “”, line 665, in _load_unlocked<br>
+File “”, line 678, in exec_module<br>
+File “”, line 219, in _call_with_frames_removed<br>
+File “/opt/stackstorm/packs/vsphere/actions/hello_vsphere.py”, line 16, in <br>
+from vmwarelib.actions import BaseAction<br>
+File “/opt/stackstorm/packs/vsphere/actions/vmwarelib/actions.py”, line 21, in <br>
+from pyVim import connect<br>
+File “/opt/stackstorm/virtualenvs/vsphere/lib/python3.6/site-packages/pyVim/connect.py”, line 230<br>
+except ValueError, ve:<br>
+^<br>
+SyntaxError: invalid syntax</p>
+<p>During handling of the above exception, another exception occurred:</p>
+<p>Traceback (most recent call last):<br>
+File “/opt/stackstorm/st2/lib/python3.6/site-packages/python_runner/python_action_wrapper.py”, line 334, in <br>
+obj.run()<br>
+File “/opt/stackstorm/st2/lib/python3.6/site-packages/python_runner/python_action_wrapper.py”, line 192, in run<br>
+action = self._get_action_instance()<br>
+File “/opt/stackstorm/st2/lib/python3.6/site-packages/python_runner/python_action_wrapper.py”, line 245, in _get_action_instance<br>
+raise exc_cls(msg)<br>
+SyntaxError: Failed to load action class from file “/opt/stackstorm/packs/vsphere/actions/hello_vsphere.py” (action file most likely doesn’t exist or contains invalid syntax): invalid syntax (connect.py, line 230)</p>
+<p>Traceback (most recent call last):<br>
+File “/opt/stackstorm/st2/lib/python3.6/site-packages/python_runner/python_action_wrapper.py”, line 238, in _get_action_instance<br>
+actions_cls = action_loader.register_plugin(Action, self._file_path)<br>
+File “/opt/stackstorm/st2/lib/python3.6/site-packages/st2common/util/loader.py”, line 166, in register_plugin<br>
+module = imp.load_source(module_name, plugin_abs_file_path)<br>
+File “/opt/stackstorm/virtualenvs/vsphere/lib/python3.6/imp.py”, line 172, in load_source<br>
+module = _load(spec)<br>
+File “”, line 684, in _load<br>
+File “”, line 665, in _load_unlocked<br>
+File “”, line 678, in exec_module<br>
+File “”, line 219, in _call_with_frames_removed<br>
+File “/opt/stackstorm/packs/vsphere/actions/hello_vsphere.py”, line 16, in <br>
+from vmwarelib.actions import BaseAction<br>
+File “/opt/stackstorm/packs/vsphere/actions/vmwarelib/actions.py”, line 21, in <br>
+from pyVim import connect<br>
+File “/opt/stackstorm/virtualenvs/vsphere/lib/python3.6/site-packages/pyVim/connect.py”, line 230<br>
+except ValueError, ve:<br>
+^<br>
+SyntaxError: invalid syntax</p>
+<p>"<br>
+stdout: ‘’</p>
+</blockquote>
+<p>This pyVim/connect.py is not found in the virtualenvs directory. I assume this is referring to /opt/stackstorm/st2/lib/python3.6/site-packages/pyVim/connect.py??</p>
+<blockquote>
+<p>root@4c6f59446f79:/opt/stackstorm/st2/lib/python3.6/site-packages# ls -l /opt/stackstorm/virtualenvs/vsphere/lib/python3.6/site-packages/pyVim/connect.py<br>
+ls: cannot access ‘/opt/stackstorm/virtualenvs/vsphere/lib/python3.6/site-packages/pyVim/connect.py’: No such file or directory<br>
+root@4c6f59446f79:/opt/stackstorm/st2/lib/python3.6/site-packages# find / -name connect.py<br>
+/opt/stackstorm/st2/lib/python3.6/site-packages/pyVim/connect.py<br>
+/usr/local/lib/python3.6/dist-packages/pyVim/connect.py</p>
+</blockquote>
+<p>In the source file, connect.py, I see:</p>
+<blockquote>
+<p>except ValueError as ve:</p>
+</blockquote>
+<p>This seems like a correct syntax for Python3, but the error above shows:</p>
+<blockquote>
+<p>except ValueError, ve:</p>
+</blockquote>
+<p>So I am pretty confused about where the error is actually coming from.</p>
+<p>Furthermore, In the latest VMware vSphere Python SDK, while running sample scripts converted as SS actions, I get ModuleNotFoundError: No module named ‘pyVmomi’ even after installing pyvmoni locally (I have pyvmomi (7.0.2)). These samples files with main in them run ok if I directly run it as python3 file_name.</p>
+<p>This is because the code has the top import as:</p>
+<blockquote>
+<p>from pyVmomi import vmodl<br>
+from tools import cli, service_instance</p>
+</blockquote>
+<p>Do I need to modify PYTHONPATH or what am I missing to get vSphere actions running? Is this a docker specific issue possibly??</p>
+<p>I must be missing something simple… Any info is appreciated. Thanks!</p>
+          <p><a href="https://forum.stackstorm.com/t/modulenotfounderror-no-module-named-pyvmomi/1687/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/modulenotfounderror-no-module-named-pyvmomi/1687/1</link>
+        <pubDate>Tue, 11 May 2021 15:43:09 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1687-1</guid>
+        <source url="https://forum.stackstorm.com/t/modulenotfounderror-no-module-named-pyvmomi/1687.rss">ModuleNotFoundError: No module named &#39;pyVmomi&#39;</source>
+      </item>
+  </channel>
+</rss>

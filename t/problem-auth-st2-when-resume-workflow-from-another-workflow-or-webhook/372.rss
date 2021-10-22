@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Problem auth st2 when resume workflow from another workflow or webhook</title>
+    <link>https://forum.stackstorm.com/t/problem-auth-st2-when-resume-workflow-from-another-workflow-or-webhook/372</link>
+    <description>Hi, I have a mistral workflow in pause and I want resume from another workflow with:
+
+st2 execute resume &quot;ID_workflow&quot; -t &quot;token&quot; 
+
+but the ouput is
+
+ERROR: 401 Client Error: Unauthorized
+MESSAGE: Unauthorized - One of Token or API key required. for url: http://st2api:9101/executions/5bf2d5b8b2efc800159997f8
+
+The token its ok becouse when i use the following command works fine:
+
+st2 execution list -t token 
+
+I tried use a webhook but get the same problem, so the question is how to resume workflow with another workflow or webhook?</description>
+    
+    <lastBuildDate>Fri, 23 Nov 2018 15:23:44 +0000</lastBuildDate>
+    <category>Mistral</category>
+    <atom:link href="https://forum.stackstorm.com/t/problem-auth-st2-when-resume-workflow-from-another-workflow-or-webhook/372.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Problem auth st2 when resume workflow from another workflow or webhook</title>
+        <dc:creator><![CDATA[ivan]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi, now I put credentiales st2 in /root/.st2/config becouse the command st2 execution resume “workflow_id” -t “token” isn’t working for me.</p>
+<p>Now:<br>
+-<br>
+name: “obtener_workflowid”<br>
+ref: “core.local_sudo”<br>
+parameters:<br>
+cmd: “cat /opt/stackstorm/packs/default/event_workflow_id/{{message2}}”<br>
+on-success: “reanudar_workflow”</p>
+<pre><code>    - 
+        name: "reanudar_workflow"
+        ref: "core.local_sudo"
+        parameters:
+            cmd: "st2 execution resume {{obtener_workflowid.stdout}}"
+</code></pre>
+<p>Before:<br>
+-<br>
+name: “reanudar_workflow”<br>
+ref: “core.local_sudo”<br>
+parameters:<br>
+cmd: “st2 execution resume {{obtener_workflowid.stdout}} -t {{token}}”</p>
+<p>In this case I check why failed the workflow with commando st2 execution get workflowid and the error is permission deny for execute st2 execution resume.</p>
+          <p><a href="https://forum.stackstorm.com/t/problem-auth-st2-when-resume-workflow-from-another-workflow-or-webhook/372/5">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/problem-auth-st2-when-resume-workflow-from-another-workflow-or-webhook/372/5</link>
+        <pubDate>Fri, 23 Nov 2018 15:23:44 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-372-5</guid>
+        <source url="https://forum.stackstorm.com/t/problem-auth-st2-when-resume-workflow-from-another-workflow-or-webhook/372.rss">Problem auth st2 when resume workflow from another workflow or webhook</source>
+      </item>
+      <item>
+        <title>Problem auth st2 when resume workflow from another workflow or webhook</title>
+        <dc:creator><![CDATA[lhill]]></dc:creator>
+        <description><![CDATA[
+            <blockquote>
+<p>What does your workflow YAML look like?</p>
+</blockquote>
+          <p><a href="https://forum.stackstorm.com/t/problem-auth-st2-when-resume-workflow-from-another-workflow-or-webhook/372/4">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/problem-auth-st2-when-resume-workflow-from-another-workflow-or-webhook/372/4</link>
+        <pubDate>Tue, 20 Nov 2018 15:32:40 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-372-4</guid>
+        <source url="https://forum.stackstorm.com/t/problem-auth-st2-when-resume-workflow-from-another-workflow-or-webhook/372.rss">Problem auth st2 when resume workflow from another workflow or webhook</source>
+      </item>
+      <item>
+        <title>Problem auth st2 when resume workflow from another workflow or webhook</title>
+        <dc:creator><![CDATA[ivan]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi, I tried with command st2 execute resume “workflow_id” -t “token” and get the same problem but not if I use st2 execute list -t “token”.<br>
+For now my solution is put credentials in /root/.st2/config</p>
+          <p><a href="https://forum.stackstorm.com/t/problem-auth-st2-when-resume-workflow-from-another-workflow-or-webhook/372/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/problem-auth-st2-when-resume-workflow-from-another-workflow-or-webhook/372/3</link>
+        <pubDate>Tue, 20 Nov 2018 12:09:59 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-372-3</guid>
+        <source url="https://forum.stackstorm.com/t/problem-auth-st2-when-resume-workflow-from-another-workflow-or-webhook/372.rss">Problem auth st2 when resume workflow from another workflow or webhook</source>
+      </item>
+      <item>
+        <title>Problem auth st2 when resume workflow from another workflow or webhook</title>
+        <dc:creator><![CDATA[lhill]]></dc:creator>
+        <description><![CDATA[
+            <p>What does your workflow YAML look like? My first guess is that you’re not passing the token properly.</p>
+          <p><a href="https://forum.stackstorm.com/t/problem-auth-st2-when-resume-workflow-from-another-workflow-or-webhook/372/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/problem-auth-st2-when-resume-workflow-from-another-workflow-or-webhook/372/2</link>
+        <pubDate>Mon, 19 Nov 2018 22:17:21 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-372-2</guid>
+        <source url="https://forum.stackstorm.com/t/problem-auth-st2-when-resume-workflow-from-another-workflow-or-webhook/372.rss">Problem auth st2 when resume workflow from another workflow or webhook</source>
+      </item>
+      <item>
+        <title>Problem auth st2 when resume workflow from another workflow or webhook</title>
+        <dc:creator><![CDATA[ivan]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi, I have a mistral workflow in pause and I want resume from another workflow with:</p>
+<p>st2 execute resume “ID_workflow” -t “token”</p>
+<p>but the ouput is</p>
+<p>ERROR: 401 Client Error: Unauthorized<br>
+MESSAGE: Unauthorized - One of Token or API key required. for url: <a href="http://st2api:9101/executions/5bf2d5b8b2efc800159997f8" rel="nofollow noopener">http://st2api:9101/executions/5bf2d5b8b2efc800159997f8</a></p>
+<p>The token its ok becouse when i use the following command works fine:</p>
+<p>st2 execution list -t token</p>
+<p>I tried use a webhook but get the same problem, so the question is how to resume workflow with another workflow or webhook?</p>
+          <p><a href="https://forum.stackstorm.com/t/problem-auth-st2-when-resume-workflow-from-another-workflow-or-webhook/372/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/problem-auth-st2-when-resume-workflow-from-another-workflow-or-webhook/372/1</link>
+        <pubDate>Mon, 19 Nov 2018 18:13:39 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-372-1</guid>
+        <source url="https://forum.stackstorm.com/t/problem-auth-st2-when-resume-workflow-from-another-workflow-or-webhook/372.rss">Problem auth st2 when resume workflow from another workflow or webhook</source>
+      </item>
+  </channel>
+</rss>

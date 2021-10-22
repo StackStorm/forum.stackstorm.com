@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Publish Ansible Variable to Mistral</title>
+    <link>https://forum.stackstorm.com/t/publish-ansible-variable-to-mistral/1093</link>
+    <description>Hello. Is it possible to publish ansible varibles to mistral? In my workflow, I use ansible.playbook action to get server status like CPU load, uptime, service status, etc then save them to ansible variables. What I need is to pass that variables to mistral. If it is possible, where I can found an example of that? I&#39;ve searched about this but haven&#39;t gotten anything. Thank you.</description>
+    
+    <lastBuildDate>Wed, 18 Mar 2020 15:46:58 +0000</lastBuildDate>
+    <category>Mistral</category>
+    <atom:link href="https://forum.stackstorm.com/t/publish-ansible-variable-to-mistral/1093.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Publish Ansible Variable to Mistral</title>
+        <dc:creator><![CDATA[punkrokk]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi <a class="mention" href="https://github.com/roboticpuppies">@roboticpuppies</a> you should use:<br>
+<code>"{{ ctx().hostname }}"</code> instead of  <code>"{{ hostname }},"</code>.</p>
+<p>Also - notice there is now quotes after <code>}}</code></p>
+          <p><a href="https://forum.stackstorm.com/t/publish-ansible-variable-to-mistral/1093/6">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/publish-ansible-variable-to-mistral/1093/6</link>
+        <pubDate>Wed, 18 Mar 2020 15:46:58 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1093-6</guid>
+        <source url="https://forum.stackstorm.com/t/publish-ansible-variable-to-mistral/1093.rss">Publish Ansible Variable to Mistral</source>
+      </item>
+      <item>
+        <title>Publish Ansible Variable to Mistral</title>
+        <dc:creator><![CDATA[roboticpuppies]]></dc:creator>
+        <description><![CDATA[
+            <p>Hello, sorry for the late reply. I tried to use orquesta. Here’s my example workflow :</p>
+<pre><code class="lang-auto">version: '1.0'
+
+description: Manage service on remote server using Ansible.
+input:
+  - hostname
+  - service_state
+  - service_name
+
+tasks:
+  manage_service:
+    action: ansible.playbook
+    input:
+      inventory_file: "{{ hostname }}," # &lt;======= This should be from input
+      playbook: playbook/playbook1.yaml
+      cwd: "/opt/stackstorm/packs/test/actions/workflows"
+</code></pre>
+<p>How to pass variable from orquesta from input into that action?</p>
+          <p><a href="https://forum.stackstorm.com/t/publish-ansible-variable-to-mistral/1093/5">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/publish-ansible-variable-to-mistral/1093/5</link>
+        <pubDate>Tue, 17 Mar 2020 08:12:42 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1093-5</guid>
+        <source url="https://forum.stackstorm.com/t/publish-ansible-variable-to-mistral/1093.rss">Publish Ansible Variable to Mistral</source>
+      </item>
+      <item>
+        <title>Publish Ansible Variable to Mistral</title>
+        <dc:creator><![CDATA[punkrokk]]></dc:creator>
+        <description><![CDATA[
+            <p>Orquesta does support Jinja. Adding a link below. I’d recommend that you post what you have tried to do in Orquesta and we can try to help you from there.</p>
+<p><a href="https://docs.stackstorm.com/orquesta/index.html" class="onebox" target="_blank">https://docs.stackstorm.com/orquesta/index.html</a></p>
+          <p><a href="https://forum.stackstorm.com/t/publish-ansible-variable-to-mistral/1093/4">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/publish-ansible-variable-to-mistral/1093/4</link>
+        <pubDate>Fri, 06 Mar 2020 18:37:58 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1093-4</guid>
+        <source url="https://forum.stackstorm.com/t/publish-ansible-variable-to-mistral/1093.rss">Publish Ansible Variable to Mistral</source>
+      </item>
+      <item>
+        <title>Publish Ansible Variable to Mistral</title>
+        <dc:creator><![CDATA[roboticpuppies]]></dc:creator>
+        <description><![CDATA[
+            <p>Hello. Does orquesta support Jinja expression? Here is an example of my code using Jinja and Mistral :</p>
+<pre><code>  action: ansible.playbook
+  input:
+    inventory_file: "{{ _.hostname }}"
+    playbook: playbook/ansible.yaml
+    private_key: "/root/.ssh/id_rsa"
+    user: "root"
+    env: '{"ANSIBLE_STDOUT_CALLBACK":"json"}'
+</code></pre>
+<p>I would like to use Jinja since I’m not familiar with YAQL. I’ve tried to use orquesta but I’m having difficulty when using YAQL.</p>
+          <p><a href="https://forum.stackstorm.com/t/publish-ansible-variable-to-mistral/1093/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/publish-ansible-variable-to-mistral/1093/3</link>
+        <pubDate>Fri, 06 Mar 2020 01:48:22 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1093-3</guid>
+        <source url="https://forum.stackstorm.com/t/publish-ansible-variable-to-mistral/1093.rss">Publish Ansible Variable to Mistral</source>
+      </item>
+      <item>
+        <title>Publish Ansible Variable to Mistral</title>
+        <dc:creator><![CDATA[punkrokk]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi <a class="mention" href="https://github.com/roboticpuppies">@roboticpuppies</a>. Welcome.</p>
+<p>I’d recommend looking into accomplishing your use case with Orquesta since mitral will be deprecated soon. It’s recommended that all new workflows are created in Orquesta.</p>
+<p><a href="https://docs.stackstorm.com/orquesta/index.html" class="inline-onebox">Orquesta — StackStorm 3.1.0 documentation</a></p>
+          <p><a href="https://forum.stackstorm.com/t/publish-ansible-variable-to-mistral/1093/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/publish-ansible-variable-to-mistral/1093/2</link>
+        <pubDate>Fri, 06 Mar 2020 01:27:42 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1093-2</guid>
+        <source url="https://forum.stackstorm.com/t/publish-ansible-variable-to-mistral/1093.rss">Publish Ansible Variable to Mistral</source>
+      </item>
+      <item>
+        <title>Publish Ansible Variable to Mistral</title>
+        <dc:creator><![CDATA[roboticpuppies]]></dc:creator>
+        <description><![CDATA[
+            <p>Hello. Is it possible to publish ansible varibles to mistral? In my workflow, I use ansible.playbook action to get server status like CPU load, uptime, service status, etc then save them to ansible variables. What I need is to pass that variables to mistral. If it is possible, where I can found an example of that? I’ve searched about this but haven’t gotten anything. Thank you.</p>
+          <p><a href="https://forum.stackstorm.com/t/publish-ansible-variable-to-mistral/1093/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/publish-ansible-variable-to-mistral/1093/1</link>
+        <pubDate>Thu, 05 Mar 2020 07:01:19 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1093-1</guid>
+        <source url="https://forum.stackstorm.com/t/publish-ansible-variable-to-mistral/1093.rss">Publish Ansible Variable to Mistral</source>
+      </item>
+  </channel>
+</rss>

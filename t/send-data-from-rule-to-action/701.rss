@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Send data from Rule to Action</title>
+    <link>https://forum.stackstorm.com/t/send-data-from-rule-to-action/701</link>
+    <description>Hi, I&#39;m learning stacktorm. I&#39;m having trouble passing data from Sensor -  Trigger -Rule to Action.
+
+I have a sensor that checks for new rows in a MYSQL table.
+
+The problem appears when I put the parameters in the Rule (commented in the example below &quot;My Rule&quot;). Action execution does not occur. 
+If I comment the parameters, the rule successfully matches and the action executes successfully. 
+
+What will be the mistake?
+
+The second question, how pass payload data from Rule to Action? Can you give an example explained?
+
+
+**My Sensor:**
+
+  				#hardcoded for debug
+				payload = {&#39;key&#39;:&quot;test&quot;, &#39;count&#39;: int(count) + 1} 
+
+				self.sensor_service.dispatch(trigger=&#39;monitor.sensor&#39;, payload=payload)
+
+The payload matches the Rule criteria (checked in enforcement):
+
+
+
+**My Rule:**
+
+    ---
+    name: rule_a
+    pack: monitor
+    description: Rule Dummy Data.
+    enabled: true
+    trigger:
+        type: monitor.sensor
+        parameters: {}
+    criteria:
+        trigger.key:
+            pattern: &quot;test&quot;
+            type: &quot;equals&quot;       
+    action:
+        ref: monitor.action_a
+      #parameters:
+      #key: &quot;{{trigger.key}}&quot;
+
+Payload in the trigger: 
+    ```
+    {
+      &quot;count&quot;: 47,
+      &quot;key&quot;: &quot;test&quot;
+    }
+    ```
+
+
+**My Action def YAML**
+
+    version: 1.0
+
+    description: Dummy action
+
+
+    tasks:
+        main_from_database:
+            action: monitor.action_def
+            next:
+              - when: &lt;% succeeded() %&gt;
+                publish: &gt; 
+                         method=&lt;% result().result.method %&gt; 
+                         .....(more data)
+                do:
+                  - api
+              - when: &lt;% failed() %&gt;
+                publish: stderr=&lt;% result().stderr %&gt;
+                do: notify_on_error</description>
+    
+    <lastBuildDate>Sun, 23 Jun 2019 19:20:15 +0000</lastBuildDate>
+    <category>Rules</category>
+    <atom:link href="https://forum.stackstorm.com/t/send-data-from-rule-to-action/701.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Send data from Rule to Action</title>
+        <dc:creator><![CDATA[hsilverio]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi,</p>
+<p>Thanks for the time and help.</p>
+<p>Its solved.</p>
+<p>After some tests and changes, I think there was more than one problem, at least one problem was in the workflow definition. Your response and then reading the logs helped to indicate the direction to go.</p>
+<p>Thank you very much,</p>
+<p><strong>Log reading:</strong></p>
+<p>Help me to realize that execution was occurring with success.</p>
+<pre><code>root@xxxx:/var/log/st2# grep -nr 5d0fb7168e02f472f99bf960 .
+....
+./st2rulesengine.log:158396:2019-06-23 18:29:58,581 140539742909136 INFO engine [-] Matched 1 rule(s) for trigger_instance 5d0fb7168e02f472f99bf960 (trigger=monitor.sensor)
+./st2rulesengine.log:158397:2019-06-23 18:29:58,590 140539742909136 INFO enforcer [-] Invoking action monitor.action_a for trigger_instance 5d0fb7168e02f472f99bf960 with params {"key": "teste"}.</code></pre>
+          <p><a href="https://forum.stackstorm.com/t/send-data-from-rule-to-action/701/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/send-data-from-rule-to-action/701/3</link>
+        <pubDate>Sun, 23 Jun 2019 19:20:15 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-701-3</guid>
+        <source url="https://forum.stackstorm.com/t/send-data-from-rule-to-action/701.rss">Send data from Rule to Action</source>
+      </item>
+      <item>
+        <title>Send data from Rule to Action</title>
+        <dc:creator><![CDATA[armab]]></dc:creator>
+        <description><![CDATA[
+            <p>Your rule looks good and follows <a href="https://docs.stackstorm.com/rules.html#variable-interpolation" class="inline-onebox" rel="nofollow noopener">Rules — StackStorm 3.0.1 documentation</a></p>
+<p>Just to be sure, check for <code>yaml</code> indentation issues around <code>parameters</code>, as <code>parameters</code> and <code>key</code> are not indented properly (at least in commented version).</p>
+<pre><code class="lang-yaml">action:
+    ref: monitor.action_a
+    parameters:
+        key: "{{trigger.key}}"
+</code></pre>
+<p>If that still doesn’t work, try to debug it a bit and pass <code>{{trigger}}</code> or <code>{{ trigger | to_json }}</code> to action and verify if data/structure received is indeed correct and expected comparing to what you send.</p>
+<p>Additionally, your example is missing action metadata (<a href="https://docs.stackstorm.com/actions.html#action-metadata" class="inline-onebox" rel="nofollow noopener">Actions — StackStorm 3.0.1 documentation</a>), - please add that as well. If there is some issue with action metadata, for debugging reasons - try to pass payload to existing action like <code>core.local</code> with <code>echo</code> like this: <a href="https://github.com/StackStorm/st2/blob/master/contrib/examples/rules/sample_rule_with_actiontrigger.yaml" class="inline-onebox" rel="nofollow noopener">st2/sample_rule_with_actiontrigger.yaml at master · StackStorm/st2 · GitHub</a></p>
+<p>Don’t forget to check the st2 logs for any other error symptoms.<br>
+Hope this will help to understand where is the issue.</p>
+          <p><a href="https://forum.stackstorm.com/t/send-data-from-rule-to-action/701/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/send-data-from-rule-to-action/701/2</link>
+        <pubDate>Sun, 23 Jun 2019 12:16:20 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-701-2</guid>
+        <source url="https://forum.stackstorm.com/t/send-data-from-rule-to-action/701.rss">Send data from Rule to Action</source>
+      </item>
+      <item>
+        <title>Send data from Rule to Action</title>
+        <dc:creator><![CDATA[hsilverio]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi, I’m learning stacktorm. I’m having trouble passing data from Sensor -  Trigger -Rule to Action.</p>
+<p>I have a sensor that checks for new rows in a MYSQL table.</p>
+<p>The problem appears when I put the parameters in the Rule (commented in the example below “My Rule”). Action execution does not occur.<br>
+If I comment the parameters, the rule successfully matches and the action executes successfully.</p>
+<p>What will be the mistake?</p>
+<p>The second question, how pass payload data from Rule to Action? Can you give an example explained?</p>
+<p><strong>My Sensor:</strong></p>
+<pre><code>			#hardcoded for debug
+			payload = {'key':"test", 'count': int(count) + 1} 
+
+			self.sensor_service.dispatch(trigger='monitor.sensor', payload=payload)
+</code></pre>
+<p>The payload matches the Rule criteria (checked in enforcement):</p>
+<p><strong>My Rule:</strong></p>
+<pre><code>---
+name: rule_a
+pack: monitor
+description: Rule Dummy Data.
+enabled: true
+trigger:
+    type: monitor.sensor
+    parameters: {}
+criteria:
+    trigger.key:
+        pattern: "test"
+        type: "equals"       
+action:
+    ref: monitor.action_a
+  #parameters:
+  #key: "{{trigger.key}}"
+</code></pre>
+<p>Payload in the trigger:<br>
+<code>{ "count": 47, "key": "test" }</code></p>
+<p><strong>My Action def YAML</strong></p>
+<pre><code>version: 1.0
+
+description: Dummy action
+
+
+tasks:
+    main_from_database:
+        action: monitor.action_def
+        next:
+          - when: &lt;% succeeded() %&gt;
+            publish: &gt; 
+                     method=&lt;% result().result.method %&gt; 
+                     .....(more data)
+            do:
+              - api
+          - when: &lt;% failed() %&gt;
+            publish: stderr=&lt;% result().stderr %&gt;
+            do: notify_on_error</code></pre>
+          <p><a href="https://forum.stackstorm.com/t/send-data-from-rule-to-action/701/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/send-data-from-rule-to-action/701/1</link>
+        <pubDate>Sat, 22 Jun 2019 11:42:12 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-701-1</guid>
+        <source url="https://forum.stackstorm.com/t/send-data-from-rule-to-action/701.rss">Send data from Rule to Action</source>
+      </item>
+  </channel>
+</rss>

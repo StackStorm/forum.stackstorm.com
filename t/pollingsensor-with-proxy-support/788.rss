@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>PollingSensor with Proxy Support</title>
+    <link>https://forum.stackstorm.com/t/pollingsensor-with-proxy-support/788</link>
+    <description>Hi all,
+I need to create a PollingSensor to query a remote API once per hour and then action on the results of that API call.
+
+Any suggestions on how to get the sensor working through a proxy server? 
+Is the Python Requests module used for http calls? Can I just add the proxy details?
+Thanks,</description>
+    
+    <lastBuildDate>Thu, 01 Aug 2019 23:48:51 +0000</lastBuildDate>
+    <category>Uncategorized</category>
+    <atom:link href="https://forum.stackstorm.com/t/pollingsensor-with-proxy-support/788.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>PollingSensor with Proxy Support</title>
+        <dc:creator><![CDATA[jezk]]></dc:creator>
+        <description><![CDATA[
+            <p>Ah, of course.<br>
+The Sensor class doesn’t do the request itself but it’s the code that I write within that does all the hard work.<br>
+Thanks,</p>
+          <p><a href="https://forum.stackstorm.com/t/pollingsensor-with-proxy-support/788/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/pollingsensor-with-proxy-support/788/3</link>
+        <pubDate>Thu, 01 Aug 2019 23:48:51 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-788-3</guid>
+        <source url="https://forum.stackstorm.com/t/pollingsensor-with-proxy-support/788.rss">PollingSensor with Proxy Support</source>
+      </item>
+      <item>
+        <title>PollingSensor with Proxy Support</title>
+        <dc:creator><![CDATA[armab]]></dc:creator>
+        <description><![CDATA[
+            <p>Sure, you absolutely can do that.<br>
+Because Sensor <a href="https://docs.stackstorm.com/sensors.html" class="inline-onebox" rel="nofollow noopener">Sensors and Triggers — StackStorm 3.1.0 documentation</a> is Python-based, - just codify the required logic using <code>requests</code>.</p>
+          <p><a href="https://forum.stackstorm.com/t/pollingsensor-with-proxy-support/788/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/pollingsensor-with-proxy-support/788/2</link>
+        <pubDate>Thu, 01 Aug 2019 13:08:48 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-788-2</guid>
+        <source url="https://forum.stackstorm.com/t/pollingsensor-with-proxy-support/788.rss">PollingSensor with Proxy Support</source>
+      </item>
+      <item>
+        <title>PollingSensor with Proxy Support</title>
+        <dc:creator><![CDATA[jezk]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi all,<br>
+I need to create a PollingSensor to query a remote API once per hour and then action on the results of that API call.</p>
+<p>Any suggestions on how to get the sensor working through a proxy server?<br>
+Is the Python Requests module used for http calls? Can I just add the proxy details?<br>
+Thanks,</p>
+          <p><a href="https://forum.stackstorm.com/t/pollingsensor-with-proxy-support/788/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/pollingsensor-with-proxy-support/788/1</link>
+        <pubDate>Thu, 01 Aug 2019 05:57:47 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-788-1</guid>
+        <source url="https://forum.stackstorm.com/t/pollingsensor-with-proxy-support/788.rss">PollingSensor with Proxy Support</source>
+      </item>
+  </channel>
+</rss>

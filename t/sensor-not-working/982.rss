@@ -1,0 +1,451 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Sensor Not working</title>
+    <link>https://forum.stackstorm.com/t/sensor-not-working/982</link>
+    <description>I have created a sensor which will execute when some one will send mail on particular email id  with particular email subject using IMAP. 
+For this 
+I have created a gmail account where I have do setting for I map and I have create sensor , rule, and action. Action is running separately 
+using &quot;st2 run &lt;pack_name&gt;.&lt;action_name&gt;&quot;.
+It is working fine. While running  sensor 
+using &quot;sudo /opt/stackstorm/st2/bin/st2sensorcontainer --config-file=/etc/st2/st2.conf --sensor-ref=azure_vm_create.IMAPSensor&quot; 
+it not showing error. 
+this is my imap.yaml file
+    --
+    class_name: &quot;IMAPSensor&quot;
+    entry_point: &quot;imap_sensor.py&quot;
+    description: &quot;Sensor that emits triggers when e-mail message is received via IMAP&quot;
+    trigger_types:
+
+    name: imap.message
+    description: &quot;An e-mail receieved via the IMAP sensor&quot;
+    payload_info:
+      - uid
+      - from
+      - to
+      - headers
+      - subject
+      - date
+      - message_id
+      - body
+      - location
+      - vmname
+      - group
+
+imap_sensor.py
+
+import hashlib
+import base64
+
+import six
+import eventlet
+import easyimap
+from flanker import mime
+
+from st2reactor.sensor.base import PollingSensor
+
+
+
+__all__ = [
+    &#39;IMAPSensor&#39;
+]
+
+eventlet.monkey_patch(
+    os=True,
+    select=True,
+    socket=True,
+    thread=True,
+    time=True)
+
+class IMAPSensor(PollingSensor):
+    def __init__(self, sensor_service, config=None, poll_interval=10):
+        super(IMAPSensor, self).__init__(sensor_service=sensor_service,
+                                         config=config,
+                                         poll_interval=poll_interval)
+
+        self._trigger = &#39;azure_vm_create.imap.message&#39;
+        self._logger = self._sensor_service.get_logger(__name__)
+        self._accounts = {}
+        self._logger.debug(&#39;[IMAPSensor]: Init executed&#39;)
+        self._stop = False
+
+    def setup(self):
+        self._logger.debug(&#39;[IMAPSensor]: entering setup&#39;)
+
+    def poll(self):
+        self._logger.debug(&#39;[IMAPSensor]: entering poll&#39;)
+
+        if &#39;imap_accounts&#39; in self._config:
+            self._parse_accounts(self._config[&#39;imap_accounts&#39;])
+
+        for name, values in self._accounts.items():
+            mailbox = values[&#39;connection&#39;]
+            mailbox_metadata = values[&#39;mailbox_metadata&#39;]
+
+            self._poll_for_unread_messages(name=name, mailbox=mailbox,
+                                           mailbox_metadata=mailbox_metadata)
+            mailbox.quit()
+
+    def cleanup(self):
+        self._logger.debug(&#39;[IMAPSensor]: entering cleanup&#39;)
+        self._stop = True
+
+        for name, values in self._accounts.items():
+            mailbox = values[&#39;connection&#39;]
+            self._logger.debug(&#39;[IMAPSensor]: Disconnecting from {0}&#39;.format(name))
+            mailbox.quit()
+
+    def add_trigger(self, trigger):
+        pass
+
+    def update_trigger(self, trigger):
+        pass
+
+    def remove_trigger(self, trigger):
+        pass
+
+    def _parse_accounts(self, accounts):
+        for config in accounts:
+            mailbox = config.get(&#39;name&#39;, &#39;Mukesh&#39;)
+            server = config.get(&#39;server&#39;, &#39;imap.gmail.com&#39;)
+            port = config.get(&#39;port&#39;, 993)
+            user = config.get(&#39;username&#39;, &#39;test.nihilent.5375@gmail.com&#39;)
+            password = config.get(&#39;password&#39;, &#39;nihilent@123&#39;)
+            folder = config.get(&#39;folder&#39;, &#39;INBOX&#39;)
+            ssl = config.get(&#39;secure&#39;, True)
+
+            if not user or not password:
+                self._logger.debug(&quot;&quot;&quot;[IMAPSensor]: Missing
+                    username/password for {0}&quot;&quot;&quot;.format(mailbox))
+                continue
+
+            if not server:
+                self._logger.debug(&quot;&quot;&quot;[IMAPSensor]: Missing server
+                    for {0}&quot;&quot;&quot;.format(mailbox))
+                continue
+
+            try:
+                connection = easyimap.connect(server, user, password,
+                                              folder, ssl=ssl, port=port)
+            except Exception as e:
+                message = &#39;Failed to connect to mailbox &quot;%s&quot;: %s&#39; % (mailbox, str(e))
+                raise Exception(message)
+
+            item = {
+                &#39;connection&#39;: connection,
+                &#39;mailbox_metadata&#39;: {
+                    &#39;server&#39;: server,
+                    &#39;port&#39;: port,
+                    &#39;user&#39;: user,
+                    &#39;folder&#39;: folder,
+                    &#39;ssl&#39;: ssl
+                }
+            }
+            self._accounts[mailbox] = item
+
+    def _poll_for_unread_messages(self, name, mailbox, mailbox_metadata):
+        self._logger.debug(&#39;[IMAPSensor]: polling mailbox {0}&#39;.format(name))
+
+        messages = mailbox.unseen()
+
+        self._logger.debug(&#39;[IMAPSensor]: Processing {0} new messages&#39;.format(len(messages)))
+        for message in messages:
+            self._process_message(uid=message.uid, mailbox=mailbox,
+                                  mailbox_metadata=mailbox_metadata)
+
+    def _process_message(self, uid, mailbox, mailbox_metadata):
+        m=[]
+        message = mailbox.mail(uid, include_raw=True)
+        mime_msg = mime.from_string(message.raw)
+
+        body = message.body
+        sent_from = message.from_addr
+        sent_to = message.to
+        subject = message.title
+        date = message.date
+        message_id = message.message_id
+        headers = mime_msg.headers.items()
+        x=body.splitlines()
+        for x1 in x:
+          res=x1.split(&#39;=&#39;)
+          m.append(res[1])
+        location=m[0]
+        vmname=m[1]
+        group=m[2]
+
+        # Flatten the headers so they can be unpickled
+        headers = self._flattern_headers(headers=headers)
+
+        payload = {
+            &#39;uid&#39;: uid,
+            &#39;from&#39;: sent_from,
+            &#39;to&#39;: sent_to,
+            &#39;headers&#39;: headers,
+            &#39;date&#39;: date,
+            &#39;subject&#39;: subject,
+            &#39;message_id&#39;: message_id,
+            &#39;body&#39;: body,
+            &#39;mailbox_metadata&#39;: mailbox_metadata,
+            &#39;location&#39;: location,
+            &#39;vmname&#39;: vmname,
+            &#39;group&#39;: group
+        }
+
+        self._sensor_service.dispatch(trigger=self._trigger, payload=payload)
+
+    def _flattern_headers(self, headers):
+        # Flattern headers and make sure they only contain simple types so they
+        # can be serialized in a trigger
+        result = []
+
+        for pair in headers:
+            name = pair[0]
+            value = pair[1]
+
+            if not isinstance(value, six.string_types):
+                value = str(value)
+
+            result.append([name, value])
+
+        return result
+
+I dont know where I am lacking. Please tell me how sensor initiate.</description>
+    
+    <lastBuildDate>Thu, 30 Jan 2020 13:56:11 +0000</lastBuildDate>
+    <category>Pack Management</category>
+    <atom:link href="https://forum.stackstorm.com/t/sensor-not-working/982.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Sensor Not working</title>
+        <dc:creator><![CDATA[mksindri]]></dc:creator>
+        <description><![CDATA[
+            <p>Yes , Now resolved</p>
+<p>Thanks for comment</p>
+          <p><a href="https://forum.stackstorm.com/t/sensor-not-working/982/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/sensor-not-working/982/3</link>
+        <pubDate>Thu, 30 Jan 2020 13:56:11 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-982-3</guid>
+        <source url="https://forum.stackstorm.com/t/sensor-not-working/982.rss">Sensor Not working</source>
+      </item>
+      <item>
+        <title>Sensor Not working</title>
+        <dc:creator><![CDATA[gitsaurav]]></dc:creator>
+        <description><![CDATA[
+            <p>Are you able to run the sensor in the debug mode?</p>
+          <p><a href="https://forum.stackstorm.com/t/sensor-not-working/982/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/sensor-not-working/982/2</link>
+        <pubDate>Fri, 10 Jan 2020 15:40:23 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-982-2</guid>
+        <source url="https://forum.stackstorm.com/t/sensor-not-working/982.rss">Sensor Not working</source>
+      </item>
+      <item>
+        <title>Sensor Not working</title>
+        <dc:creator><![CDATA[mksindri]]></dc:creator>
+        <description><![CDATA[
+            <p>I have created a sensor which will execute when some one will send mail on particular email id  with particular email subject using IMAP.<br>
+For this<br>
+I have created a gmail account where I have do setting for I map and I have create sensor , rule, and action. Action is running separately<br>
+using “st2 run &lt;pack_name&gt;.&lt;action_name&gt;”.<br>
+It is working fine. While running  sensor<br>
+using “sudo /opt/stackstorm/st2/bin/st2sensorcontainer --config-file=/etc/st2/st2.conf --sensor-ref=azure_vm_create.IMAPSensor”<br>
+it not showing error.<br>
+this is my imap.yaml file<br>
+–<br>
+class_name: “IMAPSensor”<br>
+entry_point: “imap_sensor.py”<br>
+description: “Sensor that emits triggers when e-mail message is received via IMAP”<br>
+trigger_types:</p>
+<pre><code>name: imap.message
+description: "An e-mail receieved via the IMAP sensor"
+payload_info:
+  - uid
+  - from
+  - to
+  - headers
+  - subject
+  - date
+  - message_id
+  - body
+  - location
+  - vmname
+  - group
+</code></pre>
+<p>imap_sensor.py</p>
+<p>import hashlib<br>
+import base64</p>
+<p>import six<br>
+import eventlet<br>
+import easyimap<br>
+from flanker import mime</p>
+<p>from st2reactor.sensor.base import PollingSensor</p>
+<p><strong>all</strong> = [<br>
+‘IMAPSensor’<br>
+]</p>
+<p>eventlet.monkey_patch(<br>
+os=True,<br>
+select=True,<br>
+socket=True,<br>
+thread=True,<br>
+time=True)</p>
+<p>class IMAPSensor(PollingSensor):<br>
+def <strong>init</strong>(self, sensor_service, config=None, poll_interval=10):<br>
+super(IMAPSensor, self).<strong>init</strong>(sensor_service=sensor_service,<br>
+config=config,<br>
+poll_interval=poll_interval)</p>
+<pre><code>    self._trigger = 'azure_vm_create.imap.message'
+    self._logger = self._sensor_service.get_logger(__name__)
+    self._accounts = {}
+    self._logger.debug('[IMAPSensor]: Init executed')
+    self._stop = False
+
+def setup(self):
+    self._logger.debug('[IMAPSensor]: entering setup')
+
+def poll(self):
+    self._logger.debug('[IMAPSensor]: entering poll')
+
+    if 'imap_accounts' in self._config:
+        self._parse_accounts(self._config['imap_accounts'])
+
+    for name, values in self._accounts.items():
+        mailbox = values['connection']
+        mailbox_metadata = values['mailbox_metadata']
+
+        self._poll_for_unread_messages(name=name, mailbox=mailbox,
+                                       mailbox_metadata=mailbox_metadata)
+        mailbox.quit()
+
+def cleanup(self):
+    self._logger.debug('[IMAPSensor]: entering cleanup')
+    self._stop = True
+
+    for name, values in self._accounts.items():
+        mailbox = values['connection']
+        self._logger.debug('[IMAPSensor]: Disconnecting from {0}'.format(name))
+        mailbox.quit()
+
+def add_trigger(self, trigger):
+    pass
+
+def update_trigger(self, trigger):
+    pass
+
+def remove_trigger(self, trigger):
+    pass
+
+def _parse_accounts(self, accounts):
+    for config in accounts:
+        mailbox = config.get('name', 'Mukesh')
+        server = config.get('server', 'imap.gmail.com')
+        port = config.get('port', 993)
+        user = config.get('username', 'test.nihilent.5375@gmail.com')
+        password = config.get('password', 'nihilent@123')
+        folder = config.get('folder', 'INBOX')
+        ssl = config.get('secure', True)
+
+        if not user or not password:
+            self._logger.debug("""[IMAPSensor]: Missing
+                username/password for {0}""".format(mailbox))
+            continue
+
+        if not server:
+            self._logger.debug("""[IMAPSensor]: Missing server
+                for {0}""".format(mailbox))
+            continue
+
+        try:
+            connection = easyimap.connect(server, user, password,
+                                          folder, ssl=ssl, port=port)
+        except Exception as e:
+            message = 'Failed to connect to mailbox "%s": %s' % (mailbox, str(e))
+            raise Exception(message)
+
+        item = {
+            'connection': connection,
+            'mailbox_metadata': {
+                'server': server,
+                'port': port,
+                'user': user,
+                'folder': folder,
+                'ssl': ssl
+            }
+        }
+        self._accounts[mailbox] = item
+
+def _poll_for_unread_messages(self, name, mailbox, mailbox_metadata):
+    self._logger.debug('[IMAPSensor]: polling mailbox {0}'.format(name))
+
+    messages = mailbox.unseen()
+
+    self._logger.debug('[IMAPSensor]: Processing {0} new messages'.format(len(messages)))
+    for message in messages:
+        self._process_message(uid=message.uid, mailbox=mailbox,
+                              mailbox_metadata=mailbox_metadata)
+
+def _process_message(self, uid, mailbox, mailbox_metadata):
+    m=[]
+    message = mailbox.mail(uid, include_raw=True)
+    mime_msg = mime.from_string(message.raw)
+
+    body = message.body
+    sent_from = message.from_addr
+    sent_to = message.to
+    subject = message.title
+    date = message.date
+    message_id = message.message_id
+    headers = mime_msg.headers.items()
+    x=body.splitlines()
+    for x1 in x:
+      res=x1.split('=')
+      m.append(res[1])
+    location=m[0]
+    vmname=m[1]
+    group=m[2]
+
+    # Flatten the headers so they can be unpickled
+    headers = self._flattern_headers(headers=headers)
+
+    payload = {
+        'uid': uid,
+        'from': sent_from,
+        'to': sent_to,
+        'headers': headers,
+        'date': date,
+        'subject': subject,
+        'message_id': message_id,
+        'body': body,
+        'mailbox_metadata': mailbox_metadata,
+        'location': location,
+        'vmname': vmname,
+        'group': group
+    }
+
+    self._sensor_service.dispatch(trigger=self._trigger, payload=payload)
+
+def _flattern_headers(self, headers):
+    # Flattern headers and make sure they only contain simple types so they
+    # can be serialized in a trigger
+    result = []
+
+    for pair in headers:
+        name = pair[0]
+        value = pair[1]
+
+        if not isinstance(value, six.string_types):
+            value = str(value)
+
+        result.append([name, value])
+
+    return result
+</code></pre>
+<p>I dont know where I am lacking. Please tell me how sensor initiate.</p>
+          <p><a href="https://forum.stackstorm.com/t/sensor-not-working/982/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/sensor-not-working/982/1</link>
+        <pubDate>Fri, 03 Jan 2020 12:57:43 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-982-1</guid>
+        <source url="https://forum.stackstorm.com/t/sensor-not-working/982.rss">Sensor Not working</source>
+      </item>
+  </channel>
+</rss>

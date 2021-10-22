@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/">
+    <ShortName>StackStorm Support (ARCHIVED) Search</ShortName>
+    <Description>Search for posts on StackStorm Support (ARCHIVED)</Description>
+    <Tags>discourse forum</Tags>
+    <Image type="image/png">
+        https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/379ced12f8326d58f1b3d2b3ff652f883e141f6a_2_32x32.PNG
+    </Image>
+    <Url type="application/opensearchdescription+xml" rel="self"
+         template="https://forum.stackstorm.com/opensearch.xml"/>
+    <Url type="text/html" template="https://forum.stackstorm.com/search?q={searchTerms}"/>
+    <Query role="example" searchTerms="search term"/>
+</OpenSearchDescription>

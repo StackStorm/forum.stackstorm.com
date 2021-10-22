@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:discourse="http://www.discourse.org/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>StackStorm Support (ARCHIVED) - Latest posts</title>
+    <link>https://forum.stackstorm.com</link>
+    <description>Latest posts</description>
+      <item>
+        <title>Welcome to StackStorm Forums</title>
+        <dc:creator><![CDATA[@armab Eugen Cusmaunsa]]></dc:creator>
+        <description><![CDATA[  ]]></description>
+        <link>https://forum.stackstorm.com/t/welcome-to-stackstorm-forums/21/4</link>
+        <pubDate>Tue, 07 Sep 2021 21:13:13 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-4482</guid>
+      </item>
+      <item>
+        <title>Welcome to StackStorm Forums</title>
+        <dc:creator><![CDATA[@armab Eugen Cusmaunsa]]></dc:creator>
+        <description><![CDATA[  ]]></description>
+        <link>https://forum.stackstorm.com/t/welcome-to-stackstorm-forums/21/3</link>
+        <pubDate>Tue, 07 Sep 2021 21:13:09 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-4481</guid>
+      </item>
+      <item>
+        <title>RBAC permissions implications</title>
+        <dc:creator><![CDATA[@amanda11]]></dc:creator>
+        <description><![CDATA[ <p>Did you try using the global permission <strong>execution_list</strong>, e.g.<br>
+permission_types:<br>
+- “execution_list”</p> ]]></description>
+        <link>https://forum.stackstorm.com/t/rbac-permissions-implications/1743/2</link>
+        <pubDate>Mon, 06 Sep 2021 15:54:43 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-4479</guid>
+      </item>
+      <item>
+        <title>Exporting history</title>
+        <dc:creator><![CDATA[@Carlos]]></dc:creator>
+        <description><![CDATA[ <p>Look into using mongo dump to save the database and use mongo restore to import it into the new instance</p> ]]></description>
+        <link>https://forum.stackstorm.com/t/exporting-history/1820/2</link>
+        <pubDate>Fri, 03 Sep 2021 11:54:49 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-4477</guid>
+      </item>
+      <item>
+        <title>Access different pack configs in common pack</title>
+        <dc:creator><![CDATA[@sarthak1996 Sarthak Khandekar]]></dc:creator>
+        <description><![CDATA[ <aside class="quote no-group" data-username="jamesdreid" data-post="2" data-topic="1824">
+<div class="title">
+<div class="quote-controls"></div>
+<img alt="" width="20" height="20" src="https://avatars.discourse-cdn.com/v4/letter/j/ad7895/40.png" class="avatar"> jamesdreid:</div>
+<blockquote>
+<p>nd you can combine that with a common name structure used across all tenants to access the key specific to the client/tenant pack that stores the credentials with</p>
+</blockquote>
+</aside>
+<p>We allow users to create workflow and actions. So storing in KV is not a good approach for us since anyone can update KV from the action.</p>
+<p>Currently we have decided to move with API Key and storing everything in meta as encrypted. Let me know if there is a better approach</p> ]]></description>
+        <link>https://forum.stackstorm.com/t/access-different-pack-configs-in-common-pack/1824/3</link>
+        <pubDate>Fri, 03 Sep 2021 05:22:05 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-4476</guid>
+      </item>
+      <item>
+        <title>Access different pack configs in common pack</title>
+        <dc:creator><![CDATA[@jamesdreid James Reid]]></dc:creator>
+        <description><![CDATA[ <p>You best bet it likely to just make all the actions in the common pack accept the credentials passed in a input to the action and then store all the credentials in the keystore in a format that matches what needs to be passed to the actions. The keystore names and be tied to the packname of the individual tenets and then you can reuse the workflows that will extract the Postgres credentials from the keystore and then use them as input to the common Postgres action.  This workflow (or at minimum the first 2 tasks) can then be replicated as needed in each of the tenants.</p>
+<p>In a workflow, you can reference the name of a pack with the following context call:</p>
+<pre><code class="lang-auto">&lt;% ctx().st2.pack %&gt;
+</code></pre>
+<p>And you can combine that with a common name structure used across all tenants to access the key specific to the client/tenant pack that stores the credentials with a task like the following in a workflow:</p>
+<pre><code class="lang-auto">get_tenant_creds:
+    action: st2.kv.get_object
+    input:
+      key: &lt;% 'POSTGRES___' + ctx().st2.pack %&gt;
+    next:
+      - when: &lt;% succeeded() %&gt;
+        publish: 
+            - postgres_creds: &lt;% result().result %&gt;
+</code></pre>
+<p>With this, you can then access the credentials in using the variable name set in the publish:</p>
+<pre><code class="lang-auto">&lt;% ctx().postgres_creds %&gt;
+</code></pre> ]]></description>
+        <link>https://forum.stackstorm.com/t/access-different-pack-configs-in-common-pack/1824/2</link>
+        <pubDate>Mon, 30 Aug 2021 14:22:23 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-4473</guid>
+      </item>
+      <item>
+        <title>Example of DateTimer</title>
+        <dc:creator><![CDATA[@smeds Patrik Smeds]]></dc:creator>
+        <description><![CDATA[ <p>Hi!</p>
+<p>Could someone point me to any good example where a DateTimer trigger is used?</p> ]]></description>
+        <link>https://forum.stackstorm.com/t/example-of-datetimer/1830/1</link>
+        <pubDate>Fri, 27 Aug 2021 07:42:33 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-4470</guid>
+      </item>
+      <item>
+        <title>Job schedulering</title>
+        <dc:creator><![CDATA[@smeds Patrik Smeds]]></dc:creator>
+        <description><![CDATA[ <p>Should I maybe use a core.st2.DateTimer to schedule something that should run a month or a year in the future? Or is wiser to use a CroneTimer that trigger a workflow that runs every week and iterates through all folders instead of having a DateTime linked to each folder.</p> ]]></description>
+        <link>https://forum.stackstorm.com/t/job-schedulering/1829/2</link>
+        <pubDate>Fri, 27 Aug 2021 07:15:12 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-4469</guid>
+      </item>
+      <item>
+        <title>Job schedulering</title>
+        <dc:creator><![CDATA[@smeds Patrik Smeds]]></dc:creator>
+        <description><![CDATA[ <p>I have a workflow that analysis data and after the process is done I would like to schedule a new workflow that should run one week from that the process is done. Any suggestion of how to do this?</p> ]]></description>
+        <link>https://forum.stackstorm.com/t/job-schedulering/1829/1</link>
+        <pubDate>Fri, 27 Aug 2021 05:56:19 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-4468</guid>
+      </item>
+      <item>
+        <title>Access different pack configs in common pack</title>
+        <dc:creator><![CDATA[@sarthak1996 Sarthak Khandekar]]></dc:creator>
+        <description><![CDATA[ <p>I am trying to build a central (common) pack which contains some common actions eg.</p>
+<ol>
+<li>Get Data from Postgres</li>
+<li>Get Data from some API call</li>
+</ol>
+<p>These are generic actions and these require <code>configs</code> for them to run. Eg. Postgres requires <code>host</code>, <code>port</code>, <code>username</code>, <code>password</code>, <code>db</code>. These <code>configs</code> are stored in different packs for different tenants. Each tenant has its own pack and each tenant will have its <code>configs</code>.</p>
+<p>I want to reuse the common actions instead of adding these everytime to each tenant. I want one common pack which will hold the common actions and based on the <code>tenant</code> context or <code>pack (tenant)</code> name it will fetch the <code>configs</code> from that pack.</p>
+<p>I have been struggling a lot to do this, unfortunately the only way I found was to duplicate these common actions across tenant packs. Is there any other way to do it?</p> ]]></description>
+        <link>https://forum.stackstorm.com/t/access-different-pack-configs-in-common-pack/1824/1</link>
+        <pubDate>Tue, 24 Aug 2021 18:29:20 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-4463</guid>
+      </item>
+      <item>
+        <title>Custom created remote action not terminated after execution</title>
+        <dc:creator><![CDATA[@rameshar16 Ramesh Audireddy]]></dc:creator>
+        <description><![CDATA[ <p>Hi All,<br>
+I have created a custom a remote action but the process not terminated after execution.</p>
+<p>Thanks and Regards,<br>
+Ramesh</p> ]]></description>
+        <link>https://forum.stackstorm.com/t/custom-created-remote-action-not-terminated-after-execution/1821/1</link>
+        <pubDate>Mon, 23 Aug 2021 16:38:35 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-4460</guid>
+      </item>
+      <item>
+        <title>Exporting history</title>
+        <dc:creator><![CDATA[@smeds Patrik Smeds]]></dc:creator>
+        <description><![CDATA[ <p>Hi!</p>
+<p>We are in the process of migrating our stackstorm environment to a new server and would like to keep the history. Is there any easy way of export and importing the history?</p>
+<p>Best regards<br>
+Patrik</p> ]]></description>
+        <link>https://forum.stackstorm.com/t/exporting-history/1820/1</link>
+        <pubDate>Mon, 23 Aug 2021 08:40:39 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-4459</guid>
+      </item>
+      <item>
+        <title>How to remove the newline character from the input parameters?</title>
+        <dc:creator><![CDATA[@Bryan Bryan Chen]]></dc:creator>
+        <description><![CDATA[ <p>Jinja filter:<br>
+<code>{{ ctx().param | replace("\r\n","") | trim }}</code></p> ]]></description>
+        <link>https://forum.stackstorm.com/t/how-to-remove-the-newline-character-from-the-input-parameters/1815/2</link>
+        <pubDate>Fri, 20 Aug 2021 10:04:15 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-4455</guid>
+      </item>
+      <item>
+        <title>How to connect remote hosts via ssh keys</title>
+        <dc:creator><![CDATA[@rameshar16 Ramesh Audireddy]]></dc:creator>
+        <description><![CDATA[ <p>Thank you <a class="mention" href="https://github.com/bryan">@Bryan</a> for the update.</p> ]]></description>
+        <link>https://forum.stackstorm.com/t/how-to-connect-remote-hosts-via-ssh-keys/1812/3</link>
+        <pubDate>Thu, 19 Aug 2021 12:33:45 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-4453</guid>
+      </item>
+      <item>
+        <title>How to remove the newline character from the input parameters?</title>
+        <dc:creator><![CDATA[@rameshar16 Ramesh Audireddy]]></dc:creator>
+        <description><![CDATA[ <p>Hi All,</p>
+<p>Is there any option to remove the newline character from the input parameters?</p>
+<p>Thanks and Regards,<br>
+Ramesh</p> ]]></description>
+        <link>https://forum.stackstorm.com/t/how-to-remove-the-newline-character-from-the-input-parameters/1815/1</link>
+        <pubDate>Thu, 19 Aug 2021 12:32:49 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-4452</guid>
+      </item>
+      <item>
+        <title>Must either be a string or None. Got \&quot;list\&quot;.&quot;</title>
+        <dc:creator><![CDATA[@rameshar16 Ramesh Audireddy]]></dc:creator>
+        <description><![CDATA[ <p>Thank you <a class="mention" href="https://github.com/bryan">@Bryan</a> for your help.</p> ]]></description>
+        <link>https://forum.stackstorm.com/t/must-either-be-a-string-or-none-got-list/1811/5</link>
+        <pubDate>Thu, 19 Aug 2021 12:31:23 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-4451</guid>
+      </item>
+      <item>
+        <title>How to connect remote hosts via ssh keys</title>
+        <dc:creator><![CDATA[@Bryan Bryan Chen]]></dc:creator>
+        <description><![CDATA[ <p>Use core.remote action<br>
+There is a <code>private_key</code> parameter</p> ]]></description>
+        <link>https://forum.stackstorm.com/t/how-to-connect-remote-hosts-via-ssh-keys/1812/2</link>
+        <pubDate>Thu, 19 Aug 2021 11:47:16 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-4450</guid>
+      </item>
+      <item>
+        <title>Must either be a string or None. Got \&quot;list\&quot;.&quot;</title>
+        <dc:creator><![CDATA[@Bryan Bryan Chen]]></dc:creator>
+        <description><![CDATA[ <p>Jinja:<br>
+<code>param: {{ ctx().foo | string }}</code><br>
+Yaql:<br>
+<code>param: &lt;% ctx().foo.join("") %&gt;</code></p> ]]></description>
+        <link>https://forum.stackstorm.com/t/must-either-be-a-string-or-none-got-list/1811/4</link>
+        <pubDate>Thu, 19 Aug 2021 09:25:02 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-4449</guid>
+      </item>
+      <item>
+        <title>Is there one rule and sensor that applies to all actions?</title>
+        <dc:creator><![CDATA[@Bryan Bryan Chen]]></dc:creator>
+        <description><![CDATA[ <p>Hello,</p>
+<p>I’m searching for a general way to write rules and sensors.</p>
+<p>For example, I have 2 timing action: <strong>action_a, action_b</strong>:</p>
+<pre><code class="lang-auto">**action_a brief definition:**
+parameters:
+  param_a_1:
+    type: object
+    required: true
+  param_a_2:
+    type: object
+    required: true
+</code></pre>
+<pre><code class="lang-auto">**action_b brief definition:**
+parameters:
+  param_b_1:
+    type: string
+    required: true
+  param_b_2:
+    type: array
+    required: true
+  param_b_3:
+    type: string
+    required: true
+</code></pre>
+<p>I save the action and its param as key-value pair(change to yaml for human read) in stackstorm mongodb:</p>
+<pre><code class="lang-auto">deploy_time: "2021-08-19 23:00" 
+action: pack1.action_a
+params:
+  param_a_1:
+    key_1: value_1
+  param_a_2:
+    key_a_2: value_a_2
+</code></pre>
+<pre><code class="lang-auto">deploy_time: "2021-08-19 23:00"
+action: pack2.action_b
+params:
+  param_b_1: "string_1"
+  param_b_2:
+    - object_1
+    - object_2
+  param_b_3: "string_3"
+</code></pre>
+<p>Then I write a sensor to read stackstorm Datastore.  Sensor will compare current system time and <code>deploy_time</code>, if current system time is later than <code>deploy_time</code>, sensor will generate a playload to rule.</p>
+<p>As you can image, I have to write 3 very similar file( <code>sensor.py</code>; <code>sensor.yaml</code>; <code>rule.yaml</code> ) for each action. The only difference between them is <code>payload_schema</code> section of <code>sensor.yaml</code><br>
+and <code>action</code> section of <code>rule.yaml</code>.<br>
+<code>sensor.py</code> is almost exactly the same.</p>
+<p>Is there a general way to write rules and sensors?</p> ]]></description>
+        <link>https://forum.stackstorm.com/t/is-there-one-rule-and-sensor-that-applies-to-all-actions/1814/1</link>
+        <pubDate>Thu, 19 Aug 2021 08:35:37 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-4448</guid>
+      </item>
+      <item>
+        <title>How to connect remote hosts via ssh keys</title>
+        <dc:creator><![CDATA[@rameshar16 Ramesh Audireddy]]></dc:creator>
+        <description><![CDATA[ <p>Hi All,<br>
+I need to connect to a remote host via ssh keys.</p>
+<p>Thanks and Regards,<br>
+Ramesh</p> ]]></description>
+        <link>https://forum.stackstorm.com/t/how-to-connect-remote-hosts-via-ssh-keys/1812/1</link>
+        <pubDate>Wed, 18 Aug 2021 17:37:26 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-4446</guid>
+      </item>
+      <item>
+        <title>Must either be a string or None. Got \&quot;list\&quot;.&quot;</title>
+        <dc:creator><![CDATA[@rameshar16 Ramesh Audireddy]]></dc:creator>
+        <description><![CDATA[ <p>Thank you <a class="mention" href="https://github.com/blag">@blag</a>  for your quick response.</p> ]]></description>
+        <link>https://forum.stackstorm.com/t/must-either-be-a-string-or-none-got-list/1811/3</link>
+        <pubDate>Wed, 18 Aug 2021 17:24:44 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-4445</guid>
+      </item>
+      <item>
+        <title>Must either be a string or None. Got \&quot;list\&quot;.&quot;</title>
+        <dc:creator><![CDATA[@blag]]></dc:creator>
+        <description><![CDATA[ <p>You should be able to use a Jinja filter to do this.</p> ]]></description>
+        <link>https://forum.stackstorm.com/t/must-either-be-a-string-or-none-got-list/1811/2</link>
+        <pubDate>Wed, 18 Aug 2021 17:06:51 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-4444</guid>
+      </item>
+      <item>
+        <title>Must either be a string or None. Got \&quot;list\&quot;.&quot;</title>
+        <dc:creator><![CDATA[@rameshar16 Ramesh Audireddy]]></dc:creator>
+        <description><![CDATA[ <p>Hi All,</p>
+<p>The publish statement assigned the output as a list to a variable and the next task is expecting string type instead of the LIST. Is it possible to convert the output from LIST to STRING.</p>
+<p>Please help me if anyone worked this kind of requirement.</p>
+<p>Thanks and Regards,<br>
+Ramesh</p> ]]></description>
+        <link>https://forum.stackstorm.com/t/must-either-be-a-string-or-none-got-list/1811/1</link>
+        <pubDate>Wed, 18 Aug 2021 17:02:40 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-4443</guid>
+      </item>
+      <item>
+        <title>Specifying with node an action is run on in an HA set up?</title>
+        <dc:creator><![CDATA[@jeffschulthies Jeff Schulthies]]></dc:creator>
+        <description><![CDATA[ <p>Yes let me take a look <img src="https://emoji.discourse-cdn.com/apple/slight_smile.png?v=10" title=":slight_smile:" class="emoji" alt=":slight_smile:"></p> ]]></description>
+        <link>https://forum.stackstorm.com/t/specifying-with-node-an-action-is-run-on-in-an-ha-set-up/1810/3</link>
+        <pubDate>Tue, 17 Aug 2021 15:58:09 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-4442</guid>
+      </item>
+      <item>
+        <title>Reusing reference HA architecture for Centralised Controller plus worker per client setup</title>
+        <dc:creator><![CDATA[@punkrokk punkrokk]]></dc:creator>
+        <description><![CDATA[ <p>What you are looking for is “action affinity” (eg. the ability to declare which worker runs a specific action/workflow/set of actions). This is not present in ST2 today. It’s one of the 4 big architectural issues present in ST2 today.</p> ]]></description>
+        <link>https://forum.stackstorm.com/t/reusing-reference-ha-architecture-for-centralised-controller-plus-worker-per-client-setup/1795/2</link>
+        <pubDate>Tue, 17 Aug 2021 00:09:01 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-4441</guid>
+      </item>
+      <item>
+        <title>Specifying with node an action is run on in an HA set up?</title>
+        <dc:creator><![CDATA[@cognifloyd Jacob Floyd]]></dc:creator>
+        <description><![CDATA[ <p>Sadly, there is no way to distinguish between action runner nodes yet. All of them pick actions from a queue, with the assumption that all action runner nodes can handle all actions.</p>
+<p>I would love to see this improved, but I have several other st2 improvements I’m working on, so I personally don’t have time to contribute this.</p>
+<p>Would you have time, or would one of your colleagues have some time to work on this?</p>
+<p>Here is some discussion about partitioning action runners / action runner affinity: <a href="https://github.com/StackStorm/st2/issues/3096" class="inline-onebox" rel="noopener nofollow ugc">Feature req: Partitioning actions to execute on separate nodes · Issue #3096 · StackStorm/st2 · GitHub</a></p> ]]></description>
+        <link>https://forum.stackstorm.com/t/specifying-with-node-an-action-is-run-on-in-an-ha-set-up/1810/2</link>
+        <pubDate>Mon, 16 Aug 2021 19:29:45 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-4440</guid>
+      </item>
+      <item>
+        <title>Specifying with node an action is run on in an HA set up?</title>
+        <dc:creator><![CDATA[@jeffschulthies Jeff Schulthies]]></dc:creator>
+        <description><![CDATA[ <p>I wanted to utilize this <a href="https://docs.stackstorm.com/reference/ha.html#reference-ha-setup" rel="noopener nofollow ugc">reference</a> for HA set up but I had a more in depth question.</p>
+<p>The HA set up will be in multiple DR sites. We need to make some optimizations to localize jobs to a certain site e.g. prevent jobs from being run on a us-east-node while interacting with hosts we have on us-west. Is this capability in StackStorm? or would be need some other solution like creating multiple st2 instances instead.</p>
+<p>Thanks,<br>
+jeff</p> ]]></description>
+        <link>https://forum.stackstorm.com/t/specifying-with-node-an-action-is-run-on-in-an-ha-set-up/1810/1</link>
+        <pubDate>Mon, 16 Aug 2021 19:20:00 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-4439</guid>
+      </item>
+      <item>
+        <title>How to read the array action with array output?</title>
+        <dc:creator><![CDATA[@bharat19th Bharat]]></dc:creator>
+        <description><![CDATA[ <p>Hi Folks,<br>
+I have just written the workflow with action and I want the output input command with output result. How can I achieve that in this case would appreciate if someone help here</p>
+<pre><code class="lang-auto">outer_task_shell_linux_esxi:
+    action: jas.command_shell_execution
+    input:
+      commands: '&lt;% ctx(command)[0] %&gt;'
+      host: '&lt;% item(host) %&gt;'
+      username: '&lt;% item(user) %&gt;'
+      password: '&lt;% item(pass) %&gt;'
+    with: host,user,pass in &lt;% zip(ctx(hosts),ctx(username),ctx(password)) %&gt;
+    next:
+      - when: &lt;% succeeded() %&gt;
+        publish:
+          - task_status: &lt;% result() %&gt;
+        do: print_task1
+      - when: &lt;% failed() %&gt;
+        publish:
+          - task_status: &lt;% result() %&gt;
+
+   print_task1:
+    action: core.echo
+    input:
+      message: &lt;% ctx().task_status %&gt; | to_json_string
+    next:
+      - when: &lt;% succeeded() %&gt;
+        publish:
+          - task_status1: &lt;% result().stdout %&gt;
+        do: print_task2
+
+   print_task2:
+    action: core.echo
+    input:
+      message: &lt;% ctx().task_status1 %&gt;
+</code></pre> ]]></description>
+        <link>https://forum.stackstorm.com/t/how-to-read-the-array-action-with-array-output/1808/1</link>
+        <pubDate>Wed, 11 Aug 2021 13:26:44 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-4437</guid>
+      </item>
+      <item>
+        <title>St2 apikey create - connection aborted</title>
+        <dc:creator><![CDATA[@amanda11]]></dc:creator>
+        <description><![CDATA[ <p>I’ve recently used the latest released ansible playbooks to install 3.4.1. YOu also have to declare the variable st2web_package_name and set to value “st2web”. This got around the error above.</p>
+<p>With the stackstorm ansible playbooks v3.1.0 it will be setup for st2 3.5.0, but can be used for 3.4.1 as long as you specify nodejs_major_version parameter to be 10 (so that nodejs 14 is not installed).</p> ]]></description>
+        <link>https://forum.stackstorm.com/t/st2-apikey-create-connection-aborted/1760/5</link>
+        <pubDate>Mon, 09 Aug 2021 20:01:07 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-4435</guid>
+      </item>
+  </channel>
+</rss>

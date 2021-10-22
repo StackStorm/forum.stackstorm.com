@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:discourse="http://www.discourse.org/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>User Management - StackStorm Support (ARCHIVED)</title>
+    <link>https://forum.stackstorm.com/c/core-st2-platform-issues/user-management-issues/18</link>
+    <description>Topics in the &#39;User Management&#39; category </description>
+    
+      <lastBuildDate>Thu, 01 Jul 2021 11:45:25 +0000</lastBuildDate>
+      <atom:link href="https://forum.stackstorm.com/c/core-st2-platform-issues/user-management-issues/18.rss" rel="self" type="application/rss+xml" />
+        <item>
+          <title>Gunicorn timeout configuration</title>
+          <dc:creator><![CDATA[hsilverio]]></dc:creator>
+          <category>User Management</category>
+          <description><![CDATA[
+            <p>Hi,</p>
+<p>I need your help!</p>
+<p>When I call the api <strong><a href="https://myUrl/auth/v1/tokens" rel="noopener nofollow ugc">https://myUrl/auth/v1/tokens</a></strong> i’m getting an error “Nginx is unable to reach st2auth.”. This error is intermittent, when it reaches 30 seconds it gives an error, if the time is less than 30s I get the token successfully.<br>
+Typically occurs on the first invocation, the following ones are succeeded in milliseconds.</p>
+<p>I think changing Gunicorn’s default from 30 to 60 might solve the problem.<br>
+My question is how to change Gunicorn’s default setting from 30 seconds to 60?</p>
+<p><strong>Error in var/log/st2/st2auth.log:</strong><br>
+[CRITICAL] WORKER TIMEOUT</p>
+<p><strong>API Response:</strong><br>
+Status: 503 - Service Temporarily Unavailable - Time:30.90s - Size:307 B<br>
+“faultstring”: “Nginx is unable to reach st2auth. Make sure service is running.”</p>
+            <p><small>2 posts - 2 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/gunicorn-timeout-configuration/1757">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/gunicorn-timeout-configuration/1757</link>
+          <pubDate>Thu, 01 Jul 2021 11:45:25 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1757</guid>
+          <source url="https://forum.stackstorm.com/t/gunicorn-timeout-configuration/1757.rss">Gunicorn timeout configuration</source>
+        </item>
+        <item>
+          <title>About the User Management category</title>
+          <dc:creator><![CDATA[lakstorm]]></dc:creator>
+          <category>User Management</category>
+          <description><![CDATA[
+            <p>(Replace this first paragraph with a brief description of your new category. This guidance will appear in the category selection area, so try to keep it below 200 characters. <strong>Until you edit this description or create topics, this category won’t appear on the categories page.</strong>)</p>
+<p>Use the following paragraphs for a longer description, or to establish category guidelines or rules:</p>
+<ul>
+<li>
+<p>Why should people use this category? What is it for?</p>
+</li>
+<li>
+<p>How exactly is this different than the other categories we already have?</p>
+</li>
+<li>
+<p>What should topics in this category generally contain?</p>
+</li>
+<li>
+<p>Do we need this category? Can we merge with another category, or subcategory?</p>
+</li>
+</ul>
+            <p><small>1 post - 1 participant</small></p>
+            <p><a href="https://forum.stackstorm.com/t/about-the-user-management-category/87">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/about-the-user-management-category/87</link>
+          <pubDate>Thu, 15 Mar 2018 14:25:45 +0000</pubDate>
+          <discourse:topicPinned>Yes</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-87</guid>
+          <source url="https://forum.stackstorm.com/t/about-the-user-management-category/87.rss">About the User Management category</source>
+        </item>
+        <item>
+          <title>How can i access api key metadata inside an action</title>
+          <dc:creator><![CDATA[n_kos]]></dc:creator>
+          <category>User Management</category>
+          <description><![CDATA[
+            <p>Is there any way I can access the API key metadata inside a python action?</p>
+            <p><small>15 posts - 5 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/how-can-i-access-api-key-metadata-inside-an-action/86">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/how-can-i-access-api-key-metadata-inside-an-action/86</link>
+          <pubDate>Thu, 15 Mar 2018 12:18:12 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-86</guid>
+          <source url="https://forum.stackstorm.com/t/how-can-i-access-api-key-metadata-inside-an-action/86.rss">How can i access api key metadata inside an action</source>
+        </item>
+  </channel>
+</rss>

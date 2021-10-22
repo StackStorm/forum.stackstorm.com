@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Unable to connect to oracle using sql pack</title>
+    <link>https://forum.stackstorm.com/t/unable-to-connect-to-oracle-using-sql-pack/1690</link>
+    <description>I have created a sql.yaml to setup connection for oracle as below
+connections:
+ oracle:
+    host: databaseIpAddress
+    username: username
+    password: password
+    database: dbServiceName
+    drivername: oracle
+
+But, I am receiving error like 
+sqlalchemy.exc.DatabaseError: (cx_Oracle.DatabaseError) ORA-12505: TNS:listener does not currently know of SID given in connect descriptor
+(Background on this error at: http://sqlalche.me/e/14/4xp6)
+
+how do i setup oracle connection correctly ? pl suuggest.</description>
+    
+    <lastBuildDate>Thu, 13 May 2021 06:52:12 +0000</lastBuildDate>
+    <category>Pack Management</category>
+    <atom:link href="https://forum.stackstorm.com/t/unable-to-connect-to-oracle-using-sql-pack/1690.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Unable to connect to oracle using sql pack</title>
+        <dc:creator><![CDATA[sanvaibhav]]></dc:creator>
+        <description><![CDATA[
+            <p>I have created a sql.yaml to setup connection for oracle as below<br>
+connections:<br>
+oracle:<br>
+host: databaseIpAddress<br>
+username: username<br>
+password: password<br>
+database: dbServiceName<br>
+drivername: oracle</p>
+<p>But, I am receiving error like<br>
+sqlalchemy.exc.DatabaseError: (cx_Oracle.DatabaseError) ORA-12505: TNS:listener does not currently know of SID given in connect descriptor<br>
+(Background on this error at: <a href="http://sqlalche.me/e/14/4xp6" rel="noopener nofollow ugc">http://sqlalche.me/e/14/4xp6</a>)</p>
+<p>how do i setup oracle connection correctly ? pl suuggest.</p>
+          <p><a href="https://forum.stackstorm.com/t/unable-to-connect-to-oracle-using-sql-pack/1690/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/unable-to-connect-to-oracle-using-sql-pack/1690/1</link>
+        <pubDate>Wed, 12 May 2021 11:03:16 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1690-1</guid>
+        <source url="https://forum.stackstorm.com/t/unable-to-connect-to-oracle-using-sql-pack/1690.rss">Unable to connect to oracle using sql pack</source>
+      </item>
+  </channel>
+</rss>

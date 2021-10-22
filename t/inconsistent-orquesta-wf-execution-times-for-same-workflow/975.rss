@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Inconsistent Orquesta WF execution times for same workflow</title>
+    <link>https://forum.stackstorm.com/t/inconsistent-orquesta-wf-execution-times-for-same-workflow/975</link>
+    <description>I have a very simple workflow borrowed from examples in github as follows:
+version: 1.0
+
+description: A workflow demonstrating with items and concurrent processing.
+
+input:
+  - members: [1,2,3,4,5,6,7,8,9,10]
+  - concurrency: 5
+  - trace_id
+
+tasks:
+  task1:
+    with:
+      items: &lt;% ctx(members) %&gt;
+      concurrency: &lt;% ctx(concurrency) %&gt;
+    action: core.echo message=&quot;&lt;% item() %&gt;, resistance is futile!&quot;
+
+output:
+  - items: &lt;% task(task1).result.items.select($.result.stdout) %&gt;
+
+I am executing in docker on my mac. The purpose is to vary concurrency, number of items, action runners to understand how to appropriately size our k8s cluster (number of action runners, workflow engines, etc) and so forth. The issue is i am getting wildly varying times running the exact same wf above. Times that vary from 4 seconds to over 21 seconds. I can see (with the st2 tail execution) some actions just seem to stop and take 2-3 seconds, mind you same action in the loop above. I am using top and some other tools but i cannot determine why the WF just hangs periodically. This happens in production K8s cluster as well, so trying to determine how to debug this locally first. Any suggestions appreciated.</description>
+    
+    <lastBuildDate>Tue, 18 Feb 2020 00:41:41 +0000</lastBuildDate>
+    <category>Workflows</category>
+    <atom:link href="https://forum.stackstorm.com/t/inconsistent-orquesta-wf-execution-times-for-same-workflow/975.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Inconsistent Orquesta WF execution times for same workflow</title>
+        <dc:creator><![CDATA[punkrokk]]></dc:creator>
+        <description><![CDATA[
+            <p>Awesome. Would love to read a blog post about how you solved this, as I’m sure others are experiencing this challenge.</p>
+          <p><a href="https://forum.stackstorm.com/t/inconsistent-orquesta-wf-execution-times-for-same-workflow/975/4">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/inconsistent-orquesta-wf-execution-times-for-same-workflow/975/4</link>
+        <pubDate>Tue, 18 Feb 2020 00:41:41 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-975-4</guid>
+        <source url="https://forum.stackstorm.com/t/inconsistent-orquesta-wf-execution-times-for-same-workflow/975.rss">Inconsistent Orquesta WF execution times for same workflow</source>
+      </item>
+      <item>
+        <title>Inconsistent Orquesta WF execution times for same workflow</title>
+        <dc:creator><![CDATA[techdiverdown]]></dc:creator>
+        <description><![CDATA[
+            <p>Yes, basically the publish, the way we pass variables between actions in workflows, pushes data to mongo. This is using mongo engine, which can be very slow for large, complex structures, which we use. We moved to using redis, so we push data to redis then just pass the redis key around between actions. This greatly reduced the CPU usage and made things much faster and more scalable.</p>
+          <p><a href="https://forum.stackstorm.com/t/inconsistent-orquesta-wf-execution-times-for-same-workflow/975/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/inconsistent-orquesta-wf-execution-times-for-same-workflow/975/3</link>
+        <pubDate>Mon, 17 Feb 2020 23:13:13 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-975-3</guid>
+        <source url="https://forum.stackstorm.com/t/inconsistent-orquesta-wf-execution-times-for-same-workflow/975.rss">Inconsistent Orquesta WF execution times for same workflow</source>
+      </item>
+      <item>
+        <title>Inconsistent Orquesta WF execution times for same workflow</title>
+        <dc:creator><![CDATA[punkrokk]]></dc:creator>
+        <description><![CDATA[
+            <p>Did you ever solve this? I’m interested in what you found.</p>
+          <p><a href="https://forum.stackstorm.com/t/inconsistent-orquesta-wf-execution-times-for-same-workflow/975/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/inconsistent-orquesta-wf-execution-times-for-same-workflow/975/2</link>
+        <pubDate>Mon, 17 Feb 2020 19:03:34 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-975-2</guid>
+        <source url="https://forum.stackstorm.com/t/inconsistent-orquesta-wf-execution-times-for-same-workflow/975.rss">Inconsistent Orquesta WF execution times for same workflow</source>
+      </item>
+      <item>
+        <title>Inconsistent Orquesta WF execution times for same workflow</title>
+        <dc:creator><![CDATA[techdiverdown]]></dc:creator>
+        <description><![CDATA[
+            <p>I have a very simple workflow borrowed from examples in github as follows:<br>
+version: 1.0</p>
+<p>description: A workflow demonstrating with items and concurrent processing.</p>
+<p>input:</p>
+<ul>
+<li>members: [1,2,3,4,5,6,7,8,9,10]</li>
+<li>concurrency: 5</li>
+<li>trace_id</li>
+</ul>
+<p>tasks:<br>
+task1:<br>
+with:<br>
+items: &lt;% ctx(members) %&gt;<br>
+concurrency: &lt;% ctx(concurrency) %&gt;<br>
+action: core.echo message="&lt;% item() %&gt;, resistance is futile!"</p>
+<p>output:</p>
+<ul>
+<li>items: &lt;% task(task1).result.items.select($.result.stdout) %&gt;</li>
+</ul>
+<p>I am executing in docker on my mac. The purpose is to vary concurrency, number of items, action runners to understand how to appropriately size our k8s cluster (number of action runners, workflow engines, etc) and so forth. The issue is i am getting wildly varying times running the exact same wf above. Times that vary from 4 seconds to over 21 seconds. I can see (with the st2 tail execution) some actions just seem to stop and take 2-3 seconds, mind you same action in the loop above. I am using top and some other tools but i cannot determine why the WF just hangs periodically. This happens in production K8s cluster as well, so trying to determine how to debug this locally first. Any suggestions appreciated.</p>
+          <p><a href="https://forum.stackstorm.com/t/inconsistent-orquesta-wf-execution-times-for-same-workflow/975/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/inconsistent-orquesta-wf-execution-times-for-same-workflow/975/1</link>
+        <pubDate>Thu, 26 Dec 2019 19:19:19 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-975-1</guid>
+        <source url="https://forum.stackstorm.com/t/inconsistent-orquesta-wf-execution-times-for-same-workflow/975.rss">Inconsistent Orquesta WF execution times for same workflow</source>
+      </item>
+  </channel>
+</rss>

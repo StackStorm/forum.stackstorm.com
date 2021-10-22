@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Stackstorm Stream st2client</title>
+    <link>https://forum.stackstorm.com/t/stackstorm-stream-st2client/1061</link>
+    <description>I am testing an application which creates executions with st2client (Python).  How can I create a stream for a particular execution (get stream by id?) To show the output on a webpage?  I can get execution by id but can&#39;t get the stream working. Is there any documentation for st2client (Python)</description>
+    
+    <lastBuildDate>Tue, 08 Sep 2020 21:41:44 +0000</lastBuildDate>
+    <category>Uncategorized</category>
+    <atom:link href="https://forum.stackstorm.com/t/stackstorm-stream-st2client/1061.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Stackstorm Stream st2client</title>
+        <dc:creator><![CDATA[dbillor]]></dc:creator>
+        <description><![CDATA[
+            <p>did you ever figure it out? it’s not clear how to do it using st2client.</p>
+          <p><a href="https://forum.stackstorm.com/t/stackstorm-stream-st2client/1061/4">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/stackstorm-stream-st2client/1061/4</link>
+        <pubDate>Tue, 08 Sep 2020 21:41:44 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1061-4</guid>
+        <source url="https://forum.stackstorm.com/t/stackstorm-stream-st2client/1061.rss">Stackstorm Stream st2client</source>
+      </item>
+      <item>
+        <title>Stackstorm Stream st2client</title>
+        <dc:creator><![CDATA[Reth]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi, basically I use the python st2client (<a href="https://pypi.org/project/st2client" rel="nofollow noopener">https://pypi.org/project/st2client</a>) to create executions of simple actions. Some of these actions can last for few minutes. I want to be able to get a real time stream from python client (Not CLI) on to the webpage. Is there any documentation for the python client? Would you be able to provide a python code to get the stream given the execution is already created.</p>
+<p>Thanks</p>
+          <p><a href="https://forum.stackstorm.com/t/stackstorm-stream-st2client/1061/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/stackstorm-stream-st2client/1061/3</link>
+        <pubDate>Tue, 18 Feb 2020 06:53:16 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1061-3</guid>
+        <source url="https://forum.stackstorm.com/t/stackstorm-stream-st2client/1061.rss">Stackstorm Stream st2client</source>
+      </item>
+      <item>
+        <title>Stackstorm Stream st2client</title>
+        <dc:creator><![CDATA[punkrokk]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi <a class="mention" href="https://github.com/reth">@Reth</a>. Great to have you here!</p>
+<p>Can you expand on your use case more?</p>
+<ul>
+<li>What info do you want for the stream?</li>
+<li>Are these workflow or just actions?</li>
+</ul>
+<p>Stream API docs are here: <a href="https://api.stackstorm.com/stream/v1/stream/#/stream_controller.get_all" rel="nofollow noopener">https://api.stackstorm.com/stream/v1/stream/#/stream_controller.get_all</a></p>
+<p>An intro to the st2client is here: <a href="https://docs.stackstorm.com/start.html#explore-st2-with-cli" class="inline-onebox" rel="nofollow noopener">Quick Start — StackStorm 3.1.0 documentation</a></p>
+<p>Reference guide here: <a href="https://docs.stackstorm.com/reference/cli.html#cli-reference" class="inline-onebox" rel="nofollow noopener">CLI Reference — StackStorm 3.1.0 documentation</a></p>
+<p>Every st2 command has a -h help output, and the “—debug” command will give you the curl command that the st2 cli used to get its output.</p>
+<p>Finally, one way to learn how to get execution status would be to watch the history tab with Chrome Inspector.</p>
+<p>hope this helps. If so, please mark as the solution.</p>
+<blockquote>
+<p>Blockquote</p>
+</blockquote>
+          <p><a href="https://forum.stackstorm.com/t/stackstorm-stream-st2client/1061/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/stackstorm-stream-st2client/1061/2</link>
+        <pubDate>Tue, 18 Feb 2020 00:20:10 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1061-2</guid>
+        <source url="https://forum.stackstorm.com/t/stackstorm-stream-st2client/1061.rss">Stackstorm Stream st2client</source>
+      </item>
+      <item>
+        <title>Stackstorm Stream st2client</title>
+        <dc:creator><![CDATA[Reth]]></dc:creator>
+        <description><![CDATA[
+            <p>I am testing an application which creates executions with st2client (Python).  How can I create a stream for a particular execution (get stream by id?) To show the output on a webpage?  I can get execution by id but can’t get the stream working. Is there any documentation for st2client (Python)</p>
+          <p><a href="https://forum.stackstorm.com/t/stackstorm-stream-st2client/1061/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/stackstorm-stream-st2client/1061/1</link>
+        <pubDate>Mon, 17 Feb 2020 21:17:42 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1061-1</guid>
+        <source url="https://forum.stackstorm.com/t/stackstorm-stream-st2client/1061.rss">Stackstorm Stream st2client</source>
+      </item>
+  </channel>
+</rss>

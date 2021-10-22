@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+<html lang="en" class="desktop-view not-mobile-device text-size-normal anon">
+<head>
+    <meta charset="utf-8">
+    <title>How to troubleshoot a mistral workflow that is stuck in &quot;running&quot; state? - Mistral - StackStorm
+        Support (ARCHIVED)</title>
+    <meta name="description"
+          content="Is there an easy way to determine why a mistral workflow still sits on Running even though the last action that ran within the workflow returned Failed?  In the past I found it was because the action that would get calle&amp;hellip;">
+    <meta name="discourse_theme_id" content="2">
+    <meta name="discourse_current_homepage" content="latest">
+    <meta name="generator"
+          content="Discourse 2.8.0.beta6 - https://github.com/discourse/discourse version a1daf9fe53a66e2d2cdf9757ab4812fb9a2b2787">
+    <link rel="icon" type="image/png"
+          href="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/379ced12f8326d58f1b3d2b3ff652f883e141f6a_2_32x32.PNG">
+    <link rel="apple-touch-icon" type="image/png"
+          href="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/379ced12f8326d58f1b3d2b3ff652f883e141f6a_2_180x180.PNG">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <link rel="canonical" href="131.html"/>
+    <script type="application/ld+json">{
+        "@context": "http://schema.org",
+        "@type": "WebSite",
+        "url": "https://forum.stackstorm.com",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://forum.stackstorm.com/search?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }
+    </script>
+    <link rel="search" type="application/opensearchdescription+xml" href="../../opensearch.xml"
+          title="StackStorm Support (ARCHIVED) Search">
+
+
+    <link href="https://sjc6.discourse-cdn.com/standard10/stylesheets/color_definitions_basis__2_3c5eec1ecf192052ea70b4afdab57a62bccc0604.css?__ws=forum.stackstorm.com"
+          media="all" rel="stylesheet" class="light-scheme"/>
+
+    <link href="/../../stylesheets/desktop_b2f2968742d41481357e0df259b51ce29f72481a.css?__ws=forum.stackstorm.com"
+          media="all" rel="stylesheet" data-target="desktop"/>
+
+
+    <meta name="fragment" content="!">
+
+
+    <link id="manifest-link" rel="manifest" href="../../manifest.webmanifest" crossorigin="use-credentials">
+
+
+    <link rel="alternate" type="application/rss+xml"
+          title="RSS feed of &#39;How to troubleshoot a mistral workflow that is stuck in &quot;running&quot; state?&#39;"
+          href="https://forum.stackstorm.com/t/how-to-troubleshoot-a-mistral-workflow-that-is-stuck-in-running-state/131.rss"/>
+    <meta property="og:site_name" content="StackStorm Support (ARCHIVED)"/>
+    <meta property="og:type" content="website"/>
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:image"
+          content="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/891f00fbdb31fecb5bd9dab30c186d2fed0091ca.jpeg"/>
+    <meta property="og:image"
+          content="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/891f00fbdb31fecb5bd9dab30c186d2fed0091ca.jpeg"/>
+    <meta property="og:url"
+          content="https://forum.stackstorm.com/t/how-to-troubleshoot-a-mistral-workflow-that-is-stuck-in-running-state/131"/>
+    <meta name="twitter:url"
+          content="https://forum.stackstorm.com/t/how-to-troubleshoot-a-mistral-workflow-that-is-stuck-in-running-state/131"/>
+    <meta property="og:title"
+          content="How to troubleshoot a mistral workflow that is stuck in &quot;running&quot; state?"/>
+    <meta name="twitter:title"
+          content="How to troubleshoot a mistral workflow that is stuck in &quot;running&quot; state?"/>
+    <meta property="og:description"
+          content="Is there an easy way to determine why a mistral workflow still sits on Running even though the last action that ran within the workflow returned Failed?  In the past I found it was because the action that would get called next (there’s a catch-all on-error in each action) had some bad jinja - but I removed all the jinja and the workflow is still Running.  # st2 --version st2 2.6.0  e.g.  $ st2 execution get 5ae9db797709b603ee05d827 id: 5ae9db797709b603ee05d827 action.ref: [redacted]_pdb_refresh...."/>
+    <meta name="twitter:description"
+          content="Is there an easy way to determine why a mistral workflow still sits on Running even though the last action that ran within the workflow returned Failed?  In the past I found it was because the action that would get called next (there’s a catch-all on-error in each action) had some bad jinja - but I removed all the jinja and the workflow is still Running.  # st2 --version st2 2.6.0  e.g.  $ st2 execution get 5ae9db797709b603ee05d827 id: 5ae9db797709b603ee05d827 action.ref: [redacted]_pdb_refresh...."/>
+    <meta property="article:published_time" content="2018-05-02T17:20:21+00:00"/>
+    <meta property="og:ignore_canonical" content="true"/>
+
+
+    <script type="application/ld+json">{
+        "@context": "http://schema.org",
+        "@type": "QAPage",
+        "name": "How to troubleshoot a mistral workflow that is stuck in \"running\" state?",
+        "mainEntity": {
+            "@type": "Question",
+            "name": "How to troubleshoot a mistral workflow that is stuck in \"running\" state?",
+            "text": "Is there an easy way to determine why a mistral workflow still sits on Running even though the last action that ran within the workflow returned Failed?  In the past I found it was because the action that would get called next (there’s a catch-all on-error in each action) had some bad jinja - but I &hellip;",
+            "upvoteCount": 0,
+            "answerCount": 0,
+            "dateCreated": "2018-05-02T17:20:21.338Z",
+            "author": {
+                "@type": "Person",
+                "name": null
+            }
+        }
+    }
+    </script>
+
+    <meta id="data-discourse-setup" data-cdn="https://sjc6.discourse-cdn.com/standard10"
+          data-base-url="https://forum.stackstorm.com" data-base-uri="" data-environment="production"
+          data-letter-avatar-version="5_8fec8e114563efeaf5265573e510f08e"
+          data-markdown-it-url="https://aws1.discourse-cdn.com/standard10/assets/markdown-it-bundle-31e9a9c535ca1801c26da78b0ff465821751a98f921c5cdc5457d7e5a69e9748.js"
+          data-service-worker-url="service-worker.js" data-default-locale="en"
+          data-asset-version="597e36448c9b51d0fa3b7e43ec1fd6d5" data-disable-custom-css="false"
+          data-highlight-js-path="/highlight-js/forum.stackstorm.com/ac0f4aa001e1343346941766d72e0c1ae330832b.js"
+          data-svg-sprite-path="/svg-sprite/forum.stackstorm.com/svg-2-c2ad434b1e06079c7e282124aed9938dc95b83ea.js"
+          data-enable-js-error-reporting="true" data-color-scheme-is-dark="false" data-user-dark-scheme-id="-1"
+          data-s3-cdn="https://aws1.discourse-cdn.com/standard10"
+          data-s3-base-url="//discourse-cloud-file-uploads.s3.dualstack.us-west-2.amazonaws.com/standard10">
+
+    <meta name="discourse/config/environment"
+          content="%7B%22modulePrefix%22%3A%22discourse%22%2C%22environment%22%3A%22production%22%2C%22rootURL%22%3A%22%22%2C%22locationType%22%3A%22auto%22%2C%22historySupportMiddleware%22%3Afalse%2C%22EmberENV%22%3A%7B%22FEATURES%22%3A%7B%7D%2C%22EXTEND_PROTOTYPES%22%3A%7B%22Date%22%3Afalse%7D%2C%22_APPLICATION_TEMPLATE_WRAPPER%22%3Afalse%2C%22_DEFAULT_ASYNC_OBSERVERS%22%3Atrue%2C%22_JQUERY_INTEGRATION%22%3Atrue%7D%2C%22APP%22%3A%7B%22name%22%3A%22discourse%22%2C%22version%22%3A%222.8.0.beta6%20a1daf9fe53a66e2d2cdf9757ab4812fb9a2b2787%22%2C%22exportApplicationGlobal%22%3Atrue%7D%7D"/>
+</head>
+
+<body class="">
+
+
+<header class="d-header">
+    <div class="wrap">
+        <div class="contents clearfix">
+            <div class="title">
+                <a href="../../index.html">
+                    <picture>
+                        <img src="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png"
+                             alt="StackStorm Support (ARCHIVED)" id="site-logo"/>
+                    </picture>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</header>
+
+<div id="main-outlet" class="wrap" role="main">
+    <!-- preload-content: -->
+
+    <!-- EOF START -->
+    <div class="container" id="main-container">
+        <div id="ember11" class="ember-view"></div>
+        <div id="ember12" class="controls ember-view"><!----></div>
+        <div id="ember13" class="ember-view"><!----></div>
+        <div id="ember14" class="ember-view">
+            <div class="row">
+                <div id="global-notice-alert-read-only" class="alert alert-info alert-read-only">
+                    <!----> <span class="text">This site is in read only mode. Please continue to browse, but replying, likes, and other actions are disabled for now.</span>
+
+                    <!---->    </div>
+            </div>
+            <div class="row">
+                <div id="global-notice-alert-global-notice" class="alert alert-info alert-global-notice">
+                    <!----> <span class="text"><h3>⚠️ We've moved!</h3>  <p> Hi there!<br><br> To reduce project dependency on 3rd party paid services the StackStorm TSC has decided to move the Q/A from this forum to <a
+                        href="https://github.com/StackStorm/st2/discussions">Github Discussions</a>. This will make user experience better integrated with the native Github flow, as well as the questions closer to the community where they can provide answers. </p>  <p> Use 🔗 <b><a
+                        href="https://github.com/StackStorm/st2/discussions" class="active">Github Discussions</a></b> to ask your questions. </p></span>
+
+                    <!---->    </div>
+            </div>
+        </div>
+        <div id="ember17" class="hidden create-topics-notice ember-view"><!----></div>
+        <!---->
+    </div>
+    <!-- EOF END -->
+    <div id="topic-title">
+        <h1>
+            <a href="131.html">How to troubleshoot a mistral workflow that is stuck in &quot;running&quot; state?</a>
+        </h1>
+
+        <div class="topic-category" itemscope itemtype="http://schema.org/BreadcrumbList">
+          <span itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a href="../../c/workflow-related-issues/15" class="badge-wrapper bullet" itemprop="item">
+              <span class='badge-category-bg' style='background-color: #25AAE2'></span>
+              <span class='badge-category clear-badge'>
+                <span class='category-name' itemprop='name'>Workflows</span>
+              </span>
+            </a>
+            <meta itemprop="position" content="1"/>
+          </span>
+            <span itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a href="../../c/workflow-related-issues/mistral-related-issues/16" class="badge-wrapper bullet"
+               itemprop="item">
+              <span class='badge-category-bg' style='background-color: #652D90'></span>
+              <span class='badge-category clear-badge'>
+                <span class='category-name' itemprop='name'>Mistral</span>
+              </span>
+            </a>
+            <meta itemprop="position" content="2"/>
+          </span>
+        </div>
+
+        <div class="topic-category">
+            <div class='discourse-tags list-tags'>
+                <a href='../../tag/troubleshooting' class='discourse-tag' rel="tag">troubleshooting</a>,
+                <a href='../../tag/mistral' class='discourse-tag' rel="tag">mistral</a>,
+                <a href='../../tag/workflows' class='discourse-tag' rel="tag">workflows</a>
+            </div>
+        </div>
+    </div>
+
+
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/Matt'><span itemprop='name'>Matt</span></a>
+            
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="131.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2018-05-02T17:20:21Z' class='post-time'>
+                May 2, 2018,  5:20pm
+              </time>
+              <meta itemprop='dateModified' content='2018-05-15T19:38:33Z'>
+          <span itemprop='position'>#1</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Is there an easy way to determine why a mistral workflow still sits on <code>Running</code> even though
+                the last action that ran within the workflow returned <code>Failed</code>? In the past I found it was
+                because the action that would get called next (there’s a catch-all <code>on-error</code> in each action)
+                had some bad jinja - but I removed all the jinja and the workflow is still <code>Running</code>.</p>
+            <pre><code># st2 --version
+st2 2.6.0
+</code></pre>
+            <p>e.g.</p>
+            <pre><code>$ st2 execution get 5ae9db797709b603ee05d827
+id: 5ae9db797709b603ee05d827
+action.ref: [redacted]_pdb_refresh.checkin
+parameters:
+  callback_authorization_path: secret/cloud/prod/api_token
+  callback_url: none_specified
+  cdb_host: clouddb01.test.[redacted].com
+  cdb_version: 12.1.0.2
+  desktop_db: false
+  pdb_class: prt
+  pdb_name: prt_c572297f4f2a49529cf3802fbd
+status: running (412s elapsed)
+start_timestamp: Wed, 02 May 2018 15:38:32 UTC
+end_timestamp:
++--------------------------+------------------------+---------------------+---------------------+-----------------+
+| id                       | status                 | task                | action              | start_timestamp |
++--------------------------+------------------------+---------------------+---------------------+-----------------+
+| 5ae9db7c7709b60bcb3e8b09 | succeeded (3s elapsed) | queue_state         | [redacted]_common.loop_un | Wed, 02 May     |
+|                          |                        |                     | til                 | 2018 15:38:35   |
+|                          |                        |                     |                     | UTC             |
+| 5ae9db7e7709b60bcb3e8b0b | succeeded (3s elapsed) | set_environment_var | consul.kv_get       | Wed, 02 May     |
+|                          |                        | iable               |                     | 2018 15:38:38   |
+|                          |                        |                     |                     | UTC             |
+| 5ae9db827709b60bcb3e8b0d | failed (3s elapsed)    | shutdown_pdb        | [redacted]_dba_oracle.run | Wed, 02 May     |
+|                          |                        |                     | _sql                | 2018 15:38:42   |
+|                          |                        |                     |                     | UTC             |
++--------------------------+------------------------+---------------------+---------------------+-----------------+
+</code></pre>
+            <p>Here’s my workflow:</p>
+            <pre><code>version: "2.0"
+
+name: [redacted]_pdb_refresh.checkin
+description: &gt;
+    Perform a checkin on a PDB
+workflows:
+  main:
+    type: direct
+    input:
+      - cdb_user
+      - vault_path
+      - pdb_class
+      - pdb_name
+      - callback_url
+      - desktop_db
+      - cdb_host
+      - cdb_version
+      - ancillary_email
+      - callback_authorization_path
+    output:
+      messages: &lt;% $.status_message %&gt;
+    tasks:
+      # This task will check the value of [redacted]/stackstorm/[redacted]_pdb_refresh/loop_until/{{ _.pdb_class }}/enabled in Consul
+      # if it is 'true' then we'll continue on with the workflow.  If it's false
+      # then we loop.  This is a way of 'pausing' the queue...
+      queue_state:
+        action: [redacted]_common.loop_until
+        input:
+          loop_key: [redacted]/stackstorm/[redacted]_pdb_refresh/loop_until/{{ _.pdb_class }}/enabled
+          loop_method: consul
+          loop_until_value: "true"
+          sleep_seconds: 30
+          loop_iterations: 5
+          loop_forever: true
+        on-success:
+          - set_environment_variable
+        on-error:
+          - post_notification
+        publish:
+          status_message: "Queue appears to be unpaused.  Proceeding with PDB checkin"
+        publish-on-error:
+          status_message: "Failed to complete task `queue_state`"
+
+      # This task just sets an environment variable for the user who submitted this workflow.
+      set_environment_variable:
+        action: consul.kv_get
+        input:
+          key: [redacted]/stackstorm/[redacted]_pdb_refresh/cdb_hosts
+          from_json: true
+        publish:
+          environment_name: &lt;% switch(bool($.pdb_name) =&gt; $.pdb_name, bool(env().get('__actions').get('st2.action').st2_context.parent.get('api_user')) =&gt; "dtdb_"+$.pdb_class+"_"+env().get('__actions').get('st2.action').st2_context.parent.api_user, 1 = 1 =&gt; env().get('__actions').get('st2.action').st2_context.parent.user) %&gt;
+          new_pdb_name: &lt;% switch(bool($.desktop_db) =&gt; concat('dtdb_', $.pdb_class, '_', $.pdb_name.toLower()), 1=1 =&gt; $.pdb_name.toLower()) %&gt;
+          cdb_servicename: &lt;% task('set_environment_variable').result.result[1].Value[$.pdb_class].cdb_map[$.cdb_host][$.cdb_version] %&gt;
+        on-success:
+          - shutdown_pdb
+
+      shutdown_pdb:
+        action: [redacted]_dba_oracle.run_sql
+        input:
+          host: "{{ _.cdb_host }}"
+          user: "{{ _.cdb_user }}"
+          vault_path: "{{ _.vault_path }}"
+          service_name: "{{ _.cdb_servicename }}"
+          bad_sql_ok: false
+          sysoper: false
+          sql: &gt;
+           DECLARE
+              PDB_NAME VARCHAR2(64) := '{{ _.new_pdb_name }}';
+              pdb_already_closed EXCEPTION ;
+              PRAGMA EXCEPTION_INIT(pdb_already_closed, -65020);
+              pdb_doesnot_exist EXCEPTION ;
+              PRAGMA EXCEPTION_INIT(pdb_doesnot_exist, -1031);
+            BEGIN
+              EXECUTE IMMEDIATE 'ALTER PLUGGABLE DATABASE '||PDB_NAME||'
+                CLOSE ABORT';
+              EXCEPTION
+              WHEN pdb_already_closed THEN
+                dbms_output.put_line('PDB '||PDB_NAME||' is already closed.');
+                NULL;
+              WHEN pdb_doesnot_exist THEN
+                dbms_output.put_line('PDB '||PDB_NAME||' does not exist.');
+                NULL;
+              WHEN OTHERS THEN
+                dbms_output.put_line('Some other error occured. '||sqlerrm);
+                raise;
+            END;
+        publish-on-error:
+          status_message: "Failed to complete task shutdown_pdb: {{ task('shutdown_pdb').result.result.ERRORS }}"
+        publish:
+          status_message: "Successfully shutdown PDB {{ _.pdb_name }}"
+        on-success:
+          - drop_pdb: &lt;% $.desktop_db = true %&gt;
+          - umount_pdb_vol: &lt;% $.desktop_db = false %&gt;
+        on-error:
+          - post_notification
+
+      umount_pdb_vol:
+        action: [redacted]_dba_oracle.unmount_nfs_volume
+        input:
+          hostnames:
+            - "{{ _.cdb_host }}"
+          mountpoint: "/oradata/cloud/{{ _.pdb_class }}/{{ _.new_pdb_name }}"
+          destroy: true
+          cls: "{{ _.pdb_class }}"
+        publish-on-error:
+          status_message: "Failed to complete task unmount_pdb_vol: {{ task('umount_pdb_vol').result.result.errors[0] }}"
+        publish:
+          status_message: "Successfully completed task unmount_pdb_vol: {{ task('umount_pdb_vol').result.result.results[0] }}"
+        on-success:
+          - drop_pdb
+        on-error:
+          - post_notification
+
+      drop_pdb:
+        action: [redacted]_dba_oracle.run_sql
+        input:
+          host: "{{ _.cdb_host }}"
+          user: "{{ _.cdb_user }}"
+          vault_path: "{{ _.vault_path }}"
+          service_name: "{{ _.cdb_servicename }}"
+          bad_sql_ok: false
+          sysoper: false
+          sql: &gt;
+           DECLARE
+              PDB_NAME VARCHAR2(30) := '{{ _.new_pdb_name }}';
+              pdb_doesnot_exist EXCEPTION ;
+              PRAGMA EXCEPTION_INIT(pdb_doesnot_exist, -65011);
+            BEGIN
+              EXECUTE IMMEDIATE 'DROP PLUGGABLE DATABASE '||PDB_NAME||'
+                INCLUDING DATAFILES';
+              EXCEPTION WHEN pdb_doesnot_exist THEN
+                dbms_output.put_line('This PDB doesnt seem to exist.');
+                NULL;
+              WHEN OTHERS THEN
+                dbms_output.put_line('Some other error occured. '||sqlerrm);
+                raise;
+            END;
+        publish-on-error:
+          status_message: "Failed to complete task drop_pdb: {{ task('drop_pdb').result.result.ERRORS }}"
+        publish:
+          status_message: "Successfully dropped pdb {{ _.new_pdb_name }}"
+        on-success:
+          - make_callback_succeeded: "{{ _.callback_url != 'none_specified' }}"
+        on-error:
+          - post_notification
+
+      make_callback_succeeded:
+        action: core.http
+        input:
+          url: "{{ _.callback_url }}"
+          body: '{"status":"succeeded","pdb_class":"{{ _.pdb_class }}","pdb_name":"{{ _.pdb_name }}"}'
+          method: PUT
+          verify_ssl_cert: false
+        on-error:
+          - post_notification
+
+      post_notification:
+        action: slack.chat.postMessage
+        input:
+          channel: "dba_alerts"
+          text: |
+            There was a failure checking in the pdb *{{ _.pdb_name }}* from host *{{ _.cdb_host }}*
+            ```{{ _.status_message }}```
+            For more information check the stackstorm execution_id @
+            https://dbaautomation.dba.overstock.com.com/#/history/{{ env().st2_execution_id }}/general
+
+          username: "StackStorm Bot"
+          icon_emoji: ":robot-arm:"
+          as_user: "false"
+        on-complete:
+          - fail</code></pre>
+        </div>
+
+        <meta itemprop='headline'
+              content='How to troubleshoot a mistral workflow that is stuck in &quot;running&quot; state?'>
+        <meta itemprop='keywords' content='troubleshooting, mistral, workflows'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+        <div class='crawler-linkback-list' itemscope itemtype='http://schema.org/ItemList'>
+            <div itemprop='itemListElement' itemscope itemtype='http://schema.org/ListItem'>
+                <a href="https://forum.stackstorm.com/t/workflows-get-stuck-in-pausing-state/212/5" itemscope
+                   itemtype='http://schema.org/DiscussionForumPosting' itemprop='item'>
+                    <meta itemprop='url'
+                          content='https://forum.stackstorm.com/t/workflows-get-stuck-in-pausing-state/212/5'>
+                    <span itemprop='name'>Workflows get stuck in pausing state</span>
+                </a>
+                <meta itemprop='position' content='1'>
+            </div>
+        </div>
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/m4dcoder'><span itemprop='name'>m4dcoder</span></a>
+            (W Chan)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="131.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2018-05-02T19:03:13Z' class='post-time'>
+                May 2, 2018,  7:03pm
+              </time>
+              <meta itemprop='dateModified' content='2018-05-02T19:03:13Z'>
+          <span itemprop='position'>#3</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Can you identify the mistral workflow execution ID and then query mistral to see what state the workflow
+                execution is in and what tasks has been recorded at mistral? Please post the results here.</p>
+            <pre><code class="lang-auto"># Identify the Mistral workflow execution ID which is different than the st2 action execution ID
+st2 execution get &lt;st2-action-execution-id&gt; -dj | grep workflow_execution_id
+
+# Query the state of the workflow execution in Mistral
+mistral execution-get &lt;workflow-execution-id&gt;
+
+# Query the list of task executions for the workflow at Mistral
+mistral task-list &lt;workflow-execution-id&gt;
+</code></pre>
+        </div>
+
+        <meta itemprop='headline'
+              content='How to troubleshoot a mistral workflow that is stuck in &quot;running&quot; state?'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/Matt'><span itemprop='name'>Matt</span></a>
+            
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="131.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2018-05-03T12:53:12Z' class='post-time'>
+                May 3, 2018, 12:53pm
+              </time>
+              <meta itemprop='dateModified' content='2018-05-03T12:53:12Z'>
+          <span itemprop='position'>#4</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+          <pre><code>[root@dbaautomation01 mistral]# st2 execution get 5ae9f6dfe390ea125e1d541f -dj | grep workflow_execution_id
+                "workflow_execution_id": "75bc2fb0-d29f-48d1-b83f-74550736b20b",
+                "workflow_execution_id": "75bc2fb0-d29f-48d1-b83f-74550736b20b",
+                "workflow_execution_id": "75bc2fb0-d29f-48d1-b83f-74550736b20b",
+[root@dbaautomation01 mistral]# mistral execution-get 75bc2fb0-d29f-48d1-b83f-74550736b20b
+WARNING (keystone) You must either provide a valid token or a password (api_key) and a user.
++--------------------+--------------------------------------+
+| Field              | Value                                |
++--------------------+--------------------------------------+
+| ID                 | 75bc2fb0-d29f-48d1-b83f-74550736b20b |
+| Workflow ID        | a327a6d3-5c20-4e9e-b790-ce9bd2a786ce |
+| Workflow name      | [redacted]_pdb_refresh.checkin.main  |
+| Workflow namespace |                                      |
+| Description        |                                      |
+| Task Execution ID  | &lt;none&gt;                               |
+| State              | RUNNING                              |
+| State info         | None                                 |
+| Created at         | 2018-05-02 17:34:24                  |
+| Updated at         | 2018-05-02 17:34:24                  |
++--------------------+--------------------------------------+
+[root@dbaautomation01 mistral]# mistral task-list a327a6d3-5c20-4e9e-b790-ce9bd2a786ce
+WARNING (keystone) You must either provide a valid token or a password (api_key) and a user.
++----+------+---------------+--------------------+--------------+-------+------------+------------+------------+
+| ID | Name | Workflow name | Workflow namespace | Execution ID | State | State info | Created at | Updated at |
++----+------+---------------+--------------------+--------------+-------+------------+------------+------------+
+|    |      |               |                    |              |       |            |            |            |
++----+------+---------------+--------------------+--------------+-------+------------+------------+------------+
+[root@dbaautomation01 mistral]# mistral task-list 75bc2fb0-d29f-48d1-b83f-74550736b20b
+WARNING (keystone) You must either provide a valid token or a password (api_key) and a user.
++--------------------------------------+--------------------------+-------------------------------+--------------------+--------------------------------------+---------+------------+---------------------+---------------------+
+| ID                                   | Name                     | Workflow name                 | Workflow namespace | Execution ID                         | State   | State info | Created at          | Updated at          |
++--------------------------------------+--------------------------+-------------------------------+--------------------+--------------------------------------+---------+------------+---------------------+---------------------+
+| a12e07b7-579b-41f6-8b96-16cd2929e79b | queue_state              | [redacted]_pdb_refresh.checkin.main |                    | 75bc2fb0-d29f-48d1-b83f-74550736b20b | SUCCESS | None       | 2018-05-02 17:34:24 | 2018-05-02 17:35:50 |
+| 455c66eb-6af9-4f57-af0c-1651e40ca474 | shutdown_pdb             | [redacted]_pdb_refresh.checkin.main |                    | 75bc2fb0-d29f-48d1-b83f-74550736b20b | RUNNING | None       | 2018-05-02 17:34:26 | &lt;none&gt;              |
+| 8904f2f5-c63b-47bf-a468-6280395a4c6b | set_environment_variable | [redacted]_pdb_refresh.checkin.main |                    | 75bc2fb0-d29f-48d1-b83f-74550736b20b | SUCCESS | None       | 2018-05-02 17:35:50 | 2018-05-02 17:34:26 |
++--------------------------------------+--------------------------+-------------------------------+--------------------+--------------------------------------+---------+------------+---------------------+---------------------+
+</code></pre>
+            <p>So it looks like even though <code>shutdown_pdb</code> is red in the interface (and shows a status of
+                ‘Failed’) it’s actually still running?</p>
+        </div>
+
+        <meta itemprop='headline'
+              content='How to troubleshoot a mistral workflow that is stuck in &quot;running&quot; state?'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/m4dcoder'><span itemprop='name'>m4dcoder</span></a>
+            (W Chan)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="131.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2018-05-03T16:21:33Z' class='post-time'>
+                May 3, 2018,  4:21pm
+              </time>
+              <meta itemprop='dateModified' content='2018-05-03T16:21:33Z'>
+          <span itemprop='position'>#5</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Can you post the output of <code>st2 execution get 5ae9db827709b60bcb3e8b0d</code> on the shutdown_pdb
+                execution in st2? I want to see how/why it failed in st2. Please remove any sensitive info before
+                posting. Thanks.</p>
+        </div>
+
+        <meta itemprop='headline'
+              content='How to troubleshoot a mistral workflow that is stuck in &quot;running&quot; state?'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/Matt'><span itemprop='name'>Matt</span></a>
+            
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="131.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2018-05-03T16:36:37Z' class='post-time'>
+                May 3, 2018,  4:36pm
+              </time>
+              <meta itemprop='dateModified' content='2018-05-03T16:36:37Z'>
+          <span itemprop='position'>#6</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Hmm, those id’s aren’t found anymore. Do they age out?</p>
+            <pre><code># st2 execution get 5ae9db827709b60bcb3e8b0d
+Action Execution "5ae9db827709b60bcb3e8b0d" is not found.</code></pre>
+        </div>
+
+        <meta itemprop='headline'
+              content='How to troubleshoot a mistral workflow that is stuck in &quot;running&quot; state?'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/m4dcoder'><span itemprop='name'>m4dcoder</span></a>
+            (W Chan)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="131.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2018-05-03T17:10:38Z' class='post-time'>
+                May 3, 2018,  5:10pm
+              </time>
+              <meta itemprop='dateModified' content='2018-05-03T17:10:38Z'>
+          <span itemprop='position'>#7</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Yes, there’s garbage collection. Configuration at <a
+                    href="https://docs.stackstorm.com/troubleshooting/purging_old_data.html?highlight=database%20purge#purging-old-operational-data"
+                    rel="nofollow noopener">Purging Old Operational Data — StackStorm 2.7.1 documentation</a>.</p>
+        </div>
+
+        <meta itemprop='headline'
+              content='How to troubleshoot a mistral workflow that is stuck in &quot;running&quot; state?'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/m4dcoder'><span itemprop='name'>m4dcoder</span></a>
+            (W Chan)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="131.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2018-05-03T17:11:31Z' class='post-time'>
+                May 3, 2018,  5:11pm
+              </time>
+              <meta itemprop='dateModified' content='2018-05-03T17:11:31Z'>
+          <span itemprop='position'>#8</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>So can you reproduce this issue? If you see this again, please pick up where we left off and provide
+                refreshed data. Thanks.</p>
+        </div>
+
+        <meta itemprop='headline'
+              content='How to troubleshoot a mistral workflow that is stuck in &quot;running&quot; state?'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/Matt'><span itemprop='name'>Matt</span></a>
+            
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="131.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2018-05-04T15:35:46Z' class='post-time'>
+                May 4, 2018,  3:35pm
+              </time>
+              <meta itemprop='dateModified' content='2018-05-04T15:35:46Z'>
+          <span itemprop='position'>#9</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Here’s another run.</p>
+            <p>Mistral shows the action as RUNNING</p>
+            <pre><code> $ mistral task-list 4af91669-b7ae-441c-87a5-1ebf8a82f394
+WARNING (keystone) You must either provide a valid token or a password (api_key) and a user.
++--------------------------------------+--------------------------+-------------------------------+--------------------+--------------------------------------+---------+------------+---------------------+---------------------+
+| ID                                   | Name                     | Workflow name                 | Workflow namespace | Execution ID                         | State   | State info | Created at          | Updated at          |
++--------------------------------------+--------------------------+-------------------------------+--------------------+--------------------------------------+---------+------------+---------------------+---------------------+
+| fd5d9757-a079-4ef1-b50f-342f1c8fe479 | queue_state              | [redacted]_pdb_refresh.checkin.main |                    | 4af91669-b7ae-441c-87a5-1ebf8a82f394 | SUCCESS | None       | 2018-05-04 15:27:52 | 2018-05-04 15:28:55 |
+| 945a9446-64ed-4f29-a9ec-73e8223e755a | set_environment_variable | [redacted]_pdb_refresh.checkin.main |                    | 4af91669-b7ae-441c-87a5-1ebf8a82f394 | SUCCESS | None       | 2018-05-04 15:28:55 | 2018-05-04 15:28:57 |
+| d771f9c2-4c81-4f83-b7a5-a12d7ee714ab | shutdown_pdb             | [redacted]_pdb_refresh.checkin.main |                    | 4af91669-b7ae-441c-87a5-1ebf8a82f394 | RUNNING | None       | 2018-05-04 15:28:57 | &lt;none&gt;              |
++--------------------------------------+--------------------------+-------------------------------+--------------------+--------------------------------------+---------+------------+---------------------+---------------------+
+</code></pre>
+            <p>Stackstorm shows it as failed:</p>
+            <pre><code>$ st2 execution get 5aec7bf47709b603d140658e
+id: 5aec7bf47709b603d140658e
+action.ref: [redacted]_pdb_refresh.checkin
+parameters:
+  callback_authorization_path: secret/cloud/prod/api_token
+  callback_url: none_specified
+  cdb_host: clouddb01.test.[redacted].com
+  cdb_version: 12.2.0.1
+  desktop_db: false
+  pdb_class: hub
+  pdb_name: hub_5d2ae12297604e57b76c578d546bf03f
+status: running (318s elapsed)
+start_timestamp: Fri, 04 May 2018 15:27:48 UTC
+end_timestamp:
++--------------------------+-------------------------+----------------------+----------------------+------------------+
+| id                       | status                  | task                 | action               | start_timestamp  |
++--------------------------+-------------------------+----------------------+----------------------+------------------+
+| 5aec7bf97709b609cec9f817 | succeeded (62s elapsed) | queue_state          | [redacted]_common.loop_unt | Fri, 04 May 2018 |
+|                          |                         |                      | il                   | 15:27:53 UTC     |
+| 5aec7c387709b609cec9f819 | succeeded (1s elapsed)  | set_environment_vari | consul.kv_get        | Fri, 04 May 2018 |
+|                          |                         | able                 |                      | 15:28:56 UTC     |
+| 5aec7c397709b609cec9f81b | failed (3s elapsed)     | shutdown_pdb         | [redacted]_dba_oracle.run_ | Fri, 04 May 2018 |
+|                          |                         |                      | sql                  | 15:28:57 UTC     |
++--------------------------+-------------------------+----------------------+----------------------+------------------+</code></pre>
+        </div>
+
+        <meta itemprop='headline'
+              content='How to troubleshoot a mistral workflow that is stuck in &quot;running&quot; state?'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/Nikon_NLG'><span itemprop='name'>Nikon_NLG</span></a>
+            (Denis)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="131.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2018-05-13T14:45:19Z' class='post-time'>
+                May 13, 2018,  2:45pm
+              </time>
+              <meta itemprop='dateModified' content='2018-05-13T14:45:19Z'>
+          <span itemprop='position'>#10</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Have the same issue.</p>
+            <blockquote>
+<pre><code>$ st2 execution get 5af5507fc221997ad85fcc6b
+id: 5af5507fc221997ad85fcc6b
+action.ref: bcd.deploy-release
+parameters:
+  level: dev
+  release: release.6.18.0
+status: running (195827s elapsed)
+start_timestamp: Fri, 11 May 2018 08:12:47 UTC
+end_timestamp:
++--------------------------+--------------------------+--------------+----------------------+-------------------------------+
+| id                       | status                   | task         | action               | start_timestamp               |
++--------------------------+--------------------------+--------------+----------------------+-------------------------------+
+[skipped...]
+| 5af552bdc221997ad85fcc80 | failed (122414s elapsed) | eagle        | core.local           | Fri, 11 May 2018 08:22:21 UTC |
+| 5af553b6c221997ad85fcc82 | succeeded (0s elapsed)   | notify_slack | chatops.post_message | Fri, 11 
+</code></pre>
+                <p>May 2018 08:26:30 UTC |<br>
+                    ±-------------------------±-------------------------±-------------±---------------------±------------------------------+
+                </p>
+            </blockquote>
+            <p>BUT “st2 execution get 5af552bdc221997ad85fcc80 -dj|grep workflow_execution_id” show me empty output.<br>
+                stackstorm version is 2.7.1-2</p>
+            <p>Workflow looks like this:</p>
+            <blockquote>
+<pre><code>autocomplete:
+  publish:
+    task_name: "&lt;% $.level %&gt;: Build autocomplete finished"
+  publish-on-error:
+    task_name: "&lt;% $.level %&gt;: Build autocomplete failed"
+  workflow: eagle
+  wait-before: 60
+  input:
+    celerybeat_hostname: &lt;% $.celerybeat_hostname %&gt;
+    cmd: "python manage.py build_autocomplete 2&gt;&amp;1 &gt;&gt; autocomplete.out"
+  retry:
+    count: 3
+    delay: 60
+  on-success:
+    - next_tasks
+    - notify_slack
+  on-error:
+    - notify_slack
+    - fail
+</code></pre>
+            </blockquote>
+            <blockquote>
+<pre><code>eagle:
+type: direct
+input:
+  - celerybeat_hostname
+  - cmd
+output:
+  stdout: &lt;% $.stdout %&gt;
+  stderr: &lt;% $.stderr %&gt;
+tasks:
+  eagle:
+    action: core.local
+    publish:
+      stderr: "&lt;% task(eagle).result.stderr %&gt;"
+      stdout: "&lt;% task(eagle).result.stdout %&gt;"
+    input:
+      timeout: 259200 # 3 days
+      cmd: "ssh &lt;% $.celerybeat_hostname %&gt; --no-tty -c \"&lt;% $.cmd %&gt;\" 2&gt;&amp;1|tail -n 1000"</code></pre>
+            </blockquote>
+        </div>
+
+        <meta itemprop='headline'
+              content='How to troubleshoot a mistral workflow that is stuck in &quot;running&quot; state?'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/nmaludy'><span itemprop='name'>nmaludy</span></a>
+            (Nick Maludy)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="131.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2018-05-14T23:39:19Z' class='post-time'>
+                May 14, 2018, 11:39pm
+              </time>
+              <meta itemprop='dateModified' content='2018-05-14T23:39:19Z'>
+          <span itemprop='position'>#11</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Guessing this is related to: <a href="https://github.com/StackStorm/st2/issues/3723">Undefined variables
+                cause mistral workflows to hang (st2 2.2.1) · Issue #3723 · StackStorm/st2 · GitHub</a></p>
+        </div>
+
+        <meta itemprop='headline'
+              content='How to troubleshoot a mistral workflow that is stuck in &quot;running&quot; state?'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/Matt'><span itemprop='name'>Matt</span></a>
+            
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="131.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2018-05-15T12:07:42Z' class='post-time'>
+                May 15, 2018, 12:07pm
+              </time>
+              <meta itemprop='dateModified' content='2018-05-15T12:07:42Z'>
+          <span itemprop='position'>#12</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Maybe? Although in his example the status in st2 is ‘RUNNING’ - but with me st2 is ‘FAILED’ while mistral
+                is ‘RUNNING’.</p>
+        </div>
+
+        <meta itemprop='headline'
+              content='How to troubleshoot a mistral workflow that is stuck in &quot;running&quot; state?'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/m4dcoder'><span itemprop='name'>m4dcoder</span></a>
+            (W Chan)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="131.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2018-05-24T17:55:14Z' class='post-time'>
+                May 24, 2018,  5:55pm
+              </time>
+              <meta itemprop='dateModified' content='2018-05-24T17:55:14Z'>
+          <span itemprop='position'>#13</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <ul>
+                <li>Are these failures consistent? Can they be reproduced?</li>
+                <li>Do you still have the details for <code>shutdown_pdb</code>? I would like to see the <code>st2
+                    execution get</code> for this action execution.
+                </li>
+                <li>As for the latest autocomplete workflow, is <code>$.level</code> defined somewhere?</li>
+            </ul>
+        </div>
+
+        <meta itemprop='headline'
+              content='How to troubleshoot a mistral workflow that is stuck in &quot;running&quot; state?'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+
+
+    <!-- :preload-content -->
+    <footer class="noscript-footer-nav">
+        <nav itemscope itemtype='http://schema.org/SiteNavigationElement'>
+            <a href='../../index.html'>Home</a>
+            <a href="../../categories.html">Categories</a>
+            <a href="https://forum.stackstorm.com/guidelines">FAQ/Guidelines</a>
+            <a href="../../tos.html">Terms of Service</a>
+            <a href="../../privacy.html">Privacy Policy</a>
+        </nav>
+    </footer>
+</div>
+
+<footer id='noscript-footer'>
+    <p>Powered by <a href="https://www.discourse.org">Discourse</a>, best viewed with JavaScript enabled</p>
+</footer>
+
+
+<section id='main'>
+</section>
+
+
+</body>
+</html>

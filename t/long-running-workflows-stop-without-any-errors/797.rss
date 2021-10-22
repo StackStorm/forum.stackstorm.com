@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Long running workflows stop without any errors</title>
+    <link>https://forum.stackstorm.com/t/long-running-workflows-stop-without-any-errors/797</link>
+    <description>We have workflows that can run for 12-24 hours or more, depending on the data. This is one a k8s HA cluster with 3.1.0. It appears after 5-6 hours or so, the workflow just stops without any indication of why? Is there some sort of timeout I need to configure to prevent this?
+
+Additional notes the execution still reads running, st2 execution list show running for 326784 seconds and climbing. When i do st2 execution get 5d4deccedf212700f841dfdf i see all actions completed?</description>
+    
+    <lastBuildDate>Wed, 14 Aug 2019 20:08:40 +0000</lastBuildDate>
+    <category>Mistral</category>
+    <atom:link href="https://forum.stackstorm.com/t/long-running-workflows-stop-without-any-errors/797.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Long running workflows stop without any errors</title>
+        <dc:creator><![CDATA[m4dcoder]]></dc:creator>
+        <description><![CDATA[
+            <p>Mistral is going to be deprecated soon and it is not included in the Helm chart that we provided. Therefore we will not support it in k8s HA configuration. This is documented at <a href="https://docs.stackstorm.com/install/k8s_ha.html?highlight=k8s#st2workflowengine" rel="nofollow noopener">st2workflowengine</a> under the HA documentation. So if you are using k8s HA, please migrate your workflow to Orquesta.</p>
+          <p><a href="https://forum.stackstorm.com/t/long-running-workflows-stop-without-any-errors/797/4">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/long-running-workflows-stop-without-any-errors/797/4</link>
+        <pubDate>Wed, 14 Aug 2019 20:08:40 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-797-4</guid>
+        <source url="https://forum.stackstorm.com/t/long-running-workflows-stop-without-any-errors/797.rss">Long running workflows stop without any errors</source>
+      </item>
+      <item>
+        <title>Long running workflows stop without any errors</title>
+        <dc:creator><![CDATA[techdiverdown]]></dc:creator>
+        <description><![CDATA[
+            <p>Yes we are using the HA cluster in K8s as far as we can tell. Using helm charts. I can send what you need via email, that would be better for me. Ok so when you write the following:<br>
+The StackStorm HA cluster does not support mistral workflow but this issue is marked as mistral.<br>
+Did i miss that in the docs? Is it just not supported, or it actually will not work? Those are 2 different things…but i digress. I am open to moving to orquesta is this solves the issue. I have to setup another load test, i will do that tomorrow and let you know the results.</p>
+          <p><a href="https://forum.stackstorm.com/t/long-running-workflows-stop-without-any-errors/797/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/long-running-workflows-stop-without-any-errors/797/3</link>
+        <pubDate>Tue, 13 Aug 2019 21:24:12 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-797-3</guid>
+        <source url="https://forum.stackstorm.com/t/long-running-workflows-stop-without-any-errors/797.rss">Long running workflows stop without any errors</source>
+      </item>
+      <item>
+        <title>Long running workflows stop without any errors</title>
+        <dc:creator><![CDATA[m4dcoder]]></dc:creator>
+        <description><![CDATA[
+            <p>Are you using the HA cluster documented at <a href="https://docs.stackstorm.com/install/k8s_ha.html?highlight=k8s" class="inline-onebox" rel="nofollow noopener">StackStorm HA Cluster in Kubernetes - BETA — StackStorm 3.1.0 documentation</a>?  The StackStorm HA cluster does not support mistral workflow but this issue is marked as mistral.  Is it possible to provide a workflow definition?  Also, does this happen all the time or occassionally?</p>
+          <p><a href="https://forum.stackstorm.com/t/long-running-workflows-stop-without-any-errors/797/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/long-running-workflows-stop-without-any-errors/797/2</link>
+        <pubDate>Tue, 13 Aug 2019 18:42:00 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-797-2</guid>
+        <source url="https://forum.stackstorm.com/t/long-running-workflows-stop-without-any-errors/797.rss">Long running workflows stop without any errors</source>
+      </item>
+      <item>
+        <title>Long running workflows stop without any errors</title>
+        <dc:creator><![CDATA[techdiverdown]]></dc:creator>
+        <description><![CDATA[
+            <p>We have workflows that can run for 12-24 hours or more, depending on the data. This is one a k8s HA cluster with 3.1.0. It appears after 5-6 hours or so, the workflow just stops without any indication of why? Is there some sort of timeout I need to configure to prevent this?</p>
+<p>Additional notes the execution still reads running, st2 execution list show running for 326784 seconds and climbing. When i do st2 execution get 5d4deccedf212700f841dfdf i see all actions completed?</p>
+          <p><a href="https://forum.stackstorm.com/t/long-running-workflows-stop-without-any-errors/797/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/long-running-workflows-stop-without-any-errors/797/1</link>
+        <pubDate>Tue, 13 Aug 2019 15:02:00 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-797-1</guid>
+        <source url="https://forum.stackstorm.com/t/long-running-workflows-stop-without-any-errors/797.rss">Long running workflows stop without any errors</source>
+      </item>
+  </channel>
+</rss>

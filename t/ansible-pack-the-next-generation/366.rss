@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Ansible pack: the next generation?</title>
+    <link>https://forum.stackstorm.com/t/ansible-pack-the-next-generation/366</link>
+    <description>The ansible pack is awesome. What could we do to make it more useful or usable in more situations?
+
+Some long-standing issues to kick of the discussion:
+
+- [Issue #5](https://github.com/StackStorm-Exchange/stackstorm-ansible/issues/5): controller-side python requirements for actions, modules, inventories, or other ansible plugins.
+- [Issue #4](https://github.com/StackStorm-Exchange/stackstorm-ansible/issues/4): using a different version of ansible per playbook.
+- [Issue #15](https://github.com/StackStorm-Exchange/stackstorm-ansible/issues/15): ansible-playbook runs with `sudo: true` (immutable default action parameter).
+
+Issues 4,5
+-----------
+What if we added the concept of an `ansible virtualenv`? You use one action to build the virtualenv, and then you use an action parameter to select which `ansible virtualenv` to use for the given adhoc or playbook action. The default would be using the pack virtualenv. That would allow specifying which version of ansible and any other requirements.
+
+Maybe we could reuse the st2 virtualenv creation logic and use the scheme: `/opt/StackStorm-controlled/virtualenvs/ansible-&lt;ansible virtualenv name&gt;`. I think `-` is not a valid char in pack names, so that should prevent conflicts with pack virtualenvs.
+
+Issue 15
+---------
+Maybe the ansible pack could run actions as `stanley` by default. That might require some development in the action runner to switch users (`st2actionrunner` service runs as root). Then, we could use `sudo` as needed to run as root instead of using the unprivileged `stanley`.
+
+**What else does the ansible pack need to be more useful?**</description>
+    
+    <lastBuildDate>Wed, 14 Nov 2018 21:53:39 +0000</lastBuildDate>
+    <category>Exchange</category>
+    <atom:link href="https://forum.stackstorm.com/t/ansible-pack-the-next-generation/366.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Ansible pack: the next generation?</title>
+        <dc:creator><![CDATA[lhill]]></dc:creator>
+        <description><![CDATA[
+            <p>I’ve been wondering about AWX integration. Probably a separate pack. But might be worth doing now that AWX is ‘free’</p>
+          <p><a href="https://forum.stackstorm.com/t/ansible-pack-the-next-generation/366/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/ansible-pack-the-next-generation/366/3</link>
+        <pubDate>Wed, 14 Nov 2018 21:53:39 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-366-3</guid>
+        <source url="https://forum.stackstorm.com/t/ansible-pack-the-next-generation/366.rss">Ansible pack: the next generation?</source>
+      </item>
+      <item>
+        <title>Ansible pack: the next generation?</title>
+        <dc:creator><![CDATA[cognifloyd]]></dc:creator>
+        <description><![CDATA[
+            <p>PS: Yes, I’ll be devoting some dev resources to making it work better, probably after 3.0. No, I don’t work for StackStorm, and this is not an official ST2 priority/initiative. It’s my initiative as a community member. <img src="https://emoji.discourse-cdn.com/apple/grinning.png?v=6" title=":grinning:" class="emoji" alt=":grinning:"></p>
+          <p><a href="https://forum.stackstorm.com/t/ansible-pack-the-next-generation/366/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/ansible-pack-the-next-generation/366/2</link>
+        <pubDate>Wed, 14 Nov 2018 15:46:22 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-366-2</guid>
+        <source url="https://forum.stackstorm.com/t/ansible-pack-the-next-generation/366.rss">Ansible pack: the next generation?</source>
+      </item>
+      <item>
+        <title>Ansible pack: the next generation?</title>
+        <dc:creator><![CDATA[cognifloyd]]></dc:creator>
+        <description><![CDATA[
+            <p>The ansible pack is awesome. What could we do to make it more useful or usable in more situations?</p>
+<p>Some long-standing issues to kick of the discussion:</p>
+<ul>
+<li>
+<a href="https://github.com/StackStorm-Exchange/stackstorm-ansible/issues/5" rel="nofollow noopener">Issue #5</a>: controller-side python requirements for actions, modules, inventories, or other ansible plugins.</li>
+<li>
+<a href="https://github.com/StackStorm-Exchange/stackstorm-ansible/issues/4" rel="nofollow noopener">Issue #4</a>: using a different version of ansible per playbook.</li>
+<li>
+<a href="https://github.com/StackStorm-Exchange/stackstorm-ansible/issues/15" rel="nofollow noopener">Issue #15</a>: ansible-playbook runs with <code>sudo: true</code> (immutable default action parameter).</li>
+</ul>
+<h2>Issues 4,5</h2>
+<p>What if we added the concept of an <code>ansible virtualenv</code>? You use one action to build the virtualenv, and then you use an action parameter to select which <code>ansible virtualenv</code> to use for the given adhoc or playbook action. The default would be using the pack virtualenv. That would allow specifying which version of ansible and any other requirements.</p>
+<p>Maybe we could reuse the st2 virtualenv creation logic and use the scheme: <code>/opt/StackStorm-controlled/virtualenvs/ansible-&lt;ansible virtualenv name&gt;</code>. I think <code>-</code> is not a valid char in pack names, so that should prevent conflicts with pack virtualenvs.</p>
+<h2>Issue 15</h2>
+<p>Maybe the ansible pack could run actions as <code>stanley</code> by default. That might require some development in the action runner to switch users (<code>st2actionrunner</code> service runs as root). Then, we could use <code>sudo</code> as needed to run as root instead of using the unprivileged <code>stanley</code>.</p>
+<p><strong>What else does the ansible pack need to be more useful?</strong></p>
+          <p><a href="https://forum.stackstorm.com/t/ansible-pack-the-next-generation/366/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/ansible-pack-the-next-generation/366/1</link>
+        <pubDate>Wed, 14 Nov 2018 15:30:38 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-366-1</guid>
+        <source url="https://forum.stackstorm.com/t/ansible-pack-the-next-generation/366.rss">Ansible pack: the next generation?</source>
+      </item>
+  </channel>
+</rss>

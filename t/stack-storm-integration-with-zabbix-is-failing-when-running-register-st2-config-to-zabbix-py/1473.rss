@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Stack storm integration with Zabbix is failing when running register_st2_config_to_zabbix.py</title>
+    <link>https://forum.stackstorm.com/t/stack-storm-integration-with-zabbix-is-failing-when-running-register-st2-config-to-zabbix-py/1473</link>
+    <description>Hello All,
+
+I am trying to integrate stack storm with zabbix and i am following the work plan 
+https://github.com/StackStorm-Exchange/stackstorm-zabbix
+
+when running the step 
+
+/opt/stackstorm/virtualenvs/zabbix/bin/python /opt/stackstorm/packs/zabbix/tools/register_st2_config_to_zabbix.py -z http://*. ***.*** .*/zabbix -u &quot;Admin&quot; -p &quot;*****&quot;
+
+I&#39;m getting error. Saying params are wrong.
+{code}
+/opt/stackstorm/virtualenvs/zabbix/bin/python /opt/stackstorm/packs/zabbix/tools/register_st2_config_to_zabbix.py -z http://**.***.***.**/zabbix -u &quot;Admin&quot; -p &quot;*****&quot;
+Traceback (most recent call last):
+  File &quot;/opt/stackstorm/packs/zabbix/tools/register_st2_config_to_zabbix.py&quot;, line 191, in &lt;module&gt;
+    main()
+  File &quot;/opt/stackstorm/packs/zabbix/tools/register_st2_config_to_zabbix.py&quot;, line 176, in main
+    mediatype_id = register_media_type(client, options, mediatype_id)
+  File &quot;/opt/stackstorm/packs/zabbix/tools/register_st2_config_to_zabbix.py&quot;, line 83, in register_media_type
+    ret = client.mediatype.create(**params)
+  File &quot;/opt/stackstorm/virtualenvs/zabbix/lib/python3.6/site-packages/pyzabbix/api.py&quot;, line 82, in fn
+    args or kwargs
+  File &quot;/opt/stackstorm/virtualenvs/zabbix/lib/python3.6/site-packages/pyzabbix/api.py&quot;, line 250, in do_request
+    raise ZabbixAPIException(msg, err[&#39;code&#39;])
+pyzabbix.api.ZabbixAPIException: (&quot;Error -32602: Invalid params., Media type is missing parameters: name while sending {&#39;jsonrpc&#39;: &#39;2.0&#39;, &#39;method&#39;: &#39;mediatype.create&#39;, &#39;params&#39;: {&#39;description&#39;: &#39;StackStorm&#39;, &#39;type&#39;: &#39;1&#39;, &#39;exec_path&#39;: &#39;st2_dispatch.py&#39;, &#39;exec_params&#39;: &#39;-- CHANGE ME : api_url  (e.g. https://st2-node/api/v1)\\n-- CHANGE ME : auth_url (e.g. https://st2-node/auth/v1)\\n-- CHANGE ME : login uername of StackStorm --\\n-- CHANGE ME : login password of StackStorm --\\n{ALERT.SENDTO}\\n{ALERT.SUBJECT}\\n{ALERT.MESSAGE}\\n&#39;}, &#39;id&#39;: &#39;1&#39;, &#39;auth&#39;: &#39;b7e4b784f8dc6a930eccf97471f2b39&#39;}&quot;, -32602)
+root@stockstorm:~#
+
+{code}
+
+Can any of you guys help me with the above issue.</description>
+    
+    <lastBuildDate>Mon, 09 Nov 2020 12:10:13 +0000</lastBuildDate>
+    <category>API</category>
+    <atom:link href="https://forum.stackstorm.com/t/stack-storm-integration-with-zabbix-is-failing-when-running-register-st2-config-to-zabbix-py/1473.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Stack storm integration with Zabbix is failing when running register_st2_config_to_zabbix.py</title>
+        <dc:creator><![CDATA[hv024036dba]]></dc:creator>
+        <description><![CDATA[
+            <p>Hello All,</p>
+<p>I am trying to integrate stack storm with zabbix and i am following the work plan<br>
+</p><aside class="onebox allowlistedgeneric">
+  <header class="source">
+      <img src="https://github.githubassets.com/favicons/favicon.svg" class="site-icon" width="32" height="32">
+      <a href="https://github.com/StackStorm-Exchange/stackstorm-zabbix" target="_blank" rel="noopener nofollow ugc">GitHub</a>
+  </header>
+  <article class="onebox-body">
+    <img src="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/1744bb2499f5b9237513c648aa4791d6d7e4c0ac.png" class="thumbnail onebox-avatar" width="152" height="152">
+
+<h3><a href="https://github.com/StackStorm-Exchange/stackstorm-zabbix" target="_blank" rel="noopener nofollow ugc">StackStorm-Exchange/stackstorm-zabbix</a></h3>
+
+<p>Contribute to StackStorm-Exchange/stackstorm-zabbix development by creating an account on GitHub.</p>
+
+
+  </article>
+  <div class="onebox-metadata">
+    
+    
+  </div>
+  <div style="clear: both"></div>
+</aside>
+
+<p>when running the step</p>
+<p>/opt/stackstorm/virtualenvs/zabbix/bin/python /opt/stackstorm/packs/zabbix/tools/register_st2_config_to_zabbix.py -z http://<em>. <em><strong>.</strong></em> .</em>/zabbix -u “Admin” -p “*****”</p>
+<p>I’m getting error. Saying params are wrong.<br>
+{code}<br>
+/opt/stackstorm/virtualenvs/zabbix/bin/python /opt/stackstorm/packs/zabbix/tools/register_st2_config_to_zabbix.py -z http://<strong>.</strong><em>.</em><strong>.</strong>/zabbix -u “Admin” -p “*****”<br>
+Traceback (most recent call last):<br>
+File “/opt/stackstorm/packs/zabbix/tools/register_st2_config_to_zabbix.py”, line 191, in <br>
+main()<br>
+File “/opt/stackstorm/packs/zabbix/tools/register_st2_config_to_zabbix.py”, line 176, in main<br>
+mediatype_id = register_media_type(client, options, mediatype_id)<br>
+File “/opt/stackstorm/packs/zabbix/tools/register_st2_config_to_zabbix.py”, line 83, in register_media_type<br>
+ret = client.mediatype.create(**params)<br>
+File “/opt/stackstorm/virtualenvs/zabbix/lib/python3.6/site-packages/pyzabbix/api.py”, line 82, in fn<br>
+args or kwargs<br>
+File “/opt/stackstorm/virtualenvs/zabbix/lib/python3.6/site-packages/pyzabbix/api.py”, line 250, in do_request<br>
+raise ZabbixAPIException(msg, err[‘code’])<br>
+pyzabbix.api.ZabbixAPIException: (“Error -32602: Invalid params., Media type is missing parameters: name while sending {‘jsonrpc’: ‘2.0’, ‘method’: ‘mediatype.create’, ‘params’: {‘description’: ‘StackStorm’, ‘type’: ‘1’, ‘exec_path’: ‘st2_dispatch.py’, ‘exec_params’: ‘-- CHANGE ME : api_url  (e.g. <a href="https://st2-node/api/v1" rel="noopener nofollow ugc">https://st2-node/api/v1</a>)\n-- CHANGE ME : auth_url (e.g. <a href="https://st2-node/auth/v1" rel="noopener nofollow ugc">https://st2-node/auth/v1</a>)\n-- CHANGE ME : login uername of StackStorm --\n-- CHANGE ME : login password of StackStorm --\n{ALERT.SENDTO}\n{ALERT.SUBJECT}\n{ALERT.MESSAGE}\n’}, ‘id’: ‘1’, ‘auth’: ‘b7e4b784f8dc6a930eccf97471f2b39’}”, -32602)<br>
+root@stockstorm:~#</p>
+<p>{code}</p>
+<p>Can any of you guys help me with the above issue.</p>
+          <p><a href="https://forum.stackstorm.com/t/stack-storm-integration-with-zabbix-is-failing-when-running-register-st2-config-to-zabbix-py/1473/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/stack-storm-integration-with-zabbix-is-failing-when-running-register-st2-config-to-zabbix-py/1473/1</link>
+        <pubDate>Mon, 09 Nov 2020 12:10:13 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1473-1</guid>
+        <source url="https://forum.stackstorm.com/t/stack-storm-integration-with-zabbix-is-failing-when-running-register-st2-config-to-zabbix-py/1473.rss">Stack storm integration with Zabbix is failing when running register_st2_config_to_zabbix.py</source>
+      </item>
+  </channel>
+</rss>

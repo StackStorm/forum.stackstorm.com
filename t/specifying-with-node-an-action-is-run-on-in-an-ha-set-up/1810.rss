@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Specifying with node an action is run on in an HA set up?</title>
+    <link>https://forum.stackstorm.com/t/specifying-with-node-an-action-is-run-on-in-an-ha-set-up/1810</link>
+    <description>I wanted to utilize this [reference](https://docs.stackstorm.com/reference/ha.html#reference-ha-setup) for HA set up but I had a more in depth question.
+
+The HA set up will be in multiple DR sites. We need to make some optimizations to localize jobs to a certain site e.g. prevent jobs from being run on a us-east-node while interacting with hosts we have on us-west. Is this capability in StackStorm? or would be need some other solution like creating multiple st2 instances instead.
+
+Thanks,
+jeff</description>
+    
+    <lastBuildDate>Tue, 17 Aug 2021 15:58:09 +0000</lastBuildDate>
+    <category>Platform</category>
+    <atom:link href="https://forum.stackstorm.com/t/specifying-with-node-an-action-is-run-on-in-an-ha-set-up/1810.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Specifying with node an action is run on in an HA set up?</title>
+        <dc:creator><![CDATA[jeffschulthies]]></dc:creator>
+        <description><![CDATA[
+            <p>Yes let me take a look <img src="https://emoji.discourse-cdn.com/apple/slight_smile.png?v=10" title=":slight_smile:" class="emoji" alt=":slight_smile:"></p>
+          <p><a href="https://forum.stackstorm.com/t/specifying-with-node-an-action-is-run-on-in-an-ha-set-up/1810/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/specifying-with-node-an-action-is-run-on-in-an-ha-set-up/1810/3</link>
+        <pubDate>Tue, 17 Aug 2021 15:58:09 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1810-3</guid>
+        <source url="https://forum.stackstorm.com/t/specifying-with-node-an-action-is-run-on-in-an-ha-set-up/1810.rss">Specifying with node an action is run on in an HA set up?</source>
+      </item>
+      <item>
+        <title>Specifying with node an action is run on in an HA set up?</title>
+        <dc:creator><![CDATA[cognifloyd]]></dc:creator>
+        <description><![CDATA[
+            <p>Sadly, there is no way to distinguish between action runner nodes yet. All of them pick actions from a queue, with the assumption that all action runner nodes can handle all actions.</p>
+<p>I would love to see this improved, but I have several other st2 improvements I’m working on, so I personally don’t have time to contribute this.</p>
+<p>Would you have time, or would one of your colleagues have some time to work on this?</p>
+<p>Here is some discussion about partitioning action runners / action runner affinity: <a href="https://github.com/StackStorm/st2/issues/3096" class="inline-onebox" rel="noopener nofollow ugc">Feature req: Partitioning actions to execute on separate nodes · Issue #3096 · StackStorm/st2 · GitHub</a></p>
+          <p><a href="https://forum.stackstorm.com/t/specifying-with-node-an-action-is-run-on-in-an-ha-set-up/1810/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/specifying-with-node-an-action-is-run-on-in-an-ha-set-up/1810/2</link>
+        <pubDate>Mon, 16 Aug 2021 19:29:45 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1810-2</guid>
+        <source url="https://forum.stackstorm.com/t/specifying-with-node-an-action-is-run-on-in-an-ha-set-up/1810.rss">Specifying with node an action is run on in an HA set up?</source>
+      </item>
+      <item>
+        <title>Specifying with node an action is run on in an HA set up?</title>
+        <dc:creator><![CDATA[jeffschulthies]]></dc:creator>
+        <description><![CDATA[
+            <p>I wanted to utilize this <a href="https://docs.stackstorm.com/reference/ha.html#reference-ha-setup" rel="noopener nofollow ugc">reference</a> for HA set up but I had a more in depth question.</p>
+<p>The HA set up will be in multiple DR sites. We need to make some optimizations to localize jobs to a certain site e.g. prevent jobs from being run on a us-east-node while interacting with hosts we have on us-west. Is this capability in StackStorm? or would be need some other solution like creating multiple st2 instances instead.</p>
+<p>Thanks,<br>
+jeff</p>
+          <p><a href="https://forum.stackstorm.com/t/specifying-with-node-an-action-is-run-on-in-an-ha-set-up/1810/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/specifying-with-node-an-action-is-run-on-in-an-ha-set-up/1810/1</link>
+        <pubDate>Mon, 16 Aug 2021 19:20:00 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1810-1</guid>
+        <source url="https://forum.stackstorm.com/t/specifying-with-node-an-action-is-run-on-in-an-ha-set-up/1810.rss">Specifying with node an action is run on in an HA set up?</source>
+      </item>
+  </channel>
+</rss>

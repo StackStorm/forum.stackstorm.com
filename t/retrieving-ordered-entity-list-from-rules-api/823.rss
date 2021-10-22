@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Retrieving ordered entity list from rules API</title>
+    <link>https://forum.stackstorm.com/t/retrieving-ordered-entity-list-from-rules-api/823</link>
+    <description>Is it possible to get an ordered list of rules (by due date or creation date) from the StackStorm rules API? (https://api.stackstorm.com/api/v1/rules/#/rule_controller.get_all) 
+According to the API documentation there&#39;s no way of specifying the order of the list of rules returned, only the size.</description>
+    
+    <lastBuildDate>Thu, 05 Sep 2019 05:08:28 +0000</lastBuildDate>
+    <category>Rules</category>
+    <atom:link href="https://forum.stackstorm.com/t/retrieving-ordered-entity-list-from-rules-api/823.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Retrieving ordered entity list from rules API</title>
+        <dc:creator><![CDATA[nirmaljayasinghe]]></dc:creator>
+        <description><![CDATA[
+            <p>Is it possible to get an ordered list of rules (by due date or creation date) from the StackStorm rules API? (<a href="https://api.stackstorm.com/api/v1/rules/#/rule_controller.get_all" rel="nofollow noopener">https://api.stackstorm.com/api/v1/rules/#/rule_controller.get_all</a>)<br>
+According to the API documentation there’s no way of specifying the order of the list of rules returned, only the size.</p>
+          <p><a href="https://forum.stackstorm.com/t/retrieving-ordered-entity-list-from-rules-api/823/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/retrieving-ordered-entity-list-from-rules-api/823/1</link>
+        <pubDate>Thu, 05 Sep 2019 05:08:28 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-823-1</guid>
+        <source url="https://forum.stackstorm.com/t/retrieving-ordered-entity-list-from-rules-api/823.rss">Retrieving ordered entity list from rules API</source>
+      </item>
+  </channel>
+</rss>

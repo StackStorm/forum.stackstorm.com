@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Hot to access specific value inside a json string object</title>
+    <link>https://forum.stackstorm.com/t/hot-to-access-specific-value-inside-a-json-string-object/1665</link>
+    <description>Hey,
+
+I have following ActionChain task
+
+            name: &quot;parse_payload&quot;
+            ref: &quot;st2_viacbs_pack.stpayload&quot;
+            parameters:
+                payload: &quot;{{payload}}&quot;
+            publish:
+                output: &quot;{{parse_payload.result|from_json_string}}&quot;
+            on-success: &quot;c2&quot;
+            on-failure: &quot;c4&quot;
+
+and on output i get:
+  &quot;published&quot;: {
+    &quot;output&quot;: &quot;{&#39;st_enrichment&#39;: &#39;false&#39;}&quot;
+  },
+
+In next task i want to get value of st_enrichment, how i can achieve that ?  I tried 
+{{output.st_enrichment}}
+{{output.[st_enrichment]}}
+{{output.[&#39;st_enrichment&#39;]}}
+{{output|from_json_string[&#39;st_enrichment&#39;]}}
+
+But it always return error, that object string doesn&#39;t have st_enrichment or expected token is not valid.</description>
+    
+    <lastBuildDate>Fri, 23 Apr 2021 17:24:45 +0000</lastBuildDate>
+    <category>Mistral</category>
+    <atom:link href="https://forum.stackstorm.com/t/hot-to-access-specific-value-inside-a-json-string-object/1665.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Hot to access specific value inside a json string object</title>
+        <dc:creator><![CDATA[porlock]]></dc:creator>
+        <description><![CDATA[
+            <p>Hey,</p>
+<p>I have following ActionChain task</p>
+<pre><code>        name: "parse_payload"
+        ref: "st2_viacbs_pack.stpayload"
+        parameters:
+            payload: "{{payload}}"
+        publish:
+            output: "{{parse_payload.result|from_json_string}}"
+        on-success: "c2"
+        on-failure: "c4"
+</code></pre>
+<p>and on output i get:<br>
+“published”: {<br>
+“output”: “{‘st_enrichment’: ‘false’}”<br>
+},</p>
+<p>In next task i want to get value of st_enrichment, how i can achieve that ?  I tried<br>
+{{output.st_enrichment}}<br>
+{{output.[st_enrichment]}}<br>
+{{output.[‘st_enrichment’]}}<br>
+{{output|from_json_string[‘st_enrichment’]}}</p>
+<p>But it always return error, that object string doesn’t have st_enrichment or expected token is not valid.</p>
+          <p><a href="https://forum.stackstorm.com/t/hot-to-access-specific-value-inside-a-json-string-object/1665/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/hot-to-access-specific-value-inside-a-json-string-object/1665/1</link>
+        <pubDate>Fri, 23 Apr 2021 17:24:45 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1665-1</guid>
+        <source url="https://forum.stackstorm.com/t/hot-to-access-specific-value-inside-a-json-string-object/1665.rss">Hot to access specific value inside a json string object</source>
+      </item>
+  </channel>
+</rss>

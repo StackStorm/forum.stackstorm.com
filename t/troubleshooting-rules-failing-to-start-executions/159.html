@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en" class="desktop-view not-mobile-device text-size-normal anon">
+<head>
+    <meta charset="utf-8">
+    <title>Troubleshooting rules failing to start executions - Rules - StackStorm Support (ARCHIVED)</title>
+    <meta name="description" content="I have a rule that has stopped working. The rule tries to start an execution but fails. 
+The following traceback is in my rules engine log: 
+Traceback (most recent call last):
+  File &amp;quot;/opt/stackstorm/st2/lib/python2.7/si&amp;hellip;">
+    <meta name="discourse_theme_id" content="2">
+    <meta name="discourse_current_homepage" content="latest">
+    <meta name="generator"
+          content="Discourse 2.8.0.beta6 - https://github.com/discourse/discourse version a1daf9fe53a66e2d2cdf9757ab4812fb9a2b2787">
+    <link rel="icon" type="image/png"
+          href="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/379ced12f8326d58f1b3d2b3ff652f883e141f6a_2_32x32.PNG">
+    <link rel="apple-touch-icon" type="image/png"
+          href="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/379ced12f8326d58f1b3d2b3ff652f883e141f6a_2_180x180.PNG">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <link rel="canonical" href="159.html"/>
+    <script type="application/ld+json">{
+        "@context": "http://schema.org",
+        "@type": "WebSite",
+        "url": "https://forum.stackstorm.com",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://forum.stackstorm.com/search?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }
+    </script>
+    <link rel="search" type="application/opensearchdescription+xml" href="../../opensearch.xml"
+          title="StackStorm Support (ARCHIVED) Search">
+
+
+    <link href="/../../stylesheets/color_definitions_base__2_3c5eec1ecf192052ea70b4afdab57a62bccc0604.css?__ws=forum.stackstorm.com"
+          media="all" rel="stylesheet" class="light-scheme"/>
+
+    <link href="/../../stylesheets/desktop_b2f2968742d41481357e0df259b51ce29f72481a.css?__ws=forum.stackstorm.com"
+          media="all" rel="stylesheet" data-target="desktop"/>
+
+
+    <meta name="fragment" content="!">
+
+
+    <link id="manifest-link" rel="manifest" href="../../manifest.webmanifest" crossorigin="use-credentials">
+
+
+    <link rel="alternate" type="application/rss+xml"
+          title="RSS feed of &#39;Troubleshooting rules failing to start executions&#39;" href="159.rss"/>
+    <meta property="og:site_name" content="StackStorm Support (ARCHIVED)"/>
+    <meta property="og:type" content="website"/>
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:image"
+          content="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/891f00fbdb31fecb5bd9dab30c186d2fed0091ca.jpeg"/>
+    <meta property="og:image"
+          content="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/891f00fbdb31fecb5bd9dab30c186d2fed0091ca.jpeg"/>
+    <meta property="og:url"
+          content="https://forum.stackstorm.com/t/troubleshooting-rules-failing-to-start-executions/159"/>
+    <meta name="twitter:url"
+          content="https://forum.stackstorm.com/t/troubleshooting-rules-failing-to-start-executions/159"/>
+    <meta property="og:title" content="Troubleshooting rules failing to start executions"/>
+    <meta name="twitter:title" content="Troubleshooting rules failing to start executions"/>
+    <meta property="og:description"
+          content="I have a rule that has stopped working. The rule tries to start an execution but fails.  The following traceback is in my rules engine log:  Traceback (most recent call last):   File &quot;/opt/stackstorm/st2/lib/python2.7/site-packages/st2reactor/rules/enforcer.py&quot;, line 94, in enforce     execution_db = self._do_enforce()   File &quot;/opt/stackstorm/st2/lib/python2.7/site-packages/st2reactor/rules/enforcer.py&quot;, line 143, in _do_enforce     additional_contexts=additional_contexts)   File &quot;/opt/stackstor..."/>
+    <meta name="twitter:description"
+          content="I have a rule that has stopped working. The rule tries to start an execution but fails.  The following traceback is in my rules engine log:  Traceback (most recent call last):   File &quot;/opt/stackstorm/st2/lib/python2.7/site-packages/st2reactor/rules/enforcer.py&quot;, line 94, in enforce     execution_db = self._do_enforce()   File &quot;/opt/stackstorm/st2/lib/python2.7/site-packages/st2reactor/rules/enforcer.py&quot;, line 143, in _do_enforce     additional_contexts=additional_contexts)   File &quot;/opt/stackstor..."/>
+    <meta name="twitter:label1" value="Reading time"/>
+    <meta name="twitter:data1" value="1 mins 🕑"/>
+    <meta name="twitter:label2" value="Likes"/>
+    <meta name="twitter:data2" value="2 ❤"/>
+    <meta property="article:published_time" content="2018-05-25T14:50:52+00:00"/>
+    <meta property="og:ignore_canonical" content="true"/>
+
+
+    <script type="application/ld+json">{
+        "@context": "http://schema.org",
+        "@type": "QAPage",
+        "name": "Troubleshooting rules failing to start executions",
+        "mainEntity": {
+            "@type": "Question",
+            "name": "Troubleshooting rules failing to start executions",
+            "text": "I have a rule that has stopped working. The rule tries to start an execution but fails.\n\nThe following traceback is in my rules engine log:\n\nTraceback (most recent call last):\n\nFile &quot;/opt/stackstorm/st2/lib/python2.7/site-packages/st2reactor/rules/enforcer.py&quot;, line 94, in enforce\n\nexecution_db &hellip;",
+            "upvoteCount": 0,
+            "answerCount": 0,
+            "dateCreated": "2018-05-25T14:50:52.757Z",
+            "author": {
+                "@type": "Person",
+                "name": "Parkerberb Nfv"
+            }
+        }
+    }
+    </script>
+
+    <meta id="data-discourse-setup" data-cdn="https://sjc6.discourse-cdn.com/standard10"
+          data-base-url="https://forum.stackstorm.com" data-base-uri="" data-environment="production"
+          data-letter-avatar-version="5_8fec8e114563efeaf5265573e510f08e"
+          data-markdown-it-url="https://aws1.discourse-cdn.com/standard10/assets/markdown-it-bundle-31e9a9c535ca1801c26da78b0ff465821751a98f921c5cdc5457d7e5a69e9748.js"
+          data-service-worker-url="service-worker.js" data-default-locale="en"
+          data-asset-version="597e36448c9b51d0fa3b7e43ec1fd6d5" data-disable-custom-css="false"
+          data-highlight-js-path="/highlight-js/forum.stackstorm.com/ac0f4aa001e1343346941766d72e0c1ae330832b.js"
+          data-svg-sprite-path="/svg-sprite/forum.stackstorm.com/svg-2-c2ad434b1e06079c7e282124aed9938dc95b83ea.js"
+          data-enable-js-error-reporting="true" data-color-scheme-is-dark="false" data-user-dark-scheme-id="-1"
+          data-s3-cdn="https://aws1.discourse-cdn.com/standard10"
+          data-s3-base-url="//discourse-cloud-file-uploads.s3.dualstack.us-west-2.amazonaws.com/standard10">
+
+    <meta name="discourse/config/environment"
+          content="%7B%22modulePrefix%22%3A%22discourse%22%2C%22environment%22%3A%22production%22%2C%22rootURL%22%3A%22%22%2C%22locationType%22%3A%22auto%22%2C%22historySupportMiddleware%22%3Afalse%2C%22EmberENV%22%3A%7B%22FEATURES%22%3A%7B%7D%2C%22EXTEND_PROTOTYPES%22%3A%7B%22Date%22%3Afalse%7D%2C%22_APPLICATION_TEMPLATE_WRAPPER%22%3Afalse%2C%22_DEFAULT_ASYNC_OBSERVERS%22%3Atrue%2C%22_JQUERY_INTEGRATION%22%3Atrue%7D%2C%22APP%22%3A%7B%22name%22%3A%22discourse%22%2C%22version%22%3A%222.8.0.beta6%20a1daf9fe53a66e2d2cdf9757ab4812fb9a2b2787%22%2C%22exportApplicationGlobal%22%3Atrue%7D%7D"/>
+</head>
+
+<body class="">
+
+
+<header class="d-header">
+    <div class="wrap">
+        <div class="contents clearfix">
+            <div class="title">
+                <a href="../../index.html">
+                    <picture>
+                        <img src="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png"
+                             alt="StackStorm Support (ARCHIVED)" id="site-logo"/>
+                    </picture>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</header>
+
+<div id="main-outlet" class="wrap" role="main">
+    <!-- preload-content: -->
+
+    <!-- EOF START -->
+    <div class="container" id="main-container">
+        <div id="ember11" class="ember-view"></div>
+        <div id="ember12" class="controls ember-view"><!----></div>
+        <div id="ember13" class="ember-view"><!----></div>
+        <div id="ember14" class="ember-view">
+            <div class="row">
+                <div id="global-notice-alert-read-only" class="alert alert-info alert-read-only">
+                    <!----> <span class="text">This site is in read only mode. Please continue to browse, but replying, likes, and other actions are disabled for now.</span>
+
+                    <!---->    </div>
+            </div>
+            <div class="row">
+                <div id="global-notice-alert-global-notice" class="alert alert-info alert-global-notice">
+                    <!----> <span class="text"><h3>⚠️ We've moved!</h3>  <p> Hi there!<br><br> To reduce project dependency on 3rd party paid services the StackStorm TSC has decided to move the Q/A from this forum to <a
+                        href="https://github.com/StackStorm/st2/discussions">Github Discussions</a>. This will make user experience better integrated with the native Github flow, as well as the questions closer to the community where they can provide answers. </p>  <p> Use 🔗 <b><a
+                        href="https://github.com/StackStorm/st2/discussions" class="active">Github Discussions</a></b> to ask your questions. </p></span>
+
+                    <!---->    </div>
+            </div>
+        </div>
+        <div id="ember17" class="hidden create-topics-notice ember-view"><!----></div>
+        <!---->
+    </div>
+    <!-- EOF END -->
+    <div id="topic-title">
+        <h1>
+            <a href="159.html">Troubleshooting rules failing to start executions</a>
+        </h1>
+
+        <div class="topic-category" itemscope itemtype="http://schema.org/BreadcrumbList">
+          <span itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a href="../../c/core-st2-platform-issues/6" class="badge-wrapper bullet" itemprop="item">
+              <span class='badge-category-bg' style='background-color: #AB9364'></span>
+              <span class='badge-category clear-badge'>
+                <span class='category-name' itemprop='name'>Platform</span>
+              </span>
+            </a>
+            <meta itemprop="position" content="1"/>
+          </span>
+            <span itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a href="../../c/core-st2-platform-issues/rule-related-issues/13" class="badge-wrapper bullet"
+               itemprop="item">
+              <span class='badge-category-bg' style='background-color: #F1592A'></span>
+              <span class='badge-category clear-badge'>
+                <span class='category-name' itemprop='name'>Rules</span>
+              </span>
+            </a>
+            <meta itemprop="position" content="2"/>
+          </span>
+        </div>
+
+        <div class="topic-category">
+            <div class='discourse-tags list-tags'>
+                <a href='../../tag/troubleshooting' class='discourse-tag' rel="tag">troubleshooting</a>,
+                <a href='../../tag/executions' class='discourse-tag' rel="tag">executions</a>,
+                <a href='../../tag/rules' class='discourse-tag' rel="tag">rules</a>
+            </div>
+        </div>
+    </div>
+
+
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/parkerberb-nfv'><span
+                    itemprop='name'>parkerberb-nfv</span></a>
+            (Parkerberb Nfv)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="159.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2018-05-25T14:50:52Z' class='post-time'>
+                May 25, 2018,  2:50pm
+              </time>
+              <meta itemprop='dateModified' content='2018-05-25T19:31:45Z'>
+          <span itemprop='position'>#1</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>I have a rule that has stopped working. The rule tries to start an execution but fails.</p>
+            <p>The following traceback is in my rules engine log:</p>
+            <pre><code class="lang-auto">Traceback (most recent call last):
+  File "/opt/stackstorm/st2/lib/python2.7/site-packages/st2reactor/rules/enforcer.py", line 94, in enforce
+    execution_db = self._do_enforce()
+  File "/opt/stackstorm/st2/lib/python2.7/site-packages/st2reactor/rules/enforcer.py", line 143, in _do_enforce
+    additional_contexts=additional_contexts)
+  File "/opt/stackstorm/st2/lib/python2.7/site-packages/st2reactor/rules/enforcer.py", line 196, in _invoke_action
+    additional_contexts=additional_contexts)
+  File "/opt/stackstorm/st2/lib/python2.7/site-packages/st2reactor/rules/enforcer.py", line 80, in get_resolved_parameters
+    additional_contexts=additional_contexts)
+  File "/opt/stackstorm/st2/lib/python2.7/site-packages/st2common/util/param.py", line 298, in render_live_params
+    live_params = _cast_params_from(params, context, [action_parameters, runner_parameters])
+  File "/opt/stackstorm/st2/lib/python2.7/site-packages/st2common/util/param.py", line 232, in _cast_params_from
+    result[name] = _cast(context[name], param_schema)
+  File "/opt/stackstorm/st2/lib/python2.7/site-packages/st2common/util/param.py", line 75, in _cast
+    return cast(v)
+  File "/opt/stackstorm/st2/lib/python2.7/site-packages/st2common/util/casts.py", line 39, in _cast_object
+    return ast.literal_eval(x)
+  File "/usr/lib64/python2.7/ast.py", line 49, in literal_eval
+    node_or_string = parse(node_or_string, mode='eval')
+  File "/usr/lib64/python2.7/ast.py", line 37, in parse
+    return compile(source, filename, mode, PyCF_ONLY_AST)
+  File "&lt;unknown&gt;", line 1
+    &lt;built-in method keys of BaseDict object at 0x57be940&gt;
+    ^
+</code></pre>
+            <p>relevant output of rule-enforcement:</p>
+            <pre><code class="lang-auto">+--------------------------+--------------------------------------+--------------------------+--------------------------+-----------------------------+
+| id                       | rule.ref                             | trigger_instance_id      | execution_id             | enforced_at                 |
++--------------------------+--------------------------------------+--------------------------+--------------------------+-----------------------------+
+| 5b07c28402ebd54ce6865159 | pharoslaas.on_end_deployment_trigger | 5b07c28402ebd54ce6865156 |                          | 2018-05-25T08:00:04.151003Z |
+| 5b078a4602ebd54ce6863fb0 | pharoslaas.on_end_deployment_trigger | 5b078a4602ebd54ce6863fae |                          | 2018-05-25T04:00:06.067578Z |
+| 5b0735e902ebd54ce6862587 | pharoslaas.on_end_deployment_trigger | 5b0735e902ebd54ce6862584 |                          | 2018-05-24T22:00:09.247676Z |
+| 5b06008002ebd54ce685c5b6 | pharoslaas.on_end_deployment_trigger | 5b06008002ebd54ce685c5b3 |                          | 2018-05-24T00:00:00.779763Z |
+| 5afeea8502ebd54ce683403f | pharoslaas.on_end_deployment_trigger | 5afeea8502ebd54ce683403c |                          | 2018-05-18T15:00:21.166756Z |
+| 5afea43802ebd54ce68331a0 | pharoslaas.on_end_deployment_trigger | 5afea43702ebd54ce683319d |                          | 2018-05-18T10:00:24.003795Z |
+| 5afbec2802ebd54ce682a537 | pharoslaas.on_end_deployment_trigger | 5afbec2802ebd54ce682a533 | 5afbec2802ebd54ce682a536 | 2018-05-16T08:30:32.414416Z |
+| 5afbc1f902ebd54ce682a01a | pharoslaas.on_end_deployment_trigger | 5afbc1f902ebd54ce682a015 | 5afbc1f902ebd54ce682a019 | 2018-05-16T05:30:33.624886Z |
+</code></pre>
+            <p>And trigger-list</p>
+            <pre><code class="lang-auto">+--------------------------+-----------------------------------+-------------------------------+-----------+
+| id                       | trigger                           | occurrence_time               | status    |
++--------------------------+-----------------------------------+-------------------------------+-----------+
+| 5afbec2802ebd54ce682a533 | pharoslaas.end_deployment_trigger | Wed, 16 May 2018 08:30:32 UTC | processed |
+| 5afea43702ebd54ce683319d | pharoslaas.end_deployment_trigger | Fri, 18 May 2018 10:00:23 UTC | processed |
+| 5afeea8502ebd54ce683403c | pharoslaas.end_deployment_trigger | Fri, 18 May 2018 15:00:21 UTC | processed |
+| 5b06008002ebd54ce685c5b3 | pharoslaas.end_deployment_trigger | Thu, 24 May 2018 00:00:00 UTC | processed |
+| 5b0735e902ebd54ce6862584 | pharoslaas.end_deployment_trigger | Thu, 24 May 2018 22:00:09 UTC | processed |
+| 5b078a4602ebd54ce6863fae | pharoslaas.end_deployment_trigger | Fri, 25 May 2018 04:00:06 UTC | processed |
+| 5b07c28402ebd54ce6865156 | pharoslaas.end_deployment_trigger | Fri, 25 May 2018 08:00:04 UTC | processed |
++--------------------------+-----------------------------------+-------------------------------+-----------+
+</code></pre>
+            <p>And the rule itself:</p>
+            <pre><code class="lang-auto">---
+name: on_end_deployment_trigger
+pack: pharoslaas
+description: dummy rule to link end deployment trigger to clean action
+enabled: true
+trigger:
+    type: pharoslaas.end_deployment_trigger
+action:
+    ref: pharoslaas.clean-workflow
+    parameters:
+        host: "{{ trigger.host }}"
+        key: "{{trigger.key}}"
+        user: "{{trigger.user}}"
+        keys: "{{trigger.keys}}"
+</code></pre>
+        </div>
+
+        <meta itemprop='headline' content='Troubleshooting rules failing to start executions'>
+        <meta itemprop='keywords' content='troubleshooting, executions, rules'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/lhill'><span itemprop='name'>lhill</span></a>
+            (Lindsay Hill)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="159.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2018-05-25T18:49:38Z' class='post-time'>
+                May 25, 2018,  6:49pm
+              </time>
+              <meta itemprop='dateModified' content='2018-05-25T18:49:38Z'>
+          <span itemprop='position'>#2</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <blockquote>
+                <p>I have a rule that has stopped working</p>
+            </blockquote>
+            <p>So it did work in the past, but no longer works? What has changed since? Different ST2 version, or change
+                in the trigger content?</p>
+            <p>My guess is that something’s failing to render due to some problem with the trigger body - e.g. maybe it
+                doesn’t contain the expected <code>keys</code> value.</p>
+            <p>What does <code>st2 trigger-instance get &lt;ID&gt;</code> look like, for one of your trigger instances?
+            </p>
+        </div>
+
+        <meta itemprop='headline' content='Troubleshooting rules failing to start executions'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/parkerberb-nfv'><span
+                    itemprop='name'>parkerberb-nfv</span></a>
+            (Parkerberb Nfv)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="159.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2018-05-25T18:54:22Z' class='post-time'>
+                May 25, 2018,  6:54pm
+              </time>
+              <meta itemprop='dateModified' content='2018-05-25T19:30:21Z'>
+          <span itemprop='position'>#3</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Yes. It’s hard to see in the output, but the rule enforcement shows that the trigger stopped successfully
+                causing executions around a week ago. This did correspond with a change in structure of the trigger.</p>
+            <pre><code class="lang-auto">+-----------------+-----------------------------------+
+| Property        | Value                             |
++-----------------+-----------------------------------+
+| id              | 5afeea8502ebd54ce683403c          |
+| trigger         | pharoslaas.end_deployment_trigger |
+| occurrence_time | 2018-05-18T15:00:21.132000Z       |
+| payload         | {                                 |
+|                 |     "keys": [],                   |
+|                 |     "host": "hpe16",              |
+|                 |     "user": 22,                   |
+|                 |     "key": "vpn_yCxgJZp0",        |
+|                 |     "booking": 145                |
+|                 | }                                 |
+| status          | processed                         |
++-----------------+-----------------------------------+
+</code></pre>
+            <p>is the trigger instance. Is having an empty array invalid?</p>
+        </div>
+
+        <meta itemprop='headline' content='Troubleshooting rules failing to start executions'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/lhill'><span itemprop='name'>lhill</span></a>
+            (Lindsay Hill)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="159.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2018-05-25T19:28:51Z' class='post-time'>
+                May 25, 2018,  7:28pm
+              </time>
+              <meta itemprop='dateModified' content='2018-05-25T19:28:51Z'>
+          <span itemprop='position'>#4</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>It’s <em>possible</em> that the empty array is causing a problem. I haven’t tried using an empty array.
+                As a test, what happens if you remove the <code>keys: “{{trigger.keys}}”</code> line from the rule?</p>
+            <blockquote>
+                <p>This did correspond with a change in structure of the trigger.</p>
+            </blockquote>
+            <p>What was the structure change?</p>
+        </div>
+
+        <meta itemprop='headline' content='Troubleshooting rules failing to start executions'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/lhill'><span itemprop='name'>lhill</span></a>
+            (Lindsay Hill)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="159.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2018-05-25T19:34:47Z' class='post-time'>
+                May 25, 2018,  7:34pm
+              </time>
+              <meta itemprop='dateModified' content='2018-05-25T19:34:47Z'>
+          <span itemprop='position'>#5</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>The other thing that’s going on here is your use of ‘keys’ - this is almost certainly getting confused
+                with the Python dict built-in keys. I would recommend using a different name.</p>
+        </div>
+
+        <meta itemprop='headline' content='Troubleshooting rules failing to start executions'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+            <span class='post-likes'>1 Like</span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/parkerberb-nfv'><span
+                    itemprop='name'>parkerberb-nfv</span></a>
+            (Parkerberb Nfv)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="159.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2018-06-04T15:29:18Z' class='post-time'>
+                June 4, 2018,  3:29pm
+              </time>
+              <meta itemprop='dateModified' content='2018-06-04T15:29:18Z'>
+          <span itemprop='position'>#6</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>It seems that changing the name in the trigger payload to <code>extra_keys</code> fixes this problem</p>
+        </div>
+
+        <meta itemprop='headline' content='Troubleshooting rules failing to start executions'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+            <span class='post-likes'>1 Like</span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+
+
+    <!-- :preload-content -->
+    <footer class="noscript-footer-nav">
+        <nav itemscope itemtype='http://schema.org/SiteNavigationElement'>
+            <a href='../../index.html'>Home</a>
+            <a href="../../categories.html">Categories</a>
+            <a href="https://forum.stackstorm.com/guidelines">FAQ/Guidelines</a>
+            <a href="../../tos.html">Terms of Service</a>
+            <a href="../../privacy.html">Privacy Policy</a>
+        </nav>
+    </footer>
+</div>
+
+<footer id='noscript-footer'>
+    <p>Powered by <a href="https://www.discourse.org">Discourse</a>, best viewed with JavaScript enabled</p>
+</footer>
+
+
+<section id='main'>
+</section>
+
+
+</body>
+</html>

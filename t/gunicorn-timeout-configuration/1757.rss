@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Gunicorn timeout configuration</title>
+    <link>https://forum.stackstorm.com/t/gunicorn-timeout-configuration/1757</link>
+    <description>Hi,
+
+I need your help!
+
+When I call the api **https://myUrl/auth/v1/tokens** i&#39;m getting an error &quot;Nginx is unable to reach st2auth.&quot;. This error is intermittent, when it reaches 30 seconds it gives an error, if the time is less than 30s I get the token successfully.
+Typically occurs on the first invocation, the following ones are succeeded in milliseconds.
+
+I think changing Gunicorn&#39;s default from 30 to 60 might solve the problem.
+My question is how to change Gunicorn&#39;s default setting from 30 seconds to 60?
+
+**Error in var/log/st2/st2auth.log:**
+[CRITICAL] WORKER TIMEOUT
+
+**API Response:** 
+Status: 503 - Service Temporarily Unavailable - Time:30.90s - Size:307 B
+&quot;faultstring&quot;: &quot;Nginx is unable to reach st2auth. Make sure service is running.&quot;</description>
+    
+    <lastBuildDate>Thu, 01 Jul 2021 14:01:22 +0000</lastBuildDate>
+    <category>User Management</category>
+    <atom:link href="https://forum.stackstorm.com/t/gunicorn-timeout-configuration/1757.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Gunicorn timeout configuration</title>
+        <dc:creator><![CDATA[amanda11]]></dc:creator>
+        <description><![CDATA[
+            <p>The gunicorn parameters such as timeout are set in the st2auth systemd service file in the Environment parameter, e.g.</p>
+<pre><code class="lang-auto">Environment="DAEMON_ARGS=-k eventlet -b 127.0.0.1:9100 --workers 1 --threads 1 --graceful-timeout 10 --timeout 30 --log-config /etc/st2/logging.auth.gunicorn.conf --error-logfile /var/log/st2/st2auth.log"
+EnvironmentFile=-/etc/sysconfig/st2auth
+ExecStart=/opt/stackstorm/st2/bin/gunicorn st2auth.wsgi:application $DAEMON_ARGS
+
+</code></pre>
+          <p><a href="https://forum.stackstorm.com/t/gunicorn-timeout-configuration/1757/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/gunicorn-timeout-configuration/1757/2</link>
+        <pubDate>Thu, 01 Jul 2021 14:01:22 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1757-2</guid>
+        <source url="https://forum.stackstorm.com/t/gunicorn-timeout-configuration/1757.rss">Gunicorn timeout configuration</source>
+      </item>
+      <item>
+        <title>Gunicorn timeout configuration</title>
+        <dc:creator><![CDATA[hsilverio]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi,</p>
+<p>I need your help!</p>
+<p>When I call the api <strong><a href="https://myUrl/auth/v1/tokens" rel="noopener nofollow ugc">https://myUrl/auth/v1/tokens</a></strong> i’m getting an error “Nginx is unable to reach st2auth.”. This error is intermittent, when it reaches 30 seconds it gives an error, if the time is less than 30s I get the token successfully.<br>
+Typically occurs on the first invocation, the following ones are succeeded in milliseconds.</p>
+<p>I think changing Gunicorn’s default from 30 to 60 might solve the problem.<br>
+My question is how to change Gunicorn’s default setting from 30 seconds to 60?</p>
+<p><strong>Error in var/log/st2/st2auth.log:</strong><br>
+[CRITICAL] WORKER TIMEOUT</p>
+<p><strong>API Response:</strong><br>
+Status: 503 - Service Temporarily Unavailable - Time:30.90s - Size:307 B<br>
+“faultstring”: “Nginx is unable to reach st2auth. Make sure service is running.”</p>
+          <p><a href="https://forum.stackstorm.com/t/gunicorn-timeout-configuration/1757/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/gunicorn-timeout-configuration/1757/1</link>
+        <pubDate>Thu, 01 Jul 2021 11:45:25 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1757-1</guid>
+        <source url="https://forum.stackstorm.com/t/gunicorn-timeout-configuration/1757.rss">Gunicorn timeout configuration</source>
+      </item>
+  </channel>
+</rss>

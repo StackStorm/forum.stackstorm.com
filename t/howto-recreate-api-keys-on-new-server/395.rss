@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Howto: Recreate API Keys on new server</title>
+    <link>https://forum.stackstorm.com/t/howto-recreate-api-keys-on-new-server/395</link>
+    <description>When you create a new [API Key](https://docs.stackstorm.com/authentication.html#api-keys), the API key is only shown at creation time. After that, only the hash is stored in the Database.
+
+If you need to migrate to a new server, the normal process is to export the keys from the old server, and import them to the new one, using these commands:
+
+```shell
+# On old server
+$ st2 apikey list -dy --show-secrets &gt; apikeys.yaml
+# Transfer the file to the new StackStorm instance, and load the keys from file:
+$ st2 apikey load apikeys.yaml
+```
+
+But what if you don&#39;t have access to the old server?
+
+If you still have access to the API keys, you can create the hashes. Just run something like this:
+
+```shell
+vagrant@stackstorm:~$ curl -H &quot;St2-Api-Key: MYAPIKEY&quot; https://localhost/api/v1/actions -k
+{
+    &quot;faultstring&quot;: &quot;Unauthorized - ApiKey with key_hash=6f672a23e202830ad876f08d6325f2e9615efeac03c2e9e8ae4fe387d0bd30ef5883957d42a87c9f0c53b7cedf026853ac30aa6d9118b411a6ec414310f9d64a not found.&quot;
+}vagrant@stackstorm:~$
+```
+
+Replace MYAPIKEY with the real value. 
+
+Note the error message - this is the hash you need. Now you can create a new `apikeys.yaml` file that looks like this:
+
+```yaml
+-   created_at: &#39;2018-11-27:10:35.693587Z&#39;
+    enabled: true
+    id: 599e236162edf80cd073d871
+    key_hash: 6f672a23e202830ad876f08d6325f2e9615efeac03c2e9e8ae4fe387d0bd30ef5883957d42a87c9f0c53b7cedf026853ac30aa6d9118b411a6ec414310f9d64a
+    metadata:
+        used_by: lhill
+    uid: api_key:6f672a23e202830ad876f08d6325f2e9615efeac03c2e9e8ae4fe387d0bd30ef5883957d42a87c9f0c53b7cedf026853ac30aa6d9118b411a6ec414310f9d64a
+    user: st2admin
+```
+
+Load it with `st2 apikey load apikeys.yaml`. Done.
+
+If you don&#39;t have access to the API key, *or* the hashes from the original server, you&#39;re out of luck: Create a new API key.</description>
+    
+    <lastBuildDate>Mon, 03 Dec 2018 21:56:45 +0000</lastBuildDate>
+    <category>API</category>
+    <atom:link href="https://forum.stackstorm.com/t/howto-recreate-api-keys-on-new-server/395.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Howto: Recreate API Keys on new server</title>
+        <dc:creator><![CDATA[lhill]]></dc:creator>
+        <description><![CDATA[
+            <p>When you create a new <a href="https://docs.stackstorm.com/authentication.html#api-keys" rel="nofollow noopener">API Key</a>, the API key is only shown at creation time. After that, only the hash is stored in the Database.</p>
+<p>If you need to migrate to a new server, the normal process is to export the keys from the old server, and import them to the new one, using these commands:</p>
+<pre><code class="lang-auto"># On old server
+$ st2 apikey list -dy --show-secrets &gt; apikeys.yaml
+# Transfer the file to the new StackStorm instance, and load the keys from file:
+$ st2 apikey load apikeys.yaml
+</code></pre>
+<p>But what if you don’t have access to the old server?</p>
+<p>If you still have access to the API keys, you can create the hashes. Just run something like this:</p>
+<pre><code class="lang-auto">vagrant@stackstorm:~$ curl -H "St2-Api-Key: MYAPIKEY" https://localhost/api/v1/actions -k
+{
+    "faultstring": "Unauthorized - ApiKey with key_hash=6f672a23e202830ad876f08d6325f2e9615efeac03c2e9e8ae4fe387d0bd30ef5883957d42a87c9f0c53b7cedf026853ac30aa6d9118b411a6ec414310f9d64a not found."
+}vagrant@stackstorm:~$
+</code></pre>
+<p>Replace MYAPIKEY with the real value.</p>
+<p>Note the error message - this is the hash you need. Now you can create a new <code>apikeys.yaml</code> file that looks like this:</p>
+<pre><code class="lang-yaml">-   created_at: '2018-11-27:10:35.693587Z'
+    enabled: true
+    id: 599e236162edf80cd073d871
+    key_hash: 6f672a23e202830ad876f08d6325f2e9615efeac03c2e9e8ae4fe387d0bd30ef5883957d42a87c9f0c53b7cedf026853ac30aa6d9118b411a6ec414310f9d64a
+    metadata:
+        used_by: lhill
+    uid: api_key:6f672a23e202830ad876f08d6325f2e9615efeac03c2e9e8ae4fe387d0bd30ef5883957d42a87c9f0c53b7cedf026853ac30aa6d9118b411a6ec414310f9d64a
+    user: st2admin
+</code></pre>
+<p>Load it with <code>st2 apikey load apikeys.yaml</code>. Done.</p>
+<p>If you don’t have access to the API key, <em>or</em> the hashes from the original server, you’re out of luck: Create a new API key.</p>
+          <p><a href="https://forum.stackstorm.com/t/howto-recreate-api-keys-on-new-server/395/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/howto-recreate-api-keys-on-new-server/395/1</link>
+        <pubDate>Mon, 03 Dec 2018 21:56:45 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-395-1</guid>
+        <source url="https://forum.stackstorm.com/t/howto-recreate-api-keys-on-new-server/395.rss">Howto: Recreate API Keys on new server</source>
+      </item>
+  </channel>
+</rss>

@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en" class="desktop-view not-mobile-device text-size-normal anon">
+<head>
+    <meta charset="utf-8">
+    <title>K8s PV issue for stackStorm HA - Operations - StackStorm Support (ARCHIVED)</title>
+    <meta name="description" content="I have configured kubernetes with Multinode with one master and two worker node with Kubeadm . 
+I have created 6 directories with full access in  /mnt/resource directory whose name is below 
+mongo1 mongo2 mongo3 rabbit1 &amp;hellip;">
+    <meta name="discourse_theme_id" content="2">
+    <meta name="discourse_current_homepage" content="latest">
+    <meta name="generator"
+          content="Discourse 2.8.0.beta6 - https://github.com/discourse/discourse version a1daf9fe53a66e2d2cdf9757ab4812fb9a2b2787">
+    <link rel="icon" type="image/png"
+          href="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/379ced12f8326d58f1b3d2b3ff652f883e141f6a_2_32x32.PNG">
+    <link rel="apple-touch-icon" type="image/png"
+          href="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/379ced12f8326d58f1b3d2b3ff652f883e141f6a_2_180x180.PNG">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <link rel="canonical" href="1025.html"/>
+    <script type="application/ld+json">{
+        "@context": "http://schema.org",
+        "@type": "WebSite",
+        "url": "https://forum.stackstorm.com",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://forum.stackstorm.com/search?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }</script>
+    <link rel="search" type="application/opensearchdescription+xml" href="../../opensearch.xml"
+          title="StackStorm Support (ARCHIVED) Search">
+
+
+    <link href="/../../stylesheets/color_definitions_base__2_3c5eec1ecf192052ea70b4afdab57a62bccc0604.css?__ws=forum.stackstorm.com"
+          media="all" rel="stylesheet" class="light-scheme"/>
+
+    <link href="/../../stylesheets/desktop_b2f2968742d41481357e0df259b51ce29f72481a.css?__ws=forum.stackstorm.com"
+          media="all" rel="stylesheet" data-target="desktop"/>
+
+
+    <meta name="fragment" content="!">
+
+
+    <link id="manifest-link" rel="manifest" href="../../manifest.webmanifest" crossorigin="use-credentials">
+
+
+    <link rel="alternate" type="application/rss+xml" title="RSS feed of &#39;K8s PV issue for stackStorm HA&#39;"
+          href="https://forum.stackstorm.com/t/k8s-pv-issue-for-stackstorm-ha/1025.rss"/>
+    <meta property="og:site_name" content="StackStorm Support (ARCHIVED)"/>
+    <meta property="og:type" content="website"/>
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:image"
+          content="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/891f00fbdb31fecb5bd9dab30c186d2fed0091ca.jpeg"/>
+    <meta property="og:image"
+          content="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/891f00fbdb31fecb5bd9dab30c186d2fed0091ca.jpeg"/>
+    <meta property="og:url" content="https://forum.stackstorm.com/t/k8s-pv-issue-for-stackstorm-ha/1025"/>
+    <meta name="twitter:url" content="https://forum.stackstorm.com/t/k8s-pv-issue-for-stackstorm-ha/1025"/>
+    <meta property="og:title" content="K8s PV issue for stackStorm HA"/>
+    <meta name="twitter:title" content="K8s PV issue for stackStorm HA"/>
+    <meta property="og:description"
+          content="I have configured kubernetes with Multinode with one master and two worker node with Kubeadm .  I have created 6 directories with full access in  /mnt/resource directory whose name is below  mongo1 mongo2 mongo3 rabbit1 rabbit2 rabbit3  i have created 6 pv …3 for rabbitmq and 3 for mongoDB each and  i have created storageclass with standardclass  for mongodb  pv creation apiVersion: v1  kind: PersistentVolume  metadata:  name: mongodb1  spec:  capacity:  storage: 10Gi  accessModes:   ReadWriteOn..."/>
+    <meta name="twitter:description"
+          content="I have configured kubernetes with Multinode with one master and two worker node with Kubeadm .  I have created 6 directories with full access in  /mnt/resource directory whose name is below  mongo1 mongo2 mongo3 rabbit1 rabbit2 rabbit3  i have created 6 pv …3 for rabbitmq and 3 for mongoDB each and  i have created storageclass with standardclass  for mongodb  pv creation apiVersion: v1  kind: PersistentVolume  metadata:  name: mongodb1  spec:  capacity:  storage: 10Gi  accessModes:   ReadWriteOn..."/>
+    <meta property="article:published_time" content="2020-02-02T10:55:38+00:00"/>
+    <meta property="og:ignore_canonical" content="true"/>
+
+
+    <script type="application/ld+json">{
+        "@context": "http://schema.org",
+        "@type": "QAPage",
+        "name": "K8s PV issue for stackStorm HA",
+        "mainEntity": {
+            "@type": "Question",
+            "name": "K8s PV issue for stackStorm HA",
+            "text": "I have configured kubernetes with Multinode with one master and two worker node with Kubeadm .\n\nI have created 6 directories with full access in  /mnt/resource directory whose name is below\n\nmongo1 mongo2 mongo3 rabbit1 rabbit2 rabbit3\n\ni have created 6 pv …3 for rabbitmq and 3 for mongoDB each and &hellip;",
+            "upvoteCount": 0,
+            "answerCount": 0,
+            "dateCreated": "2020-02-02T10:55:38.254Z",
+            "author": {
+                "@type": "Person",
+                "name": "anish kumar"
+            }
+        }
+    }</script>
+
+    <meta id="data-discourse-setup" data-cdn="https://sjc6.discourse-cdn.com/standard10"
+          data-base-url="https://forum.stackstorm.com" data-base-uri="" data-environment="production"
+          data-letter-avatar-version="5_8fec8e114563efeaf5265573e510f08e"
+          data-markdown-it-url="https://aws1.discourse-cdn.com/standard10/assets/markdown-it-bundle-31e9a9c535ca1801c26da78b0ff465821751a98f921c5cdc5457d7e5a69e9748.js"
+          data-service-worker-url="service-worker.js" data-default-locale="en"
+          data-asset-version="597e36448c9b51d0fa3b7e43ec1fd6d5" data-disable-custom-css="false"
+          data-highlight-js-path="/highlight-js/forum.stackstorm.com/ac0f4aa001e1343346941766d72e0c1ae330832b.js"
+          data-svg-sprite-path="/svg-sprite/forum.stackstorm.com/svg-2-c2ad434b1e06079c7e282124aed9938dc95b83ea.js"
+          data-enable-js-error-reporting="true" data-color-scheme-is-dark="false" data-user-dark-scheme-id="-1"
+          data-s3-cdn="https://aws1.discourse-cdn.com/standard10"
+          data-s3-base-url="//discourse-cloud-file-uploads.s3.dualstack.us-west-2.amazonaws.com/standard10">
+
+    <meta name="discourse/config/environment"
+          content="%7B%22modulePrefix%22%3A%22discourse%22%2C%22environment%22%3A%22production%22%2C%22rootURL%22%3A%22%22%2C%22locationType%22%3A%22auto%22%2C%22historySupportMiddleware%22%3Afalse%2C%22EmberENV%22%3A%7B%22FEATURES%22%3A%7B%7D%2C%22EXTEND_PROTOTYPES%22%3A%7B%22Date%22%3Afalse%7D%2C%22_APPLICATION_TEMPLATE_WRAPPER%22%3Afalse%2C%22_DEFAULT_ASYNC_OBSERVERS%22%3Atrue%2C%22_JQUERY_INTEGRATION%22%3Atrue%7D%2C%22APP%22%3A%7B%22name%22%3A%22discourse%22%2C%22version%22%3A%222.8.0.beta6%20a1daf9fe53a66e2d2cdf9757ab4812fb9a2b2787%22%2C%22exportApplicationGlobal%22%3Atrue%7D%7D"/>
+</head>
+
+<body class="">
+
+
+<header class="d-header">
+    <div class="wrap">
+        <div class="contents clearfix">
+            <div class="title">
+                <a href="../../index.html">
+                    <picture>
+                        <img src="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png"
+                             alt="StackStorm Support (ARCHIVED)" id="site-logo"/>
+                    </picture>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</header>
+
+<div id="main-outlet" class="wrap" role="main">
+    <!-- preload-content: -->
+
+    <!-- EOF START -->
+    <div class="container" id="main-container">
+        <div id="ember11" class="ember-view"></div>
+        <div id="ember12" class="controls ember-view"><!----></div>
+        <div id="ember13" class="ember-view"><!----></div>
+        <div id="ember14" class="ember-view">
+            <div class="row">
+                <div id="global-notice-alert-read-only" class="alert alert-info alert-read-only">
+                    <!----> <span class="text">This site is in read only mode. Please continue to browse, but replying, likes, and other actions are disabled for now.</span>
+
+                    <!---->    </div>
+            </div>
+            <div class="row">
+                <div id="global-notice-alert-global-notice" class="alert alert-info alert-global-notice">
+                    <!----> <span class="text"><h3>⚠️ We've moved!</h3>  <p> Hi there!<br><br> To reduce project dependency on 3rd party paid services the StackStorm TSC has decided to move the Q/A from this forum to <a
+                        href="https://github.com/StackStorm/st2/discussions">Github Discussions</a>. This will make user experience better integrated with the native Github flow, as well as the questions closer to the community where they can provide answers. </p>  <p> Use 🔗 <b><a
+                        href="https://github.com/StackStorm/st2/discussions" class="active">Github Discussions</a></b> to ask your questions. </p></span>
+
+                    <!---->    </div>
+            </div>
+        </div>
+        <div id="ember17" class="hidden create-topics-notice ember-view"><!----></div>
+        <!---->
+    </div>
+    <!-- EOF END -->
+    <div id="topic-title">
+        <h1>
+            <a href="1025.html">K8s PV issue for stackStorm HA</a>
+        </h1>
+
+        <div class="topic-category" itemscope itemtype="http://schema.org/BreadcrumbList">
+          <span itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a href="../../c/operations-related-issues/20" class="badge-wrapper bullet" itemprop="item">
+              <span class='badge-category-bg' style='background-color: #283890'></span>
+              <span class='badge-category clear-badge'>
+                <span class='category-name' itemprop='name'>Operations</span>
+              </span>
+            </a>
+            <meta itemprop="position" content="1"/>
+          </span>
+        </div>
+
+        <div class="topic-category">
+            <div class='discourse-tags list-tags'>
+                <a href='../../tag/k8s' class='discourse-tag' rel="tag">k8s</a>,
+                <a href='../../tag/deployments' class='discourse-tag' rel="tag">deployments</a>
+            </div>
+        </div>
+    </div>
+
+
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/anishkumar7070'><span
+                    itemprop='name'>anishkumar7070</span></a>
+            (anish kumar)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="1025.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2020-02-02T10:55:38Z' class='post-time'>
+                February 2, 2020, 10:55am
+              </time>
+              <meta itemprop='dateModified' content='2020-02-05T00:30:54Z'>
+          <span itemprop='position'>#1</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>I have configured kubernetes with Multinode with one master and two worker node with Kubeadm .<br>
+                I have created 6 directories with full access in /mnt/resource directory whose name is below<br>
+                mongo1 mongo2 mongo3 rabbit1 rabbit2 rabbit3</p>
+            <p>i have created 6 pv …3 for rabbitmq and 3 for mongoDB each and i have created storageclass with
+                standardclass</p>
+            <h2>for mongodb pv creation</h2>
+            <p>apiVersion: v1<br>
+                kind: PersistentVolume<br>
+                metadata:<br>
+                name: mongodb1<br>
+                spec:<br>
+                capacity:<br>
+                storage: 10Gi<br>
+                accessModes:</p>
+            <ul>
+                <li>ReadWriteOnce<br>
+                    persistentVolumeReclaimPolicy: Retain<br>
+                    storageClassName: my-local-storage<br>
+                    local:<br>
+                    path: /mnt/resource/mongo1<br>
+                    nodeAffinity:<br>
+                    required:<br>
+                    nodeSelectorTerms:
+                    <ul>
+                        <li>matchExpressions:
+                            <ul>
+                                <li>key: <a href="http://kubernetes.io/hostname" rel="nofollow noopener">kubernetes.io/hostname</a><br>
+                                    operator: In<br>
+                                    values:
+                                    <ul>
+                                        <li>k8snode</li>
+                                        <li>k8snode2</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <h2>for RabbitMQ pv creation</h2>
+            <p>apiVersion: v1<br>
+                kind: PersistentVolume<br>
+                metadata:<br>
+                name: rabbit1<br>
+                spec:<br>
+                capacity:<br>
+                storage: 10Gi<br>
+                accessModes:</p>
+            <ul>
+                <li>ReadWriteOnce<br>
+                    persistentVolumeReclaimPolicy: Retain<br>
+                    storageClassName: my-local-storage<br>
+                    local:<br>
+                    path: /mnt/resource/rabbit1<br>
+                    nodeAffinity:<br>
+                    required:<br>
+                    nodeSelectorTerms:
+                    <ul>
+                        <li>matchExpressions:
+                            <ul>
+                                <li>key: <a href="http://kubernetes.io/hostname" rel="nofollow noopener">kubernetes.io/hostname</a><br>
+                                    operator: In<br>
+                                    values:
+                                    <ul>
+                                        <li>k8snode</li>
+                                        <li>k8snode2</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <h2>PV is not bound for RAbbitMQ and MongoDB .Please help me how we can proceed as all pods are going in
+                crashloop<br>
+                one of crashed pods of stackStorm</h2>
+            <p>[root@k8smaster1 /]# kubectl logs stackstorm-ha-1580637351-st2actionrunner-577648bcd-4kxzv<br>
+                2020-02-02 10:36:30,219 DEBUG [-] Using Python: 2.7.12 (/opt/stackstorm/st2/bin/python)<br>
+                2020-02-02 10:36:30,219 DEBUG [-] Using config files:
+                /etc/st2/st2.conf,/etc/st2/st2.docker.conf,/etc/st2/st2.user.conf<br>
+                2020-02-02 10:36:30,219 DEBUG [-] Using logging config: /etc/st2/logging.actionrunner.conf<br>
+                2020-02-02 10:36:30,224 INFO [-] Connecting to database “st2” @
+                “stackstorm-ha-1580637351-mongodb-ha-0.stackstorm-ha-1580637351-mongodb-ha:27017,stackstorm-ha-1580637351-mongodb-ha-1.stackstorm-ha-1580637351-mongodb-ha:27017,stackstorm-ha-1580637351-mongodb-ha-2.stackstorm-ha-1580637351-mongodb-ha:27017
+                (replica set)” as user “admin”.<br>
+                2020-02-02 10:36:33,230 ERROR [-] Failed to connect to database “st2” @
+                “stackstorm-ha-1580637351-mongodb-ha-0.stackstorm-ha-1580637351-mongodb-ha:27017,stackstorm-ha-1580637351-mongodb-ha-1.stackstorm-ha-1580637351-mongodb-ha:27017,stackstorm-ha-1580637351-mongodb-ha-2.stackstorm-ha-1580637351-mongodb-ha:27017
+                (replica set)” as user “admin”: No replica set members found yet<br>
+                2020-02-02 10:36:33,231 ERROR [-] (PID=1) Worker quit due to exception.<br>
+                Traceback (most recent call last):<br>
+                File “/opt/stackstorm/st2/local/lib/python2.7/site-packages/st2actions/cmd/actionrunner.py”, line 94, in
+                main<br>
+                _setup()<br>
+                File “/opt/stackstorm/st2/local/lib/python2.7/site-packages/st2actions/cmd/actionrunner.py”, line 55, in
+                _setup<br>
+                register_signal_handlers=True, service_registry=True, capabilities=capabilities)<br>
+                File “/opt/stackstorm/st2/local/lib/python2.7/site-packages/st2common/service_setup.py”, line 160, in
+                setup<br>
+                db_setup()<br>
+                File “/opt/stackstorm/st2/local/lib/python2.7/site-packages/st2common/database_setup.py”, line 56, in
+                db_setup<br>
+                connection = db_init.db_setup_with_retry(**db_cfg)<br>
+                File “/opt/stackstorm/st2/local/lib/python2.7/site-packages/st2common/persistence/db_init.py”, line 75,
+                in db_setup_with_retry<br>
+                ssl_match_hostname=ssl_match_hostname)<br>
+                File “/opt/stackstorm/st2/local/lib/python2.7/site-packages/st2common/persistence/db_init.py”, line 58,
+                in db_func_with_retry<br>
+                return retrying_obj.call(db_func, *args, **kwargs)<br>
+                File “/opt/stackstorm/st2/local/lib/python2.7/site-packages/retrying.py”, line 206, in call<br>
+                return attempt.get(self._wrap_exception)<br>
+                File “/opt/stackstorm/st2/local/lib/python2.7/site-packages/retrying.py”, line 247, in get<br>
+                six.reraise(self.value[0], self.value[1], self.value[2])<br>
+                File “/opt/stackstorm/st2/local/lib/python2.7/site-packages/retrying.py”, line 200, in call<br>
+                attempt = Attempt(fn(*args, **kwargs), attempt_number, False)<br>
+                File “/opt/stackstorm/st2/local/lib/python2.7/site-packages/st2common/models/db/<strong>init</strong>.py”,
+                line 169, in db_setup<br>
+                ssl_match_hostname=ssl_match_hostname)<br>
+                File “/opt/stackstorm/st2/local/lib/python2.7/site-packages/st2common/models/db/<strong>init</strong>.py”,
+                line 151, in _db_connect<br>
+                raise e</p>
+        </div>
+
+        <meta itemprop='headline' content='K8s PV issue for stackStorm HA'>
+        <meta itemprop='keywords' content='k8s, deployments'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/armab'><span itemprop='name'>armab</span></a>
+            (Eugen Cusmaunsa)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="1025.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2020-02-05T00:46:52Z' class='post-time'>
+                February 5, 2020, 12:46am
+              </time>
+              <meta itemprop='dateModified' content='2020-02-05T00:57:12Z'>
+          <span itemprop='position'>#2</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Stackstorm pods fail in crashloop trying to connect to alive Mongo and Rabbitmq clusters, which cant
+                start because of issues with K8s configuration around persistent volumes.</p>
+            <p>Your <span class="hashtag">#1</span> objective is to get Rabbitmq and Mongodb clusters up &amp;
+                running.<br>
+                Try to use respective Helm charts directly without stackstorm first. That’ll get you a deployment fast
+                to reproduce and iterate. See <a
+                        href="https://github.com/StackStorm/stackstorm-ha#mongodb-ha-replicaset" class="inline-onebox">GitHub
+                    - StackStorm/stackstorm-ha: K8s Helm Chart (βeta!) that codifies StackStorm (aka "IFTTT for Ops"
+                    https://stackstorm.com/) Highly Availability fleet as a simple to use reproducible
+                    infrastructure-as-code app</a> for reference and <a
+                        href="https://github.com/helm/charts/tree/master/stable/mongodb-replicaset"
+                        class="inline-onebox">charts/stable/mongodb-replicaset at master · helm/charts · GitHub</a> for
+                detailed instructions about official Helm charts we use, their deployment details and configuration
+                settings.</p>
+            <p>Reated issues that might give more pointers and ideas to google for:</p>
+            <ul>
+                <li>
+                    <a href="https://forum.stackstorm.com/t/stackstorm-with-ha-on-kubernetes-persistentvolumeclaims-configuration-issue/443/8"
+                       class="inline-onebox">StackStorm with HA on Kubernetes - persistentVolumeClaims configuration
+                        issue</a></li>
+                <li><a href="../pvc-is-not-created/708.html" class="inline-onebox">PVC is not created</a></li>
+                <li><a href="https://forum.stackstorm.com/t/any-one-installed-stackstorm-ha-succesfully/560/12"
+                       class="inline-onebox">Any one installed Stackstorm-ha succesfully?</a></li>
+                <li><a href="https://forum.stackstorm.com/t/pass-existing-pvc-to-helm-chart/716" class="inline-onebox">Pass
+                    existing pvc to helm chart?</a></li>
+            </ul>
+        </div>
+
+        <meta itemprop='headline' content='K8s PV issue for stackStorm HA'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+
+
+    <!-- :preload-content -->
+    <footer class="noscript-footer-nav">
+        <nav itemscope itemtype='http://schema.org/SiteNavigationElement'>
+            <a href='../../index.html'>Home</a>
+            <a href="../../categories.html">Categories</a>
+            <a href="https://forum.stackstorm.com/guidelines">FAQ/Guidelines</a>
+            <a href="../../tos.html">Terms of Service</a>
+            <a href="../../privacy.html">Privacy Policy</a>
+        </nav>
+    </footer>
+</div>
+
+<footer id='noscript-footer'>
+    <p>Powered by <a href="https://www.discourse.org">Discourse</a>, best viewed with JavaScript enabled</p>
+</footer>
+
+
+<section id='main'>
+</section>
+
+
+</body>
+</html>

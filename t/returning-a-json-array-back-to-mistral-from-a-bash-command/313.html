@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="en" class="desktop-view not-mobile-device text-size-normal anon">
+<head>
+    <meta charset="utf-8">
+    <title>Returning a json array back to mistral from a bash command - Workflows - StackStorm Support
+        (ARCHIVED)</title>
+    <meta name="description"
+          content="I have a mistral workflow where each task calls another subtask if successful.  What I am trying to do is return the results back from the first bash script that is executed in a remote.cmd and be able to use that result&amp;hellip;">
+    <meta name="discourse_theme_id" content="2">
+    <meta name="discourse_current_homepage" content="latest">
+    <meta name="generator"
+          content="Discourse 2.8.0.beta6 - https://github.com/discourse/discourse version a1daf9fe53a66e2d2cdf9757ab4812fb9a2b2787">
+    <link rel="icon" type="image/png"
+          href="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/379ced12f8326d58f1b3d2b3ff652f883e141f6a_2_32x32.PNG">
+    <link rel="apple-touch-icon" type="image/png"
+          href="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/379ced12f8326d58f1b3d2b3ff652f883e141f6a_2_180x180.PNG">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <link rel="canonical" href="313.html"/>
+    <script type="application/ld+json">{
+        "@context": "http://schema.org",
+        "@type": "WebSite",
+        "url": "https://forum.stackstorm.com",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://forum.stackstorm.com/search?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }
+    </script>
+    <link rel="search" type="application/opensearchdescription+xml" href="../../opensearch.xml"
+          title="StackStorm Support (ARCHIVED) Search">
+
+
+    <link href="/../../stylesheets/color_definitions_base__2_3c5eec1ecf192052ea70b4afdab57a62bccc0604.css?__ws=forum.stackstorm.com"
+          media="all" rel="stylesheet" class="light-scheme"/>
+
+    <link href="/../../stylesheets/desktop_b2f2968742d41481357e0df259b51ce29f72481a.css?__ws=forum.stackstorm.com"
+          media="all" rel="stylesheet" data-target="desktop"/>
+
+
+    <meta name="fragment" content="!">
+
+
+    <link id="manifest-link" rel="manifest" href="../../manifest.webmanifest" crossorigin="use-credentials">
+
+
+    <link rel="alternate" type="application/rss+xml"
+          title="RSS feed of &#39;Returning a json array back to mistral from a bash command&#39;"
+          href="https://forum.stackstorm.com/t/returning-a-json-array-back-to-mistral-from-a-bash-command/313.rss"/>
+    <meta property="og:site_name" content="StackStorm Support (ARCHIVED)"/>
+    <meta property="og:type" content="website"/>
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:image"
+          content="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/891f00fbdb31fecb5bd9dab30c186d2fed0091ca.jpeg"/>
+    <meta property="og:image"
+          content="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/891f00fbdb31fecb5bd9dab30c186d2fed0091ca.jpeg"/>
+    <meta property="og:url"
+          content="https://forum.stackstorm.com/t/returning-a-json-array-back-to-mistral-from-a-bash-command/313"/>
+    <meta name="twitter:url"
+          content="https://forum.stackstorm.com/t/returning-a-json-array-back-to-mistral-from-a-bash-command/313"/>
+    <meta property="og:title" content="Returning a json array back to mistral from a bash command"/>
+    <meta name="twitter:title" content="Returning a json array back to mistral from a bash command"/>
+    <meta property="og:description"
+          content="I have a mistral workflow where each task calls another subtask if successful.  What I am trying to do is return the results back from the first bash script that is executed in a remote.cmd and be able to use that result or pass that result on to the next cmd.  When performing this operation and running in debug mode, I see the logs and the stdout but can I grab any of the values that were streamed out in the stdout log?, there is a mention in the documentation of a python example and how to obt..."/>
+    <meta name="twitter:description"
+          content="I have a mistral workflow where each task calls another subtask if successful.  What I am trying to do is return the results back from the first bash script that is executed in a remote.cmd and be able to use that result or pass that result on to the next cmd.  When performing this operation and running in debug mode, I see the logs and the stdout but can I grab any of the values that were streamed out in the stdout log?, there is a mention in the documentation of a python example and how to obt..."/>
+    <meta property="article:published_time" content="2018-09-21T00:55:18+00:00"/>
+    <meta property="og:ignore_canonical" content="true"/>
+
+
+    <script type="application/ld+json">{
+        "@context": "http://schema.org",
+        "@type": "QAPage",
+        "name": "Returning a json array back to mistral from a bash command",
+        "mainEntity": {
+            "@type": "Question",
+            "name": "Returning a json array back to mistral from a bash command",
+            "text": "I have a mistral workflow where each task calls another subtask if successful.  What I am trying to do is return the results back from the first bash script that is executed in a remote.cmd and be able to use that result or pass that result on to the next cmd.\n\nWhen performing this operation and run&hellip;",
+            "upvoteCount": 0,
+            "answerCount": 0,
+            "dateCreated": "2018-09-21T00:55:18.139Z",
+            "author": {
+                "@type": "Person",
+                "name": "Peter Michael Gits"
+            }
+        }
+    }
+    </script>
+
+    <meta id="data-discourse-setup" data-cdn="https://sjc6.discourse-cdn.com/standard10"
+          data-base-url="https://forum.stackstorm.com" data-base-uri="" data-environment="production"
+          data-letter-avatar-version="5_8fec8e114563efeaf5265573e510f08e"
+          data-markdown-it-url="https://aws1.discourse-cdn.com/standard10/assets/markdown-it-bundle-31e9a9c535ca1801c26da78b0ff465821751a98f921c5cdc5457d7e5a69e9748.js"
+          data-service-worker-url="service-worker.js" data-default-locale="en"
+          data-asset-version="597e36448c9b51d0fa3b7e43ec1fd6d5" data-disable-custom-css="false"
+          data-highlight-js-path="/highlight-js/forum.stackstorm.com/ac0f4aa001e1343346941766d72e0c1ae330832b.js"
+          data-svg-sprite-path="/svg-sprite/forum.stackstorm.com/svg-2-c2ad434b1e06079c7e282124aed9938dc95b83ea.js"
+          data-enable-js-error-reporting="true" data-color-scheme-is-dark="false" data-user-dark-scheme-id="-1"
+          data-s3-cdn="https://aws1.discourse-cdn.com/standard10"
+          data-s3-base-url="//discourse-cloud-file-uploads.s3.dualstack.us-west-2.amazonaws.com/standard10">
+
+    <meta name="discourse/config/environment"
+          content="%7B%22modulePrefix%22%3A%22discourse%22%2C%22environment%22%3A%22production%22%2C%22rootURL%22%3A%22%22%2C%22locationType%22%3A%22auto%22%2C%22historySupportMiddleware%22%3Afalse%2C%22EmberENV%22%3A%7B%22FEATURES%22%3A%7B%7D%2C%22EXTEND_PROTOTYPES%22%3A%7B%22Date%22%3Afalse%7D%2C%22_APPLICATION_TEMPLATE_WRAPPER%22%3Afalse%2C%22_DEFAULT_ASYNC_OBSERVERS%22%3Atrue%2C%22_JQUERY_INTEGRATION%22%3Atrue%7D%2C%22APP%22%3A%7B%22name%22%3A%22discourse%22%2C%22version%22%3A%222.8.0.beta6%20a1daf9fe53a66e2d2cdf9757ab4812fb9a2b2787%22%2C%22exportApplicationGlobal%22%3Atrue%7D%7D"/>
+</head>
+
+<body class="">
+
+
+<header class="d-header">
+    <div class="wrap">
+        <div class="contents clearfix">
+            <div class="title">
+                <a href="../../index.html">
+                    <picture>
+                        <img src="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png"
+                             alt="StackStorm Support (ARCHIVED)" id="site-logo"/>
+                    </picture>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</header>
+
+<div id="main-outlet" class="wrap" role="main">
+    <!-- preload-content: -->
+
+    <!-- EOF START -->
+    <div class="container" id="main-container">
+        <div id="ember11" class="ember-view"></div>
+        <div id="ember12" class="controls ember-view"><!----></div>
+        <div id="ember13" class="ember-view"><!----></div>
+        <div id="ember14" class="ember-view">
+            <div class="row">
+                <div id="global-notice-alert-read-only" class="alert alert-info alert-read-only">
+                    <!----> <span class="text">This site is in read only mode. Please continue to browse, but replying, likes, and other actions are disabled for now.</span>
+
+                    <!---->    </div>
+            </div>
+            <div class="row">
+                <div id="global-notice-alert-global-notice" class="alert alert-info alert-global-notice">
+                    <!----> <span class="text"><h3>⚠️ We've moved!</h3>  <p> Hi there!<br><br> To reduce project dependency on 3rd party paid services the StackStorm TSC has decided to move the Q/A from this forum to <a
+                        href="https://github.com/StackStorm/st2/discussions">Github Discussions</a>. This will make user experience better integrated with the native Github flow, as well as the questions closer to the community where they can provide answers. </p>  <p> Use 🔗 <b><a
+                        href="https://github.com/StackStorm/st2/discussions" class="active">Github Discussions</a></b> to ask your questions. </p></span>
+
+                    <!---->    </div>
+            </div>
+        </div>
+        <div id="ember17" class="hidden create-topics-notice ember-view"><!----></div>
+        <!---->
+    </div>
+    <!-- EOF END -->
+    <div id="topic-title">
+        <h1>
+            <a href="313.html">Returning a json array back to mistral from a bash command</a>
+        </h1>
+
+        <div class="topic-category" itemscope itemtype="http://schema.org/BreadcrumbList">
+          <span itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a href="../../c/workflow-related-issues/15" class="badge-wrapper bullet" itemprop="item">
+              <span class='badge-category-bg' style='background-color: #25AAE2'></span>
+              <span class='badge-category clear-badge'>
+                <span class='category-name' itemprop='name'>Workflows</span>
+              </span>
+            </a>
+            <meta itemprop="position" content="1"/>
+          </span>
+        </div>
+
+        <div class="topic-category">
+            <div class='discourse-tags list-tags'>
+                <a href='../../tag/mistral' class='discourse-tag' rel="tag">mistral</a>
+            </div>
+        </div>
+    </div>
+
+
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/petergits'><span itemprop='name'>petergits</span></a>
+            (Peter Michael Gits)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="313.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2018-09-21T00:55:18Z' class='post-time'>
+                September 21, 2018, 12:55am
+              </time>
+              <meta itemprop='dateModified' content='2018-09-21T00:57:36Z'>
+          <span itemprop='position'>#1</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>I have a <strong>mistral workflow</strong> where each task calls another subtask if successful. What I am
+                trying to do is return the results back from the first bash script that is executed in a remote.cmd and
+                be able to use that result or pass that result on to the next cmd.</p>
+            <p>When performing this operation and running in debug mode, I see the logs and the stdout but can I grab
+                any of the values that were streamed out in the stdout log?, there is a mention in the documentation of
+                a python example and how to obtain the python result.result…</p>
+            <p>it is plain old bash… I would like to keep state around and not have to push this state to the st2kv if
+                possible because it seems like I should be able to do this easily.</p>
+            <p>I did see a json like element named Results… but how do I use that from my within my bash commands</p>
+            <p>follow on question, but related… I have not be able to make any of these individual commands fail. I have
+                only been able to get each of the “tasks” to succeed, What should I be returning from bash exit -1
+                doesn’t seem to work. Also, strange is the fact that the entire workflow says it failed while each of
+                the subtasks succeeds? What is up with that and how do I resolve.</p>
+            <p>Respectfully,</p>
+            <p>Peter M. Gits</p>
+            <p>below is my workflow</p>
+            <pre><code class="lang-yaml">version: '2.0'
+
+examples.mistral-merge-feature:
+    description: A workflow that builds an image based on a change in a repo(s) and steps through each procedure individually and then calls a smoketest-hw.
+    type: direct
+    input:
+
+    vars:
+        st2_execution_id: &lt;% env().st2_execution_id %&gt;
+        async_branch:  &lt;% $.branch %&gt;_to_integration
+        leastBusyHost:  &lt;% st2kv('system.leastBusyBuildServer') %&gt;
+        combinedCmd: &lt;% $.swapParams %&gt; &lt;% $.cmd %&gt; branch=&lt;% $.branch %&gt; branch_to=&lt;% $.branch_to %&gt; ctm_pipeline_id=&lt;% $.ctm_pipeline_id %&gt; hash=&lt;% $.hash %&gt; jira_keys=&lt;% $.jira_keys %&gt; jira_urls=&lt;% $.jira_urls %&gt; mail_to=&lt;% $.mail_to %&gt; package_version=&lt;% $.package_version %&gt; PreMergeFlag=&lt;% $.PreMergeFlag %&gt; project=&lt;% $.project %&gt; publish_results=&lt;% $.publish_results %&gt; repos=&lt;% $.repos %&gt; update_jira=&lt;% $.update_jira %&gt; url=&lt;% $.url %&gt;  st2_execution_id=&lt;% env().st2_execution_id %&gt; build_id=&lt;% env().st2_execution_id %&gt; build_name=&lt;% $.build_name %&gt; build_procedure=&lt;% $.build_procedure %&gt; key=&lt;% $.key %&gt; pypi_extra_index_url=&lt;% $.pypi_extra_index_url %&gt; pypi_index_url=&lt;% $.pypi_index_url %&gt; scm_branch=&lt;% $.scm_branch %&gt; scm_commit=&lt;% $.scm_commit %&gt; scm_project=&lt;% $.scm_project %&gt; scm_repos=&lt;% $.scm_repos %&gt;  scm_urls=&lt;% $.scm_urls %&gt; state=&lt;% $.state %&gt; trusted_host=&lt;% $.trusted_host %&gt;  stackstormServer=&lt;% $.st2Server %&gt; apikey=&lt;% $.apiKey %&gt; OS_RELEASE=&lt;% $.OS_RELEASE %&gt; build_url=https://&lt;% $.st2Server %&gt;/api/v1/executions/&lt;% env().st2_execution_id %&gt; EFLOW_SCRIPTS=&lt;% $.EFLOW_SCRIPTS %&gt; dry_run=&lt;% $.dry_run %&gt; build_project=&lt;% $.build_project %&gt;
+        combinedCmdPublishNotification_1: &lt;% $.swapParams %&gt; &lt;% $.cmdPublishNotification %&gt; branch=&lt;% $.branch %&gt; branch_to=&lt;% $.branch_to %&gt; ctm_pipeline_id=&lt;% $.ctm_pipeline_id %&gt; hash=&lt;% $.hash %&gt; jira_keys=&lt;% $.jira_keys %&gt; jira_urls=&lt;% $.jira_urls %&gt; mail_to=&lt;% $.mail_to %&gt; package_version=&lt;% $.package_version %&gt; PreMergeFlag=&lt;% $.PreMergeFlag %&gt; project=&lt;% $.project %&gt; publish_results=&lt;% $.publish_results %&gt; repos=&lt;% $.repos %&gt; update_jira=&lt;% $.update_jira %&gt; url=&lt;% $.url %&gt;  st2_execution_id=&lt;% env().st2_execution_id %&gt; build_id=&lt;% env().st2_execution_id %&gt; build_name=&lt;% $.build_name %&gt; build_procedure=&lt;% $.build_procedure %&gt; key=&lt;% $.key %&gt; pypi_extra_index_url=&lt;% $.pypi_extra_index_url %&gt; pypi_index_url=&lt;% $.pypi_index_url %&gt; scm_branch=&lt;% $.scm_branch %&gt; scm_commit=&lt;% $.scm_commit %&gt; scm_project=&lt;% $.scm_project %&gt; scm_repos=&lt;% $.scm_repos %&gt;  scm_urls=&lt;% $.scm_urls %&gt; state=&lt;% $.state %&gt; trusted_host=&lt;% $.trusted_host %&gt;  stackstormServer=&lt;% $.st2Server %&gt; apikey=&lt;% $.apiKey %&gt; OS_RELEASE=&lt;% $.OS_RELEASE %&gt; build_url=https://&lt;% $.st2Server %&gt;/api/v1/executions/&lt;% env().st2_execution_id %&gt; EFLOW_SCRIPTS=&lt;% $.EFLOW_SCRIPTS %&gt; dry_run=&lt;% $.dry_run %&gt; build_project=&lt;% $.build_project %&gt;
+        combinedCmdPublishNotification_2: &lt;% $.swapParams %&gt; &lt;% $.cmdPublishNotification %&gt; branch=&lt;% $.branch %&gt; branch_to=&lt;% $.branch_to %&gt; ctm_pipeline_id=&lt;% $.ctm_pipeline_id %&gt; hash=&lt;% $.hash %&gt; jira_keys=&lt;% $.jira_keys %&gt; jira_urls=&lt;% $.jira_urls %&gt; mail_to=&lt;% $.mail_to %&gt; package_version=&lt;% $.package_version %&gt; PreMergeFlag=&lt;% $.PreMergeFlag %&gt; project=&lt;% $.project %&gt; publish_results=&lt;% $.publish_results %&gt; repos=&lt;% $.repos %&gt; update_jira=&lt;% $.update_jira %&gt; url=&lt;% $.url %&gt;  st2_execution_id=&lt;% env().st2_execution_id %&gt; build_id=&lt;% env().st2_execution_id %&gt; build_name=&lt;% $.build_name %&gt; build_procedure=&lt;% $.build_procedure %&gt; key=&lt;% $.success_flag %&gt; pypi_extra_index_url=&lt;% $.pypi_extra_index_url %&gt; pypi_index_url=&lt;% $.pypi_index_url %&gt; scm_branch=&lt;% $.scm_branch %&gt; scm_commit=&lt;% $.scm_commit %&gt; scm_project=&lt;% $.scm_project %&gt; scm_repos=&lt;% $.scm_repos %&gt;  scm_urls=&lt;% $.scm_urls %&gt; state=&lt;% $.state %&gt; trusted_host=&lt;% $.trusted_host %&gt;  stackstormServer=&lt;% $.st2Server %&gt; apikey=&lt;% $.apiKey %&gt; OS_RELEASE=&lt;% $.OS_RELEASE %&gt; build_url=https://&lt;% $.st2Server %&gt;/api/v1/executions/&lt;% env().st2_execution_id %&gt; EFLOW_SCRIPTS=&lt;% $.EFLOW_SCRIPTS %&gt; dry_run=&lt;% $.dry_run %&gt; build_project=&lt;% $.build_project %&gt;
+        combinedCmdCreateWorkingDir: &lt;% $.swapParams %&gt; &lt;% $.cmdCreateWorkingDir %&gt; branch=&lt;% $.branch %&gt; branch_to=&lt;% $.branch_to %&gt; ctm_pipeline_id=&lt;% $.ctm_pipeline_id %&gt; hash=&lt;% $.hash %&gt; jira_keys=&lt;% $.jira_keys %&gt; jira_urls=&lt;% $.jira_urls %&gt; mail_to=&lt;% $.mail_to %&gt; package_version=&lt;% $.package_version %&gt; PreMergeFlag=&lt;% $.PreMergeFlag %&gt; project=&lt;% $.project %&gt; publish_results=&lt;% $.publish_results %&gt; repos=&lt;% $.repos %&gt; update_jira=&lt;% $.update_jira %&gt; url=&lt;% $.url %&gt;  st2_execution_id=&lt;% env().st2_execution_id %&gt; build_id=&lt;% env().st2_execution_id %&gt; build_name=&lt;% $.build_name %&gt; build_procedure=&lt;% $.build_procedure %&gt; key=&lt;% $.key %&gt; pypi_extra_index_url=&lt;% $.pypi_extra_index_url %&gt; pypi_index_url=&lt;% $.pypi_index_url %&gt; scm_branch=&lt;% $.scm_branch %&gt; scm_commit=&lt;% $.scm_commit %&gt; scm_project=&lt;% $.scm_project %&gt; scm_repos=&lt;% $.scm_repos %&gt;  scm_urls=&lt;% $.scm_urls %&gt; state=&lt;% $.state %&gt; trusted_host=&lt;% $.trusted_host %&gt;  stackstormServer=&lt;% $.st2Server %&gt; apikey=&lt;% $.apiKey %&gt; OS_RELEASE=&lt;% $.OS_RELEASE %&gt; build_url=https://&lt;% $.st2Server %&gt;/api/v1/executions/&lt;% env().st2_execution_id %&gt; EFLOW_SCRIPTS=&lt;% $.EFLOW_SCRIPTS %&gt; dry_run=&lt;% $.dry_run %&gt; build_project=&lt;% $.build_project %&gt;
+        combinedCmdArSync: &lt;% $.swapParams %&gt; &lt;% $.cmdArSync %&gt; branch=&lt;% $.branch %&gt; original_branch=&lt;% $.branch %&gt; branch_to=&lt;% $.branch_to %&gt; ctm_pipeline_id=&lt;% $.ctm_pipeline_id %&gt; hash=&lt;% $.hash %&gt; jira_keys=&lt;% $.jira_keys %&gt; jira_urls=&lt;% $.jira_urls %&gt; mail_to=&lt;% $.mail_to %&gt; package_version=&lt;% $.package_version %&gt; PreMergeFlag=&lt;% $.PreMergeFlag %&gt; project=&lt;% $.project %&gt; publish_results=&lt;% $.publish_results %&gt; repos=&lt;% $.repos %&gt; update_jira=&lt;% $.update_jira %&gt; url=&lt;% $.url %&gt;  st2_execution_id=&lt;% env().st2_execution_id %&gt; build_id=&lt;% env().st2_execution_id %&gt; build_name=&lt;% $.build_name %&gt; build_procedure=&lt;% $.build_procedure %&gt; key=&lt;% $.key %&gt; pypi_extra_index_url=&lt;% $.pypi_extra_index_url %&gt; pypi_index_url=&lt;% $.pypi_index_url %&gt; scm_branch=&lt;% $.scm_branch %&gt; scm_commit=&lt;% $.scm_commit %&gt; scm_project=&lt;% $.scm_project %&gt; scm_repos=&lt;% $.scm_repos %&gt;  scm_urls=&lt;% $.scm_urls %&gt; state=&lt;% $.state %&gt; trusted_host=&lt;% $.trusted_host %&gt;  stackstormServer=&lt;% $.st2Server %&gt; apikey=&lt;% $.apiKey %&gt; OS_RELEASE=&lt;% $.OS_RELEASE %&gt; build_url=https://&lt;% $.st2Server %&gt;/api/v1/executions/&lt;% env().st2_execution_id %&gt; EFLOW_SCRIPTS=&lt;% $.EFLOW_SCRIPTS %&gt; dry_run=&lt;% $.dry_run %&gt; build_project=&lt;% $.build_project %&gt;
+        combinedCmdFetchRepos: &lt;% $.swapParams %&gt; &lt;% $.cmdFetchRepos %&gt; branch=&lt;% $.branch %&gt;_to_&lt;% $.branch_to %&gt; original_branch=&lt;% $.branch %&gt; branch_to=&lt;% $.branch_to %&gt; ctm_pipeline_id=&lt;% $.ctm_pipeline_id %&gt; hash=&lt;% $.hash %&gt; jira_keys=&lt;% $.jira_keys %&gt; jira_urls=&lt;% $.jira_urls %&gt; mail_to=&lt;% $.mail_to %&gt; package_version=&lt;% $.package_version %&gt; PreMergeFlag=&lt;% $.PreMergeFlag %&gt; project=&lt;% $.project %&gt; publish_results=&lt;% $.publish_results %&gt; repos=&lt;% $.repos %&gt; update_jira=&lt;% $.update_jira %&gt; url=&lt;% $.url %&gt;  st2_execution_id=&lt;% env().st2_execution_id %&gt; build_id=&lt;% env().st2_execution_id %&gt; build_name=&lt;% $.build_name %&gt; build_procedure=&lt;% $.build_procedure %&gt; key=&lt;% $.key %&gt; pypi_extra_index_url=&lt;% $.pypi_extra_index_url %&gt; pypi_index_url=&lt;% $.pypi_index_url %&gt; scm_branch=&lt;% $.branch %&gt;_to_integration scm_commit=&lt;% $.scm_commit %&gt; scm_project=&lt;% $.scm_project %&gt; scm_repos=&lt;% $.scm_repos %&gt;  scm_urls=&lt;% $.scm_urls %&gt; state=&lt;% $.state %&gt; trusted_host=&lt;% $.trusted_host %&gt;  stackstormServer=&lt;% $.st2Server %&gt; apikey=&lt;% $.apiKey %&gt; OS_RELEASE=&lt;% $.OS_RELEASE %&gt; build_url=https://&lt;% $.st2Server %&gt;/api/v1/executions/&lt;% env().st2_execution_id %&gt; EFLOW_SCRIPTS=&lt;% $.EFLOW_SCRIPTS %&gt; token=&lt;% $.token %&gt; server_url=&lt;% $.server_url %&gt; dry_run=&lt;% $.dry_run %&gt; build_project=&lt;% $.build_project %&gt;
+        combinedCmdPublishNotificationPostArSync: &lt;% $.swapParams %&gt; &lt;% $.cmdPublishNotificationPostArSync %&gt; branch=&lt;% $.branch %&gt;_to_&lt;% $.branch_to %&gt; original_branch=&lt;% $.branch %&gt; branch_to=&lt;% $.branch_to %&gt; ctm_pipeline_id=&lt;% $.ctm_pipeline_id %&gt; hash=&lt;% $.hash %&gt; jira_keys=&lt;% $.jira_keys %&gt; jira_urls=&lt;% $.jira_urls %&gt; mail_to=&lt;% $.mail_to %&gt; package_version=&lt;% $.package_version %&gt; PreMergeFlag=&lt;% $.PreMergeFlag %&gt; project=&lt;% $.project %&gt; publish_results=&lt;% $.publish_results %&gt; repos=&lt;% $.repos %&gt; update_jira=&lt;% $.update_jira %&gt; url=&lt;% $.url %&gt;  st2_execution_id=&lt;% env().st2_execution_id %&gt; build_id=&lt;% env().st2_execution_id %&gt; build_name=&lt;% $.build_name %&gt; build_procedure=&lt;% $.build_procedure %&gt; key=&lt;% $.key %&gt; pypi_extra_index_url=&lt;% $.pypi_extra_index_url %&gt; pypi_index_url=&lt;% $.pypi_index_url %&gt; scm_branch=&lt;% $.branch %&gt;_to_integration original_branch=&lt;% $.branch %&gt; scm_commit=&lt;% $.scm_commit %&gt; scm_project=&lt;% $.scm_project %&gt; scm_repos=&lt;% $.scm_repos %&gt;  scm_urls=&lt;% $.scm_urls %&gt; state=&lt;% $.success_flag %&gt; trusted_host=&lt;% $.trusted_host %&gt;  stackstormServer=&lt;% $.st2Server %&gt; apikey=&lt;% $.apiKey %&gt; OS_RELEASE=&lt;% $.OS_RELEASE %&gt; build_url=https://&lt;% $.st2Server %&gt;/api/v1/executions/&lt;% env().st2_execution_id %&gt; EFLOW_SCRIPTS=&lt;% $.EFLOW_SCRIPTS %&gt;  dry_run=&lt;% $.dry_run %&gt; build_project=&lt;% $.build_project %&gt;
+
+    input:
+        - dry_run
+        - failure_flag
+        - success_flag
+        - branch_to
+        - async_branch
+        - image_out
+        - st2kv_image_name
+        - image_name
+        - myTransactionId
+        - transactionId
+        - enterprise_or_dell
+        - branch
+        - ctm_pipeline_id
+        - username
+        - private_key
+        - hosts
+        - swapParams
+        - cmd
+        - cmdPublishNotification
+        - cmdSetBuildProperties
+        - cmdCreateWorkingDir
+        - cmdClone
+        - cmdGetHashFromWorkspace
+        - cmdCloneStretch
+        - cmdArSync
+        - cmdPublishNotificationPostArSync
+        - cmdPwd
+        - cmdBuildStretchUpdated
+        - cmdPublishiAddMyPackageDetails
+        - cmdInsertPkgToLastGoodImage
+        - cmdIncrementProperty
+        - cmdReviewPackageTransactionIds
+        - cmdCallback
+        - cmdProcessSmoketest
+        - cmdPushFeature
+        - cmdMergePullRequests
+        - cmdPublishToArtifactory
+        - cmdCleanup
+        - cmdFetchRepos
+        - timeout
+        - cwd
+        - token
+        - server_url
+        - hash
+        - jira_keys
+        - jira_urls
+        - mail_to
+        - package_version
+        - PreMergeFlag
+        - project
+        - publish_results
+        - update_jira
+        - url
+        - pypi_index_url
+        - pypi_extra_index_url
+        - trusted_host
+        - state
+        - key
+        - build_project
+        - build_procedure
+        - build_id
+        - build_name
+        - scm_project
+        - repos
+        - scm_repos
+        - scm_urls
+        - scm_branch
+        - scm_commit
+        - apiKey
+        - st2Server
+        - OS_RELEASE
+        - build_url
+        - EFLOW_SCRIPTS
+
+    output:
+        env: &lt;% env() %&gt;
+        url: &lt;% $.url %&gt;
+        stdout: &lt;% $.stdout %&gt;
+        stderr: &lt;% $.stderr %&gt;
+        status: &lt;% $.status %&gt;
+        last_call_was: &lt;% $.cmd %&gt;
+        just_output_the_whole_worfklow_context: &lt;% $ %&gt;
+
+
+    tasks:
+        passed_in_command:
+            action: core.remote cmd=&lt;% $.combinedCmd %&gt; timeout=&lt;% $.timeout %&gt; cwd=&lt;% $.cwd %&gt;  hosts=&lt;% $.leastBusyHost %&gt; username=&lt;% $.username %&gt; private_key=&lt;% $.private_key %&gt;
+            
+#            publish:
+#                stdout:  "{{ task('passed_in_command').result.stdout }}"
+#                status: &lt;% task(passed_in_command).result.result.stderr %&gt;
+            on-success:
+                - sub_publish_notification_1
+            on-error:
+                - sub_cleanup
+
+        sub_publish_notification_1:
+            action: core.remote cmd=&lt;% $.combinedCmdPublishNotification_1 %&gt; timeout=&lt;% $.timeout %&gt; cwd=&lt;% $.cwd %&gt;  hosts=&lt;% $.leastBusyHost %&gt; username=&lt;% $.username %&gt; private_key=&lt;% $.private_key %&gt;
+            
+#            publish:
+#                stdout:  "{{ task('sub_publish_notification_1').result.stdout }}"
+#                stderr:  "{{ task('sub_publish_notification_1').result.stdout }}"
+            on-success:
+                - sub_create_working_dir
+            on-error:
+                - sub_cleanup
+
+        sub_create_working_dir:
+            action: core.remote cmd=&lt;% $.combinedCmdCreateWorkingDir %&gt; timeout=&lt;% $.timeout %&gt; cwd=&lt;% $.cwd %&gt;  hosts=&lt;% $.leastBusyHost %&gt; username=&lt;% $.username %&gt; private_key=&lt;% $.private_key %&gt;
+            
+#            publish:
+#                stdout:  "{{ task('sub_create_working_dir').result.stdout }}"
+#                stderr: &lt;% task(sub_create_working_dir).result.stderr %&gt;
+            on-success:
+                - sub_ar_sync
+            on-error:
+                - sub_cleanup
+
+        sub_ar_sync:
+            action: core.remote cmd=&lt;% $.combinedCmdArSync %&gt; timeout=&lt;% $.timeout %&gt; cwd=&lt;% $.cwd %&gt;  hosts=&lt;% $.leastBusyHost %&gt; username=&lt;% $.username %&gt; private_key=&lt;% $.private_key %&gt;
+            
+#            publish:
+#                stdout:  "{{ task('sub_ar_sync').result.stdout }}"
+#                stderr: &lt;% task(sub_ar_sync).result.stderr %&gt;
+            on-success:
+                - sub_fetch_repos
+            on-error:
+                - sub_cleanup
+
+        sub_fetch_repos:
+            action: core.remote cmd=&lt;% $.combinedCmdFetchRepos %&gt; timeout=&lt;% $.timeout %&gt; cwd=&lt;% $.cwd %&gt;  hosts=&lt;% $.leastBusyHost %&gt; username=&lt;% $.username %&gt; private_key=&lt;% $.private_key %&gt;
+            
+#            publish:
+#                stdout:  "{{ task('sub_ar_sync').result.stdout }}"
+#                stderr: &lt;% task(sub_ar_sync).result.stderr %&gt;
+            on-success:
+                - sub_publish_notification_post_ar_sync
+            on-error:
+                - sub_cleanup
+
+        sub_publish_notification_post_ar_sync:
+            action: core.remote cmd=&lt;% $.combinedCmdPublishNotificationPostArSync %&gt; timeout=&lt;% $.timeout %&gt; cwd=&lt;% $.cwd %&gt;  hosts=&lt;% $.leastBusyHost %&gt; username=&lt;% $.username %&gt; private_key=&lt;% $.private_key %&gt;
+            
+#            publish:
+#                stdout:  "{{ task('sub_publish_notification_post_ar_sync').result.stdout }}"
+#                stderr:  "{{ task('sub_publish_notification_post_ar_sync').result.stdout }}"
+            on-success:
+                - sub_set_build_properties
+            on-error:
+                - sub_cleanup
+
+        sub_set_build_properties:
+            action: core.remote cmd=&lt;% $.combinedCmdSetBuildProperties %&gt; timeout=&lt;% $.timeout %&gt; cwd=&lt;% $.cwd %&gt;  hosts=&lt;% $.leastBusyHost %&gt; username=&lt;% $.username %&gt; private_key=&lt;% $.private_key %&gt;
+            
+#            publish:
+#                stdout:  "{{ task('sub_set_build_properties').result.stdout }}"
+#                stderr: &lt;% task(sub_set_build_properties).result.stderr %&gt;
+            on-success:
+                - sub_clone
+            on-error:
+                - sub_cleanup
+
+        sub_clone:
+            action: core.remote cmd=&lt;% $.combinedCmdClone %&gt; timeout=&lt;% $.timeout %&gt; cwd=&lt;% $.cwd %&gt;  hosts=&lt;% $.leastBusyHost %&gt; username=&lt;% $.username %&gt; private_key=&lt;% $.private_key %&gt;
+            
+#            publish:
+#                stdout:  "{{ task('sub_clone').result.stdout }}"
+#                stderr: &lt;% task(sub_clone).result.stderr %&gt;
+            on-success:
+                - sub_get_hash_from_workspace
+            on-error:
+                - sub_cleanup
+
+        sub_get_hash_from_workspace:
+            action: core.remote cmd=&lt;% $.combinedCmdGetHashFromWorkspace %&gt; timeout=&lt;% $.timeout %&gt; cwd=&lt;% $.cwd %&gt;  hosts=&lt;% $.leastBusyHost %&gt; username=&lt;% $.username %&gt; private_key=&lt;% $.private_key %&gt;
+            
+#            publish:
+#                stdout:  "{{ task('sub_get_hash_from_workspace').result.stdout }}"
+#                stderr: &lt;% task(sub_get_hash_from_workspace).result.stderr %&gt;
+            on-success:
+                - sub_clone_stretch
+            on-error:
+                - sub_cleanup
+
+        sub_clone_stretch:
+            action: core.remote cmd=&lt;% $.combinedCmdCloneStretch %&gt; timeout=&lt;% $.timeout %&gt; cwd=&lt;% $.cwd %&gt;  hosts=&lt;% $.leastBusyHost %&gt; username=&lt;% $.username %&gt; private_key=&lt;% $.private_key %&gt;
+            
+#            publish:
+#                stdout:  "{{ task('sub_clone_stretch').result.stdout }}"
+#                stderr: &lt;% task(sub_clone_stretch).result.stderr %&gt;
+            on-success:
+                - sub_pwd
+            on-error:
+                - sub_cleanup
+
+        sub_pwd:
+            action: core.remote cmd=&lt;% $.combinedCmdPwd %&gt; timeout=&lt;% $.timeout %&gt; cwd=&lt;% $.cwd %&gt;  hosts=&lt;% $.leastBusyHost %&gt; username=&lt;% $.username %&gt; private_key=&lt;% $.private_key %&gt;
+            
+#            publish:
+#                stdout:  "{{ task('sub_pwd').result.stdout }}"
+#                stderr: &lt;% task(sub_pwd).result.stderr %&gt;
+            on-success:
+                - sub_build_stretch_updated
+            on-error:
+                - sub_cleanup
+
+        sub_build_stretch_updated:
+            action: core.remote cmd=&lt;% $.combinedCmdBuildStretchUpdated %&gt; timeout=&lt;% $.timeout %&gt; cwd=&lt;% $.cwd %&gt;  hosts=&lt;% $.leastBusyHost %&gt; username=&lt;% $.username %&gt; private_key=&lt;% $.private_key %&gt;
+            
+#            publish:
+#                stdout:  "{{ task('sub_buile_stretch_updated').result.stdout }}"
+#                stderr: &lt;% task(sub_buile_stretch_updated).result.stderr %&gt;
+            on-success:
+                - sub_publish_iAddMyPackageDetails
+            on-error:
+                - sub_cleanup
+
+
+        sub_publish_iAddMyPackageDetails:
+            action: core.remote cmd=&lt;% $.combinedCmdPublishiAddMyPackageDetails %&gt; timeout=&lt;% $.timeout %&gt; cwd=&lt;% $.cwd %&gt;  hosts=&lt;% $.leastBusyHost %&gt; username=&lt;% $.username %&gt; private_key=&lt;% $.private_key %&gt;
+            
+#            publish:
+#                stdout:  "{{ task('sub_publish_iAddMyPackageDetails').result.stdout }}"
+#                stderr: &lt;% task(sub_publish_iAddMyPackageDetails).result.stderr %&gt;
+            on-success:
+                - sub_insert_pkg_to_last_good_image
+            on-error:
+                - sub_cleanup
+
+        sub_insert_pkg_to_last_good_image:
+            action: core.remote cmd=&lt;% $.combinedCmdInsertPkgToLastGoodImage %&gt; timeout=&lt;% $.timeout %&gt; cwd=&lt;% $.cwd %&gt;  hosts=&lt;% $.leastBusyHost %&gt; username=&lt;% $.username %&gt; private_key=&lt;% $.private_key %&gt;
+            
+#            publish:
+#                image_out:  "{{ task('sub_insert_pkg_to_last_good_image').result.image_name }}"
+#                st2kv_image_name: "{{ st2kv.system.tftpboot_path }}"
+#                myTransactionId: "{{ st2kv.system.transactionIdStretch }}"
+#                stderr: &lt;% task(sub_insert_pkg_to_last_good_image).result.stderr %&gt;
+            on-success:
+                - sub_publish_notification_2
+            on-error:
+                - sub_cleanup
+
+        sub_publish_notification_2:
+            action: core.remote cmd=&lt;% $.combinedCmdPublishNotification_2 %&gt; timeout=&lt;% $.timeout %&gt; cwd=&lt;% $.cwd %&gt;  hosts=&lt;% $.leastBusyHost %&gt; username=&lt;% $.username %&gt; private_key=&lt;% $.private_key %&gt;
+            
+#            publish:
+#                stdout:  "{{ task('sub_publish_notification_2').result.stdout }}"
+#                stderr: &lt;% task(sub_publish_notification_2).result.stderr %&gt;
+            on-success:
+                - sub_increment_property
+            on-error:
+                - sub_cleanup
+
+        sub_increment_property:
+            action: core.remote cmd=&lt;% $.combinedCmdIncrementProperty %&gt; timeout=&lt;% $.timeout %&gt; cwd=&lt;% $.cwd %&gt;  hosts=&lt;% $.leastBusyHost %&gt; username=&lt;% $.username %&gt; private_key=&lt;% $.private_key %&gt;
+            
+#            publish:
+#                stdout:  "{{ task('sub_increment_property').result.stdout }}"
+#                stderr: &lt;% task(sub_increment_property).result.stderr %&gt;
+            on-success:
+                - sub_review_package_transaction_ids
+            on-error:
+                - sub_cleanup
+
+        sub_review_package_transaction_ids:
+            action: core.remote cmd=&lt;% $.combinedCmdReviewPackageTransactionIds %&gt; timeout=&lt;% $.timeout %&gt; cwd=&lt;% $.cwd %&gt;  hosts=&lt;% $.leastBusyHost %&gt; username=&lt;% $.username %&gt; private_key=&lt;% $.private_key %&gt;
+            
+#            publish:
+#                stdout:  "{{ task('sub_review_package_transaction_ids').result.stdout }}"
+#                stderr: &lt;% task(sub_review_package_transaction_ids).result.stderr %&gt;
+            on-success:
+                - sub_callback
+            on-error:
+                - sub_cleanup
+
+        sub_callback:
+            action: core.remote cmd=&lt;% $.combinedCmdCallback %&gt; timeout=&lt;% $.timeout %&gt; cwd=&lt;% $.cwd %&gt;  hosts=&lt;% $.leastBusyHost %&gt; username=&lt;% $.username %&gt; private_key=&lt;% $.private_key %&gt;
+            
+#            publish:
+#                stdout:  "{{ task('sub_callback').result.stdout }}"
+#                stderr: &lt;% task(sub_callback).result.stderr %&gt;
+            on-success:
+                - sub_process_smoketest
+            on-error:
+                - sub_cleanup
+
+        sub_process_smoketest:
+            action: core.remote cmd=&lt;% $.combinedCmdProcessSmoketest %&gt; timeout=&lt;% $.timeout %&gt; cwd=&lt;% $.cwd %&gt;  hosts=&lt;% $.leastBusyHost %&gt; username=&lt;% $.username %&gt; private_key=&lt;% $.private_key %&gt;
+#            parameters: {
+#                "image_out":  "{{ st2kv.system.tftp_boot }},
+#                "st2kv_image_name": "{{ st2kv.system.tftpboot_path }}"
+#                "myTransactionId": "{{ st2kv.system.transactionIdStretch }}"
+#            } 
+            on-success:
+                - sub_push_feature
+            on-error:
+                - sub_cleanup
+
+        sub_push_feature:
+            action: core.remote cmd=&lt;% $.combinedCmdPushFeature %&gt; timeout=&lt;% $.timeout %&gt; cwd=&lt;% $.cwd %&gt;  hosts=&lt;% $.leastBusyHost %&gt; username=&lt;% $.username %&gt; private_key=&lt;% $.private_key %&gt;
+#            parameters: {
+#                "image_out":  "{{ st2kv.system.tftp_boot }},
+#                "st2kv_image_name": "{{ st2kv.system.tftpboot_path }}"
+#                "myTransactionId": "{{ st2kv.system.transactionIdStretch }}"
+#            } 
+            on-success:
+                - sub_merge_pull_requests
+            on-error:
+                - sub_cleanup
+
+        sub_merge_pull_requests:
+            action: core.remote cmd=&lt;% $.combinedCmdMergePullRequests %&gt; timeout=&lt;% $.timeout %&gt; cwd=&lt;% $.cwd %&gt;  hosts=&lt;% $.leastBusyHost %&gt; username=&lt;% $.username %&gt; private_key=&lt;% $.private_key %&gt;
+#            parameters: {
+#                "image_out":  "{{ st2kv.system.tftp_boot }},
+#                "st2kv_image_name": "{{ st2kv.system.tftpboot_path }}"
+#                "myTransactionId": "{{ st2kv.system.transactionIdStretch }}"
+#            } 
+            on-success:
+                - sub_publish_to_artifactory
+            on-error:
+                - sub_cleanup
+
+        sub_publish_to_artifactory:
+            action: core.remote cmd=&lt;% $.combinedCmdPublishToArtifactory %&gt; timeout=&lt;% $.timeout %&gt; cwd=&lt;% $.cwd %&gt;  hosts=&lt;% $.leastBusyHost %&gt; username=&lt;% $.username %&gt; private_key=&lt;% $.private_key %&gt;
+#            parameters: {
+#                "image_out":  "{{ st2kv.system.tftp_boot }},
+#                "st2kv_image_name": "{{ st2kv.system.tftpboot_path }}"
+#                "myTransactionId": "{{ st2kv.system.transactionIdStretch }}"
+#            } 
+            on-success:
+                - sub_cleanup
+            on-error:
+                - sub_cleanup
+
+        sub_cleanup:
+            action: core.remote cmd=&lt;% $.combinedCmdCleanup %&gt; timeout=&lt;% $.timeout %&gt; cwd=&lt;% $.cwd %&gt;  hosts=&lt;% $.leastBusyHost %&gt; username=&lt;% $.username %&gt; private_key=&lt;% $.private_key %&gt;
+#            parameters: {
+#                "image_out":  "{{ st2kv.system.tftp_boot }},
+#                "st2kv_image_name": "{{ st2kv.system.tftpboot_path }}"
+#                "myTransactionId": "{{ st2kv.system.transactionIdStretch }}"
+#            } 
+            on-success:
+                - send_success_email
+            on-error:
+                - send_error_email
+
+
+        send_error_email:
+                action: send_email to_addrs=['peter.gits@dell.com'] body='Failed &lt;% $.combinedCmd %&gt; '
+
+        send_success_email:
+            action: send_email to_addrs=['peter.gits@dell.com'] body='smoke test successfully ran and its id &lt;% $.combinedCmd %&gt;'
+</code></pre>
+        </div>
+
+        <meta itemprop='headline' content='Returning a json array back to mistral from a bash command'>
+        <meta itemprop='keywords' content='mistral'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="2"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/lhill'><span itemprop='name'>lhill</span></a>
+            (Lindsay Hill)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="313.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2018-09-21T01:41:55Z' class='post-time'>
+                September 21, 2018,  1:41am
+              </time>
+              <meta itemprop='dateModified' content='2018-09-21T01:41:55Z'>
+          <span itemprop='position'>#2</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <aside class="quote no-group" data-post="1" data-topic="313">
+                <div class="title">
+                    <div class="quote-controls"></div>
+                    <img alt width="20" height="20" src="https://avatars.discourse.org/v2/letter/p/57b2e6/40.png"
+                         class="avatar"> petergits:
+                </div>
+                <blockquote>
+                    <p>Also, strange is the fact that the entire workflow says it failed while each of the subtasks
+                        succeeds? What is up with that and how do I resolve.</p>
+                </blockquote>
+            </aside>
+            <p>Usually that means that you have some sort of YAQL rendering failure, or syntax issue at a higher level.
+                From a very quick skim, you have two <code>input:</code> sections for your workflow.</p>
+            <p>Start by fixing that, then start checking your <code>output:</code> section - do all of those variables
+                exist at the end of the workflow?</p>
+            <p>If you look at the details for the overall workflow, via either CLI or Web UI, you should see the error
+                message.</p>
+        </div>
+
+        <meta itemprop='headline' content='Returning a json array back to mistral from a bash command'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/lhill'><span itemprop='name'>lhill</span></a>
+            (Lindsay Hill)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="313.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2018-09-21T01:44:44Z' class='post-time'>
+                September 21, 2018,  1:44am
+              </time>
+              <meta itemprop='dateModified' content='2018-09-21T01:44:44Z'>
+          <span itemprop='position'>#3</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <aside class="quote no-group quote-modified" data-post="1" data-topic="313">
+                <div class="title">
+                    <div class="quote-controls"></div>
+                    <img alt width="20" height="20" src="https://avatars.discourse.org/v2/letter/p/57b2e6/40.png"
+                         class="avatar"> petergits:
+                </div>
+                <blockquote>
+                    <p>I see the logs and the stdout but can I grab any of the values that were streamed out in the
+                        stdout log?, there is a mention in the documentation of a python example and how to obtain the
+                        python result.result…<br>
+                        …<br>
+                        I did see a json like element named Results… but how do I use that from my within my bash
+                        commands</p>
+                </blockquote>
+            </aside>
+            <p>Look at this example line here for getting the result.stdout from a <code>core.remote</code> action</p>
+            <aside class="onebox githubblob">
+                <header class="source">
+                    <a href="https://github.com/StackStorm/st2cd/blob/master/actions/workflows/st2_get_installed_version.yaml#L24"
+                       target="_blank">github.com</a>
+                </header>
+                <article class="onebox-body">
+                    <h4>
+                        <a href="https://github.com/StackStorm/st2cd/blob/master/actions/workflows/st2_get_installed_version.yaml#L24"
+                           target="_blank">StackStorm/st2cd/blob/master/actions/workflows/st2_get_installed_version.yaml#L24</a>
+                    </h4>
+                    <pre class="onebox"><code class="lang-yaml"><ol class="start lines" start="14"
+                                                                    style="counter-reset: li-counter 13 ;">
+<li>init:</li>
+<li>    action: std.noop</li>
+<li>    publish:</li>
+<li>        distro: indeterminate</li>
+<li>        versions: indeterminate</li>
+<li>    on-success:</li>
+<li>        - get_distro</li>
+<li>get_distro:</li>
+<li>    action: st2cd.get_distro hosts=&lt;% $.host %&gt;</li>
+<li>    publish:</li>
+<li class="selected">        distro: &lt;% task(get_distro).result.get($.host).stdout %&gt;</li>
+<li>    on-success:</li>
+<li>        - get_version_centos: &lt;% $.distro.toLower() = centos %&gt;</li>
+<li>        - get_version_redhat: &lt;% $.distro.toLower() = redhat %&gt;</li>
+<li>        - get_version_ubuntu: &lt;% $.distro.toLower() = ubuntu %&gt;</li>
+<li>
+</li>
+<li>get_version_centos:</li>
+<li>    with-items: package in &lt;% $.packages %&gt;</li>
+<li>    concurrency: &lt;% $.packages.count() %&gt;</li>
+<li>    action: core.remote_sudo</li>
+<li>    input:</li>
+</ol></code></pre>
+
+
+                </article>
+                <div class="onebox-metadata">
+
+
+                </div>
+                <div style="clear: both"></div>
+            </aside>
+
+        </div>
+
+        <meta itemprop='headline' content='Returning a json array back to mistral from a bash command'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/petergits'><span itemprop='name'>petergits</span></a>
+            (Peter Michael Gits)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="313.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2018-09-21T15:48:30Z' class='post-time'>
+                September 21, 2018,  3:48pm
+              </time>
+              <meta itemprop='dateModified' content='2018-09-21T15:48:30Z'>
+          <span itemprop='position'>#4</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Thanks Lindsay. I have checked the mistral logs to see if I had done something wrong, but will start with
+                removing the double input section…</p>
+        </div>
+
+        <meta itemprop='headline' content='Returning a json array back to mistral from a bash command'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/petergits'><span itemprop='name'>petergits</span></a>
+            (Peter Michael Gits)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="313.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2018-09-21T15:50:50Z' class='post-time'>
+                September 21, 2018,  3:50pm
+              </time>
+              <meta itemprop='dateModified' content='2018-09-21T15:50:50Z'>
+          <span itemprop='position'>#5</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <aside class="quote no-group" data-post="3" data-topic="313">
+                <div class="title">
+                    <div class="quote-controls"></div>
+                    <img alt width="20" height="20" src="https://avatars.discourse.org/v2/letter/l/edb3f5/40.png"
+                         class="avatar"> lhill:
+                </div>
+                <blockquote>
+                    <ul>
+                        <li>publish:</li>
+                        <li>distro: &lt;% task(get_distro).result.get($.host).stdout %&gt;</li>
+                    </ul>
+                </blockquote>
+            </aside>
+            <p>Thanks Lindsay, I would not have come up with<br>
+                publish:<br>
+                15. distro: &lt;% task(get_distro).result.get($.host).stdout %&gt;</p>
+        </div>
+
+        <meta itemprop='headline' content='Returning a json array back to mistral from a bash command'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/lhill'><span itemprop='name'>lhill</span></a>
+            (Lindsay Hill)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="313.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2018-09-22T01:56:40Z' class='post-time'>
+                September 22, 2018,  1:56am
+              </time>
+              <meta itemprop='dateModified' content='2018-09-22T01:56:40Z'>
+          <span itemprop='position'>#6</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Yeah, it’s a bit tricky when you’re running <code>core.remote</code>, because the hosts parameter takes
+                multiple hosts. So it returns an array of results, one per host. Makes sense if you are running an
+                action on 3 hosts, but not always so obvious if you’re just running an action against one host.</p>
+        </div>
+
+        <meta itemprop='headline' content='Returning a json array back to mistral from a bash command'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/lhill'><span itemprop='name'>lhill</span></a>
+            (Lindsay Hill)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="313.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2018-09-22T01:57:57Z' class='post-time'>
+                September 22, 2018,  1:57am
+              </time>
+              <meta itemprop='dateModified' content='2018-09-22T01:57:57Z'>
+          <span itemprop='position'>#7</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <aside class="quote no-group" data-post="4" data-topic="313" data-full="true">
+                <div class="title">
+                    <div class="quote-controls"></div>
+                    <img alt width="20" height="20" src="https://avatars.discourse.org/v2/letter/p/57b2e6/40.png"
+                         class="avatar"> petergits:
+                </div>
+                <blockquote>
+                    <p>Thanks Lindsay. I have checked the mistral logs to see if I had done something wrong, but will
+                        start with removing the double input section…</p>
+                </blockquote>
+            </aside>
+            <p>My guess is that it’s almost certainly something related to your <code>outputs:</code> section. It’s
+                probably running all the tasks, but something’s wrong with one of the outputs. You could try simplifying
+                your outputs section, adding back in one variable at a time until you see which one is causing problems.
+                My guess is that something’s not initialized.</p>
+        </div>
+
+        <meta itemprop='headline' content='Returning a json array back to mistral from a bash command'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+
+
+    <!-- :preload-content -->
+    <footer class="noscript-footer-nav">
+        <nav itemscope itemtype='http://schema.org/SiteNavigationElement'>
+            <a href='../../index.html'>Home</a>
+            <a href="../../categories.html">Categories</a>
+            <a href="https://forum.stackstorm.com/guidelines">FAQ/Guidelines</a>
+            <a href="../../tos.html">Terms of Service</a>
+            <a href="../../privacy.html">Privacy Policy</a>
+        </nav>
+    </footer>
+</div>
+
+<footer id='noscript-footer'>
+    <p>Powered by <a href="https://www.discourse.org">Discourse</a>, best viewed with JavaScript enabled</p>
+</footer>
+
+
+<section id='main'>
+</section>
+
+
+</body>
+</html>

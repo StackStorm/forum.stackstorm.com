@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Latest Stackstorm Docker Image Ubuntu:bionic</title>
+    <link>https://forum.stackstorm.com/t/latest-stackstorm-docker-image-ubuntu-bionic/1163</link>
+    <description>I am looking for Ubuntu 18.04 / 16.04 (bionic/xenial) support in the st2-docker image...it seems there is not upgrade in st2-docker since ubuntu 14.04 (trusty).
+
+I found some docker files for stackstorm-ha, https://github.com/StackStorm/st2-dockerfiles. but couldn&#39;t find the complete stackstorm community setup with latest ubuntu 16.04/18.04 supported.
+
+thanks</description>
+    
+    <lastBuildDate>Mon, 13 Apr 2020 09:18:53 +0000</lastBuildDate>
+    <category>API</category>
+    <atom:link href="https://forum.stackstorm.com/t/latest-stackstorm-docker-image-ubuntu-bionic/1163.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Latest Stackstorm Docker Image Ubuntu:bionic</title>
+        <dc:creator><![CDATA[manoj-aps]]></dc:creator>
+        <description><![CDATA[
+            <p>I am looking for Ubuntu 18.04 / 16.04 (bionic/xenial) support in the st2-docker image…it seems there is not upgrade in st2-docker since ubuntu 14.04 (trusty).</p>
+<p>I found some docker files for stackstorm-ha, <a href="https://github.com/StackStorm/st2-dockerfiles" class="inline-onebox" rel="nofollow noopener">GitHub - StackStorm/st2-dockerfiles: StackStorm Community Dockerfiles (one-service-per-container) used to build and push images to the StackStorm registry, used in 'stackstorm-ha' K8s Helm chart</a>. but couldn’t find the complete stackstorm community setup with latest ubuntu 16.04/18.04 supported.</p>
+<p>thanks</p>
+          <p><a href="https://forum.stackstorm.com/t/latest-stackstorm-docker-image-ubuntu-bionic/1163/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/latest-stackstorm-docker-image-ubuntu-bionic/1163/1</link>
+        <pubDate>Mon, 13 Apr 2020 09:18:53 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1163-1</guid>
+        <source url="https://forum.stackstorm.com/t/latest-stackstorm-docker-image-ubuntu-bionic/1163.rss">Latest Stackstorm Docker Image Ubuntu:bionic</source>
+      </item>
+  </channel>
+</rss>

@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Workflow variable comparison</title>
+    <link>https://forum.stackstorm.com/t/workflow-variable-comparison/1741</link>
+    <description>I am new to Stackstorm, Orquesta, YAML, pretty much all of it.  I have been tasked with creating a workflow which will check the available drive space of remote machines, clean up targetted files, and exiting.  I&#39;ve figured out the part of getting the drive space availability, but am now trying to come up with an action (using core.noop) that will determine the result of the previous action (getting the drive space) and compare it to a predefined amount.  In the action where I gather the value, I am publishing the result to a variable called &quot;availablediskspace&quot;.  By looking at other examples I&#39;ve found out in the ether, I thought maybe the following would work:
+
+action: core.noop
+next:
+  - when: &lt;% availablediskspace &lt;= 15 %&gt;
+    do: nextaction
+
+The workflow fails and the output I get is:
+
+&quot;YaqlEvaluationException: Unable to evaluate expression &#39;&lt;% availablediskspace &lt;= 15 %&gt;&#39;. NoMatchingFunctionException: No function \&quot;#operator_&lt;=\&quot; matches supplied arguments&quot;,
+
+I&#39;m not sure if the issue is that &#39;availablediskspace&#39; isn&#39;t seen as an integer (which brings up another question as to how I cast that as an integer for this purpose), or if you really can&#39;t do things like this.  Any help would be greatly appreciated.
+
+TIA</description>
+    
+    <lastBuildDate>Fri, 25 Jun 2021 17:56:23 +0000</lastBuildDate>
+    <category>Workflows</category>
+    <atom:link href="https://forum.stackstorm.com/t/workflow-variable-comparison/1741.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Workflow variable comparison</title>
+        <dc:creator><![CDATA[bretai2k]]></dc:creator>
+        <description><![CDATA[
+            <p>You sir, are a genius!  That has totally resolved my issue.  Thank you so much for your continued support and handholding.  <img src="https://emoji.discourse-cdn.com/apple/slight_smile.png?v=9" title=":slight_smile:" class="emoji" alt=":slight_smile:"> I appreciate all of your help so much.</p>
+          <p><a href="https://forum.stackstorm.com/t/workflow-variable-comparison/1741/11">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/workflow-variable-comparison/1741/11</link>
+        <pubDate>Fri, 25 Jun 2021 17:56:23 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1741-11</guid>
+        <source url="https://forum.stackstorm.com/t/workflow-variable-comparison/1741.rss">Workflow variable comparison</source>
+      </item>
+      <item>
+        <title>Workflow variable comparison</title>
+        <dc:creator><![CDATA[jamesdreid]]></dc:creator>
+        <description><![CDATA[
+            <p>Looks like the core.remote supports multiple hosts as input and therefore returns the results for each host as a separate dictionary in the results.  Therefore, you need to modify the publish slightly to extract the correct data.  The following workflow should work with the core.remote command using a single host.  Obviously, there will be a lot more logic to resolve if you plan on running this workflow on multiple hosts, but this should at least get the basic workflow going:</p>
+<pre><code class="lang-auto">version: 1.0
+tasks:
+  task2:
+    action: core.noop
+    next:
+      - do:
+          - task3
+        when: &lt;% int(ctx(availablediskspace)) &gt;= 50 %&gt;
+  task3:
+    action: core.echo
+    input:
+      message: Greater
+  task4:
+    action: core.remote
+    input:
+      cmd: " echo $((100 - $(df -h / | grep -Eo \"[0-9]+[BKMGT%] \" | tail -1 | grep -Eo \"[0-9]+\")))"
+      hosts: 1.1.1.1
+      password: X*X*X*X*X*X*X*X*X*X*X*X
+      username: username
+    next:
+      - do:
+          - task2
+        publish:
+          - availablediskspace: " &lt;% result()['1.1.1.1']['stdout'] %&gt;"
+        when: succeeded()
+vars:
+  - availablediskspace: null
+
+</code></pre>
+<p>The big change is to the publish statement in Task4 where you have to go one level deeper into the result data to get the results:</p>
+<pre><code class="lang-auto"> - availablediskspace: " &lt;% result()['1.1.1.1']['stdout'] %&gt;"
+</code></pre>
+          <p><a href="https://forum.stackstorm.com/t/workflow-variable-comparison/1741/10">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/workflow-variable-comparison/1741/10</link>
+        <pubDate>Fri, 25 Jun 2021 16:48:06 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1741-10</guid>
+        <source url="https://forum.stackstorm.com/t/workflow-variable-comparison/1741.rss">Workflow variable comparison</source>
+      </item>
+      <item>
+        <title>Workflow variable comparison</title>
+        <dc:creator><![CDATA[bretai2k]]></dc:creator>
+        <description><![CDATA[
+            <p>It most definitely works if I change the action context to core.local, but does not work when attempting to use core.remote.</p>
+<p>That gives to following error:<br>
+“YaqlEvaluationException: Unable to resolve key ‘stdout’ in expression ‘&lt;% result().stdout %&gt;’ from context.”</p>
+          <p><a href="https://forum.stackstorm.com/t/workflow-variable-comparison/1741/9">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/workflow-variable-comparison/1741/9</link>
+        <pubDate>Thu, 24 Jun 2021 21:27:52 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1741-9</guid>
+        <source url="https://forum.stackstorm.com/t/workflow-variable-comparison/1741.rss">Workflow variable comparison</source>
+      </item>
+      <item>
+        <title>Workflow variable comparison</title>
+        <dc:creator><![CDATA[jamesdreid]]></dc:creator>
+        <description><![CDATA[
+            <p>I don’t think the workflow is failing due to the use of a core.remote command.  It seems like you are not publishing your variable correctly.  The following simple workflow uses the core.local command to execute your df command on my local ST2 server, then sets the results to a variable that is used in a YAQL comparison like you have attempted.</p>
+<pre><code class="lang-auto">version: 1.0
+tasks:
+  # 
+  task1:
+    action: core.local
+    input:
+      cmd: " echo $((100 - $(df -h / | grep -Eo \"[0-9]+[BKMGT%] \" | tail -1 | grep -Eo \"[0-9]+\")))"
+    next:
+      - do:
+          - task2
+        when: &lt;% succeeded() %&gt;
+        publish:
+          - availablediskspace: &lt;% result().stdout %&gt;
+  # [342, 437]
+  task2:
+    action: core.noop
+    next:
+      - do:
+          - task3
+        when: &lt;% int(ctx(availablediskspace)) &lt;= 50 %&gt;
+  # 
+  task3:
+    action: core.echo
+    input:
+      message: Greater
+vars:
+  - availablediskspace: null
+</code></pre>
+<p>If I have to guess, you have set the variable incorrectly and may be setting it to &lt;% result() %&gt; but the output data you want is actually what is included in “stdout”.  I did not use core.remote but my guess is yo want to try using my publish to set your variable for further comparison:</p>
+<pre><code class="lang-auto">availablediskspace: &lt;% result().stdout %&gt;
+</code></pre>
+          <p><a href="https://forum.stackstorm.com/t/workflow-variable-comparison/1741/8">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/workflow-variable-comparison/1741/8</link>
+        <pubDate>Thu, 24 Jun 2021 20:56:44 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1741-8</guid>
+        <source url="https://forum.stackstorm.com/t/workflow-variable-comparison/1741.rss">Workflow variable comparison</source>
+      </item>
+      <item>
+        <title>Workflow variable comparison</title>
+        <dc:creator><![CDATA[bretai2k]]></dc:creator>
+        <description><![CDATA[
+            <p>The latter part of your last statement appears to be the case, meaning I may have to move to utilizing a Python script instead of core.remote to grab the data so I can actually cast the data specifically into an integer.  What I get when I try to cast to int in the workflow, it gives me a YaqlEvaluationException saying it can’t change from a ‘FrozenDict’.  Thank you for all of your help, it has definitely helped me understand all of this a little better.</p>
+          <p><a href="https://forum.stackstorm.com/t/workflow-variable-comparison/1741/7">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/workflow-variable-comparison/1741/7</link>
+        <pubDate>Thu, 24 Jun 2021 14:53:51 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1741-7</guid>
+        <source url="https://forum.stackstorm.com/t/workflow-variable-comparison/1741.rss">Workflow variable comparison</source>
+      </item>
+      <item>
+        <title>Workflow variable comparison</title>
+        <dc:creator><![CDATA[jamesdreid]]></dc:creator>
+        <description><![CDATA[
+            <p>The error being generated is the same I see on <a href="http://yaqluator.com/" rel="noopener nofollow ugc">http://yaqluator.com/</a> when trying to compare the string ‘15’ to the int 15.</p>
+<p><code>'15'&gt;=15</code></p>
+<p>That generates the error: Exception evaluating YAQL expression:</p>
+<p><code>No function "#operator_&gt;=" matches supplied arguments</code></p>
+<p>The the int() function above applied to the ‘15’ string I suggested above corrects this.</p>
+<p><code>int('15') &gt;= 15</code></p>
+<p>You can try adding a core.echo into the workflow and have it output the variables to see if you are getting data returned that you are not expecting, but it appears at this point that maybe your “availablediskspace” is not getting set to what you expect and it is not an integer or even something that can be converted to an integer.</p>
+          <p><a href="https://forum.stackstorm.com/t/workflow-variable-comparison/1741/6">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/workflow-variable-comparison/1741/6</link>
+        <pubDate>Thu, 24 Jun 2021 14:16:36 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1741-6</guid>
+        <source url="https://forum.stackstorm.com/t/workflow-variable-comparison/1741.rss">Workflow variable comparison</source>
+      </item>
+      <item>
+        <title>Workflow variable comparison</title>
+        <dc:creator><![CDATA[bretai2k]]></dc:creator>
+        <description><![CDATA[
+            <p>Unfortunately that didn’t help.  I guess I should provide a bit more details.  The value of availablediskspace comes from the result of a bash command on a remote machine.</p>
+<p>The specific command I’m running is echo $((100 - (<code>df -h / | grep -Eo "[0-9]+[BKMGT%] " | tail -1 | grep -Eo "[0-9]+"</code>)))</p>
+<p>I do really appreciate all of your help so far, this is all new to me and I’m not finding too much helpful documentation for Stackstorm or YAQL expressions which address my specific situation, or even remotely close to my situation.</p>
+          <p><a href="https://forum.stackstorm.com/t/workflow-variable-comparison/1741/5">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/workflow-variable-comparison/1741/5</link>
+        <pubDate>Wed, 23 Jun 2021 21:21:35 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1741-5</guid>
+        <source url="https://forum.stackstorm.com/t/workflow-variable-comparison/1741.rss">Workflow variable comparison</source>
+      </item>
+      <item>
+        <title>Workflow variable comparison</title>
+        <dc:creator><![CDATA[jamesdreid]]></dc:creator>
+        <description><![CDATA[
+            <p>Sure…</p>
+<pre><code class="lang-auto">when &lt;% int(ctx().availablediskspace) &lt;= 15 %&gt;
+</code></pre>
+          <p><a href="https://forum.stackstorm.com/t/workflow-variable-comparison/1741/4">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/workflow-variable-comparison/1741/4</link>
+        <pubDate>Tue, 22 Jun 2021 16:39:14 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1741-4</guid>
+        <source url="https://forum.stackstorm.com/t/workflow-variable-comparison/1741.rss">Workflow variable comparison</source>
+      </item>
+      <item>
+        <title>Workflow variable comparison</title>
+        <dc:creator><![CDATA[bretai2k]]></dc:creator>
+        <description><![CDATA[
+            <p>Thank you jamesdreid.  I tried both, but I still get the same error.  It make me wonder if the data in availablediskspace is being cast as a string instead of an int.  Is there a way to specifically cast a variable as an int in Yaql?</p>
+          <p><a href="https://forum.stackstorm.com/t/workflow-variable-comparison/1741/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/workflow-variable-comparison/1741/3</link>
+        <pubDate>Mon, 21 Jun 2021 21:22:24 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1741-3</guid>
+        <source url="https://forum.stackstorm.com/t/workflow-variable-comparison/1741.rss">Workflow variable comparison</source>
+      </item>
+      <item>
+        <title>Workflow variable comparison</title>
+        <dc:creator><![CDATA[jamesdreid]]></dc:creator>
+        <description><![CDATA[
+            <p>You need to reference the global context to check that variable.  Your syntax is not correct and it should be:</p>
+<p>when &lt;% ctx(availablediskspace) &lt;= 15 %&gt;</p>
+<p>or</p>
+<p>when  &lt;% ctx().availablediskspace &lt;= 15 %&gt;</p>
+          <p><a href="https://forum.stackstorm.com/t/workflow-variable-comparison/1741/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/workflow-variable-comparison/1741/2</link>
+        <pubDate>Mon, 21 Jun 2021 18:50:02 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1741-2</guid>
+        <source url="https://forum.stackstorm.com/t/workflow-variable-comparison/1741.rss">Workflow variable comparison</source>
+      </item>
+      <item>
+        <title>Workflow variable comparison</title>
+        <dc:creator><![CDATA[bretai2k]]></dc:creator>
+        <description><![CDATA[
+            <p>I am new to Stackstorm, Orquesta, YAML, pretty much all of it.  I have been tasked with creating a workflow which will check the available drive space of remote machines, clean up targetted files, and exiting.  I’ve figured out the part of getting the drive space availability, but am now trying to come up with an action (using core.noop) that will determine the result of the previous action (getting the drive space) and compare it to a predefined amount.  In the action where I gather the value, I am publishing the result to a variable called “availablediskspace”.  By looking at other examples I’ve found out in the ether, I thought maybe the following would work:</p>
+<p>action: core.noop<br>
+next:</p>
+<ul>
+<li>when: &lt;% availablediskspace &lt;= 15 %&gt;<br>
+do: nextaction</li>
+</ul>
+<p>The workflow fails and the output I get is:</p>
+<p>“YaqlEvaluationException: Unable to evaluate expression ‘&lt;% availablediskspace &lt;= 15 %&gt;’. NoMatchingFunctionException: No function “#operator_&lt;=” matches supplied arguments”,</p>
+<p>I’m not sure if the issue is that ‘availablediskspace’ isn’t seen as an integer (which brings up another question as to how I cast that as an integer for this purpose), or if you really can’t do things like this.  Any help would be greatly appreciated.</p>
+<p>TIA</p>
+          <p><a href="https://forum.stackstorm.com/t/workflow-variable-comparison/1741/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/workflow-variable-comparison/1741/1</link>
+        <pubDate>Sun, 20 Jun 2021 03:43:52 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1741-1</guid>
+        <source url="https://forum.stackstorm.com/t/workflow-variable-comparison/1741.rss">Workflow variable comparison</source>
+      </item>
+  </channel>
+</rss>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Execute command on a storage device</title>
+    <link>https://forum.stackstorm.com/t/execute-command-on-a-storage-device/955</link>
+    <description>I was trying to execute some health check commands on a storage device. 
+
+In the usual scenario I can ssh and execute commands like &#39;sysconfig&#39; or &#39;version&#39; 
+
+From StackStorm, is there a way I can achieve this? 
+
+The problem I&#39;m facing is; I always need to use username and password for ssh and even though I enter the same while executing command, it returns nothing.</description>
+    
+    <lastBuildDate>Wed, 11 Dec 2019 14:54:52 +0000</lastBuildDate>
+    <category>API</category>
+    <atom:link href="https://forum.stackstorm.com/t/execute-command-on-a-storage-device/955.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Execute command on a storage device</title>
+        <dc:creator><![CDATA[Sheshagiri]]></dc:creator>
+        <description><![CDATA[
+            <p>that output means st2 successfully ran your command, but the command as such failed and that error is captured in stderr. I’m not sure of the entire command but looking at the error(particularly “export not found”) it appears that <code>export</code> command is not a valid command on that system. As the error says you can try running “?” to see the list of valid commands <img src="https://emoji.discourse-cdn.com/apple/slight_smile.png?v=9" title=":slight_smile:" class="emoji" alt=":slight_smile:"></p>
+<p>That said if you are trying to set environment variables you can use env=“key=value1,key2=value” to the above-mentioned command. If you are trying to run a script please take a look at this <a href="https://docs.stackstorm.com/reference/runners.html#remote-script-runner-remote-shell-script" class="inline-onebox" rel="nofollow noopener">Action Runners — StackStorm 3.1.0 documentation</a></p>
+          <p><a href="https://forum.stackstorm.com/t/execute-command-on-a-storage-device/955/4">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/execute-command-on-a-storage-device/955/4</link>
+        <pubDate>Wed, 11 Dec 2019 14:54:52 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-955-4</guid>
+        <source url="https://forum.stackstorm.com/t/execute-command-on-a-storage-device/955.rss">Execute command on a storage device</source>
+      </item>
+      <item>
+        <title>Execute command on a storage device</title>
+        <dc:creator><![CDATA[anand.joshi]]></dc:creator>
+        <description><![CDATA[
+            <p>Hello Sheshagiri,</p>
+<p>Thanks for your reply, but I had tried the same.</p>
+<p>When I execute a command in the said way, it gives me following error</p>
+<pre><code> failed: false
+    return_code: 0
+    stderr: export not found.  Type '?' for a list of commands
+    stdout: ''
+    succeeded: true
+</code></pre>
+<p>But if I do a ssh, provide password and execute command, I get proper response.</p>
+          <p><a href="https://forum.stackstorm.com/t/execute-command-on-a-storage-device/955/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/execute-command-on-a-storage-device/955/3</link>
+        <pubDate>Wed, 11 Dec 2019 12:37:00 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-955-3</guid>
+        <source url="https://forum.stackstorm.com/t/execute-command-on-a-storage-device/955.rss">Execute command on a storage device</source>
+      </item>
+      <item>
+        <title>Execute command on a storage device</title>
+        <dc:creator><![CDATA[Sheshagiri]]></dc:creator>
+        <description><![CDATA[
+            <p>you can run remote commands using Remote Command Runner. More on that <a href="https://docs.stackstorm.com/reference/runners.html#remote-command-runner-remote-shell-cmd" class="inline-onebox" rel="nofollow noopener">Action Runners — StackStorm 3.1.0 documentation</a></p>
+<aside class="quote no-group" data-post="1" data-topic="955">
+<div class="title">
+<div class="quote-controls"></div>
+<img alt="" width="20" height="20" src="https://avatars.discourse.org/v4/letter/a/278dde/40.png" class="avatar"> anand.joshi:</div>
+<blockquote>
+<p>The problem I’m facing is; I always need to use username and password for ssh and even though I enter the same while executing command, it returns nothing.</p>
+</blockquote>
+</aside>
+<p>can you paste your command and its output here?</p>
+<p>following is a sample command that you can run from stackstorm to execute a command on a remote host using ssh with username and password.</p>
+<p><code>st2 run core.remote hosts=&lt;ip-address/hostname&gt; cmd="sysconfig" username="&lt;ssh-username&gt;" password="&lt;ssh-password&gt;"</code></p>
+          <p><a href="https://forum.stackstorm.com/t/execute-command-on-a-storage-device/955/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/execute-command-on-a-storage-device/955/2</link>
+        <pubDate>Wed, 11 Dec 2019 05:51:40 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-955-2</guid>
+        <source url="https://forum.stackstorm.com/t/execute-command-on-a-storage-device/955.rss">Execute command on a storage device</source>
+      </item>
+      <item>
+        <title>Execute command on a storage device</title>
+        <dc:creator><![CDATA[anand.joshi]]></dc:creator>
+        <description><![CDATA[
+            <p>I was trying to execute some health check commands on a storage device.</p>
+<p>In the usual scenario I can ssh and execute commands like ‘sysconfig’ or ‘version’</p>
+<p>From StackStorm, is there a way I can achieve this?</p>
+<p>The problem I’m facing is; I always need to use username and password for ssh and even though I enter the same while executing command, it returns nothing.</p>
+          <p><a href="https://forum.stackstorm.com/t/execute-command-on-a-storage-device/955/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/execute-command-on-a-storage-device/955/1</link>
+        <pubDate>Wed, 11 Dec 2019 04:44:59 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-955-1</guid>
+        <source url="https://forum.stackstorm.com/t/execute-command-on-a-storage-device/955.rss">Execute command on a storage device</source>
+      </item>
+  </channel>
+</rss>

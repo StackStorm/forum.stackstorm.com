@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Downgrading stackstom from 3.5 to 3.4 facing issue</title>
+    <link>https://forum.stackstorm.com/t/downgrading-stackstom-from-3-5-to-3-4-facing-issue/1783</link>
+    <description>Hi Team,
+
+We have installed latest version of stackstorm pack st2 3.5.0, on Python 3.6.8 on our linux 8 server ,when we try to downgrade the server to 3.4.1 ,we are facing the below error.
+
+
+
+Earlier:
+ st2 --version
+st2 3.5.0, on Python 3.6.8
+
+Now:
+st2 --version
+st2 3.4.1, on Python 3.6.8
+
+The error we are facing is 
+ st2 pack list
+ERROR: (&#39;Connection aborted.&#39;, ConnectionResetError(104, &#39;Connection reset by peer&#39;))
+st2 pack install jira
+ERROR: (&#39;Connection aborted.&#39;, ConnectionResetError(104, &#39;Connection reset by peer&#39;))
+
+Logs:
+Traceback (most recent call last):
+  File &quot;/opt/stackstorm/st2/lib/python3.6/site-packages/st2common/metrics/base.py&quot;, line 228, in metrics_initialize
+    METRICS = get_plugin_instance(PLUGIN_NAMESPACE, cfg.CONF.metrics.driver)
+  File &quot;/opt/stackstorm/st2/lib/python3.6/site-packages/st2common/util/loader.py&quot;, line 223, in get_plugin_instance
+    namespace=namespace, name=name, invoke_on_load=invoke_on_load
+  File &quot;/opt/stackstorm/st2/lib/python3.6/site-packages/stevedore/driver.py&quot;, line 61, in __init__
+    warn_on_missing_entrypoint=warn_on_missing_entrypoint
+  File &quot;/opt/stackstorm/st2/lib/python3.6/site-packages/stevedore/named.py&quot;, line 89, in __init__
+    self._init_plugins(extensions)
+  File &quot;/opt/stackstorm/st2/lib/python3.6/site-packages/stevedore/driver.py&quot;, line 113, in _init_plugins
+    (self.namespace, name))
+stevedore.exception.NoMatches: No &#39;st2common.metrics.driver&#39; driver found, looking for &#39;noop&#39;
+
+During handling of the above exception, another exception occurred:</description>
+    
+    <lastBuildDate>Mon, 19 Jul 2021 11:23:21 +0000</lastBuildDate>
+    <category>Pack Management</category>
+    <atom:link href="https://forum.stackstorm.com/t/downgrading-stackstom-from-3-5-to-3-4-facing-issue/1783.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Downgrading stackstom from 3.5 to 3.4 facing issue</title>
+        <dc:creator><![CDATA[nithinsubbaraj]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi Team,</p>
+<p>We have installed latest version of stackstorm pack st2 3.5.0, on Python 3.6.8 on our linux 8 server ,when we try to downgrade the server to 3.4.1 ,we are facing the below error.</p>
+<p>Earlier:<br>
+st2 --version<br>
+st2 3.5.0, on Python 3.6.8</p>
+<p>Now:<br>
+st2 --version<br>
+st2 3.4.1, on Python 3.6.8</p>
+<p>The error we are facing is<br>
+st2 pack list<br>
+ERROR: (‘Connection aborted.’, ConnectionResetError(104, ‘Connection reset by peer’))<br>
+st2 pack install jira<br>
+ERROR: (‘Connection aborted.’, ConnectionResetError(104, ‘Connection reset by peer’))</p>
+<p>Logs:<br>
+Traceback (most recent call last):<br>
+File “/opt/stackstorm/st2/lib/python3.6/site-packages/st2common/metrics/base.py”, line 228, in metrics_initialize<br>
+METRICS = get_plugin_instance(PLUGIN_NAMESPACE, cfg.CONF.metrics.driver)<br>
+File “/opt/stackstorm/st2/lib/python3.6/site-packages/st2common/util/loader.py”, line 223, in get_plugin_instance<br>
+namespace=namespace, name=name, invoke_on_load=invoke_on_load<br>
+File “/opt/stackstorm/st2/lib/python3.6/site-packages/stevedore/driver.py”, line 61, in <strong>init</strong><br>
+warn_on_missing_entrypoint=warn_on_missing_entrypoint<br>
+File “/opt/stackstorm/st2/lib/python3.6/site-packages/stevedore/named.py”, line 89, in <strong>init</strong><br>
+self._init_plugins(extensions)<br>
+File “/opt/stackstorm/st2/lib/python3.6/site-packages/stevedore/driver.py”, line 113, in _init_plugins<br>
+(self.namespace, name))<br>
+stevedore.exception.NoMatches: No ‘st2common.metrics.driver’ driver found, looking for ‘noop’</p>
+<p>During handling of the above exception, another exception occurred:</p>
+          <p><a href="https://forum.stackstorm.com/t/downgrading-stackstom-from-3-5-to-3-4-facing-issue/1783/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/downgrading-stackstom-from-3-5-to-3-4-facing-issue/1783/1</link>
+        <pubDate>Mon, 19 Jul 2021 11:23:21 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1783-1</guid>
+        <source url="https://forum.stackstorm.com/t/downgrading-stackstom-from-3-5-to-3-4-facing-issue/1783.rss">Downgrading stackstom from 3.5 to 3.4 facing issue</source>
+      </item>
+  </channel>
+</rss>

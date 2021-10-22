@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Rule not working with error {rule.trigger &quot;core.st2.webhook&quot; and trigger.ref &quot;core.59362943-d192-4502-bc0a-9c7c8ecc69d1&quot; do not match.}</title>
+    <link>https://forum.stackstorm.com/t/rule-not-working-with-error-rule-trigger-core-st2-webhook-and-trigger-ref-core-59362943-d192-4502-bc0a-9c7c8ecc69d1-do-not-match/1771</link>
+    <description>Hi Team, 
+
+I created a rule: 
+```
+---
+    name: &quot;pdalert_remediation_rule&quot;
+    pack: &quot;default&quot;
+    description: &quot;PD alert remediation rule&quot;
+    enabled: true
+
+    trigger:
+        type: &quot;core.st2.webhook&quot;
+        parameters:
+            url: &quot;sample&quot;
+
+    criteria:
+        trigger.body.messages[0].event:
+            pattern: &quot;incident.trigger&quot;
+            type: &quot;equals&quot;
+
+    action:
+        ref: &quot;default.pdalert_remediation&quot;
+        parameters:
+            hostname: &quot;{{trigger.body.messages[0].log_entries[0].channel.host}}.srvs.ahdev.co&quot;
+            event_id: &quot;{{trigger.body.messages[0].log_entries[0].agent.id}}&quot;
+            email_id: &quot;prabhanshu.pandey@acquia.com&quot;
+```
+While executing the rule trigger is getting processed but no execution ID is getting created. 
+
+While looking into it further and testing the rule i see. 
+
+```
+[05:28:36] root@ded-95.opsteam1:/opt/stackstorm/packs/default/rules# st2-rule-tester --trigger-instance-id=60e6467244c92e3371291b06 --rule=pdalert_remediation_rule.yaml --debug
+2021-07-08 05:28:44,218 INFO [-] Connecting to database &quot;st2&quot; @ &quot;127.0.0.1:27017&quot; as user &quot;stackstorm&quot;.
+2021-07-08 05:28:44,279 INFO [-] Successfully connected to database &quot;st2&quot; @ &quot;127.0.0.1:27017&quot; as user &quot;stackstorm&quot;.
+2021-07-08 05:28:44,279 DEBUG [-] Ensuring database indexes...
+2021-07-08 05:28:45,333 DEBUG [-] Skipping index cleanup for blacklisted model &quot;PermissionGrantDB&quot;...
+2021-07-08 05:28:45,721 DEBUG [-] Indexes are ensured for models: ActionAliasDB, ActionAliasDB, ActionDB, ActionExecutionDB, ActionExecutionDB, ActionExecutionOutputDB, ActionExecutionSchedulingQueueItemDB, ActionExecutionStateDB, ActionExecutionStateDB, ApiKeyDB, ConfigDB, ConfigSchemaDB, GroupToRoleMappingDB, KeyValuePairDB, LiveActionDB, LiveActionDB, PackDB, PermissionGrantDB, PolicyDB, PolicyTypeDB, RoleDB, RuleDB, RuleEnforcementDB, RunnerTypeDB, RunnerTypeDB, SensorTypeDB, TaskExecutionDB, TokenDB, TraceDB, TriggerDB, TriggerInstanceDB, TriggerTypeDB, UserDB, UserRoleAssignmentDB, WorkflowExecutionDB
+2021-07-08 05:28:45,804 INFO [-] rule.trigger &quot;core.st2.webhook&quot; and trigger.ref &quot;core.59362943-d192-4502-bc0a-9c7c8ecc69d1&quot; do not match.
+2021-07-08 05:28:45,821 INFO [-] === RULE DOES NOT MATCH ===
+```
+Can someone look into it? I so want to move forward from the below error. 
+```
+2021-07-08 05:28:45,804 INFO [-] rule.trigger &quot;core.st2.webhook&quot; and trigger.ref &quot;core.59362943-d192-4502-bc0a-9c7c8ecc69d1&quot; do not match.
+```
+
+Regards,
+Prabhanshu.</description>
+    
+    <lastBuildDate>Thu, 08 Jul 2021 12:18:44 +0000</lastBuildDate>
+    <category>Rules</category>
+    <atom:link href="https://forum.stackstorm.com/t/rule-not-working-with-error-rule-trigger-core-st2-webhook-and-trigger-ref-core-59362943-d192-4502-bc0a-9c7c8ecc69d1-do-not-match/1771.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Rule not working with error {rule.trigger &quot;core.st2.webhook&quot; and trigger.ref &quot;core.59362943-d192-4502-bc0a-9c7c8ecc69d1&quot; do not match.}</title>
+        <dc:creator><![CDATA[jamesdreid]]></dc:creator>
+        <description><![CDATA[
+            <p>Impossible to tell why it is not matching without the original trigger data that is being received by ST2 in the webhook, but it appears that the criteria you have set in the rule in not matching what is being received.</p>
+<pre><code class="lang-auto">    criteria:
+        trigger.body.messages[0].event:
+            pattern: "incident.trigger"
+            type: "equals"
+
+</code></pre>
+<p>You should be able to test this by sending in some mock data to your “sample” URL to see if you can get it to match.<br>
+If you can post the trigger data or the original HTML body data sent to the webhook that may help identify the matching failure.</p>
+          <p><a href="https://forum.stackstorm.com/t/rule-not-working-with-error-rule-trigger-core-st2-webhook-and-trigger-ref-core-59362943-d192-4502-bc0a-9c7c8ecc69d1-do-not-match/1771/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/rule-not-working-with-error-rule-trigger-core-st2-webhook-and-trigger-ref-core-59362943-d192-4502-bc0a-9c7c8ecc69d1-do-not-match/1771/2</link>
+        <pubDate>Thu, 08 Jul 2021 12:18:44 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1771-2</guid>
+        <source url="https://forum.stackstorm.com/t/rule-not-working-with-error-rule-trigger-core-st2-webhook-and-trigger-ref-core-59362943-d192-4502-bc0a-9c7c8ecc69d1-do-not-match/1771.rss">Rule not working with error {rule.trigger &quot;core.st2.webhook&quot; and trigger.ref &quot;core.59362943-d192-4502-bc0a-9c7c8ecc69d1&quot; do not match.}</source>
+      </item>
+      <item>
+        <title>Rule not working with error {rule.trigger &quot;core.st2.webhook&quot; and trigger.ref &quot;core.59362943-d192-4502-bc0a-9c7c8ecc69d1&quot; do not match.}</title>
+        <dc:creator><![CDATA[prabhanshu]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi Team,</p>
+<p>I created a rule:</p>
+<pre><code class="lang-auto">---
+    name: "pdalert_remediation_rule"
+    pack: "default"
+    description: "PD alert remediation rule"
+    enabled: true
+
+    trigger:
+        type: "core.st2.webhook"
+        parameters:
+            url: "sample"
+
+    criteria:
+        trigger.body.messages[0].event:
+            pattern: "incident.trigger"
+            type: "equals"
+
+    action:
+        ref: "default.pdalert_remediation"
+        parameters:
+            hostname: "{{trigger.body.messages[0].log_entries[0].channel.host}}.srvs.ahdev.co"
+            event_id: "{{trigger.body.messages[0].log_entries[0].agent.id}}"
+            email_id: "prabhanshu.pandey@acquia.com"
+</code></pre>
+<p>While executing the rule trigger is getting processed but no execution ID is getting created.</p>
+<p>While looking into it further and testing the rule i see.</p>
+<pre><code class="lang-auto">[05:28:36] root@ded-95.opsteam1:/opt/stackstorm/packs/default/rules# st2-rule-tester --trigger-instance-id=60e6467244c92e3371291b06 --rule=pdalert_remediation_rule.yaml --debug
+2021-07-08 05:28:44,218 INFO [-] Connecting to database "st2" @ "127.0.0.1:27017" as user "stackstorm".
+2021-07-08 05:28:44,279 INFO [-] Successfully connected to database "st2" @ "127.0.0.1:27017" as user "stackstorm".
+2021-07-08 05:28:44,279 DEBUG [-] Ensuring database indexes...
+2021-07-08 05:28:45,333 DEBUG [-] Skipping index cleanup for blacklisted model "PermissionGrantDB"...
+2021-07-08 05:28:45,721 DEBUG [-] Indexes are ensured for models: ActionAliasDB, ActionAliasDB, ActionDB, ActionExecutionDB, ActionExecutionDB, ActionExecutionOutputDB, ActionExecutionSchedulingQueueItemDB, ActionExecutionStateDB, ActionExecutionStateDB, ApiKeyDB, ConfigDB, ConfigSchemaDB, GroupToRoleMappingDB, KeyValuePairDB, LiveActionDB, LiveActionDB, PackDB, PermissionGrantDB, PolicyDB, PolicyTypeDB, RoleDB, RuleDB, RuleEnforcementDB, RunnerTypeDB, RunnerTypeDB, SensorTypeDB, TaskExecutionDB, TokenDB, TraceDB, TriggerDB, TriggerInstanceDB, TriggerTypeDB, UserDB, UserRoleAssignmentDB, WorkflowExecutionDB
+2021-07-08 05:28:45,804 INFO [-] rule.trigger "core.st2.webhook" and trigger.ref "core.59362943-d192-4502-bc0a-9c7c8ecc69d1" do not match.
+2021-07-08 05:28:45,821 INFO [-] === RULE DOES NOT MATCH ===
+</code></pre>
+<p>Can someone look into it? I so want to move forward from the below error.</p>
+<pre><code class="lang-auto">2021-07-08 05:28:45,804 INFO [-] rule.trigger "core.st2.webhook" and trigger.ref "core.59362943-d192-4502-bc0a-9c7c8ecc69d1" do not match.
+</code></pre>
+<p>Regards,<br>
+Prabhanshu.</p>
+          <p><a href="https://forum.stackstorm.com/t/rule-not-working-with-error-rule-trigger-core-st2-webhook-and-trigger-ref-core-59362943-d192-4502-bc0a-9c7c8ecc69d1-do-not-match/1771/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/rule-not-working-with-error-rule-trigger-core-st2-webhook-and-trigger-ref-core-59362943-d192-4502-bc0a-9c7c8ecc69d1-do-not-match/1771/1</link>
+        <pubDate>Thu, 08 Jul 2021 05:38:33 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1771-1</guid>
+        <source url="https://forum.stackstorm.com/t/rule-not-working-with-error-rule-trigger-core-st2-webhook-and-trigger-ref-core-59362943-d192-4502-bc0a-9c7c8ecc69d1-do-not-match/1771.rss">Rule not working with error {rule.trigger &quot;core.st2.webhook&quot; and trigger.ref &quot;core.59362943-d192-4502-bc0a-9c7c8ecc69d1&quot; do not match.}</source>
+      </item>
+  </channel>
+</rss>

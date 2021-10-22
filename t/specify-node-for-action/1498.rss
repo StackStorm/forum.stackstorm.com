@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Specify node for action</title>
+    <link>https://forum.stackstorm.com/t/specify-node-for-action/1498</link>
+    <description>Hi,
+does anybody know if some progress has been made regarding https://github.com/StackStorm/st2/issues/3096 ?
+We are in a similar case: 2 nodes, but some actions can only be run in one of them.
+More specifically, we have one VM A in the cloud, and one VM B in our infrastructure (in a closed environment/network).
+From our infrastructure, not all ports and protocols can be opened, so for instance, we would like to call some rest API from VM A, but make active-directory requests from VM B.
+Currently we have managed to run the 2 VM in a HA setup, and hope that installing some packs only is VM A and others in VM B does the trick, but it failed. 
+Is our use case possible? maybe a config/parameter to add the action call that we’ve missed?</description>
+    
+    <lastBuildDate>Mon, 07 Dec 2020 15:25:07 +0000</lastBuildDate>
+    <category>Workflows</category>
+    <atom:link href="https://forum.stackstorm.com/t/specify-node-for-action/1498.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Specify node for action</title>
+        <dc:creator><![CDATA[FTI]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi,<br>
+does anybody know if some progress has been made regarding <a href="https://github.com/StackStorm/st2/issues/3096" class="inline-onebox" rel="noopener nofollow ugc">Feature req: Partitioning actions to execute on separate nodes · Issue #3096 · StackStorm/st2 · GitHub</a> ?<br>
+We are in a similar case: 2 nodes, but some actions can only be run in one of them.<br>
+More specifically, we have one VM A in the cloud, and one VM B in our infrastructure (in a closed environment/network).<br>
+From our infrastructure, not all ports and protocols can be opened, so for instance, we would like to call some rest API from VM A, but make active-directory requests from VM B.<br>
+Currently we have managed to run the 2 VM in a HA setup, and hope that installing some packs only is VM A and others in VM B does the trick, but it failed.<br>
+Is our use case possible? maybe a config/parameter to add the action call that we’ve missed?</p>
+          <p><a href="https://forum.stackstorm.com/t/specify-node-for-action/1498/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/specify-node-for-action/1498/1</link>
+        <pubDate>Mon, 07 Dec 2020 15:25:07 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1498-1</guid>
+        <source url="https://forum.stackstorm.com/t/specify-node-for-action/1498.rss">Specify node for action</source>
+      </item>
+  </channel>
+</rss>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Using &quot;https_proxy&quot; in Orquesta Workflows</title>
+    <link>https://forum.stackstorm.com/t/using-https-proxy-in-orquesta-workflows/1496</link>
+    <description>Hi,
+
+I am triggering a custom action in my workflow and want that particular action to take an env variable &quot;https_proxy&quot;. I understand that I can set that variable in my &quot;rules&quot; but don&#39;t know how to do it in &quot;workflows&quot;</description>
+    
+    <lastBuildDate>Sun, 06 Dec 2020 11:41:00 +0000</lastBuildDate>
+    <category>Workflows</category>
+    <atom:link href="https://forum.stackstorm.com/t/using-https-proxy-in-orquesta-workflows/1496.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Using &quot;https_proxy&quot; in Orquesta Workflows</title>
+        <dc:creator><![CDATA[armudgal]]></dc:creator>
+        <description><![CDATA[
+            <p>So I figured it out, you can pass ‘env’ variable as an input<br>
+Ex.</p>
+<pre><code class="lang-auto">  LOAD_CONFIG:
+    action: stackstorm_custompack.load_config
+    next:
+      - when: &lt;% succeeded %&gt;
+        publish:
+          - stdout: &lt;% result().stdout %&gt;
+          - stderr: &lt;% result().stderr %&gt;
+          - rand_config: &lt;% result().result %&gt;
+        do:
+          - NEXT_ACTION
+      - when: &lt;% failed() %&gt;
+        publish:
+          - stderr: &lt;% result() %&gt;
+
+  NEXT_ACTION:
+    with:
+      items: &lt;% ctx(array_data) %&gt;
+      concurrency: 4
+    action: stackstorm_custompack.customaction
+    input:
+      env: { "https_proxy": "&lt;proxy&gt;" }
+      category_id: &lt;% ctx(rand_config).get(config) %&gt;
+</code></pre>
+          <p><a href="https://forum.stackstorm.com/t/using-https-proxy-in-orquesta-workflows/1496/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/using-https-proxy-in-orquesta-workflows/1496/2</link>
+        <pubDate>Sun, 06 Dec 2020 11:41:00 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1496-2</guid>
+        <source url="https://forum.stackstorm.com/t/using-https-proxy-in-orquesta-workflows/1496.rss">Using &quot;https_proxy&quot; in Orquesta Workflows</source>
+      </item>
+      <item>
+        <title>Using &quot;https_proxy&quot; in Orquesta Workflows</title>
+        <dc:creator><![CDATA[armudgal]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi,</p>
+<p>I am triggering a custom action in my workflow and want that particular action to take an env variable “https_proxy”. I understand that I can set that variable in my “rules” but don’t know how to do it in “workflows”</p>
+          <p><a href="https://forum.stackstorm.com/t/using-https-proxy-in-orquesta-workflows/1496/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/using-https-proxy-in-orquesta-workflows/1496/1</link>
+        <pubDate>Sat, 05 Dec 2020 23:09:57 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1496-1</guid>
+        <source url="https://forum.stackstorm.com/t/using-https-proxy-in-orquesta-workflows/1496.rss">Using &quot;https_proxy&quot; in Orquesta Workflows</source>
+      </item>
+  </channel>
+</rss>

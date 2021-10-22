@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Dynamic hostlist create new task for each item</title>
+    <link>https://forum.stackstorm.com/t/dynamic-hostlist-create-new-task-for-each-item/1351</link>
+    <description>Hello , 
+
+My goal is to create dynamic workflow tasks. I have a CMDB and my first task is to get all servers in prod after that my 2nd task is a for loop to iterate over those hosts. 
+
+Any idea how to create a new workflow task for each server in the list. The idea here is to have 20 tor 25 tasks based on which servers are in prod. My goal is to have a new task for each host to be sure that i have good output based on every server not 1 big workflow with 20 servers output and to search which fails and which not. 
+
+We didn&#39;t that on jenkins and its working perfectly but I want to migrate it to stackstorm. 
+
+Just to mention that im using Mistral because we are with 2.9 ST2 and im not sure when we will upgrade to 3.2. The problem i hit is with Orchestra for loop bug https://github.com/StackStorm/st2/issues/4701 
+
+All that will be scheduled in st2 cron. The current workaround is to create manual rules for each host and scheduled them with st2cron but i want to use the CMDB to avoid babysitting in the feature no matter if we remove or add new hosts this automation will work.</description>
+    
+    <lastBuildDate>Thu, 16 Jul 2020 15:45:31 +0000</lastBuildDate>
+    <category>Mistral</category>
+    <atom:link href="https://forum.stackstorm.com/t/dynamic-hostlist-create-new-task-for-each-item/1351.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Dynamic hostlist create new task for each item</title>
+        <dc:creator><![CDATA[punkrokk]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi <a class="mention" href="https://github.com/eazysnatch">@eazysnatch</a>. I’d highly recommend considering upgrading ST2. We are in the process of removing Mistral from ST2.</p>
+          <p><a href="https://forum.stackstorm.com/t/dynamic-hostlist-create-new-task-for-each-item/1351/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/dynamic-hostlist-create-new-task-for-each-item/1351/2</link>
+        <pubDate>Thu, 16 Jul 2020 15:45:31 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1351-2</guid>
+        <source url="https://forum.stackstorm.com/t/dynamic-hostlist-create-new-task-for-each-item/1351.rss">Dynamic hostlist create new task for each item</source>
+      </item>
+      <item>
+        <title>Dynamic hostlist create new task for each item</title>
+        <dc:creator><![CDATA[eazysnatch]]></dc:creator>
+        <description><![CDATA[
+            <p>Hello ,</p>
+<p>My goal is to create dynamic workflow tasks. I have a CMDB and my first task is to get all servers in prod after that my 2nd task is a for loop to iterate over those hosts.</p>
+<p>Any idea how to create a new workflow task for each server in the list. The idea here is to have 20 tor 25 tasks based on which servers are in prod. My goal is to have a new task for each host to be sure that i have good output based on every server not 1 big workflow with 20 servers output and to search which fails and which not.</p>
+<p>We didn’t that on jenkins and its working perfectly but I want to migrate it to stackstorm.</p>
+<p>Just to mention that im using Mistral because we are with 2.9 ST2 and im not sure when we will upgrade to 3.2. The problem i hit is with Orchestra for loop bug <a href="https://github.com/StackStorm/st2/issues/4701" class="inline-onebox" rel="nofollow noopener">Orquesta - Unable to use loop variable in a Jinja for loop · Issue #4701 · StackStorm/st2 · GitHub</a></p>
+<p>All that will be scheduled in st2 cron. The current workaround is to create manual rules for each host and scheduled them with st2cron but i want to use the CMDB to avoid babysitting in the feature no matter if we remove or add new hosts this automation will work.</p>
+          <p><a href="https://forum.stackstorm.com/t/dynamic-hostlist-create-new-task-for-each-item/1351/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/dynamic-hostlist-create-new-task-for-each-item/1351/1</link>
+        <pubDate>Tue, 14 Jul 2020 08:53:22 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1351-1</guid>
+        <source url="https://forum.stackstorm.com/t/dynamic-hostlist-create-new-task-for-each-item/1351.rss">Dynamic hostlist create new task for each item</source>
+      </item>
+  </channel>
+</rss>

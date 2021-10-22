@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Passing variables from one task to the next in a workflow</title>
+    <link>https://forum.stackstorm.com/t/passing-variables-from-one-task-to-the-next-in-a-workflow/1631</link>
+    <description>I&#39;m trying to have the published output of tasks in a serial sequence made available to later tasks, and have looked at the examples and tried to follow them, but am bumping into an error even before it gets to running the tasks, that one of my inputs isn&#39;t defined yet, even though it&#39;s defined by publishing it from a previous task. 
+
+How would I go about this more gracefully (and compliant with st2flow?)
+
+Here&#39;s the code:
+
+    root@[redacted]]:/opt/stackstorm/packs/default/actions/workflows# st2 execution get 6066484f23fccc3af38f7d9a
+
+        id: 6066484f23fccc3af38f7d9a
+        action.ref: default.workflow1
+        parameters: None
+        status: failed (1s elapsed)
+        start_timestamp: Thu, 01 Apr 2021 22:25:19 UTC
+        end_timestamp: Thu, 01 Apr 2021 22:25:20 UTC
+        result:
+          errors:
+          - expression: &lt;% ctx(aws_account_id) %&gt;
+            language: yaql
+            message: Variable &quot;aws_account_id&quot; is referenced before assignment.
+            schema_path: properties.tasks.patternProperties.^\w+$.properties.input
+            spec_path: tasks.task3.input
+            type: context
+          output: null
+
+        root@[redacted]]:/opt/stackstorm/packs/default/actions/workflows# cat -n workflow1.yaml
+
+             1	version: 1.0
+             2	tasks:
+             3	  # [38, 67]
+             4	  task1:
+             5	    action: custompack.get_info
+             6	    next:
+             7	      # #d14c83
+             8	      - do:
+             9	          - task2
+            10	        when: succeeded()
+            11	        publish:
+            12	          - pf_info.result: &lt;% result() %&gt;
+            13	  # [140, 217]
+            14	  task2:
+            15	    action: custompack.create_aws_conn
+            16	    input:
+            17	      log_level: DEBUG
+            18	      account_uuid: [redacted]
+            19	      pop: [redacted]
+            20	      aws_account_id: [redacted]
+            21	      connection_desc: [redacted]
+            22	      pf_port: [redacted]
+            23	      speed: [redacted]
+            24	      vlan: [redacted]
+            25	      zone: [redacted]
+            26	    next:
+            27	      # #fd9d32
+            28	      - do:
+            29	          - task3
+            30	        when: succeeded()
+            31	        publish:
+            32	          - pf_vc_info.result: &lt;% result() %&gt;
+            33	          - pf_vc_info.settings: &lt;% result().settings %&gt;
+            34	          - aws_dx_con_id: &lt;% result().settings.aws_connection_id %&gt;
+            35	  # [116, 336]
+            36	  task3:
+            37	    action: aws.directconnect_confirm_connection
+            38	    input:
+            39	      log_level: DEBUG
+            40	      account_id: &lt;% ctx(aws_account_id) %&gt;
+            41	      connectionId: &lt;% ctx(aws_dx_con_id) %&gt;</description>
+    
+    <lastBuildDate>Fri, 02 Apr 2021 21:03:29 +0000</lastBuildDate>
+    <category>Workflows</category>
+    <atom:link href="https://forum.stackstorm.com/t/passing-variables-from-one-task-to-the-next-in-a-workflow/1631.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Passing variables from one task to the next in a workflow</title>
+        <dc:creator><![CDATA[willowhawk]]></dc:creator>
+        <description><![CDATA[
+            <p>OK, it turns out that specific error had to do with not properly setting up CORS for my custom URL.  Found that in the debugger view.  Oy.</p>
+<p>I have another question which is semi-related but a different topic, so I’ll close this one and ask anew.</p>
+          <p><a href="https://forum.stackstorm.com/t/passing-variables-from-one-task-to-the-next-in-a-workflow/1631/5">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/passing-variables-from-one-task-to-the-next-in-a-workflow/1631/5</link>
+        <pubDate>Fri, 02 Apr 2021 21:03:29 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1631-5</guid>
+        <source url="https://forum.stackstorm.com/t/passing-variables-from-one-task-to-the-next-in-a-workflow/1631.rss">Passing variables from one task to the next in a workflow</source>
+      </item>
+      <item>
+        <title>Passing variables from one task to the next in a workflow</title>
+        <dc:creator><![CDATA[willowhawk]]></dc:creator>
+        <description><![CDATA[
+            <p>OK, well I’ve gotten further but now have a new problem.</p>
+<p>I’m defining the parameter for the workflow “aws_account_id” and it’s a string.</p>
+<p>The task is expecting a string, but the value itself is just a number.  When the string value of the number is passed to the task, it is somehow interpreting it as an integer.  So I’m trying to typecast it as a string in the input which is breaking.</p>
+<p>The parameter is named “aws_account_id” so to reference it with YAQL I’d need " ctx(aws_account_id) which is accepted when I save the workflow, but results in the “require string, got int”.</p>
+<p>I’ve tried using str(ctx(aws_account_id)) but that breaks the workflow saving with <code>Additional properties are not allowed ('_name' was unexpected)</code>.</p>
+<pre><code>input:
+  aws_account_id: &lt;% str(ctx(aws_account_id)) %&gt;
+</code></pre>
+<p>Help?</p>
+          <p><a href="https://forum.stackstorm.com/t/passing-variables-from-one-task-to-the-next-in-a-workflow/1631/4">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/passing-variables-from-one-task-to-the-next-in-a-workflow/1631/4</link>
+        <pubDate>Fri, 02 Apr 2021 19:07:12 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1631-4</guid>
+        <source url="https://forum.stackstorm.com/t/passing-variables-from-one-task-to-the-next-in-a-workflow/1631.rss">Passing variables from one task to the next in a workflow</source>
+      </item>
+      <item>
+        <title>Passing variables from one task to the next in a workflow</title>
+        <dc:creator><![CDATA[willowhawk]]></dc:creator>
+        <description><![CDATA[
+            <p>Ah, I see…the value I’m seeking is nested in the <code>settings</code> dictionary but you’re right I didn’t explicitly declare it ahead of time through a publish or a workflow variable.  A variable of the same name exists as an input for task2 which I thought would place in the context?</p>
+          <p><a href="https://forum.stackstorm.com/t/passing-variables-from-one-task-to-the-next-in-a-workflow/1631/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/passing-variables-from-one-task-to-the-next-in-a-workflow/1631/3</link>
+        <pubDate>Fri, 02 Apr 2021 18:07:04 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1631-3</guid>
+        <source url="https://forum.stackstorm.com/t/passing-variables-from-one-task-to-the-next-in-a-workflow/1631.rss">Passing variables from one task to the next in a workflow</source>
+      </item>
+      <item>
+        <title>Passing variables from one task to the next in a workflow</title>
+        <dc:creator><![CDATA[amanda11]]></dc:creator>
+        <description><![CDATA[
+            <p>I can’t see anything in that workflow that is publishing aws_account_id, its not published as an output of task2. So you’d need to publish it to your context.</p>
+<p>You might want to put a vars section in your workflow and initialise aws_account_id to the value where you put [redacted]. So that essential has set a variable with a default value. And then use it ctx().aws_account_id wherever  you want to use it in your workflow.</p>
+<p>But just because there is an input varialbe to a task called aws_account_id, that doesn’t publish it to the context as that variable.</p>
+          <p><a href="https://forum.stackstorm.com/t/passing-variables-from-one-task-to-the-next-in-a-workflow/1631/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/passing-variables-from-one-task-to-the-next-in-a-workflow/1631/2</link>
+        <pubDate>Fri, 02 Apr 2021 17:22:23 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1631-2</guid>
+        <source url="https://forum.stackstorm.com/t/passing-variables-from-one-task-to-the-next-in-a-workflow/1631.rss">Passing variables from one task to the next in a workflow</source>
+      </item>
+      <item>
+        <title>Passing variables from one task to the next in a workflow</title>
+        <dc:creator><![CDATA[willowhawk]]></dc:creator>
+        <description><![CDATA[
+            <p>I’m trying to have the published output of tasks in a serial sequence made available to later tasks, and have looked at the examples and tried to follow them, but am bumping into an error even before it gets to running the tasks, that one of my inputs isn’t defined yet, even though it’s defined by publishing it from a previous task.</p>
+<p>How would I go about this more gracefully (and compliant with st2flow?)</p>
+<p>Here’s the code:</p>
+<pre><code>root@[redacted]]:/opt/stackstorm/packs/default/actions/workflows# st2 execution get 6066484f23fccc3af38f7d9a
+
+    id: 6066484f23fccc3af38f7d9a
+    action.ref: default.workflow1
+    parameters: None
+    status: failed (1s elapsed)
+    start_timestamp: Thu, 01 Apr 2021 22:25:19 UTC
+    end_timestamp: Thu, 01 Apr 2021 22:25:20 UTC
+    result:
+      errors:
+      - expression: &lt;% ctx(aws_account_id) %&gt;
+        language: yaql
+        message: Variable "aws_account_id" is referenced before assignment.
+        schema_path: properties.tasks.patternProperties.^\w+$.properties.input
+        spec_path: tasks.task3.input
+        type: context
+      output: null
+
+    root@[redacted]]:/opt/stackstorm/packs/default/actions/workflows# cat -n workflow1.yaml
+
+         1	version: 1.0
+         2	tasks:
+         3	  # [38, 67]
+         4	  task1:
+         5	    action: custompack.get_info
+         6	    next:
+         7	      # #d14c83
+         8	      - do:
+         9	          - task2
+        10	        when: succeeded()
+        11	        publish:
+        12	          - pf_info.result: &lt;% result() %&gt;
+        13	  # [140, 217]
+        14	  task2:
+        15	    action: custompack.create_aws_conn
+        16	    input:
+        17	      log_level: DEBUG
+        18	      account_uuid: [redacted]
+        19	      pop: [redacted]
+        20	      aws_account_id: [redacted]
+        21	      connection_desc: [redacted]
+        22	      pf_port: [redacted]
+        23	      speed: [redacted]
+        24	      vlan: [redacted]
+        25	      zone: [redacted]
+        26	    next:
+        27	      # #fd9d32
+        28	      - do:
+        29	          - task3
+        30	        when: succeeded()
+        31	        publish:
+        32	          - pf_vc_info.result: &lt;% result() %&gt;
+        33	          - pf_vc_info.settings: &lt;% result().settings %&gt;
+        34	          - aws_dx_con_id: &lt;% result().settings.aws_connection_id %&gt;
+        35	  # [116, 336]
+        36	  task3:
+        37	    action: aws.directconnect_confirm_connection
+        38	    input:
+        39	      log_level: DEBUG
+        40	      account_id: &lt;% ctx(aws_account_id) %&gt;
+        41	      connectionId: &lt;% ctx(aws_dx_con_id) %&gt;</code></pre>
+          <p><a href="https://forum.stackstorm.com/t/passing-variables-from-one-task-to-the-next-in-a-workflow/1631/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/passing-variables-from-one-task-to-the-next-in-a-workflow/1631/1</link>
+        <pubDate>Thu, 01 Apr 2021 23:15:19 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1631-1</guid>
+        <source url="https://forum.stackstorm.com/t/passing-variables-from-one-task-to-the-next-in-a-workflow/1631.rss">Passing variables from one task to the next in a workflow</source>
+      </item>
+  </channel>
+</rss>

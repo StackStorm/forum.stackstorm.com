@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Python st2client pakcage</title>
+    <link>https://forum.stackstorm.com/t/python-st2client-pakcage/1136</link>
+    <description>how to change pack config using st2client ?</description>
+    
+    <lastBuildDate>Sun, 12 Apr 2020 09:39:22 +0000</lastBuildDate>
+    <category>API</category>
+    <atom:link href="https://forum.stackstorm.com/t/python-st2client-pakcage/1136.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Python st2client pakcage</title>
+        <dc:creator><![CDATA[kiran.lohar]]></dc:creator>
+        <description><![CDATA[
+            <p>yes, i didn’t got yet.</p>
+          <p><a href="https://forum.stackstorm.com/t/python-st2client-pakcage/1136/5">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/python-st2client-pakcage/1136/5</link>
+        <pubDate>Sun, 12 Apr 2020 09:39:22 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1136-5</guid>
+        <source url="https://forum.stackstorm.com/t/python-st2client-pakcage/1136.rss">Python st2client pakcage</source>
+      </item>
+      <item>
+        <title>Python st2client pakcage</title>
+        <dc:creator><![CDATA[punkrokk]]></dc:creator>
+        <description><![CDATA[
+            <p>Yes. All the docs are there to accomplish this. Are you having trouble finding one?</p>
+          <p><a href="https://forum.stackstorm.com/t/python-st2client-pakcage/1136/4">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/python-st2client-pakcage/1136/4</link>
+        <pubDate>Wed, 08 Apr 2020 19:10:41 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1136-4</guid>
+        <source url="https://forum.stackstorm.com/t/python-st2client-pakcage/1136.rss">Python st2client pakcage</source>
+      </item>
+      <item>
+        <title>Python st2client pakcage</title>
+        <dc:creator><![CDATA[kiran.lohar]]></dc:creator>
+        <description><![CDATA[
+            <p>i want to change pack config remotely.so is it possible by st2client which is python library?<br>
+by using st2client library i wrote a python code to run action similar i want to write python code for change pack config.</p>
+<p>Also tell me is it possible to change pack config by stackstorm api? I used this api - PUT/api/v1/configs/{pack_ref} .but it not work.</p>
+          <p><a href="https://forum.stackstorm.com/t/python-st2client-pakcage/1136/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/python-st2client-pakcage/1136/3</link>
+        <pubDate>Sat, 04 Apr 2020 15:17:28 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1136-3</guid>
+        <source url="https://forum.stackstorm.com/t/python-st2client-pakcage/1136.rss">Python st2client pakcage</source>
+      </item>
+      <item>
+        <title>Python st2client pakcage</title>
+        <dc:creator><![CDATA[punkrokk]]></dc:creator>
+        <description><![CDATA[
+            <p>See the packs page in the docs</p>
+          <p><a href="https://forum.stackstorm.com/t/python-st2client-pakcage/1136/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/python-st2client-pakcage/1136/2</link>
+        <pubDate>Fri, 03 Apr 2020 03:25:49 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1136-2</guid>
+        <source url="https://forum.stackstorm.com/t/python-st2client-pakcage/1136.rss">Python st2client pakcage</source>
+      </item>
+      <item>
+        <title>Python st2client pakcage</title>
+        <dc:creator><![CDATA[kiran.lohar]]></dc:creator>
+        <description><![CDATA[
+            <p>how to change pack config using st2client ?</p>
+          <p><a href="https://forum.stackstorm.com/t/python-st2client-pakcage/1136/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/python-st2client-pakcage/1136/1</link>
+        <pubDate>Thu, 02 Apr 2020 09:45:43 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1136-1</guid>
+        <source url="https://forum.stackstorm.com/t/python-st2client-pakcage/1136.rss">Python st2client pakcage</source>
+      </item>
+  </channel>
+</rss>

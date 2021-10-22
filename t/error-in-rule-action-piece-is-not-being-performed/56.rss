@@ -1,0 +1,440 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Error in Rule, action piece is not being performed</title>
+    <link>https://forum.stackstorm.com/t/error-in-rule-action-piece-is-not-being-performed/56</link>
+    <description>Fairly new to StackStorm. Trying to integrate a use case where Splunk is sending a webhook based on a particular patern over to StackStorm.  
+
+When i try to create a rule with the following, the &quot;action&quot; piece is not being performed.
+
+```
+---
+    name: &quot;sample_rule_with_webhook&quot;
+    pack: &quot;examples&quot;
+    description: &quot;Sample rule dumping webhook payload to a file.&quot;
+    enabled: true
+
+    trigger:
+        type: &quot;core.st2.webhook&quot;
+        parameters:
+            url: &quot;splunk_test&quot;
+
+    criteria: {}
+        trigger.body.name:
+            pattern: &quot;Start*&quot;
+            type: &quot;matchwildcard&quot;
+
+    action:
+        ref: &quot;core.local&quot;
+        parameters:
+            cmd: &quot;echo \&quot;{{trigger.body}}\&quot; &gt;&gt; ~/st2.webhook_sample.out ; sync&quot;
+```
+
+I can see trigger in st2 trigger-instance list and shows processed. In the rule logs i see the following:
+
+```
+2018-03-12 10:38:10,623 140227477546480 ERROR filter [-] There might be a problem with the criteria in rule RuleDB(action=ActionExecutionSpecDB@140227478157136(ref=&quot;core.local&quot;, parameters=&quot;{u&#39;cmd&#39;: u&#39;echo &quot;{{trigger.body}}&quot; &gt;&gt; ~/st2.webhook_sample.out ; sync&#39;}&quot;), criteria={u&#39;trigger.body.name&#39;: {u&#39;pattern&#39;: u&#39;Starting&#39;, u&#39;type&#39;: u&#39;contains&#39;}}, description=&quot;Splunk testing&quot;, enabled=True, id=5aa15c4c77848358ca3b36d6, name=&quot;splunk_test&quot;, pack=&quot;default&quot;, ref=&quot;default.splunk_test&quot;, tags=[], trigger=&quot;core.74017ce9-b665-4356-b8ca-bdf225786950&quot;, type=RuleTypeSpecDB@140227478354896(ref=&quot;standard&quot;, parameters=&quot;{}&quot;), uid=&quot;rule:default:splunk_test&quot;).
+Traceback (most recent call last):
+  File &quot;/opt/stackstorm/st2/lib/python2.7/site-packages/st2reactor/rules/filter.py&quot;, line 145, in _check_criterion
+    result = op_func(value=payload_value, criteria_pattern=criteria_pattern)
+  File &quot;/opt/stackstorm/st2/lib/python2.7/site-packages/st2common/operators.py&quot;, line 159, in contains
+    return criteria_pattern in value
+TypeError: argument of type &#39;NoneType&#39; is not iterable (_trigger_instance={&#39;status&#39;: &#39;processing&#39;, &#39;occurrence_time&#39;: &#39;2018-03-12 14:38:10.553211+00:00&#39;, &#39;trigger&#39;: u&#39;core.74017ce9-b665-4356-b8ca-bdf225786950&#39;, &#39;id&#39;: &#39;5aa690d2778483595ab63325&#39;, &#39;payload&#39;: {&#39;body&#39;: {u&#39;results_link&#39;: u&#39;https://abc.123.local:8000/app/search/search?q=%7Cloadjob%20rt_scheduler__john_YWxlcnRfbG9nZXZlbnQ__testing_at_1520860980_24219.409_2D6D92F7-0525-41CB-909C-FA732D025C1A%20%7C%20head%201%20%7C%20tail%201&amp;earliest=0&amp;latest=now&#39;, u&#39;app&#39;: u&#39;alert_logevent&#39;, u&#39;search_name&#39;: u&#39;testing&#39;, u&#39;result&#39;: {u&#39;_si&#39;: [u&#39;abc.123.local&#39;, u&#39;os&#39;], u&#39;_confstr&#39;: u&#39;source::/var/log/messages|host::abc00006|syslog&#39;, u&#39;_time&#39;: u&#39;1521198257&#39;, u&#39;host&#39;: u&#39;hlp00006&#39;, u&#39;_sourcetype&#39;: u&#39;syslog&#39;, u&#39;_indextime&#39;: u&#39;1520865490&#39;, u&#39;_raw&#39;: u&#39;Mar 16 07:04:17 hlp00006 systemd[1]: Starting Session 2050 of user root.&#39;, u&#39;_serial&#39;: u&#39;96&#39;}, u&#39;sid&#39;: u&#39;rt_scheduler__john_YWxlcnRfbG9nZXZlbnQ__testing_at_1520860980_24219.409_2D6D92F7-0525-41CB-909C-FA732D025C1A&#39;, u&#39;owner&#39;: u&#39;john&#39;}, &#39;headers&#39;: {&#39;X-Request-Id&#39;: &#39;afe33463-6ceb-4960-a9b9-c7627b381dd0&#39;, &#39;Accept-Encoding&#39;: &#39;identity&#39;, &#39;X-Forwarded-For&#39;: &#39;10.00.000.232&#39;, &#39;Content-Length&#39;: &#39;763&#39;, &#39;User-Agent&#39;: &#39;Splunk/2D6D92F7-0525-41CB-909C-FA732D025C1A&#39;, &#39;Host&#39;: &#39;123,123&#39;, &#39;X-Real-Ip&#39;: &#39;10.27.248.232&#39;, &#39;Content-Type&#39;: &#39;application/json&#39;}}},_trigger={&#39;uid&#39;: u&#39;trigger:core:74017ce9-b665-4356-b8ca-bdf225786950:feec5050a7553f359ba5ff7624f093c8&#39;, &#39;parameters&#39;: {u&#39;url&#39;: u&#39;splunk_test&#39;}, &#39;ref&#39;: u&#39;core.74017ce9-b665-4356-b8ca-bdf225786950&#39;, &#39;ref_count&#39;: 1, &#39;name&#39;: u&#39;74017ce9-b665-4356-b8ca-bdf225786950&#39;, &#39;pack&#39;: u&#39;core&#39;, &#39;type&#39;: u&#39;core.st2.webhook&#39;, &#39;id&#39;: &#39;5aa15c4977848358ca3b36d5&#39;, &#39;description&#39;: None},_rule={&#39;description&#39;: u&#39;Splunk testing&#39;, &#39;tags&#39;: [], &#39;ref&#39;: u&#39;default.splunk_test&#39;, &#39;enabled&#39;: True, &#39;name&#39;: u&#39;splunk_test&#39;, &#39;trigger&#39;: u&#39;core.74017ce9-b665-4356-b8ca-bdf225786950&#39;, &#39;criteria&#39;: {u&#39;trigger.body.name&#39;: {u&#39;pattern&#39;: u&#39;Starting&#39;, u&#39;type&#39;: u&#39;contains&#39;}}, &#39;action&#39;: &#39;ActionExecutionSpecDB@140227478157136(ref=&quot;core.local&quot;, parameters=&quot;{u\&#39;cmd\&#39;: u\&#39;echo &quot;{{trigger.body}}&quot; &gt;&gt; ~/st2.webhook_sample.out ; sync\&#39;}&quot;)&#39;, &#39;pack&#39;: u&#39;default&#39;, &#39;type&#39;: &#39;RuleTypeSpecDB@140227478354896(ref=&quot;standard&quot;, parameters=&quot;{}&quot;)&#39;, &#39;id&#39;: &#39;5aa15c4c77848358ca3b36d6&#39;, &#39;uid&#39;: u&#39;rule:default:splunk_test&#39;})
+2018-03-12 10:38:10,632 140227477546480 INFO matcher [-] 0 rule(s) found to enforce for 74017ce9-b665-4356-b8ca-bdf225786950.
+2018-03-12 10:38:10,632 140227477546480 INFO engine [-] Matched 0 rule(s) for trigger_instance 5aa690d2778483595ab63325 (trigger=core.74017ce9-b665-4356-b8ca-bdf225786950)
+2018-03-12 10:38:10,632 140227477546480 INFO engine [-] No matching rules found for trigger instance 5aa690d2778483595ab63325.
+```
+
+Any advice would be greatly appreciated.</description>
+    
+    <lastBuildDate>Thu, 15 Mar 2018 22:16:26 +0000</lastBuildDate>
+    <category>Rules</category>
+    <atom:link href="https://forum.stackstorm.com/t/error-in-rule-action-piece-is-not-being-performed/56.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Error in Rule, action piece is not being performed</title>
+        <dc:creator><![CDATA[John_P]]></dc:creator>
+        <description><![CDATA[
+            <p><a class="mention" href="https://github.com/lhill">@lhill</a> that did the trick, thank you very much!!!</p>
+          <p><a href="https://forum.stackstorm.com/t/error-in-rule-action-piece-is-not-being-performed/56/12">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/error-in-rule-action-piece-is-not-being-performed/56/12</link>
+        <pubDate>Thu, 15 Mar 2018 22:16:26 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-56-12</guid>
+        <source url="https://forum.stackstorm.com/t/error-in-rule-action-piece-is-not-being-performed/56.rss">Error in Rule, action piece is not being performed</source>
+      </item>
+      <item>
+        <title>Error in Rule, action piece is not being performed</title>
+        <dc:creator><![CDATA[lhill]]></dc:creator>
+        <description><![CDATA[
+            <p>So your criteria was searching on <code>trigger.result</code> - from the above output, I would probably be looking at something like <code>trigger.body.result._raw</code>.</p>
+<p>(also: this forum supports formatting for code &amp; logs)</p>
+          <p><a href="https://forum.stackstorm.com/t/error-in-rule-action-piece-is-not-being-performed/56/11">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/error-in-rule-action-piece-is-not-being-performed/56/11</link>
+        <pubDate>Thu, 15 Mar 2018 20:27:47 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-56-11</guid>
+        <source url="https://forum.stackstorm.com/t/error-in-rule-action-piece-is-not-being-performed/56.rss">Error in Rule, action piece is not being performed</source>
+      </item>
+      <item>
+        <title>Error in Rule, action piece is not being performed</title>
+        <dc:creator><![CDATA[John_P]]></dc:creator>
+        <description><![CDATA[
+            <p><a class="mention" href="https://github.com/lhill">@lhill</a> this is what the body looks like:</p>
+<pre><code class="lang-auto">+-----------------+--------------------------------------------------------------+
+| Property        | Value                                                        |
++-----------------+--------------------------------------------------------------+
+| id              | 5aa981df778483286e43bbdf                                     |
+| trigger         | core.3222deb2-95dd-4e9c-8bb7-8fd5ea83b1bf                    |
+| occurrence_time | 2018-03-14T20:11:11.421000Z                                  |
+| payload         | {                                                            |
+|                 |     "body": {                                                |
+|                 |         "results_link": "https://abc.123.local:80 |
+|                 | 00/app/search/@go?sid=scheduler__abc.123__search__RMD5aaf2801|
+|                 | 911994ffa_at_1521058260_99738",                              |
+|                 |         "app": "search",                                     |
+|                 |         "search_name": "Rabbit Down",                        |
+|                 |         "result": {                                          |
+|                 |             "status": "",                                    |
+|                 |             "protocol": "",                                  |
+|                 |             "tag::eventtype": "",                            |
+|                 |             "user_type": "",                                 |
+|                 |             "date_zone": "local",                            |
+|                 |             "tag": "",                                       |
+|                 |             "date_minute": "37",                             |
+|                 |             "change_type": "",                               |
+|                 |             "index": "linux_dev_rabbitmq",                   |
+|                 |             "sourcetype": "LINUX_DEV_RabbitMQ",              |
+|                 |             "vendor_product": "",                            |
+|                 |             "eventtype": "nix-all-logs",                     |
+|                 |             "_bkt": "linux_dev_rabbitmq~178~3FEF5E72-2370-40 |
+|                 | BC-8412-AE85B3454768",                                       |
+|                 |             "_eventtype_color": "none",                      |
+|                 |             "splunk_server": "abc.123.local",                |
+|                 |             "source": "/var/log/messages",                   |
+|                 |             "linecount": "1",                                |
+|                 |             "date_year": "2018",                             |
+|                 |             "app": "",                                       |
+|                 |             "date_hour": "15",                               |
+|                 |             "product": "",                                   |
+|                 |             "vendor": "",                                    |
+|                 |             "ids_type": "",                                  |
+|                 |             "date_second": "40",                             |
+|                 |             "date_wday": "wednesday",                        |
+|                 |             "object_category": "",                           |
+|                 |             "punct": "__::__:___.",                          |
+|                 |             "host": "ABC016D",                               |
+|                 |             "_sourcetype": "LINUX_DEV_RabbitMQ",             |
+|                 |             "unix_category": "all_hosts",                    |
+|                 |             "_kv": "1",                                      |
+|                 |             "splunk_server_group": "dmc_group_indexer",      |
+|                 |             "_cd": "178:16625884",                           |
+|                 |             "_si": [                                         |
+|                 |                 "abc.123.local",                             |
+|                 |                 "linux_dev_rabbitmq"                         |
+|                 |             ],                                               |
+|                 |             "src": "",                                       |
+|                 |             "timestartpos": "0",                             |
+|                 |             "date_month": "march",                           |
+|                 |             "enabled": "",                                   |
+|                 |             "_subsecond": "",                                |
+|                 |             "unix_group": "default",                         |
+|                 |             "_time": "1521056260",                           |
+|                 |             "range": "",                                     |
+|                 |             "date_mday": "14",                               |
+|                 |             "timeendpos": "16",                              |
+|                 |             "_raw": "Mar 14 15:37:40 ABC016D systemd:        |
+|                 | Stopped RabbitMQ broker.",                                   |
+|                 |             "_indextime": "1521056261",                      |
+|                 |             "_serial": "0",                                  |
+|                 |             "tag::app": ""                                   |
+|                 |         },                                                   |
+|                 |         "sid": "scheduler__abc.123__search__RMD5aaf2801911994|
+|                 | ffa_at_1521058260_99738",                                    |
+|                 |         "owner": "abc.123"                                   |
+|                 |     },                                                       |
+|                 |     "headers": {                                             |
+|                 |         "X-Request-Id": "dcef5321-b022-47be-                 |
+|                 | 9ce8-314af41aaf73",                                          |
+|                 |         "Accept-Encoding": "identity",                       |
+|                 |         "X-Forwarded-For": "10.45.44.150",                   |
+|                 |         "Content-Length": "1490",                            |
+|                 |         "User-Agent":                                        |
+|                 | "Splunk/FDDD4C40-0DD9-40BE-9660-82A901EE9441",               |
+|                 |         "Host": "abc66d,abc66d",                             |
+|                 |         "X-Real-Ip": "1.1.1.150",                            |
+|                 |         "Content-Type": "application/json"                   |
+|                 |     }                                                        |
+|                 | }                                                            |
+| status          | processed                                                    |
++-----------------+--------------------------------------------------------------+
+</code></pre>
+          <p><a href="https://forum.stackstorm.com/t/error-in-rule-action-piece-is-not-being-performed/56/10">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/error-in-rule-action-piece-is-not-being-performed/56/10</link>
+        <pubDate>Thu, 15 Mar 2018 19:57:10 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-56-10</guid>
+        <source url="https://forum.stackstorm.com/t/error-in-rule-action-piece-is-not-being-performed/56.rss">Error in Rule, action piece is not being performed</source>
+      </item>
+      <item>
+        <title>Error in Rule, action piece is not being performed</title>
+        <dc:creator><![CDATA[lhill]]></dc:creator>
+        <description><![CDATA[
+            <p>When you had no criteria, and dumped the body to file, what did it look like?</p>
+<p>My guess is that you need to have criteria matching on <code>trigger.result.raw</code>, not just <code>trigger.result</code>.</p>
+          <p><a href="https://forum.stackstorm.com/t/error-in-rule-action-piece-is-not-being-performed/56/9">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/error-in-rule-action-piece-is-not-being-performed/56/9</link>
+        <pubDate>Thu, 15 Mar 2018 18:29:46 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-56-9</guid>
+        <source url="https://forum.stackstorm.com/t/error-in-rule-action-piece-is-not-being-performed/56.rss">Error in Rule, action piece is not being performed</source>
+      </item>
+      <item>
+        <title>Error in Rule, action piece is not being performed</title>
+        <dc:creator><![CDATA[John_P]]></dc:creator>
+        <description><![CDATA[
+            <p><a class="mention" href="https://github.com/nmaludy">@nmaludy</a> I got it to work by dumping the body to a file as per <a class="mention" href="https://github.com/lhill">@lhill</a>  suggestion (thanks!) However if I try to specify any criteria it reads the rule but then states no rules found. I am trying to grep for “Stopped RabbitMQ broker”</p>
+<pre><code class="lang-auto">---
+    name: "splunk_test3"
+    pack: "examples"
+    description: "Sample rule dumping webhook payload to a file."
+    enabled: true
+
+    trigger:
+        type: "core.st2.webhook"
+        parameters:
+            url: "splunk_test3"
+    criteria:
+        trigger.result:
+            pattern: "Stopped"
+            type: "contains"
+
+
+    action:
+        ref: "core.local"
+        parameters:
+            cmd: "echo \"{{trigger.body}}\" &gt;&gt; ~/st2.webhook_sample.out ; sync"
+</code></pre>
+<p>Log…</p>
+<pre><code class="lang-auto">2018-03-14 20:32:19.180380+00:00', 'trigger': u'core.f7542b9a-9d6a-4ea7-9629-00046a7cce17', 'id': '5aa986d3778483286e43bc27', 'payload': {'body': {u'results_link': u'https://abc.123.local:8000/app/search/@go?sid=scheduler__john__search__RMD5aaf2801911994ffa_at_1521059520_151', u'app': u'search', u'search_name': u'Rabbit Down', u'result': {u'status': u'', u'protocol': u'', u'tag::eventtype': u'', u'user_type': u'', u'date_zone': u'local', u'tag': u'', u'date_minute': u'37', u'change_type': u'', u'index': u'linux_dev_rabbitmq', u'sourcetype': u'LINUX_DEV_RabbitMQ', u'vendor_product': u'', u'eventtype': u'nix-all-logs', u'_bkt': u'linux_dev_rabbitmq~178~3FEF5E72-2370-40BC-8412-AE85B3454768', u'_eventtype_color': u'none', u'splunk_server': u'123.abc.local', u'source': u'/var/log/messages', u'linecount': u'1', u'date_year': u'2018', u'app': u'', u'date_hour': u'15', u'product': u'', u'vendor': u'', u'ids_type': u'', u'date_second': u'40', u'date_wday': u'wednesday', u'object_category': u'', u'punct': u'__::__:___.', u'host': u'EMSCAL016D', u'_sourcetype': u'LINUX_DEV_RabbitMQ', u'_indextime': u'1521056261', u'_kv': u'1', u'splunk_server_group': u'dmc_group_indexer', u'_cd': u'178:16625884', u'_si': [u'abc.123.local', u'linux_dev_rabbitmq'], u'src': u'', u'timestartpos': u'0', u'date_month': u'march', u'enabled': u'', u'_subsecond': u'', u'unix_group': u'default', u'_time': u'1521056260', u'range': u'', u'date_mday': u'14', u'timeendpos': u'16', u'_raw': u'Mar 14 15:37:40 EMSCAL016D systemd: Stopped RabbitMQ broker.', u'unix_category': u'all_hosts', u'_serial': u'0', u'tag::app': u''}, u'sid': u'scheduler__john__search__RMD5aaf2801911994ffa_at_1521059520_151', u'owner': u'john'}, 'headers': {'X-Request-Id': '14b90084-4c96-4a8d-ba0a-e2000f7311a0', 'Accept-Encoding': 'identity', 'X-Forwarded-For': '1.1.1.150', 'Content-Length': '1486', 'User-Agent': 'Splunk/FDDD4C40-0DD9-40BE-9660-82A901EE9441', 'Host': 'emsa066d,emsa066d', 'X-Real-Ip': '1.1.1.150', 'Content-Type': 'application/json'}}},rule={'description': u'Sample rule dumping webhook payload to a file.', 'tags': [], 'ref': u'examples.splunk_test3', 'enabled': True, 'name': u'splunk_test3', 'trigger': u'core.f7542b9a-9d6a-4ea7-9629-00046a7cce17', 'criteria': {u'trigger.result': {u'pattern': u'Stopped', u'type': u'regex'}}, 'action': 'ActionExecutionSpecDB@139666330751952(ref="core.local", parameters="{u\'cmd\': u\'touch /abc.txt\', u\'cwd\': u\'/tmp\'}")', 'pack': u'examples', 'type': 'RuleTypeSpecDB@139666330752848(ref="standard", parameters="{}")', 'id': '5aa984eb7784833651eafa40', 'uid': u'rule:examples:splunk_test3'},trigger={'uid': u'trigger:core:f7542b9a-9d6a-4ea7-9629-00046a7cce17:d9fa276bb6d2248cff2712a30c1460ed', 'parameters': {u'url': u'splunk_test3'}, 'ref': u'core.f7542b9a-9d6a-4ea7-9629-00046a7cce17', 'ref_count': 1, 'name': u'f7542b9a-9d6a-4ea7-9629-00046a7cce17', 'pack': u'core', 'type': u'core.st2.webhook', 'id': '5aa984eb7784833651eafa3f', 'description': None})
+2018-03-14 16:32:19,287 139666326579472 ERROR filter [-] There might be a problem with the criteria in rule RuleDB(action=ActionExecutionSpecDB@139666330751952(ref="core.local", parameters="{u'cmd': u'touch /abc.txt', u'cwd': u'/tmp'}"), criteria={u'trigger.result': {u'pattern': u'Stopped', u'type': u'regex'}}, description="Sample rule dumping webhook payload to a file.", enabled=True, id=5aa984eb7784833651eafa40, name="splunk_test3", pack="examples", ref="examples.splunk_test3", tags=[], trigger="core.f7542b9a-9d6a-4ea7-9629-00046a7cce17", type=RuleTypeSpecDB@139666330752848(ref="standard", parameters="{}"), uid="rule:examples:splunk_test3").
+Traceback (most recent call last):
+  File "/opt/stackstorm/st2/lib/python2.7/site-packages/st2reactor/rules/filter.py", line 145, in _check_criterion
+    result = op_func(value=payload_value, criteria_pattern=criteria_pattern)
+  File "/opt/stackstorm/st2/lib/python2.7/site-packages/st2common/operators.py", line 237, in regex
+    return regex.search(value) is not None
+TypeError: expected string or buffer (_trigger_instance={'status': 'processing', 'occurrence_time': '2018-03-14 20:32:19.180380+00:00', 'trigger': u'core.f7542b9a-9d6a-4ea7-9629-00046a7cce17', 'id': '5aa986d3778483286e43bc27', 'payload': {'body': {u'results_link': u'https://abc.123.local:8000/app/search/@go?sid=scheduler__john__search__RMD5aaf2801911994ffa_at_1521059520_151', u'app': u'search', u'search_name': u'Rabbit Down', u'result': {u'status': u'', u'protocol': u'', u'tag::eventtype': u'', u'user_type': u'', u'date_zone': u'local', u'tag': u'', u'date_minute': u'37', u'change_type': u'', u'index': u'linux_dev_rabbitmq', u'sourcetype': u'LINUX_DEV_RabbitMQ', u'vendor_product': u'', u'eventtype': u'nix-all-logs', u'_bkt': u'linux_dev_rabbitmq~178~3FEF5E72-2370-40BC-8412-AE85B3454768', u'_eventtype_color': u'none', u'splunk_server': u'abc.123.local', u'source': u'/var/log/messages', u'linecount': u'1', u'date_year': u'2018', u'app': u'', u'date_hour': u'15', u'product': u'', u'vendor': u'', u'ids_type': u'', u'date_second': u'40', u'date_wday': u'wednesday', u'object_category': u'', u'punct': u'__::__:___.', u'host': u'EMSCAL016D', u'_sourcetype': u'LINUX_DEV_RabbitMQ', u'_indextime': u'1521056261', u'_kv': u'1', u'splunk_server_group': u'dmc_group_indexer', u'_cd': u'178:16625884', u'_si': [u'abc.123.local', u'linux_dev_rabbitmq'], u'src': u'', u'timestartpos': u'0', u'date_month': u'march', u'enabled': u'', u'_subsecond': u'', u'unix_group': u'default', u'_time': u'1521056260', u'range': u'', u'date_mday': u'14', u'timeendpos': u'16', u'_raw': u'Mar 14 15:37:40 EMSCAL016D systemd: Stopped RabbitMQ broker.', u'unix_category': u'all_hosts', u'_serial': u'0', u'tag::app': u''}, u'sid': u'scheduler__john__search__RMD5aaf2801911994ffa_at_1521059520_151', u'owner': u'john'}, 'headers': {'X-Request-Id': '14b90084-4c96-4a8d-ba0a-e2000f7311a0', 'Accept-Encoding': 'identity', 'X-Forwarded-For': '1.1.1.150', 'Content-Length': '1486', 'User-Agent': 'Splunk/FDDD4C40-0DD9-40BE-9660-82A901EE9441', 'Host': 'emsa066d,emsa066d', 'X-Real-Ip': '1.1.1.150', 'Content-Type': 'application/json'}}},_trigger={'uid': u'trigger:core:f7542b9a-9d6a-4ea7-9629-00046a7cce17:d9fa276bb6d2248cff2712a30c1460ed', 'parameters': {u'url': u'splunk_test3'}, 'ref': u'core.f7542b9a-9d6a-4ea7-9629-00046a7cce17', 'ref_count': 1, 'name': u'f7542b9a-9d6a-4ea7-9629-00046a7cce17', 'pack': u'core', 'type': u'core.st2.webhook', 'id': '5aa984eb7784833651eafa3f', 'description': None},_rule={'description': u'Sample rule dumping webhook payload to a file.', 'tags': [], 'ref': u'examples.splunk_test3', 'enabled': True, 'name': u'splunk_test3', 'trigger': u'core.f7542b9a-9d6a-4ea7-9629-00046a7cce17', 'criteria': {u'trigger.result': {u'pattern': u'Stopped', u'type': u'regex'}}, 'action': 'ActionExecutionSpecDB@139666330751952(ref="core.local", parameters="{u\'cmd\': u\'touch /abc.txt\', u\'cwd\': u\'/tmp\'}")', 'pack': u'examples', 'type': 'RuleTypeSpecDB@139666330752848(ref="standard", parameters="{}")', 'id': '5aa984eb7784833651eafa40', 'uid': u'rule:examples:splunk_test3'})
+2018-03-14 16:32:19,304 139666326579472 INFO matcher [-] 0 rule(s) found to enforce for f7542b9a-9d6a-4ea7-9629-00046a7cce17.
+2018-03-14 16:32:19,305 139666326579472 INFO engine [-] Matched 0 rule(s) for trigger_instance 5aa986d3778483286e43bc27 (trigger=core.f7542b9a-9d6a-4ea7-9629-00046a7cce17)
+2018-03-14 16:32:19,305 139666326579472 INFO engine [-] No matching rules found for trigger instance 5aa986d3778483286e43bc27.
+</code></pre>
+          <p><a href="https://forum.stackstorm.com/t/error-in-rule-action-piece-is-not-being-performed/56/8">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/error-in-rule-action-piece-is-not-being-performed/56/8</link>
+        <pubDate>Thu, 15 Mar 2018 14:13:26 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-56-8</guid>
+        <source url="https://forum.stackstorm.com/t/error-in-rule-action-piece-is-not-being-performed/56.rss">Error in Rule, action piece is not being performed</source>
+      </item>
+      <item>
+        <title>Error in Rule, action piece is not being performed</title>
+        <dc:creator><![CDATA[lhill]]></dc:creator>
+        <description><![CDATA[
+            <p>How are you testing that webhook <a class="mention" href="https://github.com/john_p">@John_P</a>? With <code>curl</code>, or from Splunk? If you’re testing it from Splunk, I don’t think <code>trigger.body.name</code> will match anything. The body that you get posted from Splunk doesn’t contain that field.</p>
+<p>Looks like this was your earlier payload:</p>
+<pre><code class="lang-json">‘payload’: {‘body’: {u’results_link’: u’https://abc.123.local:8000/app/search/search?q=|loadjob%20rt_scheduler__john_YWxlcnRfbG9nZXZlbnQ__testing_at_1520860980_24219.409_2D6D92F7-0525-41CB-909C-FA732D025C1A%20|%20head%201%20|%20tail%201&amp;earliest=0&amp;latest=now’, u’app’: u’alert_logevent’, u’search_name’: u’testing’, u’result’: {u’_si’: [u’abc.123.local’, u’os’], u’_confstr’: u’source::/var/log/messages|host::abc00006|syslog’, u’_time’: u’1521198257’, u’host’: u’hlp00006’, u’_sourcetype’: u’syslog’, u’_indextime’: u’1520865490’, u’_raw’: u’Mar 16 07:04:17 hlp00006 systemd[1]: Starting Session 2050 of user root.’, u’_serial’: u’96’}, u’sid’: u’rt_scheduler__john_YWxlcnRfbG9nZXZlbnQ__testing_at_1520860980_24219.409_2D6D92F7-0525-41CB-909C-FA732D025C1A’, u’owner’: u’john’
+</code></pre>
+<p>My guess is that you’re trying to match that <code>Starting Session</code> part? Doesn’t look like you’ve mapped that to any splunk field, it’s only going to show up as something like <code>trigger.body.result.raw</code></p>
+<p>What you could do is just have empty criteria, dump the body out to a text file like you’re doing, then see what is contained in that body.</p>
+          <p><a href="https://forum.stackstorm.com/t/error-in-rule-action-piece-is-not-being-performed/56/7">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/error-in-rule-action-piece-is-not-being-performed/56/7</link>
+        <pubDate>Tue, 13 Mar 2018 01:10:36 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-56-7</guid>
+        <source url="https://forum.stackstorm.com/t/error-in-rule-action-piece-is-not-being-performed/56.rss">Error in Rule, action piece is not being performed</source>
+      </item>
+      <item>
+        <title>Error in Rule, action piece is not being performed</title>
+        <dc:creator><![CDATA[nmaludy]]></dc:creator>
+        <description><![CDATA[
+            <p><a class="mention" href="https://github.com/john_p">@John_P</a> that looks right, I only see INFO messages. Is it working now?</p>
+<p>You can test pretty easily: <a href="https://docs.stackstorm.com/rules.html#testing-rules">Rules — StackStorm 2.6.0 documentation</a></p>
+          <p><a href="https://forum.stackstorm.com/t/error-in-rule-action-piece-is-not-being-performed/56/6">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/error-in-rule-action-piece-is-not-being-performed/56/6</link>
+        <pubDate>Mon, 12 Mar 2018 22:38:23 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-56-6</guid>
+        <source url="https://forum.stackstorm.com/t/error-in-rule-action-piece-is-not-being-performed/56.rss">Error in Rule, action piece is not being performed</source>
+      </item>
+      <item>
+        <title>Error in Rule, action piece is not being performed</title>
+        <dc:creator><![CDATA[John_P]]></dc:creator>
+        <description><![CDATA[
+            <p><a class="mention" href="https://github.com/nmaludy">@nmaludy</a> thanks for the reply again.</p>
+<p>I started with a new rule name and deleted the one you suggested.</p>
+<pre><code class="lang-auto">---
+name: "splunk_test2"
+pack: "examples"
+description: "Sample rule dumping webhook payload to a file."
+enabled: true
+
+trigger:
+    type: "core.st2.webhook"
+    parameters:
+        url: "splunk_test2"
+
+criteria:
+    trigger.body.name:
+        pattern: "Starting"
+        type: "equals"
+
+action:
+    ref: "core.local"
+    parameters:
+        cmd: "echo \"{{trigger.body}}\" &gt;&gt; ~/st2.webhook_sample.out ; sync"
+</code></pre>
+<p>This is the output from the log:</p>
+<pre><code class="lang-auto">2018-03-12 18:16:21,268 139936984933392 INFO engine [-] Found 1 rules defined for trigger core.2070f309-c941-4968-8657-8db00dea2870
+ 'Content-Type': 'application/json'}}},rule={'description': u'Sample rule dumping webhook payload to a file.', 'tags': [], 'ref': u'examples.splunk_test2', 'enabled': True, 'name': u'splunk_test2', 'trigger': u'core.2070f309-c941-4968-8657-8db00dea2870', 'criteria': {u'trigger.body.name': {u'pattern': u'Starting', u'type': u'equals'}}, 'action': 'ActionExecutionSpecDB@139936985668560(ref="core.local", parameters="{u\'cmd\': u\'echo "{{trigger.body}}" &gt;&gt; ~/st2.webhook_sample.out ; sync\'}")', 'pack': u'examples', 'type': 'RuleTypeSpecDB@139936985492432(ref="standard", parameters="{}")', 'id': '5aa6fa837784830ed2eae386', 'uid': u'rule:examples:splunk_test2'},trigger={'uid': u'trigger:core:2070f309-c941-4968-8657-8db00dea2870:9c3c218b0be7aaf956f7d83cca233d7b', 'parameters': {u'url': u'splunk_test2'}, 'ref': u'core.2070f309-c941-4968-8657-8db00dea2870', 'ref_count': 1, 'name': u'2070f309-c941-4968-8657-8db00dea2870', 'pack': u'core', 'type': u'core.st2.webhook', 'id': '5aa6fa837784830ed2eae385', 'description': None})
+2018-03-12 18:16:21,600 139936984933392 INFO matcher [-] 0 rule(s) found to enforce for 2070f309-c941-4968-8657-8db00dea2870.
+2018-03-12 18:16:21,600 139936984933392 INFO engine [-] Matched 0 rule(s) for trigger_instance 5aa6fc3377848324c2e6939f (trigger=core.2070f309-c941-4968-8657-8db00dea2870)
+2018-03-12 18:16:21,600 139936984933392 INFO engine [-] No matching rules found for trigger instance 5aa6fc3377848324c2e6939f.
+</code></pre>
+          <p><a href="https://forum.stackstorm.com/t/error-in-rule-action-piece-is-not-being-performed/56/5">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/error-in-rule-action-piece-is-not-being-performed/56/5</link>
+        <pubDate>Mon, 12 Mar 2018 22:25:05 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-56-5</guid>
+        <source url="https://forum.stackstorm.com/t/error-in-rule-action-piece-is-not-being-performed/56.rss">Error in Rule, action piece is not being performed</source>
+      </item>
+      <item>
+        <title>Error in Rule, action piece is not being performed</title>
+        <dc:creator><![CDATA[nmaludy]]></dc:creator>
+        <description><![CDATA[
+            <p><a class="mention" href="https://github.com/john_p">@John_P</a> looks like you changed the <code>name:</code> parameter in the file. This is what’s used as a reference in the database. The filename is not used, except for reading the spec from disk.</p>
+<p>You need to remove the old rule: <code>st2 rule delete examples.sample_rule_with_webhook</code></p>
+          <p><a href="https://forum.stackstorm.com/t/error-in-rule-action-piece-is-not-being-performed/56/4">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/error-in-rule-action-piece-is-not-being-performed/56/4</link>
+        <pubDate>Mon, 12 Mar 2018 19:14:28 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-56-4</guid>
+        <source url="https://forum.stackstorm.com/t/error-in-rule-action-piece-is-not-being-performed/56.rss">Error in Rule, action piece is not being performed</source>
+      </item>
+      <item>
+        <title>Error in Rule, action piece is not being performed</title>
+        <dc:creator><![CDATA[John_P]]></dc:creator>
+        <description><![CDATA[
+            <p>Thanks <a class="mention" href="https://github.com/nmaludy">@nmaludy</a> !</p>
+<p>I edited the rule as follows:</p>
+<pre><code class="lang-auto">--
+    name: "test1"
+    pack: "examples"
+    description: "Sample rule dumping webhook payload to a file."
+    enabled: true
+
+    trigger:
+        type: "core.st2.webhook"
+        parameters:
+            url: "splunk_test1"
+
+    criteria:
+        trigger.body.name:
+            pattern: "Start"
+            type: "equals"
+
+    action:
+        ref: "core.local"
+        parameters:
+            cmd: "echo \"{{trigger.body}}\" &gt;&gt; ~/st2.webhook_sample.out ; sync"
+</code></pre>
+<p>However in the logs, it’s still referring to the wildcard I had above.</p>
+<p>I tried reloading but still referring to the old rule with the wildcard</p>
+<pre><code class="lang-auto">st2ctl reload
+st2ctl reload --register-all
+</code></pre>
+<pre><code class="lang-auto">2018-03-12 13:18:02,794 139936980993840 ERROR filter [-] There might be a problem with the criteria in rule RuleDB(action=ActionExecutionSpecDB@139936985493200(ref="core.local", parameters="{u'cmd': u'echo "{{trigger.body}}" &gt;&gt; ~/st2.webhook_sample.out ; sync'}"), criteria={u'trigger.body.name': {u'pattern': u'Start*', u'type': u'matchwildcard'}}, description="Sample rule dumping webhook payload to a file.", enabled=True, id=5aa69cc6778483237724956f, name="sample_rule_with_webhook", pack="examples", ref="examples.sample_rule_with_webhook", tags=[], trigger="core.74017ce9-b665-4356-b8ca-bdf225786950", type=RuleTypeSpecDB@139936985492432(ref="standard", parameters="{}"), uid="rule:examples:sample_rule_with_webhook").
+Traceback (most recent call last):
+  File "/opt/stackstorm/st2/lib/python2.7/site-packages/st2reactor/rules/filter.py", line 145, in _check_criterion
+    result = op_func(value=payload_value, criteria_pattern=criteria_pattern)
+  File "/opt/stackstorm/st2/lib/python2.7/site-packages/st2common/operators.py", line 220, in match_wildcard
+    return fnmatch.fnmatch(value, criteria_pattern)
+  File "/opt/stackstorm/st2/lib/python2.7/fnmatch.py", line 43, in fnmatch
+    return fnmatchcase(name, pat)
+  File "/opt/stackstorm/st2/lib/python2.7/fnmatch.py", line 83, in fnmatchcase
+    return re_pat.match(name) is not None
+TypeError: expected string or buffer (_trigger_instance={'status': 'processing', 'occurrence_time': '2018-03-12 17:18:02.703268+00:00', 'trigger': u'core.74017ce9-b665-4356-b8ca-bdf225786950', 'id': '5aa6b64a77848324c2e67019', 'payload': {'body': {u'results_link': u'https://abc.123.local:8000/app/search/search?q=%7Cloadjob%20rt_scheduler__john_YWxlcnRfbG9nZXZlbnQ__testing_at_1520869500_25431.260_2D6D92F7-0525-41CB-909C-FA732D025C1A%20%7C%20head%201%20%7C%20tail%201&amp;earliest=0&amp;latest=now', u'app': u'alert_logevent', u'search_name': u'testing', u'result': {u'_si': [u'123.abc.local', u'os'], u'_confstr': u'source::/var/log/messages|host::abc301p|syslog', u'_time': u'1520875081', u'host': u'hsmjcl301p', u'_sourcetype': u'syslog', u'_indextime': u'1520875082', u'_raw': u'Mar 12 13:18:01 hsmjcl301p systemd[1]: Starting Session 14340 of user msms.', u'_serial': u'138'}, u'sid': u'rt_scheduler__speric_YWxlcnRfbG9nZXZlbnQ__testing_at_1520869500_25431.260_2D6D92F7-0525-41CB-909C-FA732D025C1A', u'owner': u'john'}, 'headers': {'X-Request-Id': 'eba9ea2d-eda3-4388-b404-c1034de2c7ad', 'Accept-Encoding': 'identity', 'X-Forwarded-For': '10.27.248.232', 'Content-Length': '771', 'User-Agent': 'Splunk/2D6D92F7-0525-41CB-909C-FA732D025C1A', 'Host': 'emsa066d,emsa066d', 'X-Real-Ip': '10.27.248.232', 'Content-Type': 'application/json'}}},_trigger={'uid': u'trigger:core:74017ce9-b665-4356-b8ca-bdf225786950:feec5050a7553f359ba5ff7624f093c8', 'parameters': {u'url': u'splunk_test'}, 'ref': u'core.74017ce9-b665-4356-b8ca-bdf225786950', 'ref_count': 2, 'name': u'74017ce9-b665-4356-b8ca-bdf225786950', 'pack': u'core', 'type': u'core.st2.webhook', 'id': '5aa15c4977848358ca3b36d5', 'description': None},_rule={'description': u'Sample rule dumping webhook payload to a file.', 'tags': [], 'ref': u'examples.sample_rule_with_webhook', 'enabled': True, 'name': u'sample_rule_with_webhook', 'trigger': u'core.74017ce9-b665-4356-b8ca-bdf225786950', 'criteria': {u'trigger.body.name': {u'pattern': u'Start*', u'type': u'matchwildcard'}}, 'action': 'ActionExecutionSpecDB@139936985493200(ref="core.local", parameters="{u\'cmd\': u\'echo "{{trigger.body}}" &gt;&gt; ~/st2.webhook_sample.out ; sync\'}")', 'pack': u'examples', 'type': 'RuleTypeSpecDB@139936985492432(ref="standard", parameters="{}")', 'id': '5aa69cc6778483237724956f', 'uid': u'rule:examples:sample_rule_with_webhook'})
+2018-03-12 13:18:02,802 139936980993840 INFO matcher [-] 0 rule(s) found to enforce for 74017ce9-b665-4356-b8ca-bdf225786950.
+2018-03-12 13:18:02,803 139936980993840 INFO engine [-] Matched 0 rule(s) for trigger_instance 5aa6b64a77848324c2e67019 (trigger=core.74017ce9-b665-4356-b8ca-bdf225786950)
+2018-03-12 13:18:02,803 139936980993840 INFO engine [-] No matching rules found for trigger instance 5aa6b64a77848324c2e67019.
+</code></pre>
+          <p><a href="https://forum.stackstorm.com/t/error-in-rule-action-piece-is-not-being-performed/56/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/error-in-rule-action-piece-is-not-being-performed/56/3</link>
+        <pubDate>Mon, 12 Mar 2018 17:29:41 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-56-3</guid>
+        <source url="https://forum.stackstorm.com/t/error-in-rule-action-piece-is-not-being-performed/56.rss">Error in Rule, action piece is not being performed</source>
+      </item>
+      <item>
+        <title>Error in Rule, action piece is not being performed</title>
+        <dc:creator><![CDATA[nmaludy]]></dc:creator>
+        <description><![CDATA[
+            <p><a class="mention" href="https://github.com/john_p">@John_P</a> it looks like you have a typo in your criteria section (reference here: <a href="https://docs.stackstorm.com/rules.html#criteria">Rules — StackStorm 2.6.0 documentation</a>)</p>
+<p>it should be something like</p>
+<pre><code class="lang-auto">criteria:
+  trigger.body.name:
+</code></pre>
+<p>The problem is the line <code>criteria: {}</code>. The extra <code>{}</code> should not be there. Instead the line should look like <code>criteria:</code></p>
+          <p><a href="https://forum.stackstorm.com/t/error-in-rule-action-piece-is-not-being-performed/56/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/error-in-rule-action-piece-is-not-being-performed/56/2</link>
+        <pubDate>Mon, 12 Mar 2018 15:41:30 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-56-2</guid>
+        <source url="https://forum.stackstorm.com/t/error-in-rule-action-piece-is-not-being-performed/56.rss">Error in Rule, action piece is not being performed</source>
+      </item>
+      <item>
+        <title>Error in Rule, action piece is not being performed</title>
+        <dc:creator><![CDATA[John_P]]></dc:creator>
+        <description><![CDATA[
+            <p>Fairly new to StackStorm. Trying to integrate a use case where Splunk is sending a webhook based on a particular patern over to StackStorm.</p>
+<p>When i try to create a rule with the following, the “action” piece is not being performed.</p>
+<pre><code class="lang-auto">---
+    name: "sample_rule_with_webhook"
+    pack: "examples"
+    description: "Sample rule dumping webhook payload to a file."
+    enabled: true
+
+    trigger:
+        type: "core.st2.webhook"
+        parameters:
+            url: "splunk_test"
+
+    criteria: {}
+        trigger.body.name:
+            pattern: "Start*"
+            type: "matchwildcard"
+
+    action:
+        ref: "core.local"
+        parameters:
+            cmd: "echo \"{{trigger.body}}\" &gt;&gt; ~/st2.webhook_sample.out ; sync"
+</code></pre>
+<p>I can see trigger in st2 trigger-instance list and shows processed. In the rule logs i see the following:</p>
+<pre><code class="lang-auto">2018-03-12 10:38:10,623 140227477546480 ERROR filter [-] There might be a problem with the criteria in rule RuleDB(action=ActionExecutionSpecDB@140227478157136(ref="core.local", parameters="{u'cmd': u'echo "{{trigger.body}}" &gt;&gt; ~/st2.webhook_sample.out ; sync'}"), criteria={u'trigger.body.name': {u'pattern': u'Starting', u'type': u'contains'}}, description="Splunk testing", enabled=True, id=5aa15c4c77848358ca3b36d6, name="splunk_test", pack="default", ref="default.splunk_test", tags=[], trigger="core.74017ce9-b665-4356-b8ca-bdf225786950", type=RuleTypeSpecDB@140227478354896(ref="standard", parameters="{}"), uid="rule:default:splunk_test").
+Traceback (most recent call last):
+  File "/opt/stackstorm/st2/lib/python2.7/site-packages/st2reactor/rules/filter.py", line 145, in _check_criterion
+    result = op_func(value=payload_value, criteria_pattern=criteria_pattern)
+  File "/opt/stackstorm/st2/lib/python2.7/site-packages/st2common/operators.py", line 159, in contains
+    return criteria_pattern in value
+TypeError: argument of type 'NoneType' is not iterable (_trigger_instance={'status': 'processing', 'occurrence_time': '2018-03-12 14:38:10.553211+00:00', 'trigger': u'core.74017ce9-b665-4356-b8ca-bdf225786950', 'id': '5aa690d2778483595ab63325', 'payload': {'body': {u'results_link': u'https://abc.123.local:8000/app/search/search?q=%7Cloadjob%20rt_scheduler__john_YWxlcnRfbG9nZXZlbnQ__testing_at_1520860980_24219.409_2D6D92F7-0525-41CB-909C-FA732D025C1A%20%7C%20head%201%20%7C%20tail%201&amp;earliest=0&amp;latest=now', u'app': u'alert_logevent', u'search_name': u'testing', u'result': {u'_si': [u'abc.123.local', u'os'], u'_confstr': u'source::/var/log/messages|host::abc00006|syslog', u'_time': u'1521198257', u'host': u'hlp00006', u'_sourcetype': u'syslog', u'_indextime': u'1520865490', u'_raw': u'Mar 16 07:04:17 hlp00006 systemd[1]: Starting Session 2050 of user root.', u'_serial': u'96'}, u'sid': u'rt_scheduler__john_YWxlcnRfbG9nZXZlbnQ__testing_at_1520860980_24219.409_2D6D92F7-0525-41CB-909C-FA732D025C1A', u'owner': u'john'}, 'headers': {'X-Request-Id': 'afe33463-6ceb-4960-a9b9-c7627b381dd0', 'Accept-Encoding': 'identity', 'X-Forwarded-For': '10.00.000.232', 'Content-Length': '763', 'User-Agent': 'Splunk/2D6D92F7-0525-41CB-909C-FA732D025C1A', 'Host': '123,123', 'X-Real-Ip': '10.27.248.232', 'Content-Type': 'application/json'}}},_trigger={'uid': u'trigger:core:74017ce9-b665-4356-b8ca-bdf225786950:feec5050a7553f359ba5ff7624f093c8', 'parameters': {u'url': u'splunk_test'}, 'ref': u'core.74017ce9-b665-4356-b8ca-bdf225786950', 'ref_count': 1, 'name': u'74017ce9-b665-4356-b8ca-bdf225786950', 'pack': u'core', 'type': u'core.st2.webhook', 'id': '5aa15c4977848358ca3b36d5', 'description': None},_rule={'description': u'Splunk testing', 'tags': [], 'ref': u'default.splunk_test', 'enabled': True, 'name': u'splunk_test', 'trigger': u'core.74017ce9-b665-4356-b8ca-bdf225786950', 'criteria': {u'trigger.body.name': {u'pattern': u'Starting', u'type': u'contains'}}, 'action': 'ActionExecutionSpecDB@140227478157136(ref="core.local", parameters="{u\'cmd\': u\'echo "{{trigger.body}}" &gt;&gt; ~/st2.webhook_sample.out ; sync\'}")', 'pack': u'default', 'type': 'RuleTypeSpecDB@140227478354896(ref="standard", parameters="{}")', 'id': '5aa15c4c77848358ca3b36d6', 'uid': u'rule:default:splunk_test'})
+2018-03-12 10:38:10,632 140227477546480 INFO matcher [-] 0 rule(s) found to enforce for 74017ce9-b665-4356-b8ca-bdf225786950.
+2018-03-12 10:38:10,632 140227477546480 INFO engine [-] Matched 0 rule(s) for trigger_instance 5aa690d2778483595ab63325 (trigger=core.74017ce9-b665-4356-b8ca-bdf225786950)
+2018-03-12 10:38:10,632 140227477546480 INFO engine [-] No matching rules found for trigger instance 5aa690d2778483595ab63325.
+</code></pre>
+<p>Any advice would be greatly appreciated.</p>
+          <p><a href="https://forum.stackstorm.com/t/error-in-rule-action-piece-is-not-being-performed/56/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/error-in-rule-action-piece-is-not-being-performed/56/1</link>
+        <pubDate>Mon, 12 Mar 2018 14:47:52 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-56-1</guid>
+        <source url="https://forum.stackstorm.com/t/error-in-rule-action-piece-is-not-being-performed/56.rss">Error in Rule, action piece is not being performed</source>
+      </item>
+  </channel>
+</rss>

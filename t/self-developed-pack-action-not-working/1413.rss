@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Self developed pack/action not working</title>
+    <link>https://forum.stackstorm.com/t/self-developed-pack-action-not-working/1413</link>
+    <description>Hi,
+
+I am new to Stack Storm and wanted to create an own package.
+
+To get started my idea was to create a simple pack containing only one python action.
+Therefore I followed the docs (https://docs.stackstorm.com/reference/packs.html) and created a python-script action only doing a print and returning the value.
+Installing the package was fine but if I execute the action I always get this error:
+
+```
+Traceback (most recent call last):
+  File &quot;/opt/stackstorm/st2/local/lib/python2.7/site-packages/python_runner/python_action_wrapper.py&quot;, line 333, in &lt;module&gt;
+    obj.run()
+  File &quot;/opt/stackstorm/st2/local/lib/python2.7/site-packages/python_runner/python_action_wrapper.py&quot;, line 191, in run
+    action = self._get_action_instance()
+  File &quot;/opt/stackstorm/st2/local/lib/python2.7/site-packages/python_runner/python_action_wrapper.py&quot;, line 260, in _get_action_instance
+    action_service=action_service)
+  File &quot;/opt/stackstorm/st2/lib/python2.7/site-packages/st2common/runners/utils.py&quot;, line 142, in get_action_class_instance
+    action_instance = action_cls(**kwargs)
+TypeError: __init__() got an unexpected keyword argument &#39;config&#39;
+```
+
+Have I missed any basic step?
+
+Thanks.
+Nikolas</description>
+    
+    <lastBuildDate>Fri, 11 Sep 2020 09:55:59 +0000</lastBuildDate>
+    <category>Uncategorized</category>
+    <atom:link href="https://forum.stackstorm.com/t/self-developed-pack-action-not-working/1413.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Self developed pack/action not working</title>
+        <dc:creator><![CDATA[wingi]]></dc:creator>
+        <description><![CDATA[
+            <p>I identified the issue. Forgot to import Base Action:</p>
+<blockquote>
+<p>from st2common.runners.base_action import Action</p>
+</blockquote>
+<p>After adding this it worked.</p>
+          <p><a href="https://forum.stackstorm.com/t/self-developed-pack-action-not-working/1413/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/self-developed-pack-action-not-working/1413/3</link>
+        <pubDate>Fri, 11 Sep 2020 09:55:59 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1413-3</guid>
+        <source url="https://forum.stackstorm.com/t/self-developed-pack-action-not-working/1413.rss">Self developed pack/action not working</source>
+      </item>
+      <item>
+        <title>Self developed pack/action not working</title>
+        <dc:creator><![CDATA[nmaludy]]></dc:creator>
+        <description><![CDATA[
+            <p><a class="mention" href="https://github.com/wingi">@wingi</a> can you share a copy of your python action that you’re trying?</p>
+          <p><a href="https://forum.stackstorm.com/t/self-developed-pack-action-not-working/1413/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/self-developed-pack-action-not-working/1413/2</link>
+        <pubDate>Thu, 10 Sep 2020 18:57:42 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1413-2</guid>
+        <source url="https://forum.stackstorm.com/t/self-developed-pack-action-not-working/1413.rss">Self developed pack/action not working</source>
+      </item>
+      <item>
+        <title>Self developed pack/action not working</title>
+        <dc:creator><![CDATA[wingi]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi,</p>
+<p>I am new to Stack Storm and wanted to create an own package.</p>
+<p>To get started my idea was to create a simple pack containing only one python action.<br>
+Therefore I followed the docs (<a href="https://docs.stackstorm.com/reference/packs.html" class="inline-onebox" rel="nofollow noopener">Create and Contribute a Pack — StackStorm 3.2.0 documentation</a>) and created a python-script action only doing a print and returning the value.<br>
+Installing the package was fine but if I execute the action I always get this error:</p>
+<pre><code class="lang-auto">Traceback (most recent call last):
+  File "/opt/stackstorm/st2/local/lib/python2.7/site-packages/python_runner/python_action_wrapper.py", line 333, in &lt;module&gt;
+    obj.run()
+  File "/opt/stackstorm/st2/local/lib/python2.7/site-packages/python_runner/python_action_wrapper.py", line 191, in run
+    action = self._get_action_instance()
+  File "/opt/stackstorm/st2/local/lib/python2.7/site-packages/python_runner/python_action_wrapper.py", line 260, in _get_action_instance
+    action_service=action_service)
+  File "/opt/stackstorm/st2/lib/python2.7/site-packages/st2common/runners/utils.py", line 142, in get_action_class_instance
+    action_instance = action_cls(**kwargs)
+TypeError: __init__() got an unexpected keyword argument 'config'
+</code></pre>
+<p>Have I missed any basic step?</p>
+<p>Thanks.<br>
+Nikolas</p>
+          <p><a href="https://forum.stackstorm.com/t/self-developed-pack-action-not-working/1413/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/self-developed-pack-action-not-working/1413/1</link>
+        <pubDate>Thu, 10 Sep 2020 18:55:01 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1413-1</guid>
+        <source url="https://forum.stackstorm.com/t/self-developed-pack-action-not-working/1413.rss">Self developed pack/action not working</source>
+      </item>
+  </channel>
+</rss>

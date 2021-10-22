@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en" class="desktop-view not-mobile-device text-size-normal anon">
+<head>
+    <meta charset="utf-8">
+    <title>Python Client Failed to establish a new connection - API - StackStorm Support (ARCHIVED)</title>
+    <meta name="description" content="I am trying to use python client to connect 
+&amp;gt;&amp;gt;&amp;gt; from st2client.client import Client
+&amp;gt;&amp;gt;&amp;gt; from st2client import models
+&amp;gt;&amp;gt;&amp;gt; client = Client(base_url=&amp;#39;http://10.29.95.102&amp;#39;)
+&amp;gt;&amp;gt;&amp;gt; rules = client.rules.get_all()
+
+but after last&amp;hellip;">
+    <meta name="discourse_theme_id" content="2">
+    <meta name="discourse_current_homepage" content="latest">
+    <meta name="generator"
+          content="Discourse 2.8.0.beta6 - https://github.com/discourse/discourse version a1daf9fe53a66e2d2cdf9757ab4812fb9a2b2787">
+    <link rel="icon" type="image/png"
+          href="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/379ced12f8326d58f1b3d2b3ff652f883e141f6a_2_32x32.PNG">
+    <link rel="apple-touch-icon" type="image/png"
+          href="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/379ced12f8326d58f1b3d2b3ff652f883e141f6a_2_180x180.PNG">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <link rel="canonical" href="169.html"/>
+    <script type="application/ld+json">{
+        "@context": "http://schema.org",
+        "@type": "WebSite",
+        "url": "https://forum.stackstorm.com",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://forum.stackstorm.com/search?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }
+    </script>
+    <link rel="search" type="application/opensearchdescription+xml" href="../../opensearch.xml"
+          title="StackStorm Support (ARCHIVED) Search">
+
+
+    <link href="/../../stylesheets/color_definitions_base__2_3c5eec1ecf192052ea70b4afdab57a62bccc0604.css?__ws=forum.stackstorm.com"
+          media="all" rel="stylesheet" class="light-scheme"/>
+
+    <link href="/../../stylesheets/desktop_b2f2968742d41481357e0df259b51ce29f72481a.css?__ws=forum.stackstorm.com"
+          media="all" rel="stylesheet" data-target="desktop"/>
+
+
+    <meta name="fragment" content="!">
+
+
+    <link id="manifest-link" rel="manifest" href="../../manifest.webmanifest" crossorigin="use-credentials">
+
+
+    <link rel="alternate" type="application/rss+xml"
+          title="RSS feed of &#39;Python Client Failed to establish a new connection&#39;"
+          href="https://forum.stackstorm.com/t/python-client-failed-to-establish-a-new-connection/169.rss"/>
+    <meta property="og:site_name" content="StackStorm Support (ARCHIVED)"/>
+    <meta property="og:type" content="website"/>
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:image"
+          content="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/891f00fbdb31fecb5bd9dab30c186d2fed0091ca.jpeg"/>
+    <meta property="og:image"
+          content="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/891f00fbdb31fecb5bd9dab30c186d2fed0091ca.jpeg"/>
+    <meta property="og:url"
+          content="https://forum.stackstorm.com/t/python-client-failed-to-establish-a-new-connection/169"/>
+    <meta name="twitter:url"
+          content="https://forum.stackstorm.com/t/python-client-failed-to-establish-a-new-connection/169"/>
+    <meta property="og:title" content="Python Client Failed to establish a new connection"/>
+    <meta name="twitter:title" content="Python Client Failed to establish a new connection"/>
+    <meta property="og:description"
+          content="I am trying to use python client to connect  &gt;&gt;&gt; from st2client.client import Client &gt;&gt;&gt; from st2client import models &gt;&gt;&gt; client = Client(base_url=&#39;http://10.29.95.102&#39;) &gt;&gt;&gt; rules = client.rules.get_all()  but after last command getting error below ?  requests.exceptions.ConnectionError: HTTPConnectionPool(host=&#39;10.29.95.102&#39;, port=9101): Max retries exceeded with url: /v1/rules (Caused by NewConnectionError(&#39;&lt;requests.packages.urllib3.connection.HTTPConnection object at 0x7f34b197a4d0&gt;: Failed ..."/>
+    <meta name="twitter:description"
+          content="I am trying to use python client to connect  &gt;&gt;&gt; from st2client.client import Client &gt;&gt;&gt; from st2client import models &gt;&gt;&gt; client = Client(base_url=&#39;http://10.29.95.102&#39;) &gt;&gt;&gt; rules = client.rules.get_all()  but after last command getting error below ?  requests.exceptions.ConnectionError: HTTPConnectionPool(host=&#39;10.29.95.102&#39;, port=9101): Max retries exceeded with url: /v1/rules (Caused by NewConnectionError(&#39;&lt;requests.packages.urllib3.connection.HTTPConnection object at 0x7f34b197a4d0&gt;: Failed ..."/>
+    <meta property="article:published_time" content="2018-06-11T19:47:52+00:00"/>
+    <meta property="og:ignore_canonical" content="true"/>
+
+
+    <script type="application/ld+json">{
+        "@context": "http://schema.org",
+        "@type": "QAPage",
+        "name": "Python Client Failed to establish a new connection",
+        "mainEntity": {
+            "@type": "Question",
+            "name": "Python Client Failed to establish a new connection",
+            "text": "I am trying to use python client to connect\n\n&gt;&gt;&gt; from st2client.client import Client\n\n&gt;&gt;&gt; from st2client import models\n\n&gt;&gt;&gt; client = Client(base_url=&#39;http://10.29.95.102&#39;)\n\n&gt;&gt;&gt; rules = client.rules.get_all()\n\nbut after last command getting error below ?\n\nrequests.exceptions.ConnectionError: HTTPConnect&hellip;",
+            "upvoteCount": 0,
+            "answerCount": 1,
+            "dateCreated": "2018-06-11T19:47:52.055Z",
+            "author": {
+                "@type": "Person",
+                "name": "Irek Romaniuk"
+            },
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Thnx, finally I figured it out\n\nclient = Client(api_url=&#39;https://10.29.95.102/api&#39;,token=&quot;xxxx&quot;)",
+                "upvoteCount": 0,
+                "dateCreated": "2018-06-11T20:17:45.919Z",
+                "url": "https://forum.stackstorm.com/t/python-client-failed-to-establish-a-new-connection/169/12",
+                "author": {
+                    "@type": "Person",
+                    "name": "irom77"
+                }
+            }
+        }
+    }
+    </script>
+
+    <meta id="data-discourse-setup" data-cdn="https://sjc6.discourse-cdn.com/standard10"
+          data-base-url="https://forum.stackstorm.com" data-base-uri="" data-environment="production"
+          data-letter-avatar-version="5_8fec8e114563efeaf5265573e510f08e"
+          data-markdown-it-url="https://aws1.discourse-cdn.com/standard10/assets/markdown-it-bundle-31e9a9c535ca1801c26da78b0ff465821751a98f921c5cdc5457d7e5a69e9748.js"
+          data-service-worker-url="service-worker.js" data-default-locale="en"
+          data-asset-version="597e36448c9b51d0fa3b7e43ec1fd6d5" data-disable-custom-css="false"
+          data-highlight-js-path="/highlight-js/forum.stackstorm.com/ac0f4aa001e1343346941766d72e0c1ae330832b.js"
+          data-svg-sprite-path="/svg-sprite/forum.stackstorm.com/svg-2-c2ad434b1e06079c7e282124aed9938dc95b83ea.js"
+          data-enable-js-error-reporting="true" data-color-scheme-is-dark="false" data-user-dark-scheme-id="-1"
+          data-s3-cdn="https://aws1.discourse-cdn.com/standard10"
+          data-s3-base-url="//discourse-cloud-file-uploads.s3.dualstack.us-west-2.amazonaws.com/standard10">
+
+    <meta name="discourse/config/environment"
+          content="%7B%22modulePrefix%22%3A%22discourse%22%2C%22environment%22%3A%22production%22%2C%22rootURL%22%3A%22%22%2C%22locationType%22%3A%22auto%22%2C%22historySupportMiddleware%22%3Afalse%2C%22EmberENV%22%3A%7B%22FEATURES%22%3A%7B%7D%2C%22EXTEND_PROTOTYPES%22%3A%7B%22Date%22%3Afalse%7D%2C%22_APPLICATION_TEMPLATE_WRAPPER%22%3Afalse%2C%22_DEFAULT_ASYNC_OBSERVERS%22%3Atrue%2C%22_JQUERY_INTEGRATION%22%3Atrue%7D%2C%22APP%22%3A%7B%22name%22%3A%22discourse%22%2C%22version%22%3A%222.8.0.beta6%20a1daf9fe53a66e2d2cdf9757ab4812fb9a2b2787%22%2C%22exportApplicationGlobal%22%3Atrue%7D%7D"/>
+</head>
+
+<body class="">
+
+
+<header class="d-header">
+    <div class="wrap">
+        <div class="contents clearfix">
+            <div class="title">
+                <a href="../../index.html">
+                    <picture>
+                        <img src="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png"
+                             alt="StackStorm Support (ARCHIVED)" id="site-logo"/>
+                    </picture>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</header>
+
+<div id="main-outlet" class="wrap" role="main">
+    <!-- preload-content: -->
+
+    <!-- EOF START -->
+    <div class="container" id="main-container">
+        <div id="ember11" class="ember-view"></div>
+        <div id="ember12" class="controls ember-view"><!----></div>
+        <div id="ember13" class="ember-view"><!----></div>
+        <div id="ember14" class="ember-view">
+            <div class="row">
+                <div id="global-notice-alert-read-only" class="alert alert-info alert-read-only">
+                    <!----> <span class="text">This site is in read only mode. Please continue to browse, but replying, likes, and other actions are disabled for now.</span>
+
+                    <!---->    </div>
+            </div>
+            <div class="row">
+                <div id="global-notice-alert-global-notice" class="alert alert-info alert-global-notice">
+                    <!----> <span class="text"><h3>⚠️ We've moved!</h3>  <p> Hi there!<br><br> To reduce project dependency on 3rd party paid services the StackStorm TSC has decided to move the Q/A from this forum to <a
+                        href="https://github.com/StackStorm/st2/discussions">Github Discussions</a>. This will make user experience better integrated with the native Github flow, as well as the questions closer to the community where they can provide answers. </p>  <p> Use 🔗 <b><a
+                        href="https://github.com/StackStorm/st2/discussions" class="active">Github Discussions</a></b> to ask your questions. </p></span>
+
+                    <!---->    </div>
+            </div>
+        </div>
+        <div id="ember17" class="hidden create-topics-notice ember-view"><!----></div>
+        <!---->
+    </div>
+    <!-- EOF END -->
+    <div id="topic-title">
+        <h1>
+            <a href="169.html">Python Client Failed to establish a new connection</a>
+        </h1>
+
+        <div class="topic-category" itemscope itemtype="http://schema.org/BreadcrumbList">
+          <span itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a href="../../c/core-st2-platform-issues/6" class="badge-wrapper bullet" itemprop="item">
+              <span class='badge-category-bg' style='background-color: #AB9364'></span>
+              <span class='badge-category clear-badge'>
+                <span class='category-name' itemprop='name'>Platform</span>
+              </span>
+            </a>
+            <meta itemprop="position" content="1"/>
+          </span>
+            <span itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a href="../../c/core-st2-platform-issues/stackstorm-api-related-issues/7" class="badge-wrapper bullet"
+               itemprop="item">
+              <span class='badge-category-bg' style='background-color: #AB9364'></span>
+              <span class='badge-category clear-badge'>
+                <span class='category-name' itemprop='name'>API</span>
+              </span>
+            </a>
+            <meta itemprop="position" content="2"/>
+          </span>
+        </div>
+
+        <div class="topic-category">
+            <div class='discourse-tags list-tags'>
+                <a href='../../tag/python' class='discourse-tag' rel="tag">python</a>,
+                <a href='../../tag/st2client' class='discourse-tag' rel="tag">st2client</a>,
+                <a href='../../tag/api' class='discourse-tag' rel="tag">api</a>
+            </div>
+        </div>
+    </div>
+
+
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/irom77'><span itemprop='name'>irom77</span></a>
+            (Irek Romaniuk)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="169.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2018-06-11T19:47:52Z' class='post-time'>
+                June 11, 2018,  7:47pm
+              </time>
+              <meta itemprop='dateModified' content='2018-06-11T20:34:59Z'>
+          <span itemprop='position'>#1</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>I am trying to use python client to connect</p>
+            <pre><code class="lang-auto">&gt;&gt;&gt; from st2client.client import Client
+&gt;&gt;&gt; from st2client import models
+&gt;&gt;&gt; client = Client(base_url='http://10.29.95.102')
+&gt;&gt;&gt; rules = client.rules.get_all()
+</code></pre>
+            <p>but after last command getting error below ?</p>
+            <pre><code class="lang-auto">requests.exceptions.ConnectionError: HTTPConnectionPool(host='10.29.95.102', port=9101): Max retries exceeded with url: /v1/rules (Caused by NewConnectionError('&lt;requests.packages.urllib3.connection.HTTPConnection object at 0x7f34b197a4d0&gt;: Failed to establish a new connection: [Errno 111] Connection refused',))
+</code></pre>
+            <p>On server I can see this is reset <img src="https://emoji.discourse-cdn.com/apple/slight_smile.png?v=5"
+                                                      title=":slight_smile:" class="emoji" alt=":slight_smile:"></p>
+            <pre><code class="lang-auto">IP 10.29.95.102.9101 &gt; 10.199.107.14.51032: Flags [R.]
+</code></pre>
+        </div>
+
+        <meta itemprop='headline' content='Python Client Failed to establish a new connection'>
+        <meta itemprop='keywords' content='python, st2client, api'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/lhill'><span itemprop='name'>lhill</span></a>
+            (Lindsay Hill)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="169.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2018-06-11T19:55:58Z' class='post-time'>
+                June 11, 2018,  7:55pm
+              </time>
+              <meta itemprop='dateModified' content='2018-06-11T19:55:58Z'>
+          <span itemprop='position'>#2</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>So…have you configured your API service to listen on that port on that IP?</p>
+            <p>RST flag means the port is closed, so I’m guessing the answer is “no”.</p>
+            <p>You almost certainly don’t want to connect to the API service using http. You almost certainly want to go
+                via https://&lt;your_IP&gt;/api</p>
+        </div>
+
+        <meta itemprop='headline' content='Python Client Failed to establish a new connection'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/irom77'><span itemprop='name'>irom77</span></a>
+            (Irek Romaniuk)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="169.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2018-06-11T19:58:16Z' class='post-time'>
+                June 11, 2018,  7:58pm
+              </time>
+              <meta itemprop='dateModified' content='2018-06-11T19:58:16Z'>
+          <span itemprop='position'>#3</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Will you send me to the doc ? I mean how to setup API service ?</p>
+        </div>
+
+        <meta itemprop='headline' content='Python Client Failed to establish a new connection'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/lhill'><span itemprop='name'>lhill</span></a>
+            (Lindsay Hill)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="169.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2018-06-11T19:58:58Z' class='post-time'>
+                June 11, 2018,  7:58pm
+              </time>
+              <meta itemprop='dateModified' content='2018-06-11T19:58:58Z'>
+          <span itemprop='position'>#4</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <blockquote>
+                <p>I mean how to setup API service ?</p>
+            </blockquote>
+            <p>What setup do you want to do?</p>
+        </div>
+
+        <meta itemprop='headline' content='Python Client Failed to establish a new connection'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/irom77'><span itemprop='name'>irom77</span></a>
+            (Irek Romaniuk)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="169.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2018-06-11T20:01:45Z' class='post-time'>
+                June 11, 2018,  8:01pm
+              </time>
+              <meta itemprop='dateModified' content='2018-06-11T20:01:45Z'>
+          <span itemprop='position'>#5</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <aside class="quote no-group" data-post="2" data-topic="169">
+                <div class="title">
+                    <div class="quote-controls"></div>
+                    <img alt width="20" height="20" src="https://avatars.discourse.org/v2/letter/l/edb3f5/40.png"
+                         class="avatar"> lhill:
+                </div>
+                <blockquote>
+                    <p>configured your API service to listen</p>
+                </blockquote>
+            </aside>
+            <p>How to configure my API service to listen ?</p>
+        </div>
+
+        <meta itemprop='headline' content='Python Client Failed to establish a new connection'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/lhill'><span itemprop='name'>lhill</span></a>
+            (Lindsay Hill)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="169.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2018-06-11T20:02:28Z' class='post-time'>
+                June 11, 2018,  8:02pm
+              </time>
+              <meta itemprop='dateModified' content='2018-06-11T20:02:28Z'>
+          <span itemprop='position'>#6</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <blockquote>
+                <p>You almost certainly don’t want to connect to the API service using http. You almost certainly want
+                    to go via https://&lt;your_IP&gt;/api</p>
+            </blockquote>
+        </div>
+
+        <meta itemprop='headline' content='Python Client Failed to establish a new connection'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/irom77'><span itemprop='name'>irom77</span></a>
+            (Irek Romaniuk)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="169.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2018-06-11T20:04:57Z' class='post-time'>
+                June 11, 2018,  8:04pm
+              </time>
+              <meta itemprop='dateModified' content='2018-06-11T20:04:57Z'>
+          <span itemprop='position'>#7</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>But when I try client = Client(base_url=‘<a href="https://10.29.95.102" rel="nofollow noopener">https://10.29.95.102</a>’)
+                then getting same error</p>
+            <pre><code class="lang-auto">requests.exceptions.ConnectionError: HTTPSConnectionPool(host='10.29.95.102', port=9101): Max retries exceeded with url: /v1/rules (Caused by NewConnectionError('&lt;requests.packages.urllib3.connection.VerifiedHTTPSConnection object at 0x7f34b19e3890&gt;: Failed to establish a new connection: [Errno 111] Connection refused',))
+</code></pre>
+        </div>
+
+        <meta itemprop='headline' content='Python Client Failed to establish a new connection'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/irom77'><span itemprop='name'>irom77</span></a>
+            (Irek Romaniuk)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="169.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2018-06-11T20:07:08Z' class='post-time'>
+                June 11, 2018,  8:07pm
+              </time>
+              <meta itemprop='dateModified' content='2018-06-11T20:07:08Z'>
+          <span itemprop='position'>#8</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>sorry , better now but new error</p>
+            <pre><code class="lang-auto">&gt;&gt;&gt; client = Client(base_url='https://10.29.95.102/api')
+&gt;&gt;&gt; rules = client.rules.get_all()
+/usr/local/lib/python2.7/dist-packages/requests-2.14.2-py2.7.egg/requests/packages/urllib3/connectionpool.py:852: InsecureRequestWarning: Unverified HTTPS request is being made. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings
+  InsecureRequestWarning)
+Traceback (most recent call last):
+  File "&lt;stdin&gt;", line 1, in &lt;module&gt;
+  File "st2client/models/core.py", line 40, in decorate
+    return func(*args, **kwargs)
+  File "st2client/models/core.py", line 193, in get_all
+    self.handle_error(response)
+  File "st2client/models/core.py", line 166, in handle_error
+    response.raise_for_status()
+  File "/usr/local/lib/python2.7/dist-packages/requests-2.14.2-py2.7.egg/requests/models.py", line 928, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 404 Client Error: Not Found
+Unable to retrieve detailed message from the HTTP response. No JSON object could be decoded
+ for url: https://10.29.95.102/api:9101/v1/rules
+</code></pre>
+        </div>
+
+        <meta itemprop='headline' content='Python Client Failed to establish a new connection'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/lhill'><span itemprop='name'>lhill</span></a>
+            (Lindsay Hill)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="169.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2018-06-11T20:08:20Z' class='post-time'>
+                June 11, 2018,  8:08pm
+              </time>
+              <meta itemprop='dateModified' content='2018-06-11T20:08:20Z'>
+          <span itemprop='position'>#9</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Set <code>api_url</code> to https://ST2_IP/api</p>
+        </div>
+
+        <meta itemprop='headline' content='Python Client Failed to establish a new connection'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="2"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/lhill'><span itemprop='name'>lhill</span></a>
+            (Lindsay Hill)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="169.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2018-06-11T20:11:30Z' class='post-time'>
+                June 11, 2018,  8:11pm
+              </time>
+              <meta itemprop='dateModified' content='2018-06-11T20:11:30Z'>
+          <span itemprop='position'>#10</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Check <a href="https://github.com/StackStorm/st2/tree/master/st2client#endpoint-configuration">st2/st2client
+                at master · StackStorm/st2 · GitHub</a></p>
+        </div>
+
+        <meta itemprop='headline' content='Python Client Failed to establish a new connection'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/irom77'><span itemprop='name'>irom77</span></a>
+            (Irek Romaniuk)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="169.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2018-06-11T20:12:15Z' class='post-time'>
+                June 11, 2018,  8:12pm
+              </time>
+              <meta itemprop='dateModified' content='2018-06-11T20:12:15Z'>
+          <span itemprop='position'>#11</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Yeah, my example is from that url . Where do I put token ?</p>
+            <pre><code class="lang-auto">requests.exceptions.HTTPError: 401 Client Error: Unauthorized
+MESSAGE: Unauthorized - One of Token or API key required. for url: https://10.29.95.102/api/rules
+</code></pre>
+        </div>
+
+        <meta itemprop='headline' content='Python Client Failed to establish a new connection'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/irom77'><span itemprop='name'>irom77</span></a>
+            (Irek Romaniuk)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="169.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2018-06-11T20:17:45Z' class='post-time'>
+                June 11, 2018,  8:17pm
+              </time>
+              <meta itemprop='dateModified' content='2018-06-11T20:17:45Z'>
+          <span itemprop='position'>#12</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Thnx, finally I figured it out</p>
+            <pre><code class="lang-auto">client = Client(api_url='https://10.29.95.102/api',token="xxxx")
+</code></pre>
+        </div>
+
+        <meta itemprop='headline' content='Python Client Failed to establish a new connection'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+
+
+    <!-- :preload-content -->
+    <footer class="noscript-footer-nav">
+        <nav itemscope itemtype='http://schema.org/SiteNavigationElement'>
+            <a href='../../index.html'>Home</a>
+            <a href="../../categories.html">Categories</a>
+            <a href="https://forum.stackstorm.com/guidelines">FAQ/Guidelines</a>
+            <a href="../../tos.html">Terms of Service</a>
+            <a href="../../privacy.html">Privacy Policy</a>
+        </nav>
+    </footer>
+</div>
+
+<footer id='noscript-footer'>
+    <p>Powered by <a href="https://www.discourse.org">Discourse</a>, best viewed with JavaScript enabled</p>
+</footer>
+
+
+<section id='main'>
+</section>
+
+
+</body>
+</html>

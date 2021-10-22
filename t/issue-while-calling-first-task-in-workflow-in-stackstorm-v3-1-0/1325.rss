@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Issue while calling first task in workflow in stackstorm v3.1.0</title>
+    <link>https://forum.stackstorm.com/t/issue-while-calling-first-task-in-workflow-in-stackstorm-v3-1-0/1325</link>
+    <description>Hi Can we handle timeout action within the workflow by rerunning timeout action by calling action with the attribute &quot;do&quot; in st2 v3.1.0.
+I am using below code 
+```
+version: 1.0
+vars:
+  - ActionReTry: 0
+  - MaxActionReTry: 1
+tasks:
+  task1:
+    action: core.local
+    input:
+      cmd: ping 127.2.14.34
+      timeout: 10
+    next:
+      - when: &lt;% result().return_code=-9 and ctx(ActionReTry)=0%&gt;
+        publish: 
+          - data2: &quot;Yes&quot;
+          - ActioncountStr: &quot;{% set count = ctx(&#39;ActionReTry&#39;)+1 %}{{count}}&quot;
+          - ActionReTry: &quot;{{ ctx(&#39;ActioncountStr&#39;) | int }}&quot;
+        do: 
+          - task1
+      - when: &lt;% result().return_code=-9 and ctx(ActionReTry) = ctx(MaxActionReTry) %&gt;
+        publish:
+          - data2: &quot;Reached Max and timedout&quot;
+        do: 
+          - task3
+  task3:
+    action: core.echo
+    input:
+      message: &#39;stop&#39;
+```
+In this case it is not taking task1 to run when the condition satisfied.
+the same logic is working if I add a another action before task1 and make the present task1 as task2 it is working for rerunning the action when action get timeout i.e by using attribute &quot;do&quot; I am able to run from task2 but can&#39;t able to run as task1 don&#39;t know why that is happening. May I know why is that behaviour?
+
+Thanks in advance</description>
+    
+    <lastBuildDate>Fri, 10 Jul 2020 13:11:13 +0000</lastBuildDate>
+    <category>Workflows</category>
+    <atom:link href="https://forum.stackstorm.com/t/issue-while-calling-first-task-in-workflow-in-stackstorm-v3-1-0/1325.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Issue while calling first task in workflow in stackstorm v3.1.0</title>
+        <dc:creator><![CDATA[Balaji.p.s]]></dc:creator>
+        <description><![CDATA[
+            <p>Thanks for the information <a class="mention" href="https://github.com/sheshagiri">@Sheshagiri</a>. So as per your theory if the task don’t have associated with any parent it won’t be callable right ?<br>
+For all the tasks in workflow parent task is task1 ?</p>
+          <p><a href="https://forum.stackstorm.com/t/issue-while-calling-first-task-in-workflow-in-stackstorm-v3-1-0/1325/9">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/issue-while-calling-first-task-in-workflow-in-stackstorm-v3-1-0/1325/9</link>
+        <pubDate>Fri, 10 Jul 2020 13:11:13 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1325-9</guid>
+        <source url="https://forum.stackstorm.com/t/issue-while-calling-first-task-in-workflow-in-stackstorm-v3-1-0/1325.rss">Issue while calling first task in workflow in stackstorm v3.1.0</source>
+      </item>
+      <item>
+        <title>Issue while calling first task in workflow in stackstorm v3.1.0</title>
+        <dc:creator><![CDATA[Sheshagiri]]></dc:creator>
+        <description><![CDATA[
+            <p>I did some digging in the source code and found this example<br>
+</p><aside class="onebox githubblob">
+  <header class="source">
+      <a href="https://github.com/StackStorm/orquesta/blob/master/orquesta/tests/fixtures/workflows/native/cycles.yaml" target="_blank" rel="nofollow noopener">github.com</a>
+  </header>
+  <article class="onebox-body">
+    <h4><a href="https://github.com/StackStorm/orquesta/blob/master/orquesta/tests/fixtures/workflows/native/cycles.yaml" target="_blank" rel="nofollow noopener">StackStorm/orquesta/blob/master/orquesta/tests/fixtures/workflows/native/cycles.yaml</a></h4>
+<pre><code class="lang-yaml">version: 1.0
+
+description: A sample workflow with multiple cycles.
+
+input:
+  - count: 0
+
+tasks:
+  prep:
+    action: core.noop
+    next:
+      - when: &lt;% succeeded() %&gt;
+        do: task1
+  task1:
+    action: core.noop
+    next:
+      - when: &lt;% succeeded() %&gt;
+        publish:
+          - proceed: false
+        do: task2
+</code></pre>
+
+  This file has been truncated. <a href="https://github.com/StackStorm/orquesta/blob/master/orquesta/tests/fixtures/workflows/native/cycles.yaml" target="_blank" rel="nofollow noopener">show original</a>
+
+  </article>
+  <div class="onebox-metadata">
+    
+    
+  </div>
+  <div style="clear: both"></div>
+</aside>
+<br>
+as you rightly mentioned looks like the first task cannot call itself, my theory is because its a root task and doesn’t have a parent associated with it. I could be wrong here.
+<p>Based on the above example I put together the following workflow that will print the greeting <code>max_retry</code> number of times.</p>
+<pre><code class="lang-auto">---
+    version: '1.0'
+    input:
+        - action_retry: 1
+        - max_retry: 2
+        - greeting: 'hello'
+    output:
+        - greeting: &lt;% ctx().greeting %&gt;
+        - action_retry: &lt;% ctx().action_retry %&gt;
+    tasks:
+      setup:
+        action: core.noop
+        next:
+            - when: &lt;% succeeded() %&gt;
+              do: task1
+      task1:
+        action: core.echo message=&lt;% ctx().greeting %&gt;
+        next:
+            - when: &lt;% succeeded() and ctx().action_retry = ctx().max_retry %&gt;
+              do: finish
+            - when: &lt;% succeeded() and not ctx().action_retry = ctx().max_retry %&gt;
+              publish: 
+                - action_retry:  &lt;% ctx().action_retry + 1 %&gt;
+                - greeting: &lt;% ctx().greeting %&gt;, &lt;% result().stdout %&gt;
+              do: task1
+      finish:
+        action: core.noop
+</code></pre>
+<p>so following is the output</p>
+<pre><code class="lang-auto">root@2da88f4a3f92:/opt/stackstorm/packs/default# st2 run http.task_recursion
+..
+id: 5f0603b2c1c83bf95e23e53f
+action.ref: http.task_recursion
+parameters: None
+status: succeeded
+start_timestamp: Wed, 08 Jul 2020 17:34:42 UTC
+end_timestamp: Wed, 08 Jul 2020 17:34:44 UTC
+result:
+  output:
+    action_retry: 2
+    greeting: hello, hello
++--------------------------+------------------------+--------+-----------+------------------------------+
+| id                       | status                 | task   | action    | start_timestamp              |
++--------------------------+------------------------+--------+-----------+------------------------------+
+| 5f0603b2feda037f18a0693a | succeeded (0s elapsed) | setup  | core.noop | Wed, 08 Jul 2020 17:34:42    |
+|                          |                        |        |           | UTC                          |
+| 5f0603b2feda037f18a0693d | succeeded (1s elapsed) | task1  | core.echo | Wed, 08 Jul 2020 17:34:42    |
+|                          |                        |        |           | UTC                          |
+| 5f0603b3feda037f18a06940 | succeeded (0s elapsed) | task1  | core.echo | Wed, 08 Jul 2020 17:34:43    |
+|                          |                        |        |           | UTC                          |
+| 5f0603b3feda037f18a06943 | succeeded (1s elapsed) | finish | core.noop | Wed, 08 Jul 2020 17:34:43    |
+|                          |                        |        |           | UTC                          |
++--------------------------+------------------------+--------+-----------+------------------------------+
+root@2da88f4a3f92:/opt/stackstorm/packs/default#
+</code></pre>
+<p>I hope this helps.</p>
+          <p><a href="https://forum.stackstorm.com/t/issue-while-calling-first-task-in-workflow-in-stackstorm-v3-1-0/1325/8">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/issue-while-calling-first-task-in-workflow-in-stackstorm-v3-1-0/1325/8</link>
+        <pubDate>Wed, 08 Jul 2020 17:41:59 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1325-8</guid>
+        <source url="https://forum.stackstorm.com/t/issue-while-calling-first-task-in-workflow-in-stackstorm-v3-1-0/1325.rss">Issue while calling first task in workflow in stackstorm v3.1.0</source>
+      </item>
+      <item>
+        <title>Issue while calling first task in workflow in stackstorm v3.1.0</title>
+        <dc:creator><![CDATA[Balaji.p.s]]></dc:creator>
+        <description><![CDATA[
+            <p>Yes <a class="mention" href="https://github.com/sheshagiri">@Sheshagiri</a>. That’s the clarification I need is this possible to call task1 or not ?</p>
+          <p><a href="https://forum.stackstorm.com/t/issue-while-calling-first-task-in-workflow-in-stackstorm-v3-1-0/1325/7">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/issue-while-calling-first-task-in-workflow-in-stackstorm-v3-1-0/1325/7</link>
+        <pubDate>Wed, 08 Jul 2020 15:25:07 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1325-7</guid>
+        <source url="https://forum.stackstorm.com/t/issue-while-calling-first-task-in-workflow-in-stackstorm-v3-1-0/1325.rss">Issue while calling first task in workflow in stackstorm v3.1.0</source>
+      </item>
+      <item>
+        <title>Issue while calling first task in workflow in stackstorm v3.1.0</title>
+        <dc:creator><![CDATA[Sheshagiri]]></dc:creator>
+        <description><![CDATA[
+            <p>to be clear what you are saying is <code>task1</code> can call <code>task1</code>. something along the lines of</p>
+<pre><code class="lang-auto">---
+    version: '1.0'
+    tasks:
+      task1:
+        action: core.http url='&lt;URL&gt;'
+        next:
+          - when: &lt;% succeeded() %&gt;
+            publish:
+              - http_response: &lt;% result().body %&gt;
+          - do: task1
+</code></pre>
+          <p><a href="https://forum.stackstorm.com/t/issue-while-calling-first-task-in-workflow-in-stackstorm-v3-1-0/1325/6">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/issue-while-calling-first-task-in-workflow-in-stackstorm-v3-1-0/1325/6</link>
+        <pubDate>Wed, 08 Jul 2020 14:45:54 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1325-6</guid>
+        <source url="https://forum.stackstorm.com/t/issue-while-calling-first-task-in-workflow-in-stackstorm-v3-1-0/1325.rss">Issue while calling first task in workflow in stackstorm v3.1.0</source>
+      </item>
+      <item>
+        <title>Issue while calling first task in workflow in stackstorm v3.1.0</title>
+        <dc:creator><![CDATA[Balaji.p.s]]></dc:creator>
+        <description><![CDATA[
+            <p>I tried that a task can call itself. If we add simple echo task before task1 and call task2 in that case it is working fine, but when we are calling intial task then only it is giving error as above.<br>
+So we can call any tasks except task1  ? as it is throwing the error while we are calling task1 only.<br>
+Thanks</p>
+          <p><a href="https://forum.stackstorm.com/t/issue-while-calling-first-task-in-workflow-in-stackstorm-v3-1-0/1325/5">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/issue-while-calling-first-task-in-workflow-in-stackstorm-v3-1-0/1325/5</link>
+        <pubDate>Wed, 08 Jul 2020 10:52:56 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1325-5</guid>
+        <source url="https://forum.stackstorm.com/t/issue-while-calling-first-task-in-workflow-in-stackstorm-v3-1-0/1325.rss">Issue while calling first task in workflow in stackstorm v3.1.0</source>
+      </item>
+      <item>
+        <title>Issue while calling first task in workflow in stackstorm v3.1.0</title>
+        <dc:creator><![CDATA[Sheshagiri]]></dc:creator>
+        <description><![CDATA[
+            <p><a class="mention" href="https://github.com/balaji.p.s">@Balaji.p.s</a> I haven’t tried this but I don’t think a task can call itself(i.e it has to transition to another task). The example you cited looks like an ideal fit for <code>retry</code> but as you said that’s only available in <code>3.2.0</code>.</p>
+<p>That said I think if a cyclic loop is detected then it should at least throw an error. Probably worth creating an issue on <a href="https://github.com/StackStorm/orquesta/issues" rel="nofollow noopener">orquesta</a>.</p>
+          <p><a href="https://forum.stackstorm.com/t/issue-while-calling-first-task-in-workflow-in-stackstorm-v3-1-0/1325/4">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/issue-while-calling-first-task-in-workflow-in-stackstorm-v3-1-0/1325/4</link>
+        <pubDate>Wed, 08 Jul 2020 10:38:02 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1325-4</guid>
+        <source url="https://forum.stackstorm.com/t/issue-while-calling-first-task-in-workflow-in-stackstorm-v3-1-0/1325.rss">Issue while calling first task in workflow in stackstorm v3.1.0</source>
+      </item>
+      <item>
+        <title>Issue while calling first task in workflow in stackstorm v3.1.0</title>
+        <dc:creator><![CDATA[Balaji.p.s]]></dc:creator>
+        <description><![CDATA[
+            <p><a class="mention" href="https://github.com/sheshagiri">@Sheshagiri</a>  if we want to use retry option in code it will possible from v3.2.0, but my issue is When I am calling the task1 with do attribute based on variable comparision in when condition it is not executing through a error like no task to execute. Can’t we call task1 with do attribute ?<br>
+It is giving following error in logs file when I was running the above code and keep the workflow in running status.</p>
+<pre><code class="lang-auto">2020-07-07 17:19:34,427 140497650797296 INFO workflows [-] [5f04614db55eb7205f2503a4] Processing request for workflow execution.
+2020-07-07 17:19:34,449 140497650797296 INFO workflows [-] [5f04614db55eb7205f2503a4] Requesting conductor to start running workflow execution.
+2020-07-07 17:19:34,449 140497650797296 INFO workflows [-] [5f04614db55eb7205f2503a4] Identifying next set (0) of tasks for workflow execution in status "running".
+2020-07-07 17:19:34,450 140497650797296 INFO workflows [-] [5f04614db55eb7205f2503a4] No tasks identified to execute next.
+2020-07-07 17:19:34,450 140497650797296 INFO workflows [-] [5f04614db55eb7205f2503a4] Updating workflow execution from status "requested" to "running".
+</code></pre>
+          <p><a href="https://forum.stackstorm.com/t/issue-while-calling-first-task-in-workflow-in-stackstorm-v3-1-0/1325/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/issue-while-calling-first-task-in-workflow-in-stackstorm-v3-1-0/1325/3</link>
+        <pubDate>Wed, 08 Jul 2020 07:28:20 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1325-3</guid>
+        <source url="https://forum.stackstorm.com/t/issue-while-calling-first-task-in-workflow-in-stackstorm-v3-1-0/1325.rss">Issue while calling first task in workflow in stackstorm v3.1.0</source>
+      </item>
+      <item>
+        <title>Issue while calling first task in workflow in stackstorm v3.1.0</title>
+        <dc:creator><![CDATA[Sheshagiri]]></dc:creator>
+        <description><![CDATA[
+            <p><a class="mention" href="https://github.com/balaji.p.s">@Balaji.p.s</a> Orquesta supports task retry since <code>v3.2.0</code>. <a href="https://docs.stackstorm.com/orquesta/languages/orquesta.html#task-retry-model" class="inline-onebox" rel="nofollow noopener">Orquesta Workflow Definition — StackStorm 3.2.0 documentation</a> has an example as well.</p>
+          <p><a href="https://forum.stackstorm.com/t/issue-while-calling-first-task-in-workflow-in-stackstorm-v3-1-0/1325/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/issue-while-calling-first-task-in-workflow-in-stackstorm-v3-1-0/1325/2</link>
+        <pubDate>Tue, 07 Jul 2020 18:01:24 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1325-2</guid>
+        <source url="https://forum.stackstorm.com/t/issue-while-calling-first-task-in-workflow-in-stackstorm-v3-1-0/1325.rss">Issue while calling first task in workflow in stackstorm v3.1.0</source>
+      </item>
+      <item>
+        <title>Issue while calling first task in workflow in stackstorm v3.1.0</title>
+        <dc:creator><![CDATA[Balaji.p.s]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi Can we handle timeout action within the workflow by rerunning timeout action by calling action with the attribute “do” in st2 v3.1.0.<br>
+I am using below code</p>
+<pre><code class="lang-auto">version: 1.0
+vars:
+  - ActionReTry: 0
+  - MaxActionReTry: 1
+tasks:
+  task1:
+    action: core.local
+    input:
+      cmd: ping 127.2.14.34
+      timeout: 10
+    next:
+      - when: &lt;% result().return_code=-9 and ctx(ActionReTry)=0%&gt;
+        publish: 
+          - data2: "Yes"
+          - ActioncountStr: "{% set count = ctx('ActionReTry')+1 %}{{count}}"
+          - ActionReTry: "{{ ctx('ActioncountStr') | int }}"
+        do: 
+          - task1
+      - when: &lt;% result().return_code=-9 and ctx(ActionReTry) = ctx(MaxActionReTry) %&gt;
+        publish:
+          - data2: "Reached Max and timedout"
+        do: 
+          - task3
+  task3:
+    action: core.echo
+    input:
+      message: 'stop'
+</code></pre>
+<p>In this case it is not taking task1 to run when the condition satisfied.<br>
+the same logic is working if I add a another action before task1 and make the present task1 as task2 it is working for rerunning the action when action get timeout i.e by using attribute “do” I am able to run from task2 but can’t able to run as task1 don’t know why that is happening. May I know why is that behaviour?</p>
+<p>Thanks in advance</p>
+          <p><a href="https://forum.stackstorm.com/t/issue-while-calling-first-task-in-workflow-in-stackstorm-v3-1-0/1325/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/issue-while-calling-first-task-in-workflow-in-stackstorm-v3-1-0/1325/1</link>
+        <pubDate>Mon, 06 Jul 2020 04:15:29 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1325-1</guid>
+        <source url="https://forum.stackstorm.com/t/issue-while-calling-first-task-in-workflow-in-stackstorm-v3-1-0/1325.rss">Issue while calling first task in workflow in stackstorm v3.1.0</source>
+      </item>
+  </channel>
+</rss>

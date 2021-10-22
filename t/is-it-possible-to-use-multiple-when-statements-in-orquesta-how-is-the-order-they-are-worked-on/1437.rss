@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Is it possible to use multiple when statements in orquesta/how is the order they are worked on?</title>
+    <link>https://forum.stackstorm.com/t/is-it-possible-to-use-multiple-when-statements-in-orquesta-how-is-the-order-they-are-worked-on/1437</link>
+    <description>Hi,
+
+I wanted to build a orquesta workflow that has two (multiple) &quot;when&quot; statements that can all be true and should be executed. For now I was not successful. Is there any order how the &quot;when&quot; statements are worked on? I tried like in the code below and got the error
+
+&gt; YaqlEvaluationException: Unable to evaluate expression &#39;&lt;% ctx(regex_result[0]) = \&quot;12\&quot; %&gt;&#39;. NoMatchingFunctionException: No function \&quot;#indexer\&quot; matches supplied arguments
+
+
+For me it looks like the &quot;regex_rseult&quot; variable I created before is not available during the execution of the second &quot;when&quot; statement.
+If I exchange the second when statement for testing purposes by &quot;when: &lt;% succeeded() %&gt;&quot;, it is executed but the following tasks are failing, because variables from there first statement were not defined.
+
+
+    tasks:
+      Task1:
+        action: some.action
+        input:
+          ticket_id: &lt;% ctx().ticket_id %&gt;
+        next:
+          - when: &lt;% regex_match(result().result.Ticket.Article[0].Body, &quot;^Some content.*&quot;) %&gt;
+            publish:
+              - article_dict: &lt;% result().result.Ticket.Article %&gt;
+              - regex_result: &lt;% regex_substring(result().result.Ticket.Article[0].Body, &#39;.*Details:(\d{1,3}) (.*)&#39;) %&gt;
+          - when: &lt;% ctx(regex_result[0]) = &quot;12&quot; %&gt;
+            publish:  
+              - some_value: &quot;test123&quot;
+            do: Task2
+      Task2:
+        action: core.http
+
+
+Any ideas?
+Thanks.</description>
+    
+    <lastBuildDate>Wed, 07 Oct 2020 15:57:29 +0000</lastBuildDate>
+    <category>Workflows</category>
+    <atom:link href="https://forum.stackstorm.com/t/is-it-possible-to-use-multiple-when-statements-in-orquesta-how-is-the-order-they-are-worked-on/1437.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Is it possible to use multiple when statements in orquesta/how is the order they are worked on?</title>
+        <dc:creator><![CDATA[amanda11]]></dc:creator>
+        <description><![CDATA[
+            <p>Have you tried using the YAQL select on the publishes?<br>
+For your first case that you might be able to do it with the YAQL switch function on the publish, so that from task1 you go to task2 without specifying any when. But then in the publish use the yaql switch  so the variable is set to your value “test123” if the condition is met, or null if it’s not - see <a href="https://yaql.readthedocs.io/en/latest/standard_library.html#switch" rel="noopener nofollow ugc">https://yaql.readthedocs.io/en/latest/standard_library.html#switch</a>.</p>
+          <p><a href="https://forum.stackstorm.com/t/is-it-possible-to-use-multiple-when-statements-in-orquesta-how-is-the-order-they-are-worked-on/1437/6">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/is-it-possible-to-use-multiple-when-statements-in-orquesta-how-is-the-order-they-are-worked-on/1437/6</link>
+        <pubDate>Wed, 07 Oct 2020 15:57:29 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1437-6</guid>
+        <source url="https://forum.stackstorm.com/t/is-it-possible-to-use-multiple-when-statements-in-orquesta-how-is-the-order-they-are-worked-on/1437.rss">Is it possible to use multiple when statements in orquesta/how is the order they are worked on?</source>
+      </item>
+      <item>
+        <title>Is it possible to use multiple when statements in orquesta/how is the order they are worked on?</title>
+        <dc:creator><![CDATA[wingi]]></dc:creator>
+        <description><![CDATA[
+            <p>Ok thanks. What would be your solution for following two use cases I try to solve?</p>
+<p>Description:<br>
+First task is executed.<br>
+If something is contained in the result I want to publish a variable which can be used in the later steps of the workflow.<br>
+If something else is contained as well, I want to publish a additional variable which can be used in the later steps of the workflow.</p>
+<p>Use Case1:<br>
+Both conditions can be met or only one.</p>
+<p>Use Case2:<br>
+Condition two should only be checked if condition 1 is fulfilled.</p>
+<p>Any possibility to fulfil this in the next part of the first task or do I need to create additional “decision” tasks including joins and so on?</p>
+<p>I thought if I have two when clauses (understood now that they are checked in parallel and not serial) and they are true, the variables are published and are “globally” available for the following steps of the workflow as they can also be used in the output part of the workflow.</p>
+          <p><a href="https://forum.stackstorm.com/t/is-it-possible-to-use-multiple-when-statements-in-orquesta-how-is-the-order-they-are-worked-on/1437/5">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/is-it-possible-to-use-multiple-when-statements-in-orquesta-how-is-the-order-they-are-worked-on/1437/5</link>
+        <pubDate>Wed, 07 Oct 2020 15:01:57 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1437-5</guid>
+        <source url="https://forum.stackstorm.com/t/is-it-possible-to-use-multiple-when-statements-in-orquesta-how-is-the-order-they-are-worked-on/1437.rss">Is it possible to use multiple when statements in orquesta/how is the order they are worked on?</source>
+      </item>
+      <item>
+        <title>Is it possible to use multiple when statements in orquesta/how is the order they are worked on?</title>
+        <dc:creator><![CDATA[nmaludy]]></dc:creator>
+        <description><![CDATA[
+            <p><a class="mention" href="https://github.com/wingi">@wingi</a> Each when clause is a completely separate and independent branch, context is not shared between them. In your workflow above your first <code>when</code> clause publishes variables, but that happens independently of your second <code>when</code> clause. This is why <code>task2</code> doesn’t see the value for <code>article_dict</code> being set.</p>
+<p>No, there is no <code>else</code> option for <code>when</code> clauses either.</p>
+          <p><a href="https://forum.stackstorm.com/t/is-it-possible-to-use-multiple-when-statements-in-orquesta-how-is-the-order-they-are-worked-on/1437/4">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/is-it-possible-to-use-multiple-when-statements-in-orquesta-how-is-the-order-they-are-worked-on/1437/4</link>
+        <pubDate>Wed, 07 Oct 2020 14:17:58 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1437-4</guid>
+        <source url="https://forum.stackstorm.com/t/is-it-possible-to-use-multiple-when-statements-in-orquesta-how-is-the-order-they-are-worked-on/1437.rss">Is it possible to use multiple when statements in orquesta/how is the order they are worked on?</source>
+      </item>
+      <item>
+        <title>Is it possible to use multiple when statements in orquesta/how is the order they are worked on?</title>
+        <dc:creator><![CDATA[wingi]]></dc:creator>
+        <description><![CDATA[
+            <p>Thanks for your response. Ok this is understood now, so I changed the code like this:</p>
+<pre><code>tasks:
+  Task1:
+    action: some.action
+    input:
+      ticket_id: &lt;% ctx().ticket_id %&gt;
+    next:
+      - when: &lt;% regex_match(result().result.Ticket.Article[0].Body, "^Some content.*") %&gt;
+        publish:
+          - article_dict: &lt;% result().result.Ticket.Article %&gt;
+          - regex_result: &lt;% regex_substring(result().result.Ticket.Article[0].Body, '.*Details:(\d{1,3}) (.*)') %&gt;
+      - when: &lt;% regex_substring(result().result.Ticket.Article[0].Body, '.*Details:(\d{1,3})') = "12" %&gt;
+        publish:  
+          - some_value: "test123"
+        do: Task2
+  Task2:
+    action: core.echo message="&lt;% ctx(article_dict) %&gt; +++++ &lt;% ctx(some_value) %&gt;"
+</code></pre>
+<p>If I do it like this, both when clauses are true and executed successful.<br>
+But in Task2 I can now only access the variables which are included in the when clause which also includes the “do” step. In the example above only “some value” is available in Task2, “article_dict” is unknown.<br>
+I though that all variables are published now and can be accessed in the second task. If I access both variables in the output part to check for the value, they are successfully there.</p>
+<pre><code>output:
+  - Article: &lt;% ctx().article_dict %&gt;
+  - SomeValue: &lt;% ctx().some_value %&gt;
+</code></pre>
+<p>I also tried if it works if I have a step in between and use the values in step 3. Also not successful.</p>
+<p>By the way, is there a possibility to cascade when clauses? Any else pathes available?</p>
+          <p><a href="https://forum.stackstorm.com/t/is-it-possible-to-use-multiple-when-statements-in-orquesta-how-is-the-order-they-are-worked-on/1437/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/is-it-possible-to-use-multiple-when-statements-in-orquesta-how-is-the-order-they-are-worked-on/1437/3</link>
+        <pubDate>Wed, 07 Oct 2020 09:38:45 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1437-3</guid>
+        <source url="https://forum.stackstorm.com/t/is-it-possible-to-use-multiple-when-statements-in-orquesta-how-is-the-order-they-are-worked-on/1437.rss">Is it possible to use multiple when statements in orquesta/how is the order they are worked on?</source>
+      </item>
+      <item>
+        <title>Is it possible to use multiple when statements in orquesta/how is the order they are worked on?</title>
+        <dc:creator><![CDATA[nmaludy]]></dc:creator>
+        <description><![CDATA[
+            <p><a class="mention" href="https://github.com/wingi">@wingi</a> The variables published in the first <code>when</code> branch are isolated to that specific branch and not accessible in the second <code>when</code> clause. You are probably thinking that these statements run sequentially, however they are instead run in parallel so state across the branches is not shared.</p>
+<p>Does this make sense?</p>
+<p>If you need to  access that <code>regex_result</code> variable you’ll need to transition to another task and access it there.</p>
+          <p><a href="https://forum.stackstorm.com/t/is-it-possible-to-use-multiple-when-statements-in-orquesta-how-is-the-order-they-are-worked-on/1437/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/is-it-possible-to-use-multiple-when-statements-in-orquesta-how-is-the-order-they-are-worked-on/1437/2</link>
+        <pubDate>Tue, 06 Oct 2020 16:25:48 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1437-2</guid>
+        <source url="https://forum.stackstorm.com/t/is-it-possible-to-use-multiple-when-statements-in-orquesta-how-is-the-order-they-are-worked-on/1437.rss">Is it possible to use multiple when statements in orquesta/how is the order they are worked on?</source>
+      </item>
+      <item>
+        <title>Is it possible to use multiple when statements in orquesta/how is the order they are worked on?</title>
+        <dc:creator><![CDATA[wingi]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi,</p>
+<p>I wanted to build a orquesta workflow that has two (multiple) “when” statements that can all be true and should be executed. For now I was not successful. Is there any order how the “when” statements are worked on? I tried like in the code below and got the error</p>
+<blockquote>
+<p>YaqlEvaluationException: Unable to evaluate expression ‘&lt;% ctx(regex_result[0]) = “12” %&gt;’. NoMatchingFunctionException: No function “<span class="hashtag">#indexer</span>” matches supplied arguments</p>
+</blockquote>
+<p>For me it looks like the “regex_rseult” variable I created before is not available during the execution of the second “when” statement.<br>
+If I exchange the second when statement for testing purposes by “when: &lt;% succeeded() %&gt;”, it is executed but the following tasks are failing, because variables from there first statement were not defined.</p>
+<pre><code>tasks:
+  Task1:
+    action: some.action
+    input:
+      ticket_id: &lt;% ctx().ticket_id %&gt;
+    next:
+      - when: &lt;% regex_match(result().result.Ticket.Article[0].Body, "^Some content.*") %&gt;
+        publish:
+          - article_dict: &lt;% result().result.Ticket.Article %&gt;
+          - regex_result: &lt;% regex_substring(result().result.Ticket.Article[0].Body, '.*Details:(\d{1,3}) (.*)') %&gt;
+      - when: &lt;% ctx(regex_result[0]) = "12" %&gt;
+        publish:  
+          - some_value: "test123"
+        do: Task2
+  Task2:
+    action: core.http
+</code></pre>
+<p>Any ideas?<br>
+Thanks.</p>
+          <p><a href="https://forum.stackstorm.com/t/is-it-possible-to-use-multiple-when-statements-in-orquesta-how-is-the-order-they-are-worked-on/1437/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/is-it-possible-to-use-multiple-when-statements-in-orquesta-how-is-the-order-they-are-worked-on/1437/1</link>
+        <pubDate>Tue, 06 Oct 2020 16:10:20 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1437-1</guid>
+        <source url="https://forum.stackstorm.com/t/is-it-possible-to-use-multiple-when-statements-in-orquesta-how-is-the-order-they-are-worked-on/1437.rss">Is it possible to use multiple when statements in orquesta/how is the order they are worked on?</source>
+      </item>
+  </channel>
+</rss>

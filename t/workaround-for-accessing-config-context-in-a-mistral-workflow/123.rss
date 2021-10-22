@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Workaround for Accessing config_context in a Mistral Workflow</title>
+    <link>https://forum.stackstorm.com/t/workaround-for-accessing-config-context-in-a-mistral-workflow/123</link>
+    <description>**Reference**
+https://github.com/StackStorm/st2/issues/3388
+
+**Problem**
+Currently in a Mistral Workflow you can not access the `config_context` described here: https://docs.stackstorm.com/actions.html?highlight=config_context#parameters-in-actions
+
+StackStorm currently doesn&#39;t pass this context into Mistral or provide a Jinja filter to access it.
+
+**Workaround**
+To access the config context information in a Mistral workflow, you can simply create a new parameter in the StackStorm action metadata. This new paramter can be immutable parameter and set with default that reads from the config context. 
+
+Example :
+
+Action metadata file
+```
+parameters:
+    config_username:
+        type: &quot;string&quot;
+        description: &quot;Username from the pack&#39;s config&quot;
+        required: true
+        immutable: true
+        default: &quot;{{ config_context.username }}&quot;
+```
+
+Finally, add this new parameter as an input in your Mistral workflow, then you can access it like a normal Mistral variable.
+
+```
+examples.config_context_example:
+  description: 
+  type: direct
+  input:
+    - config_username
+
+  tasks:
+    action: core.local
+    input:
+      cmd: &quot;echo {{ _.config_username }}&quot;
+```</description>
+    
+    <lastBuildDate>Wed, 28 Oct 2020 16:36:00 +0000</lastBuildDate>
+    <category>Mistral</category>
+    <atom:link href="https://forum.stackstorm.com/t/workaround-for-accessing-config-context-in-a-mistral-workflow/123.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Workaround for Accessing config_context in a Mistral Workflow</title>
+        <dc:creator><![CDATA[jamesdreid]]></dc:creator>
+        <description><![CDATA[
+            <p>Here is an Orquestra workflow that replicates the one above.  The workflow context does not include an “auth token” to make the API call, so it is stored in the ST2 keystore and the name of the key is submitted as input to the workflow.  It is written to pull the Pack name out of the workflow context as well but since it is using the API, it could be re-worked to have that submitted as input to the workflow as well to get config values from another Pack if needed.</p>
+<pre><code>version: 1.0
+
+description: A workflow to pull the pack config values from the system using an API call over HTTPS
+
+#############################################
+#   Need a valid API key to access ST2 API  #
+#############################################
+
+input:
+  - api_key_name
+
+##################################################
+#  Variables published by workflow on success    #
+##################################################
+
+vars:
+  - pack_config:
+- api_key_value:
+
+#########################################
+#   Output at the end of the workflow   #
+#########################################
+
+output:
+  - pack_config: &lt;% ctx().pack_config %&gt;
+
+##################################
+#   Workflow tasks to complete   #
+##################################
+
+tasks:
+  get_api_token:
+    action: st2.kv.get
+    input:
+      key: &lt;% ctx().api_key_name %&gt;
+      decrypt: True
+    next:
+      - when: &lt;% succeeded() %&gt;
+        publish: api_key_value=&lt;% result().result %&gt;
+        do: get_pack_config
+  get_pack_config:
+    action: core.http
+    input:
+      url: &lt;% ctx().st2.api_url %&gt;/configs/&lt;% ctx().st2.pack %&gt;
+      method: GET
+      headers: {"St2-Api-Key": &lt;% ctx().api_key_value %&gt;}
+      params: {"show_secrets": "True"}
+    next:
+      - when: &lt;% succeeded() %&gt;
+        publish: pack_config=&lt;% result().body.values %&gt;
+</code></pre>
+<p>The yaml file for this workflow is:</p>
+<pre><code>---
+name: get_pack_config
+pack: packname
+description: Workflow to extract the pack config data using an HTTP api call
+runner_type: orquesta
+entry_point: workflows/get_pack_config.yaml
+enabled: true
+parameters:
+  api_key_name:
+    required: true
+    type: string
+    description: Name of the keystore entry that contains a valid ST2 API key</code></pre>
+          <p><a href="https://forum.stackstorm.com/t/workaround-for-accessing-config-context-in-a-mistral-workflow/123/5">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/workaround-for-accessing-config-context-in-a-mistral-workflow/123/5</link>
+        <pubDate>Wed, 28 Oct 2020 16:36:00 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-123-5</guid>
+        <source url="https://forum.stackstorm.com/t/workaround-for-accessing-config-context-in-a-mistral-workflow/123.rss">Workaround for Accessing config_context in a Mistral Workflow</source>
+      </item>
+      <item>
+        <title>Workaround for Accessing config_context in a Mistral Workflow</title>
+        <dc:creator><![CDATA[m4dcoder]]></dc:creator>
+        <description><![CDATA[
+            <p>Try this doc section on <a href="https://docs.stackstorm.com/latest/orquesta/stackstorm.html" rel="nofollow noopener">StackStorm Context and Functions</a></p>
+          <p><a href="https://forum.stackstorm.com/t/workaround-for-accessing-config-context-in-a-mistral-workflow/123/4">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/workaround-for-accessing-config-context-in-a-mistral-workflow/123/4</link>
+        <pubDate>Fri, 16 Aug 2019 18:06:30 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-123-4</guid>
+        <source url="https://forum.stackstorm.com/t/workaround-for-accessing-config-context-in-a-mistral-workflow/123.rss">Workaround for Accessing config_context in a Mistral Workflow</source>
+      </item>
+      <item>
+        <title>Workaround for Accessing config_context in a Mistral Workflow</title>
+        <dc:creator><![CDATA[devdude]]></dc:creator>
+        <description><![CDATA[
+            <p>Attempting to reproduce this above in orquesta - but the env() appears not to be a function there. Is there a list of all the system functions / data structures availalbe for orquesta ? I have seached the docs to no avail.</p>
+          <p><a href="https://forum.stackstorm.com/t/workaround-for-accessing-config-context-in-a-mistral-workflow/123/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/workaround-for-accessing-config-context-in-a-mistral-workflow/123/3</link>
+        <pubDate>Fri, 16 Aug 2019 04:01:09 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-123-3</guid>
+        <source url="https://forum.stackstorm.com/t/workaround-for-accessing-config-context-in-a-mistral-workflow/123.rss">Workaround for Accessing config_context in a Mistral Workflow</source>
+      </item>
+      <item>
+        <title>Workaround for Accessing config_context in a Mistral Workflow</title>
+        <dc:creator><![CDATA[devdude]]></dc:creator>
+        <description><![CDATA[
+            <aside class="quote no-group" data-post="1" data-topic="123">
+<div class="title">
+<div class="quote-controls"></div>
+<img alt="" width="20" height="20" src="https://sjc6.discourse-cdn.com/standard10/user_avatar/forum.stackstorm.com/nmaludy/40/9_2.png" class="avatar"> nmaludy:</div>
+<blockquote>
+<p>Actions — StackStorm 2.10.1 documentation</p>
+</blockquote>
+</aside>
+<p>We have added a task to just fetch the pack config in the workflow.</p>
+<blockquote>
+<pre><code>pack_config:
+    action: core.http
+    input:
+      url: "{{ env().st2_action_api_url }}/configs/{{ env()['__actions']['st2.action']['st2_context']['parent']['pack'] }}"
+      method: GET
+      headers:
+        X-Auth-Token: "{{ env()['__actions']['st2.action']['st2_context']['auth_token'] }}"
+   on-success:
+      - call_next_task
+</code></pre>
+</blockquote>
+<p>Later, you can define input or output to tasks / workflows like so:</p>
+<blockquote>
+<pre><code>      schema_registry_url: '&lt;% task(pack_config).result.body.values.kafka_schema_registry_url %&gt;'
+      bootstrap_servers:   "{{ task('pack_config')['result']['body']['values']['kafka_bootstrap_servers'] }}"</code></pre>
+</blockquote>
+          <p><a href="https://forum.stackstorm.com/t/workaround-for-accessing-config-context-in-a-mistral-workflow/123/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/workaround-for-accessing-config-context-in-a-mistral-workflow/123/2</link>
+        <pubDate>Wed, 03 Jul 2019 18:22:29 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-123-2</guid>
+        <source url="https://forum.stackstorm.com/t/workaround-for-accessing-config-context-in-a-mistral-workflow/123.rss">Workaround for Accessing config_context in a Mistral Workflow</source>
+      </item>
+      <item>
+        <title>Workaround for Accessing config_context in a Mistral Workflow</title>
+        <dc:creator><![CDATA[nmaludy]]></dc:creator>
+        <description><![CDATA[
+            <p><strong>Reference</strong><br>
+</p><aside class="onebox githubissue">
+  <header class="source">
+      <a href="https://github.com/StackStorm/st2/issues/3388" target="_blank" rel="nofollow noopener">github.com/StackStorm/st2</a>
+  </header>
+  <article class="onebox-body">
+    <a href="https://github.com/diellenne" rel="nofollow noopener">
+<img src="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/c1f8816b033d8eab466a2f7141c4135704a55344.jpg" class="thumbnail onebox-avatar" width="96" height="96">
+</a>
+
+<h4><a href="https://github.com/StackStorm/st2/issues/3388" target="_blank" rel="nofollow noopener">Issue: Config values from workflows</a></h4>
+
+<div class="date" style="margin-top:10px;">
+	<div class="user" style="margin-top:10px;">
+	opened by <a href="https://github.com/diellenne" target="_blank" rel="nofollow noopener">diellenne</a>
+	on <a href="https://github.com/StackStorm/st2/issues/3388" target="_blank" rel="nofollow noopener">2017-05-03</a>
+	</div>
+	<div class="user">
+	</div>
+</div>
+
+<pre class="content" style="white-space: pre-wrap;">Would be really handy being able to read the values defined in a pack configuration file directly from a workflow definition;...</pre>
+
+<div class="labels">
+ 	<span style="display:inline-block;margin-top:2px;background-color: #B8B8B8;padding: 2px;border-radius: 4px;color: #fff;margin-left: 3px;">feature</span>
+</div>
+
+  </article>
+  <div class="onebox-metadata">
+    
+    
+  </div>
+  <div style="clear: both"></div>
+</aside>
+<p></p>
+<p><strong>Problem</strong><br>
+Currently in a Mistral Workflow you can not access the <code>config_context</code> described here: <a href="https://docs.stackstorm.com/actions.html?highlight=config_context#parameters-in-actions" class="inline-onebox" rel="nofollow noopener">Actions — StackStorm 2.10.1 documentation</a></p>
+<p>StackStorm currently doesn’t pass this context into Mistral or provide a Jinja filter to access it.</p>
+<p><strong>Workaround</strong><br>
+To access the config context information in a Mistral workflow, you can simply create a new parameter in the StackStorm action metadata. This new paramter can be immutable parameter and set with default that reads from the config context.</p>
+<p>Example :</p>
+<p>Action metadata file</p>
+<pre><code class="lang-auto">parameters:
+    config_username:
+        type: "string"
+        description: "Username from the pack's config"
+        required: true
+        immutable: true
+        default: "{{ config_context.username }}"
+</code></pre>
+<p>Finally, add this new parameter as an input in your Mistral workflow, then you can access it like a normal Mistral variable.</p>
+<pre><code class="lang-auto">examples.config_context_example:
+  description: 
+  type: direct
+  input:
+    - config_username
+
+  tasks:
+    action: core.local
+    input:
+      cmd: "echo {{ _.config_username }}"
+</code></pre>
+          <p><a href="https://forum.stackstorm.com/t/workaround-for-accessing-config-context-in-a-mistral-workflow/123/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/workaround-for-accessing-config-context-in-a-mistral-workflow/123/1</link>
+        <pubDate>Fri, 20 Apr 2018 13:48:46 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-123-1</guid>
+        <source url="https://forum.stackstorm.com/t/workaround-for-accessing-config-context-in-a-mistral-workflow/123.rss">Workaround for Accessing config_context in a Mistral Workflow</source>
+      </item>
+  </channel>
+</rss>

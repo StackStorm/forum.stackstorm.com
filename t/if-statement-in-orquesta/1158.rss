@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>&quot;If&quot; statement in Orquesta</title>
+    <link>https://forum.stackstorm.com/t/if-statement-in-orquesta/1158</link>
+    <description>Given the following input:
+
+```python
+hosts = [{
+  &quot;name&quot;: &quot;serverA&quot;,
+  &quot;os&quot;: &quot;windows&quot;,
+},{
+  &quot;name&quot;: &quot;serverB&quot;,
+  &quot;os&quot;: &quot;linux&quot;,
+}]
+```
+
+I wish to do the following pseudocode in my orquesta workflow:
+
+```python
+for host in hosts:
+  if host[&quot;os&quot;] == &quot;windows&quot;:
+    run_cmd_on_windows(host[&quot;name&quot;])
+  elif host[&quot;os&quot;] == &quot;linux&quot;:
+    run_cmd_on_linux(host[&quot;name&quot;])
+```
+
+However, I could not find a way to do an `if` statement with Orquesta. I thought I could do it with the `when` directive, like so:
+
+```yaml
+input:
+  - hosts
+
+tasks:
+  determine_os:
+    with:
+      items: &quot;{{ ctx(&#39;hosts&#39;) }}&quot;
+    action: &quot;core.noop&quot;
+    next:
+      - when: &quot;{{ item()[&#39;os&#39;] == &#39;windows&#39;}}&quot;
+        publish: currentHostName=&quot;{{ item()[&#39;name&#39;] }}&quot;
+        do: run_cmd_on_windows
+      - when: &quot;{{ item()[&#39;os&#39;] == &#39;linux&#39;}}&quot;
+        publish: currentHostName=&quot;{{ item()[&#39;name&#39;] }}&quot;
+        do: run_cmd_on_linux
+
+  run_cmd_on_windows:
+    action: &quot;core.winrm_ps_cmd&quot;
+    input:
+      host: &quot;{{ currentHostName }}&quot;
+      cmd: &quot;my-command --arg&quot;
+
+  run_cmd_on_linux:
+    action: &quot;core.remote_sudo&quot;
+    input:
+      host: &quot;{{ currentHostName }}&quot;
+      cmd: &quot;my-command --arg&quot;
+```
+
+However, it seems that in the `next` block, the `item()` function returns `None`, making the comparison impossible.
+
+Is it possible to do such an `if` statement?</description>
+    
+    <lastBuildDate>Thu, 09 Apr 2020 23:09:49 +0000</lastBuildDate>
+    <category>Workflows</category>
+    <atom:link href="https://forum.stackstorm.com/t/if-statement-in-orquesta/1158.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>&quot;If&quot; statement in Orquesta</title>
+        <dc:creator><![CDATA[blag]]></dc:creator>
+        <description><![CDATA[
+            <p>I’ve included this example in the <a href="https://github.com/StackStorm/st2/wiki/Orquesta-Implementation-Patterns" rel="nofollow noopener">st2 wiki on GitHub</a>.</p>
+<p>I just started that page, and really that should live in our documentation, but it’s a good place to start collecting implementation patterns in Orquesta. Feel free to contribute to it!</p>
+          <p><a href="https://forum.stackstorm.com/t/if-statement-in-orquesta/1158/6">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/if-statement-in-orquesta/1158/6</link>
+        <pubDate>Thu, 09 Apr 2020 23:09:49 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1158-6</guid>
+        <source url="https://forum.stackstorm.com/t/if-statement-in-orquesta/1158.rss">&quot;If&quot; statement in Orquesta</source>
+      </item>
+      <item>
+        <title>&quot;If&quot; statement in Orquesta</title>
+        <dc:creator><![CDATA[blag]]></dc:creator>
+        <description><![CDATA[
+            <p>This is the “obtuse” solution:</p>
+<pre><code class="lang-yaml">input:
+  - hosts
+
+vars:
+  - loop_iteration_count: 0
+
+tasks:
+  # Necessary so Orquesta knows where to start
+  init:
+    action: core.noop
+    next:
+      - do: start_loop
+
+  start_loop:
+    action: core.noop
+    next:
+      - when: &lt;% ctx().loop_iteration_count &lt; ctx().hosts.len() %&gt;
+        do: switch_on_host_os
+      - when: &lt;% ctx().loop_iteration_count &gt;= ctx().hosts.len() %&gt;
+        do: end_loop
+
+  switch_on_host_os:
+    action: core.noop
+    next:
+      - when: &lt;% ctx().hosts[ctx().loop_iteration_count]?.os = "windows" %&gt;
+        do: run_cmd_on_windows_host
+      - when: &lt;% ctx().hosts[ctx().loop_iteration_count]?.os = "linux" %&gt;
+        do: run_cmd_on_linux_host
+      - when: &lt;% ctx().hosts[ctx().loop_iteration_count]?.os = null %&gt;
+        do: ...  # How to handle non-Windows and non-Linux hosts is application-specific
+
+  run_cmd_on_windows_host:
+    action: ...
+    input:
+      # host: &lt;% ctx().hosts[ctx().loop_iteration_count] %&gt;
+      ...
+    next:
+      - when: &lt;% succeeded() and ctx().loop_iteration_count &lt; ctx().hosts.len() %&gt;
+        publish:
+          - loop_iteration_count: &lt;% ctx().loop_iteration_count + 1 %&gt;
+        do: start_loop
+      - when: &lt;% failed() %&gt;
+        do: ...  # How to handle per-item failures is application-specific
+
+  run_cmd_on_linux_host:
+    action: ...
+    input:
+      # host: &lt;% ctx().hosts[ctx().loop_iteration_count] %&gt;
+      ...
+    next:
+      - when: &lt;% succeeded() and ctx().loop_iteration_count &lt; ctx().hosts.len() %&gt;
+        publish:
+          - loop_iteration_count: &lt;% ctx().loop_iteration_count + 1 %&gt;
+        do: start_loop
+      - when: &lt;% failed() %&gt;
+        do: ...  # How to handle per-item failures is application-specific
+
+  end_loop:
+    action: core.noop
+    next:
+      - do: ...
+</code></pre>
+<p>This version forces users to explicitly specify how to handle error conditions, and this version will probably also run a lot slower, especially in ST2 v3.2 (once that is out) and later versions of ST2.</p>
+<p>Ninja edit: Fixed <code>next</code> syntax</p>
+          <p><a href="https://forum.stackstorm.com/t/if-statement-in-orquesta/1158/5">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/if-statement-in-orquesta/1158/5</link>
+        <pubDate>Thu, 09 Apr 2020 22:09:10 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1158-5</guid>
+        <source url="https://forum.stackstorm.com/t/if-statement-in-orquesta/1158.rss">&quot;If&quot; statement in Orquesta</source>
+      </item>
+      <item>
+        <title>&quot;If&quot; statement in Orquesta</title>
+        <dc:creator><![CDATA[Zezombye]]></dc:creator>
+        <description><![CDATA[
+            <p>Thanks, this works fine!</p>
+<p>For future reference, what do you have in mind with “There are obtuse ways to iterate over lists and switch between tasks based on item data, but I don’t think that’s necessary in this case” ?</p>
+<p>And it seems I indeed stumbled upon a bug with parallel executions, as my rule returned an error if I ran it with a linux and a windows host (even though it worked fine if I ran each of them separately). Putting the <code>next</code> solved the issue <img src="https://emoji.discourse-cdn.com/apple/smiley.png?v=9" title=":smiley:" class="emoji" alt=":smiley:"></p>
+<p>Also: for some reason if I put an unconditional <code>next</code>, then if a windows host failed but all linux hosts ran fine, it reported success. Putting the <code>when: {{ succeeded() }}</code> solved the problem.</p>
+          <p><a href="https://forum.stackstorm.com/t/if-statement-in-orquesta/1158/4">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/if-statement-in-orquesta/1158/4</link>
+        <pubDate>Wed, 08 Apr 2020 22:24:22 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1158-4</guid>
+        <source url="https://forum.stackstorm.com/t/if-statement-in-orquesta/1158.rss">&quot;If&quot; statement in Orquesta</source>
+      </item>
+      <item>
+        <title>&quot;If&quot; statement in Orquesta</title>
+        <dc:creator><![CDATA[blag]]></dc:creator>
+        <description><![CDATA[
+            <p>We’ve also fixed some Orquesta bugs dealing with parallel executions and joining in the upcoming StackStorm version 3.2.</p>
+<p>However, if you’re currently running a stable production release, you’re still on ST2 v3.1, so I would instead run those tasks in series:</p>
+<pre><code class="lang-yaml">input:
+  - hosts
+
+tasks:
+  run_cmd_on_windows_hosts:
+    with:
+      items: '&lt;% ctx(hosts).filter($.os == "windows") %&gt;'
+    ...
+    next: run_cmd_on_linux_hosts
+
+  run_cmd_on_linux_hosts:
+    with:
+      items: '&lt;% ctx(hosts).filter($.os == "linux") %&gt;'
+    ...
+    next: ...
+
+</code></pre>
+          <p><a href="https://forum.stackstorm.com/t/if-statement-in-orquesta/1158/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/if-statement-in-orquesta/1158/3</link>
+        <pubDate>Wed, 08 Apr 2020 19:40:01 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1158-3</guid>
+        <source url="https://forum.stackstorm.com/t/if-statement-in-orquesta/1158.rss">&quot;If&quot; statement in Orquesta</source>
+      </item>
+      <item>
+        <title>&quot;If&quot; statement in Orquesta</title>
+        <dc:creator><![CDATA[blag]]></dc:creator>
+        <description><![CDATA[
+            <p>Your <code>with.items</code> only applies to the <code>determine_os</code> task in which it is specified, it does not also apply to the other <code>run_cmd_on_windows</code> task.</p>
+<p>There are obtuse ways to iterate over lists and switch between tasks based on item data, but I don’t think that’s necessary in this case.</p>
+<p>A cleaner approach is to implement this in two different actions, one for Linux and one for Windows hosts, and filter the master <code>hosts</code> list for each <code>with.items</code>. I’m more familiar with using YAQL to filter lists, but you could also use Jinja if you wanted to (with the appropriate Jinja syntax).</p>
+<p>Here’s how I would write that:</p>
+<pre><code class="lang-yaml">input:
+  - hosts
+
+tasks:
+  # This task isn't technically needed, but makes the parallel
+  # execution of the run_cmd tasks more apparent to the next
+  # person who has to modify this workflow
+  init:
+    action: core.noop
+    next:
+      # Run both actions in parallel
+      - run_cmd_on_windows_hosts
+      - run_cmd_on_linux_hosts
+
+  run_cmd_on_windows_hosts:
+    with:
+      items: '&lt;% ctx(hosts).filter($.os == "windows") %&gt;'
+    ...
+    next: wait_for_all_cmds
+
+  run_cmd_on_linux_hosts:
+    with:
+      items: '&lt;% ctx(hosts).filter($.os == "linux") %&gt;'
+    ...
+    next: wait_for_all_cmds
+
+  wait_for_all_cmds:
+    join: all  # wait for both inbound parallel tasks to finish
+    ...
+</code></pre>
+<p>You can use <a href="http://yaqluator.com" rel="nofollow noopener">http://yaqluator.com</a> to throw in some dummy data and test out your YAQL expressions in the <code>with.items</code> expressions, and the full YAQL standard library is available: <a href="https://yaql.readthedocs.io/en/latest/standard_library.html" rel="nofollow noopener">https://yaql.readthedocs.io/en/latest/standard_library.html</a></p>
+<p>Ninja edit: Fixed a copy/paste typo.</p>
+          <p><a href="https://forum.stackstorm.com/t/if-statement-in-orquesta/1158/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/if-statement-in-orquesta/1158/2</link>
+        <pubDate>Wed, 08 Apr 2020 19:37:40 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1158-2</guid>
+        <source url="https://forum.stackstorm.com/t/if-statement-in-orquesta/1158.rss">&quot;If&quot; statement in Orquesta</source>
+      </item>
+      <item>
+        <title>&quot;If&quot; statement in Orquesta</title>
+        <dc:creator><![CDATA[Zezombye]]></dc:creator>
+        <description><![CDATA[
+            <p>Given the following input:</p>
+<pre><code class="lang-python">hosts = [{
+  "name": "serverA",
+  "os": "windows",
+},{
+  "name": "serverB",
+  "os": "linux",
+}]
+</code></pre>
+<p>I wish to do the following pseudocode in my orquesta workflow:</p>
+<pre><code class="lang-python">for host in hosts:
+  if host["os"] == "windows":
+    run_cmd_on_windows(host["name"])
+  elif host["os"] == "linux":
+    run_cmd_on_linux(host["name"])
+</code></pre>
+<p>However, I could not find a way to do an <code>if</code> statement with Orquesta. I thought I could do it with the <code>when</code> directive, like so:</p>
+<pre><code class="lang-yaml">input:
+  - hosts
+
+tasks:
+  determine_os:
+    with:
+      items: "{{ ctx('hosts') }}"
+    action: "core.noop"
+    next:
+      - when: "{{ item()['os'] == 'windows'}}"
+        publish: currentHostName="{{ item()['name'] }}"
+        do: run_cmd_on_windows
+      - when: "{{ item()['os'] == 'linux'}}"
+        publish: currentHostName="{{ item()['name'] }}"
+        do: run_cmd_on_linux
+
+  run_cmd_on_windows:
+    action: "core.winrm_ps_cmd"
+    input:
+      host: "{{ currentHostName }}"
+      cmd: "my-command --arg"
+
+  run_cmd_on_linux:
+    action: "core.remote_sudo"
+    input:
+      host: "{{ currentHostName }}"
+      cmd: "my-command --arg"
+</code></pre>
+<p>However, it seems that in the <code>next</code> block, the <code>item()</code> function returns <code>None</code>, making the comparison impossible.</p>
+<p>Is it possible to do such an <code>if</code> statement?</p>
+          <p><a href="https://forum.stackstorm.com/t/if-statement-in-orquesta/1158/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/if-statement-in-orquesta/1158/1</link>
+        <pubDate>Wed, 08 Apr 2020 18:49:14 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1158-1</guid>
+        <source url="https://forum.stackstorm.com/t/if-statement-in-orquesta/1158.rss">&quot;If&quot; statement in Orquesta</source>
+      </item>
+  </channel>
+</rss>

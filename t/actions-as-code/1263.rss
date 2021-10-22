@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Actions as Code</title>
+    <link>https://forum.stackstorm.com/t/actions-as-code/1263</link>
+    <description>Recently I have had the chance to play around with Stackstorm. We have been in need of such software for quite some team, but it seems it is quite difficult to find the right software for this.
+
+To not lose focus and ask about the whole setup, I want to mainly focus on the Configuration as Code for actions. 
+
+**Question:** Where are Actions saved and can they automatically be saved as YAML files
+
+I am wondering how other users are doing this as I think Configuration as Code with a containerized setup is pretty common these days.</description>
+    
+    <lastBuildDate>Wed, 10 Jun 2020 10:10:22 +0000</lastBuildDate>
+    <category>Platform</category>
+    <atom:link href="https://forum.stackstorm.com/t/actions-as-code/1263.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Actions as Code</title>
+        <dc:creator><![CDATA[jeff]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi <a class="mention" href="https://github.com/nkmol">@Nkmol</a>, I think install it from scratch is better.<br>
+But it’s ok to test in stackstorm-dockerfiles, In the description it supports 3.1.0. I’ve tried 3.2dev and it also works.<br>
+The fastest way is to install from stackstorm-dockerfiles, change your py &amp; yaml in packs.dev and reload then test running flow/actions.<br>
+After that if you want to deploy the code to PROD with python 3.x support (stackstorm running with python 3 &amp; your own packs running with python 3), it’s better to deploy on centos or ubuntu until the stackstorm-dockerfiles is updated in the future.<br>
+Also deploy with K8s helm chart in PROD is a good idea, it was constructed based on ubuntu with python 3. But that is a little complex for developer locally since you cannot just change your py and yaml then reload.</p>
+          <p><a href="https://forum.stackstorm.com/t/actions-as-code/1263/4">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/actions-as-code/1263/4</link>
+        <pubDate>Wed, 10 Jun 2020 10:10:22 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1263-4</guid>
+        <source url="https://forum.stackstorm.com/t/actions-as-code/1263.rss">Actions as Code</source>
+      </item>
+      <item>
+        <title>Actions as Code</title>
+        <dc:creator><![CDATA[Nkmol]]></dc:creator>
+        <description><![CDATA[
+            <p><a class="mention" href="https://github.com/armab">@armab</a> Thanks for your response. This sounds very promising, but I am still not able to get this working.</p>
+<p>To give a better context: I am trying to use the <em>recentrly depreceated</em> 1ppc (<a href="https://github.com/StackStorm/st2-docker/tree/master/runtime/compose-1ppc" class="inline-onebox" rel="nofollow noopener">st2-docker/runtime/compose-1ppc at master · StackStorm/st2-docker · GitHub</a>) docker stack. Trying to mount the necessary volumes as a server mount (for example <code>/opt/stackstorm/packs</code>), does not work and does not show any files in the mounted location.</p>
+<p>I am not sure what direction Stackstorm recommends for the Docker stack now that there is a <em>new</em> community setup. Is it recommended to use <a href="https://github.com/StackStorm/st2-dockerfiles" class="inline-onebox" rel="nofollow noopener">GitHub - StackStorm/st2-dockerfiles: StackStorm Community Dockerfiles (one-service-per-container) used to build and push images to the StackStorm registry, used in 'stackstorm-ha' K8s Helm chart</a>? And will the given scenario of mounting packs, actually work for showing the created actions as code?</p>
+<p>Thanks for the help.</p>
+          <p><a href="https://forum.stackstorm.com/t/actions-as-code/1263/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/actions-as-code/1263/3</link>
+        <pubDate>Tue, 09 Jun 2020 12:47:08 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1263-3</guid>
+        <source url="https://forum.stackstorm.com/t/actions-as-code/1263.rss">Actions as Code</source>
+      </item>
+      <item>
+        <title>Actions as Code</title>
+        <dc:creator><![CDATA[armab]]></dc:creator>
+        <description><![CDATA[
+            <p>Actions are code (is it python, bash script or any other programming language), while Workflows trying to operate these actions are stored as <code>yaml</code>.</p>
+<p>All the automation artifacts like actions, workflows, rules, sensors you need forming the pack which you can save as git repository and then re-use, modify, version, distribute, install.</p>
+<p>See documentation which covers your questions in more detail:</p>
+<ul>
+<li><a href="https://docs.stackstorm.com/actions.html" class="inline-onebox">Actions — StackStorm 3.2.0 documentation</a></li>
+<li><a href="https://docs.stackstorm.com/packs.html" class="inline-onebox">Packs — StackStorm 3.2.0 documentation</a></li>
+</ul>
+          <p><a href="https://forum.stackstorm.com/t/actions-as-code/1263/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/actions-as-code/1263/2</link>
+        <pubDate>Fri, 05 Jun 2020 11:47:25 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1263-2</guid>
+        <source url="https://forum.stackstorm.com/t/actions-as-code/1263.rss">Actions as Code</source>
+      </item>
+      <item>
+        <title>Actions as Code</title>
+        <dc:creator><![CDATA[Nkmol]]></dc:creator>
+        <description><![CDATA[
+            <p>Recently I have had the chance to play around with Stackstorm. We have been in need of such software for quite some team, but it seems it is quite difficult to find the right software for this.</p>
+<p>To not lose focus and ask about the whole setup, I want to mainly focus on the Configuration as Code for actions.</p>
+<p><strong>Question:</strong> Where are Actions saved and can they automatically be saved as YAML files</p>
+<p>I am wondering how other users are doing this as I think Configuration as Code with a containerized setup is pretty common these days.</p>
+          <p><a href="https://forum.stackstorm.com/t/actions-as-code/1263/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/actions-as-code/1263/1</link>
+        <pubDate>Fri, 05 Jun 2020 07:17:47 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1263-1</guid>
+        <source url="https://forum.stackstorm.com/t/actions-as-code/1263.rss">Actions as Code</source>
+      </item>
+  </channel>
+</rss>

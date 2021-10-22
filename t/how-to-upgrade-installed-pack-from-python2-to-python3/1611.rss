@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>How to upgrade installed pack from python2 to python3</title>
+    <link>https://forum.stackstorm.com/t/how-to-upgrade-installed-pack-from-python2-to-python3/1611</link>
+    <description>Recently, I am going to upgrade Stackstorm to 3.4. From release log，pack with python2 action runner is no longer support? I have 5 packs with python2, and have not certified with python3. I need to upgrade pack to python3 before Stackstorm upgrade. 
+
+Could you provide document or instructions for pack upgrade?</description>
+    
+    <lastBuildDate>Wed, 24 Mar 2021 16:07:24 +0000</lastBuildDate>
+    <category>Pack Management</category>
+    <atom:link href="https://forum.stackstorm.com/t/how-to-upgrade-installed-pack-from-python2-to-python3/1611.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>How to upgrade installed pack from python2 to python3</title>
+        <dc:creator><![CDATA[amanda11]]></dc:creator>
+        <description><![CDATA[
+            <p>If you just have actions and not sensors, then on earlier StackStorm versions 3.3 etc, then you could install a pack and tell it to use python3. (As long as you had installed python3, and configured that option).<br>
+There are some instructions on running with python3 on earlier STackStorms here: <a href="https://docs.stackstorm.com/3.3/packs.html#python-versions-in-pack-python-virtual-environment" class="inline-onebox" rel="noopener nofollow ugc">Packs — StackStorm 3.3.0 documentation</a></p>
+          <p><a href="https://forum.stackstorm.com/t/how-to-upgrade-installed-pack-from-python2-to-python3/1611/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-to-upgrade-installed-pack-from-python2-to-python3/1611/2</link>
+        <pubDate>Wed, 24 Mar 2021 16:07:24 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1611-2</guid>
+        <source url="https://forum.stackstorm.com/t/how-to-upgrade-installed-pack-from-python2-to-python3/1611.rss">How to upgrade installed pack from python2 to python3</source>
+      </item>
+      <item>
+        <title>How to upgrade installed pack from python2 to python3</title>
+        <dc:creator><![CDATA[hgjsj]]></dc:creator>
+        <description><![CDATA[
+            <p>Recently, I am going to upgrade Stackstorm to 3.4. From release log，pack with python2 action runner is no longer support? I have 5 packs with python2, and have not certified with python3. I need to upgrade pack to python3 before Stackstorm upgrade.</p>
+<p>Could you provide document or instructions for pack upgrade?</p>
+          <p><a href="https://forum.stackstorm.com/t/how-to-upgrade-installed-pack-from-python2-to-python3/1611/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-to-upgrade-installed-pack-from-python2-to-python3/1611/1</link>
+        <pubDate>Wed, 24 Mar 2021 07:41:03 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1611-1</guid>
+        <source url="https://forum.stackstorm.com/t/how-to-upgrade-installed-pack-from-python2-to-python3/1611.rss">How to upgrade installed pack from python2 to python3</source>
+      </item>
+  </channel>
+</rss>

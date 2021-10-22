@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Passing an object from a webhook</title>
+    <link>https://forum.stackstorm.com/t/passing-an-object-from-a-webhook/1458</link>
+    <description>Hello!
+
+I am trying to wrap my head around core.inject_trigger and having a really hard time to figure out it&#39;s correct usage:
+
+I am receiving a webhook from an external ticketing system and would like to emit a better formatted trigger back into the system.
+
+https://github.com/cyberkov/st2-itrp/blob/master/tests/simulate_itrp_webhook.sh
+
+The json is properly parsed and ran through the rule:
+https://github.com/cyberkov/st2-itrp/blob/master/rules/ITRP_Webhook.yaml
+
+The commented echo works properly and the webhook content is shown. When using core.inject_trigger, the error I receive in the logs is:
+```
+2020-10-20 15:40:40,241 140700177833328 INFO enforcer [-] Invoking action core.inject_trigger for trigger_instance 5f8ee8d852364c03c0ca2c16 with params {&quot;trigger&quot;: &quot;itrp.xxx&quot;, &quot;payload&quot;: &quot;{{ trigger.body | tojson }}&quot;}.
+2020-10-20 15:40:40,274 140700177833328 ERROR enforcer [-] Failed kicking off execution for rule RuleDB(action=ActionExecutionSpecDB@140700175871568(ref=&quot;core.inject_trigger&quot;, parameters=&quot;{u&#39;trigger&#39;: u&#39;itrp.xxx&#39;, u&#39;payload&#39;: u&#39;{{ trigger.body | tojson }}&#39;}&quot;), context={}, criteria={}, description=&quot;Test QA ITRP&quot;, enabled=True, id=5f7f7a9052364ca2eae205bd, metadata_file=&quot;rules/ITRP-QA_Webhook.yaml&quot;, name=&quot;ITRP-
+QA Webhook&quot;, pack=&quot;itrp&quot;, ref=&quot;itrp.ITRP-QA Webhook&quot;, tags=[], trigger=&quot;core.4fced566-b0d4-427a-ac10-8d88ae2011c8&quot;, type=RuleTypeSpecDB@140700175871696(ref=&quot;standard&quot;, parameters=&quot;{}&quot;), uid=&quot;rule:itrp:ITRP-QA Webhook&quot;).
+Traceback (most recent call last):
+  File &quot;/opt/stackstorm/st2/local/lib/python2.7/site-packages/st2reactor/rules/enforcer.py&quot;, line 97, in enforce
+    execution_db = self._do_enforce()
+  File &quot;/opt/stackstorm/st2/local/lib/python2.7/site-packages/st2reactor/rules/enforcer.py&quot;, line 148, in _do_enforce
+    additional_contexts=additional_contexts)
+  File &quot;/opt/stackstorm/st2/local/lib/python2.7/site-packages/st2reactor/rules/enforcer.py&quot;, line 204, in _invoke_action
+    liveaction_db, execution_db = action_service.create_request(liveaction_db)
+  File &quot;/opt/stackstorm/st2/local/lib/python2.7/site-packages/st2common/services/action.py&quot;, line 106, in create_request
+    allow_default_none=True)
+  File &quot;/opt/stackstorm/st2/local/lib/python2.7/site-packages/st2common/util/schema/__init__.py&quot;, line 304, in validate
+    jsonschema.validate(instance=instance, schema=schema, cls=cls, *args, **kwargs)
+  File &quot;/opt/stackstorm/st2/local/lib/python2.7/site-packages/jsonschema/validators.py&quot;, line 541, in validate
+    cls(schema, *args, **kwargs).validate(instance)
+  File &quot;/opt/stackstorm/st2/local/lib/python2.7/site-packages/jsonschema/validators.py&quot;, line 130, in validate
+    raise error
+ValidationError: u&#39;{{ trigger.body | tojson }}&#39; is not of type u&#39;object&#39;, &#39;null&#39;
+
+Failed validating u&#39;type&#39; in schema[&#39;properties&#39;][u&#39;payload&#39;]:
+    {u&#39;description&#39;: u&#39;Trigger payload.&#39;, u&#39;type&#39;: [u&#39;object&#39;, &#39;null&#39;]}
+```
+I prepared the github repo to be installed with `st2 pack install https://github.com/cyberkov/st2-itrp` but one would need to update the webhook url in `tests/simulate_itrp_webhook.sh` to try it.
+
+When using `payload: &#39;{{ trigger.body }}&#39;` it was failing as well, which led me to the conversion to json.
+Did I miss anything or am I just &quot;holding it wrong&quot; :slight_smile:
+
+Thanks a lot for your help!</description>
+    
+    <lastBuildDate>Wed, 21 Oct 2020 12:26:41 +0000</lastBuildDate>
+    <category>Rules</category>
+    <atom:link href="https://forum.stackstorm.com/t/passing-an-object-from-a-webhook/1458.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Passing an object from a webhook</title>
+        <dc:creator><![CDATA[Carlos]]></dc:creator>
+        <description><![CDATA[
+            <p>I have the same behaviour as you.  When using <code>core.echo</code>, the action is executed as normal.  When attempting to use <code>core.inject_trigger</code> I got the same exception as you.  I attempted to modify the rules YAML to be a dictionary that includes the contents of the webhook body like below.</p>
+<pre><code class="lang-auto">---
+pack: test
+name: test_webhook
+enabled: true
+trigger:
+  type: core.st2.webhook
+  parameters:
+    url: "test"
+action:
+  ref: core.inject_trigger
+  parameters:
+    trigger: test.my_webhook
+    payload:
+      mydata: "{{ payload.body }}"
+</code></pre>
+<p>This created another exception, as follows:</p>
+<pre><code class="lang-auto"># st2 trigger-instance get 5f9027297b9b6065b483f753
++-----------------+--------------------------------------------------------------+
+| Property        | Value                                                        |
++-----------------+--------------------------------------------------------------+
+| id              | 5f9027297b9b6065b483f753                                     |
+| trigger         | core.st2.generic.actiontrigger                               |
+| occurrence_time | 2020-10-21T12:18:49.000000Z                                  |
+| payload         | {                                                            |
+|                 |     "execution_id": "5f9027297b9b6065b483f751",              |
+|                 |     "status": "failed",                                      |
+|                 |     "start_timestamp": "2020-10-21 12:18:49.131520+00:00",   |
+|                 |     "action_name": "core.inject_trigger",                    |
+|                 |     "action_ref": "core.inject_trigger",                     |
+|                 |     "runner_ref": "python-script",                           |
+|                 |     "parameters": {                                          |
+|                 |         "trigger": "test.my_webhook",                        |
+|                 |         "payload": {                                         |
+|                 |             "mydata": "{{ payload.body }}"                   |
+|                 |         }                                                    |
+|                 |     },                                                       |
+|                 |     "result": {                                              |
+|                 |         "error": "Cyclic dependency found in the following   |
+|                 | variables: payload. Likely the variable is referencing       |
+|                 | itself",                                                     |
+|                 |         "traceback": "  File                                 |
+|                 | "/opt/stackstorm/st2/lib/python3.6/site-                     |
+|                 | packages/st2reactor/rules/enforcer.py", line 202, in         |
+|                 | _invoke_action                                               |
+|                 |     additional_contexts=additional_contexts)                 |
+|                 |   File "/opt/stackstorm/st2/lib/python3.6/site-              |
+|                 | packages/st2reactor/rules/enforcer.py", line 84, in          |
+|                 | get_resolved_parameters                                      |
+|                 |     additional_contexts=additional_contexts)                 |
+|                 |   File "/opt/stackstorm/st2/lib/python3.6/site-              |
+|                 | packages/st2common/util/param.py", line 310, in              |
+|                 | render_live_params                                           |
+|                 |     _validate(G)                                             |
+|                 |   File "/opt/stackstorm/st2/lib/python3.6/site-              |
+|                 | packages/st2common/util/param.py", line 178, in _validate    |
+|                 |     raise ParamException(msg)                                |
+|                 | "                                                            |
+|                 |     }                                                        |
+|                 | }                                                            |
+| status          | processed                                                    |
++-----------------+--------------------------------------------------------------+
+</code></pre>
+<p>I’m not sure what’s going on here, but it seems like the jinja context may be overwritten by <code>core.inject_trigger</code> so when <code>payload.body</code> is being evaluated, it’s evaluating to itself in a loop.  I suspect this is a corner case that isn’t being handled correctly by StackStorm.</p>
+          <p><a href="https://forum.stackstorm.com/t/passing-an-object-from-a-webhook/1458/4">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/passing-an-object-from-a-webhook/1458/4</link>
+        <pubDate>Wed, 21 Oct 2020 12:26:41 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1458-4</guid>
+        <source url="https://forum.stackstorm.com/t/passing-an-object-from-a-webhook/1458.rss">Passing an object from a webhook</source>
+      </item>
+      <item>
+        <title>Passing an object from a webhook</title>
+        <dc:creator><![CDATA[cyberkov]]></dc:creator>
+        <description><![CDATA[
+            <p>Hello <a class="mention" href="https://github.com/carlos">@Carlos</a> and thank you taking the time!</p>
+<p>Unfortunately it is the same response:</p>
+<pre><code class="lang-auto">2020-10-21 10:22:13,249 140101327670800 INFO matcher [-] 1 rule(s) found to enforce for 4fced566-b0d4-427a-ac10-8d88ae2011c8.
+2020-10-21 10:22:13,249 140101327670800 INFO engine [-] Matched 1 rule(s) for trigger_instance 5f8fefb50a4fc6891a12373f (trigger=core.4fced566-b0d4-427a-ac10-8d88ae2011c8)
+2020-10-21 10:22:13,255 140101327670800 INFO enforcer [-] Invoking action core.inject_trigger for trigger_instance 5f8fefb50a4fc6891a12373f with params {"trigger": "itrp.xxx", "payload": "{{ trigger.body }}"}.
+2020-10-21 10:22:13,276 140101327670800 ERROR enforcer [-] Failed kicking off execution for rule RuleDB(action=ActionExecutionSpecDB@140101326051792(ref="core.inject_trigger", parameters="{u'trigger': u'itrp.xxx', u'payload': u'{{ trigger.body }}'}"), context={}, criteria={}, description="Test QA ITRP", enabled=True, id=5f7f7a9052364ca2eae205bd, metadata_file="rules/ITRP-QA_Webhook.yaml", name="ITRP-QA Webhook", pack="itrp", ref="itrp.ITRP-QA Webhook", tags=[], trigger="core.4fced566-b0d4-427a-ac10-8d88ae2011c8", type=RuleTypeSpecDB@140101326052048(ref="standard", parameters="{}"), uid="rule:itrp:ITRP-QA Webhook").
+Traceback (most recent call last):
+  File "/opt/stackstorm/st2/local/lib/python2.7/site-packages/st2reactor/rules/enforcer.py", line 98, in enforce
+    execution_db = self._do_enforce()
+  File "/opt/stackstorm/st2/local/lib/python2.7/site-packages/st2reactor/rules/enforcer.py", line 149, in _do_enforce
+    additional_contexts=additional_contexts)
+  File "/opt/stackstorm/st2/local/lib/python2.7/site-packages/st2reactor/rules/enforcer.py", line 205, in _invoke_action
+    liveaction_db, execution_db = action_service.create_request(liveaction_db)
+  File "/opt/stackstorm/st2/local/lib/python2.7/site-packages/st2common/services/action.py", line 107, in create_request
+    allow_default_none=True)
+  File "/opt/stackstorm/st2/local/lib/python2.7/site-packages/st2common/util/schema/__init__.py", line 305, in validate
+    jsonschema.validate(instance=instance, schema=schema, cls=cls, *args, **kwargs)
+  File "/opt/stackstorm/st2/local/lib/python2.7/site-packages/jsonschema/validators.py", line 541, in validate
+    cls(schema, *args, **kwargs).validate(instance)
+  File "/opt/stackstorm/st2/local/lib/python2.7/site-packages/jsonschema/validators.py", line 130, in validate
+    raise error
+ValidationError: u'{{ trigger.body }}' is not of type u'object', 'null'
+
+Failed validating u'type' in schema['properties'][u'payload']:
+    {u'description': u'Trigger payload.', u'type': [u'object', 'null']}
+
+On instance[u'payload']:
+    u'{{ trigger.body }}' (_rule_db={'description': u'Test QA ITRP', 'tags': [], 'type': {u'ref': u'standard', u'parameters': {}}, 'enabled': True, 'trigger': u'core.4fced566-b0d4-427a-ac10-8d88ae2011c8', 'metadata_file': u'rules/ITRP-QA_Webhook.yaml', 'context': {}, 'criteria': {}, 'action': {u'ref': u'core.inject_trigger', u'parameters': {u'trigger': u'itrp.xxx', u'payload': u'{{ trigger.body }}'}}, 'uid': u'rule:itrp:ITRP-QA Webhook', 'pack': u'itrp', 'ref': u'itrp.ITRP-QA Webhook', 'id': '5f7f7a9052364ca2eae205bd', 'name': u'ITRP-QA Webhook'},_trigger_instance_db={'status': 'processing', 'occurrence_time': '2020-10-21 08:22:13.218045+00:00', 'trigger': u'core.4fced566-b0d4-427a-ac10-8d88ae2011c8', 'id': '5f8fefb50a4fc6891a12373f', 'payload': {u'body': {u'account': u'https://mydomain.at', u'person_name': u'John Doe', u'account_id': u'myaccount', u'object_id': 88969, u'event': u'task.create', u'webhook_id': 144, u'person_id': 39967, u'payload': {u'status': u'assigned', u'source': u'recurrent', u'member': None, u'audit_line_id': 3733238, u'team': {u'sourceID': u'10', u'account': {u'id': u'myaccount', u'name': u'Parts unlimited'}, u'id': 35, u'name': u'Operations'}}, u'name': u'Stackstorm'}, u'headers': {u'X-Request-Id': u'97fa309a-a27a-48ff-887d-634f0e574233', u'X-Forwarded-For': u'194.232.59.42', u'Content-Length': u'607', u'Accept': u'*/*', u'User-Agent': u'curl/7.47.0', u'Host': u'st2.XXX.at,st2.XXX.at', u'X-Real-Ip': u'194.XXX.XXX.XXX', u'Content-Type': u'application/json; charset=utf-8'}}})
+
+</code></pre>
+<p>I validated the json that is posted and it should be fine :\</p>
+<p>Thanks a lot for your help!</p>
+          <p><a href="https://forum.stackstorm.com/t/passing-an-object-from-a-webhook/1458/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/passing-an-object-from-a-webhook/1458/3</link>
+        <pubDate>Wed, 21 Oct 2020 08:56:15 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1458-3</guid>
+        <source url="https://forum.stackstorm.com/t/passing-an-object-from-a-webhook/1458.rss">Passing an object from a webhook</source>
+      </item>
+      <item>
+        <title>Passing an object from a webhook</title>
+        <dc:creator><![CDATA[Carlos]]></dc:creator>
+        <description><![CDATA[
+            <p>You should not need to use <code>| tojson</code>, if the json payload is valid json and the content-type is application/json, stackstorm’s webhook knows how to handle it properly.  What was the error you were getting without <code>|otjson</code></p>
+          <p><a href="https://forum.stackstorm.com/t/passing-an-object-from-a-webhook/1458/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/passing-an-object-from-a-webhook/1458/2</link>
+        <pubDate>Tue, 20 Oct 2020 14:35:58 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1458-2</guid>
+        <source url="https://forum.stackstorm.com/t/passing-an-object-from-a-webhook/1458.rss">Passing an object from a webhook</source>
+      </item>
+      <item>
+        <title>Passing an object from a webhook</title>
+        <dc:creator><![CDATA[cyberkov]]></dc:creator>
+        <description><![CDATA[
+            <p>Hello!</p>
+<p>I am trying to wrap my head around core.inject_trigger and having a really hard time to figure out it’s correct usage:</p>
+<p>I am receiving a webhook from an external ticketing system and would like to emit a better formatted trigger back into the system.</p>
+<aside class="onebox githubblob">
+  <header class="source">
+      <a href="https://github.com/cyberkov/st2-itrp/blob/master/tests/simulate_itrp_webhook.sh" target="_blank" rel="noopener nofollow ugc">github.com</a>
+  </header>
+  <article class="onebox-body">
+    <h4><a href="https://github.com/cyberkov/st2-itrp/blob/master/tests/simulate_itrp_webhook.sh" target="_blank" rel="noopener nofollow ugc">cyberkov/st2-itrp/blob/master/tests/simulate_itrp_webhook.sh</a></h4>
+<pre><code class="lang-sh">curl -X POST -0 -v -H 'Content-Type: application/json; charset=utf-8' \
+http://localhost/api/v1/webhooks/itrp?st2-api-key=$ST2_API_KEY \
+--data-binary @- &lt;&lt; EOF
+{
+      "account": "https://mydomain.at",
+      "person_name": "John Doe",
+      "account_id": "myaccount",
+      "object_id": 88969,
+      "payload": {
+        "status": "assigned",
+        "source": "recurrent",
+        "member": null,
+        "audit_line_id": 3733238,
+        "team": {
+          "sourceID": "10",
+          "account": {
+            "id": "myaccount",
+            "name": "Parts unlimited"
+          },
+          "id": 35,
+</code></pre>
+
+  This file has been truncated. <a href="https://github.com/cyberkov/st2-itrp/blob/master/tests/simulate_itrp_webhook.sh" target="_blank" rel="noopener nofollow ugc">show original</a>
+
+  </article>
+  <div class="onebox-metadata">
+    
+    
+  </div>
+  <div style="clear: both"></div>
+</aside>
+
+<p>The json is properly parsed and ran through the rule:<br>
+</p><aside class="onebox githubblob">
+  <header class="source">
+      <a href="https://github.com/cyberkov/st2-itrp/blob/master/rules/ITRP_Webhook.yaml" target="_blank" rel="noopener nofollow ugc">github.com</a>
+  </header>
+  <article class="onebox-body">
+    <h4><a href="https://github.com/cyberkov/st2-itrp/blob/master/rules/ITRP_Webhook.yaml" target="_blank" rel="noopener nofollow ugc">cyberkov/st2-itrp/blob/master/rules/ITRP_Webhook.yaml</a></h4>
+<pre><code class="lang-yaml">---
+pack: itrp
+name: ITRP Webhook
+description: Test QA ITRP
+enabled: true
+type:
+  parameters: {}
+  ref: standard
+trigger:
+  parameters:
+    url: itrp
+  type: core.st2.webhook
+criteria: {}
+action:
+  ref: core.inject_trigger
+  parameters:
+    trigger: 'itrp.xxx'
+    payload: '{{ trigger.body | tojson }}'
+#  ref: core.echo
+#  parameters:
+</code></pre>
+
+  This file has been truncated. <a href="https://github.com/cyberkov/st2-itrp/blob/master/rules/ITRP_Webhook.yaml" target="_blank" rel="noopener nofollow ugc">show original</a>
+
+  </article>
+  <div class="onebox-metadata">
+    
+    
+  </div>
+  <div style="clear: both"></div>
+</aside>
+
+<p>The commented echo works properly and the webhook content is shown. When using core.inject_trigger, the error I receive in the logs is:</p>
+<pre><code class="lang-auto">2020-10-20 15:40:40,241 140700177833328 INFO enforcer [-] Invoking action core.inject_trigger for trigger_instance 5f8ee8d852364c03c0ca2c16 with params {"trigger": "itrp.xxx", "payload": "{{ trigger.body | tojson }}"}.
+2020-10-20 15:40:40,274 140700177833328 ERROR enforcer [-] Failed kicking off execution for rule RuleDB(action=ActionExecutionSpecDB@140700175871568(ref="core.inject_trigger", parameters="{u'trigger': u'itrp.xxx', u'payload': u'{{ trigger.body | tojson }}'}"), context={}, criteria={}, description="Test QA ITRP", enabled=True, id=5f7f7a9052364ca2eae205bd, metadata_file="rules/ITRP-QA_Webhook.yaml", name="ITRP-
+QA Webhook", pack="itrp", ref="itrp.ITRP-QA Webhook", tags=[], trigger="core.4fced566-b0d4-427a-ac10-8d88ae2011c8", type=RuleTypeSpecDB@140700175871696(ref="standard", parameters="{}"), uid="rule:itrp:ITRP-QA Webhook").
+Traceback (most recent call last):
+  File "/opt/stackstorm/st2/local/lib/python2.7/site-packages/st2reactor/rules/enforcer.py", line 97, in enforce
+    execution_db = self._do_enforce()
+  File "/opt/stackstorm/st2/local/lib/python2.7/site-packages/st2reactor/rules/enforcer.py", line 148, in _do_enforce
+    additional_contexts=additional_contexts)
+  File "/opt/stackstorm/st2/local/lib/python2.7/site-packages/st2reactor/rules/enforcer.py", line 204, in _invoke_action
+    liveaction_db, execution_db = action_service.create_request(liveaction_db)
+  File "/opt/stackstorm/st2/local/lib/python2.7/site-packages/st2common/services/action.py", line 106, in create_request
+    allow_default_none=True)
+  File "/opt/stackstorm/st2/local/lib/python2.7/site-packages/st2common/util/schema/__init__.py", line 304, in validate
+    jsonschema.validate(instance=instance, schema=schema, cls=cls, *args, **kwargs)
+  File "/opt/stackstorm/st2/local/lib/python2.7/site-packages/jsonschema/validators.py", line 541, in validate
+    cls(schema, *args, **kwargs).validate(instance)
+  File "/opt/stackstorm/st2/local/lib/python2.7/site-packages/jsonschema/validators.py", line 130, in validate
+    raise error
+ValidationError: u'{{ trigger.body | tojson }}' is not of type u'object', 'null'
+
+Failed validating u'type' in schema['properties'][u'payload']:
+    {u'description': u'Trigger payload.', u'type': [u'object', 'null']}
+</code></pre>
+<p>I prepared the github repo to be installed with <code>st2 pack install https://github.com/cyberkov/st2-itrp</code> but one would need to update the webhook url in <code>tests/simulate_itrp_webhook.sh</code> to try it.</p>
+<p>When using <code>payload: '{{ trigger.body }}'</code> it was failing as well, which led me to the conversion to json.<br>
+Did I miss anything or am I just “holding it wrong” <img src="https://emoji.discourse-cdn.com/apple/slight_smile.png?v=9" title=":slight_smile:" class="emoji" alt=":slight_smile:"></p>
+<p>Thanks a lot for your help!</p>
+          <p><a href="https://forum.stackstorm.com/t/passing-an-object-from-a-webhook/1458/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/passing-an-object-from-a-webhook/1458/1</link>
+        <pubDate>Tue, 20 Oct 2020 13:58:59 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1458-1</guid>
+        <source url="https://forum.stackstorm.com/t/passing-an-object-from-a-webhook/1458.rss">Passing an object from a webhook</source>
+      </item>
+  </channel>
+</rss>

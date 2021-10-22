@@ -1,0 +1,666 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Passing output to slack from workflow</title>
+    <link>https://forum.stackstorm.com/t/passing-output-to-slack-from-workflow/504</link>
+    <description>Hello,
+
+I&#39;m exploring stackstorm and getting used to it. I&#39;m trying to automate to get top 5 cpu process when we get a cpu alert. I achieved that by following disk remediation example. However I&#39;m facing issue with posting the command output directly to slack. Kindly requesting your help.
+
+Here&#39;s my workflow(_actions/workflows/check_cpu.yaml_):
+
+    ---
+    version: &#39;2.0&#39;
+    name: ops.check_cpu
+
+    workflows:
+      main:
+        input:
+          - hostname
+          - event_id
+          - alert_message
+          - raw_payload
+
+        tasks:
+          check_process:
+            action: core.remote
+            input:
+              hosts: &lt;% $.hostname %&gt;
+              cmd: &quot;ps -eo pid,pcpu,user,args --sort=-%cpu | head -6 | head -c 1000&quot;
+            on-error:
+              - pagerduty_escalation
+            on-success:
+              - post_to_slack
+
+          pagerduty_escalation:
+            action: pagerduty.incident.create.rest_v2.simple
+            input:
+              service_id: &quot;PxxxxxxN&quot;
+              title: &quot;Stackstorm Check CPU failed on &lt;% $.hostname %&gt;&quot;
+              from_email: &quot;xxxxx@xxxxx.com&quot;
+              details: &quot;Stackstorm could not autoremediate high cpu usage on &lt;% $.hostname %&gt;. Alert: &lt;% $.alert_message %&gt;&quot;
+
+          post_to_slack:
+            action: slack.post_message
+            input:
+              channel: &quot;#stackstorm&quot;
+              message: &quot;High CPU Usage triggered from: &lt;% $.hostname %&gt;. Here&#39;s the processes details:\n&lt;% task(check_process).result.stdout %&gt;&quot;
+
+Here&#39;s the action chain(actions/chains/check_cpu.yaml):
+
+    ---
+      chain:
+        -
+          name: &quot;check_process&quot;
+          ref: &quot;core.remote&quot;
+          params:
+            hosts: &quot;{{hostname}}&quot;
+            cmd: &quot;ps -eo pid,pcpu,user,args --sort=-%cpu | head -6&quot;
+          on-success: &quot;post_to_slack&quot;
+          on-failure: &quot;pagerduty_escalation&quot;
+        -
+          name: &quot;pagerduty_escalation&quot;
+          ref: &quot;pagerduty.incident.create.rest_v2.simple&quot;
+          params:
+            service_id: &quot;PxxxxxN&quot;
+            title: &quot;Stackstorm Check CPU failed on {{hostname}}&quot;
+            from_email: &quot;xxxxxx@xxxxx.com&quot;
+            details: &quot;Stackstorm could not autoremediate high cpu usage on {{hostname}}. Alert: {{alert_message}}&quot;
+        -
+          name: &quot;post_to_slack&quot;
+          ref: &quot;slack.post_message&quot;
+          params:
+            channel: &quot;#stackstorm&quot;
+            message: &quot;Stackstorm got a cpu alert &amp; has got top 5 cpu consuming processes on {{hostname}}. Details:\n{{ check_process.stdout }}&quot;
+      default: &quot;check_process&quot;
+
+
+Here&#39;s the Error I&#39;m seeing in the UI console:
+```
+{
+  &quot;tasks&quot;: [
+    {
+      &quot;state_info&quot;: null,
+      &quot;name&quot;: &quot;check_process&quot;,
+      &quot;workflow_name&quot;: &quot;ops.check_cpu.main&quot;,
+      &quot;created_at&quot;: &quot;2019-02-22 19:30:53&quot;,
+      &quot;updated_at&quot;: &quot;2019-02-22 19:30:54&quot;,
+      &quot;workflow_execution_id&quot;: &quot;47529098-87e4-49b8-beaa-ce320ab9f432&quot;,
+      &quot;state&quot;: &quot;SUCCESS&quot;,
+      &quot;result&quot;: {
+        &quot;10.146.74.91&quot;: {
+          &quot;succeeded&quot;: true,
+          &quot;failed&quot;: false,
+          &quot;return_code&quot;: 0,
+          &quot;stderr&quot;: &quot;&quot;,
+          &quot;stdout&quot;: &quot;  PID %CPU USER     COMMAND\
+ 9032 61.1 root     /usr/bin/python2.7 /usr/bin/aws s3 sync /media/ebs/logs s3://dev.canopydata.com/logserver\
+17787 23.9 root     /usr/bin/java -Xms1g -Xmx1g -XX:+UseParNewGC -XX:+UseConcMarkSweepGC -XX:CMSInitiatingOccupancyFraction=75 -XX:+UseCMSInitiatingOccupancyOnly -Djava.awt.headless=true -Dfile.encoding=UTF-8 -Djruby.compile.invokedynamic=true -Djruby.jit.threshold=0 -XX:+HeapDumpOnOutOfMemoryError -Djava.security.egd=file:/dev/urandom -cp /usr/lib/logstash-6.2.3/logstash-core/lib/jars/animal-sniffer-annotations-1.14.jar:/usr/lib/logstash-6.2.3/logstash-core/lib/jars/commons-compiler-3.0.8.jar:/usr/lib/logstash-6.2.3/logstash-core/lib/jars/error_prone_annotations-2.0.18.jar:/usr/lib/logstash-6.2.3/logstash-core/lib/jars/google-java-format-1.5.jar:/usr/lib/logstash-6.2.3/logstash-core/lib/jars/guava-22.0.jar:/usr/lib/logstash-6.2.3/logstash-core/lib/jars/j2objc-annotations-1.1.jar:/usr/lib/logstash-6.2.3/logstash-core/lib/jars/jackson-annotations-2.9.&quot;
+        }
+      },
+      &quot;published&quot;: {},
+      &quot;input&quot;: null,
+      &quot;id&quot;: &quot;bc149571-1d49-4b68-9320-d87bd668fe1d&quot;
+    },
+    {
+      &quot;state_info&quot;: &quot;Failed to run task [error=Can not evaluate YAQL expression [expression=task(check_process).result.stdout, error=u&#39;stdout&#39;, data={}], wf=ops.check_cpu.main, task=post_to_slack]:
+Traceback (most recent call last):
+  File \&quot;/opt/stackstorm/mistral/lib/python2.7/site-packages/mistral/engine/task_handler.py\&quot;, line 63, in run_task
+    task.run()
+  File \&quot;/opt/stackstorm/mistral/lib/python2.7/site-packages/osprofiler/profiler.py\&quot;, line 159, in wrapper
+    result = f(*args, **kwargs)
+  File \&quot;/opt/stackstorm/mistral/lib/python2.7/site-packages/mistral/engine/tasks.py\&quot;, line 374, in run
+    self._run_new()
+  File \&quot;/opt/stackstorm/mistral/lib/python2.7/site-packages/osprofiler/profiler.py\&quot;, line 159, in wrapper
+    result = f(*args, **kwargs)
+  File \&quot;/opt/stackstorm/mistral/lib/python2.7/site-packages/mistral/engine/tasks.py\&quot;, line 403, in _run_new
+    self._schedule_actions()
+  File \&quot;/opt/stackstorm/mistral/lib/python2.7/site-packages/mistral/engine/tasks.py\&quot;, line 470, in _schedule_actions
+    input_dict = self._get_action_input()
+  File \&quot;/opt/stackstorm/mistral/lib/python2.7/site-packages/osprofiler/profiler.py\&quot;, line 159, in wrapper
+    result = f(*args, **kwargs)
+  File \&quot;/opt/stackstorm/mistral/lib/python2.7/site-packages/mistral/engine/tasks.py\&quot;, line 500, in _get_action_input
+    input_dict = self._evaluate_expression(self.task_spec.get_input(), ctx)
+  File \&quot;/opt/stackstorm/mistral/lib/python2.7/site-packages/mistral/engine/tasks.py\&quot;, line 524, in _evaluate_expression
+    ctx_view
+  File \&quot;/opt/stackstorm/mistral/lib/python2.7/site-packages/mistral/expressions/__init__.py\&quot;, line 100, in evaluate_recursively
+    data[key] = _evaluate_item(data[key], context)
+  File \&quot;/opt/stackstorm/mistral/lib/python2.7/site-packages/mistral/expressions/__init__.py\&quot;, line 89, in _evaluate_item
+    return evaluate_recursively(item, context)
+  File \&quot;/opt/stackstorm/mistral/lib/python2.7/site-packages/mistral/expressions/__init__.py\&quot;, line 100, in evaluate_recursively
+    data[key] = _evaluate_item(data[key], context)
+  File \&quot;/opt/stackstorm/mistral/lib/python2.7/site-packages/mistral/expressions/__init__.py\&quot;, line 79, in _evaluate_item
+    return evaluate(item, context)
+  File \&quot;/opt/stackstorm/mistral/lib/python2.7/site-packages/mistral/expressions/__init__.py\&quot;, line 71, in evaluate
+    return evaluator.evaluate(expression, context)
+  File \&quot;/opt/stackstorm/mistral/lib/python2.7/site-packages/mistral/expressions/yaql_expression.py\&quot;, line 119, in evaluate
+    cls).evaluate(trim_expr, data_context)
+  File \&quot;/opt/stackstorm/mistral/lib/python2.7/site-packages/mistral/expressions/yaql_expression.py\&quot;, line 73, in evaluate
+    \&quot;, data=%s]\&quot; % (expression, str(e), data_context)
+YaqlEvaluationException: Can not evaluate YAQL expression [expression=task(check_process).result.stdout, error=u&#39;stdout&#39;, data={}]
+&quot;,
+```</description>
+    
+    <lastBuildDate>Wed, 27 Mar 2019 19:51:55 +0000</lastBuildDate>
+    <category>Mistral</category>
+    <atom:link href="https://forum.stackstorm.com/t/passing-output-to-slack-from-workflow/504.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Passing output to slack from workflow</title>
+        <dc:creator><![CDATA[lhill]]></dc:creator>
+        <description><![CDATA[
+            <p>I would strip it back to the simplest possible thing you can - just publish the value you’re extracting, nothing else around it. Get that working, then add it more surrounding details, text messages, etc.</p>
+          <p><a href="https://forum.stackstorm.com/t/passing-output-to-slack-from-workflow/504/16">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/passing-output-to-slack-from-workflow/504/16</link>
+        <pubDate>Wed, 27 Mar 2019 19:51:55 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-504-16</guid>
+        <source url="https://forum.stackstorm.com/t/passing-output-to-slack-from-workflow/504.rss">Passing output to slack from workflow</source>
+      </item>
+      <item>
+        <title>Passing output to slack from workflow</title>
+        <dc:creator><![CDATA[gmnvn18]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi,</p>
+<p>I wanted to post a message to slack as well as declare one for a variable.</p>
+<p>Got the cja-id: 0000<br>
+cja-id = 0000</p>
+<p>PS: On the side note, even for the error function, getting same mapping error. Here there’s no clumsy variable declaration like the previous one.</p>
+<pre><code class="lang-auto">      - when: &lt;% failed() %&gt;
+        publish: msg="Unable to get the cja id due to error: &lt;% result() %&gt;"
+        do: pagerduty_escalation
+</code></pre>
+          <p><a href="https://forum.stackstorm.com/t/passing-output-to-slack-from-workflow/504/15">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/passing-output-to-slack-from-workflow/504/15</link>
+        <pubDate>Wed, 27 Mar 2019 16:36:56 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-504-15</guid>
+        <source url="https://forum.stackstorm.com/t/passing-output-to-slack-from-workflow/504.rss">Passing output to slack from workflow</source>
+      </item>
+      <item>
+        <title>Passing output to slack from workflow</title>
+        <dc:creator><![CDATA[lhill]]></dc:creator>
+        <description><![CDATA[
+            <aside class="quote no-group quote-modified" data-post="13" data-topic="504">
+<div class="title">
+<div class="quote-controls"></div>
+<img alt="" width="20" height="20" src="https://avatars.discourse.org/v2/letter/g/85e7bf/40.png" class="avatar"> gmnvn18:</div>
+<blockquote>
+<p>publish: msg=“Got the cja-id: &lt;% task(get_cjaid).result.get(ctx(logserver)).stdout %&gt;”, cjaid=&lt;% task(get_cjaid).result.get(ctx(logserver)).stdout %&gt;</p>
+</blockquote>
+</aside>
+<p>This line doesn’t look right. Why are you doing <code>&lt;% task(get_cjaid).result.get(ctx(logserver)).stdout %&gt;</code> twice in one line? Is that intentional?</p>
+          <p><a href="https://forum.stackstorm.com/t/passing-output-to-slack-from-workflow/504/14">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/passing-output-to-slack-from-workflow/504/14</link>
+        <pubDate>Wed, 27 Mar 2019 16:27:01 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-504-14</guid>
+        <source url="https://forum.stackstorm.com/t/passing-output-to-slack-from-workflow/504.rss">Passing output to slack from workflow</source>
+      </item>
+      <item>
+        <title>Passing output to slack from workflow</title>
+        <dc:creator><![CDATA[gmnvn18]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi, do you mean that, we should not use <code>:</code>  Sorry I didn’t get your message.</p>
+<p>As shown in the example, I written my task… here’s the full snippet.</p>
+<pre><code class="lang-auto">  get_cjaid:
+    action: core.remote hosts=&lt;% ctx(logserver) %&gt; cmd=&lt;% ctx(grep_cjaid) %&gt;
+    next:
+      - when: &lt;% succeeded() %&gt;
+        publish: msg="Got the cja-id: &lt;% task(get_cjaid).result.get(ctx(logserver)).stdout %&gt;", cjaid=&lt;% task(get_cjaid).result.get(ctx(logserver)).stdout %&gt;
+        do: post_to_slack, check_in_db
+      - when: &lt;% failed() %&gt;
+        publish: msg="Unable to get the cja id due to error &lt;% result() %&gt;"
+        do: pagerduty_escalation
+</code></pre>
+<p>But still getting the same error.</p>
+          <p><a href="https://forum.stackstorm.com/t/passing-output-to-slack-from-workflow/504/13">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/passing-output-to-slack-from-workflow/504/13</link>
+        <pubDate>Wed, 27 Mar 2019 14:43:18 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-504-13</guid>
+        <source url="https://forum.stackstorm.com/t/passing-output-to-slack-from-workflow/504.rss">Passing output to slack from workflow</source>
+      </item>
+      <item>
+        <title>Passing output to slack from workflow</title>
+        <dc:creator><![CDATA[lhill]]></dc:creator>
+        <description><![CDATA[
+            <p>I would start by making your code look more like the example. Move the <code>:</code></p>
+          <p><a href="https://forum.stackstorm.com/t/passing-output-to-slack-from-workflow/504/12">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/passing-output-to-slack-from-workflow/504/12</link>
+        <pubDate>Wed, 27 Mar 2019 13:56:04 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-504-12</guid>
+        <source url="https://forum.stackstorm.com/t/passing-output-to-slack-from-workflow/504.rss">Passing output to slack from workflow</source>
+      </item>
+      <item>
+        <title>Passing output to slack from workflow</title>
+        <dc:creator><![CDATA[gmnvn18]]></dc:creator>
+        <description><![CDATA[
+            <p><a class="mention" href="https://github.com/lhill">@lhill</a> <a class="mention" href="https://github.com/blag">@blag</a><br>
+I have a query regarding the output formatting in orquesta.</p>
+<p>I would like to post a message as “Got the cja-id: 0000000”</p>
+<p>In order to do that, I tried following the following possibilities, but all of them failed with “mapping values are not allowed” error:</p>
+<pre><code class="lang-auto">publish: msg="Got the cja-id :&lt;% task(get_cjaid).result.get(ctx(logserver)).stdout %&gt;" 
+publish: msg="Got the cja-id : &lt;% task(get_cjaid).result.get(ctx(logserver)).stdout %&gt;"
+publish: msg="Got the cja-id\: &lt;% task(get_cjaid).result.get(ctx(logserver)).stdout %&gt;"
+publish: msg="Got the cja-id\\: &lt;% task(get_cjaid).result.get(ctx(logserver)).stdout %&gt;"
+publish: msg="Got the cja-id \\: &lt;% task(get_cjaid).result.get(ctx(logserver)).stdout %&gt;"
+</code></pre>
+<p>And the error:</p>
+<pre><code class="lang-auto">{
+  "output": null,
+  "errors": [
+    {
+      "message": "mapping values are not allowed here
+  in \"&lt;string&gt;\", line 14, column 40:
+     ...  publish: msg=\"Got the cja-id \\\\: &lt;% task(get_cjaid).result.get( ... 
+                                         ^"
+    }
+  ]
+}
+</code></pre>
+<pre><code class="lang-auto">{
+  "output": null,
+  "errors": [
+    {
+      "message": "mapping values are not allowed here
+  in \"&lt;string&gt;\", line 14, column 40:
+     ...  publish: msg=\"Got the cja-id \\\\: &lt;% task(get_cjaid).result.get( ... 
+                                         ^"
+    }
+  ]
+}
+</code></pre>
+<p>I’ve taken <a href="https://docs.stackstorm.com/orquesta/languages/orquesta.html#workflow-model" rel="nofollow noopener">this</a> as reference:<br>
+</p><div class="lightbox-wrapper"><a class="lightbox" href="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/56bc3d903697604eda1f7193cc4d59955f853fba.png" title="image.png" rel="nofollow noopener"><img src="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/56bc3d903697604eda1f7193cc4d59955f853fba_2_690x392.png" alt="image" width="690" height="392" srcset="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/56bc3d903697604eda1f7193cc4d59955f853fba_2_690x392.png, https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/56bc3d903697604eda1f7193cc4d59955f853fba_2_1035x588.png 1.5x, https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/56bc3d903697604eda1f7193cc4d59955f853fba_2_1380x784.png 2x" data-small-upload="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/56bc3d903697604eda1f7193cc4d59955f853fba_2_10x10.png"></a></div><p></p>
+<p>Requesting your help in how to format the message.</p>
+          <p><a href="https://forum.stackstorm.com/t/passing-output-to-slack-from-workflow/504/11">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/passing-output-to-slack-from-workflow/504/11</link>
+        <pubDate>Wed, 27 Mar 2019 11:00:03 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-504-11</guid>
+        <source url="https://forum.stackstorm.com/t/passing-output-to-slack-from-workflow/504.rss">Passing output to slack from workflow</source>
+      </item>
+      <item>
+        <title>Passing output to slack from workflow</title>
+        <dc:creator><![CDATA[gmnvn18]]></dc:creator>
+        <description><![CDATA[
+            <p>Thanks for the suggestion! Since I’m a learner, would definitely give a try to Orquesta.</p>
+          <p><a href="https://forum.stackstorm.com/t/passing-output-to-slack-from-workflow/504/10">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/passing-output-to-slack-from-workflow/504/10</link>
+        <pubDate>Mon, 25 Feb 2019 18:26:34 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-504-10</guid>
+        <source url="https://forum.stackstorm.com/t/passing-output-to-slack-from-workflow/504.rss">Passing output to slack from workflow</source>
+      </item>
+      <item>
+        <title>Passing output to slack from workflow</title>
+        <dc:creator><![CDATA[lhill]]></dc:creator>
+        <description><![CDATA[
+            <p>Switch to Orquesta, that helps with some of the newline handling. And then just do some filtering of the output data.</p>
+          <p><a href="https://forum.stackstorm.com/t/passing-output-to-slack-from-workflow/504/9">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/passing-output-to-slack-from-workflow/504/9</link>
+        <pubDate>Mon, 25 Feb 2019 18:14:05 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-504-9</guid>
+        <source url="https://forum.stackstorm.com/t/passing-output-to-slack-from-workflow/504.rss">Passing output to slack from workflow</source>
+      </item>
+      <item>
+        <title>Passing output to slack from workflow</title>
+        <dc:creator><![CDATA[gmnvn18]]></dc:creator>
+        <description><![CDATA[
+            <aside class="quote no-group" data-post="6" data-topic="504">
+<div class="title">
+<div class="quote-controls"></div>
+<img alt="" width="20" height="20" src="https://avatars.discourse.org/v2/letter/g/85e7bf/40.png" class="avatar"> gmnvn18:</div>
+<blockquote>
+<p>workflows/check_cpu.yaml</p>
+<pre><code class="lang-auto">      post_to_slack:
+        action: slack.post_message
+        input:
+          channel: "#stackstorm"
+          message: "Stackstorm got a cpu alert &amp; has got top 5 cpu consuming processes on &lt;% $.hostname %&gt;. Details:\n&lt;% task(check_process).$.hostname.result.stdout %&gt;"
+</code></pre>
+</blockquote>
+</aside>
+<p>in this instead of <code>&lt;% task(check_process).$.hostname.result.stdout %&gt;</code> , <code>&lt;% task(check_process).result.get($.hostname).stdout %&gt;</code> has worked.</p>
+<p>But have to say the output is really ugly in the slack <img src="https://emoji.discourse-cdn.com/apple/slightly_smiling_face.png?v=9" title=":slightly_smiling_face:" class="emoji" alt=":slightly_smiling_face:"><br>
+</p><div class="lightbox-wrapper"><a class="lightbox" href="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/874cd0fd91c395ac3c177b961aa481babdf2873c.png" title="image.png" rel="nofollow noopener"><img src="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/874cd0fd91c395ac3c177b961aa481babdf2873c_2_690x203.png" alt="image" width="690" height="203" srcset="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/874cd0fd91c395ac3c177b961aa481babdf2873c_2_690x203.png, https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/874cd0fd91c395ac3c177b961aa481babdf2873c_2_1035x304.png 1.5x, https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/874cd0fd91c395ac3c177b961aa481babdf2873c_2_1380x406.png 2x" data-small-upload="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/874cd0fd91c395ac3c177b961aa481babdf2873c_2_10x10.png"></a></div><p></p>
+<p>anyway!! thanks a lot for helping out as always.</p>
+          <p><a href="https://forum.stackstorm.com/t/passing-output-to-slack-from-workflow/504/8">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/passing-output-to-slack-from-workflow/504/8</link>
+        <pubDate>Mon, 25 Feb 2019 16:23:26 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-504-8</guid>
+        <source url="https://forum.stackstorm.com/t/passing-output-to-slack-from-workflow/504.rss">Passing output to slack from workflow</source>
+      </item>
+      <item>
+        <title>Passing output to slack from workflow</title>
+        <dc:creator><![CDATA[lhill]]></dc:creator>
+        <description><![CDATA[
+            <p>Yes, that’s for ChatOps, but it’s a similar syntax for what you need. Note that the result object is a <em>list</em> of results per hostname.</p>
+<p>Try this example <a href="https://github.com/StackStorm/st2cd/blob/2c29083494a84e55892475c7c31de56d07a209af/actions/workflows/st2_get_installed_version.yaml#L24" class="inline-onebox" rel="nofollow noopener">st2cd/st2_get_installed_version.yaml at 2c29083494a84e55892475c7c31de56d07a209af · StackStorm/st2cd · GitHub</a></p>
+          <p><a href="https://forum.stackstorm.com/t/passing-output-to-slack-from-workflow/504/7">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/passing-output-to-slack-from-workflow/504/7</link>
+        <pubDate>Mon, 25 Feb 2019 15:54:12 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-504-7</guid>
+        <source url="https://forum.stackstorm.com/t/passing-output-to-slack-from-workflow/504.rss">Passing output to slack from workflow</source>
+      </item>
+      <item>
+        <title>Passing output to slack from workflow</title>
+        <dc:creator><![CDATA[gmnvn18]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi,</p>
+<p>The link you mentioned talks about “action aliases” from chatops.</p>
+<p>I tried:<br>
+workflows/check_cpu.yaml</p>
+<pre><code class="lang-auto">      post_to_slack:
+        action: slack.post_message
+        input:
+          channel: "#stackstorm"
+          message: "Stackstorm got a cpu alert &amp; has got top 5 cpu consuming processes on &lt;% $.hostname %&gt;. Details:\n&lt;% task(check_process).$.hostname.result.stdout %&gt;"
+</code></pre>
+<p>chains/check_cpu.yaml:</p>
+<pre><code class="lang-auto">     name: "post_to_slack"
+     ref: "slack.post_message"
+     params:
+       channel: "#stackstorm"
+       message: "Stackstorm got a cpu alert &amp; has got top 5 cpu consuming processes on {{hostname}}. Details:\n{{ execution.result[host].stdout }}"```
+
+Still no luck. Still failing:
+</code></pre>
+<pre><code>  "state_info": "Failed to run task [error=Can not evaluate YAQL expression [expression=task(check_process).$.hostname.result.stdout, error=No function \"#operator_.\" matches supplied arguments, data={}], wf=ops.check_cpu.main, task=post_to_slack]:
+</code></pre>
+<p>Traceback (most recent call last):</p>
+<pre><code class="lang-auto"></code></pre>
+          <p><a href="https://forum.stackstorm.com/t/passing-output-to-slack-from-workflow/504/6">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/passing-output-to-slack-from-workflow/504/6</link>
+        <pubDate>Mon, 25 Feb 2019 06:21:26 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-504-6</guid>
+        <source url="https://forum.stackstorm.com/t/passing-output-to-slack-from-workflow/504.rss">Passing output to slack from workflow</source>
+      </item>
+      <item>
+        <title>Passing output to slack from workflow</title>
+        <dc:creator><![CDATA[lhill]]></dc:creator>
+        <description><![CDATA[
+            <p>Look at <a href="https://forum.stackstorm.com/t/chatops-w-slack-not-working/497/5" class="inline-onebox">ChatOps w/ Slack not working</a> for an example</p>
+          <p><a href="https://forum.stackstorm.com/t/passing-output-to-slack-from-workflow/504/5">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/passing-output-to-slack-from-workflow/504/5</link>
+        <pubDate>Fri, 22 Feb 2019 21:56:34 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-504-5</guid>
+        <source url="https://forum.stackstorm.com/t/passing-output-to-slack-from-workflow/504.rss">Passing output to slack from workflow</source>
+      </item>
+      <item>
+        <title>Passing output to slack from workflow</title>
+        <dc:creator><![CDATA[lhill]]></dc:creator>
+        <description><![CDATA[
+            <p>It’s not <code>result.stdout</code> - the result object is a list of results per host.</p>
+          <p><a href="https://forum.stackstorm.com/t/passing-output-to-slack-from-workflow/504/4">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/passing-output-to-slack-from-workflow/504/4</link>
+        <pubDate>Fri, 22 Feb 2019 21:55:43 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-504-4</guid>
+        <source url="https://forum.stackstorm.com/t/passing-output-to-slack-from-workflow/504.rss">Passing output to slack from workflow</source>
+      </item>
+      <item>
+        <title>Passing output to slack from workflow</title>
+        <dc:creator><![CDATA[gmnvn18]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi, Thanks for reply!</p>
+<p>I tried  <code>&lt;% task(check_process).result.result.stdout %&gt;</code> but that didn’t work, got the same error message as invalid YAQL expression:</p>
+<pre><code class="lang-auto">      "state_info": "Failed to run task [error=Can not evaluate YAQL expression [expression=task(check_process).result.result.stdout, error=u'result', data={}], wf=ops.check_cpu.main, task=post_to_slack]:
+Traceback (most recent call last):
+</code></pre>
+<p>As you suggested when i tried echo, i see the stdout is null.</p>
+<pre><code class="lang-auto">{
+  "tasks": [
+    {
+      "state_info": null,
+      "name": "check_process",
+      "workflow_name": "ops.check_cpu.main",
+      "created_at": "2019-02-22 19:56:03",
+      "updated_at": "2019-02-22 19:56:05",
+      "workflow_execution_id": "9003c8de-1734-462e-bd36-dd4e4d50d634",
+      "state": "SUCCESS",
+      "result": {
+        "10.146.74.91": {
+          "succeeded": true,
+          "failed": false,
+          "return_code": 0,
+          "stderr": "",
+          "stdout": "  PID %CPU USER     COMMAND\
+ 9032 60.1 root     /usr/bin/python2.7 /usr/bin/aws s3 sync /media/ebs/logs s3://dev.canopydata.com/logserver\
+17787 23.9 root     /usr/bin/java -Xms1g -Xmx1g -XX:+UseParNewGC -XX:+UseConcMarkSweepGC -XX:CMSInitiatingOccupancyFraction=75 -XX:+UseCMSInitiatingOccupancyOnly -Djava.awt.headless=true -Dfile.encoding=UTF-8 -Djruby.compile.invokedynamic=true -Djruby.jit.threshold=0 -XX:+HeapDumpOnOutOfMemoryError -Djava.security.egd=file:/dev/urandom -cp /usr/lib/logstash-6.2.3/logstash-core/lib/jars/animal-sniffer-annotations-1.14.jar:/usr/lib/logstash-6.2.3/logstash-core/lib/jars/commons-compiler-3.0.8.jar:/usr/lib/logstash-6.2.3/logstash-core/lib/jars/error_prone_annotations-2.0.18.jar:/usr/lib/logstash-6.2.3/logstash-core/lib/jars/google-java-format-1.5.jar:/usr/lib/logstash-6.2.3/logstash-core/lib/jars/guava-22.0.jar:/usr/lib/logstash-6.2.3/logstash-core/lib/jars/j2objc-annotations-1.1.jar:/usr/lib/logstash-6.2.3/logstash-core/lib/jars/jackson-annotations-2.9."
+        }
+      },
+      "published": {},
+      "input": null,
+      "id": "18081169-a7b2-462b-b0d8-35a214287e62"
+    },
+    {
+      "state_info": null,
+      "name": "echo_result",
+      "workflow_name": "ops.check_cpu.main",
+      "created_at": "2019-02-22 19:56:03",
+      "updated_at": "2019-02-22 19:56:04",
+      "workflow_execution_id": "9003c8de-1734-462e-bd36-dd4e4d50d634",
+      "state": "SUCCESS",
+      "result": {
+        "failed": false,
+        "stderr": "",
+        "return_code": 0,
+        "succeeded": true,
+        "stdout": []
+      },
+      "published": {},
+      "input": null,
+      "id": "08b8f123-fd10-41b2-be95-185bff49ec4f"
+    },
+    {
+      "state_info": "Failed to run task [error=Can not evaluate YAQL expression [expression=task(check_process).result.stdout, error=u'stdout', data={}], wf=ops.check_cpu.main, task=post_to_slack]:
+Traceback (most recent call last):
+</code></pre>
+<p>But the stdout is present in the task: check_process, how should i call that into slack message ?</p>
+<p>Another naive question, I’ve added “echo_result” in workflow and tested, should i same module in chains/check_cpu.yaml as well, did that null value came due to no action for that in chain ?</p>
+<p>Thanks!</p>
+          <p><a href="https://forum.stackstorm.com/t/passing-output-to-slack-from-workflow/504/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/passing-output-to-slack-from-workflow/504/3</link>
+        <pubDate>Fri, 22 Feb 2019 20:00:49 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-504-3</guid>
+        <source url="https://forum.stackstorm.com/t/passing-output-to-slack-from-workflow/504.rss">Passing output to slack from workflow</source>
+      </item>
+      <item>
+        <title>Passing output to slack from workflow</title>
+        <dc:creator><![CDATA[blag]]></dc:creator>
+        <description><![CDATA[
+            <p>I suspect you might be missing a <code>.result</code>, try this:</p>
+<pre><code class="lang-auto">&lt;% task(check_process).result.result.stdout %&gt;
+</code></pre>
+<p>If that doesn’t work, try to echo the <code>task(check_process).result</code>:</p>
+<pre><code class="lang-yaml">    tasks:
+      check_process:
+        action: core.remote
+        input:
+          hosts: &lt;% $.hostname %&gt;
+          cmd: "ps -eo pid,pcpu,user,args --sort=-%cpu | head -6 | head -c 1000"
+        on-error:
+          - pagerduty_escalation
+        on-success:
+          - echo_result
+          - post_to_slack
+
+      pagerduty_escalation:
+        action: pagerduty.incident.create.rest_v2.simple
+        input:
+          service_id: "PxxxxxxN"
+          title: "Stackstorm Check CPU failed on &lt;% $.hostname %&gt;"
+          from_email: "xxxxx@xxxxx.com"
+          details: "Stackstorm could not autoremediate high cpu usage on &lt;% $.hostname %&gt;. Alert: &lt;% $.alert_message %&gt;"
+
+      echo_result:
+        action: core.echo
+        input:
+          message: "&lt;% str(task(check_process).result) %&gt;"
+
+      post_to_slack:
+        action: slack.post_message
+        input:
+          channel: "#stackstorm"
+          message: "High CPU Usage triggered from: &lt;% $.hostname %&gt;. Here's the processes details:\n&lt;% task(check_process).result.stdout %&gt;"
+</code></pre>
+<p>then you should be able to see what <code>task(check_process).result</code> is in the StackStorm web UI.</p>
+          <p><a href="https://forum.stackstorm.com/t/passing-output-to-slack-from-workflow/504/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/passing-output-to-slack-from-workflow/504/2</link>
+        <pubDate>Fri, 22 Feb 2019 19:49:18 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-504-2</guid>
+        <source url="https://forum.stackstorm.com/t/passing-output-to-slack-from-workflow/504.rss">Passing output to slack from workflow</source>
+      </item>
+      <item>
+        <title>Passing output to slack from workflow</title>
+        <dc:creator><![CDATA[gmnvn18]]></dc:creator>
+        <description><![CDATA[
+            <p>Hello,</p>
+<p>I’m exploring stackstorm and getting used to it. I’m trying to automate to get top 5 cpu process when we get a cpu alert. I achieved that by following disk remediation example. However I’m facing issue with posting the command output directly to slack. Kindly requesting your help.</p>
+<p>Here’s my workflow(<em>actions/workflows/check_cpu.yaml</em>):</p>
+<pre><code>---
+version: '2.0'
+name: ops.check_cpu
+
+workflows:
+  main:
+    input:
+      - hostname
+      - event_id
+      - alert_message
+      - raw_payload
+
+    tasks:
+      check_process:
+        action: core.remote
+        input:
+          hosts: &lt;% $.hostname %&gt;
+          cmd: "ps -eo pid,pcpu,user,args --sort=-%cpu | head -6 | head -c 1000"
+        on-error:
+          - pagerduty_escalation
+        on-success:
+          - post_to_slack
+
+      pagerduty_escalation:
+        action: pagerduty.incident.create.rest_v2.simple
+        input:
+          service_id: "PxxxxxxN"
+          title: "Stackstorm Check CPU failed on &lt;% $.hostname %&gt;"
+          from_email: "xxxxx@xxxxx.com"
+          details: "Stackstorm could not autoremediate high cpu usage on &lt;% $.hostname %&gt;. Alert: &lt;% $.alert_message %&gt;"
+
+      post_to_slack:
+        action: slack.post_message
+        input:
+          channel: "#stackstorm"
+          message: "High CPU Usage triggered from: &lt;% $.hostname %&gt;. Here's the processes details:\n&lt;% task(check_process).result.stdout %&gt;"
+</code></pre>
+<p>Here’s the action chain(actions/chains/check_cpu.yaml):</p>
+<pre><code>---
+  chain:
+    -
+      name: "check_process"
+      ref: "core.remote"
+      params:
+        hosts: "{{hostname}}"
+        cmd: "ps -eo pid,pcpu,user,args --sort=-%cpu | head -6"
+      on-success: "post_to_slack"
+      on-failure: "pagerduty_escalation"
+    -
+      name: "pagerduty_escalation"
+      ref: "pagerduty.incident.create.rest_v2.simple"
+      params:
+        service_id: "PxxxxxN"
+        title: "Stackstorm Check CPU failed on {{hostname}}"
+        from_email: "xxxxxx@xxxxx.com"
+        details: "Stackstorm could not autoremediate high cpu usage on {{hostname}}. Alert: {{alert_message}}"
+    -
+      name: "post_to_slack"
+      ref: "slack.post_message"
+      params:
+        channel: "#stackstorm"
+        message: "Stackstorm got a cpu alert &amp; has got top 5 cpu consuming processes on {{hostname}}. Details:\n{{ check_process.stdout }}"
+  default: "check_process"
+</code></pre>
+<p>Here’s the Error I’m seeing in the UI console:</p>
+<pre><code class="lang-auto">{
+  "tasks": [
+    {
+      "state_info": null,
+      "name": "check_process",
+      "workflow_name": "ops.check_cpu.main",
+      "created_at": "2019-02-22 19:30:53",
+      "updated_at": "2019-02-22 19:30:54",
+      "workflow_execution_id": "47529098-87e4-49b8-beaa-ce320ab9f432",
+      "state": "SUCCESS",
+      "result": {
+        "10.146.74.91": {
+          "succeeded": true,
+          "failed": false,
+          "return_code": 0,
+          "stderr": "",
+          "stdout": "  PID %CPU USER     COMMAND\
+ 9032 61.1 root     /usr/bin/python2.7 /usr/bin/aws s3 sync /media/ebs/logs s3://dev.canopydata.com/logserver\
+17787 23.9 root     /usr/bin/java -Xms1g -Xmx1g -XX:+UseParNewGC -XX:+UseConcMarkSweepGC -XX:CMSInitiatingOccupancyFraction=75 -XX:+UseCMSInitiatingOccupancyOnly -Djava.awt.headless=true -Dfile.encoding=UTF-8 -Djruby.compile.invokedynamic=true -Djruby.jit.threshold=0 -XX:+HeapDumpOnOutOfMemoryError -Djava.security.egd=file:/dev/urandom -cp /usr/lib/logstash-6.2.3/logstash-core/lib/jars/animal-sniffer-annotations-1.14.jar:/usr/lib/logstash-6.2.3/logstash-core/lib/jars/commons-compiler-3.0.8.jar:/usr/lib/logstash-6.2.3/logstash-core/lib/jars/error_prone_annotations-2.0.18.jar:/usr/lib/logstash-6.2.3/logstash-core/lib/jars/google-java-format-1.5.jar:/usr/lib/logstash-6.2.3/logstash-core/lib/jars/guava-22.0.jar:/usr/lib/logstash-6.2.3/logstash-core/lib/jars/j2objc-annotations-1.1.jar:/usr/lib/logstash-6.2.3/logstash-core/lib/jars/jackson-annotations-2.9."
+        }
+      },
+      "published": {},
+      "input": null,
+      "id": "bc149571-1d49-4b68-9320-d87bd668fe1d"
+    },
+    {
+      "state_info": "Failed to run task [error=Can not evaluate YAQL expression [expression=task(check_process).result.stdout, error=u'stdout', data={}], wf=ops.check_cpu.main, task=post_to_slack]:
+Traceback (most recent call last):
+  File \"/opt/stackstorm/mistral/lib/python2.7/site-packages/mistral/engine/task_handler.py\", line 63, in run_task
+    task.run()
+  File \"/opt/stackstorm/mistral/lib/python2.7/site-packages/osprofiler/profiler.py\", line 159, in wrapper
+    result = f(*args, **kwargs)
+  File \"/opt/stackstorm/mistral/lib/python2.7/site-packages/mistral/engine/tasks.py\", line 374, in run
+    self._run_new()
+  File \"/opt/stackstorm/mistral/lib/python2.7/site-packages/osprofiler/profiler.py\", line 159, in wrapper
+    result = f(*args, **kwargs)
+  File \"/opt/stackstorm/mistral/lib/python2.7/site-packages/mistral/engine/tasks.py\", line 403, in _run_new
+    self._schedule_actions()
+  File \"/opt/stackstorm/mistral/lib/python2.7/site-packages/mistral/engine/tasks.py\", line 470, in _schedule_actions
+    input_dict = self._get_action_input()
+  File \"/opt/stackstorm/mistral/lib/python2.7/site-packages/osprofiler/profiler.py\", line 159, in wrapper
+    result = f(*args, **kwargs)
+  File \"/opt/stackstorm/mistral/lib/python2.7/site-packages/mistral/engine/tasks.py\", line 500, in _get_action_input
+    input_dict = self._evaluate_expression(self.task_spec.get_input(), ctx)
+  File \"/opt/stackstorm/mistral/lib/python2.7/site-packages/mistral/engine/tasks.py\", line 524, in _evaluate_expression
+    ctx_view
+  File \"/opt/stackstorm/mistral/lib/python2.7/site-packages/mistral/expressions/__init__.py\", line 100, in evaluate_recursively
+    data[key] = _evaluate_item(data[key], context)
+  File \"/opt/stackstorm/mistral/lib/python2.7/site-packages/mistral/expressions/__init__.py\", line 89, in _evaluate_item
+    return evaluate_recursively(item, context)
+  File \"/opt/stackstorm/mistral/lib/python2.7/site-packages/mistral/expressions/__init__.py\", line 100, in evaluate_recursively
+    data[key] = _evaluate_item(data[key], context)
+  File \"/opt/stackstorm/mistral/lib/python2.7/site-packages/mistral/expressions/__init__.py\", line 79, in _evaluate_item
+    return evaluate(item, context)
+  File \"/opt/stackstorm/mistral/lib/python2.7/site-packages/mistral/expressions/__init__.py\", line 71, in evaluate
+    return evaluator.evaluate(expression, context)
+  File \"/opt/stackstorm/mistral/lib/python2.7/site-packages/mistral/expressions/yaql_expression.py\", line 119, in evaluate
+    cls).evaluate(trim_expr, data_context)
+  File \"/opt/stackstorm/mistral/lib/python2.7/site-packages/mistral/expressions/yaql_expression.py\", line 73, in evaluate
+    \", data=%s]\" % (expression, str(e), data_context)
+YaqlEvaluationException: Can not evaluate YAQL expression [expression=task(check_process).result.stdout, error=u'stdout', data={}]
+",
+</code></pre>
+          <p><a href="https://forum.stackstorm.com/t/passing-output-to-slack-from-workflow/504/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/passing-output-to-slack-from-workflow/504/1</link>
+        <pubDate>Fri, 22 Feb 2019 19:41:56 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-504-1</guid>
+        <source url="https://forum.stackstorm.com/t/passing-output-to-slack-from-workflow/504.rss">Passing output to slack from workflow</source>
+      </item>
+  </channel>
+</rss>

@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Action class logs cannot be found in any log file</title>
+    <link>https://forum.stackstorm.com/t/action-class-logs-cannot-be-found-in-any-log-file/1427</link>
+    <description>Hi everyone, I have recently changed the log formatter and handler to GELF. I don&#39;t see logs for the action python class that I have logged, checked in st2actionrunner.gelf.log or st2actionrunner.audit.log or st2actionrunner.log but I do see the logs for sensor in under st2sensorcontainer.gelf.log . I&#39;m not sure how to debug this, or why are the logs not to be found anywhere for actions. Could someone please help if they have seen this issue before? Thank you.</description>
+    
+    <lastBuildDate>Tue, 10 Nov 2020 01:18:20 +0000</lastBuildDate>
+    <category>Packages</category>
+    <atom:link href="https://forum.stackstorm.com/t/action-class-logs-cannot-be-found-in-any-log-file/1427.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Action class logs cannot be found in any log file</title>
+        <dc:creator><![CDATA[punkrokk]]></dc:creator>
+        <description><![CDATA[
+            <p>Something isn’t right. If you can post all your st2 logs, maybe in a zip file I’ll see if I can check them out.</p>
+          <p><a href="https://forum.stackstorm.com/t/action-class-logs-cannot-be-found-in-any-log-file/1427/13">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/action-class-logs-cannot-be-found-in-any-log-file/1427/13</link>
+        <pubDate>Tue, 10 Nov 2020 01:18:20 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1427-13</guid>
+        <source url="https://forum.stackstorm.com/t/action-class-logs-cannot-be-found-in-any-log-file/1427.rss">Action class logs cannot be found in any log file</source>
+      </item>
+      <item>
+        <title>Action class logs cannot be found in any log file</title>
+        <dc:creator><![CDATA[Tarto]]></dc:creator>
+        <description><![CDATA[
+            <p>Thank you <a class="mention" href="https://github.com/punkrokk">@punkrokk</a>. I have checked everywhere. no log information. I’m thinking of trying to use python logging instead of stackstorm logging. But not sure if that’s possible and how to GELF format.</p>
+          <p><a href="https://forum.stackstorm.com/t/action-class-logs-cannot-be-found-in-any-log-file/1427/12">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/action-class-logs-cannot-be-found-in-any-log-file/1427/12</link>
+        <pubDate>Tue, 29 Sep 2020 20:24:00 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1427-12</guid>
+        <source url="https://forum.stackstorm.com/t/action-class-logs-cannot-be-found-in-any-log-file/1427.rss">Action class logs cannot be found in any log file</source>
+      </item>
+      <item>
+        <title>Action class logs cannot be found in any log file</title>
+        <dc:creator><![CDATA[punkrokk]]></dc:creator>
+        <description><![CDATA[
+            <p>Sorry you are on Ubuntu it looks like - /var/log/syslog</p>
+          <p><a href="https://forum.stackstorm.com/t/action-class-logs-cannot-be-found-in-any-log-file/1427/11">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/action-class-logs-cannot-be-found-in-any-log-file/1427/11</link>
+        <pubDate>Thu, 24 Sep 2020 15:18:24 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1427-11</guid>
+        <source url="https://forum.stackstorm.com/t/action-class-logs-cannot-be-found-in-any-log-file/1427.rss">Action class logs cannot be found in any log file</source>
+      </item>
+      <item>
+        <title>Action class logs cannot be found in any log file</title>
+        <dc:creator><![CDATA[Tarto]]></dc:creator>
+        <description><![CDATA[
+            <p>I don’t see anything in <code>/var/log/messages</code>. It is empty. Don’t see any error logs related to GELF. I’m missing something here. Could you please help me point to the right logs I should check.</p>
+<p>Logging in stackstorm comes under - <strong>st2common</strong>. I don’t see logs for <strong>st2common</strong> as well.</p>
+<p><strong>These are logs I see under /var/log/st2/</strong></p>
+<pre><code>-rw-r--r-- 1 st2  st2           297 Sep 23 06:25 st2auth.log
+-rw-r--r-- 1 st2  st2           301 Sep 23 06:25 st2stream.log
+-rw-r--r-- 1 st2  st2             0 Sep 23 06:25 st2resultstracker.audit.log
+-rw-r--r-- 1 st2  st2           258 Sep 23 06:25 st2resultstracker.log
+-rw-r--r-- 1 st2  st2             0 Sep 23 06:25 st2notifier.audit.log
+-rw-r--r-- 1 st2  st2           246 Sep 23 06:25 st2notifier.log
+-rw-r--r-- 1 st2  st2        390852 Sep 23 06:25 st2sensorcontainer.log.1.gz
+-rw-r--r-- 1 root root      1227414 Sep 23 06:25 st2sensorcontainer.gelf.log.1.gz
+-rw-r--r-- 1 st2  st2       1226926 Sep 23 06:25 st2sensorcontainer.audit.log.1.gz
+-rw-rw-r-- 1 root st2packs        0 Sep 23 06:25 st2actionrunner.28024.audit.log
+-rw-rw-r-- 1 root st2packs        0 Sep 23 06:25 st2actionrunner.28026.audit.log
+-rw-rw-r-- 1 root st2packs        0 Sep 23 06:25 st2actionrunner.28028.audit.log
+-rw-r--r-- 1 st2  st2        181384 Sep 23 06:25 st2scheduler.log.1.gz
+-rw-r--r-- 1 st2  st2        142674 Sep 23 06:25 st2scheduler.audit.log.1.gz
+-rw-rw-r-- 1 root st2packs        0 Sep 23 06:25 st2actionrunner.28030.audit.log
+-rw-rw-r-- 1 root st2packs        0 Sep 23 06:25 st2actionrunner.28032.audit.log
+-rw-rw-r-- 1 root st2packs        0 Sep 23 06:25 st2actionrunner.28034.audit.log
+-rw-rw-r-- 1 root st2packs        0 Sep 23 06:25 st2actionrunner.28036.audit.log
+-rw-rw-r-- 1 root st2packs        0 Sep 23 06:25 st2actionrunner.28038.audit.log
+-rw-rw-r-- 1 root st2packs        0 Sep 23 06:25 st2actionrunner.28041.audit.log
+-rw-rw-r-- 1 root st2packs        0 Sep 23 06:25 st2actionrunner.28043.audit.log
+-rw-r--r-- 1 st2  st2             0 Sep 23 06:25 st2workflowengine.audit.log
+-rw-r--r-- 1 st2  st2           258 Sep 23 06:25 st2workflowengine.log
+-rw-r--r-- 1 st2  st2             0 Sep 23 06:25 st2timersengine.audit.log
+-rw-r--r-- 1 st2  st2           254 Sep 23 06:25 st2timersengine.log
+-rw-r--r-- 1 st2  st2       3657282 Sep 23 12:43 st2rulesengine.audit.log
+-rw-r--r-- 1 st2  st2       1594059 Sep 23 12:43 st2scheduler.log
+-rw-r--r-- 1 st2  st2       1474572 Sep 23 12:43 st2scheduler.audit.log
+-rw-rw-r-- 1 root st2packs   549229 Sep 23 12:43 st2actionrunner.log
+-rw-r--r-- 1 root root       676329 Sep 23 12:43 st2actionrunner.gelf.log
+-rw-rw-r-- 1 root st2packs   689680 Sep 23 12:43 st2actionrunner.audit.log
+-rw-r--r-- 1 st2  st2      73700713 Sep 23 12:43 st2rulesengine.log
+-rw-r--r-- 1 st2  st2        144033 Sep 23 12:48 st2api.log
+-rw-r--r-- 1 st2  st2         28980 Sep 23 13:11 st2garbagecollector.log
+-rw-r--r-- 1 st2  st2       2228103 Sep 23 13:19 st2sensorcontainer.log
+-rw-r--r-- 1 root root      6485892 Sep 23 13:19 st2sensorcontainer.gelf.log
+-rw-r--r-- 1 st2  st2       6493895 Sep 23 13:19 st2sensorcontainer.audit.log
+</code></pre>
+<p><strong>These are the list of logs I see under /var/log</strong></p>
+<pre><code>drwxr-xr-x 2 root     root             4096 Dec  7  2017 lxd
+drwxr-xr-x 2 root     root             4096 Nov  8  2019 dist-upgrade
+drwxr-xr-x 2 ntp      ntp              4096 Jan  7  2020 ntpstats
+drwxr-xr-x 2 root     root             4096 Apr  7 02:56 fsck
+-rwxr-x--- 1 news     news                0 Apr 15 13:50 news
+-rw-r--r-- 1 root     root              510 Jul 22 14:06 fontconfig.log
+drwxr-xr-x 4 root     root             4096 Jul 22 14:08 puppetlabs
+-rw-r--r-- 1 root     root             8955 Jul 22 14:09 reportpatchstatus
+-rw------- 1 root     root                0 Jul 22 14:16 boot.log
+-rw-r----- 1 root     adm                 0 Jul 22 14:16 kern.log
+-rw-r--r-- 1 root     root             8320 Aug  1 11:09 cloud-init-output.log
+-rw-r--r-- 1 syslog   adm            102304 Aug  1 11:09 cloud-init.log
+drwxr-x--- 2 root     root             4096 Aug  1 11:10 syslog-ng
+drwxr-xr-x 2 mongodb  mongodb          4096 Aug  1 11:12 mongodb
+-rw-r--r-- 1 root     root             1259 Aug  1 11:14 ntp.log
+drwxr-xr-x 2 mistral  root             4096 Aug  1 11:18 mistral
+-rw-r--r-- 1 root     root             8635 Aug  1 12:22 alternatives.log.1
+-rw-r--r-- 1 root     root            61411 Aug  1 12:22 dpkg.log.1
+-rw-r--r-- 1 root     root                1 Aug  9 06:25 mail.err.1
+-rw-r--r-- 1 root     root                0 Aug  9 06:25 mail.err
+-rw-r----- 1 root     adm             54435 Aug  9 06:25 mail.log.1
+-rw-r----- 1 root     adm                 0 Aug  9 06:25 mail.log
+-rw-r----- 1 root     adm              6048 Aug  9 06:25 daemon.log.1
+-rw-r----- 1 root     adm                79 Aug  9 06:25 user.log.1
+-rw-r----- 1 root     adm                 0 Aug  9 06:25 user.log
+-rw-r----- 1 root     adm                 0 Aug  9 06:25 daemon.log
+-rw-r----- 1 root     adm               119 Aug  9 06:25 messages.1
+-rw-r----- 1 root     adm              1110 Aug  9 06:25 cron.log.1
+-rw-r----- 1 root     adm                 0 Aug  9 06:25 cron.log
+-rw-r----- 1 root     adm                 0 Aug  9 06:25 messages
+-rw-r----- 1 root     adm             39511 Aug  9 06:25 error.1
+-rw-r----- 1 root     adm                 0 Aug  9 06:25 error
+-rw------- 1 root     utmp              213 Aug 28 22:29 btmp.1.gz
+-rw-rw-r-- 1 root     utmp            66737 Aug 31 18:25 wtmp.1.gz
+drwxr-xr-x 2 root     root             4096 Sep  1 06:25 apt
+-rw-r--r-- 1 root     root                0 Sep  1 06:25 alternatives.log
+drwxr-x--- 2 root     adm              4096 Sep  1 06:25 unattended-upgrades
+-rw------- 1 root     utmp             5376 Sep 10 07:06 btmp
+drwxr-xr-x 2 root     root             4096 Sep 11 06:25 nginx
+-rw-r--r-- 1 root     root              473 Sep 11 06:26 syslog.7.gz
+-rw-r--r-- 1 root     root              161 Sep 14 06:25 syslog.6.gz
+-rw-r--r-- 1 root     root              188 Sep 15 06:25 syslog.5.gz
+-rw-r--r-- 1 root     root              188 Sep 18 06:25 syslog.4.gz
+-rw-r--r-- 1 root     root              129 Sep 18 17:15 firewalld
+-rw-r--r-- 1 root     root              100 Sep 19 06:25 syslog.3.gz
+drwxr-xr-x 2 rabbitmq rabbitmq         4096 Sep 20 06:25 rabbitmq
+-rw-r--r-- 1 root     root            29231 Sep 20 23:01 dpkg.log
+drwxr-x--- 2 sssd     sssd             4096 Sep 21 06:25 sssd
+-rw-r--r-- 1 root     root              211 Sep 21 06:25 syslog.2.gz
+drwxr-x--- 2 root     root             4096 Sep 21 10:55 audit
+drwsrwsrwt 2 root     root             4096 Sep 22 11:59 filebeat
+drwxrwxr-t 2 root     postgres         4096 Sep 23 06:25 postgresql
+drwxr-xr-x 2 st2      root            28672 Sep 23 06:25 st2
+-rw-r--r-- 1 root     root              125 Sep 23 06:25 syslog.1
+-rw-r--r-- 1 root     root                0 Sep 23 06:25 syslog
+drwxr-xr-x 2 root     root             4096 Sep 23 06:28 sysstat
+-rw-rw-r-- 1 root     utmp          2120832 Sep 23 13:11 wtmp
+-rw-rw-r-- 1 root     utmp     262800005256 Sep 23 13:11 lastlog
+-rw-r--r-- 1 root     root         44695595 Sep 23 13:18 authlog
+-rw-r--r-- 1 root     root          8940721 Sep 23 13:18 cron
+-rw-r--r-- 1 root     root       1037297686 Sep 23 13:18 maillog</code></pre>
+          <p><a href="https://forum.stackstorm.com/t/action-class-logs-cannot-be-found-in-any-log-file/1427/10">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/action-class-logs-cannot-be-found-in-any-log-file/1427/10</link>
+        <pubDate>Wed, 23 Sep 2020 19:33:53 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1427-10</guid>
+        <source url="https://forum.stackstorm.com/t/action-class-logs-cannot-be-found-in-any-log-file/1427.rss">Action class logs cannot be found in any log file</source>
+      </item>
+      <item>
+        <title>Action class logs cannot be found in any log file</title>
+        <dc:creator><![CDATA[punkrokk]]></dc:creator>
+        <description><![CDATA[
+            <p>I meant look at the logs for an error related to gelf. Check /car/log/messages also.</p>
+          <p><a href="https://forum.stackstorm.com/t/action-class-logs-cannot-be-found-in-any-log-file/1427/9">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/action-class-logs-cannot-be-found-in-any-log-file/1427/9</link>
+        <pubDate>Wed, 23 Sep 2020 18:58:14 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1427-9</guid>
+        <source url="https://forum.stackstorm.com/t/action-class-logs-cannot-be-found-in-any-log-file/1427.rss">Action class logs cannot be found in any log file</source>
+      </item>
+      <item>
+        <title>Action class logs cannot be found in any log file</title>
+        <dc:creator><![CDATA[Tarto]]></dc:creator>
+        <description><![CDATA[
+            <p>Yes, <a class="mention" href="https://github.com/punkrokk">@punkrokk</a> they do show the default stacktsorm logs but not the ones I have put in the python class.</p>
+<p>My <strong>st2actionrunner.gelf.log</strong> has the default logs that stackstorm produces when an action occurs. What I wanted and looking for is the logs I have put in the action python class.</p>
+<pre><code> {"version": "1.1", "level": 6, "timestamp": 1600886116, "_python": {"name": "st2.st2actions.worker", "process": 6937, "module": "worker", "funcName": "_run_action", "processName": "MainProcess", "lineno": 154, "filename": "worker.py"}, "timestamp_f": 1600886116.498083, "host": "stackstorm-setup-1", "full_message": "Dispatched {~}action_execution: 5f6b956413b90a89c81f440b / {~}live_action: 5f6b956413b90a89c81f4409 with \"running\" status.", "short_message": "Dispatched {~}action_execution: %s / {~}live_action: %s with \"%s\" status."}
+
+    {"version": "1.1", "level": 6, "timestamp": 1600886116, "_runner_type_db": {"runner_module": "python_runner", "description": "A runner for launching python actions.", "name": "python-script", "runner_package": "python_runner", "enabled": true, "query_module": null, "output_key": "result", "output_schema": {"stdout": {"required": true, "type": "string"}, "exit_code": {"required": true, "type": "integer"}, "stderr": {"required": true, "type": "string"}, "result": {"anyOf": [{"type": "object"}, {"type": "string"}, {"type": "integer"}, {"type": "number"}, {"type": "boolean"}, {"type": "array"}, {"type": "null"}]}}, "runner_parameters": {"debug": {"default": false, "required": false, "type": "boolean", "description": "Enable runner debug mode."}, "content_version": {"required": false, "type": "string", "description": "Git revision of the pack content to use for this action execution (git commit sha / tag / branch). Only applies to packs which are git repositories."}, "log_level": {"default": "DEBUG", "enum": ["AUDIT", "CRITICAL", "ERROR", "WARNING", "INFO", "DEBUG"], "type": "string", "description": "Default log level for Python runner actions."}, "env": {"type": "object", "description": "Environment variables which will be available to the script."}, "timeout": {"default": 600, "type": "integer", "description": "Action timeout in seconds. Action will get killed if it doesn't finish in timeout seconds."}}, "id": "5f25b16ae8f3984fb2b89f8b", "uid": "runner_type:python-script"}, "_python": {"name": "st2.st2actions.container.base", "process": 6937, "module": "base", "funcName": "dispatch", "processName": "MainProcess", "lineno": 62, "filename": "base.py"}, "timestamp_f": 1600886116.506733, "host": "stackstorm-setup-1", "full_message": "Dispatching Action to a runner", "_liveaction_db": {"status": "running", "runner_info": {"hostname": "stackstorm-setup-1", "pid": 6937}, "workflow_execution": null, "parameters": {"instances": {"instances": [&lt;instances_list&gt;]}, "log_level": "INFO", "poolname": "&lt;pool_name&gt;"}, "action_is_workflow": false, "start_timestamp": "2020-09-23 18:35:16.156295+00:00", "delay": null, "callback": {}, "task_execution": null, "notify": null, "result": {}, "context": {"trigger_instance": {"id": "5f6b956413b90a89c81f4405", "name": null}, "trace_context": {"id_": "5f6b956413b90a89c81f4407", "trace_tag": "trigger_instance-5f6b956413b90a89c81f4405"}, "user": "stanley", "rule": {"id": "5f501a15379c21fa6c4a0cd8", "name": "replace_instance"}, "pack": "managedstage_remediation"}, "action": "managedstage_remediation.genesis_replace", "id": "5f6b956413b90a89c81f4409", "end_timestamp": null}, "short_message": "Dispatching Action to a runner"}</code></pre>
+          <p><a href="https://forum.stackstorm.com/t/action-class-logs-cannot-be-found-in-any-log-file/1427/8">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/action-class-logs-cannot-be-found-in-any-log-file/1427/8</link>
+        <pubDate>Wed, 23 Sep 2020 18:45:49 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1427-8</guid>
+        <source url="https://forum.stackstorm.com/t/action-class-logs-cannot-be-found-in-any-log-file/1427.rss">Action class logs cannot be found in any log file</source>
+      </item>
+      <item>
+        <title>Action class logs cannot be found in any log file</title>
+        <dc:creator><![CDATA[punkrokk]]></dc:creator>
+        <description><![CDATA[
+            <p>are your logs showing anything? Pick one service and let’s fix that for now.</p>
+          <p><a href="https://forum.stackstorm.com/t/action-class-logs-cannot-be-found-in-any-log-file/1427/7">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/action-class-logs-cannot-be-found-in-any-log-file/1427/7</link>
+        <pubDate>Wed, 23 Sep 2020 18:15:18 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1427-7</guid>
+        <source url="https://forum.stackstorm.com/t/action-class-logs-cannot-be-found-in-any-log-file/1427.rss">Action class logs cannot be found in any log file</source>
+      </item>
+      <item>
+        <title>Action class logs cannot be found in any log file</title>
+        <dc:creator><![CDATA[Tarto]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi <a class="mention" href="https://github.com/punkrokk">@punkrokk</a> Thank you for responding. I do have <code>[handler_gelfHandler]</code> which can been seen by scrolling the conf above. I have restarted st2 by using the command - sudo st2ctl restart.  What could’ve gone wrong?</p>
+<aside class="quote no-group" data-username="Tarto" data-post="3" data-topic="1427">
+<div class="title">
+<div class="quote-controls"></div>
+<img alt="" width="20" height="20" src="https://avatars.discourse-cdn.com/v4/letter/t/0ea827/40.png" class="avatar"> Tarto:</div>
+<blockquote>
+<pre><code class="lang-auto">[handler_gelfHandler]
+#class=st2common.log.FormatNamedFileHandler
+class=handlers.RotatingFileHandler
+level=INFO
+formatter=gelfFormatter
+#args=('/var/log/st2/st2actionrunner.{pid}.gelf.log',)
+args=('/var/log/st2/st2actionrunner.gelf.log', "a", 100000000, 5)
+</code></pre>
+</blockquote>
+</aside>
+          <p><a href="https://forum.stackstorm.com/t/action-class-logs-cannot-be-found-in-any-log-file/1427/6">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/action-class-logs-cannot-be-found-in-any-log-file/1427/6</link>
+        <pubDate>Wed, 23 Sep 2020 14:58:54 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1427-6</guid>
+        <source url="https://forum.stackstorm.com/t/action-class-logs-cannot-be-found-in-any-log-file/1427.rss">Action class logs cannot be found in any log file</source>
+      </item>
+      <item>
+        <title>Action class logs cannot be found in any log file</title>
+        <dc:creator><![CDATA[punkrokk]]></dc:creator>
+        <description><![CDATA[
+            <p>Looks to me like you are missing your <code>[handler_gelfHandler]</code> stanzas. Checkout <a href="https://stackstorm.com/2017/08/22/stackstorm-centralized-logging-graylog/">this blog post.</a> by <a class="mention" href="https://github.com/nmaludy">@nmaludy</a>.</p>
+<p>Should point you in the right direction.</p>
+<p>Don’t forget to restart st2 after, and notice a few of the files have differences, as pointed out in the blog post.</p>
+          <p><a href="https://forum.stackstorm.com/t/action-class-logs-cannot-be-found-in-any-log-file/1427/5">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/action-class-logs-cannot-be-found-in-any-log-file/1427/5</link>
+        <pubDate>Wed, 23 Sep 2020 14:55:27 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1427-5</guid>
+        <source url="https://forum.stackstorm.com/t/action-class-logs-cannot-be-found-in-any-log-file/1427.rss">Action class logs cannot be found in any log file</source>
+      </item>
+      <item>
+        <title>Action class logs cannot be found in any log file</title>
+        <dc:creator><![CDATA[Tarto]]></dc:creator>
+        <description><![CDATA[
+            <p>And my logging.sensorcontainer.conf is below (Sensor logs seems to work fine)</p>
+<pre><code>[loggers]
+keys=root
+
+[handlers]
+keys=consoleHandler, fileHandler, auditHandler, gelfHandler
+
+[formatters]
+keys=simpleConsoleFormatter, verboseConsoleFormatter, gelfFormatter
+
+[logger_root]
+level=INFO
+handlers=consoleHandler, fileHandler, auditHandler, gelfHandler
+
+[handler_consoleHandler]
+class=StreamHandler
+level=INFO
+formatter=simpleConsoleFormatter
+args=(sys.stdout,)
+
+[handler_fileHandler]
+class=handlers.RotatingFileHandler
+level=INFO
+formatter=verboseConsoleFormatter
+args=("/var/log/st2/st2sensorcontainer.log", "a", 100000000, 5)
+
+[handler_auditHandler]
+class=handlers.RotatingFileHandler
+level=AUDIT
+formatter=gelfFormatter
+args=("/var/log/st2/st2sensorcontainer.audit.log",)
+
+# For all components except actionrunner
+[handler_gelfHandler]
+class=handlers.RotatingFileHandler
+level=INFO
+formatter=gelfFormatter
+args=("/var/log/st2/st2sensorcontainer.gelf.log", "a", 100000000, 5)
+
+[formatter_simpleConsoleFormatter]
+class=st2common.logging.formatters.ConsoleLogFormatter
+format=%(asctime)s %(levelname)s [-] %(message)s
+datefmt=
+
+[formatter_verboseConsoleFormatter]
+class=st2common.logging.formatters.ConsoleLogFormatter
+format=%(asctime)s %(thread)s %(levelname)s %(module)s [-] %(message)s
+datefmt=
+
+[formatter_gelfFormatter]
+class=st2common.logging.formatters.GelfLogFormatter
+format=%(message)s</code></pre>
+          <p><a href="https://forum.stackstorm.com/t/action-class-logs-cannot-be-found-in-any-log-file/1427/4">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/action-class-logs-cannot-be-found-in-any-log-file/1427/4</link>
+        <pubDate>Wed, 23 Sep 2020 05:28:49 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1427-4</guid>
+        <source url="https://forum.stackstorm.com/t/action-class-logs-cannot-be-found-in-any-log-file/1427.rss">Action class logs cannot be found in any log file</source>
+      </item>
+      <item>
+        <title>Action class logs cannot be found in any log file</title>
+        <dc:creator><![CDATA[Tarto]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi <a class="mention" href="https://github.com/punkrokk">@punkrokk</a>. Below is my logging.actionrunner.conf</p>
+<pre><code>[loggers]
+keys=root
+
+[handlers]
+keys=consoleHandler, fileHandler, auditHandler, gelfHandler
+
+[formatters]
+keys=simpleConsoleFormatter, verboseConsoleFormatter, gelfFormatter,jsonFormatter
+
+[logger_root]
+level=INFO
+handlers=consoleHandler, fileHandler, auditHandler, gelfHandler
+
+[handler_consoleHandler]
+class=StreamHandler
+level=INFO
+formatter=simpleConsoleFormatter
+args=(sys.stdout,)
+
+[handler_fileHandler]
+#class=st2common.log.FormatNamedFileHandler
+class=handlers.RotatingFileHandler
+level=INFO
+formatter=verboseConsoleFormatter
+#args=('/var/log/st2/st2actionrunner.{pid}.log',)
+args=('/var/log/st2/st2actionrunner.log', "a", 100000000, 5)
+
+[handler_gelfHandler]
+#class=st2common.log.FormatNamedFileHandler
+class=handlers.RotatingFileHandler
+level=INFO
+formatter=gelfFormatter
+#args=('/var/log/st2/st2actionrunner.{pid}.gelf.log',)
+args=('/var/log/st2/st2actionrunner.gelf.log', "a", 100000000, 5)
+
+[handler_auditHandler]
+class=st2common.log.FormatNamedFileHandler
+level=AUDIT
+formatter=jsonFormatter
+args=('/var/log/st2/st2actionrunner.audit.log', "a", 100000000, 5)
+
+[formatter_simpleConsoleFormatter]
+class=st2common.logging.formatters.ConsoleLogFormatter
+format=%(asctime)s %(levelname)s [-] %(message)s
+datefmt=
+
+[formatter_verboseConsoleFormatter]
+class=st2common.logging.formatters.ConsoleLogFormatter
+format=%(asctime)s %(thread)s %(levelname)s %(module)s [-] %(message)s
+datefmt=
+
+[formatter_gelfFormatter]
+class=st2common.logging.formatters.GelfLogFormatter
+format=%(message)s
+
+[formatter_jsonFormatter]
+class=pythonjsonlogger.jsonlogger.JsonFormatter
+format=%(asctime) %(thread) %(levelname) %(module) %(message)~</code></pre>
+          <p><a href="https://forum.stackstorm.com/t/action-class-logs-cannot-be-found-in-any-log-file/1427/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/action-class-logs-cannot-be-found-in-any-log-file/1427/3</link>
+        <pubDate>Wed, 23 Sep 2020 05:25:59 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1427-3</guid>
+        <source url="https://forum.stackstorm.com/t/action-class-logs-cannot-be-found-in-any-log-file/1427.rss">Action class logs cannot be found in any log file</source>
+      </item>
+      <item>
+        <title>Action class logs cannot be found in any log file</title>
+        <dc:creator><![CDATA[punkrokk]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi <a class="mention" href="https://github.com/tarto">@Tarto</a>. Can you share how you have configured and enabled your GELF logs so maybe I can help?</p>
+          <p><a href="https://forum.stackstorm.com/t/action-class-logs-cannot-be-found-in-any-log-file/1427/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/action-class-logs-cannot-be-found-in-any-log-file/1427/2</link>
+        <pubDate>Wed, 23 Sep 2020 04:32:39 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1427-2</guid>
+        <source url="https://forum.stackstorm.com/t/action-class-logs-cannot-be-found-in-any-log-file/1427.rss">Action class logs cannot be found in any log file</source>
+      </item>
+      <item>
+        <title>Action class logs cannot be found in any log file</title>
+        <dc:creator><![CDATA[Tarto]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi everyone, I have recently changed the log formatter and handler to GELF. I don’t see logs for the action python class that I have logged, checked in st2actionrunner.gelf.log or st2actionrunner.audit.log or st2actionrunner.log but I do see the logs for sensor in under st2sensorcontainer.gelf.log . I’m not sure how to debug this, or why are the logs not to be found anywhere for actions. Could someone please help if they have seen this issue before? Thank you.</p>
+          <p><a href="https://forum.stackstorm.com/t/action-class-logs-cannot-be-found-in-any-log-file/1427/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/action-class-logs-cannot-be-found-in-any-log-file/1427/1</link>
+        <pubDate>Wed, 23 Sep 2020 04:05:45 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1427-1</guid>
+        <source url="https://forum.stackstorm.com/t/action-class-logs-cannot-be-found-in-any-log-file/1427.rss">Action class logs cannot be found in any log file</source>
+      </item>
+  </channel>
+</rss>

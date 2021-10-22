@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>How do I disable cert checking in st2client?</title>
+    <link>https://forum.stackstorm.com/t/how-do-i-disable-cert-checking-in-st2client/401</link>
+    <description>Trying to use the python library st2client for some simple tests calling a locally running instance of stackstorm in a container on https://localhost.
+
+    from flask import Flask, request, jsonify
+    import pathlib 
+    import os
+    import json
+    from st2client.client import Client
+    from st2client import models
+
+    app = Flask(__name__)
+
+    @app.route(&#39;/&#39;)
+    def hello_world():
+        client = Client(base_url=&#39;https://localhost&#39;, api_key=&#39;037339ce65194c19b5c61205c0f86466&#39;, debug=True)
+        rules = client.rules.get_all()
+
+Results in:
+
+    $ flask run
+     * Serving Flask app &quot;app.py&quot;
+     * Environment: production
+       WARNING: Do not use the development server in a production environment.
+       Use a production WSGI server instead.
+     * Debug mode: off
+     * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+    [2018-12-14 15:20:32,145] ERROR in app: Exception on / [GET]
+    Traceback (most recent call last):
+      File &quot;~/Projects/stackstorm/stackstorm.api/stackstorm_env/lib/python3.6/site-packages/requests/packages/urllib3/contrib/pyopenssl.py&quot;, line 438, in wrap_socket
+        cnx.do_handshake()
+      File &quot;~/Projects/stackstorm/stackstorm.api/stackstorm_env/lib/python3.6/site-packages/OpenSSL/SSL.py&quot;, line 1907, in do_handshake
+        self._raise_ssl_error(self._ssl, result)
+      File &quot;~/Projects/stackstorm/stackstorm.api/stackstorm_env/lib/python3.6/site-packages/OpenSSL/SSL.py&quot;, line 1632, in _raise_ssl_error
+        raise SysCallError(-1, &quot;Unexpected EOF&quot;)
+      OpenSSL.SSL.SysCallError: (-1, &#39;Unexpected EOF&#39;)
+
+I set my stackstorm config without fixing the error.
+
+    [general]
+    base_url = https://localhost
+    api_version = v1
+    silence_ssl_warnings = True
+
+Is there a way to ignore certificates?</description>
+    
+    <lastBuildDate>Sat, 15 Dec 2018 00:36:57 +0000</lastBuildDate>
+    <category>API</category>
+    <atom:link href="https://forum.stackstorm.com/t/how-do-i-disable-cert-checking-in-st2client/401.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>How do I disable cert checking in st2client?</title>
+        <dc:creator><![CDATA[dup1]]></dc:creator>
+        <description><![CDATA[
+            <p>I think networking is ok. ST2 is a container, and I am running python project from host. I can hit in browser, or use postman (but both of those allow me to disable ssl).</p>
+<p>I tried again with python 2.7.10, slightly different but same error.</p>
+<pre><code>$ flask run
+ * Serving Flask app "app.py"
+ * Environment: production
+   WARNING: Do not use the development server in a production environment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+ * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+[2018-12-14 17:26:41,599] ERROR in app: Exception on / [GET]
+Traceback (most recent call last):
+  File "~/Projects/stackstorm/stackstorm.api/venv/lib/python2.7/site-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "~/Projects/stackstorm/stackstorm.api/venv/lib/python2.7/site-packages/flask/app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "~/Projects/stackstorm/stackstorm.api/venv/lib/python2.7/site-packages/flask/app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "~/Projects/stackstorm/stackstorm.api/venv/lib/python2.7/site-packages/flask/app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "~/Projects/stackstorm/stackstorm.api/venv/lib/python2.7/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "~/Projects/stackstorm/stackstorm.api/app.py", line 15, in hello_world
+    rules = client.rules.get_all()
+  File "~/Projects/stackstorm/stackstorm.api/venv/lib/python2.7/site-packages/st2client/models/core.py", line 40, in decorate
+    return func(*args, **kwargs)
+  File "~/Projects/stackstorm/stackstorm.api/venv/lib/python2.7/site-packages/st2client/models/core.py", line 191, in get_all
+    response = self.client.get(url=url, params=params, **kwargs)
+  File "~/Projects/stackstorm/stackstorm.api/venv/lib/python2.7/site-packages/st2client/utils/httpclient.py", line 33, in decorate
+    return func(*args, **kwargs)
+  File "~/Projects/stackstorm/stackstorm.api/venv/lib/python2.7/site-packages/st2client/utils/httpclient.py", line 51, in decorate
+    return func(*args, **kwargs)
+  File "~/Projects/stackstorm/stackstorm.api/venv/lib/python2.7/site-packages/st2client/utils/httpclient.py", line 88, in get
+    response = requests.get(self.root + url, **kwargs)
+  File "~/Projects/stackstorm/stackstorm.api/venv/lib/python2.7/site-packages/requests/api.py", line 72, in get
+    return request('get', url, params=params, **kwargs)
+  File "~/Projects/stackstorm/stackstorm.api/venv/lib/python2.7/site-packages/requests/api.py", line 58, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "~/Projects/stackstorm/stackstorm.api/venv/lib/python2.7/site-packages/requests/sessions.py", line 518, in request
+    resp = self.send(prep, **send_kwargs)
+  File "~/Projects/stackstorm/stackstorm.api/venv/lib/python2.7/site-packages/requests/sessions.py", line 639, in send
+    r = adapter.send(request, **kwargs)
+  File "~/Projects/stackstorm/stackstorm.api/venv/lib/python2.7/site-packages/requests/adapters.py", line 512, in send
+    raise SSLError(e, request=request)
+SSLError: ("bad handshake: SysCallError(-1, 'Unexpected EOF')",)
+</code></pre>
+<p>I’ll try wireshark next. Thanks for all the pointers.</p>
+          <p><a href="https://forum.stackstorm.com/t/how-do-i-disable-cert-checking-in-st2client/401/8">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-do-i-disable-cert-checking-in-st2client/401/8</link>
+        <pubDate>Sat, 15 Dec 2018 00:36:57 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-401-8</guid>
+        <source url="https://forum.stackstorm.com/t/how-do-i-disable-cert-checking-in-st2client/401.rss">How do I disable cert checking in st2client?</source>
+      </item>
+      <item>
+        <title>How do I disable cert checking in st2client?</title>
+        <dc:creator><![CDATA[lhill]]></dc:creator>
+        <description><![CDATA[
+            <p>My guess is that it’s something related to your Docker setup. My guess is that “<a href="https://localhost" rel="nofollow noopener">https://localhost</a>” (relative to wherever your flask container is running) is not mapping through to port 443 on the ST2 container.</p>
+          <p><a href="https://forum.stackstorm.com/t/how-do-i-disable-cert-checking-in-st2client/401/7">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-do-i-disable-cert-checking-in-st2client/401/7</link>
+        <pubDate>Fri, 14 Dec 2018 23:21:48 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-401-7</guid>
+        <source url="https://forum.stackstorm.com/t/how-do-i-disable-cert-checking-in-st2client/401.rss">How do I disable cert checking in st2client?</source>
+      </item>
+      <item>
+        <title>How do I disable cert checking in st2client?</title>
+        <dc:creator><![CDATA[dup1]]></dc:creator>
+        <description><![CDATA[
+            <p>I have SS running from the stackstorm/stackstorm:latest distro on <a href="http://hub.docker.com" rel="nofollow noopener">hub.docker.com</a>. I’ll try with Python 2.7. Thanks.</p>
+          <p><a href="https://forum.stackstorm.com/t/how-do-i-disable-cert-checking-in-st2client/401/6">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-do-i-disable-cert-checking-in-st2client/401/6</link>
+        <pubDate>Fri, 14 Dec 2018 21:13:32 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-401-6</guid>
+        <source url="https://forum.stackstorm.com/t/how-do-i-disable-cert-checking-in-st2client/401.rss">How do I disable cert checking in st2client?</source>
+      </item>
+      <item>
+        <title>How do I disable cert checking in st2client?</title>
+        <dc:creator><![CDATA[kami]]></dc:creator>
+        <description><![CDATA[
+            <aside class="quote no-group quote-modified" data-post="1" data-topic="401">
+<div class="title">
+<div class="quote-controls"></div>
+<img alt="" width="20" height="20" src="https://avatars.discourse.org/v2/letter/d/b38774/40.png" class="avatar"> dup1:</div>
+<blockquote>
+<p>SysCallError(-1, “Unexpected EOF”)</p>
+</blockquote>
+</aside>
+<p>Looking at the error message, it might be related to a server SSL misconfiguration (e.g. <a href="https://github.com/requests/requests/issues/4244" class="inline-onebox" rel="nofollow noopener">("bad handshake: SysCallError(-1, 'Unexpected EOF')",) despite using verify=False · Issue #4244 · requests/requests · GitHub</a>).</p>
+<p>How did you install StackStorm? On what Linux distribution? Could a<br>
+lso be related to an environment, e.g. out of date openssl version.</p>
+<p>EDIT: It looks like you are using Python 3.6. Did you try with Python 2.7 yet?</p>
+<p>We did actually announce initial preview of StackStorm v2.0 running on Ubuntu Bionic under Python 3, but it’s still experimental.</p>
+          <p><a href="https://forum.stackstorm.com/t/how-do-i-disable-cert-checking-in-st2client/401/5">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-do-i-disable-cert-checking-in-st2client/401/5</link>
+        <pubDate>Fri, 14 Dec 2018 20:44:57 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-401-5</guid>
+        <source url="https://forum.stackstorm.com/t/how-do-i-disable-cert-checking-in-st2client/401.rss">How do I disable cert checking in st2client?</source>
+      </item>
+      <item>
+        <title>How do I disable cert checking in st2client?</title>
+        <dc:creator><![CDATA[dup1]]></dc:creator>
+        <description><![CDATA[
+            <p>Tried both cacert=False and cacert=None and get same error.</p>
+          <p><a href="https://forum.stackstorm.com/t/how-do-i-disable-cert-checking-in-st2client/401/4">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-do-i-disable-cert-checking-in-st2client/401/4</link>
+        <pubDate>Fri, 14 Dec 2018 20:41:33 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-401-4</guid>
+        <source url="https://forum.stackstorm.com/t/how-do-i-disable-cert-checking-in-st2client/401.rss">How do I disable cert checking in st2client?</source>
+      </item>
+      <item>
+        <title>How do I disable cert checking in st2client?</title>
+        <dc:creator><![CDATA[kami]]></dc:creator>
+        <description><![CDATA[
+            <p>You should be able to pass <code>cacert=False</code> argument to the “Client” class constructor (either <code>False</code> or <code>None</code> should work for the value.</p>
+<p>EDIT: <a class="mention" href="https://github.com/lhill">@lhill</a> I believe it will try to use a default <code>requests</code> CA cert bundle if <code>cacert</code> argument / <code>ST2_CACERT</code> environment variable is not explicitly specified.</p>
+          <p><a href="https://forum.stackstorm.com/t/how-do-i-disable-cert-checking-in-st2client/401/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-do-i-disable-cert-checking-in-st2client/401/3</link>
+        <pubDate>Fri, 14 Dec 2018 20:31:57 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-401-3</guid>
+        <source url="https://forum.stackstorm.com/t/how-do-i-disable-cert-checking-in-st2client/401.rss">How do I disable cert checking in st2client?</source>
+      </item>
+      <item>
+        <title>How do I disable cert checking in st2client?</title>
+        <dc:creator><![CDATA[lhill]]></dc:creator>
+        <description><![CDATA[
+            <p>I’m not sure that it’s getting to SSL validation.</p>
+<p>My read of the st2client code is that defaults to <em>not</em> validating certificates unless you specify <code>cacert</code>. See <a href="https://github.com/StackStorm/st2/blob/master/st2client/st2client/utils/httpclient.py#L28" class="inline-onebox" rel="nofollow noopener">st2/httpclient.py at master · StackStorm/st2 · GitHub</a></p>
+<pre><code class="lang-python">def add_ssl_verify_to_kwargs(func):
+    def decorate(*args, **kwargs):
+        if isinstance(args[0], HTTPClient) and 'https' in getattr(args[0], 'root', ''):
+            cacert = getattr(args[0], 'cacert', None)
+            kwargs['verify'] = cacert if cacert is not None else False
+        return func(*args, **kwargs)
+    return decorate
+</code></pre>
+<p>But your message “Unexpected EOF” implies something different to me. I think something else is going on. I would check your connectivity from that container to wherever nginx is running.</p>
+          <p><a href="https://forum.stackstorm.com/t/how-do-i-disable-cert-checking-in-st2client/401/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-do-i-disable-cert-checking-in-st2client/401/2</link>
+        <pubDate>Fri, 14 Dec 2018 20:31:45 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-401-2</guid>
+        <source url="https://forum.stackstorm.com/t/how-do-i-disable-cert-checking-in-st2client/401.rss">How do I disable cert checking in st2client?</source>
+      </item>
+      <item>
+        <title>How do I disable cert checking in st2client?</title>
+        <dc:creator><![CDATA[dup1]]></dc:creator>
+        <description><![CDATA[
+            <p>Trying to use the python library st2client for some simple tests calling a locally running instance of stackstorm in a container on <a href="https://localhost" rel="nofollow noopener">https://localhost</a>.</p>
+<pre><code>from flask import Flask, request, jsonify
+import pathlib 
+import os
+import json
+from st2client.client import Client
+from st2client import models
+
+app = Flask(__name__)
+
+@app.route('/')
+def hello_world():
+    client = Client(base_url='https://localhost', api_key='037339ce65194c19b5c61205c0f86466', debug=True)
+    rules = client.rules.get_all()
+</code></pre>
+<p>Results in:</p>
+<pre><code>$ flask run
+ * Serving Flask app "app.py"
+ * Environment: production
+   WARNING: Do not use the development server in a production environment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+ * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+[2018-12-14 15:20:32,145] ERROR in app: Exception on / [GET]
+Traceback (most recent call last):
+  File "~/Projects/stackstorm/stackstorm.api/stackstorm_env/lib/python3.6/site-packages/requests/packages/urllib3/contrib/pyopenssl.py", line 438, in wrap_socket
+    cnx.do_handshake()
+  File "~/Projects/stackstorm/stackstorm.api/stackstorm_env/lib/python3.6/site-packages/OpenSSL/SSL.py", line 1907, in do_handshake
+    self._raise_ssl_error(self._ssl, result)
+  File "~/Projects/stackstorm/stackstorm.api/stackstorm_env/lib/python3.6/site-packages/OpenSSL/SSL.py", line 1632, in _raise_ssl_error
+    raise SysCallError(-1, "Unexpected EOF")
+  OpenSSL.SSL.SysCallError: (-1, 'Unexpected EOF')
+</code></pre>
+<p>I set my stackstorm config without fixing the error.</p>
+<pre><code>[general]
+base_url = https://localhost
+api_version = v1
+silence_ssl_warnings = True
+</code></pre>
+<p>Is there a way to ignore certificates?</p>
+          <p><a href="https://forum.stackstorm.com/t/how-do-i-disable-cert-checking-in-st2client/401/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-do-i-disable-cert-checking-in-st2client/401/1</link>
+        <pubDate>Fri, 14 Dec 2018 20:23:42 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-401-1</guid>
+        <source url="https://forum.stackstorm.com/t/how-do-i-disable-cert-checking-in-st2client/401.rss">How do I disable cert checking in st2client?</source>
+      </item>
+  </channel>
+</rss>

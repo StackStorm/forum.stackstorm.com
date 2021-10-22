@@ -1,0 +1,1763 @@
+<!DOCTYPE html>
+<html lang="en" class="desktop-view not-mobile-device text-size-normal anon">
+<head>
+    <meta charset="utf-8">
+    <title>Orquesta workflows take ages to start the first action - Workflows - StackStorm Support (ARCHIVED)</title>
+    <meta name="description"
+          content="Complex orquesta workflows take ages to start the first action. I have seen workflows taking as much as 45 min to start the first action. Although it runs smoothly after that. Is there a way to improve this performance i&amp;hellip;">
+    <meta name="discourse_theme_id" content="2">
+    <meta name="discourse_current_homepage" content="latest">
+    <meta name="generator"
+          content="Discourse 2.8.0.beta6 - https://github.com/discourse/discourse version a1daf9fe53a66e2d2cdf9757ab4812fb9a2b2787">
+    <link rel="icon" type="image/png"
+          href="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/379ced12f8326d58f1b3d2b3ff652f883e141f6a_2_32x32.PNG">
+    <link rel="apple-touch-icon" type="image/png"
+          href="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/379ced12f8326d58f1b3d2b3ff652f883e141f6a_2_180x180.PNG">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <link rel="canonical" href="1260.html"/>
+    <script type="application/ld+json">{
+        "@context": "http://schema.org",
+        "@type": "WebSite",
+        "url": "https://forum.stackstorm.com",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://forum.stackstorm.com/search?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }
+    </script>
+    <link rel="search" type="application/opensearchdescription+xml" href="../../opensearch.xml"
+          title="StackStorm Support (ARCHIVED) Search">
+
+
+    <link href="/../../stylesheets/color_definitions_base__2_3c5eec1ecf192052ea70b4afdab57a62bccc0604.css?__ws=forum.stackstorm.com"
+          media="all" rel="stylesheet" class="light-scheme"/>
+
+    <link href="/../../stylesheets/desktop_b2f2968742d41481357e0df259b51ce29f72481a.css?__ws=forum.stackstorm.com"
+          media="all" rel="stylesheet" data-target="desktop"/>
+
+
+    <meta name="fragment" content="!">
+
+
+    <link id="manifest-link" rel="manifest" href="../../manifest.webmanifest" crossorigin="use-credentials">
+
+
+    <link rel="alternate" type="application/rss+xml"
+          title="RSS feed of &#39;Orquesta workflows take ages to start the first action&#39;" href="1260.rss"/>
+    <meta property="og:site_name" content="StackStorm Support (ARCHIVED)"/>
+    <meta property="og:type" content="website"/>
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:image"
+          content="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/891f00fbdb31fecb5bd9dab30c186d2fed0091ca.jpeg"/>
+    <meta property="og:image"
+          content="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/891f00fbdb31fecb5bd9dab30c186d2fed0091ca.jpeg"/>
+    <meta property="og:url"
+          content="https://forum.stackstorm.com/t/orquesta-workflows-take-ages-to-start-the-first-action/1260"/>
+    <meta name="twitter:url"
+          content="https://forum.stackstorm.com/t/orquesta-workflows-take-ages-to-start-the-first-action/1260"/>
+    <meta property="og:title" content="Orquesta workflows take ages to start the first action"/>
+    <meta name="twitter:title" content="Orquesta workflows take ages to start the first action"/>
+    <meta property="og:description"
+          content="Complex orquesta workflows take ages to start the first action. I have seen workflows taking as much as 45 min to start the first action. Although it runs smoothly after that. Is there a way to improve this performance issue."/>
+    <meta name="twitter:description"
+          content="Complex orquesta workflows take ages to start the first action. I have seen workflows taking as much as 45 min to start the first action. Although it runs smoothly after that. Is there a way to improve this performance issue."/>
+    <meta property="article:published_time" content="2020-06-02T07:51:11+00:00"/>
+    <meta property="og:ignore_canonical" content="true"/>
+
+
+    <script type="application/ld+json">{
+        "@context": "http://schema.org",
+        "@type": "QAPage",
+        "name": "Orquesta workflows take ages to start the first action",
+        "mainEntity": {
+            "@type": "Question",
+            "name": "Orquesta workflows take ages to start the first action",
+            "text": "Complex orquesta workflows take ages to start the first action. I have seen workflows taking as much as 45 min to start the first action. Although it runs smoothly after that. Is there a way to improve this performance issue.",
+            "upvoteCount": 0,
+            "answerCount": 0,
+            "dateCreated": "2020-06-02T07:51:11.638Z",
+            "author": {
+                "@type": "Person",
+                "name": "Mukul Jain"
+            }
+        }
+    }
+    </script>
+
+    <meta id="data-discourse-setup" data-cdn="https://sjc6.discourse-cdn.com/standard10"
+          data-base-url="https://forum.stackstorm.com" data-base-uri="" data-environment="production"
+          data-letter-avatar-version="5_8fec8e114563efeaf5265573e510f08e"
+          data-markdown-it-url="https://aws1.discourse-cdn.com/standard10/assets/markdown-it-bundle-31e9a9c535ca1801c26da78b0ff465821751a98f921c5cdc5457d7e5a69e9748.js"
+          data-service-worker-url="service-worker.js" data-default-locale="en"
+          data-asset-version="597e36448c9b51d0fa3b7e43ec1fd6d5" data-disable-custom-css="false"
+          data-highlight-js-path="/highlight-js/forum.stackstorm.com/ac0f4aa001e1343346941766d72e0c1ae330832b.js"
+          data-svg-sprite-path="/svg-sprite/forum.stackstorm.com/svg-2-c2ad434b1e06079c7e282124aed9938dc95b83ea.js"
+          data-enable-js-error-reporting="true" data-color-scheme-is-dark="false" data-user-dark-scheme-id="-1"
+          data-s3-cdn="https://aws1.discourse-cdn.com/standard10"
+          data-s3-base-url="//discourse-cloud-file-uploads.s3.dualstack.us-west-2.amazonaws.com/standard10">
+
+    <meta name="discourse/config/environment"
+          content="%7B%22modulePrefix%22%3A%22discourse%22%2C%22environment%22%3A%22production%22%2C%22rootURL%22%3A%22%22%2C%22locationType%22%3A%22auto%22%2C%22historySupportMiddleware%22%3Afalse%2C%22EmberENV%22%3A%7B%22FEATURES%22%3A%7B%7D%2C%22EXTEND_PROTOTYPES%22%3A%7B%22Date%22%3Afalse%7D%2C%22_APPLICATION_TEMPLATE_WRAPPER%22%3Afalse%2C%22_DEFAULT_ASYNC_OBSERVERS%22%3Atrue%2C%22_JQUERY_INTEGRATION%22%3Atrue%7D%2C%22APP%22%3A%7B%22name%22%3A%22discourse%22%2C%22version%22%3A%222.8.0.beta6%20a1daf9fe53a66e2d2cdf9757ab4812fb9a2b2787%22%2C%22exportApplicationGlobal%22%3Atrue%7D%7D"/>
+</head>
+
+<body class="">
+
+
+<header class="d-header">
+    <div class="wrap">
+        <div class="contents clearfix">
+            <div class="title">
+                <a href="../../index.html">
+                    <picture>
+                        <img src="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png"
+                             alt="StackStorm Support (ARCHIVED)" id="site-logo"/>
+                    </picture>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</header>
+
+<div id="main-outlet" class="wrap" role="main">
+    <!-- preload-content: -->
+
+    <!-- EOF START -->
+    <div class="container" id="main-container">
+        <div id="ember11" class="ember-view"></div>
+        <div id="ember12" class="controls ember-view"><!----></div>
+        <div id="ember13" class="ember-view"><!----></div>
+        <div id="ember14" class="ember-view">
+            <div class="row">
+                <div id="global-notice-alert-read-only" class="alert alert-info alert-read-only">
+                    <!----> <span class="text">This site is in read only mode. Please continue to browse, but replying, likes, and other actions are disabled for now.</span>
+
+                    <!---->    </div>
+            </div>
+            <div class="row">
+                <div id="global-notice-alert-global-notice" class="alert alert-info alert-global-notice">
+                    <!----> <span class="text"><h3>⚠️ We've moved!</h3>  <p> Hi there!<br><br> To reduce project dependency on 3rd party paid services the StackStorm TSC has decided to move the Q/A from this forum to <a
+                        href="https://github.com/StackStorm/st2/discussions">Github Discussions</a>. This will make user experience better integrated with the native Github flow, as well as the questions closer to the community where they can provide answers. </p>  <p> Use 🔗 <b><a
+                        href="https://github.com/StackStorm/st2/discussions" class="active">Github Discussions</a></b> to ask your questions. </p></span>
+
+                    <!---->    </div>
+            </div>
+        </div>
+        <div id="ember17" class="hidden create-topics-notice ember-view"><!----></div>
+        <!---->
+    </div>
+    <!-- EOF END -->
+    <div id="topic-title">
+        <h1>
+            <a href="1260.html">Orquesta workflows take ages to start the first action</a>
+        </h1>
+
+        <div class="topic-category" itemscope itemtype="http://schema.org/BreadcrumbList">
+          <span itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a href="../../c/workflow-related-issues/15" class="badge-wrapper bullet" itemprop="item">
+              <span class='badge-category-bg' style='background-color: #25AAE2'></span>
+              <span class='badge-category clear-badge'>
+                <span class='category-name' itemprop='name'>Workflows</span>
+              </span>
+            </a>
+            <meta itemprop="position" content="1"/>
+          </span>
+        </div>
+
+        <div class="topic-category">
+            <div class='discourse-tags list-tags'>
+                <a href='../../tag/orquesta' class='discourse-tag' rel="tag">orquesta</a>,
+                <a href='../../tag/performance' class='discourse-tag' rel="tag">performance</a>
+            </div>
+        </div>
+    </div>
+
+
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/mukjain'><span itemprop='name'>mukjain</span></a>
+            (Mukul Jain)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="1260.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2020-06-02T07:51:11Z' class='post-time'>
+                June 2, 2020,  7:51am
+              </time>
+              <meta itemprop='dateModified' content='2020-06-02T07:51:11Z'>
+          <span itemprop='position'>#1</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Complex orquesta workflows take ages to start the first action. I have seen workflows taking as much as
+                45 min to start the first action. Although it runs smoothly after that. Is there a way to improve this
+                performance issue.</p>
+        </div>
+
+        <meta itemprop='headline' content='Orquesta workflows take ages to start the first action'>
+        <meta itemprop='keywords' content='orquesta, performance'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/armab'><span itemprop='name'>armab</span></a>
+            (Eugen Cusmaunsa)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="1260.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2020-06-02T11:11:07Z' class='post-time'>
+                June 2, 2020, 11:11am
+              </time>
+              <meta itemprop='dateModified' content='2020-06-02T12:37:19Z'>
+          <span itemprop='position'>#2</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>We didn’t see anything dramatic (45mins!) like that before.</p>
+            <p>There seems to be something very specific about your environment. Please provide more info about the
+                environment you’re in like CPU/Memory resources, load, number of workflows, workflow logic, load, OS,
+                cloud, scaling strategy, eg what’s specific about your config.</p>
+        </div>
+
+        <meta itemprop='headline' content='Orquesta workflows take ages to start the first action'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/mukjain'><span itemprop='name'>mukjain</span></a>
+            (Mukul Jain)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="1260.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2020-06-03T09:04:27Z' class='post-time'>
+                June 3, 2020,  9:04am
+              </time>
+              <meta itemprop='dateModified' content='2020-06-03T09:04:27Z'>
+          <span itemprop='position'>#3</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>I am doing POC for orquesta and for that I am using stand alone stackstorm set up on a single server
+                (centos 7 - 4 core 32 gb ram) with no other process running on it. Also as of now i don’t have any other
+                workflow running on this system.<br>
+                Its not possible for me to share workflow here but the workflow has approx 70 tasks with multiple
+                branches such that a successful path can have around 40 tasks to execute.<br>
+                We have been using the mistral flow for the similar process (same number of tasks) very effectively with
+                multiple flows running in parallel but with orquesta i am facing this strange issue</p>
+        </div>
+
+        <meta itemprop='headline' content='Orquesta workflows take ages to start the first action'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/armab'><span itemprop='name'>armab</span></a>
+            (Eugen Cusmaunsa)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="1260.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2020-06-03T11:17:40Z' class='post-time'>
+                June 3, 2020, 11:17am
+              </time>
+              <meta itemprop='dateModified' content='2020-06-03T11:17:40Z'>
+          <span itemprop='position'>#4</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Try to work on isolating the issue if it’s a problem with the specific orquestra workflow part or is it
+                with the system. For example, such waits could be related for example to RabbitMQ issues.</p>
+        </div>
+
+        <meta itemprop='headline' content='Orquesta workflows take ages to start the first action'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/pvyaka01'><span itemprop='name'>pvyaka01</span></a>
+            (Pvyaka01)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="1260.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2020-06-21T20:36:42Z' class='post-time'>
+                June 21, 2020,  8:36pm
+              </time>
+              <meta itemprop='dateModified' content='2020-06-21T20:36:42Z'>
+          <span itemprop='position'>#5</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>We have a similar situation. The workflow has approximately 20 tasks and sub workflows and a combination
+                of mistral/Orquesta workflows. Noticed it takes anywhere from 15-20 mins to start the workflow and
+                proceeds fine after that. Other smaller workflows are working fine with little or no wait time.</p>
+        </div>
+
+        <meta itemprop='headline' content='Orquesta workflows take ages to start the first action'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/pvyaka01'><span itemprop='name'>pvyaka01</span></a>
+            (Pvyaka01)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="1260.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2020-06-24T22:56:00Z' class='post-time'>
+                June 24, 2020, 10:56pm
+              </time>
+              <meta itemprop='dateModified' content='2020-06-24T22:56:00Z'>
+          <span itemprop='position'>#6</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>By moving some actions in the workflow to a separate action (about 10 of them), i was able to reduce the
+                start time from 20 mins to 1 1/2 mins. There is definitely an issue.</p>
+        </div>
+
+        <meta itemprop='headline' content='Orquesta workflows take ages to start the first action'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/armab'><span itemprop='name'>armab</span></a>
+            (Eugen Cusmaunsa)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="1260.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2020-06-25T12:28:11Z' class='post-time'>
+                June 25, 2020, 12:28pm
+              </time>
+              <meta itemprop='dateModified' content='2020-06-25T12:28:11Z'>
+          <span itemprop='position'>#7</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p><a class="mention" href="https://github.com/pvyaka01">@pvyaka01</a> f you could put together
+                an example workflow filled with dummy actions for us to reproduce the issue, - please report it and
+                share in <a href="https://github.com/stackstorm/orquesta" class="inline-onebox">GitHub -
+                    StackStorm/orquesta: Orquesta is a graph based workflow engine for StackStorm. Questions?
+                    https://forum.stackstorm.com</a> so that could be investigated and fixed.<br>
+                Thanks!</p>
+        </div>
+
+        <meta itemprop='headline' content='Orquesta workflows take ages to start the first action'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/pvyaka01'><span itemprop='name'>pvyaka01</span></a>
+            (Pvyaka01)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="1260.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2020-06-26T05:26:52Z' class='post-time'>
+                June 26, 2020,  5:26am
+              </time>
+              <meta itemprop='dateModified' content='2020-06-26T05:26:52Z'>
+          <span itemprop='position'>#8</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>yeah, i’ll report it as soon as i can modify the workflow with dummy actions</p>
+        </div>
+
+        <meta itemprop='headline' content='Orquesta workflows take ages to start the first action'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/mukjain'><span itemprop='name'>mukjain</span></a>
+            (Mukul Jain)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="1260.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2020-06-29T09:35:34Z' class='post-time'>
+                June 29, 2020,  9:35am
+              </time>
+              <meta itemprop='dateModified' content='2020-06-29T09:48:52Z'>
+          <span itemprop='position'>#9</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p><a class="mention" href="https://github.com/armab">@armab</a> all this time is taken up by
+                conducting.py file in orquesta where the workflow graphs and specs are serialized.</p>
+            <p>It might be related to this issue (although it shows resolved on github)</p>
+            <ul>
+                <li><a href="https://github.com/StackStorm/orquesta/issues/122" class="inline-onebox"
+                       rel="nofollow noopener">Inflated workflow execution graph leads to increase resource consumption
+                    and delays · Issue #122 · StackStorm/orquesta · GitHub</a></li>
+            </ul>
+        </div>
+
+        <meta itemprop='headline' content='Orquesta workflows take ages to start the first action'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/armab'><span itemprop='name'>armab</span></a>
+            (Eugen Cusmaunsa)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="1260.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2020-06-29T11:38:45Z' class='post-time'>
+                June 29, 2020, 11:38am
+              </time>
+              <meta itemprop='dateModified' content='2020-06-29T11:38:45Z'>
+          <span itemprop='position'>#10</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Just to confirm, make sure to use the latest st2 <code>v3.2.0</code> version with the most recent fixes.
+            </p>
+            <p>If you believe you found a performance bug, - please report it in <a
+                    href="https://github.com/stackstorm/orquesta" class="inline-onebox">GitHub - StackStorm/orquesta:
+                Orquesta is a graph based workflow engine for StackStorm. Questions? https://forum.stackstorm.com</a>
+                providing as much details as possible, including an example workflow to reproduce the problem.</p>
+        </div>
+
+        <meta itemprop='headline' content='Orquesta workflows take ages to start the first action'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/mukjain'><span itemprop='name'>mukjain</span></a>
+            (Mukul Jain)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="1260.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2020-07-13T03:05:19Z' class='post-time'>
+                July 13, 2020,  3:05am
+              </time>
+              <meta itemprop='dateModified' content='2020-07-13T03:05:19Z'>
+          <span itemprop='position'>#12</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+          <pre><code>---
+version: '1.0'
+description: abc
+input:
+- lom_context
+tasks:
+  Start:
+action: core.noop
+next:
+- do: Task68
+  when: &lt;% succeeded() and result().result.event = 'Started' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task10:
+action: core.noop
+next:
+- do: Task20
+  when: &lt;% succeeded() and result().result.event = 'Not Matched' %&gt;
+- do: Task11
+  when: &lt;% succeeded() and result().result.event = 'Matched' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Invalid Datatype' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Key Absent' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Value Null' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Exception' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task11:
+action: core.noop
+next:
+- do: Task54
+  when: &lt;% succeeded() and result().result.event = 'Conn Error' %&gt;
+- do: Task54
+  when: &lt;% succeeded() and result().result.event = 'File Missing' %&gt;
+- do: Task54
+  when: &lt;% succeeded() and result().result.event = 'Access Denied' %&gt;
+- do: Task54
+  when: &lt;% succeeded() and result().result.event = 'Failure' %&gt;
+- do: Task53
+  when: &lt;% succeeded() and result().result.event = 'Success' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task12:
+action: core.noop
+next:
+- do: Task15
+  when: &lt;% succeeded() and result().result.event = 'Not Matched' %&gt;
+- do: Task14
+  when: &lt;% succeeded() and result().result.event = 'Matched' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Invalid Datatype' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Key Absent' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Value Null' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Exception' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task13:
+action: core.noop
+next:
+- do: Task65
+  when: &lt;% succeeded() and result().result.event = 'Success' %&gt;
+- do: Task65
+  when: &lt;% succeeded() and result().result.event = 'Failure' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task14:
+action: core.noop
+next:
+- do: Task66
+  when: &lt;% succeeded() and result().result.event = 'Conn Error' %&gt;
+- do: Task66
+  when: &lt;% succeeded() and result().result.event = 'File Missing' %&gt;
+- do: Task66
+  when: &lt;% succeeded() and result().result.event = 'Access Denied' %&gt;
+- do: Task66
+  when: &lt;% succeeded() and result().result.event = 'Failure' %&gt;
+- do: Task17
+  when: &lt;% succeeded() and result().result.event = 'Success' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task15:
+action: core.noop
+next:
+- do: Task48
+  when: &lt;% succeeded() and result().result.event = 'Conn Error' %&gt;
+- do: Task48
+  when: &lt;% succeeded() and result().result.event = 'File Missing' %&gt;
+- do: Task48
+  when: &lt;% succeeded() and result().result.event = 'Access Denied' %&gt;
+- do: Task14
+  when: &lt;% succeeded() and result().result.event = 'Success' %&gt;
+- do: Task48
+  when: &lt;% succeeded() and result().result.event = 'Failure' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task16:
+action: core.noop
+next:
+- do: Task56
+  when: &lt;% succeeded() and result().result.event = 'Not Matched' %&gt;
+- do: Task19
+  when: &lt;% succeeded() and result().result.event = 'Matched' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Invalid Datatype' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Key Absent' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Value Null' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Exception' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task17:
+action: core.noop
+next:
+- do: Task10
+  when: &lt;% succeeded() and result().result.event = 'Not Matched' %&gt;
+- do: Task2
+  when: &lt;% succeeded() and result().result.event = 'Matched' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Invalid Datatype' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Key Absent' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Value Null' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Exception' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task18:
+action: core.noop
+next:
+- do: Task57
+  when: &lt;% succeeded() %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task19:
+action: core.noop
+next:
+- do: Task51
+  when: &lt;% succeeded() and result().result.event = 'Conn Error' %&gt;
+- do: Task51
+  when: &lt;% succeeded() and result().result.event = 'Access Denied' %&gt;
+- do: Task22
+  when: &lt;% succeeded() and result().result.event = 'Success' %&gt;
+- do: Task51
+  when: &lt;% succeeded() and result().result.event = 'Failure' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task2:
+action: core.noop
+next:
+- do: Task10
+  when: &lt;% succeeded() and result().result.event = 'Not Matched' %&gt;
+- do: Task19
+  when: &lt;% succeeded() and result().result.event = 'Matched' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Invalid Datatype' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Key Absent' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Value Null' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Exception' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task20:
+action: core.noop
+next:
+- do: Task54
+  when: &lt;% succeeded() and result().result.event = 'Conn Error' %&gt;
+- do: Task54
+  when: &lt;% succeeded() and result().result.event = 'File Missing' %&gt;
+- do: Task54
+  when: &lt;% succeeded() and result().result.event = 'Access Denied' %&gt;
+- do: Task21
+  when: &lt;% succeeded() and result().result.event = 'Success' %&gt;
+- do: Task54
+  when: &lt;% succeeded() and result().result.event = 'Failure' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task21:
+action: core.noop
+next:
+- do: Task54
+  when: &lt;% succeeded() and result().result.event = 'Conn Error' %&gt;
+- do: Task54
+  when: &lt;% succeeded() and result().result.event = 'File Missing' %&gt;
+- do: Task54
+  when: &lt;% succeeded() and result().result.event = 'Access Denied' %&gt;
+- do: Task54
+  when: &lt;% succeeded() and result().result.event = 'Failure' %&gt;
+- do: Task53
+  when: &lt;% succeeded() and result().result.event = 'Success' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task22:
+action: core.noop
+next:
+- do: Task23
+  when: &lt;% succeeded() and result().result.event = 'Not Matched' %&gt;
+- do: Task10
+  when: &lt;% succeeded() and result().result.event = 'Matched' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Invalid Datatype' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Key Absent' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Value Null' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Exception' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task23:
+action: core.noop
+next:
+- do: Task25
+  when: &lt;% succeeded() and result().result.event = 'Not Matched' %&gt;
+- do: Task10
+  when: &lt;% succeeded() and result().result.event = 'Matched' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Invalid Datatype' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Key Absent' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Value Null' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Exception' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task24:
+action: core.noop
+next:
+- do: Task67
+  when: &lt;% succeeded() %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task25:
+action: core.noop
+next:
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Not Matched' %&gt;
+- do: Task59
+  when: &lt;% succeeded() and result().result.event = 'Matched' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Invalid Datatype' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Key Absent' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Value Null' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Exception' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task26:
+action: core.noop
+next:
+- do: Task54
+  when: &lt;% succeeded() and result().result.event = 'Conn Error' %&gt;
+- do: Task54
+  when: &lt;% succeeded() and result().result.event = 'File Missing' %&gt;
+- do: Task54
+  when: &lt;% succeeded() and result().result.event = 'Access Denied' %&gt;
+- do: Task54
+  when: &lt;% succeeded() and result().result.event = 'Failure' %&gt;
+- do: Task41
+  when: &lt;% succeeded() and result().result.event = 'Success' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task27:
+action: core.noop
+next:
+- do: Task57
+  when: &lt;% succeeded() %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task28:
+action: core.noop
+next:
+- do: Task29
+  when: &lt;% succeeded() and result().result.event = 'Not Matched' %&gt;
+- do: Task16
+  when: &lt;% succeeded() and result().result.event = 'Matched' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Invalid Datatype' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Key Absent' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Value Null' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Exception' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task29:
+action: core.noop
+next:
+- do: Task31
+  when: &lt;% succeeded() and result().result.event = 'Not Matched' %&gt;
+- do: Task59
+  when: &lt;% succeeded() and result().result.event = 'Matched' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Invalid Datatype' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Key Absent' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Value Null' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Exception' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task3:
+action: core.noop
+next:
+- do: fail
+  when: &lt;% succeeded() and true %&gt;
+  Task30:
+action: core.noop
+next:
+- do: Task32
+  when: &lt;% succeeded() and result().result.event = 'Not Matched' %&gt;
+- do: Task24
+  when: &lt;% succeeded() and result().result.event = 'Matched' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Invalid Datatype' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Key Absent' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Value Null' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Exception' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task31:
+action: core.noop
+next:
+- do: Task33
+  when: &lt;% succeeded() and result().result.event = 'Not Matched' %&gt;
+- do: Task59
+  when: &lt;% succeeded() and result().result.event = 'Matched' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Invalid Datatype' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Key Absent' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Value Null' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Exception' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task32:
+action: core.noop
+next:
+- do: Task76
+  when: &lt;% succeeded() and result().result.event = 'Not Matched' %&gt;
+- do: Task27
+  when: &lt;% succeeded() and result().result.event = 'Matched' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Invalid Datatype' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Key Absent' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Value Null' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Exception' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task33:
+action: core.noop
+next:
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Not Matched' %&gt;
+- do: Task26
+  when: &lt;% succeeded() and result().result.event = 'Matched' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Invalid Datatype' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Key Absent' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Value Null' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Exception' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task34:
+action: core.noop
+next:
+- do: Task18
+  when: &lt;% succeeded() and result().result.event = 'Conn Error' %&gt;
+- do: Task18
+  when: &lt;% succeeded() and result().result.event = 'File Missing' %&gt;
+- do: Task18
+  when: &lt;% succeeded() and result().result.event = 'Access Denied' %&gt;
+- do: Task18
+  when: &lt;% succeeded() and result().result.event = 'Failure' %&gt;
+- do: Task75
+  when: &lt;% succeeded() and result().result.event = 'Success' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task35:
+action: core.noop
+next:
+- do: Task18
+  when: &lt;% succeeded() and result().result.event = 'Conn Error' %&gt;
+- do: Task18
+  when: &lt;% succeeded() and result().result.event = 'File Missing' %&gt;
+- do: Task18
+  when: &lt;% succeeded() and result().result.event = 'Access Denied' %&gt;
+- do: Task18
+  when: &lt;% succeeded() and result().result.event = 'Failure' %&gt;
+- do: Task7
+  when: &lt;% succeeded() and result().result.event = 'Success' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task36:
+action: core.noop
+next:
+- do: Task37
+  when: &lt;% succeeded() %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task37:
+action: core.noop
+next:
+- do: Task38
+  when: &lt;% succeeded() and true %&gt;
+- do: Task57
+  when: &lt;% failed() %&gt;
+  Task38:
+action: core.noop
+next:
+- do: Task57
+  when: &lt;% succeeded() and result().result.event = 'Not Matched' %&gt;
+- do: Task71
+  when: &lt;% succeeded() and result().result.event = 'Matched' %&gt;
+- do: Task57
+  when: &lt;% succeeded() and result().result.event = 'Invalid Datatype' %&gt;
+- do: Task57
+  when: &lt;% succeeded() and result().result.event = 'Key Absent' %&gt;
+- do: Task57
+  when: &lt;% succeeded() and result().result.event = 'Value Null' %&gt;
+- do: Task57
+  when: &lt;% succeeded() and result().result.event = 'Exception' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task39:
+action: core.noop
+next:
+- do: Task57
+  when: &lt;% succeeded() %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task4:
+action: core.noop
+next:
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task40:
+action: core.noop
+next:
+- do: Task65
+  when: &lt;% succeeded() and result().result.event = 'Not Matched' %&gt;
+- do: Task13
+  when: &lt;% succeeded() and result().result.event = 'Matched' %&gt;
+- do: Task65
+  when: &lt;% succeeded() and result().result.event = 'Invalid Datatype' %&gt;
+- do: Task65
+  when: &lt;% succeeded() and result().result.event = 'Key Absent' %&gt;
+- do: Task65
+  when: &lt;% succeeded() and result().result.event = 'Value Null' %&gt;
+- do: Task65
+  when: &lt;% succeeded() and result().result.event = 'Exception' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task41:
+action: core.noop
+next:
+- do: Task44
+  when: &lt;% succeeded() and result().result.event = 'Conn Error' %&gt;
+- do: Task44
+  when: &lt;% succeeded() and result().result.event = 'File Missing' %&gt;
+- do: Task44
+  when: &lt;% succeeded() and result().result.event = 'Access Denied' %&gt;
+- do: Task42
+  when: &lt;% succeeded() and result().result.event = 'Success' %&gt;
+- do: Task44
+  when: &lt;% succeeded() and result().result.event = 'Failure' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task42:
+action: core.noop
+next:
+- do: Task30
+  when: &lt;% succeeded() and result().result.event = 'Not Matched' %&gt;
+- do: Task45
+  when: &lt;% succeeded() and result().result.event = 'Matched' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Invalid Datatype' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Key Absent' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Value Null' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Exception' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task43:
+action: core.noop
+next:
+- do: Task57
+  when: &lt;% succeeded() %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task44:
+action: core.noop
+next:
+- do: Task30
+  when: &lt;% succeeded() %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task45:
+action: core.noop
+next:
+- do: Task46
+  when: &lt;% succeeded() and result().result.event = 'Not Matched' %&gt;
+- do: Task49
+  when: &lt;% succeeded() and result().result.event = 'Matched' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Invalid Datatype' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Key Absent' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Value Null' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Exception' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task46:
+action: core.noop
+next:
+- do: Task50
+  when: &lt;% succeeded() %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task47:
+action: core.noop
+next:
+- do: Task57
+  when: &lt;% succeeded() %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task48:
+action: core.noop
+next:
+- do: Task57
+  when: &lt;% succeeded() %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task49:
+action: core.noop
+next:
+- do: Task51
+  when: &lt;% succeeded() and result().result.event = 'Conn Error' %&gt;
+- do: Task51
+  when: &lt;% succeeded() and result().result.event = 'Access Denied' %&gt;
+- do: Task30
+  when: &lt;% succeeded() and result().result.event = 'Success' %&gt;
+- do: Task51
+  when: &lt;% succeeded() and result().result.event = 'Failure' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task5:
+action: core.noop
+next:
+- do: Task43
+  when: &lt;% succeeded() and result().result.event = 'Conn Error' %&gt;
+- do: Task43
+  when: &lt;% succeeded() and result().result.event = 'File Missing' %&gt;
+- do: Task43
+  when: &lt;% succeeded() and result().result.event = 'Access Denied' %&gt;
+- do: Task6
+  when: &lt;% succeeded() and result().result.event = 'Success' %&gt;
+- do: Task43
+  when: &lt;% succeeded() and result().result.event = 'Failure' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task50:
+action: core.noop
+next:
+- do: Task32
+  when: &lt;% succeeded() and result().result.event = 'Not Matched' %&gt;
+- do: Task52
+  when: &lt;% succeeded() and result().result.event = 'Matched' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Invalid Datatype' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Key Absent' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Value Null' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Exception' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task51:
+action: core.noop
+next:
+- do: Task57
+  when: &lt;% succeeded() %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task52:
+action: core.noop
+next:
+- do: Task24
+  when: &lt;% succeeded() %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task53:
+action: core.noop
+next:
+- do: Task28
+  when: &lt;% succeeded() and result().result.event = 'Conn Error' %&gt;
+- do: Task28
+  when: &lt;% succeeded() and result().result.event = 'File Missing' %&gt;
+- do: Task28
+  when: &lt;% succeeded() and result().result.event = 'Access Denied' %&gt;
+- do: Task28
+  when: &lt;% succeeded() and result().result.event = 'Success' %&gt;
+- do: Task28
+  when: &lt;% succeeded() and result().result.event = 'Failure' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task54:
+action: core.noop
+next:
+- do: Task57
+  when: &lt;% succeeded() %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task55:
+action: core.noop
+next:
+- do: Task57
+  when: &lt;% succeeded() %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task56:
+action: core.noop
+next:
+- do: Task57
+  when: &lt;% succeeded() %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task57:
+action: core.noop
+next:
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Not Matched' %&gt;
+- do: Task61
+  when: &lt;% succeeded() and result().result.event = 'Matched' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Invalid Datatype' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Key Absent' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Value Null' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Exception' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task58:
+action: core.noop
+next:
+- do: Task18
+  when: &lt;% succeeded() and result().result.event = 'Conn Error' %&gt;
+- do: Task18
+  when: &lt;% succeeded() and result().result.event = 'File Missing' %&gt;
+- do: Task18
+  when: &lt;% succeeded() and result().result.event = 'Access Denied' %&gt;
+- do: Task18
+  when: &lt;% succeeded() and result().result.event = 'Failure' %&gt;
+- do: Task77
+  when: &lt;% succeeded() and result().result.event = 'Success' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task59:
+action: core.noop
+next:
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Conn Error' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'File Missing' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Access Denied' %&gt;
+- do: Task63
+  when: &lt;% succeeded() and result().result.event = 'Success' %&gt;
+- do: Task60
+  when: &lt;% succeeded() and result().result.event = 'Failure' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task6:
+action: core.noop
+next:
+- do: Task39
+  when: &lt;% succeeded() and result().result.event = 'Not Matched' %&gt;
+- do: Task8
+  when: &lt;% succeeded() and result().result.event = 'Matched' %&gt;
+- do: Task39
+  when: &lt;% succeeded() and result().result.event = 'Invalid Datatype' %&gt;
+- do: Task39
+  when: &lt;% succeeded() and result().result.event = 'Key Absent' %&gt;
+- do: Task39
+  when: &lt;% succeeded() and result().result.event = 'Value Null' %&gt;
+- do: Task39
+  when: &lt;% succeeded() and result().result.event = 'Exception' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task60:
+action: core.noop
+next:
+- do: Task26
+  when: &lt;% succeeded() %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task61:
+action: core.noop
+next:
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Success' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Failure' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task62:
+action: core.noop
+next:
+- do: Task36
+  when: &lt;% succeeded() and result().result.event = 'Success' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Failure' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task63:
+action: core.noop
+next:
+- do: Task69
+  when: &lt;% succeeded() and result().result.event = 'Not Matched' %&gt;
+- do: Task10
+  when: &lt;% succeeded() and result().result.event = 'Matched' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Invalid Datatype' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Key Absent' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Value Null' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Exception' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task64:
+action: core.noop
+next:
+- do: Task3
+  when: &lt;% succeeded() and result().result.event = 'Next' %&gt;
+- do: Task3
+  when: &lt;% failed() %&gt;
+  Task65:
+action: core.noop
+next:
+- do: Task4
+  when: &lt;% succeeded() and result().result.event = 'Next' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task66:
+action: core.noop
+next:
+- do: Task57
+  when: &lt;% succeeded() %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task67:
+action: core.noop
+next:
+- do: Task72
+  when: &lt;% succeeded() and result().result.event = 'Not Matched' %&gt;
+- do: Task34
+  when: &lt;% succeeded() and result().result.event = 'Matched' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Invalid Datatype' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Key Absent' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Value Null' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Exception' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task68:
+action: core.noop
+next:
+- do: Task70
+  when: &lt;% succeeded() %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task69:
+action: core.noop
+next:
+- do: Task26
+  when: &lt;% succeeded() and result().result.event = 'Not Matched' %&gt;
+- do: Task73
+  when: &lt;% succeeded() and result().result.event = 'Matched' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Invalid Datatype' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Key Absent' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Value Null' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Exception' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task7:
+action: core.noop
+next:
+- do: Task40
+  when: &lt;% succeeded() %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task70:
+action: core.noop
+next:
+- do: Task62
+  when: &lt;% succeeded() %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task71:
+action: core.noop
+next:
+- do: Task43
+  when: &lt;% succeeded() and result().result.event = 'Conn Error' %&gt;
+- do: Task43
+  when: &lt;% succeeded() and result().result.event = 'File Missing' %&gt;
+- do: Task43
+  when: &lt;% succeeded() and result().result.event = 'Access Denied' %&gt;
+- do: Task74
+  when: &lt;% succeeded() and result().result.event = 'Success' %&gt;
+- do: Task74
+  when: &lt;% succeeded() and result().result.event = 'Failure' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task72:
+action: core.noop
+next:
+- do: Task35
+  when: &lt;% succeeded() and result().result.event = 'Not Matched' %&gt;
+- do: Task58
+  when: &lt;% succeeded() and result().result.event = 'Matched' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Invalid Datatype' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Key Absent' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Value Null' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Exception' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task73:
+action: core.noop
+next:
+- do: Task26
+  when: &lt;% succeeded() %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task74:
+action: core.noop
+next:
+- do: Task5
+  when: &lt;% succeeded() and result().result.event = 'Success' %&gt;
+- do: Task47
+  when: &lt;% succeeded() and result().result.event = 'Failure' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task75:
+action: core.noop
+next:
+- do: Task57
+  when: &lt;% succeeded() and result().result.event = 'Not Matched' %&gt;
+- do: Task72
+  when: &lt;% succeeded() and result().result.event = 'Matched' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Invalid Datatype' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Key Absent' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Value Null' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Exception' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task76:
+action: core.noop
+next:
+- do: Task57
+  when: &lt;% succeeded() %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task77:
+action: core.noop
+next:
+- do: Task57
+  when: &lt;% succeeded() and result().result.event = 'Not Matched' %&gt;
+- do: Task35
+  when: &lt;% succeeded() and result().result.event = 'Matched' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Invalid Datatype' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Key Absent' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Value Null' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Exception' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task8:
+action: core.noop
+next:
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Conn Error' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'File Missing' %&gt;
+- do: Task64
+  when: &lt;% succeeded() and result().result.event = 'Access Denied' %&gt;
+- do: Task9
+  when: &lt;% succeeded() and result().result.event = 'Success' %&gt;
+- do: Task9
+  when: &lt;% succeeded() and result().result.event = 'Failure' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;
+  Task9:
+action: core.noop
+next:
+- do: Task55
+  when: &lt;% succeeded() and result().result.event = 'Conn Error' %&gt;
+- do: Task55
+  when: &lt;% succeeded() and result().result.event = 'File Missing' %&gt;
+- do: Task55
+  when: &lt;% succeeded() and result().result.event = 'Access Denied' %&gt;
+- do: Task12
+  when: &lt;% succeeded() and result().result.event = 'Success' %&gt;
+- do: Task55
+  when: &lt;% succeeded() and result().result.event = 'Failure' %&gt;
+- do: Task64
+  when: &lt;% failed() %&gt;</code></pre>
+        </div>
+
+        <meta itemprop='headline' content='Orquesta workflows take ages to start the first action'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/mukjain'><span itemprop='name'>mukjain</span></a>
+            (Mukul Jain)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="1260.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2020-07-13T03:06:09Z' class='post-time'>
+                July 13, 2020,  3:06am
+              </time>
+              <meta itemprop='dateModified' content='2020-07-13T03:06:09Z'>
+          <span itemprop='position'>#13</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+          <pre><code>---
+name: "dummy_pre"
+enabled: true
+pack: "eglom"
+parameters:
+  lom_context:
+    required: true
+    type: "object"
+    secret: true
+runner_type: "orquesta"
+entry_point: "workflows/dummy_pre.yaml"</code></pre>
+        </div>
+
+        <meta itemprop='headline' content='Orquesta workflows take ages to start the first action'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/mukjain'><span itemprop='name'>mukjain</span></a>
+            (Mukul Jain)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="1260.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2020-07-13T03:06:35Z' class='post-time'>
+                July 13, 2020,  3:06am
+              </time>
+              <meta itemprop='dateModified' content='2020-07-13T03:06:35Z'>
+          <span itemprop='position'>#14</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Dummy workflow to test the same. It takes around 7-8 minutes to start this workflow.</p>
+        </div>
+
+        <meta itemprop='headline' content='Orquesta workflows take ages to start the first action'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+
+
+    <!-- :preload-content -->
+    <footer class="noscript-footer-nav">
+        <nav itemscope itemtype='http://schema.org/SiteNavigationElement'>
+            <a href='../../index.html'>Home</a>
+            <a href="../../categories.html">Categories</a>
+            <a href="https://forum.stackstorm.com/guidelines">FAQ/Guidelines</a>
+            <a href="../../tos.html">Terms of Service</a>
+            <a href="../../privacy.html">Privacy Policy</a>
+        </nav>
+    </footer>
+</div>
+
+<footer id='noscript-footer'>
+    <p>Powered by <a href="https://www.discourse.org">Discourse</a>, best viewed with JavaScript enabled</p>
+</footer>
+
+
+<section id='main'>
+</section>
+
+
+</body>
+</html>

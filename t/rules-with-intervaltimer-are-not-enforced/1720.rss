@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Rules with IntervalTimer are not enforced</title>
+    <link>https://forum.stackstorm.com/t/rules-with-intervaltimer-are-not-enforced/1720</link>
+    <description>Creating a simple rule with a timer ( `core.st2.IntervalTimer` or `CronTimer`) does nothing, 
+It is not called. (tried with no-op action and local_command creating a test a file)
+
+Any idea of how to fix this or which logs I could investigate on this subject?
+
+rule below:
+
+```
+{
+  &quot;tags&quot;: [],
+  &quot;uid&quot;: &quot;rule:packs:test-timer&quot;,
+  &quot;metadata_file&quot;: &quot;&quot;,
+  &quot;name&quot;: &quot;test-timer&quot;,
+  &quot;ref&quot;: &quot;packs.test-timer&quot;,
+  &quot;description&quot;: &quot;desc&quot;,
+  &quot;pack&quot;: &quot;packs&quot;,
+  &quot;type&quot;: {
+    &quot;ref&quot;: &quot;standard&quot;,
+    &quot;parameters&quot;: {}
+  },
+  &quot;trigger&quot;: {
+    &quot;type&quot;: &quot;core.st2.IntervalTimer&quot;,
+    &quot;parameters&quot;: {
+      &quot;delta&quot;: 10,
+      &quot;unit&quot;: &quot;seconds&quot;,
+      &quot;timezone&quot;: &quot;UTC&quot;
+    },
+    &quot;ref&quot;: &quot;core.50338bb7-f65b-46bf-ada1-d6280f2edd37&quot;,
+    &quot;description&quot;: &quot;Triggers on specified intervals. e.g. every 30s, 1week etc.&quot;
+  },
+  &quot;criteria&quot;: {},
+  &quot;action&quot;: {
+    &quot;ref&quot;: &quot;core.noop&quot;,
+    &quot;parameters&quot;: {},
+    &quot;description&quot;: &quot;Action that does nothing&quot;
+  },
+  &quot;context&quot;: {
+    &quot;user&quot;: &quot;username&quot;
+  },
+  &quot;enabled&quot;: true,
+  &quot;id&quot;: &quot;60b119244ac572b35efea8c1&quot;
+}
+```</description>
+    
+    <lastBuildDate>Sun, 30 May 2021 16:51:52 +0000</lastBuildDate>
+    <category>Workflows</category>
+    <atom:link href="https://forum.stackstorm.com/t/rules-with-intervaltimer-are-not-enforced/1720.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Rules with IntervalTimer are not enforced</title>
+        <dc:creator><![CDATA[lparsy]]></dc:creator>
+        <description><![CDATA[
+            <p>thank you for your quick reply.<br>
+I tried searching thoroughly with the help of your advices and even if I found new informations I don’t really understand the cause of the problem.</p>
+<p>I would say that it has to do with the timer system.<br>
+Before today I never saw the rule matched with <code>st2 rule</code> and no trigger executed on <code>st2 trigger-instance</code><br>
+Worse, while reloading the <code>st2rulesengines</code> and <code>st2timersengine</code>, my rule matched once… and then never again, even while retrying the same steps <img src="https://emoji.discourse-cdn.com/apple/confused.png?v=9" title=":confused:" class="emoji" alt=":confused:"></p>
+<p>when i rerun the only match i had with st2-rule-tester I get an error (maybe because i rechanged the rule or reloaded stackstorm in between)</p>
+<pre><code class="lang-auto">sudo st2-rule-tester --rule-ref=mypack.myrule --trigger-instance-id=60b3b0fd76ec9b09e90a9d63 --config-file=/etc/st2/st2.conf
+
+2021-05-30 18:30:15,696 INFO [-] Connecting to database "st2" @ "127.0.0.1:27017" as user "None".
+2021-05-30 18:30:15,699 INFO [-] Successfully connected to database "st2" @ "127.0.0.1:27017" as user "None".
+Traceback (most recent call last):
+  File "/usr/bin/st2-rule-tester", line 21, in &lt;module&gt;
+    rule_tester.main()
+  File "/usr/lib/python3/dist-packages/st2reactor/cmd/rule_tester.py", line 57, in main
+    matches = tester.evaluate()
+  File "/usr/lib/python3/dist-packages/st2reactor/rules/tester.py", line 70, in evaluate
+    if rule_db.trigger != trigger_db.ref:
+AttributeError: 'NoneType' object has no attribute 'ref'
+</code></pre>
+<p>I notices that I apparently have 3 timers running on my server, is it normal?</p>
+<pre><code class="lang-auto">myuser@mysrv:~$ sudo st2 timer list
++--------------------------+-----------------------+------+-----------------------+-----------------------+-----------------------+
+| id                       | uid                   | pack | name                  | type                  | parameters            |
++--------------------------+-----------------------+------+-----------------------+-----------------------+-----------------------+
+| 60b2b47d4ac572b35efea8c2 | trigger:core:b1a253fe | core | b1a253fe-0a73-4ffe-93 | core.st2.IntervalTime | {'delta': 10, 'unit': |
+|                          | -0a73-4ffe-9388-8cc43 |      | 88-8cc43844922c       | r                     | 'seconds'}            |
+|                          | 844922c:aba138edb6d32 |      |                       |                       |                       |
+|                          | 02c02b4da94cee70b1f   |      |                       |                       |                       |
+| 60b2b4904ac572b35efea8c3 | trigger:core:b49cac00 | core | b49cac00-370b-45d1-9e | core.st2.IntervalTime | {'delta': 10, 'unit': |
+|                          | -370b-45d1-9ee0-5f78b |      | e0-5f78b81d5b86       | r                     | 'seconds',            |
+|                          | 81d5b86:d6a146a61f811 |      |                       |                       | 'timezone': 'UTC'}    |
+|                          | baecbaecc963d78b759   |      |                       |                       |                       |
+| 60b3b88568b86302c44ee1c0 | trigger:core:f92d2e6c | core | f92d2e6c-0555-4033-ba | core.st2.IntervalTime | {'unit': 'seconds',   |
+|                          | -0555-4033-babf-6d9db |      | bf-6d9db1074dd3       | r                     | 'delta': 5}           |
+|                          | 1074dd3:889c1c0b04f53 |      |                       |                       |                       |
+|                          | 100997af85f35ad3979   |      |                       |                       |                       |
++--------------------------+-----------------------+------+-----------------------+-----------------------+-----------------------+
+</code></pre>
+<p>should I delete them in the st2 mongodb , or clean the stackstorm entirely?</p>
+<p><code>st2timersengine</code> is up according to systemctl.<br>
+I tried changing the <code>local_timezone</code> to the server’s one in the <code>st2.conf</code><br>
+and logs don’t show errors, but maybe the trigger is not re-emmitted every 10 seconds like it implies in the logs:</p>
+<pre><code class="lang-auto">may 30 18:08:20 myserv st2timersengine[7838]: 2021-05-30 18:08:20,202 INFO [-] Added job "St2Timer._emit_trigger_instance" to job store "default"
+may 30 18:08:20 myserv st2timersengine[7838]: 2021-05-30 18:08:20,202 INFO [-] Job 345d081226aa443cb2f7e813665d592b scheduled.
+may 30 18:08:20 myserv st2timersengine[7838]: 2021-05-30 18:08:20,203 INFO [-] Added job "St2Timer._emit_trigger_instance" to job store "default"
+may 30 18:08:20 myserv st2timersengine[7838]: 2021-05-30 18:08:20,203 INFO [-] Job a2424b244fc642f0b202dc60a191c20c scheduled.
+may 30 18:08:20 myserv st2timersengine[7838]: 2021-05-30 18:08:20,204 INFO [-] Added job "St2Timer._emit_trigger_instance" to job store "default"
+may 30 18:08:20 myserv st2timersengine[7838]: 2021-05-30 18:08:20,204 INFO [-] Job e4530261389546098354567a83f6b4db scheduled.
+may 30 18:08:20 myserv st2timersengine[7838]: 2021-05-30 18:08:20,205 INFO [-] Connected to amqp://guest:**@127.0.0.1:5672//
+may 30 18:08:30 myserv st2timersengine[7838]: 2021-05-30 18:08:30,203 INFO [-] Running job "St2Timer._emit_trigger_instance (trigger: interval[0:00:10], next run at: 2021-05-30 18:08:30 CEST)" (scheduled at 2021-05-30 18:08:30.202274+02:00)
+may 30 18:08:30 myserv st2timersengine[7838]: 2021-05-30 18:08:30,212 INFO [-] Running job "St2Timer._emit_trigger_instance (trigger: interval[0:00:10], next run at: 2021-05-30 16:08:30 UTC)" (scheduled at 2021-05-30 16:08:30.203337+00:00)
+may 30 18:08:30 myserv st2timersengine[7838]: 2021-05-30 18:08:30,218 INFO [-] Job "St2Timer._emit_trigger_instance (trigger: interval[0:00:10], next run at: 2021-05-30 18:08:40 CEST)" executed successfully
+
+</code></pre>
+<p>here is also a part of my rulesengines.log, if useful</p>
+<pre><code class="lang-auto">2021-05-30 18:07:24,548 140278377033232 INFO (unknown file) [-] Connecting to database "st2" @ "127.0.0.1:27017" as user "None".
+2021-05-30 18:07:24,551 140278377033232 INFO (unknown file) [-] Successfully connected to database "st2" @ "127.0.0.1:27017" as user "None".
+2021-05-30 18:07:24,883 140278377033232 INFO (unknown file) [-] (PID=7768) RulesEngine started.
+2021-05-30 18:07:24,884 140278377033232 INFO (unknown file) [-] Starting TriggerInstanceDispatcher...
+2021-05-30 18:07:24,890 140278349311672 INFO mixins [-] Connected to amqp://guest:**@127.0.0.1:5672//
+2021-05-30 18:07:42,708 140278362322144 INFO (unknown file) [-] Found 0 rules defined for trigger core.b1a253fe-0a73-4ffe-9388-8cc43844922c
+2021-05-30 18:07:42,709 140278362322144 INFO (unknown file) [-] No matching rules found for trigger instance 60b3b84e5ac412df85364160.
+2021-05-30 18:07:42,716 140278344941808 INFO (unknown file) [-] Found 0 rules defined for trigger core.b49cac00-370b-45d1-9ee0-5f78b81d5b86
+2021-05-30 18:07:42,717 140278344941808 INFO (unknown file) [-] No matching rules found for trigger instance 60b3b84e5ac412df85364162.
+</code></pre>
+<p>thank you for your help,<br>
+sorry for the lenghty post, I tried being as exhaustive as I could.</p>
+          <p><a href="https://forum.stackstorm.com/t/rules-with-intervaltimer-are-not-enforced/1720/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/rules-with-intervaltimer-are-not-enforced/1720/3</link>
+        <pubDate>Sun, 30 May 2021 16:51:52 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1720-3</guid>
+        <source url="https://forum.stackstorm.com/t/rules-with-intervaltimer-are-not-enforced/1720.rss">Rules with IntervalTimer are not enforced</source>
+      </item>
+      <item>
+        <title>Rules with IntervalTimer are not enforced</title>
+        <dc:creator><![CDATA[amanda11]]></dc:creator>
+        <description><![CDATA[
+            <p>A few things to check:<br>
+st2 rule list - and check the rule is loaded and enabled. If not then maybe a st2ctl reload to reload rules.</p>
+<p><a href="https://docs.stackstorm.com/troubleshooting/rules.html" class="inline-onebox" rel="noopener nofollow ugc">Rule is not Being Matched — StackStorm 3.4.0 documentation</a> - might help you to follow through the rule, trigger, action chain.</p>
+<p>You could also look in the rulesengine.log.</p>
+<p>The only thing that strikes me as different to the rules that I use, is the “context”, “user” fields- I’m not sure if that is the problem. So I’d maybe try removing that.</p>
+          <p><a href="https://forum.stackstorm.com/t/rules-with-intervaltimer-are-not-enforced/1720/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/rules-with-intervaltimer-are-not-enforced/1720/2</link>
+        <pubDate>Sat, 29 May 2021 09:02:38 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1720-2</guid>
+        <source url="https://forum.stackstorm.com/t/rules-with-intervaltimer-are-not-enforced/1720.rss">Rules with IntervalTimer are not enforced</source>
+      </item>
+      <item>
+        <title>Rules with IntervalTimer are not enforced</title>
+        <dc:creator><![CDATA[lparsy]]></dc:creator>
+        <description><![CDATA[
+            <p>Creating a simple rule with a timer ( <code>core.st2.IntervalTimer</code> or <code>CronTimer</code>) does nothing,<br>
+It is not called. (tried with no-op action and local_command creating a test a file)</p>
+<p>Any idea of how to fix this or which logs I could investigate on this subject?</p>
+<p>rule below:</p>
+<pre><code class="lang-auto">{
+  "tags": [],
+  "uid": "rule:packs:test-timer",
+  "metadata_file": "",
+  "name": "test-timer",
+  "ref": "packs.test-timer",
+  "description": "desc",
+  "pack": "packs",
+  "type": {
+    "ref": "standard",
+    "parameters": {}
+  },
+  "trigger": {
+    "type": "core.st2.IntervalTimer",
+    "parameters": {
+      "delta": 10,
+      "unit": "seconds",
+      "timezone": "UTC"
+    },
+    "ref": "core.50338bb7-f65b-46bf-ada1-d6280f2edd37",
+    "description": "Triggers on specified intervals. e.g. every 30s, 1week etc."
+  },
+  "criteria": {},
+  "action": {
+    "ref": "core.noop",
+    "parameters": {},
+    "description": "Action that does nothing"
+  },
+  "context": {
+    "user": "username"
+  },
+  "enabled": true,
+  "id": "60b119244ac572b35efea8c1"
+}
+</code></pre>
+          <p><a href="https://forum.stackstorm.com/t/rules-with-intervaltimer-are-not-enforced/1720/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/rules-with-intervaltimer-are-not-enforced/1720/1</link>
+        <pubDate>Fri, 28 May 2021 17:32:09 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1720-1</guid>
+        <source url="https://forum.stackstorm.com/t/rules-with-intervaltimer-are-not-enforced/1720.rss">Rules with IntervalTimer are not enforced</source>
+      </item>
+  </channel>
+</rss>

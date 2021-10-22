@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Capture Task Errors into Orquesta Workflows</title>
+    <link>https://forum.stackstorm.com/t/capture-task-errors-into-orquesta-workflows/802</link>
+    <description>Hi,
+
+I am new to orquesta workflows.I am trying to capture the error of the tasks which got failed in the workflow and assign to a variable to display/parse it with custom text included into the error.But could not able to find any link within the stackstorm documentation on this calling of failed task&#39;s error into orquesta workflow. Can anyone please help me to on this problem.
+
+Thanks,
+Acharya</description>
+    
+    <lastBuildDate>Mon, 19 Aug 2019 15:59:13 +0000</lastBuildDate>
+    <category>Mistral</category>
+    <atom:link href="https://forum.stackstorm.com/t/capture-task-errors-into-orquesta-workflows/802.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Capture Task Errors into Orquesta Workflows</title>
+        <dc:creator><![CDATA[AcharyaTejaswi]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi,</p>
+<p>I am new to orquesta workflows.I am trying to capture the error of the tasks which got failed in the workflow and assign to a variable to display/parse it with custom text included into the error.But could not able to find any link within the stackstorm documentation on this calling of failed task’s error into orquesta workflow. Can anyone please help me to on this problem.</p>
+<p>Thanks,<br>
+Acharya</p>
+          <p><a href="https://forum.stackstorm.com/t/capture-task-errors-into-orquesta-workflows/802/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/capture-task-errors-into-orquesta-workflows/802/1</link>
+        <pubDate>Mon, 19 Aug 2019 15:59:13 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-802-1</guid>
+        <source url="https://forum.stackstorm.com/t/capture-task-errors-into-orquesta-workflows/802.rss">Capture Task Errors into Orquesta Workflows</source>
+      </item>
+  </channel>
+</rss>

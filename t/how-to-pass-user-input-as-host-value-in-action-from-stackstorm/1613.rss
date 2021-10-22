@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>How to pass user input as host value in action from stackstorm</title>
+    <link>https://forum.stackstorm.com/t/how-to-pass-user-input-as-host-value-in-action-from-stackstorm/1613</link>
+    <description>```
+$ cat actions/docker_status.yaml 
+---
+name: status
+pack: docker_status
+runner_type: &quot;remote-shell-script&quot;
+description: &quot;Checking docker continer status on FPM VM&#39;s&quot;
+enabled: true
+entry_point: &quot;docker_status.sh&quot;
+parameters:
+ hosts:
+   immutable: true
+   default: &quot;65.0.194.82&quot;
+ private_key:
+   immutable: true
+   default: &quot;/home/stanley/.ssh/test&quot;
+ username:
+   immutable: true
+   default: &quot;centos&quot;
+ timeout:
+   type: &#39;integer&#39;
+   default: 60
+```</description>
+    
+    <lastBuildDate>Wed, 24 Mar 2021 19:08:22 +0000</lastBuildDate>
+    <category>Packages</category>
+    <atom:link href="https://forum.stackstorm.com/t/how-to-pass-user-input-as-host-value-in-action-from-stackstorm/1613.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>How to pass user input as host value in action from stackstorm</title>
+        <dc:creator><![CDATA[blag]]></dc:creator>
+        <description><![CDATA[
+            <p>What’s your specific question? Passing input parameters to actions is covered pretty thoroughly in the StackStorm documentation, please read that before asking questions here.<br>
+What have you tried?<br>
+What did you expect to happen?<br>
+What happened instead? Please copy any error messages, or any tracebacks, to give us an idea of what exactly is going wrong.</p>
+          <p><a href="https://forum.stackstorm.com/t/how-to-pass-user-input-as-host-value-in-action-from-stackstorm/1613/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-to-pass-user-input-as-host-value-in-action-from-stackstorm/1613/2</link>
+        <pubDate>Wed, 24 Mar 2021 19:08:22 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1613-2</guid>
+        <source url="https://forum.stackstorm.com/t/how-to-pass-user-input-as-host-value-in-action-from-stackstorm/1613.rss">How to pass user input as host value in action from stackstorm</source>
+      </item>
+      <item>
+        <title>How to pass user input as host value in action from stackstorm</title>
+        <dc:creator><![CDATA[haridvpsk]]></dc:creator>
+        <description><![CDATA[
+            <pre><code class="lang-auto">$ cat actions/docker_status.yaml 
+---
+name: status
+pack: docker_status
+runner_type: "remote-shell-script"
+description: "Checking docker continer status on FPM VM's"
+enabled: true
+entry_point: "docker_status.sh"
+parameters:
+ hosts:
+   immutable: true
+   default: "65.0.194.82"
+ private_key:
+   immutable: true
+   default: "/home/stanley/.ssh/test"
+ username:
+   immutable: true
+   default: "centos"
+ timeout:
+   type: 'integer'
+   default: 60
+</code></pre>
+          <p><a href="https://forum.stackstorm.com/t/how-to-pass-user-input-as-host-value-in-action-from-stackstorm/1613/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-to-pass-user-input-as-host-value-in-action-from-stackstorm/1613/1</link>
+        <pubDate>Wed, 24 Mar 2021 14:46:06 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1613-1</guid>
+        <source url="https://forum.stackstorm.com/t/how-to-pass-user-input-as-host-value-in-action-from-stackstorm/1613.rss">How to pass user input as host value in action from stackstorm</source>
+      </item>
+  </channel>
+</rss>

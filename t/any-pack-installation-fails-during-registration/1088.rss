@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Any pack installation fails during registration</title>
+    <link>https://forum.stackstorm.com/t/any-pack-installation-fails-during-registration/1088</link>
+    <description>I am trying to install packs but they all fail at registration
+
+
+2020-03-03 17:53:50,790  WARNING - Locale unknown with encoding unknown which is not UTF-8 is used. This means that some functionality which relies on outputting unicode characters won&#39;t work. You are encouraged to use UTF-8 locale by setting LC_ALL environment variable to en_US.UTF-8 or similar.
+
+	[ succeeded ] download pack
+	[ succeeded ] make a prerun
+	[ succeeded ] install pack dependencies
+	[  failed   ] register pack
+
+id: 5e5e4c577f704d773feec2d3
+action.ref: packs.install
+parameters:
+  packs:
+  - nagios=0.1.0
+  python3: false
+status: failed
+result_task: register pack
+result:
+  exit_code: 1
+  result: None
+  stderr: &quot;st2.actions.python.St2RegisterAction: DEBUG    Calling client method &quot;register&quot; with kwargs &quot;{&#39;types&#39;: [u&#39;all&#39;], &#39;packs&#39;: [u&#39;nagios&#39;]}&quot;
+Traceback (most recent call last):
+  File &quot;/opt/stackstorm/st2/lib/python2.7/site-packages/python_runner/python_action_wrapper.py&quot;, line 333, in &lt;module&gt;
+    obj.run()
+  File &quot;/opt/stackstorm/st2/lib/python2.7/site-packages/python_runner/python_action_wrapper.py&quot;, line 192, in run
+    output = action.run(**self._parameters)
+  File &quot;/opt/stackstorm/packs/packs/actions/pack_mgmt/register.py&quot;, line 80, in run
+    format_func=format_result)
+  File &quot;/opt/stackstorm/packs/packs/actions/pack_mgmt/register.py&quot;, line 148, in _run_client_method
+    result = method(**method_kwargs)
+  File &quot;/opt/stackstorm/st2/lib/python2.7/site-packages/st2client/models/core.py&quot;, line 41, in decorate
+    return func(*args, **kwargs)
+  File &quot;/opt/stackstorm/st2/lib/python2.7/site-packages/st2client/models/core.py&quot;, line 548, in register
+    response = self.client.post(url, payload, **kwargs)
+  File &quot;/opt/stackstorm/st2/lib/python2.7/site-packages/st2client/utils/httpclient.py&quot;, line 32, in decorate
+    return func(*args, **kwargs)
+  File &quot;/opt/stackstorm/st2/lib/python2.7/site-packages/st2client/utils/httpclient.py&quot;, line 50, in decorate
+    return func(*args, **kwargs)
+  File &quot;/opt/stackstorm/st2/lib/python2.7/site-packages/st2client/utils/httpclient.py&quot;, line 60, in decorate
+    return func(*args, **kwargs)
+  File &quot;/opt/stackstorm/st2/lib/python2.7/site-packages/st2client/utils/httpclient.py&quot;, line 95, in post
+    response = requests.post(self.root + url, json.dumps(data), **kwargs)
+  File &quot;/opt/stackstorm/st2/lib/python2.7/site-packages/requests/api.py&quot;, line 116, in post
+    return request(&#39;post&#39;, url, data=data, json=json, **kwargs)
+  File &quot;/opt/stackstorm/st2/lib/python2.7/site-packages/requests/api.py&quot;, line 60, in request
+    return session.request(method=method, url=url, **kwargs)
+  File &quot;/opt/stackstorm/st2/lib/python2.7/site-packages/requests/sessions.py&quot;, line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File &quot;/opt/stackstorm/st2/lib/python2.7/site-packages/requests/sessions.py&quot;, line 646, in send
+    r = adapter.send(request, **kwargs)
+  File &quot;/opt/stackstorm/st2/lib/python2.7/site-packages/requests/adapters.py&quot;, line 516, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host=&#39;myhost.examples.com&#39;, port=443): Max retries exceeded with url: /api/v1/packs/register (Caused by NewConnectionError(&#39;&lt;urllib3.connection.VerifiedHTTPSConnection object at 0x7f0c6378c2d0&gt;: Failed to establish a new connection: [Errno -2] Name or service not known&#39;,))
+&quot;
+  stdout: &#39;&#39;
+error: st2.actions.python.St2RegisterAction: DEBUG    Calling client method &quot;register&quot; with kwargs &quot;{&#39;types&#39;: [u&#39;all&#39;], &#39;packs&#39;: [u&#39;nagios&#39;]}&quot;
+Traceback (most recent call last):
+  File &quot;/opt/stackstorm/st2/lib/python2.7/site-packages/python_runner/python_action_wrapper.py&quot;, line 333, in &lt;module&gt;
+    obj.run()
+  File &quot;/opt/stackstorm/st2/lib/python2.7/site-packages/python_runner/python_action_wrapper.py&quot;, line 192, in run
+    output = action.run(**self._parameters)
+  File &quot;/opt/stackstorm/packs/packs/actions/pack_mgmt/register.py&quot;, line 80, in run
+    format_func=format_result)
+  File &quot;/opt/stackstorm/packs/packs/actions/pack_mgmt/register.py&quot;, line 148, in _run_client_method
+    result = method(**method_kwargs)
+  File &quot;/opt/stackstorm/st2/lib/python2.7/site-packages/st2client/models/core.py&quot;, line 41, in decorate
+    return func(*args, **kwargs)
+  File &quot;/opt/stackstorm/st2/lib/python2.7/site-packages/st2client/models/core.py&quot;, line 548, in register
+    response = self.client.post(url, payload, **kwargs)
+  File &quot;/opt/stackstorm/st2/lib/python2.7/site-packages/st2client/utils/httpclient.py&quot;, line 32, in decorate
+    return func(*args, **kwargs)
+  File &quot;/opt/stackstorm/st2/lib/python2.7/site-packages/st2client/utils/httpclient.py&quot;, line 50, in decorate
+    return func(*args, **kwargs)
+  File &quot;/opt/stackstorm/st2/lib/python2.7/site-packages/st2client/utils/httpclient.py&quot;, line 60, in decorate
+    return func(*args, **kwargs)
+  File &quot;/opt/stackstorm/st2/lib/python2.7/site-packages/st2client/utils/httpclient.py&quot;, line 95, in post
+    response = requests.post(self.root + url, json.dumps(data), **kwargs)
+  File &quot;/opt/stackstorm/st2/lib/python2.7/site-packages/requests/api.py&quot;, line 116, in post
+    return request(&#39;post&#39;, url, data=data, json=json, **kwargs)
+  File &quot;/opt/stackstorm/st2/lib/python2.7/site-packages/requests/api.py&quot;, line 60, in request
+    return session.request(method=method, url=url, **kwargs)
+  File &quot;/opt/stackstorm/st2/lib/python2.7/site-packages/requests/sessions.py&quot;, line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File &quot;/opt/stackstorm/st2/lib/python2.7/site-packages/requests/sessions.py&quot;, line 646, in send
+    r = adapter.send(request, **kwargs)
+  File &quot;/opt/stackstorm/st2/lib/python2.7/site-packages/requests/adapters.py&quot;, line 516, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host=&#39;myhost.examples.com&#39;, port=443): Max retries exceeded with url: /api/v1/packs/register (Caused by NewConnectionError(&#39;&lt;urllib3.connection.VerifiedHTTPSConnection object at 0x7f0c6378c2d0&gt;: Failed to establish a new connection: [Errno -2] Name or service not known&#39;,))
+
+traceback: None
+failed_on: register pack
+start_timestamp: Tue, 03 Mar 2020 12:23:51 UTC
+end_timestamp: Tue, 03 Mar 2020 12:24:03 UTC
++--------------------------+------------------------+----------------------+----------------------+------------------+
+| id                       | status                 | task                 | action               | start_timestamp  |
++--------------------------+------------------------+----------------------+----------------------+------------------+
+| 5e5e4c577f704d751ad7ad78 | succeeded (5s elapsed) | download pack        | packs.download       | Tue, 03 Mar 2020 |
+|                          |                        |                      |                      | 12:23:51 UTC     |
+| 5e5e4c5d7f704d751ad7ad7a | succeeded (1s elapsed) | make a prerun        | packs.virtualenv_pre | Tue, 03 Mar 2020 |
+|                          |                        |                      | run                  | 12:23:57 UTC     |
+| 5e5e4c5e7f704d751ad7ad7c | succeeded (3s elapsed) | install pack         | packs.setup_virtuale | Tue, 03 Mar 2020 |
+|                          |                        | dependencies         | nv                   | 12:23:58 UTC     |
+| 5e5e4c627f704d751ad7ad7e | failed (0s elapsed)    | register pack        | packs.load           | Tue, 03 Mar 2020 |
+|                          |                        |                      |                      | 12:24:02 UTC     |
++--------------------------+------------------------+----------------------+----------------------+------------------+</description>
+    
+    <lastBuildDate>Tue, 03 Mar 2020 12:30:30 +0000</lastBuildDate>
+    <category>Pack Management</category>
+    <atom:link href="https://forum.stackstorm.com/t/any-pack-installation-fails-during-registration/1088.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Any pack installation fails during registration</title>
+        <dc:creator><![CDATA[piyush.a]]></dc:creator>
+        <description><![CDATA[
+            <p>I am trying to install packs but they all fail at registration</p>
+<p>2020-03-03 17:53:50,790  WARNING - Locale unknown with encoding unknown which is not UTF-8 is used. This means that some functionality which relies on outputting unicode characters won’t work. You are encouraged to use UTF-8 locale by setting LC_ALL environment variable to en_US.UTF-8 or similar.</p>
+<pre><code>[ succeeded ] download pack
+[ succeeded ] make a prerun
+[ succeeded ] install pack dependencies
+[  failed   ] register pack
+</code></pre>
+<p>id: 5e5e4c577f704d773feec2d3<br>
+action.ref: packs.install<br>
+parameters:<br>
+packs:</p>
+<ul>
+<li>nagios=0.1.0<br>
+python3: false<br>
+status: failed<br>
+result_task: register pack<br>
+result:<br>
+exit_code: 1<br>
+result: None<br>
+stderr: "st2.actions.python.St2RegisterAction: DEBUG    Calling client method “register” with kwargs “{‘types’: [u’all’], ‘packs’: [u’nagios’]}”<br>
+Traceback (most recent call last):<br>
+File “/opt/stackstorm/st2/lib/python2.7/site-packages/python_runner/python_action_wrapper.py”, line 333, in <br>
+obj.run()<br>
+File “/opt/stackstorm/st2/lib/python2.7/site-packages/python_runner/python_action_wrapper.py”, line 192, in run<br>
+output = action.run(**self._parameters)<br>
+File “/opt/stackstorm/packs/packs/actions/pack_mgmt/register.py”, line 80, in run<br>
+format_func=format_result)<br>
+File “/opt/stackstorm/packs/packs/actions/pack_mgmt/register.py”, line 148, in _run_client_method<br>
+result = method(**method_kwargs)<br>
+File “/opt/stackstorm/st2/lib/python2.7/site-packages/st2client/models/core.py”, line 41, in decorate<br>
+return func(*args, **kwargs)<br>
+File “/opt/stackstorm/st2/lib/python2.7/site-packages/st2client/models/core.py”, line 548, in register<br>
+response = self.client.post(url, payload, **kwargs)<br>
+File “/opt/stackstorm/st2/lib/python2.7/site-packages/st2client/utils/httpclient.py”, line 32, in decorate<br>
+return func(*args, **kwargs)<br>
+File “/opt/stackstorm/st2/lib/python2.7/site-packages/st2client/utils/httpclient.py”, line 50, in decorate<br>
+return func(*args, **kwargs)<br>
+File “/opt/stackstorm/st2/lib/python2.7/site-packages/st2client/utils/httpclient.py”, line 60, in decorate<br>
+return func(*args, **kwargs)<br>
+File “/opt/stackstorm/st2/lib/python2.7/site-packages/st2client/utils/httpclient.py”, line 95, in post<br>
+response = requests.post(self.root + url, json.dumps(data), **kwargs)<br>
+File “/opt/stackstorm/st2/lib/python2.7/site-packages/requests/api.py”, line 116, in post<br>
+return request(‘post’, url, data=data, json=json, **kwargs)<br>
+File “/opt/stackstorm/st2/lib/python2.7/site-packages/requests/api.py”, line 60, in request<br>
+return session.request(method=method, url=url, **kwargs)<br>
+File “/opt/stackstorm/st2/lib/python2.7/site-packages/requests/sessions.py”, line 533, in request<br>
+resp = self.send(prep, **send_kwargs)<br>
+File “/opt/stackstorm/st2/lib/python2.7/site-packages/requests/sessions.py”, line 646, in send<br>
+r = adapter.send(request, **kwargs)<br>
+File “/opt/stackstorm/st2/lib/python2.7/site-packages/requests/adapters.py”, line 516, in send<br>
+raise ConnectionError(e, request=request)<br>
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host=‘<a href="http://myhost.examples.com" rel="nofollow noopener">myhost.examples.com</a>’, port=443): Max retries exceeded with url: /api/v1/packs/register (Caused by NewConnectionError(’&lt;urllib3.connection.VerifiedHTTPSConnection object at 0x7f0c6378c2d0&gt;: Failed to establish a new connection: [Errno -2] Name or service not known’,))<br>
+"<br>
+stdout: ‘’<br>
+error: st2.actions.python.St2RegisterAction: DEBUG    Calling client method “register” with kwargs “{‘types’: [u’all’], ‘packs’: [u’nagios’]}”<br>
+Traceback (most recent call last):<br>
+File “/opt/stackstorm/st2/lib/python2.7/site-packages/python_runner/python_action_wrapper.py”, line 333, in <br>
+obj.run()<br>
+File “/opt/stackstorm/st2/lib/python2.7/site-packages/python_runner/python_action_wrapper.py”, line 192, in run<br>
+output = action.run(**self._parameters)<br>
+File “/opt/stackstorm/packs/packs/actions/pack_mgmt/register.py”, line 80, in run<br>
+format_func=format_result)<br>
+File “/opt/stackstorm/packs/packs/actions/pack_mgmt/register.py”, line 148, in _run_client_method<br>
+result = method(**method_kwargs)<br>
+File “/opt/stackstorm/st2/lib/python2.7/site-packages/st2client/models/core.py”, line 41, in decorate<br>
+return func(*args, **kwargs)<br>
+File “/opt/stackstorm/st2/lib/python2.7/site-packages/st2client/models/core.py”, line 548, in register<br>
+response = self.client.post(url, payload, **kwargs)<br>
+File “/opt/stackstorm/st2/lib/python2.7/site-packages/st2client/utils/httpclient.py”, line 32, in decorate<br>
+return func(*args, **kwargs)<br>
+File “/opt/stackstorm/st2/lib/python2.7/site-packages/st2client/utils/httpclient.py”, line 50, in decorate<br>
+return func(*args, **kwargs)<br>
+File “/opt/stackstorm/st2/lib/python2.7/site-packages/st2client/utils/httpclient.py”, line 60, in decorate<br>
+return func(*args, **kwargs)<br>
+File “/opt/stackstorm/st2/lib/python2.7/site-packages/st2client/utils/httpclient.py”, line 95, in post<br>
+response = requests.post(self.root + url, json.dumps(data), **kwargs)<br>
+File “/opt/stackstorm/st2/lib/python2.7/site-packages/requests/api.py”, line 116, in post<br>
+return request(‘post’, url, data=data, json=json, **kwargs)<br>
+File “/opt/stackstorm/st2/lib/python2.7/site-packages/requests/api.py”, line 60, in request<br>
+return session.request(method=method, url=url, **kwargs)<br>
+File “/opt/stackstorm/st2/lib/python2.7/site-packages/requests/sessions.py”, line 533, in request<br>
+resp = self.send(prep, **send_kwargs)<br>
+File “/opt/stackstorm/st2/lib/python2.7/site-packages/requests/sessions.py”, line 646, in send<br>
+r = adapter.send(request, **kwargs)<br>
+File “/opt/stackstorm/st2/lib/python2.7/site-packages/requests/adapters.py”, line 516, in send<br>
+raise ConnectionError(e, request=request)<br>
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host=‘<a href="http://myhost.examples.com" rel="nofollow noopener">myhost.examples.com</a>’, port=443): Max retries exceeded with url: /api/v1/packs/register (Caused by NewConnectionError(’&lt;urllib3.connection.VerifiedHTTPSConnection object at 0x7f0c6378c2d0&gt;: Failed to establish a new connection: [Errno -2] Name or service not known’,))</li>
+</ul>
+<p>traceback: None<br>
+failed_on: register pack<br>
+start_timestamp: Tue, 03 Mar 2020 12:23:51 UTC<br>
+end_timestamp: Tue, 03 Mar 2020 12:24:03 UTC<br>
+±-------------------------±-----------------------±---------------------±---------------------±-----------------+<br>
+| id                       | status                 | task                 | action               | start_timestamp  |<br>
+±-------------------------±-----------------------±---------------------±---------------------±-----------------+<br>
+| 5e5e4c577f704d751ad7ad78 | succeeded (5s elapsed) | download pack        | packs.download       | Tue, 03 Mar 2020 |<br>
+|                          |                        |                      |                      | 12:23:51 UTC     |<br>
+| 5e5e4c5d7f704d751ad7ad7a | succeeded (1s elapsed) | make a prerun        | packs.virtualenv_pre | Tue, 03 Mar 2020 |<br>
+|                          |                        |                      | run                  | 12:23:57 UTC     |<br>
+| 5e5e4c5e7f704d751ad7ad7c | succeeded (3s elapsed) | install pack         | packs.setup_virtuale | Tue, 03 Mar 2020 |<br>
+|                          |                        | dependencies         | nv                   | 12:23:58 UTC     |<br>
+| 5e5e4c627f704d751ad7ad7e | failed (0s elapsed)    | register pack        | packs.load           | Tue, 03 Mar 2020 |<br>
+|                          |                        |                      |                      | 12:24:02 UTC     |<br>
+±-------------------------±-----------------------±---------------------±---------------------±-----------------+</p>
+          <p><a href="https://forum.stackstorm.com/t/any-pack-installation-fails-during-registration/1088/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/any-pack-installation-fails-during-registration/1088/1</link>
+        <pubDate>Tue, 03 Mar 2020 12:30:30 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1088-1</guid>
+        <source url="https://forum.stackstorm.com/t/any-pack-installation-fails-during-registration/1088.rss">Any pack installation fails during registration</source>
+      </item>
+  </channel>
+</rss>

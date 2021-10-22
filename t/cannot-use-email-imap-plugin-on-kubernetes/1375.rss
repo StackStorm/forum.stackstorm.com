@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Cannot use Email Imap plugin on Kubernetes</title>
+    <link>https://forum.stackstorm.com/t/cannot-use-email-imap-plugin-on-kubernetes/1375</link>
+    <description>Hi there, I&#39;m using email plugin on Kubernetes using stackstorm-ha HELM Chart. 
+I&#39;m using 3.2.0 version and tried to build it with st2packs-dockerfiles, also using FROM stackstorm/st2:3.2.0. I also tried the last 3.3dev version.
+
+However IMAP doesn&#39;t work and I see this error on my st2sensorcontainer logs:
+
+2020-08-05 09:58:53,705 ERROR [-]   File &quot;/opt/stackstorm/packs/email/sensors/imap_sensor.py&quot;, line 133, in _process_message
+2020-08-05 09:58:53,705 ERROR [-]     
+2020-08-05 09:58:53,705 ERROR [-] message = mailbox.mail(uid, include_raw=True)
+2020-08-05 09:58:53,705 ERROR [-] 
+2020-08-05 09:58:53,705 ERROR [-]   File &quot;/opt/stackstorm/virtualenvs/email/lib/python3.6/site-packages/easyimap/easyimap.py&quot;, line 198, in mail
+2020-08-05 09:58:53,706 ERROR [-]     
+2020-08-05 09:58:53,706 ERROR [-] typ, content = self._mailer.uid(&#39;fetch&#39;, uid, self._fetch_message_parts)
+2020-08-05 09:58:53,706 ERROR [-] 
+2020-08-05 09:58:53,706 ERROR [-]   File &quot;/usr/lib/python3.6/imaplib.py&quot;, line 879, in uid
+2020-08-05 09:58:53,706 ERROR [-]     
+2020-08-05 09:58:53,706 ERROR [-] typ, dat = self._simple_command(name, command, *args)
+2020-08-05 09:58:53,707 ERROR [-] 
+2020-08-05 09:58:53,707 ERROR [-]   File &quot;/usr/lib/python3.6/imaplib.py&quot;, line 1196, in _simple_command
+2020-08-05 09:58:53,707 ERROR [-]     
+2020-08-05 09:58:53,707 ERROR [-] return self._command_complete(name, self._command(name, *args))
+2020-08-05 09:58:53,707 ERROR [-] 
+2020-08-05 09:58:53,708 ERROR [-]   File &quot;/usr/lib/python3.6/imaplib.py&quot;, line 961, in _command
+2020-08-05 09:58:53,708 ERROR [-]     
+2020-08-05 09:58:53,708 ERROR [-] data = data + b&#39; &#39; + arg
+2020-08-05 09:58:53,708 ERROR [-] 
+2020-08-05 09:58:53,708 ERROR [-] TypeError
+2020-08-05 09:58:53,708 ERROR [-] : 
+2020-08-05 09:58:53,708 ERROR [-] can&#39;t concat int to bytes
+2020-08-05 09:58:53,709 ERROR [-] 
+2020-08-05 09:58:53,709 ERROR [-] 
+During handling of the above exception, another exception occurred:
+2020-08-05 09:58:53,709 ERROR [-] Traceback (most recent call last):
+2020-08-05 09:58:53,709 ERROR [-]   File &quot;/opt/stackstorm/st2/lib/python3.6/site-packages/st2reactor/container/sensor_wrapper.py&quot;, line 361, in &lt;module&gt;
+2020-08-05 09:58:53,709 ERROR [-]     
+2020-08-05 09:58:53,709 ERROR [-] obj.run()
+2020-08-05 09:58:53,709 ERROR [-] 
+2020-08-05 09:58:53,710 ERROR [-]   File &quot;/opt/stackstorm/st2/lib/python3.6/site-packages/st2reactor/container/sensor_wrapper.py&quot;, line 235, in run
+2020-08-05 09:58:53,710 ERROR [-]     
+2020-08-05 09:58:53,710 ERROR [-] raise Exception(msg)
+2020-08-05 09:58:53,710 ERROR [-] 
+2020-08-05 09:58:53,710 ERROR [-] Exception
+2020-08-05 09:58:53,710 ERROR [-] : 
+2020-08-05 09:58:53,710 ERROR [-] Sensor &quot;IMAPSensor&quot; run method raised an exception: can&#39;t concat int to bytes.
+2020-08-05 09:58:53,710 ERROR [-] 
+2020-08-05 09:58:53,711 INFO [-] Stopping trigger watcher
+2020-08-05 09:58:53,711 INFO [-] Invoking cleanup on sensor
+2020-08-05 09:58:54,483 INFO [-] Process for sensor email.IMAPSensor has exited with code 1
+2020-08-05 09:58:59,123 WARNING [-] Symbol &#39;mailbox_or_url_list&#39; is unreachable 
+
+
+Any hint what could be wrong?
+
+Regards</description>
+    
+    <lastBuildDate>Mon, 24 Aug 2020 16:43:00 +0000</lastBuildDate>
+    <category>Uncategorized</category>
+    <atom:link href="https://forum.stackstorm.com/t/cannot-use-email-imap-plugin-on-kubernetes/1375.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Cannot use Email Imap plugin on Kubernetes</title>
+        <dc:creator><![CDATA[pgsousa]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi Eugen,</p>
+<p>thank you for your reply. I tried to use 3.2.0 image with 16.04 version, however I see the error below. Is there a way to build the plugin without python3?</p>
+<p>2020-08-24 16:29:55,878 ERROR [-] Handling failed. Message body: SensorTypeDB(artifact_uri=“file:///opt/stackstorm/packs/email/sensors/smtp_sensor.py”, description=“Sensor that emits triggers when e-mail message is received via SMTP”, enabled=True, entry_point=“sensors.smtp_sensor.SMTPSensor”, id=5f2bbf7d52277c70df67ee08, metadata_file=“sensors/smtp_sensor.yaml”, name=“SMTPSensor”, pack=“email”, poll_interval=None, ref=“email.SMTPSensor”, trigger_types=[u’email.smtp.message’], uid=“sensor_type:email:SMTPSensor”). Exception:<br>
+Virtual environment (/opt/stackstorm/virtualenvs/email) for pack “email” is using Python 3.<br>
+Using Python 3 virtual environments in mixed deployments is only supported for Python runner<br>
+actions and not sensors. If you want to run this sensor, please re-recreate the<br>
+virtual environment with python2 binary:<br>
+“st2 run packs.setup_virtualenv packs=email python3=false”<br>
+Traceback (most recent call last):<br>
+File “/opt/stackstorm/st2/local/lib/python2.7/site-packages/st2common/services/sensor_watcher.py”, line 83, in process_task<br>
+handler(body)<br>
+File “/opt/stackstorm/st2/local/lib/python2.7/site-packages/st2reactor/container/manager.py”, line 159, in _handle_update_sensor<br>
+self._sensor_container.add_sensor(sensor=sensor_obj)<br>
+File “/opt/stackstorm/st2/local/lib/python2.7/site-packages/st2reactor/container/process_container.py”, line 242, in add_sensor<br>
+self._spawn_sensor_process(sensor=sensor)<br>
+File “/opt/stackstorm/st2/local/lib/python2.7/site-packages/st2reactor/container/process_container.py”, line 305, in _spawn_sensor_process<br>
+raise Exception(msg)<br>
+Exception:<br>
+Virtual environment (/opt/stackstorm/virtualenvs/email) for pack “email” is using Python 3.<br>
+Using Python 3 virtual environments in mixed deployments is only supported for Python runner<br>
+actions and not sensors. If you want to run this sensor, please re-recreate the<br>
+virtual environment with python2 binary:<br>
+<strong>"st2 run packs.setup_virtualenv packs=email python3=false"</strong></p>
+          <p><a href="https://forum.stackstorm.com/t/cannot-use-email-imap-plugin-on-kubernetes/1375/11">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/cannot-use-email-imap-plugin-on-kubernetes/1375/11</link>
+        <pubDate>Mon, 24 Aug 2020 16:43:00 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1375-11</guid>
+        <source url="https://forum.stackstorm.com/t/cannot-use-email-imap-plugin-on-kubernetes/1375.rss">Cannot use Email Imap plugin on Kubernetes</source>
+      </item>
+      <item>
+        <title>Cannot use Email Imap plugin on Kubernetes</title>
+        <dc:creator><![CDATA[armab]]></dc:creator>
+        <description><![CDATA[
+            <p>We had python 2 Ubuntu 16.04 LTS images before but migrated to py3 with Ubuntu 18.04 LTS as we’re transitioning away from python 2: <a href="https://github.com/StackStorm/discussions/issues/40" class="inline-onebox">Python 2 Deprecation · Issue #40 · StackStorm/discussions · GitHub</a></p>
+          <p><a href="https://forum.stackstorm.com/t/cannot-use-email-imap-plugin-on-kubernetes/1375/10">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/cannot-use-email-imap-plugin-on-kubernetes/1375/10</link>
+        <pubDate>Mon, 24 Aug 2020 14:50:04 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1375-10</guid>
+        <source url="https://forum.stackstorm.com/t/cannot-use-email-imap-plugin-on-kubernetes/1375.rss">Cannot use Email Imap plugin on Kubernetes</source>
+      </item>
+      <item>
+        <title>Cannot use Email Imap plugin on Kubernetes</title>
+        <dc:creator><![CDATA[pgsousa]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi,</p>
+<p>is it possible to use a docker image with ubuntu 16 with python2 to run on kubernetes?</p>
+<p>Thanks</p>
+          <p><a href="https://forum.stackstorm.com/t/cannot-use-email-imap-plugin-on-kubernetes/1375/9">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/cannot-use-email-imap-plugin-on-kubernetes/1375/9</link>
+        <pubDate>Mon, 24 Aug 2020 13:56:50 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1375-9</guid>
+        <source url="https://forum.stackstorm.com/t/cannot-use-email-imap-plugin-on-kubernetes/1375.rss">Cannot use Email Imap plugin on Kubernetes</source>
+      </item>
+      <item>
+        <title>Cannot use Email Imap plugin on Kubernetes</title>
+        <dc:creator><![CDATA[armab]]></dc:creator>
+        <description><![CDATA[
+            <p>Thanks for reporting a bug report in <code>email</code> pack: <a href="https://github.com/StackStorm-Exchange/stackstorm-email/issues/36" class="inline-onebox">IMAPSensor doesn't work on python3 · Issue #36 · StackStorm-Exchange/stackstorm-email · GitHub</a></p>
+          <p><a href="https://forum.stackstorm.com/t/cannot-use-email-imap-plugin-on-kubernetes/1375/8">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/cannot-use-email-imap-plugin-on-kubernetes/1375/8</link>
+        <pubDate>Mon, 24 Aug 2020 12:10:52 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1375-8</guid>
+        <source url="https://forum.stackstorm.com/t/cannot-use-email-imap-plugin-on-kubernetes/1375.rss">Cannot use Email Imap plugin on Kubernetes</source>
+      </item>
+      <item>
+        <title>Cannot use Email Imap plugin on Kubernetes</title>
+        <dc:creator><![CDATA[pgsousa]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi,</p>
+<p>I confirm that the plugin works on Ubuntu 16.04 with python2.</p>
+<p>ubuntu@ubuntu1604:/var/log/st2$ st2 --version<br>
+st2 3.2.0, on Python 2.7.12</p>
+          <p><a href="https://forum.stackstorm.com/t/cannot-use-email-imap-plugin-on-kubernetes/1375/7">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/cannot-use-email-imap-plugin-on-kubernetes/1375/7</link>
+        <pubDate>Mon, 24 Aug 2020 11:52:47 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1375-7</guid>
+        <source url="https://forum.stackstorm.com/t/cannot-use-email-imap-plugin-on-kubernetes/1375.rss">Cannot use Email Imap plugin on Kubernetes</source>
+      </item>
+      <item>
+        <title>Cannot use Email Imap plugin on Kubernetes</title>
+        <dc:creator><![CDATA[armab]]></dc:creator>
+        <description><![CDATA[
+            <p><a class="mention" href="https://github.com/pgsousa">@pgsousa</a>  Please report a bug in <code>email</code> pack: <a href="https://github.com/stackstorm-exchange/stackstorm-email" class="inline-onebox">GitHub - StackStorm-Exchange/stackstorm-email: E-Mail Actions/Sensors for StackStorm</a></p>
+<p>Would be also nice if you give it a try in Ubuntu 16.04 VM, which uses <code>python 2</code>. That might unblock you and give us an idea if it’s py2 vs py3 compatibility issue in pack or not.</p>
+          <p><a href="https://forum.stackstorm.com/t/cannot-use-email-imap-plugin-on-kubernetes/1375/6">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/cannot-use-email-imap-plugin-on-kubernetes/1375/6</link>
+        <pubDate>Mon, 24 Aug 2020 10:52:38 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1375-6</guid>
+        <source url="https://forum.stackstorm.com/t/cannot-use-email-imap-plugin-on-kubernetes/1375.rss">Cannot use Email Imap plugin on Kubernetes</source>
+      </item>
+      <item>
+        <title>Cannot use Email Imap plugin on Kubernetes</title>
+        <dc:creator><![CDATA[pgsousa]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi,</p>
+<p>sorry for the late answer, I was on hollidays.</p>
+<p>It doesn’t work on ubuntu18 running in a vm also:</p>
+<p>20-08-24 10:09:59,075 140457947180528 ERROR (unknown file) [-] Traceback (most recent call last):</p>
+<p>2020-08-24 10:09:59,075 140457947180528 ERROR (unknown file) [-] File “/opt/stackstorm/st2/lib/python3.6/site-packages/st2reactor/container/sensor_wrapper.py”, line 361, in </p>
+<p>2020-08-24 10:09:59,075 140457947180528 ERROR (unknown file) [-]<br>
+2020-08-24 10:09:59,075 140457947180528 ERROR (unknown file) [-] obj.run()<br>
+2020-08-24 10:09:59,076 140457947180528 ERROR (unknown file) [-]</p>
+<p>2020-08-24 10:09:59,076 140457947180528 ERROR (unknown file) [-] File “/opt/stackstorm/st2/lib/python3.6/site-packages/st2reactor/container/sensor_wrapper.py”, line 218, in run</p>
+<p>2020-08-24 10:09:59,076 140457947180528 ERROR (unknown file) [-]<br>
+2020-08-24 10:09:59,076 140457947180528 ERROR (unknown file) [-] self._sensor_instance.setup()<br>
+2020-08-24 10:09:59,076 140457947180528 ERROR (unknown file) [-]</p>
+<p>2020-08-24 10:09:59,076 140457947180528 ERROR (unknown file) [-] File “/opt/stackstorm/packs/email/sensors/smtp_sensor.py”, line 37, in setup</p>
+<p>2020-08-24 10:09:59,076 140457947180528 ERROR (unknown file) [-]<br>
+2020-08-24 10:09:59,076 140457947180528 ERROR (unknown file) [-] trigger=self._trigger)<br>
+2020-08-24 10:09:59,076 140457947180528 ERROR (unknown file) [-]</p>
+<p>2020-08-24 10:09:59,076 140457947180528 ERROR (unknown file) [-] File “/opt/stackstorm/packs/email/sensors/smtp_sensor.py”, line 58, in <strong>init</strong></p>
+<p>2020-08-24 10:09:59,077 140457947180528 ERROR (unknown file) [-]<br>
+2020-08-24 10:09:59,077 140457947180528 ERROR (unknown file) [-] smtpd.SMTPServer.<strong>init</strong>(self, localaddr, remoteaddr) # pylint: disable=no-member<br>
+2020-08-24 10:09:59,077 140457947180528 ERROR (unknown file) [-]</p>
+<p>2020-08-24 10:09:59,077 140457947180528 ERROR (unknown file) [-] File “/usr/lib/python3.6/smtpd.py”, line 646, in <strong>init</strong></p>
+<p>2020-08-24 10:09:59,077 140457947180528 ERROR (unknown file) [-]<br>
+2020-08-24 10:09:59,078 140457947180528 ERROR (unknown file) [-] type=socket.SOCK_STREAM)<br>
+2020-08-24 10:09:59,078 140457947180528 ERROR (unknown file) [-]</p>
+<p>2020-08-24 10:09:59,078 140457947180528 ERROR (unknown file) [-] TypeError<br>
+2020-08-24 10:09:59,078 140457947180528 ERROR (unknown file) [-] :<br>
+2020-08-24 10:09:59,078 140457947180528 ERROR (unknown file) [-] getaddrinfo() got an unexpected keyword argument ‘type’<br>
+2020-08-24 10:09:59,078 140457947180528 ERROR (unknown file) [-]</p>
+<p>2020-08-24 10:09:59,078 140457947180528 INFO (unknown file) [-] Stopping trigger watcher<br>
+2020-08-24 10:09:59,079 140457947180528 INFO (unknown file) [-] Invoking cleanup on sensor<br>
+2020-08-24 10:10:01,434 140173923993752 INFO (unknown file) [-] Process for sensor email.SMTPSensor has exited with code 1<br>
+2020-08-24 10:10:03,945 140173923994816 WARNING (unknown file) [-] “auth.api_url” configuration option is not configured<br>
+2020-08-24 10:10:04,930 140222680661488 INFO (unknown file) [-] Found config for sensor “SMTPSensor”<br>
+2020-08-24 10:10:04,930 140222680661488 INFO (unknown file) [-] Watcher started<br>
+2020-08-24 10:10:04,930 140222680661488 INFO (unknown file) [-] Running sensor initialization code<br>
+2020-08-24 10:10:04,930 140222680661488 ERROR (unknown file) [-] Traceback (most recent call last):</p>
+<p>2020-08-24 10:10:04,930 140222680661488 ERROR (unknown file) [-] File “/opt/stackstorm/st2/lib/python3.6/site-packages/st2reactor/container/sensor_wrapper.py”, line 361, in </p>
+<p>2020-08-24 10:10:04,931 140222680661488 ERROR (unknown file) [-]<br>
+2020-08-24 10:10:04,931 140222680661488 ERROR (unknown file) [-] obj.run()<br>
+2020-08-24 10:10:04,931 140222680661488 ERROR (unknown file) [-]</p>
+<p>2020-08-24 10:10:04,931 140222680661488 ERROR (unknown file) [-] File “/opt/stackstorm/st2/lib/python3.6/site-packages/st2reactor/container/sensor_wrapper.py”, line 218, in run</p>
+<p>2020-08-24 10:10:04,931 140222680661488 ERROR (unknown file) [-]<br>
+2020-08-24 10:10:04,931 140222680661488 ERROR (unknown file) [-] self._sensor_instance.setup()<br>
+2020-08-24 10:10:04,931 140222680661488 ERROR (unknown file) [-]</p>
+<p>2020-08-24 10:10:04,932 140222680661488 ERROR (unknown file) [-] File “/opt/stackstorm/packs/email/sensors/smtp_sensor.py”, line 37, in setup</p>
+<p>2020-08-24 10:10:04,932 140222680661488 ERROR (unknown file) [-]<br>
+2020-08-24 10:10:04,932 140222680661488 ERROR (unknown file) [-] trigger=self._trigger)<br>
+2020-08-24 10:10:04,932 140222680661488 ERROR (unknown file) [-]</p>
+<p>2020-08-24 10:10:04,932 140222680661488 ERROR (unknown file) [-] File “/opt/stackstorm/packs/email/sensors/smtp_sensor.py”, line 58, in <strong>init</strong></p>
+<p>2020-08-24 10:10:04,932 140222680661488 ERROR (unknown file) [-]<br>
+2020-08-24 10:10:04,932 140222680661488 ERROR (unknown file) [-] smtpd.SMTPServer.<strong>init</strong>(self, localaddr, remoteaddr) # pylint: disable=no-member<br>
+2020-08-24 10:10:04,932 140222680661488 ERROR (unknown file) [-]</p>
+<p>2020-08-24 10:10:04,932 140222680661488 ERROR (unknown file) [-] File “/usr/lib/python3.6/smtpd.py”, line 646, in <strong>init</strong></p>
+<p>2020-08-24 10:10:04,933 140222680661488 ERROR (unknown file) [-]<br>
+2020-08-24 10:10:04,933 140222680661488 ERROR (unknown file) [-] type=socket.SOCK_STREAM)<br>
+2020-08-24 10:10:04,933 140222680661488 ERROR (unknown file) [-]</p>
+<p>2020-08-24 10:10:04,933 140222680661488 ERROR (unknown file) [-] TypeError<br>
+2020-08-24 10:10:04,933 140222680661488 ERROR (unknown file) [-] :<br>
+2020-08-24 10:10:04,933 140222680661488 ERROR (unknown file) [-] getaddrinfo() got an unexpected keyword argument ‘type’<br>
+2020-08-24 10:10:04,933 140222680661488 ERROR (unknown file) [-]</p>
+<p>2020-08-24 10:10:04,933 140222680661488 INFO (unknown file) [-] Stopping trigger watcher<br>
+2020-08-24 10:10:04,934 140222680661488 INFO (unknown file) [-] Invoking cleanup on sensor<br>
+2020-08-24 10:10:06,438 140173923993752 INFO (unknown file) [-] Process for sensor email.SMTPSensor has exited with code 1<br>
+2020-08-24 10:10:11,448 140173923994664 WARNING (unknown file) [-] “auth.api_url” configuration option is not configured<br>
+2020-08-24 10:10:12,465 139974111616496 INFO (unknown file) [-] Found config for sensor “SMTPSensor”<br>
+2020-08-24 10:10:12,466 139974111616496 INFO (unknown file) [-] Watcher started<br>
+2020-08-24 10:10:12,466 139974111616496 INFO (unknown file) [-] Running sensor initialization code<br>
+2020-08-24 10:10:12,466 139974111616496 ERROR (unknown file) [-] Traceback (most recent call last):</p>
+<p>2020-08-24 10:10:12,467 139974111616496 ERROR (unknown file) [-] File “/opt/stackstorm/st2/lib/python3.6/site-packages/st2reactor/container/sensor_wrapper.py”, line 361, in </p>
+<p>2020-08-24 10:10:12,467 139974111616496 ERROR (unknown file) [-]<br>
+2020-08-24 10:10:12,467 139974111616496 ERROR (unknown file) [-] obj.run()<br>
+2020-08-24 10:10:12,467 139974111616496 ERROR (unknown file) [-]</p>
+<p>2020-08-24 10:10:12,468 139974111616496 ERROR (unknown file) [-] File “/opt/stackstorm/st2/lib/python3.6/site-packages/st2reactor/container/sensor_wrapper.py”, line 218, in run</p>
+<p>2020-08-24 10:10:12,468 139974111616496 ERROR (unknown file) [-]<br>
+2020-08-24 10:10:12,468 139974111616496 ERROR (unknown file) [-] self._sensor_instance.setup()<br>
+2020-08-24 10:10:12,468 139974111616496 ERROR (unknown file) [-]</p>
+<p>2020-08-24 10:10:12,469 139974111616496 ERROR (unknown file) [-] File “/opt/stackstorm/packs/email/sensors/smtp_sensor.py”, line 37, in setup</p>
+<p>2020-08-24 10:10:12,469 139974111616496 ERROR (unknown file) [-]<br>
+2020-08-24 10:10:12,469 139974111616496 ERROR (unknown file) [-] trigger=self._trigger)<br>
+2020-08-24 10:10:12,469 139974111616496 ERROR (unknown file) [-]</p>
+<p>2020-08-24 10:10:12,469 139974111616496 ERROR (unknown file) [-] File “/opt/stackstorm/packs/email/sensors/smtp_sensor.py”, line 58, in <strong>init</strong></p>
+<p>2020-08-24 10:10:12,470 139974111616496 ERROR (unknown file) [-]<br>
+2020-08-24 10:10:12,470 139974111616496 ERROR (unknown file) [-] smtpd.SMTPServer.<strong>init</strong>(self, localaddr, remoteaddr) # pylint: disable=no-member<br>
+2020-08-24 10:10:12,470 139974111616496 ERROR (unknown file) [-]</p>
+<p>2020-08-24 10:10:12,470 139974111616496 ERROR (unknown file) [-] File “/usr/lib/python3.6/smtpd.py”, line 646, in <strong>init</strong></p>
+<p>2020-08-24 10:10:12,471 139974111616496 ERROR (unknown file) [-]<br>
+2020-08-24 10:10:12,471 139974111616496 ERROR (unknown file) [-] type=socket.SOCK_STREAM)<br>
+2020-08-24 10:10:12,471 139974111616496 ERROR (unknown file) [-]</p>
+<p>2020-08-24 10:10:12,471 139974111616496 ERROR (unknown file) [-] TypeError<br>
+2020-08-24 10:10:12,471 139974111616496 ERROR (unknown file) [-] :<br>
+2020-08-24 10:10:12,472 139974111616496 ERROR (unknown file) [-] getaddrinfo() got an unexpected keyword argument ‘type’<br>
+2020-08-24 10:10:12,472 139974111616496 ERROR (unknown file) [-]</p>
+<p>2020-08-24 10:10:12,472 139974111616496 INFO (unknown file) [-] Stopping trigger watcher<br>
+2020-08-24 10:10:12,473 139974111616496 INFO (unknown file) [-] Invoking cleanup on sensor<br>
+2020-08-24 10:10:16,444 140173923993752 INFO (unknown file) [-] Process for sensor email.SMTPSensor has exited with code 1</p>
+          <p><a href="https://forum.stackstorm.com/t/cannot-use-email-imap-plugin-on-kubernetes/1375/5">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/cannot-use-email-imap-plugin-on-kubernetes/1375/5</link>
+        <pubDate>Mon, 24 Aug 2020 10:30:08 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1375-5</guid>
+        <source url="https://forum.stackstorm.com/t/cannot-use-email-imap-plugin-on-kubernetes/1375.rss">Cannot use Email Imap plugin on Kubernetes</source>
+      </item>
+      <item>
+        <title>Cannot use Email Imap plugin on Kubernetes</title>
+        <dc:creator><![CDATA[punkrokk]]></dc:creator>
+        <description><![CDATA[
+            <p>It’s sounds like maybe a PR is needed again that pack to support python3? Does it work on Ubuntu 18 with the one line installer?</p>
+          <p><a href="https://forum.stackstorm.com/t/cannot-use-email-imap-plugin-on-kubernetes/1375/4">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/cannot-use-email-imap-plugin-on-kubernetes/1375/4</link>
+        <pubDate>Sun, 09 Aug 2020 17:07:07 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1375-4</guid>
+        <source url="https://forum.stackstorm.com/t/cannot-use-email-imap-plugin-on-kubernetes/1375.rss">Cannot use Email Imap plugin on Kubernetes</source>
+      </item>
+      <item>
+        <title>Cannot use Email Imap plugin on Kubernetes</title>
+        <dc:creator><![CDATA[pgsousa]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi,</p>
+<p>I have tested with 3.2.0 and 3.3dev, doesn’t work on both.</p>
+<p>I also discovered that it works on a vm centos and the code seems to be exactly the same, except that the vm uses python2 and the container is based on Ubuntu18 uses python3.</p>
+<p>Thanks</p>
+<p>A Dom, 9 de ago de 2020, 05:07, punkrokk via StackStorm Support &lt;<a href="mailto:stackstorm@discoursemail.com">stackstorm@discoursemail.com</a>&gt; escreveu:</p>
+          <p><a href="https://forum.stackstorm.com/t/cannot-use-email-imap-plugin-on-kubernetes/1375/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/cannot-use-email-imap-plugin-on-kubernetes/1375/3</link>
+        <pubDate>Sun, 09 Aug 2020 06:53:49 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1375-3</guid>
+        <source url="https://forum.stackstorm.com/t/cannot-use-email-imap-plugin-on-kubernetes/1375.rss">Cannot use Email Imap plugin on Kubernetes</source>
+      </item>
+      <item>
+        <title>Cannot use Email Imap plugin on Kubernetes</title>
+        <dc:creator><![CDATA[punkrokk]]></dc:creator>
+        <description><![CDATA[
+            <p>What have you tried for troubleshooting?</p>
+          <p><a href="https://forum.stackstorm.com/t/cannot-use-email-imap-plugin-on-kubernetes/1375/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/cannot-use-email-imap-plugin-on-kubernetes/1375/2</link>
+        <pubDate>Sun, 09 Aug 2020 03:57:23 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1375-2</guid>
+        <source url="https://forum.stackstorm.com/t/cannot-use-email-imap-plugin-on-kubernetes/1375.rss">Cannot use Email Imap plugin on Kubernetes</source>
+      </item>
+      <item>
+        <title>Cannot use Email Imap plugin on Kubernetes</title>
+        <dc:creator><![CDATA[pgsousa]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi there, I’m using email plugin on Kubernetes using stackstorm-ha HELM Chart.<br>
+I’m using 3.2.0 version and tried to build it with st2packs-dockerfiles, also using FROM stackstorm/st2:3.2.0. I also tried the last 3.3dev version.</p>
+<p>However IMAP doesn’t work and I see this error on my st2sensorcontainer logs:</p>
+<p>2020-08-05 09:58:53,705 ERROR [-]   File “/opt/stackstorm/packs/email/sensors/imap_sensor.py”, line 133, in _process_message<br>
+2020-08-05 09:58:53,705 ERROR [-]<br>
+2020-08-05 09:58:53,705 ERROR [-] message = mailbox.mail(uid, include_raw=True)<br>
+2020-08-05 09:58:53,705 ERROR [-]<br>
+2020-08-05 09:58:53,705 ERROR [-]   File “/opt/stackstorm/virtualenvs/email/lib/python3.6/site-packages/easyimap/easyimap.py”, line 198, in mail<br>
+2020-08-05 09:58:53,706 ERROR [-]<br>
+2020-08-05 09:58:53,706 ERROR [-] typ, content = self._mailer.uid(‘fetch’, uid, self._fetch_message_parts)<br>
+2020-08-05 09:58:53,706 ERROR [-]<br>
+2020-08-05 09:58:53,706 ERROR [-]   File “/usr/lib/python3.6/imaplib.py”, line 879, in uid<br>
+2020-08-05 09:58:53,706 ERROR [-]<br>
+2020-08-05 09:58:53,706 ERROR [-] typ, dat = self._simple_command(name, command, *args)<br>
+2020-08-05 09:58:53,707 ERROR [-]<br>
+2020-08-05 09:58:53,707 ERROR [-]   File “/usr/lib/python3.6/imaplib.py”, line 1196, in _simple_command<br>
+2020-08-05 09:58:53,707 ERROR [-]<br>
+2020-08-05 09:58:53,707 ERROR [-] return self._command_complete(name, self._command(name, *args))<br>
+2020-08-05 09:58:53,707 ERROR [-]<br>
+2020-08-05 09:58:53,708 ERROR [-]   File “/usr/lib/python3.6/imaplib.py”, line 961, in _command<br>
+2020-08-05 09:58:53,708 ERROR [-]<br>
+2020-08-05 09:58:53,708 ERROR [-] data = data + b’ ’ + arg<br>
+2020-08-05 09:58:53,708 ERROR [-]<br>
+2020-08-05 09:58:53,708 ERROR [-] TypeError<br>
+2020-08-05 09:58:53,708 ERROR [-] :<br>
+2020-08-05 09:58:53,708 ERROR [-] can’t concat int to bytes<br>
+2020-08-05 09:58:53,709 ERROR [-]<br>
+2020-08-05 09:58:53,709 ERROR [-]<br>
+During handling of the above exception, another exception occurred:<br>
+2020-08-05 09:58:53,709 ERROR [-] Traceback (most recent call last):<br>
+2020-08-05 09:58:53,709 ERROR [-]   File “/opt/stackstorm/st2/lib/python3.6/site-packages/st2reactor/container/sensor_wrapper.py”, line 361, in <br>
+2020-08-05 09:58:53,709 ERROR [-]<br>
+2020-08-05 09:58:53,709 ERROR [-] obj.run()<br>
+2020-08-05 09:58:53,709 ERROR [-]<br>
+2020-08-05 09:58:53,710 ERROR [-]   File “/opt/stackstorm/st2/lib/python3.6/site-packages/st2reactor/container/sensor_wrapper.py”, line 235, in run<br>
+2020-08-05 09:58:53,710 ERROR [-]<br>
+2020-08-05 09:58:53,710 ERROR [-] raise Exception(msg)<br>
+2020-08-05 09:58:53,710 ERROR [-]<br>
+2020-08-05 09:58:53,710 ERROR [-] Exception<br>
+2020-08-05 09:58:53,710 ERROR [-] :<br>
+2020-08-05 09:58:53,710 ERROR [-] Sensor “IMAPSensor” run method raised an exception: can’t concat int to bytes.<br>
+2020-08-05 09:58:53,710 ERROR [-]<br>
+2020-08-05 09:58:53,711 INFO [-] Stopping trigger watcher<br>
+2020-08-05 09:58:53,711 INFO [-] Invoking cleanup on sensor<br>
+2020-08-05 09:58:54,483 INFO [-] Process for sensor email.IMAPSensor has exited with code 1<br>
+2020-08-05 09:58:59,123 WARNING [-] Symbol ‘mailbox_or_url_list’ is unreachable</p>
+<p>Any hint what could be wrong?</p>
+<p>Regards</p>
+          <p><a href="https://forum.stackstorm.com/t/cannot-use-email-imap-plugin-on-kubernetes/1375/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/cannot-use-email-imap-plugin-on-kubernetes/1375/1</link>
+        <pubDate>Wed, 05 Aug 2020 10:16:19 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1375-1</guid>
+        <source url="https://forum.stackstorm.com/t/cannot-use-email-imap-plugin-on-kubernetes/1375.rss">Cannot use Email Imap plugin on Kubernetes</source>
+      </item>
+  </channel>
+</rss>

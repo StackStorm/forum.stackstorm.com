@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Docs on Action Parameter Attributes</title>
+    <link>https://forum.stackstorm.com/t/docs-on-action-parameter-attributes/859</link>
+    <description>Hello everyone. 
+I&#39;ve been looking for a comprehensive documentation of all action parameter attributes and their effect. So far I&#39;ve found (from various sources) the following ones: 
+`position`
+`required`
+`description`
+`type`
+`default`
+`immutable`
+`enum`
+Am I missing some? 
+I think it would be nice to have a central documentation of those somewhere. [The docs](https://docs.stackstorm.com/actions.html#update-argument-parsing-in-the-script) cover `position`, but I haven&#39;t seen where the other attributes are defined and have so far not found a complete collection of them.  
+I&#39;d be happy to receive your input on this topic :)</description>
+    
+    <lastBuildDate>Thu, 21 Nov 2019 14:38:04 +0000</lastBuildDate>
+    <category>Uncategorized</category>
+    <atom:link href="https://forum.stackstorm.com/t/docs-on-action-parameter-attributes/859.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Docs on Action Parameter Attributes</title>
+        <dc:creator><![CDATA[nschagen]]></dc:creator>
+        <description><![CDATA[
+            <p>This is also something I’m missing. A reference guide for the core packs would be fantastic.</p>
+          <p><a href="https://forum.stackstorm.com/t/docs-on-action-parameter-attributes/859/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/docs-on-action-parameter-attributes/859/2</link>
+        <pubDate>Thu, 21 Nov 2019 14:38:04 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-859-2</guid>
+        <source url="https://forum.stackstorm.com/t/docs-on-action-parameter-attributes/859.rss">Docs on Action Parameter Attributes</source>
+      </item>
+      <item>
+        <title>Docs on Action Parameter Attributes</title>
+        <dc:creator><![CDATA[cbg]]></dc:creator>
+        <description><![CDATA[
+            <p>Hello everyone.<br>
+I’ve been looking for a comprehensive documentation of all action parameter attributes and their effect. So far I’ve found (from various sources) the following ones:<br>
+<code>position</code><br>
+<code>required</code><br>
+<code>description</code><br>
+<code>type</code><br>
+<code>default</code><br>
+<code>immutable</code><br>
+<code>enum</code><br>
+Am I missing some?<br>
+I think it would be nice to have a central documentation of those somewhere. <a href="https://docs.stackstorm.com/actions.html#update-argument-parsing-in-the-script" rel="nofollow noopener">The docs</a> cover <code>position</code>, but I haven’t seen where the other attributes are defined and have so far not found a complete collection of them.<br>
+I’d be happy to receive your input on this topic <img src="https://emoji.discourse-cdn.com/apple/slight_smile.png?v=9" title=":slight_smile:" class="emoji" alt=":slight_smile:"></p>
+          <p><a href="https://forum.stackstorm.com/t/docs-on-action-parameter-attributes/859/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/docs-on-action-parameter-attributes/859/1</link>
+        <pubDate>Fri, 27 Sep 2019 13:00:44 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-859-1</guid>
+        <source url="https://forum.stackstorm.com/t/docs-on-action-parameter-attributes/859.rss">Docs on Action Parameter Attributes</source>
+      </item>
+  </channel>
+</rss>

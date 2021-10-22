@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>SCP from local server to remote</title>
+    <link>https://forum.stackstorm.com/t/scp-from-local-server-to-remote/241</link>
+    <description>Can anyone please send me a working example for SCP? I have error in my below code. PLease suggest in that as well.
+```
+[admin@fff06789 .ssh]$ st2 run core.local cmd=&#39;scp &#39;/home/admin/.ssh/id_rsa&#39; /opt/stackstorm/packs/xyz/actions/scripts/xyz_OS_uptime.sh hldc017.abc.xyz.com:/home/m57684&#39;
+id: 5b5d51f53648f875c6e892a6
+status: failed
+parameters:
+  cmd: scp /home/admin/.ssh/id_rsa /opt/stackstorm/packs/xyz/actions/scripts/xyz_OS_uptime.sh hldc017.abc.xyz.com:/home/m57684
+result:
+  failed: true
+  return_code: 1
+  stderr: &quot;Host key verification failed.
+lost connection&quot;
+  stdout: &#39;&#39;
+  succeeded: false
+[admin@fff06789 .ssh]$</description>
+    
+    <lastBuildDate>Fri, 21 Feb 2020 05:59:50 +0000</lastBuildDate>
+    <category>Mistral</category>
+    <atom:link href="https://forum.stackstorm.com/t/scp-from-local-server-to-remote/241.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>SCP from local server to remote</title>
+        <dc:creator><![CDATA[ChristopherMille]]></dc:creator>
+        <description><![CDATA[
+            <p>Check here full guide of <a href="https://www.puttygen.com/scp-command" rel="nofollow noopener">SCP Command</a> and example</p>
+          <p><a href="https://forum.stackstorm.com/t/scp-from-local-server-to-remote/241/14">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/scp-from-local-server-to-remote/241/14</link>
+        <pubDate>Fri, 21 Feb 2020 05:59:50 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-241-14</guid>
+        <source url="https://forum.stackstorm.com/t/scp-from-local-server-to-remote/241.rss">SCP from local server to remote</source>
+      </item>
+      <item>
+        <title>SCP from local server to remote</title>
+        <dc:creator><![CDATA[blag]]></dc:creator>
+        <description><![CDATA[
+            <p>You’re welcome. Good to hear you got it working!</p>
+          <p><a href="https://forum.stackstorm.com/t/scp-from-local-server-to-remote/241/13">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/scp-from-local-server-to-remote/241/13</link>
+        <pubDate>Mon, 30 Jul 2018 04:53:39 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-241-13</guid>
+        <source url="https://forum.stackstorm.com/t/scp-from-local-server-to-remote/241.rss">SCP from local server to remote</source>
+      </item>
+      <item>
+        <title>SCP from local server to remote</title>
+        <dc:creator><![CDATA[deepchandna]]></dc:creator>
+        <description><![CDATA[
+            <p><a class="mention" href="https://github.com/blag">@blag</a>, You suggestion and guidance worked. Thank you so much.</p>
+          <p><a href="https://forum.stackstorm.com/t/scp-from-local-server-to-remote/241/12">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/scp-from-local-server-to-remote/241/12</link>
+        <pubDate>Mon, 30 Jul 2018 03:32:32 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-241-12</guid>
+        <source url="https://forum.stackstorm.com/t/scp-from-local-server-to-remote/241.rss">SCP from local server to remote</source>
+      </item>
+      <item>
+        <title>SCP from local server to remote</title>
+        <dc:creator><![CDATA[deepchandna]]></dc:creator>
+        <description><![CDATA[
+            <aside class="quote no-group" data-post="10" data-topic="241">
+<div class="title">
+<div class="quote-controls"></div>
+<img alt="" width="20" height="20" src="https://avatars.discourse.org/v2/letter/d/cc9497/40.png" class="avatar"> deepchandna:</div>
+<blockquote>
+<p>st2 run core.local cmd=whoami</p>
+</blockquote>
+</aside>
+<pre><code class="lang-auto">I got it. Let me try.</code></pre>
+          <p><a href="https://forum.stackstorm.com/t/scp-from-local-server-to-remote/241/11">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/scp-from-local-server-to-remote/241/11</link>
+        <pubDate>Sun, 29 Jul 2018 07:38:31 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-241-11</guid>
+        <source url="https://forum.stackstorm.com/t/scp-from-local-server-to-remote/241.rss">SCP from local server to remote</source>
+      </item>
+      <item>
+        <title>SCP from local server to remote</title>
+        <dc:creator><![CDATA[blag]]></dc:creator>
+        <description><![CDATA[
+            <p>What is the output of <code>st2 run core.local cmd=whoami</code>?</p>
+          <p><a href="https://forum.stackstorm.com/t/scp-from-local-server-to-remote/241/9">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/scp-from-local-server-to-remote/241/9</link>
+        <pubDate>Sun, 29 Jul 2018 07:30:49 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-241-9</guid>
+        <source url="https://forum.stackstorm.com/t/scp-from-local-server-to-remote/241.rss">SCP from local server to remote</source>
+      </item>
+      <item>
+        <title>SCP from local server to remote</title>
+        <dc:creator><![CDATA[deepchandna]]></dc:creator>
+        <description><![CDATA[
+            <aside class="quote no-group" data-post="7" data-topic="241">
+<div class="title">
+<div class="quote-controls"></div>
+<img alt="" width="20" height="20" src="https://avatars.discourse.org/v2/letter/b/ba9def/40.png" class="avatar"> blag:</div>
+<blockquote>
+<p>StackStorm is running the same command as a different use</p>
+</blockquote>
+</aside>
+<p>StackStorm  is running the same with command with st2admin user only because i have configured it in “/etc/st2/st2.conf” file.</p>
+<pre><code class="lang-auto">user = m40725
+ssh_key_file = /home/st2admin/.ssh/id_rsa
+
+Also, key is kept already in 
+
+</code></pre>
+<p><span class="math"> pwd
+/home/st2admin/.ssh
+</span> ls -ltr id_rsa<br>
+-rw------- 1 st2admin stkstrm 1671 Jul 24 21:32 id_rsa<br>
+$</p>
+          <p><a href="https://forum.stackstorm.com/t/scp-from-local-server-to-remote/241/8">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/scp-from-local-server-to-remote/241/8</link>
+        <pubDate>Sun, 29 Jul 2018 07:28:17 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-241-8</guid>
+        <source url="https://forum.stackstorm.com/t/scp-from-local-server-to-remote/241.rss">SCP from local server to remote</source>
+      </item>
+      <item>
+        <title>SCP from local server to remote</title>
+        <dc:creator><![CDATA[blag]]></dc:creator>
+        <description><![CDATA[
+            <p>That error indicates that StackStorm cannot access the key file.</p>
+<p>StackStorm does not run as the same user as you. You are logged into your local machine as <code>st2admin</code>, but StackStorm is running the same command as a different user.</p>
+<p>You will need to make the SSH key file readable to the user that StackStorm is running as. The best way to do this is to find the user StackStorm is using, and add that user to the <code>stkstrm</code> user group.</p>
+          <p><a href="https://forum.stackstorm.com/t/scp-from-local-server-to-remote/241/7">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/scp-from-local-server-to-remote/241/7</link>
+        <pubDate>Sun, 29 Jul 2018 07:24:34 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-241-7</guid>
+        <source url="https://forum.stackstorm.com/t/scp-from-local-server-to-remote/241.rss">SCP from local server to remote</source>
+      </item>
+      <item>
+        <title>SCP from local server to remote</title>
+        <dc:creator><![CDATA[deepchandna]]></dc:creator>
+        <description><![CDATA[
+            <p>Issue resolved and data sent to bin</p>
+          <p><a href="https://forum.stackstorm.com/t/scp-from-local-server-to-remote/241/6">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/scp-from-local-server-to-remote/241/6</link>
+        <pubDate>Sun, 29 Jul 2018 07:00:37 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-241-6</guid>
+        <source url="https://forum.stackstorm.com/t/scp-from-local-server-to-remote/241.rss">SCP from local server to remote</source>
+      </item>
+      <item>
+        <title>SCP from local server to remote</title>
+        <dc:creator><![CDATA[deepchandna]]></dc:creator>
+        <description><![CDATA[
+            <p>Issue resolved and data sent to bin</p>
+          <p><a href="https://forum.stackstorm.com/t/scp-from-local-server-to-remote/241/5">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/scp-from-local-server-to-remote/241/5</link>
+        <pubDate>Sun, 29 Jul 2018 06:59:12 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-241-5</guid>
+        <source url="https://forum.stackstorm.com/t/scp-from-local-server-to-remote/241.rss">SCP from local server to remote</source>
+      </item>
+      <item>
+        <title>SCP from local server to remote</title>
+        <dc:creator><![CDATA[deepchandna]]></dc:creator>
+        <description><![CDATA[
+            <aside class="quote no-group" data-post="3" data-topic="241">
+<div class="title">
+<div class="quote-controls"></div>
+<img alt="" width="20" height="20" src="https://avatars.discourse.org/v2/letter/d/cc9497/40.png" class="avatar"> deepchandna:</div>
+<blockquote>
+<p>scp -i /</p>
+</blockquote>
+</aside>
+<pre><code class="lang-auto">Private key permission is -rw------- 1 st2admin stkstrm 1671 Jul 24 21:32 id_rsa</code></pre>
+          <p><a href="https://forum.stackstorm.com/t/scp-from-local-server-to-remote/241/4">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/scp-from-local-server-to-remote/241/4</link>
+        <pubDate>Sun, 29 Jul 2018 06:48:36 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-241-4</guid>
+        <source url="https://forum.stackstorm.com/t/scp-from-local-server-to-remote/241.rss">SCP from local server to remote</source>
+      </item>
+      <item>
+        <title>SCP from local server to remote</title>
+        <dc:creator><![CDATA[blag]]></dc:creator>
+        <description><![CDATA[
+            <p>Without a great deal more context, I can only speculate and offer hints as to how to fix whatever is going on.</p>
+<p>Review the command line flags for the <code>scp</code> command. The command you are asking StackStorm to run is not properly formatted to do what you want to do.</p>
+<p>You should be passing the <code>-i</code> flag to ssh before the private key:</p>
+<p><code>ssh -i /home/admin/.ssh/id_rsa ... ...</code></p>
+<p>that will tell the SSH command to use that <strong>private</strong> key (aka “identity file”) when connecting to the remote server.</p>
+<p>Next verify that StackStorm is running the command as the user you expect. To find the user StackStorm is using to run the action, run the following:</p>
+<p><code>st2 run core.local cmd='whoami'</code></p>
+<p>Furthermore, you should specify what user the SSH client should connect to the remote server as. Do you want to connect as the StackStorm user you just found in the last command? Or do you want to connect as the <code>admin</code> user? Specify that on the command line:</p>
+<p><code>ssh ... &lt;user&gt;@hldc017.abc.xyz.com:/home/m57684</code></p>
+<p>Replace <code>&lt;user&gt;</code> with the username you wish to use for the remote server.</p>
+<p>On top of that, make sure that you are not trying to overwrite the entire home directory of the <code>m57684</code> - this could also be the cause of the error. To make sure the SSH client adds the file to the <code>/home/m57684</code> directory, append the directory name with a <code>/</code>:</p>
+<p><code>ssh ... &lt;user&gt;@hldc017.abc.xyz.com:/home/m57684/</code></p>
+<p>(note the <code>/</code> at the end of the command)</p>
+<p>If you follow all of these hints and it still doesn’t work, please post the complete error using Markdown formatting, as well as any more relevant context you can think of. It is impossible to accurately diagnose problems and very difficult to solve them with as little information as you have given so far.</p>
+          <p><a href="https://forum.stackstorm.com/t/scp-from-local-server-to-remote/241/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/scp-from-local-server-to-remote/241/2</link>
+        <pubDate>Sun, 29 Jul 2018 06:09:38 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-241-2</guid>
+        <source url="https://forum.stackstorm.com/t/scp-from-local-server-to-remote/241.rss">SCP from local server to remote</source>
+      </item>
+      <item>
+        <title>SCP from local server to remote</title>
+        <dc:creator><![CDATA[deepchandna]]></dc:creator>
+        <description><![CDATA[
+            <p>Can anyone please send me a working example for SCP? I have error in my below code. PLease suggest in that as well.</p>
+<pre><code class="lang-auto">[admin@fff06789 .ssh]$ st2 run core.local cmd='scp '/home/admin/.ssh/id_rsa' /opt/stackstorm/packs/xyz/actions/scripts/xyz_OS_uptime.sh hldc017.abc.xyz.com:/home/m57684'
+id: 5b5d51f53648f875c6e892a6
+status: failed
+parameters:
+  cmd: scp /home/admin/.ssh/id_rsa /opt/stackstorm/packs/xyz/actions/scripts/xyz_OS_uptime.sh hldc017.abc.xyz.com:/home/m57684
+result:
+  failed: true
+  return_code: 1
+  stderr: "Host key verification failed.
+lost connection"
+  stdout: ''
+  succeeded: false
+[admin@fff06789 .ssh]$</code></pre>
+          <p><a href="https://forum.stackstorm.com/t/scp-from-local-server-to-remote/241/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/scp-from-local-server-to-remote/241/1</link>
+        <pubDate>Sun, 29 Jul 2018 05:00:21 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-241-1</guid>
+        <source url="https://forum.stackstorm.com/t/scp-from-local-server-to-remote/241.rss">SCP from local server to remote</source>
+      </item>
+  </channel>
+</rss>

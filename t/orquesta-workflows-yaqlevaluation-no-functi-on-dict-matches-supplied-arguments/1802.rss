@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Orquesta workflows || YaqlEvaluation No functi on &quot;dict&quot; matches supplied arguments</title>
+    <link>https://forum.stackstorm.com/t/orquesta-workflows-yaqlevaluation-no-functi-on-dict-matches-supplied-arguments/1802</link>
+    <description>Hi Team,
+we are trying to loop the dict values in the Orquesta workflows .however we got the error.
+
+Variable name : **sql_server_report**
+ output:
+    run:
+      exit_code: 0
+      result:
+        output: &quot;{1=&gt;&#39;DESTD01__SQLHealthCheckResults2021-08-05.html&#39;,2=&gt;&#39;GSQL01__SQLHealthCheckResults2019-06-24T06.00.01.8333200-0600.html&#39;}
+&quot;
+**Error :** 
+result: 
+  errors:
+  - message: &#39;YaqlEvaluationException: Unable to evaluate expression &#39;&#39;&lt;% dict(ctx().sql_server_report).values()  %&gt;&#39;&#39;. NoMatchingFunctionException: No functi
+on &quot;dict&quot; matches supplied arguments&#39;
+
+workflow design : 
+
+next:
+      - when: &quot;{{ succeeded() }}&quot;
+        publish:
+          - **sql_server_report**: &quot;{{ result().output.run.result.output | to_json_string }}&quot;
+          - report_file_check: true          
+          - run: &quot;{{ result().output.run }}&quot;          
+        do:
+          - report_file_content
+      - when: &quot;{{ failed() }}&quot;
+        publish:
+          - error_message: &quot;{{ result().output.run.result.details.result_set[0].value._error.msg + &#39;\\n&#39; }}&quot;
+          - error_output: &quot;{{ result().output.run.result.details.result_set[0].value._output if &#39;_output&#39; in result().output.run.result.details.result_set[0].value else &#39;&#39; }}&quot;
+          - run: &quot;{{ result().output.run.result.details.result_set[0].value._error.msg }}&quot;
+          - run_error: true
+          - report_file_check: false
+        do:
+          - fail
+  report_file_content:
+    **with: &lt;% dict(ctx().sql_server_report).values()  %&gt;**
+    action: core.echo message=&lt;% item() %&gt;
+    next:
+      - when: &quot;{{ succeeded() }}&quot;
+        do:
+          - noop
+      - when: &quot;{{ failed() }}&quot;
+        do:
+          - noop
+
+while execute the command  with: &lt;% dict(ctx().sql_server_report).values()  %&gt; got the below error.
+
+result: 
+  **errors:**
+  - **message: &#39;YaqlEvaluationException: Unable to evaluate expression &#39;&#39;&lt;%** **dict(ctx().sql_server_report).values()  %&gt;&#39;&#39;. NoMatchingFunctionException: No functi**
+**on &quot;dict&quot; matches supplied arguments&#39;**</description>
+    
+    <lastBuildDate>Fri, 06 Aug 2021 17:45:08 +0000</lastBuildDate>
+    <category>Mistral</category>
+    <atom:link href="https://forum.stackstorm.com/t/orquesta-workflows-yaqlevaluation-no-functi-on-dict-matches-supplied-arguments/1802.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Orquesta workflows || YaqlEvaluation No functi on &quot;dict&quot; matches supplied arguments</title>
+        <dc:creator><![CDATA[arul]]></dc:creator>
+        <description><![CDATA[
+            <p>Thanks for the update. will check.</p>
+          <p><a href="https://forum.stackstorm.com/t/orquesta-workflows-yaqlevaluation-no-functi-on-dict-matches-supplied-arguments/1802/7">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/orquesta-workflows-yaqlevaluation-no-functi-on-dict-matches-supplied-arguments/1802/7</link>
+        <pubDate>Fri, 06 Aug 2021 17:45:08 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1802-7</guid>
+        <source url="https://forum.stackstorm.com/t/orquesta-workflows-yaqlevaluation-no-functi-on-dict-matches-supplied-arguments/1802.rss">Orquesta workflows || YaqlEvaluation No functi on &quot;dict&quot; matches supplied arguments</source>
+      </item>
+      <item>
+        <title>Orquesta workflows || YaqlEvaluation No functi on &quot;dict&quot; matches supplied arguments</title>
+        <dc:creator><![CDATA[amanda11]]></dc:creator>
+        <description><![CDATA[
+            <p>So I think the problem is that you are passing a string, albeit one that is "‘1’=&gt;“DESTD01__SQLHealthCheckResults2021-08-05.html”,‘2’=&gt;“BASQL01__SQLHealthCheckResults2019-06-24T06.00.01.8333200-06<br>
+00.html”’</p>
+<p>So essentially you are passing to dict(“1=&gt;ABC,2=&gt;DEF”) rather than dict(1=&gt;ABC,2=&gt;DEF)</p>
+<p>I’m not sure how to get it converted into a dict, but if you just want an array with what is after the =&gt;, you could do something like, splitting your string by , and then selecting the values after =&gt;, e.g.</p>
+<pre><code class="lang-auto">&lt;% ctx().sql_server_report.split(",").select($.rightSplit("=&gt;")[1]) %&gt;
+</code></pre>
+<p>That was from playing with <a href="http://yaqluator.com/" rel="noopener nofollow ugc">http://yaqluator.com/</a>, but hopefully that gives you a better clue of what is wrong and how to resolve.</p>
+          <p><a href="https://forum.stackstorm.com/t/orquesta-workflows-yaqlevaluation-no-functi-on-dict-matches-supplied-arguments/1802/6">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/orquesta-workflows-yaqlevaluation-no-functi-on-dict-matches-supplied-arguments/1802/6</link>
+        <pubDate>Fri, 06 Aug 2021 17:01:58 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1802-6</guid>
+        <source url="https://forum.stackstorm.com/t/orquesta-workflows-yaqlevaluation-no-functi-on-dict-matches-supplied-arguments/1802.rss">Orquesta workflows || YaqlEvaluation No functi on &quot;dict&quot; matches supplied arguments</source>
+      </item>
+      <item>
+        <title>Orquesta workflows || YaqlEvaluation No functi on &quot;dict&quot; matches supplied arguments</title>
+        <dc:creator><![CDATA[arul]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi Amanda,</p>
+<p>next:<br>
+- when: “{{ succeeded() }}”<br>
+publish:<br>
+- sql_server_report: “{{ result().output.run.result.output}}”<br>
+- report_file_check: true</p>
+<p>sql_server_report: "‘1’=&gt;“DESTD01__SQLHealthCheckResults2021-08-05.html”,‘2’=&gt;“BASQL01__SQLHealthCheckResults2019-06-24T06.00.01.8333200-06<br>
+00.html”</p>
+<p>while we used the sql_server_report in the below task</p>
+<p>with: &lt;% dict(ctx(sql_server_report)).values()  %&gt;<br>
+action: core.echo message=&lt;% item() %&gt;</p>
+<ul>
+<li>message: ‘YaqlEvaluationException: Unable to evaluate expression ‘’&lt;% dict(ctx(sql_server_report)).values() %&gt;’’. NoMatchingFunctionException: No function<br>
+“dict” matches supplied arguments’</li>
+</ul>
+<p>please help.</p>
+          <p><a href="https://forum.stackstorm.com/t/orquesta-workflows-yaqlevaluation-no-functi-on-dict-matches-supplied-arguments/1802/5">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/orquesta-workflows-yaqlevaluation-no-functi-on-dict-matches-supplied-arguments/1802/5</link>
+        <pubDate>Fri, 06 Aug 2021 16:16:07 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1802-5</guid>
+        <source url="https://forum.stackstorm.com/t/orquesta-workflows-yaqlevaluation-no-functi-on-dict-matches-supplied-arguments/1802.rss">Orquesta workflows || YaqlEvaluation No functi on &quot;dict&quot; matches supplied arguments</source>
+      </item>
+      <item>
+        <title>Orquesta workflows || YaqlEvaluation No functi on &quot;dict&quot; matches supplied arguments</title>
+        <dc:creator><![CDATA[amanda11]]></dc:creator>
+        <description><![CDATA[
+            <p>What did you change? I can’t see a difference.</p>
+<p>I’d take a look at the yaqluator with the input that you have, to help locate the right yaql expression. As I’m not sure exactly what you are trying to pass to the dict, but dict is not expecing a string.</p>
+<p>e.g.</p>
+<pre><code class="lang-auto">dict(1=&gt;"ABC",2=&gt;"DEF")
+</code></pre>
+<p>is valid, but not</p>
+<pre><code class="lang-auto">dict({1=&gt;"ABC",2=&gt;"DEF"})
+</code></pre>
+<p>I couldn’t work out exactly what type of object you have in sql_server_report, but there is online yaqlevaluator that can be useful to help track down the exact yaql you need.</p>
+          <p><a href="https://forum.stackstorm.com/t/orquesta-workflows-yaqlevaluation-no-functi-on-dict-matches-supplied-arguments/1802/4">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/orquesta-workflows-yaqlevaluation-no-functi-on-dict-matches-supplied-arguments/1802/4</link>
+        <pubDate>Fri, 06 Aug 2021 15:54:43 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1802-4</guid>
+        <source url="https://forum.stackstorm.com/t/orquesta-workflows-yaqlevaluation-no-functi-on-dict-matches-supplied-arguments/1802.rss">Orquesta workflows || YaqlEvaluation No functi on &quot;dict&quot; matches supplied arguments</source>
+      </item>
+      <item>
+        <title>Orquesta workflows || YaqlEvaluation No functi on &quot;dict&quot; matches supplied arguments</title>
+        <dc:creator><![CDATA[arul]]></dc:creator>
+        <description><![CDATA[
+            <aside class="quote no-group" data-username="amanda11" data-post="2" data-topic="1802">
+<div class="title">
+<div class="quote-controls"></div>
+<img alt="" width="20" height="20" src="https://sjc6.discourse-cdn.com/standard10/user_avatar/forum.stackstorm.com/amanda11/40/325_2.png" class="avatar"> amanda11:</div>
+<blockquote>
+<p>to_json_string</p>
+</blockquote>
+</aside>
+<p>Hi</p>
+<p>i have tried as per your  idea,</p>
+<p>publish:<br>
+- sql_server_report: “{{ result().output.run.result.output | to_json_string }}”</p>
+<p>report_file_content:<br>
+with: &lt;% dict(ctx().sql_server_report).values()  %&gt;<br>
+action: core.echo message=&lt;% item() %&gt;<br>
+next:<br>
+- when: “{{ succeeded() }}”<br>
+do:<br>
+- noop<br>
+- when: “{{ failed() }}”<br>
+do:<br>
+- noop</p>
+<p>still got the below error</p>
+<ul>
+<li>message: ‘YaqlEvaluationException: Unable to evaluate expression ‘’&lt;% dict(ctx().sql_server_report).values()  %&gt;’’. NoMatchingFunctionException: No functi<br>
+on “dict” matches supplied arguments’</li>
+</ul>
+          <p><a href="https://forum.stackstorm.com/t/orquesta-workflows-yaqlevaluation-no-functi-on-dict-matches-supplied-arguments/1802/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/orquesta-workflows-yaqlevaluation-no-functi-on-dict-matches-supplied-arguments/1802/3</link>
+        <pubDate>Fri, 06 Aug 2021 14:32:55 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1802-3</guid>
+        <source url="https://forum.stackstorm.com/t/orquesta-workflows-yaqlevaluation-no-functi-on-dict-matches-supplied-arguments/1802.rss">Orquesta workflows || YaqlEvaluation No functi on &quot;dict&quot; matches supplied arguments</source>
+      </item>
+      <item>
+        <title>Orquesta workflows || YaqlEvaluation No functi on &quot;dict&quot; matches supplied arguments</title>
+        <dc:creator><![CDATA[amanda11]]></dc:creator>
+        <description><![CDATA[
+            <p>It looks like ctx().sql_server_report is a string - given the call to to_json_string, and there isn’t a YAQL function dict that takes a string - <a href="https://yaql.readthedocs.io/en/latest/standard_library.html#dict" class="inline-onebox" rel="noopener nofollow ugc">Standard YAQL Library — yaql documentation</a>.</p>
+          <p><a href="https://forum.stackstorm.com/t/orquesta-workflows-yaqlevaluation-no-functi-on-dict-matches-supplied-arguments/1802/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/orquesta-workflows-yaqlevaluation-no-functi-on-dict-matches-supplied-arguments/1802/2</link>
+        <pubDate>Fri, 06 Aug 2021 14:19:34 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1802-2</guid>
+        <source url="https://forum.stackstorm.com/t/orquesta-workflows-yaqlevaluation-no-functi-on-dict-matches-supplied-arguments/1802.rss">Orquesta workflows || YaqlEvaluation No functi on &quot;dict&quot; matches supplied arguments</source>
+      </item>
+      <item>
+        <title>Orquesta workflows || YaqlEvaluation No functi on &quot;dict&quot; matches supplied arguments</title>
+        <dc:creator><![CDATA[arul]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi Team,<br>
+we are trying to loop the dict values in the Orquesta workflows .however we got the error.</p>
+<p>Variable name : <strong>sql_server_report</strong><br>
+output:<br>
+run:<br>
+exit_code: 0<br>
+result:<br>
+output: "{1=&gt;‘DESTD01__SQLHealthCheckResults2021-08-05.html’,2=&gt;‘GSQL01__SQLHealthCheckResults2019-06-24T06.00.01.8333200-0600.html’}<br>
+"<br>
+<strong>Error :</strong><br>
+result:<br>
+errors:</p>
+<ul>
+<li>message: ‘YaqlEvaluationException: Unable to evaluate expression ‘’&lt;% dict(ctx().sql_server_report).values()  %&gt;’’. NoMatchingFunctionException: No functi<br>
+on “dict” matches supplied arguments’</li>
+</ul>
+<p>workflow design :</p>
+<p>next:<br>
+- when: “{{ succeeded() }}”<br>
+publish:<br>
+- <strong>sql_server_report</strong>: “{{ result().output.run.result.output | to_json_string }}”<br>
+- report_file_check: true<br>
+- run: “{{ result().output.run }}”<br>
+do:<br>
+- report_file_content<br>
+- when: “{{ failed() }}”<br>
+publish:<br>
+- error_message: “{{ result().output.run.result.details.result_set[0].value._error.msg + ‘\n’ }}”<br>
+- error_output: “{{ result().output.run.result.details.result_set[0].value._output if ‘_output’ in result().output.run.result.details.result_set[0].value else ‘’ }}”<br>
+- run: “{{ result().output.run.result.details.result_set[0].value._error.msg }}”<br>
+- run_error: true<br>
+- report_file_check: false<br>
+do:<br>
+- fail<br>
+report_file_content:<br>
+<strong>with: &lt;% dict(ctx().sql_server_report).values()  %&gt;</strong><br>
+action: core.echo message=&lt;% item() %&gt;<br>
+next:<br>
+- when: “{{ succeeded() }}”<br>
+do:<br>
+- noop<br>
+- when: “{{ failed() }}”<br>
+do:<br>
+- noop</p>
+<p>while execute the command  with: &lt;% dict(ctx().sql_server_report).values()  %&gt; got the below error.</p>
+<p>result:<br>
+<strong>errors:</strong></p>
+<ul>
+<li>
+<strong>message: 'YaqlEvaluationException: Unable to evaluate expression ‘’&lt;%</strong> <strong>dict(ctx().sql_server_report).values()  %&gt;’’. NoMatchingFunctionException: No functi</strong><br>
+<strong>on “dict” matches supplied arguments’</strong>
+</li>
+</ul>
+          <p><a href="https://forum.stackstorm.com/t/orquesta-workflows-yaqlevaluation-no-functi-on-dict-matches-supplied-arguments/1802/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/orquesta-workflows-yaqlevaluation-no-functi-on-dict-matches-supplied-arguments/1802/1</link>
+        <pubDate>Fri, 06 Aug 2021 14:00:34 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1802-1</guid>
+        <source url="https://forum.stackstorm.com/t/orquesta-workflows-yaqlevaluation-no-functi-on-dict-matches-supplied-arguments/1802.rss">Orquesta workflows || YaqlEvaluation No functi on &quot;dict&quot; matches supplied arguments</source>
+      </item>
+  </channel>
+</rss>

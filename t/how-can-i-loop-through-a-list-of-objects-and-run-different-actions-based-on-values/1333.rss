@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>How can I loop through a list of objects and run different actions based on values?</title>
+    <link>https://forum.stackstorm.com/t/how-can-i-loop-through-a-list-of-objects-and-run-different-actions-based-on-values/1333</link>
+    <description>I have an action that returns a list of objects like:
+`[{media: &quot;email&quot;, &quot;content&quot;: &quot;test&quot;}, {media: &quot;sms&quot;: &quot;content&quot;: &quot;short text&quot;}, ...]`
+
+Now I need to iterate through all list objects and run target action based on the values in media. For the above example I need to get result().result and iterate through all and run `email` action, `sms` action, etc. Is this possible? Is there a better way of doing this in the workflow?
+
+In fact I have one result but many actions will be run based on the values present in media.
+
+    determine_media:
+        action: mypack.determine_media
+        input:
+          media: &lt;% ctx().media %&gt;
+        next:</description>
+    
+    <lastBuildDate>Tue, 07 Jul 2020 09:45:17 +0000</lastBuildDate>
+    <category>Workflows</category>
+    <atom:link href="https://forum.stackstorm.com/t/how-can-i-loop-through-a-list-of-objects-and-run-different-actions-based-on-values/1333.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>How can I loop through a list of objects and run different actions based on values?</title>
+        <dc:creator><![CDATA[kyildiz]]></dc:creator>
+        <description><![CDATA[
+            <p><a class="mention" href="https://github.com/alirezastack">@alirezastack</a> Yes that’s right, <code>result().result</code> part gets the result of <code>determine_media</code> action.</p>
+          <p><a href="https://forum.stackstorm.com/t/how-can-i-loop-through-a-list-of-objects-and-run-different-actions-based-on-values/1333/7">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-can-i-loop-through-a-list-of-objects-and-run-different-actions-based-on-values/1333/7</link>
+        <pubDate>Tue, 07 Jul 2020 09:39:14 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1333-7</guid>
+        <source url="https://forum.stackstorm.com/t/how-can-i-loop-through-a-list-of-objects-and-run-different-actions-based-on-values/1333.rss">How can I loop through a list of objects and run different actions based on values?</source>
+      </item>
+      <item>
+        <title>How can I loop through a list of objects and run different actions based on values?</title>
+        <dc:creator><![CDATA[alirezastack]]></dc:creator>
+        <description><![CDATA[
+            <p>Thank you <a class="mention" href="https://github.com/kyildiz">@kyildiz</a> ,<br>
+Just this code section <code>result().result </code> is retrieved from the output of <code>determine_media</code> output?</p>
+          <p><a href="https://forum.stackstorm.com/t/how-can-i-loop-through-a-list-of-objects-and-run-different-actions-based-on-values/1333/6">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-can-i-loop-through-a-list-of-objects-and-run-different-actions-based-on-values/1333/6</link>
+        <pubDate>Tue, 07 Jul 2020 09:38:19 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1333-6</guid>
+        <source url="https://forum.stackstorm.com/t/how-can-i-loop-through-a-list-of-objects-and-run-different-actions-based-on-values/1333.rss">How can I loop through a list of objects and run different actions based on values?</source>
+      </item>
+      <item>
+        <title>How can I loop through a list of objects and run different actions based on values?</title>
+        <dc:creator><![CDATA[kyildiz]]></dc:creator>
+        <description><![CDATA[
+            <p>I assume that you have already defined <code>task</code> for <code>sms</code> and <code>email</code>. You can use <code>yaql</code> expression for filtering and assigning them to the different variable in the context. After that you can use those variables in the action tasks.</p>
+<pre><code class="lang-auto">determine_media:
+  action: mypack.determine_media
+  input:
+    media: &lt;% ctx().media %&gt;
+  next:
+    - when: &lt;% succeeded() %&gt;
+      - publish:
+          - emails: &lt;% result().result.filter($.media = "email") %&gt;
+          - smss: &lt;% result().result.filter($.media = "sms") %&gt;
+    do:
+      - email_task
+      - sms_task
+
+email_task:
+  action: mypack.email_action
+  input:
+    media: &lt;% ctx().emails %&gt;
+    
+sms_task:
+  action: mypack.sms_action
+  input:
+    media: &lt;% ctx().smss %&gt;
+</code></pre>
+          <p><a href="https://forum.stackstorm.com/t/how-can-i-loop-through-a-list-of-objects-and-run-different-actions-based-on-values/1333/5">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-can-i-loop-through-a-list-of-objects-and-run-different-actions-based-on-values/1333/5</link>
+        <pubDate>Tue, 07 Jul 2020 09:11:26 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1333-5</guid>
+        <source url="https://forum.stackstorm.com/t/how-can-i-loop-through-a-list-of-objects-and-run-different-actions-based-on-values/1333.rss">How can I loop through a list of objects and run different actions based on values?</source>
+      </item>
+      <item>
+        <title>How can I loop through a list of objects and run different actions based on values?</title>
+        <dc:creator><![CDATA[amanda11]]></dc:creator>
+        <description><![CDATA[
+            <p>I’m not sure of the best way.</p>
+<p>One way - could be.</p>
+<p>determine_media has 2 tasks after it - one for sms and one for email. Each of those is a loop over the with items with task(determine_media).result.  Those actions could be sub-workflows - whose first task just checks they are of the correct type and then goes onto your actual action.</p>
+<p>Or you could probably with some Jinja or YAQL trickery take that result into two separate lists to parse through. And then have two with_items on the separate lists running in parallel.</p>
+          <p><a href="https://forum.stackstorm.com/t/how-can-i-loop-through-a-list-of-objects-and-run-different-actions-based-on-values/1333/4">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-can-i-loop-through-a-list-of-objects-and-run-different-actions-based-on-values/1333/4</link>
+        <pubDate>Tue, 07 Jul 2020 09:05:53 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1333-4</guid>
+        <source url="https://forum.stackstorm.com/t/how-can-i-loop-through-a-list-of-objects-and-run-different-actions-based-on-values/1333.rss">How can I loop through a list of objects and run different actions based on values?</source>
+      </item>
+      <item>
+        <title>How can I loop through a list of objects and run different actions based on values?</title>
+        <dc:creator><![CDATA[alirezastack]]></dc:creator>
+        <description><![CDATA[
+            <p><a class="mention" href="https://github.com/amanda11">@amanda11</a> thank you for your reply. What you are actually doing is that you are sending each item of the list to determine_media action itself. What I want to do is in fact to call different actions (after determine media) in parallel. Let’s say the output of determine_media action consists of sms and also email. Here I need to call email action and also sms action both in parallel. Is this possible?</p>
+<p>I wanted to use chain for that but it seems to work linearly.</p>
+          <p><a href="https://forum.stackstorm.com/t/how-can-i-loop-through-a-list-of-objects-and-run-different-actions-based-on-values/1333/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-can-i-loop-through-a-list-of-objects-and-run-different-actions-based-on-values/1333/3</link>
+        <pubDate>Tue, 07 Jul 2020 08:36:58 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1333-3</guid>
+        <source url="https://forum.stackstorm.com/t/how-can-i-loop-through-a-list-of-objects-and-run-different-actions-based-on-values/1333.rss">How can I loop through a list of objects and run different actions based on values?</source>
+      </item>
+      <item>
+        <title>How can I loop through a list of objects and run different actions based on values?</title>
+        <dc:creator><![CDATA[amanda11]]></dc:creator>
+        <description><![CDATA[
+            <p>In Orquesta workflows you have the with items concept, and you can then loop through the items. See: <a href="https://docs.stackstorm.com/orquesta/languages/orquesta.html#with-items-model" class="inline-onebox" rel="nofollow noopener">Orquesta Workflow Definition — StackStorm 3.2.0 documentation</a></p>
+<p>So for example say you had that list of items stored in ctx().media_list by a publish from the previous task - or you can access a task’s result directly with task().result, you could use something similar to:</p>
+<p>determine_media:<br>
+action: mypack.determine_media<br>
+input:<br>
+media: &lt;% item(my_obj).media %&gt;<br>
+with:<br>
+items: my_obj in &lt;% ctx().media_list %&gt;</p>
+          <p><a href="https://forum.stackstorm.com/t/how-can-i-loop-through-a-list-of-objects-and-run-different-actions-based-on-values/1333/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-can-i-loop-through-a-list-of-objects-and-run-different-actions-based-on-values/1333/2</link>
+        <pubDate>Tue, 07 Jul 2020 08:31:18 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1333-2</guid>
+        <source url="https://forum.stackstorm.com/t/how-can-i-loop-through-a-list-of-objects-and-run-different-actions-based-on-values/1333.rss">How can I loop through a list of objects and run different actions based on values?</source>
+      </item>
+      <item>
+        <title>How can I loop through a list of objects and run different actions based on values?</title>
+        <dc:creator><![CDATA[alirezastack]]></dc:creator>
+        <description><![CDATA[
+            <p>I have an action that returns a list of objects like:<br>
+<code>[{media: "email", "content": "test"}, {media: "sms": "content": "short text"}, ...]</code></p>
+<p>Now I need to iterate through all list objects and run target action based on the values in media. For the above example I need to get result().result and iterate through all and run <code>email</code> action, <code>sms</code> action, etc. Is this possible? Is there a better way of doing this in the workflow?</p>
+<p>In fact I have one result but many actions will be run based on the values present in media.</p>
+<pre><code>determine_media:
+    action: mypack.determine_media
+    input:
+      media: &lt;% ctx().media %&gt;
+    next:</code></pre>
+          <p><a href="https://forum.stackstorm.com/t/how-can-i-loop-through-a-list-of-objects-and-run-different-actions-based-on-values/1333/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-can-i-loop-through-a-list-of-objects-and-run-different-actions-based-on-values/1333/1</link>
+        <pubDate>Tue, 07 Jul 2020 06:38:29 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1333-1</guid>
+        <source url="https://forum.stackstorm.com/t/how-can-i-loop-through-a-list-of-objects-and-run-different-actions-based-on-values/1333.rss">How can I loop through a list of objects and run different actions based on values?</source>
+      </item>
+  </channel>
+</rss>

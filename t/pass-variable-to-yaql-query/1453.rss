@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Pass variable to YAQL query</title>
+    <link>https://forum.stackstorm.com/t/pass-variable-to-yaql-query/1453</link>
+    <description>I would like to publish data based on input from a variable in the context using a YAQL expression
+
+something along the lines
+
+    vars:
+       - myvarible: test
+
+    tasks:
+      task1:
+        action: myaction
+        next:
+          - when: &lt;% succeeded() %&gt;
+             publish: 
+               - service: &lt;% result().result.&lt;myvariable&gt; %&gt; 
+
+Is it possible to somehow pass a variable from ctx into a YAQL expression ? or are there any other techniques to query data based on a variable input ?</description>
+    
+    <lastBuildDate>Fri, 16 Oct 2020 23:24:10 +0000</lastBuildDate>
+    <category>Workflows</category>
+    <atom:link href="https://forum.stackstorm.com/t/pass-variable-to-yaql-query/1453.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Pass variable to YAQL query</title>
+        <dc:creator><![CDATA[nick]]></dc:creator>
+        <description><![CDATA[
+            <p>That’s the solution, appreciate the help !</p>
+          <p><a href="https://forum.stackstorm.com/t/pass-variable-to-yaql-query/1453/6">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/pass-variable-to-yaql-query/1453/6</link>
+        <pubDate>Fri, 16 Oct 2020 23:24:10 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1453-6</guid>
+        <source url="https://forum.stackstorm.com/t/pass-variable-to-yaql-query/1453.rss">Pass variable to YAQL query</source>
+      </item>
+      <item>
+        <title>Pass variable to YAQL query</title>
+        <dc:creator><![CDATA[Matt]]></dc:creator>
+        <description><![CDATA[
+            <p>I believe this should do it.</p>
+<pre><code>publish:
+      - var_config: &lt;% result().result.get(ctx().var_service) %&gt;</code></pre>
+          <p><a href="https://forum.stackstorm.com/t/pass-variable-to-yaql-query/1453/5">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/pass-variable-to-yaql-query/1453/5</link>
+        <pubDate>Fri, 16 Oct 2020 19:11:03 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1453-5</guid>
+        <source url="https://forum.stackstorm.com/t/pass-variable-to-yaql-query/1453.rss">Pass variable to YAQL query</source>
+      </item>
+      <item>
+        <title>Pass variable to YAQL query</title>
+        <dc:creator><![CDATA[Carlos]]></dc:creator>
+        <description><![CDATA[
+            <p>What you’re attempting to achieve is possible and quite a common use case.</p>
+<p>The data store can be access directly from the workflow using the <code>&lt;% st2kv() %&gt;</code> function.  You can read about it here <a href="https://docs.stackstorm.com/orquesta/stackstorm.html#st2kv" class="inline-onebox" rel="noopener nofollow ugc">StackStorm Runtime — StackStorm 3.3.0 documentation</a>.  You only need to use the st2 pack when you want to write to the kvstore.</p>
+          <p><a href="https://forum.stackstorm.com/t/pass-variable-to-yaql-query/1453/4">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/pass-variable-to-yaql-query/1453/4</link>
+        <pubDate>Thu, 15 Oct 2020 14:13:46 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1453-4</guid>
+        <source url="https://forum.stackstorm.com/t/pass-variable-to-yaql-query/1453.rss">Pass variable to YAQL query</source>
+      </item>
+      <item>
+        <title>Pass variable to YAQL query</title>
+        <dc:creator><![CDATA[nick]]></dc:creator>
+        <description><![CDATA[
+            <p>Thanks for the quick response. I don’t fully understand and perhaps I am missing something, so let me expand</p>
+<p>I have a key in the datastore containing some configuration data and I would like to extract the relevant parts of this after I have obtained it from the datastore.</p>
+<p>The data in the store looks like this</p>
+<pre><code>{
+ "homebridge": {
+     "compute_size": "Medium Instance",
+    "name": "homebridge",
+    "os": "debian-10.0",
+    "service": "homebridge"
+},
+"plexmedia": {
+    "compute_size": "Medium Instance",
+    "name": "plexmedia",
+    "os": "debian-10.0",
+    "service": "plexmedia"
+  }
+}
+</code></pre>
+<p>And my code looks like this</p>
+<pre><code>version: 1.0
+
+description: Stackstorm Test Action
+input:
+ - terraform_vars
+vars:
+  - var_config: null
+  - var_service: homebridge
+
+tasks:
+  task1:
+    action: st2.kv.get_object
+    input:
+      key: cloudstack_config
+    next:
+      - when: &lt;% succeeded() %&gt;
+        publish:
+          - var_config: &lt;% result().result.homebridge %&gt;
+output:
+  - vars: &lt;% ctx(var_config) %&gt;
+</code></pre>
+<p>I want to be able to make the selection of the query based on the variable var_service</p>
+<p>&lt;% result().result.<strong>homebridge</strong> %&gt;</p>
+<p>Is this possible ?</p>
+          <p><a href="https://forum.stackstorm.com/t/pass-variable-to-yaql-query/1453/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/pass-variable-to-yaql-query/1453/3</link>
+        <pubDate>Thu, 15 Oct 2020 07:06:12 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1453-3</guid>
+        <source url="https://forum.stackstorm.com/t/pass-variable-to-yaql-query/1453.rss">Pass variable to YAQL query</source>
+      </item>
+      <item>
+        <title>Pass variable to YAQL query</title>
+        <dc:creator><![CDATA[Carlos]]></dc:creator>
+        <description><![CDATA[
+            <p>workflow variables are available in the workflow context as soon as the workflow is executed so you don’t need to publish it, just use it in the YAQL expression. <code>ctx(myvariable)</code></p>
+          <p><a href="https://forum.stackstorm.com/t/pass-variable-to-yaql-query/1453/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/pass-variable-to-yaql-query/1453/2</link>
+        <pubDate>Thu, 15 Oct 2020 06:43:36 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1453-2</guid>
+        <source url="https://forum.stackstorm.com/t/pass-variable-to-yaql-query/1453.rss">Pass variable to YAQL query</source>
+      </item>
+      <item>
+        <title>Pass variable to YAQL query</title>
+        <dc:creator><![CDATA[nick]]></dc:creator>
+        <description><![CDATA[
+            <p>I would like to publish data based on input from a variable in the context using a YAQL expression</p>
+<p>something along the lines</p>
+<pre><code>vars:
+   - myvarible: test
+
+tasks:
+  task1:
+    action: myaction
+    next:
+      - when: &lt;% succeeded() %&gt;
+         publish: 
+           - service: &lt;% result().result.&lt;myvariable&gt; %&gt; 
+</code></pre>
+<p>Is it possible to somehow pass a variable from ctx into a YAQL expression ? or are there any other techniques to query data based on a variable input ?</p>
+          <p><a href="https://forum.stackstorm.com/t/pass-variable-to-yaql-query/1453/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/pass-variable-to-yaql-query/1453/1</link>
+        <pubDate>Thu, 15 Oct 2020 06:30:27 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1453-1</guid>
+        <source url="https://forum.stackstorm.com/t/pass-variable-to-yaql-query/1453.rss">Pass variable to YAQL query</source>
+      </item>
+  </channel>
+</rss>

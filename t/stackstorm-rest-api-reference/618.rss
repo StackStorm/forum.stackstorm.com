@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Stackstorm REST Api reference</title>
+    <link>https://forum.stackstorm.com/t/stackstorm-rest-api-reference/618</link>
+    <description>Have a couple of quick questions:.
+--Is there any good documentation or samples for the API usage. i.e Looking at https://api.stackstorm.com/api/v1/rules/#/rule_controller.post, cannot really make out what the endpoint is expecting.
+--Don&#39;t see endpoints to play around with workflows.
+--Is there a swagger endpoint?</description>
+    
+    <lastBuildDate>Tue, 23 Apr 2019 22:16:30 +0000</lastBuildDate>
+    <category>API</category>
+    <atom:link href="https://forum.stackstorm.com/t/stackstorm-rest-api-reference/618.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Stackstorm REST Api reference</title>
+        <dc:creator><![CDATA[lhill]]></dc:creator>
+        <description><![CDATA[
+            <p>Try using the <code>st2 --debug</code> CLI option to see the equivalent <code>curl</code> calls.</p>
+          <p><a href="https://forum.stackstorm.com/t/stackstorm-rest-api-reference/618/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/stackstorm-rest-api-reference/618/2</link>
+        <pubDate>Tue, 23 Apr 2019 22:16:30 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-618-2</guid>
+        <source url="https://forum.stackstorm.com/t/stackstorm-rest-api-reference/618.rss">Stackstorm REST Api reference</source>
+      </item>
+      <item>
+        <title>Stackstorm REST Api reference</title>
+        <dc:creator><![CDATA[hnanchahal]]></dc:creator>
+        <description><![CDATA[
+            <p>Have a couple of quick questions:.<br>
+–Is there any good documentation or samples for the API usage. i.e Looking at <a href="https://api.stackstorm.com/api/v1/rules/#/rule_controller.post" rel="nofollow noopener">https://api.stackstorm.com/api/v1/rules/#/rule_controller.post</a>, cannot really make out what the endpoint is expecting.<br>
+–Don’t see endpoints to play around with workflows.<br>
+–Is there a swagger endpoint?</p>
+          <p><a href="https://forum.stackstorm.com/t/stackstorm-rest-api-reference/618/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/stackstorm-rest-api-reference/618/1</link>
+        <pubDate>Tue, 23 Apr 2019 22:14:21 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-618-1</guid>
+        <source url="https://forum.stackstorm.com/t/stackstorm-rest-api-reference/618.rss">Stackstorm REST Api reference</source>
+      </item>
+  </channel>
+</rss>

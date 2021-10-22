@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="en" class="desktop-view not-mobile-device text-size-normal anon">
+<head>
+    <meta charset="utf-8">
+    <title>Invoke an action from a Python action script - How do I do X in st2? - StackStorm Support (ARCHIVED)</title>
+    <meta name="description"
+          content="Is there any way to invoke execution of an action from the python client? I would like to execute an action from an action without using action chain or mistral. I ended up using my one ActionManager but I wonder if ther&amp;hellip;">
+    <meta name="discourse_theme_id" content="2">
+    <meta name="discourse_current_homepage" content="latest">
+    <meta name="generator"
+          content="Discourse 2.8.0.beta6 - https://github.com/discourse/discourse version a1daf9fe53a66e2d2cdf9757ab4812fb9a2b2787">
+    <link rel="icon" type="image/png"
+          href="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/379ced12f8326d58f1b3d2b3ff652f883e141f6a_2_32x32.PNG">
+    <link rel="apple-touch-icon" type="image/png"
+          href="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/379ced12f8326d58f1b3d2b3ff652f883e141f6a_2_180x180.PNG">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <link rel="canonical" href="24.html"/>
+    <script type="application/ld+json">{
+        "@context": "http://schema.org",
+        "@type": "WebSite",
+        "url": "https://forum.stackstorm.com",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://forum.stackstorm.com/search?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }
+    </script>
+    <link rel="search" type="application/opensearchdescription+xml" href="../../opensearch.xml"
+          title="StackStorm Support (ARCHIVED) Search">
+
+
+    <link href="/../../stylesheets/color_definitions_base__2_3c5eec1ecf192052ea70b4afdab57a62bccc0604.css?__ws=forum.stackstorm.com"
+          media="all" rel="stylesheet" class="light-scheme"/>
+
+    <link href="/../../stylesheets/desktop_b2f2968742d41481357e0df259b51ce29f72481a.css?__ws=forum.stackstorm.com"
+          media="all" rel="stylesheet" data-target="desktop"/>
+
+
+    <meta name="fragment" content="!">
+
+
+    <link id="manifest-link" rel="manifest" href="../../manifest.webmanifest" crossorigin="use-credentials">
+
+
+    <link rel="alternate" type="application/rss+xml"
+          title="RSS feed of &#39;Invoke an action from a Python action script&#39;"
+          href="https://forum.stackstorm.com/t/invoke-an-action-from-a-python-action-script/24.rss"/>
+    <meta property="og:site_name" content="StackStorm Support (ARCHIVED)"/>
+    <meta property="og:type" content="website"/>
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:image"
+          content="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/891f00fbdb31fecb5bd9dab30c186d2fed0091ca.jpeg"/>
+    <meta property="og:image"
+          content="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/891f00fbdb31fecb5bd9dab30c186d2fed0091ca.jpeg"/>
+    <meta property="og:url" content="https://forum.stackstorm.com/t/invoke-an-action-from-a-python-action-script/24"/>
+    <meta name="twitter:url" content="https://forum.stackstorm.com/t/invoke-an-action-from-a-python-action-script/24"/>
+    <meta property="og:title" content="Invoke an action from a Python action script"/>
+    <meta name="twitter:title" content="Invoke an action from a Python action script"/>
+    <meta property="og:description"
+          content="Is there any way to invoke execution of an action from the python client? I would like to execute an action from an action without using action chain or mistral. I ended up using my one ActionManager but I wonder if there is a better API supported by the python client.  from st2client.client import Client from st2client.models import LiveAction   class ActionManager(object):      def __init__(self):         self.client = Client(base_url=&#39;http://localhost&#39;)      def run_action_by_name(self, name,..."/>
+    <meta name="twitter:description"
+          content="Is there any way to invoke execution of an action from the python client? I would like to execute an action from an action without using action chain or mistral. I ended up using my one ActionManager but I wonder if there is a better API supported by the python client.  from st2client.client import Client from st2client.models import LiveAction   class ActionManager(object):      def __init__(self):         self.client = Client(base_url=&#39;http://localhost&#39;)      def run_action_by_name(self, name,..."/>
+    <meta name="twitter:label1" value="Reading time"/>
+    <meta name="twitter:data1" value="1 mins 🕑"/>
+    <meta name="twitter:label2" value="Likes"/>
+    <meta name="twitter:data2" value="5 ❤"/>
+    <meta property="article:published_time" content="2018-03-08T11:04:19+00:00"/>
+    <meta property="og:ignore_canonical" content="true"/>
+
+
+    <script type="application/ld+json">{
+        "@context": "http://schema.org",
+        "@type": "QAPage",
+        "name": "Invoke an action from a Python action script",
+        "mainEntity": {
+            "@type": "Question",
+            "name": "Invoke an action from a Python action script",
+            "text": "Is there any way to invoke execution of an action from the python client? I would like to execute an action from an action without using action chain or mistral. I ended up using my one ActionManager but I wonder if there is a better API supported by the python client.\n\nfrom st2client.client import &hellip;",
+            "upvoteCount": 1,
+            "answerCount": 1,
+            "dateCreated": "2018-03-08T11:04:19.817Z",
+            "author": {
+                "@type": "Person",
+                "name": "Giorgos Karagkounis"
+            },
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "<a class=\"mention\" href="
+                https://forum.stackstorm.com/t/invoke-an-action-from-a-python-action-script/\&quot;/u/n_kos\&quot;">@n_kos<\/a> this is using an api “directly from the client” by calling execution = client.liveactions.create(execution_instance)\n\nHowever, this function does not take arbitrary parameters like you want, instead it requires a LiveAction object to be passed in.\n\nAbout the shortest i could condense it down &hellip;","upvoteCount":1,"dateCreated":"2018-03-08T17:48:06.879Z","url":"https://forum.stackstorm.com/t/invoke-an-action-from-a-python-action-script/24/4","author":{"@type":"Person","name":"nmaludy"}}}}
+    </script>
+
+    <meta id="data-discourse-setup" data-cdn="https://sjc6.discourse-cdn.com/standard10"
+          data-base-url="https://forum.stackstorm.com" data-base-uri="" data-environment="production"
+          data-letter-avatar-version="5_8fec8e114563efeaf5265573e510f08e"
+          data-markdown-it-url="https://aws1.discourse-cdn.com/standard10/assets/markdown-it-bundle-31e9a9c535ca1801c26da78b0ff465821751a98f921c5cdc5457d7e5a69e9748.js"
+          data-service-worker-url="service-worker.js" data-default-locale="en"
+          data-asset-version="597e36448c9b51d0fa3b7e43ec1fd6d5" data-disable-custom-css="false"
+          data-highlight-js-path="/highlight-js/forum.stackstorm.com/ac0f4aa001e1343346941766d72e0c1ae330832b.js"
+          data-svg-sprite-path="/svg-sprite/forum.stackstorm.com/svg-2-c2ad434b1e06079c7e282124aed9938dc95b83ea.js"
+          data-enable-js-error-reporting="true" data-color-scheme-is-dark="false" data-user-dark-scheme-id="-1"
+          data-s3-cdn="https://aws1.discourse-cdn.com/standard10"
+          data-s3-base-url="//discourse-cloud-file-uploads.s3.dualstack.us-west-2.amazonaws.com/standard10">
+
+    <meta name="discourse/config/environment"
+          content="%7B%22modulePrefix%22%3A%22discourse%22%2C%22environment%22%3A%22production%22%2C%22rootURL%22%3A%22%22%2C%22locationType%22%3A%22auto%22%2C%22historySupportMiddleware%22%3Afalse%2C%22EmberENV%22%3A%7B%22FEATURES%22%3A%7B%7D%2C%22EXTEND_PROTOTYPES%22%3A%7B%22Date%22%3Afalse%7D%2C%22_APPLICATION_TEMPLATE_WRAPPER%22%3Afalse%2C%22_DEFAULT_ASYNC_OBSERVERS%22%3Atrue%2C%22_JQUERY_INTEGRATION%22%3Atrue%7D%2C%22APP%22%3A%7B%22name%22%3A%22discourse%22%2C%22version%22%3A%222.8.0.beta6%20a1daf9fe53a66e2d2cdf9757ab4812fb9a2b2787%22%2C%22exportApplicationGlobal%22%3Atrue%7D%7D"/>
+</head>
+
+<body class="">
+
+
+<header class="d-header">
+    <div class="wrap">
+        <div class="contents clearfix">
+            <div class="title">
+                <a href="../../index.html">
+                    <picture>
+                        <img src="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png"
+                             alt="StackStorm Support (ARCHIVED)" id="site-logo"/>
+                    </picture>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</header>
+
+<div id="main-outlet" class="wrap" role="main">
+    <!-- preload-content: -->
+
+    <!-- EOF START -->
+    <div class="container" id="main-container">
+        <div id="ember11" class="ember-view"></div>
+        <div id="ember12" class="controls ember-view"><!----></div>
+        <div id="ember13" class="ember-view"><!----></div>
+        <div id="ember14" class="ember-view">
+            <div class="row">
+                <div id="global-notice-alert-read-only" class="alert alert-info alert-read-only">
+                    <!----> <span class="text">This site is in read only mode. Please continue to browse, but replying, likes, and other actions are disabled for now.</span>
+
+                    <!---->    </div>
+            </div>
+            <div class="row">
+                <div id="global-notice-alert-global-notice" class="alert alert-info alert-global-notice">
+                    <!----> <span class="text"><h3>⚠️ We've moved!</h3>  <p> Hi there!<br><br> To reduce project dependency on 3rd party paid services the StackStorm TSC has decided to move the Q/A from this forum to <a
+                        href="https://github.com/StackStorm/st2/discussions">Github Discussions</a>. This will make user experience better integrated with the native Github flow, as well as the questions closer to the community where they can provide answers. </p>  <p> Use 🔗 <b><a
+                        href="https://github.com/StackStorm/st2/discussions" class="active">Github Discussions</a></b> to ask your questions. </p></span>
+
+                    <!---->    </div>
+            </div>
+        </div>
+        <div id="ember17" class="hidden create-topics-notice ember-view"><!----></div>
+        <!---->
+    </div>
+    <!-- EOF END -->
+    <div id="topic-title">
+        <h1>
+            <a href="24.html">Invoke an action from a Python action script</a>
+        </h1>
+
+        <div class="topic-category" itemscope itemtype="http://schema.org/BreadcrumbList">
+          <span itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a href="../../c/integrations-and-exchange-related-issues/10" class="badge-wrapper bullet"
+               itemprop="item">
+              <span class='badge-category-bg' style='background-color: #ED207B'></span>
+              <span class='badge-category clear-badge'>
+                <span class='category-name' itemprop='name'>Exchange</span>
+              </span>
+            </a>
+            <meta itemprop="position" content="1"/>
+          </span>
+            <span itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a href="../../c/integrations-and-exchange-related-issues/how-do-i-do-x-in-st2/14"
+               class="badge-wrapper bullet" itemprop="item">
+              <span class='badge-category-bg' style='background-color: #AB9364'></span>
+              <span class='badge-category clear-badge'>
+                <span class='category-name' itemprop='name'>How do I do X in st2?</span>
+              </span>
+            </a>
+            <meta itemprop="position" content="2"/>
+          </span>
+        </div>
+
+        <div class="topic-category">
+            <div class='discourse-tags list-tags'>
+                <a href='../../tag/actions' class='discourse-tag' rel="tag">actions</a>,
+                <a href='../../tag/python' class='discourse-tag' rel="tag">python</a>,
+                <a href='../../tag/st2client' class='discourse-tag' rel="tag">st2client</a>,
+                <a href='../../tag/api' class='discourse-tag' rel="tag">api</a>
+            </div>
+        </div>
+    </div>
+
+
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/n_kos'><span itemprop='name'>n_kos</span></a>
+            (Giorgos Karagkounis)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="24.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2018-03-08T11:04:19Z' class='post-time'>
+                March 8, 2018, 11:04am
+              </time>
+              <meta itemprop='dateModified' content='2018-05-15T19:34:09Z'>
+          <span itemprop='position'>#1</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Is there any way to invoke execution of an action from the python client? I would like to execute an
+                action from an action without using action chain or mistral. I ended up using my one ActionManager but I
+                wonder if there is a better API supported by the python client.</p>
+            <pre><code>from st2client.client import Client
+from st2client.models import LiveAction
+
+
+class ActionManager(object):
+
+    def __init__(self):
+        self.client = Client(base_url='http://localhost')
+
+    def run_action_by_name(self, name, payload):
+        action = self._get_action_from_name(name)
+        action_ref = '.'.join([action.pack, action.name])
+        execution = LiveAction()
+        execution.action = action_ref
+		execution.parameters = payload
+        action_exec_manager = self.client.managers['LiveAction']
+        action_exec_manager.create(execution)
+
+    def _get_action_from_name(self, name):
+        return self.client.actions.get_by_name(name)</code></pre>
+        </div>
+
+        <meta itemprop='headline' content='Invoke an action from a Python action script'>
+        <meta itemprop='keywords' content='actions, python, st2client, api'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+            <span class='post-likes'>1 Like</span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+        <div class='crawler-linkback-list' itemscope itemtype='http://schema.org/ItemList'>
+            <div itemprop='itemListElement' itemscope itemtype='http://schema.org/ListItem'>
+                <a href="https://forum.stackstorm.com/t/define-a-workflow-in-python/1301/7" itemscope
+                   itemtype='http://schema.org/DiscussionForumPosting' itemprop='item'>
+                    <meta itemprop='url' content='https://forum.stackstorm.com/t/define-a-workflow-in-python/1301/7'>
+                    <span itemprop='name'>Define a workflow in Python</span>
+                </a>
+                <meta itemprop='position' content='1'>
+            </div>
+            <div itemprop='itemListElement' itemscope itemtype='http://schema.org/ListItem'>
+                <a href="../define-a-workflow-in-python/1301.html" itemscope
+                   itemtype='http://schema.org/DiscussionForumPosting' itemprop='item'>
+                    <meta itemprop='url' content='https://forum.stackstorm.com/t/define-a-workflow-in-python/1301'>
+                    <span itemprop='name'>Define a workflow in Python</span>
+                </a>
+                <meta itemprop='position' content='2'>
+            </div>
+        </div>
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/nmaludy'><span itemprop='name'>nmaludy</span></a>
+            (Nick Maludy)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="24.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2018-03-08T13:14:58Z' class='post-time'>
+                March 8, 2018,  1:14pm
+              </time>
+              <meta itemprop='dateModified' content='2018-03-08T13:14:58Z'>
+          <span itemprop='position'>#2</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p><a class="mention" href="https://github.com/n_kos">@n_kos</a> Here’s a working code snippet
+                to invoke an action and wait for the results. Hope this helps:</p>
+            <pre><code class="lang-auto">#!/usr/bin/env python
+#
+########################
+# Install Instructions #
+########################
+#
+# virtualenv virtualenv
+# source ./virtualenv/bin/activate
+# pip install st2client
+# ./st2_action_exec.py
+
+import st2client
+import st2client.client
+import st2client.commands.action
+import st2client.models
+import time
+import sys
+
+import requests
+requests.packages.urllib3.disable_warnings()
+
+
+PENDING_STATUSES = [
+    st2client.commands.action.LIVEACTION_STATUS_REQUESTED,
+    st2client.commands.action.LIVEACTION_STATUS_SCHEDULED,
+    st2client.commands.action.LIVEACTION_STATUS_RUNNING,
+    st2client.commands.action.LIVEACTION_STATUS_CANCELING
+]
+
+def run_action(server, username, password, ref, params):
+    client = st2client.client.Client(base_url="https://{}/".format(server),
+                                     auth_url="https://{}/auth/v1".format(server),
+                                     api_url="https://{}/api/v1".format(server))
+
+    # login
+    token_instance = st2client.models.Token()
+    token = client.tokens.create(token_instance, auth=(username, password))
+    client = st2client.client.Client(base_url="https://{}/".format(server),
+                                     auth_url="https://{}/auth/v1".format(server),
+                                     api_url="https://{}/api/v1".format(server),
+                                     token=token.token)
+
+    # execute
+    execution_instance = st2client.models.LiveAction()
+    execution_instance.action = ref
+    execution_instance.parameters = params
+    execution = client.liveactions.create(execution_instance)
+
+    # wait for the execution to finish
+    while execution.status in PENDING_STATUSES:
+        time.sleep(1)
+        sys.stdout.write('.')
+        sys.stdout.flush()
+        print "waiting for execution {}".format(execution.id)
+        execution = client.liveactions.get_by_id(execution.id)
+
+    # execution is done, print out the details
+    print execution.__dict__
+
+if __name__ == "__main__":
+    server = "stackstorm.domain.tld"
+    username = "st2admin"
+    password = "xxx"
+    ref = "core.local"
+    params = {"cmd": "ls"}
+    run_action(server, username, password, ref, params)
+</code></pre>
+            <p>FYI, this code is pieced together from parts of the <code>st2client</code> package:</p>
+            <p>
+            <aside class="onebox githubblob">
+                <header class="source">
+                    <a href="https://github.com/StackStorm/st2/blob/master/st2client/st2client/commands/action.py#L962-L999"
+                       target="_blank" rel="nofollow noopener">github.com</a>
+                </header>
+                <article class="onebox-body">
+                    <h4>
+                        <a href="https://github.com/StackStorm/st2/blob/master/st2client/st2client/commands/action.py#L962-L999"
+                           target="_blank" rel="nofollow noopener">StackStorm/st2/blob/master/st2client/st2client/commands/action.py#L962-L999</a>
+                    </h4>
+                    <pre class="onebox"><code class="lang-py"><ol class="start lines" start="962"
+                                                                  style="counter-reset: li-counter 961 ;">
+<li>@add_auth_token_to_kwargs_from_cli</li>
+<li>def run(self, args, **kwargs):</li>
+<li>    if not args.ref_or_id:</li>
+<li>        self.parser.error('Missing action reference or id')</li>
+<li>
+</li>
+<li>    action = self.get_resource(args.ref_or_id, **kwargs)</li>
+<li>    if not action:</li>
+<li>        raise resource.ResourceNotFoundError('Action "%s" cannot be found.'</li>
+<li>                                             % (args.ref_or_id))</li>
+<li>
+</li>
+<li>    runner_mgr = self.app.client.managers['RunnerType']</li>
+<li>    runner = runner_mgr.get_by_name(action.runner_type, **kwargs)</li>
+<li>    if not runner:</li>
+<li>        raise resource.ResourceNotFoundError('Runner type "%s" for action "%s" cannot be \</li>
+<li>                                             found.' % (action.runner_type, action.name))</li>
+<li>
+</li>
+<li>    action_ref = '.'.join([action.pack, action.name])</li>
+<li>    action_parameters = self._get_action_parameters_from_args(action=action, runner=runner,</li>
+<li>                                                              args=args)</li>
+<li>
+</li>
+</ol></code></pre>
+
+                    This file has been truncated. <a
+                        href="https://github.com/StackStorm/st2/blob/master/st2client/st2client/commands/action.py#L962-L999"
+                        target="_blank" rel="nofollow noopener">show original</a>
+
+                </article>
+                <div class="onebox-metadata">
+
+
+                </div>
+                <div style="clear: both"></div>
+            </aside>
+            <br>
+            <aside class="onebox githubblob">
+                <header class="source">
+                    <a href="https://github.com/StackStorm/st2/blob/master/st2client/st2client/commands/action.py#L435-L470"
+                       target="_blank" rel="nofollow noopener">github.com</a>
+                </header>
+                <article class="onebox-body">
+                    <h4>
+                        <a href="https://github.com/StackStorm/st2/blob/master/st2client/st2client/commands/action.py#L435-L470"
+                           target="_blank" rel="nofollow noopener">StackStorm/st2/blob/master/st2client/st2client/commands/action.py#L435-L470</a>
+                    </h4>
+                    <pre class="onebox"><code class="lang-py"><ol class="start lines" start="435"
+                                                                  style="counter-reset: li-counter 434 ;">
+<li>def _get_execution_result(self, execution, action_exec_mgr, args, **kwargs):</li>
+<li>    pending_statuses = [</li>
+<li>        LIVEACTION_STATUS_REQUESTED,</li>
+<li>        LIVEACTION_STATUS_SCHEDULED,</li>
+<li>        LIVEACTION_STATUS_RUNNING,</li>
+<li>        LIVEACTION_STATUS_CANCELING</li>
+<li>    ]</li>
+<li>
+</li>
+<li>    if args.tail:</li>
+<li>        # Start tailing new execution</li>
+<li>        print('Tailing execution "%s"' % (str(execution.id)))</li>
+<li>        execution_manager = self.manager</li>
+<li>        stream_manager = self.app.client.managers['Stream']</li>
+<li>        ActionExecutionTailCommand.tail_execution(execution=execution,</li>
+<li>                                                  execution_manager=execution_manager,</li>
+<li>                                                  stream_manager=stream_manager,</li>
+<li>                                                  **kwargs)</li>
+<li>
+</li>
+<li>        execution = action_exec_mgr.get_by_id(execution.id, **kwargs)</li>
+<li>        print('')</li>
+</ol></code></pre>
+
+                    This file has been truncated. <a
+                        href="https://github.com/StackStorm/st2/blob/master/st2client/st2client/commands/action.py#L435-L470"
+                        target="_blank" rel="nofollow noopener">show original</a>
+
+                </article>
+                <div class="onebox-metadata">
+
+
+                </div>
+                <div style="clear: both"></div>
+            </aside>
+            </p>
+        </div>
+
+        <meta itemprop='headline' content='Invoke an action from a Python action script'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="2"/>
+            <span class='post-likes'>2 Likes</span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/n_kos'><span itemprop='name'>n_kos</span></a>
+            (Giorgos Karagkounis)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="24.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2018-03-08T15:15:04Z' class='post-time'>
+                March 8, 2018,  3:15pm
+              </time>
+              <meta itemprop='dateModified' content='2018-03-08T15:15:04Z'>
+          <span itemprop='position'>#3</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p><a class="mention" href="https://github.com/nmaludy">@nmaludy</a><br>
+                Thank you for your reply! I guess your script is more generic for usage outside the stackstorm
+                server.<br>
+                What I want to achieve is invoking an action from an action without using action chain or a mistral
+                flow.For my case, my script is more a fit as you can import ActionManager in every action you want.</p>
+            <p>What I was looking for is an API direct from the client. Something like —&gt;</p>
+            <pre><code>action = client.actions.get_by_name(name)
+action.run(parameters=payload)
+</code></pre>
+            <p>ps I don’t care about the result within the Action but is a nice to have.</p>
+        </div>
+
+        <meta itemprop='headline' content='Invoke an action from a Python action script'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/nmaludy'><span itemprop='name'>nmaludy</span></a>
+            (Nick Maludy)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="24.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2018-03-08T17:48:06Z' class='post-time'>
+                March 8, 2018,  5:48pm
+              </time>
+              <meta itemprop='dateModified' content='2018-03-08T17:48:06Z'>
+          <span itemprop='position'>#4</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p><a class="mention" href="https://github.com/n_kos">@n_kos</a> this is using an api “directly
+                from the client” by calling <code>execution = client.liveactions.create(execution_instance)</code></p>
+            <p>However, this function does not take arbitrary parameters like you want, instead it requires a <code>LiveAction</code>
+                object to be passed in.</p>
+            <p>About the shortest i could condense it down into is the following. This assumes that you’re running
+                inside a StackStorm action because it relies on the <code>ST2_AUTH_TOKEN</code> environment variable
+                being set.</p>
+            <pre><code class="lang-auto">from st2common.runners.base_action import Action
+
+from st2client.client import Client
+from st2client.models import LiveAction
+
+class ActionManager(object):
+
+    def execute(self, server, action, params):
+        client = Client(base_url="https://{}/".format(server))
+        client.liveactions.create(LiveAction(action=action, parameters=params))
+
+
+class ActionRunner(Action):
+
+    def run(self):
+        am = ActionManager()
+        am.execute("127.0.0.1",
+                   "core.local",
+                   {"cmd": "ls"})
+
+</code></pre>
+        </div>
+
+        <meta itemprop='headline' content='Invoke an action from a Python action script'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+            <span class='post-likes'>1 Like</span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+        <div class='crawler-linkback-list' itemscope itemtype='http://schema.org/ItemList'>
+            <div itemprop='itemListElement' itemscope itemtype='http://schema.org/ListItem'>
+                <a href="https://forum.stackstorm.com/t/is-there-a-way-to-run-action-inside-of-the-workflow-action/1336/2"
+                   itemscope itemtype='http://schema.org/DiscussionForumPosting' itemprop='item'>
+                    <meta itemprop='url'
+                          content='https://forum.stackstorm.com/t/is-there-a-way-to-run-action-inside-of-the-workflow-action/1336/2'>
+                    <span itemprop='name'>Is there a way to run action inside of the workflow action?</span>
+                </a>
+                <meta itemprop='position' content='1'>
+            </div>
+        </div>
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/n_kos'><span itemprop='name'>n_kos</span></a>
+            (Giorgos Karagkounis)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="24.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2018-03-09T06:19:02Z' class='post-time'>
+                March 9, 2018,  6:19am
+              </time>
+              <meta itemprop='dateModified' content='2018-03-09T06:19:02Z'>
+          <span itemprop='position'>#5</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>I like it! Looks better than mine! Thank you</p>
+        </div>
+
+        <meta itemprop='headline' content='Invoke an action from a Python action script'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+            <span class='post-likes'>1 Like</span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/sakshi95gupta'><span
+                    itemprop='name'>sakshi95gupta</span></a>
+            (Sakshi Gupta)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="24.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2018-04-20T09:28:41Z' class='post-time'>
+                April 20, 2018,  9:28am
+              </time>
+              <meta itemprop='dateModified' content='2018-04-20T09:28:41Z'>
+          <span itemprop='position'>#6</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p><a class="mention" href="https://github.com/nmaludy">@nmaludy</a> This is working as expected
+                but action is getting triggered Asynchronously.<br>
+                Is it possible to retrieve the result of action triggered in python script ?</p>
+        </div>
+
+        <meta itemprop='headline' content='Invoke an action from a Python action script'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/nmaludy'><span itemprop='name'>nmaludy</span></a>
+            (Nick Maludy)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="24.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2018-04-20T10:59:30Z' class='post-time'>
+                April 20, 2018, 10:59am
+              </time>
+              <meta itemprop='dateModified' content='2018-04-20T10:59:30Z'>
+          <span itemprop='position'>#7</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p><a class="mention" href="https://github.com/sakshi95gupta">@sakshi95gupta</a> Yes, please see
+                the first code snipped in my original post. Hint, it’s the code snipped with the while loop: <code>while
+                    execution.status in PENDING_STATUSES:</code></p>
+        </div>
+
+        <meta itemprop='headline' content='Invoke an action from a Python action script'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/sakshi95gupta'><span
+                    itemprop='name'>sakshi95gupta</span></a>
+            (Sakshi Gupta)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="24.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2018-04-20T11:23:06Z' class='post-time'>
+                April 20, 2018, 11:23am
+              </time>
+              <meta itemprop='dateModified' content='2018-04-20T11:23:06Z'>
+          <span itemprop='position'>#8</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Thanks a lot. It worked.</p>
+        </div>
+
+        <meta itemprop='headline' content='Invoke an action from a Python action script'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+
+
+    <!-- :preload-content -->
+    <footer class="noscript-footer-nav">
+        <nav itemscope itemtype='http://schema.org/SiteNavigationElement'>
+            <a href='../../index.html'>Home</a>
+            <a href="../../categories.html">Categories</a>
+            <a href="https://forum.stackstorm.com/guidelines">FAQ/Guidelines</a>
+            <a href="../../tos.html">Terms of Service</a>
+            <a href="../../privacy.html">Privacy Policy</a>
+        </nav>
+    </footer>
+</div>
+
+<footer id='noscript-footer'>
+    <p>Powered by <a href="https://www.discourse.org">Discourse</a>, best viewed with JavaScript enabled</p>
+</footer>
+
+
+<section id='main'>
+</section>
+
+
+</body>
+</html>

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Need help to parse output</title>
+    <link>https://forum.stackstorm.com/t/need-help-to-parse-output/1286</link>
+    <description>Hello, I have a task that loops to get user details in one same server. The exceededCPUUsers contains the list of the users.
+For example:
+`exceededCPUUsers: [user1, user2]`
+
+This is the task in a workflow:
+
+    Task3:
+        action: core.remote
+        with: &lt;% ctx().exceededCPUUsers %&gt;
+        input:
+          username: root
+          hosts: &quot;{{ ctx().hostname }}&quot;
+          cmd: &quot;checkpkg user={{ item() }}&quot;
+        next:
+          - when: &lt;% succeeded() %&gt;
+            publish:
+              - getPackage: &lt;% task(Task3).result %&gt;
+It saves the output to getPackage like this : https://pastebin.com/Vm7R34ag
+
+I&#39;m struggling with the list inside list part (items list and hostname list) .I need suggestion on how to make the output like this: https://pastebin.com/3ZdcRF4i
+
+As you can see the hostname list is merged, and the item() from exceededCPUUsers become keys. I think it&#39;s like changing from nested list into dict inside list.
+
+I really appreciate the help.</description>
+    
+    <lastBuildDate>Tue, 23 Jun 2020 10:43:30 +0000</lastBuildDate>
+    <category>Workflows</category>
+    <atom:link href="https://forum.stackstorm.com/t/need-help-to-parse-output/1286.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Need help to parse output</title>
+        <dc:creator><![CDATA[roboticpuppies]]></dc:creator>
+        <description><![CDATA[
+            <p>Yeah I do think the structure is too complex. I’ll try another way. Thank you for your help.</p>
+          <p><a href="https://forum.stackstorm.com/t/need-help-to-parse-output/1286/5">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/need-help-to-parse-output/1286/5</link>
+        <pubDate>Tue, 23 Jun 2020 10:43:30 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1286-5</guid>
+        <source url="https://forum.stackstorm.com/t/need-help-to-parse-output/1286.rss">Need help to parse output</source>
+      </item>
+      <item>
+        <title>Need help to parse output</title>
+        <dc:creator><![CDATA[Carlos]]></dc:creator>
+        <description><![CDATA[
+            <p>The data restructuring you’re attempting to do is too complex for YAQL or Jinja, you’ll need to process it with a general purpose language.</p>
+          <p><a href="https://forum.stackstorm.com/t/need-help-to-parse-output/1286/4">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/need-help-to-parse-output/1286/4</link>
+        <pubDate>Tue, 23 Jun 2020 09:14:59 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1286-4</guid>
+        <source url="https://forum.stackstorm.com/t/need-help-to-parse-output/1286.rss">Need help to parse output</source>
+      </item>
+      <item>
+        <title>Need help to parse output</title>
+        <dc:creator><![CDATA[roboticpuppies]]></dc:creator>
+        <description><![CDATA[
+            <p>I tried this query:<br>
+<code>&lt;% task(Task3).result.items.select($.result) %&gt; </code></p>
+<p>So far, it looks like this : <a href="https://pastebin.com/5EcdFxJv" rel="nofollow noopener">https://pastebin.com/5EcdFxJv</a> Now I don’t know how to merge the <code>item</code> list so the hostname only shows once, and use <code>exceededCPUUsers</code> as key.</p>
+<p>The pastebin is correct, except in the <a href="https://pastebin.com/3ZdcRF4i" rel="nofollow noopener">final output</a> because I want to illustrate the final output.</p>
+          <p><a href="https://forum.stackstorm.com/t/need-help-to-parse-output/1286/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/need-help-to-parse-output/1286/3</link>
+        <pubDate>Tue, 23 Jun 2020 08:32:55 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1286-3</guid>
+        <source url="https://forum.stackstorm.com/t/need-help-to-parse-output/1286.rss">Need help to parse output</source>
+      </item>
+      <item>
+        <title>Need help to parse output</title>
+        <dc:creator><![CDATA[Carlos]]></dc:creator>
+        <description><![CDATA[
+            <p>What errors are you getting?  What YAQL query have you tried so far?</p>
+<p>FYI, the example you shared via pastebin (<a href="https://pastebin.com/Vm7R34ag" rel="nofollow noopener">https://pastebin.com/Vm7R34ag</a>) is not valid JSON.</p>
+          <p><a href="https://forum.stackstorm.com/t/need-help-to-parse-output/1286/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/need-help-to-parse-output/1286/2</link>
+        <pubDate>Tue, 23 Jun 2020 07:25:25 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1286-2</guid>
+        <source url="https://forum.stackstorm.com/t/need-help-to-parse-output/1286.rss">Need help to parse output</source>
+      </item>
+      <item>
+        <title>Need help to parse output</title>
+        <dc:creator><![CDATA[roboticpuppies]]></dc:creator>
+        <description><![CDATA[
+            <p>Hello, I have a task that loops to get user details in one same server. The exceededCPUUsers contains the list of the users.<br>
+For example:<br>
+<code>exceededCPUUsers: [user1, user2]</code></p>
+<p>This is the task in a workflow:</p>
+<pre><code>Task3:
+    action: core.remote
+    with: &lt;% ctx().exceededCPUUsers %&gt;
+    input:
+      username: root
+      hosts: "{{ ctx().hostname }}"
+      cmd: "checkpkg user={{ item() }}"
+    next:
+      - when: &lt;% succeeded() %&gt;
+        publish:
+          - getPackage: &lt;% task(Task3).result %&gt;
+</code></pre>
+<p>It saves the output to getPackage like this : <a href="https://pastebin.com/Vm7R34ag" rel="nofollow noopener">https://pastebin.com/Vm7R34ag</a></p>
+<p>I’m struggling with the list inside list part (items list and hostname list) .I need suggestion on how to make the output like this: <a href="https://pastebin.com/3ZdcRF4i" rel="nofollow noopener">https://pastebin.com/3ZdcRF4i</a></p>
+<p>As you can see the hostname list is merged, and the item() from exceededCPUUsers become keys. I think it’s like changing from nested list into dict inside list.</p>
+<p>I really appreciate the help.</p>
+          <p><a href="https://forum.stackstorm.com/t/need-help-to-parse-output/1286/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/need-help-to-parse-output/1286/1</link>
+        <pubDate>Tue, 23 Jun 2020 07:16:10 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1286-1</guid>
+        <source url="https://forum.stackstorm.com/t/need-help-to-parse-output/1286.rss">Need help to parse output</source>
+      </item>
+  </channel>
+</rss>

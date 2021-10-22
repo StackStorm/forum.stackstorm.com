@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="en" class="desktop-view not-mobile-device text-size-normal anon">
+<head>
+    <meta charset="utf-8">
+    <title>Icinga2 error on stackstorm - Pack Management - StackStorm Support (ARCHIVED)</title>
+    <meta name="description" content="Hi, 
+I’m not getting events from icinga2 to stackstorm. Here is the error logs from sensors. 
+2018-12-17 12:07:27,553 DEBUG [-] Starting new HTTPS connection (1): xx.xx.xx.xx 
+2018-12-17 12:07:27,621 DEBUG [-] https://xx&amp;hellip;">
+    <meta name="discourse_theme_id" content="2">
+    <meta name="discourse_current_homepage" content="latest">
+    <meta name="generator"
+          content="Discourse 2.8.0.beta6 - https://github.com/discourse/discourse version a1daf9fe53a66e2d2cdf9757ab4812fb9a2b2787">
+    <link rel="icon" type="image/png"
+          href="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/379ced12f8326d58f1b3d2b3ff652f883e141f6a_2_32x32.PNG">
+    <link rel="apple-touch-icon" type="image/png"
+          href="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/379ced12f8326d58f1b3d2b3ff652f883e141f6a_2_180x180.PNG">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <link rel="canonical" href="402.html"/>
+    <script type="application/ld+json">{
+        "@context": "http://schema.org",
+        "@type": "WebSite",
+        "url": "https://forum.stackstorm.com",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://forum.stackstorm.com/search?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }</script>
+    <link rel="search" type="application/opensearchdescription+xml" href="../../opensearch.xml"
+          title="StackStorm Support (ARCHIVED) Search">
+
+
+    <link href="/../../stylesheets/color_definitions_base__2_3c5eec1ecf192052ea70b4afdab57a62bccc0604.css?__ws=forum.stackstorm.com"
+          media="all" rel="stylesheet" class="light-scheme"/>
+
+    <link href="/../../stylesheets/desktop_b2f2968742d41481357e0df259b51ce29f72481a.css?__ws=forum.stackstorm.com"
+          media="all" rel="stylesheet" data-target="desktop"/>
+
+
+    <meta name="fragment" content="!">
+
+
+    <link id="manifest-link" rel="manifest" href="../../manifest.webmanifest" crossorigin="use-credentials">
+
+
+    <link rel="alternate" type="application/rss+xml" title="RSS feed of &#39;Icinga2 error on stackstorm&#39;"
+          href="https://forum.stackstorm.com/t/icinga2-error-on-stackstorm/402.rss"/>
+    <meta property="og:site_name" content="StackStorm Support (ARCHIVED)"/>
+    <meta property="og:type" content="website"/>
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:image"
+          content="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/891f00fbdb31fecb5bd9dab30c186d2fed0091ca.jpeg"/>
+    <meta property="og:image"
+          content="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/891f00fbdb31fecb5bd9dab30c186d2fed0091ca.jpeg"/>
+    <meta property="og:url" content="https://forum.stackstorm.com/t/icinga2-error-on-stackstorm/402"/>
+    <meta name="twitter:url" content="https://forum.stackstorm.com/t/icinga2-error-on-stackstorm/402"/>
+    <meta property="og:title" content="Icinga2 error on stackstorm"/>
+    <meta name="twitter:title" content="Icinga2 error on stackstorm"/>
+    <meta property="og:description"
+          content="Hi,  I’m not getting events from icinga2 to stackstorm. Here is the error logs from sensors.  2018-12-17 12:07:27,553 DEBUG [-] Starting new HTTPS connection (1): xx.xx.xx.xx  2018-12-17 12:07:27,621 DEBUG [-] https://xx.xx.xx.xx:5665 “POST /v1/events?queue=m&amp;types=CheckResult&amp;filter=event.check_result.vars_after.state_type==1.0 HTTP/1.1” 401 None  2018-12-17 12:07:27,623 INFO [-] Icinga2ReqSensor status_code: 401  But if i run the post call through curl i get the result. Not sure what’s wrong.  ..."/>
+    <meta name="twitter:description"
+          content="Hi,  I’m not getting events from icinga2 to stackstorm. Here is the error logs from sensors.  2018-12-17 12:07:27,553 DEBUG [-] Starting new HTTPS connection (1): xx.xx.xx.xx  2018-12-17 12:07:27,621 DEBUG [-] https://xx.xx.xx.xx:5665 “POST /v1/events?queue=m&amp;types=CheckResult&amp;filter=event.check_result.vars_after.state_type==1.0 HTTP/1.1” 401 None  2018-12-17 12:07:27,623 INFO [-] Icinga2ReqSensor status_code: 401  But if i run the post call through curl i get the result. Not sure what’s wrong.  ..."/>
+    <meta name="twitter:label1" value="Reading time"/>
+    <meta name="twitter:data1" value="2 mins 🕑"/>
+    <meta name="twitter:label2" value="Likes"/>
+    <meta name="twitter:data2" value="1 ❤"/>
+    <meta property="article:published_time" content="2018-12-17T12:16:43+00:00"/>
+    <meta property="og:ignore_canonical" content="true"/>
+
+
+    <script type="application/ld+json">{
+        "@context": "http://schema.org",
+        "@type": "QAPage",
+        "name": "Icinga2 error on stackstorm",
+        "mainEntity": {
+            "@type": "Question",
+            "name": "Icinga2 error on stackstorm",
+            "text": "Hi,\n\nI’m not getting events from icinga2 to stackstorm. Here is the error logs from sensors.\n\n2018-12-17 12:07:27,553 DEBUG [-] Starting new HTTPS connection (1): xx.xx.xx.xx\n\n2018-12-17 12:07:27,621 DEBUG [-] <a href="
+            https://forum.stackstorm.com/t/icinga2-error-on-stackstorm/\&quot;https://xx.xx.xx.xx:5665\&quot;" rel=\"nofollow noopener\">https://xx.xx.xx.xx:5665<\/a> “POST /v1/events?queue=m&amp;types=CheckResult&amp;filter=event.check_res&hellip;","upvoteCount":0,"answerCount":0,"dateCreated":"2018-12-17T12:16:43.382Z","author":{"@type":"Person","name":"Batman"}}}</script>
+
+    <meta id="data-discourse-setup" data-cdn="https://sjc6.discourse-cdn.com/standard10"
+          data-base-url="https://forum.stackstorm.com" data-base-uri="" data-environment="production"
+          data-letter-avatar-version="5_8fec8e114563efeaf5265573e510f08e"
+          data-markdown-it-url="https://aws1.discourse-cdn.com/standard10/assets/markdown-it-bundle-31e9a9c535ca1801c26da78b0ff465821751a98f921c5cdc5457d7e5a69e9748.js"
+          data-service-worker-url="service-worker.js" data-default-locale="en"
+          data-asset-version="597e36448c9b51d0fa3b7e43ec1fd6d5" data-disable-custom-css="false"
+          data-highlight-js-path="/highlight-js/forum.stackstorm.com/ac0f4aa001e1343346941766d72e0c1ae330832b.js"
+          data-svg-sprite-path="/svg-sprite/forum.stackstorm.com/svg-2-c2ad434b1e06079c7e282124aed9938dc95b83ea.js"
+          data-enable-js-error-reporting="true" data-color-scheme-is-dark="false" data-user-dark-scheme-id="-1"
+          data-s3-cdn="https://aws1.discourse-cdn.com/standard10"
+          data-s3-base-url="//discourse-cloud-file-uploads.s3.dualstack.us-west-2.amazonaws.com/standard10">
+
+    <meta name="discourse/config/environment"
+          content="%7B%22modulePrefix%22%3A%22discourse%22%2C%22environment%22%3A%22production%22%2C%22rootURL%22%3A%22%22%2C%22locationType%22%3A%22auto%22%2C%22historySupportMiddleware%22%3Afalse%2C%22EmberENV%22%3A%7B%22FEATURES%22%3A%7B%7D%2C%22EXTEND_PROTOTYPES%22%3A%7B%22Date%22%3Afalse%7D%2C%22_APPLICATION_TEMPLATE_WRAPPER%22%3Afalse%2C%22_DEFAULT_ASYNC_OBSERVERS%22%3Atrue%2C%22_JQUERY_INTEGRATION%22%3Atrue%7D%2C%22APP%22%3A%7B%22name%22%3A%22discourse%22%2C%22version%22%3A%222.8.0.beta6%20a1daf9fe53a66e2d2cdf9757ab4812fb9a2b2787%22%2C%22exportApplicationGlobal%22%3Atrue%7D%7D"/>
+</head>
+
+<body class="">
+
+
+<header class="d-header">
+    <div class="wrap">
+        <div class="contents clearfix">
+            <div class="title">
+                <a href="../../index.html">
+                    <picture>
+                        <img src="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png"
+                             alt="StackStorm Support (ARCHIVED)" id="site-logo"/>
+                    </picture>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</header>
+
+<div id="main-outlet" class="wrap" role="main">
+    <!-- preload-content: -->
+
+    <!-- EOF START -->
+    <div class="container" id="main-container">
+        <div id="ember11" class="ember-view"></div>
+        <div id="ember12" class="controls ember-view"><!----></div>
+        <div id="ember13" class="ember-view"><!----></div>
+        <div id="ember14" class="ember-view">
+            <div class="row">
+                <div id="global-notice-alert-read-only" class="alert alert-info alert-read-only">
+                    <!----> <span class="text">This site is in read only mode. Please continue to browse, but replying, likes, and other actions are disabled for now.</span>
+
+                    <!---->    </div>
+            </div>
+            <div class="row">
+                <div id="global-notice-alert-global-notice" class="alert alert-info alert-global-notice">
+                    <!----> <span class="text"><h3>⚠️ We've moved!</h3>  <p> Hi there!<br><br> To reduce project dependency on 3rd party paid services the StackStorm TSC has decided to move the Q/A from this forum to <a
+                        href="https://github.com/StackStorm/st2/discussions">Github Discussions</a>. This will make user experience better integrated with the native Github flow, as well as the questions closer to the community where they can provide answers. </p>  <p> Use 🔗 <b><a
+                        href="https://github.com/StackStorm/st2/discussions" class="active">Github Discussions</a></b> to ask your questions. </p></span>
+
+                    <!---->    </div>
+            </div>
+        </div>
+        <div id="ember17" class="hidden create-topics-notice ember-view"><!----></div>
+        <!---->
+    </div>
+    <!-- EOF END -->
+    <div id="topic-title">
+        <h1>
+            <a href="402.html">Icinga2 error on stackstorm</a>
+        </h1>
+
+        <div class="topic-category" itemscope itemtype="http://schema.org/BreadcrumbList">
+          <span itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a href="../../c/core-st2-platform-issues/6" class="badge-wrapper bullet" itemprop="item">
+              <span class='badge-category-bg' style='background-color: #AB9364'></span>
+              <span class='badge-category clear-badge'>
+                <span class='category-name' itemprop='name'>Platform</span>
+              </span>
+            </a>
+            <meta itemprop="position" content="1"/>
+          </span>
+            <span itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a href="../../c/core-st2-platform-issues/pack-management-issues/12" class="badge-wrapper bullet"
+               itemprop="item">
+              <span class='badge-category-bg' style='background-color: #BF1E2E'></span>
+              <span class='badge-category clear-badge'>
+                <span class='category-name' itemprop='name'>Pack Management</span>
+              </span>
+            </a>
+            <meta itemprop="position" content="2"/>
+          </span>
+        </div>
+
+    </div>
+
+
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/Batman'><span itemprop='name'>Batman</span></a>
+            (Batman)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="402.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2018-12-17T12:16:43Z' class='post-time'>
+                December 17, 2018, 12:16pm
+              </time>
+              <meta itemprop='dateModified' content='2018-12-17T14:36:35Z'>
+          <span itemprop='position'>#1</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Hi,</p>
+            <p>I’m not getting events from icinga2 to stackstorm. Here is the error logs from sensors.</p>
+            <p>2018-12-17 12:07:27,553 DEBUG [-] Starting new HTTPS connection (1): xx.xx.xx.xx<br>
+                2018-12-17 12:07:27,621 DEBUG [-] <a href="https://xx.xx.xx.xx:5665" rel="nofollow noopener">https://xx.xx.xx.xx:5665</a>
+                “POST /v1/events?queue=m&amp;types=CheckResult&amp;filter=event.check_result.vars_after.state_type==1.0
+                HTTP/1.1” 401 None<br>
+                2018-12-17 12:07:27,623 INFO [-] Icinga2ReqSensor status_code: 401</p>
+            <p>But if i run the post call through curl i get the result. Not sure what’s wrong.</p>
+            <p>Note: IP has been masked for security purpose.</p>
+            <p>Any insight will be of great help.</p>
+            <p>Icinga Pack Used: icinga2req</p>
+        </div>
+
+        <meta itemprop='headline' content='Icinga2 error on stackstorm'>
+        <meta itemprop='keywords' content=''>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/lhill'><span itemprop='name'>lhill</span></a>
+            (Lindsay Hill)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="402.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2018-12-17T14:59:37Z' class='post-time'>
+                December 17, 2018,  2:59pm
+              </time>
+              <meta itemprop='dateModified' content='2018-12-17T14:59:37Z'>
+          <span itemprop='position'>#2</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Are you referring to this pack? <a href="https://github.com/twalk6/icinga2req" class="inline-onebox"
+                                                  rel="nofollow noopener">GitHub - twalk6/icinga2req: Stackstorm
+                Requests Based Icinga2 Sensor</a></p>
+            <p>Might be worth posting an issue on that repo, see if the original author is maintaining it.</p>
+            <p>But if it works when you use <code>curl</code> but not when configured in Icinga, then I would be looking
+                at the Icinga configuration closely. Check things like connectivity, certificate validation.</p>
+        </div>
+
+        <meta itemprop='headline' content='Icinga2 error on stackstorm'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/Batman'><span itemprop='name'>Batman</span></a>
+            (Batman)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="402.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2018-12-17T15:15:34Z' class='post-time'>
+                December 17, 2018,  3:15pm
+              </time>
+              <meta itemprop='dateModified' content='2018-12-17T15:15:34Z'>
+          <span itemprop='position'>#3</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <aside class="quote no-group" data-post="2" data-topic="402">
+                <div class="title">
+                    <div class="quote-controls"></div>
+                    <img alt width="20" height="20" src="https://avatars.discourse.org/v2/letter/l/edb3f5/40.png"
+                         class="avatar"> lhill:
+                </div>
+                <blockquote>
+                    <p>But if it works when you use <code>curl</code> but not when configured in Icinga, then I would be
+                        looking at the Icinga configuration closely. Check things like connectivity, certificate
+                        validation.</p>
+                </blockquote>
+            </aside>
+            <p><span class="mention">@ihill</span>:<br>
+                Yes i’m referring to the same package.</p>
+            <p>Connectivity is available. And i have removed certificate from configuration.</p>
+            <p>looks like there is almost no activity on the original package.</p>
+        </div>
+
+        <meta itemprop='headline' content='Icinga2 error on stackstorm'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/lhill'><span itemprop='name'>lhill</span></a>
+            (Lindsay Hill)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="402.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2018-12-17T15:48:57Z' class='post-time'>
+                December 17, 2018,  3:48pm
+              </time>
+              <meta itemprop='dateModified' content='2018-12-17T15:48:57Z'>
+          <span itemprop='position'>#4</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>That pack was never contributed to the StackStorm Exchange, and I don’t know what the author does with it
+                these days. But you could still log an issue, the author may see the notification.</p>
+            <p>Thinking about it more, if you’re seeing a 401 on the Icinga side, then that does mean connectivity plus
+                certificate validation has passed. It means that your Icinga config is not passing authentication
+                through properly. Have you configured whatever authentication that sensor needs?</p>
+        </div>
+
+        <meta itemprop='headline' content='Icinga2 error on stackstorm'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/Batman'><span itemprop='name'>Batman</span></a>
+            (Batman)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="402.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2018-12-18T04:15:49Z' class='post-time'>
+                December 18, 2018,  4:15am
+              </time>
+              <meta itemprop='dateModified' content='2018-12-18T04:15:49Z'>
+          <span itemprop='position'>#5</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <aside class="quote no-group" data-post="4" data-topic="402">
+                <div class="title">
+                    <div class="quote-controls"></div>
+                    <img alt width="20" height="20" src="https://avatars.discourse.org/v2/letter/l/edb3f5/40.png"
+                         class="avatar"> lhill:
+                </div>
+                <blockquote>
+                    <p>Thinking about it more, if you’re seeing a 401 on the Icinga side, then that does mean
+                        connectivity plus certificate validation has passed. It means that your Icinga config is not
+                        passing authentication through properly. Have you configured whatever authentication that sensor
+                        needs?</p>
+                </blockquote>
+            </aside>
+            <p>The developer did not give any usage sample. Below is the authentication for sensor.</p>
+            <h3>Place configuration data for your pack here.</h3>
+            <hr>
+            <p>eventstream_type: ‘CheckResult’ <span class="hashtag">#StateChange</span> or CheckResult<br>
+                api_url: ‘<a href="https://xx.xx.xx.xx:5665/v1" rel="nofollow noopener">https://xx.xx.xx.xx:5665/v1</a>’<br>
+                api_user: ‘me’<br>
+                api_password: ‘xxxxxxxxxxx’<br>
+                api_queue: ‘m’<br>
+                <span class="hashtag">#comment</span> out cert_file run without cert validation (less secure)</p>
+        </div>
+
+        <meta itemprop='headline' content='Icinga2 error on stackstorm'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/lhill'><span itemprop='name'>lhill</span></a>
+            (Lindsay Hill)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="402.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2018-12-18T04:47:56Z' class='post-time'>
+                December 18, 2018,  4:47am
+              </time>
+              <meta itemprop='dateModified' content='2018-12-18T04:47:56Z'>
+          <span itemprop='position'>#6</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <aside class="quote no-group" data-post="5" data-topic="402">
+                <div class="title">
+                    <div class="quote-controls"></div>
+                    <img alt width="20" height="20" src="https://avatars.discourse.org/v2/letter/b/9fc29f/40.png"
+                         class="avatar"> Batman:
+                </div>
+                <blockquote>
+                    <p>The developer did not give any usage sample</p>
+                </blockquote>
+            </aside>
+            <p>Have you tried logging an issue against that repo?</p>
+        </div>
+
+        <meta itemprop='headline' content='Icinga2 error on stackstorm'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/Batman'><span itemprop='name'>Batman</span></a>
+            (Batman)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="402.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2018-12-18T04:49:38Z' class='post-time'>
+                December 18, 2018,  4:49am
+              </time>
+              <meta itemprop='dateModified' content='2018-12-18T04:49:38Z'>
+          <span itemprop='position'>#7</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Yes i did. But no reply yet. Do you have any timeline to fix default icinga package with stackstorm?</p>
+        </div>
+
+        <meta itemprop='headline' content='Icinga2 error on stackstorm'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/lhill'><span itemprop='name'>lhill</span></a>
+            (Lindsay Hill)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="402.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2018-12-18T06:07:28Z' class='post-time'>
+                December 18, 2018,  6:07am
+              </time>
+              <meta itemprop='dateModified' content='2018-12-18T06:07:28Z'>
+          <span itemprop='position'>#8</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Which issue needs fixing?</p>
+            <p>It’s an Open Source pack - anyone can contribute</p>
+        </div>
+
+        <meta itemprop='headline' content='Icinga2 error on stackstorm'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/Batman'><span itemprop='name'>Batman</span></a>
+            (Batman)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="402.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2018-12-18T07:42:01Z' class='post-time'>
+                December 18, 2018,  7:42am
+              </time>
+              <meta itemprop='dateModified' content='2018-12-18T07:46:43Z'>
+          <span itemprop='position'>#9</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Currently on using default icinga package (st2 pack install icinga2) we have pycurl installation issue
+                and installation fails.</p>
+            <p>I see in package the below TODO:</p>
+            <ul>
+                <li>
+                    <p>Re-write actions &amp; sensors to use requests instead of pycurl</p>
+                    <p>Failed to build pycurl<br>
+                        Installing collected packages: pycurl<br>
+                        Running setup.py install for pycurl: started<br>
+                        Running setup.py install for pycurl: finished with status ‘error’<br>
+                        Complete output from command /opt/stackstorm/virtualenvs/icinga2/bin/python -u -c “import
+                        setuptools, tokenize;<strong>file</strong>=’/tmp/pip-build-8hEXM1/pycurl/setup.py’;f=getattr(tokenize,
+                        ‘open’, open)(<strong>file</strong>);code=f.read().replace(’<br>
+                        ', ’<br>
+                        ');f.close();exec(compile(code, <strong>file</strong>, ‘exec’))” install --record
+                        /tmp/pip-np3xxv-record/install-record.txt --single-version-externally-managed --compile
+                        --install-headers /opt/stackstorm/virtualenvs/icinga2/include/site/python2.7/pycurl:<br>
+                        Using curl-config (libcurl 7.47.0)<br>
+                        running install<br>
+                        running build<br>
+                        running build_py<br>
+                        creating build<br>
+                        creating build/lib.linux-x86_64-2.7<br>
+                        creating build/lib.linux-x86_64-2.7/curl<br>
+                        copying python/curl/<strong>init</strong>.py -&gt; build/lib.linux-x86_64-2.7/curl<br>
+                        running build_ext<br>
+                        building ‘pycurl’ extension<br>
+                        creating build/temp.linux-x86_64-2.7<br>
+                        creating build/temp.linux-x86_64-2.7/src<br>
+                        x86_64-linux-gnu-gcc -pthread -DNDEBUG -g -fwrapv -O2 -Wall -Wstrict-prototypes
+                        -fno-strict-aliasing -Wdate-time -D_FORTIFY_SOURCE=2 -g -fstack-protector-strong -Wformat
+                        -Werror=format-security -fPIC -DHAVE_CURL_GNUTLS=1 -DHAVE_CURL_SSL=1 -I/usr/include/python2.7 -c
+                        src/pycurl.c -o build/temp.linux-x86_64-2.7/src/pycurl.o<br>
+                        src/pycurl.c:464:15: warning: gcry_thread_cbs is deprecated [-Wdeprecated-declarations]<br>
+                        static struct gcry_thread_cbs pycurl_gnutls_tsl = {<br>
+                        ^<br>
+                        In file included from src/pycurl.c:83:0:<br>
+                        /usr/include/gcrypt.h:211:8: note: declared here<br>
+                        struct gcry_thread_cbs<br>
+                        ^<br>
+                        src/pycurl.c:467:5: warning: excess elements in struct initializer<br>
+                        pycurl_ssl_mutex_create,<br>
+                        ^<br>
+                        src/pycurl.c:467:5: note: (near initialization for pycurl_gnutls_tsl)<br>
+                        src/pycurl.c:468:5: warning: excess elements in struct initializer<br>
+                        pycurl_ssl_mutex_destroy,<br>
+                        ^<br>
+                        src/pycurl.c:468:5: note: (near initialization for pycurl_gnutls_tsl)<br>
+                        src/pycurl.c:469:5: warning: excess elements in struct initializer<br>
+                        pycurl_ssl_mutex_lock,<br>
+                        ^<br>
+                        src/pycurl.c:469:5: note: (near initialization for pycurl_gnutls_tsl)<br>
+                        src/pycurl.c:470:5: warning: excess elements in struct initializer<br>
+                        pycurl_ssl_mutex_unlock<br>
+                        ^<br>
+                        src/pycurl.c:470:5: note: (near initialization for pycurl_gnutls_tsl)<br>
+                        src/pycurl.c: In function multi_socket_callback:<br>
+                        src/pycurl.c:2351:9: warning: variable ret set but not used [-Wunused-but-set-variable]<br>
+                        int ret;<br>
+                        ^<br>
+                        src/pycurl.c: In function initpycurl:<br>
+                        src/pycurl.c:3453:31: warning: macro “<strong>DATE</strong>” might prevent reproducible builds
+                        [-Wdate-time]<br>
+                        insstr(d, “COMPILE_DATE”, <strong>DATE</strong> " " <strong>TIME</strong>);<br>
+                        ^<br>
+                        src/pycurl.c:3453:44: warning: macro “<strong>TIME</strong>” might prevent reproducible builds
+                        [-Wdate-time]<br>
+                        insstr(d, “COMPILE_DATE”, <strong>DATE</strong> " " <strong>TIME</strong>);<br>
+                        ^<br>
+                        x86_64-linux-gnu-gcc -pthread -shared -Wl,-O1 -Wl,-Bsymbolic-functions -Wl,-Bsymbolic-functions
+                        -Wl,-z,relro -fno-strict-aliasing -DNDEBUG -g -fwrapv -O2 -Wall -Wstrict-prototypes -Wdate-time
+                        -D_FORTIFY_SOURCE=2 -g -fstack-protector-strong -Wformat -Werror=format-security
+                        -Wl,-Bsymbolic-functions -Wl,-z,relro -Wdate-time -D_FORTIFY_SOURCE=2 -g
+                        -fstack-protector-strong -Wformat -Werror=format-security
+                        build/temp.linux-x86_64-2.7/src/pycurl.o -L/usr/lib/x86_64-linux-gnu
+                        -L/usr/lib/x86_64-linux-gnu/mit-krb5 -lcurl -lidn -lrtmp -lnettle -lgnutls -lgssapi_krb5 -lkrb5
+                        -lk5crypto -lcom_err -llber -llber -lldap -lz -o build/lib.linux-x86_64-2.7/pycurl.so
+                        /usr/lib/x86_64-linux-gnu/libcurl.a -Wl,-Bsymbolic-functions -fPIE -pie -Wl,-z,relro -Wl,-z,now
+                        -Wl,–as-needed -Wl,-Bsymbolic-functions -Wl,-z,relro<br>
+                        /usr/bin/ld: cannot find -lrtmp<br>
+                        collect2: error: ld returned 1 exit status<br>
+                        error: command ‘x86_64-linux-gnu-gcc’ failed with exit status 1</p>
+                </li>
+            </ul>
+        </div>
+
+        <meta itemprop='headline' content='Icinga2 error on stackstorm'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/kami'><span itemprop='name'>kami</span></a>
+            (Tomaz Muraus)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="402.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2018-12-18T09:36:24Z' class='post-time'>
+                December 18, 2018,  9:36am
+              </time>
+              <meta itemprop='dateModified' content='2018-12-18T09:36:24Z'>
+          <span itemprop='position'>#10</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>To be able to install pycurl package you need libcurl and libcurl development headers installed on the
+                system where you are installing that pack - <a href="http://pycurl.io/docs/latest/install.html"
+                                                               rel="nofollow noopener">http://pycurl.io/docs/latest/install.html</a>
+            </p>
+            <p>On a related note, as per pack TODO, it would indeed be good to port pack from pycurl to requests.
+                requests should work out of the box.</p>
+        </div>
+
+        <meta itemprop='headline' content='Icinga2 error on stackstorm'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/Batman'><span itemprop='name'>Batman</span></a>
+            (Batman)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="402.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2018-12-18T11:40:19Z' class='post-time'>
+                December 18, 2018, 11:40am
+              </time>
+              <meta itemprop='dateModified' content='2018-12-18T11:40:19Z'>
+          <span itemprop='position'>#11</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Thanks All.</p>
+            <p>There was an issue with api password. Fixing it fixed the issue on icinga package. Now i see the
+                events.</p>
+            <p><a href="https://github.com/twalk6/icinga2req" rel="nofollow noopener">GitHub - twalk6/icinga2req:
+                Stackstorm Requests Based Icinga2 Sensor</a></p>
+        </div>
+
+        <meta itemprop='headline' content='Icinga2 error on stackstorm'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+            <span class='post-likes'>1 Like</span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/kami'><span itemprop='name'>kami</span></a>
+            (Tomaz Muraus)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="402.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2018-12-31T08:28:19Z' class='post-time'>
+                December 31, 2018,  8:28am
+              </time>
+              <meta itemprop='dateModified' content='2018-12-31T08:28:19Z'>
+          <span itemprop='position'>#12</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Great to hear you got it working.</p>
+            <p>It would also be a good idea to contact the pack author and ask them to submit their pack to the
+                StackStorm Exchange so it’s more easily discoverable - <a
+                        href="https://github.com/StackStorm-Exchange/exchange-incubator" class="inline-onebox"
+                        rel="nofollow noopener">GitHub - StackStorm-Exchange/exchange-incubator: Submit your StackStorm
+                    integration and automation packs here.</a></p>
+        </div>
+
+        <meta itemprop='headline' content='Icinga2 error on stackstorm'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+
+
+    <!-- :preload-content -->
+    <footer class="noscript-footer-nav">
+        <nav itemscope itemtype='http://schema.org/SiteNavigationElement'>
+            <a href='../../index.html'>Home</a>
+            <a href="../../categories.html">Categories</a>
+            <a href="https://forum.stackstorm.com/guidelines">FAQ/Guidelines</a>
+            <a href="../../tos.html">Terms of Service</a>
+            <a href="../../privacy.html">Privacy Policy</a>
+        </nav>
+    </footer>
+</div>
+
+<footer id='noscript-footer'>
+    <p>Powered by <a href="https://www.discourse.org">Discourse</a>, best viewed with JavaScript enabled</p>
+</footer>
+
+
+<section id='main'>
+</section>
+
+
+</body>
+</html>

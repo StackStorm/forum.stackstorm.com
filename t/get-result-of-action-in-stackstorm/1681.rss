@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Get result of action in Stackstorm</title>
+    <link>https://forum.stackstorm.com/t/get-result-of-action-in-stackstorm/1681</link>
+    <description>I am creating a Stackstorm workflow where I want to get the stdout result from one task and compare it in an other task. 
+But I can&#39;t manage to retreive the result value of my action.
+Sample code:
+
+**actions/workflow/do_stuff.yaml**
+``` lang-yaml
+
+version: 1.0
+description: do_stuff.
+
+input:
+  - stuff
+
+tasks:
+  do_stuff:
+    action: &quot;core.local&quot;
+    input:
+      cmd: &quot;/usr/bin/do_stuff &#39;{{ ctx(&#39;stuff&#39;) }}&#39;&quot;
+      timeout: 600
+
+    next:
+      - publish:
+        - stdout: &quot;{{ result()[&#39;stdout&#39;] }}&quot;
+        - stderr: &quot;{{ result()[&#39;stderr&#39;] }}&quot;
+      - when: &lt;% failed() %&gt;
+        do: fail
+
+
+output:
+  - stdout: &quot;{{ ctx(&#39;stdout&#39;) }}&quot;
+  - stderr: &quot;{{ ctx(&#39;stderr&#39;) }}&quot;
+
+```
+**actions/do_stuff.yaml**
+``` lang-yaml
+---
+name: do_stuff
+pack: stuff_pack
+description: do some stuff
+runner_type: orquesta
+entry_point: workflows/do_stuff.yaml
+enabled: true
+parameters:
+  stuff:
+    required: true
+    type: &quot;string&quot;
+    description: &quot;the stuff&quot;
+```
+
+**actions/workflow/lifecycle.yaml**
+``` lang-yaml
+version: 1.0
+
+description: The stuff workflow
+
+vars:
+  - stuff_result_stdout: null
+
+tasks:
+
+  first_task:
+    action: &quot;stuff_pack.do_stuff&quot;
+    input:
+      stuff: &quot;parameter&quot;
+
+    next:
+      - publish:
+          - stuff_result_stdout: &lt;% result().stdout %&gt;
+      - when: &quot;{{ succeeded() }}&quot;
+        do:
+          - &quot;second_task&quot;
+
+  second_task:
+      action: core.echo message=&quot;msg-{{ ctx().stuff_result_stdout }}-&quot;
+```
+
+On the Stackstorm web UI, i clearly see the output of my command (`/usr/bin/do_stuff`)
+
+with this line `stuff_result_stdout: &lt;% result().stdout %&gt;` 
+I have the error `YaqlEvaluationException: Unable to resolve key &#39;stdout&#39; in expression &#39;&lt;%result().stdout %&gt;&#39; from context.`
+
+and when I try to get only `result()`, and print it, I have `None`.
+
+How do I retreive the output of my action in `first_task`?</description>
+    
+    <lastBuildDate>Mon, 10 May 2021 07:33:44 +0000</lastBuildDate>
+    <category>Workflows</category>
+    <atom:link href="https://forum.stackstorm.com/t/get-result-of-action-in-stackstorm/1681.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Get result of action in Stackstorm</title>
+        <dc:creator><![CDATA[lparsy]]></dc:creator>
+        <description><![CDATA[
+            <p>I had a small error in my lifecycle.yaml:<br>
+if you publish and then do a <code>when</code>, the published variable is innacessible</p>
+<p>you have to do</p>
+<pre><code class="lang-yaml">first_task:
+    action: "stuff_pack.do_stuff"
+    input:
+      stuff: "parameter"
+
+    next:
+      - when: "{{ succeeded() }}"
+        publish:
+          - stuff_result_stdout: &lt;% result().stdout %&gt;
+        do:
+          - "second_task"
+</code></pre>
+<p>and then on next task you can get <code>ctx().stuff_result_stdout</code></p>
+<p>I didn’t found much documentation about this context and when variables are accessible or not, which made me do a lot of trial and error.</p>
+          <p><a href="https://forum.stackstorm.com/t/get-result-of-action-in-stackstorm/1681/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/get-result-of-action-in-stackstorm/1681/3</link>
+        <pubDate>Mon, 10 May 2021 07:33:44 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1681-3</guid>
+        <source url="https://forum.stackstorm.com/t/get-result-of-action-in-stackstorm/1681.rss">Get result of action in Stackstorm</source>
+      </item>
+      <item>
+        <title>Get result of action in Stackstorm</title>
+        <dc:creator><![CDATA[blag]]></dc:creator>
+        <description><![CDATA[
+            <p>You might be looking in the wrong place for your error.</p>
+<p>What is the <code>result()</code> in the <code>do_stuff</code> task in the <code>do_stuff</code> workflow? What is the value of <code>result()['stdout']</code> from that task?</p>
+          <p><a href="https://forum.stackstorm.com/t/get-result-of-action-in-stackstorm/1681/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/get-result-of-action-in-stackstorm/1681/2</link>
+        <pubDate>Fri, 07 May 2021 18:51:15 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1681-2</guid>
+        <source url="https://forum.stackstorm.com/t/get-result-of-action-in-stackstorm/1681.rss">Get result of action in Stackstorm</source>
+      </item>
+      <item>
+        <title>Get result of action in Stackstorm</title>
+        <dc:creator><![CDATA[lparsy]]></dc:creator>
+        <description><![CDATA[
+            <p>I am creating a Stackstorm workflow where I want to get the stdout result from one task and compare it in an other task.<br>
+But I can’t manage to retreive the result value of my action.<br>
+Sample code:</p>
+<p><strong>actions/workflow/do_stuff.yaml</strong></p>
+<pre><code class="lang-auto">
+version: 1.0
+description: do_stuff.
+
+input:
+  - stuff
+
+tasks:
+  do_stuff:
+    action: "core.local"
+    input:
+      cmd: "/usr/bin/do_stuff '{{ ctx('stuff') }}'"
+      timeout: 600
+
+    next:
+      - publish:
+        - stdout: "{{ result()['stdout'] }}"
+        - stderr: "{{ result()['stderr'] }}"
+      - when: &lt;% failed() %&gt;
+        do: fail
+
+
+output:
+  - stdout: "{{ ctx('stdout') }}"
+  - stderr: "{{ ctx('stderr') }}"
+
+</code></pre>
+<p><strong>actions/do_stuff.yaml</strong></p>
+<pre><code class="lang-auto">---
+name: do_stuff
+pack: stuff_pack
+description: do some stuff
+runner_type: orquesta
+entry_point: workflows/do_stuff.yaml
+enabled: true
+parameters:
+  stuff:
+    required: true
+    type: "string"
+    description: "the stuff"
+</code></pre>
+<p><strong>actions/workflow/lifecycle.yaml</strong></p>
+<pre><code class="lang-auto">version: 1.0
+
+description: The stuff workflow
+
+vars:
+  - stuff_result_stdout: null
+
+tasks:
+
+  first_task:
+    action: "stuff_pack.do_stuff"
+    input:
+      stuff: "parameter"
+
+    next:
+      - publish:
+          - stuff_result_stdout: &lt;% result().stdout %&gt;
+      - when: "{{ succeeded() }}"
+        do:
+          - "second_task"
+
+  second_task:
+      action: core.echo message="msg-{{ ctx().stuff_result_stdout }}-"
+</code></pre>
+<p>On the Stackstorm web UI, i clearly see the output of my command (<code>/usr/bin/do_stuff</code>)</p>
+<p>with this line <code>stuff_result_stdout: &lt;% result().stdout %&gt;</code><br>
+I have the error <code>YaqlEvaluationException: Unable to resolve key 'stdout' in expression '&lt;%result().stdout %&gt;' from context.</code></p>
+<p>and when I try to get only <code>result()</code>, and print it, I have <code>None</code>.</p>
+<p>How do I retreive the output of my action in <code>first_task</code>?</p>
+          <p><a href="https://forum.stackstorm.com/t/get-result-of-action-in-stackstorm/1681/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/get-result-of-action-in-stackstorm/1681/1</link>
+        <pubDate>Fri, 07 May 2021 17:47:58 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1681-1</guid>
+        <source url="https://forum.stackstorm.com/t/get-result-of-action-in-stackstorm/1681.rss">Get result of action in Stackstorm</source>
+      </item>
+  </channel>
+</rss>

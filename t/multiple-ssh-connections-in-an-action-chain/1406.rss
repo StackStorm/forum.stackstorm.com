@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Multiple ssh connections in an action-chain</title>
+    <link>https://forum.stackstorm.com/t/multiple-ssh-connections-in-an-action-chain/1406</link>
+    <description>Hi,
+
+I have an action-chain workflow with 5 actions.
+Each action needs to send some CLI commands on a router (cisco/juniper).
+
+We use paramiko to make connection to this router in every action ! For 5 actions I have to make and teardown ssh connection - 5 times which is not effective.
+
+Is there a way to make connection only once and reuse it in subsequent actions?
+
+I tried returning the ssh-connection-object in first action to reuse it in subsequent actions, but st2 doesn&#39;t recognize the type. Only string, object (JSON), integer are supported.
+
+Thanks !</description>
+    
+    <lastBuildDate>Fri, 28 Aug 2020 10:02:40 +0000</lastBuildDate>
+    <category>Workflows</category>
+    <atom:link href="https://forum.stackstorm.com/t/multiple-ssh-connections-in-an-action-chain/1406.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Multiple ssh connections in an action-chain</title>
+        <dc:creator><![CDATA[rahulonmars]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi,</p>
+<p>I have an action-chain workflow with 5 actions.<br>
+Each action needs to send some CLI commands on a router (cisco/juniper).</p>
+<p>We use paramiko to make connection to this router in every action ! For 5 actions I have to make and teardown ssh connection - 5 times which is not effective.</p>
+<p>Is there a way to make connection only once and reuse it in subsequent actions?</p>
+<p>I tried returning the ssh-connection-object in first action to reuse it in subsequent actions, but st2 doesn’t recognize the type. Only string, object (JSON), integer are supported.</p>
+<p>Thanks !</p>
+          <p><a href="https://forum.stackstorm.com/t/multiple-ssh-connections-in-an-action-chain/1406/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/multiple-ssh-connections-in-an-action-chain/1406/1</link>
+        <pubDate>Fri, 28 Aug 2020 10:02:40 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1406-1</guid>
+        <source url="https://forum.stackstorm.com/t/multiple-ssh-connections-in-an-action-chain/1406.rss">Multiple ssh connections in an action-chain</source>
+      </item>
+  </channel>
+</rss>

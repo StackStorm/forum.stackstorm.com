@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>ST2API Timeout after install - API never comes online</title>
+    <link>https://forum.stackstorm.com/t/st2api-timeout-after-install-api-never-comes-online/1004</link>
+    <description>Doing a fresh install of ST2 via Ansible to a Centos 7 system.
+
+The install tries to get the list of packs install and hangs.  In digging into this, it is cause the API is not online so the `st2 pack list -j` command fails.
+
+In the st2api.log file, seeing this:
+
+&gt;     2020-01-16 16:23:23,610 140642781823536 INFO __init__ [-] Successfully connected to database &quot;st2&quot; @ &quot;127.0.0.1:27017&quot; as user &quot;None&quot;.
+&gt; [2020-01-16 16:23:33 +0000] [1582] [CRITICAL] WORKER TIMEOUT (pid:8512)
+&gt; [2020-01-16 16:23:33 +0000] [8512] [INFO] Worker exiting (pid: 8512)
+&gt; [2020-01-16 16:23:33 +0000] [8534] [INFO] Booting worker with pid: 8534
+&gt; 2020-01-16 16:23:43,795 140642996422464 INFO app [-] Creating st2api: StackStorm v3.1.0 as OpenAPI app.
+&gt; 2020-01-16 16:23:53,861 140642781823536 INFO __init__ [-] Connecting to database &quot;st2&quot; @ &quot;127.0.0.1:27017&quot; as user &quot;None&quot;.
+&gt; 2020-01-16 16:23:53,866 140642781823536 INFO __init__ [-] Successfully connected to database &quot;st2&quot; @ &quot;127.0.0.1:27017&quot; as user &quot;None&quot;.
+&gt; [2020-01-16 16:24:03 +0000] [1582] [CRITICAL] WORKER TIMEOUT (pid:8534)
+&gt; 2020-01-16 16:24:03,353 140642781823536 ERROR base [-] Publish failed.
+&gt; Traceback (most recent call last):
+&gt;   File &quot;/opt/stackstorm/st2/lib/python2.7/site-packages/st2common/persistence/base.py&quot;, line 193, in add_or_update
+&gt;     cls.publish_update(model_object)
+&gt;   File &quot;/opt/stackstorm/st2/lib/python2.7/site-packages/st2common/persistence/base.py&quot;, line 274, in publish_update
+&gt;     publisher.publish_update(model_object)
+&gt;   File &quot;/opt/stackstorm/st2/lib/python2.7/site-packages/st2common/transport/publishers.py&quot;, line 122, in publish_update
+&gt;     self._publisher.publish(payload, self._exchange, UPDATE_RK)
+&gt;   File &quot;/opt/stackstorm/st2/lib/python2.7/site-packages/st2common/transport/publishers.py&quot;, line 84, in publish
+&gt;     retry_wrapper.run(connection=connection, wrapped_callback=do_publish)
+&gt;   File &quot;/opt/stackstorm/st2/lib/python2.7/site-packages/st2common/transport/connection_retry_wrapper.py&quot;, line 144, in run
+&gt;     eventlet.sleep(wait)
+&gt;   File &quot;/opt/stackstorm/st2/lib/python2.7/site-packages/eventlet/greenthread.py&quot;, line 36, in sleep
+&gt;     hub.switch()
+&gt;   File &quot;/opt/stackstorm/st2/lib/python2.7/site-packages/eventlet/hubs/hub.py&quot;, line 297, in switch
+&gt;     return self.greenlet.switch()
+&gt;   File &quot;/opt/stackstorm/st2/lib/python2.7/site-packages/eventlet/hubs/hub.py&quot;, line 349, in run
+&gt;     self.wait(sleep_time)
+&gt;   File &quot;/opt/stackstorm/st2/lib/python2.7/site-packages/eventlet/hubs/poll.py&quot;, line 76, in wait
+&gt;     time.sleep(seconds)
+&gt;   File &quot;/opt/stackstorm/st2/lib/python2.7/site-packages/gunicorn/workers/base.py&quot;, line 196, in handle_abort
+&gt;     sys.exit(1)
+&gt; SystemExit: 1
+
+I&#39;m guessing that something is up with communications to RabbitMQ, but that&#39;s only a theory, and I can&#39;t figure out how to get around it.  Has anyone run into this before or have any ideas how to get around it?</description>
+    
+    <lastBuildDate>Tue, 28 Jan 2020 21:46:32 +0000</lastBuildDate>
+    <category>API</category>
+    <atom:link href="https://forum.stackstorm.com/t/st2api-timeout-after-install-api-never-comes-online/1004.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>ST2API Timeout after install - API never comes online</title>
+        <dc:creator><![CDATA[bradchiappetta]]></dc:creator>
+        <description><![CDATA[
+            <p>Was able to resolve this.  Turns out there was a bad Primary DNS server configured, so DNS lookups were taking a long time to complete.  Something in this process was causing these to time out.  As soon as the DNS issue was resolved, everything worked as expected.</p>
+          <p><a href="https://forum.stackstorm.com/t/st2api-timeout-after-install-api-never-comes-online/1004/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/st2api-timeout-after-install-api-never-comes-online/1004/2</link>
+        <pubDate>Tue, 28 Jan 2020 21:46:32 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1004-2</guid>
+        <source url="https://forum.stackstorm.com/t/st2api-timeout-after-install-api-never-comes-online/1004.rss">ST2API Timeout after install - API never comes online</source>
+      </item>
+      <item>
+        <title>ST2API Timeout after install - API never comes online</title>
+        <dc:creator><![CDATA[bradchiappetta]]></dc:creator>
+        <description><![CDATA[
+            <p>Doing a fresh install of ST2 via Ansible to a Centos 7 system.</p>
+<p>The install tries to get the list of packs install and hangs.  In digging into this, it is cause the API is not online so the <code>st2 pack list -j</code> command fails.</p>
+<p>In the st2api.log file, seeing this:</p>
+<blockquote>
+<pre><code>2020-01-16 16:23:23,610 140642781823536 INFO __init__ [-] Successfully connected to database "st2" @ "127.0.0.1:27017" as user "None".
+</code></pre>
+<p>[2020-01-16 16:23:33 +0000] [1582] [CRITICAL] WORKER TIMEOUT (pid:8512)<br>
+[2020-01-16 16:23:33 +0000] [8512] [INFO] Worker exiting (pid: 8512)<br>
+[2020-01-16 16:23:33 +0000] [8534] [INFO] Booting worker with pid: 8534<br>
+2020-01-16 16:23:43,795 140642996422464 INFO app [-] Creating st2api: StackStorm v3.1.0 as OpenAPI app.<br>
+2020-01-16 16:23:53,861 140642781823536 INFO <strong>init</strong> [-] Connecting to database “st2” @ “127.0.0.1:27017” as user “None”.<br>
+2020-01-16 16:23:53,866 140642781823536 INFO <strong>init</strong> [-] Successfully connected to database “st2” @ “127.0.0.1:27017” as user “None”.<br>
+[2020-01-16 16:24:03 +0000] [1582] [CRITICAL] WORKER TIMEOUT (pid:8534)<br>
+2020-01-16 16:24:03,353 140642781823536 ERROR base [-] Publish failed.<br>
+Traceback (most recent call last):<br>
+File “/opt/stackstorm/st2/lib/python2.7/site-packages/st2common/persistence/base.py”, line 193, in add_or_update<br>
+cls.publish_update(model_object)<br>
+File “/opt/stackstorm/st2/lib/python2.7/site-packages/st2common/persistence/base.py”, line 274, in publish_update<br>
+publisher.publish_update(model_object)<br>
+File “/opt/stackstorm/st2/lib/python2.7/site-packages/st2common/transport/publishers.py”, line 122, in publish_update<br>
+self._publisher.publish(payload, self._exchange, UPDATE_RK)<br>
+File “/opt/stackstorm/st2/lib/python2.7/site-packages/st2common/transport/publishers.py”, line 84, in publish<br>
+retry_wrapper.run(connection=connection, wrapped_callback=do_publish)<br>
+File “/opt/stackstorm/st2/lib/python2.7/site-packages/st2common/transport/connection_retry_wrapper.py”, line 144, in run<br>
+eventlet.sleep(wait)<br>
+File “/opt/stackstorm/st2/lib/python2.7/site-packages/eventlet/greenthread.py”, line 36, in sleep<br>
+hub.switch()<br>
+File “/opt/stackstorm/st2/lib/python2.7/site-packages/eventlet/hubs/hub.py”, line 297, in switch<br>
+return self.greenlet.switch()<br>
+File “/opt/stackstorm/st2/lib/python2.7/site-packages/eventlet/hubs/hub.py”, line 349, in run<br>
+self.wait(sleep_time)<br>
+File “/opt/stackstorm/st2/lib/python2.7/site-packages/eventlet/hubs/poll.py”, line 76, in wait<br>
+time.sleep(seconds)<br>
+File “/opt/stackstorm/st2/lib/python2.7/site-packages/gunicorn/workers/base.py”, line 196, in handle_abort<br>
+sys.exit(1)<br>
+SystemExit: 1</p>
+</blockquote>
+<p>I’m guessing that something is up with communications to RabbitMQ, but that’s only a theory, and I can’t figure out how to get around it.  Has anyone run into this before or have any ideas how to get around it?</p>
+          <p><a href="https://forum.stackstorm.com/t/st2api-timeout-after-install-api-never-comes-online/1004/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/st2api-timeout-after-install-api-never-comes-online/1004/1</link>
+        <pubDate>Fri, 17 Jan 2020 20:07:15 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1004-1</guid>
+        <source url="https://forum.stackstorm.com/t/st2api-timeout-after-install-api-never-comes-online/1004.rss">ST2API Timeout after install - API never comes online</source>
+      </item>
+  </channel>
+</rss>

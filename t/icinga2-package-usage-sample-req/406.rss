@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Icinga2 Package Usage Sample Req</title>
+    <link>https://forum.stackstorm.com/t/icinga2-package-usage-sample-req/406</link>
+    <description>Hello All,
+
+Can anyone help me to use Icinga2 Package. I have installed/Registered the package. However i don&#39;t see icinga events at stackstorm. 
+
+Here is the sensor request in debug mode.
+
+Note: IP/User Name are masked
+
+    2018-12-20 06:26:45,450 INFO [-] Icinga2StateChangeSensor initialized with URL: https://IP:MASKED:5665/v1/events?queue=state_change&amp;types=StateChange User: ****** Password: *****
+    2018-12-20 06:26:45,450 INFO [-] Running sensor in passive mode
+    2018-12-20 06:26:45,450 INFO [-] Setting up API connection params.
+    2018-12-20 06:26:45,451 INFO [-] Starting connection to API endpoint.
+    2018-12-20 06:26:45,451 INFO [-] pyCurl started.
+    2018-12-20 06:26:45,451 INFO [-] keep trying = 1
+    *   Trying *******...
+    * Connected to ******* (*******) port 5665 (#0)
+    * found 148 certificates in /etc/ssl/certs/ca-certificates.crt
+    * found 594 certificates in /etc/ssl/certs
+    * ALPN, offering http/1.1
+    * SSL connection using TLS1.2 / RSA_AES_256_GCM_SHA384
+    *        server certificate verification SKIPPED
+    *        server certificate status verification SKIPPED
+    *        common name: icinga2-master1(does not match &#39;*******&#39;)
+    *        server certificate expiration date OK
+    *        server certificate activation date OK
+    *        certificate public key: RSA
+    *        certificate version: #3
+    *        subject: CN=icinga2-master1
+    *        start date: Thu, 04 Oct 2018 09:30:25 GMT
+    *        expire date: Fri, 30 Sep 2033 09:30:25 GMT
+    *        issuer: CN=Icinga CA
+    *        compression: NULL
+    * ALPN, server did not agree to a protocol
+    * Server auth using Basic with user &#39;*******&#39;
+    &gt; POST /v1/events?queue=state_change&amp;types=StateChange HTTP/1.1
+    Host: *******:5665
+    Authorization: Basic 
+    User-Agent: PycURL/7.43.0.2 libcurl/7.47.0 GnuTLS/3.4.10 zlib/1.2.8 libidn/1.32 librtmp/2.3
+    Accept: application/json
+    Content-Length: 0
+    Content-Type: application/x-www-form-urlencoded
+
+    &lt; HTTP/1.1 200 OK
+    &lt; Content-Type: application/json
+    2018-12-20 06:26:49,654 DEBUG [-] 1 active sensor(s)
+    2018-12-20 06:26:54,655 DEBUG [-] 1 active sensor(s)
+    2018-12-20 06:26:59,656 DEBUG [-] 1 active sensor(s)
+    2018-12-20 06:27:04,656 DEBUG [-] 1 active sensor(s)
+    2018-12-20 06:27:09,657 DEBUG [-] 1 active sensor(s)
+    2018-12-20 06:27:14,657 DEBUG [-] 1 active sensor(s)
+    2018-12-20 06:27:19,658 DEBUG [-] 1 active sensor(s)</description>
+    
+    <lastBuildDate>Thu, 03 Jan 2019 11:27:29 +0000</lastBuildDate>
+    <category>Pack Management</category>
+    <atom:link href="https://forum.stackstorm.com/t/icinga2-package-usage-sample-req/406.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Icinga2 Package Usage Sample Req</title>
+        <dc:creator><![CDATA[Batman]]></dc:creator>
+        <description><![CDATA[
+            <p><a class="mention" href="https://github.com/kami">@kami</a>: Are you referring to below log file? Let me know…</p>
+<p>/var/log/st2/st2sensorcontainer.log</p>
+          <p><a href="https://forum.stackstorm.com/t/icinga2-package-usage-sample-req/406/6">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/icinga2-package-usage-sample-req/406/6</link>
+        <pubDate>Thu, 03 Jan 2019 11:27:29 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-406-6</guid>
+        <source url="https://forum.stackstorm.com/t/icinga2-package-usage-sample-req/406.rss">Icinga2 Package Usage Sample Req</source>
+      </item>
+      <item>
+        <title>Icinga2 Package Usage Sample Req</title>
+        <dc:creator><![CDATA[kami]]></dc:creator>
+        <description><![CDATA[
+            <p>It looks like the issue is related to the sensor code.</p>
+<p>For some reason the “event” dictionary doesn’t contain “service” attribute / key. The best way to troubleshoot this would be to augment / update the sensor code, add some debug logging which logs the whole “event” object so we can see which attributes are present and what is going on.</p>
+<p>EDIT: It looks like we already log the whole event object in the sensor code - <a href="https://github.com/StackStorm-Exchange/stackstorm-icinga2/blob/master/sensors/icinga2_state_change_events.py#L22" class="inline-onebox" rel="nofollow noopener">stackstorm-icinga2/icinga2_state_change_events.py at master · StackStorm-Exchange/stackstorm-icinga2 · GitHub</a></p>
+<p>So please include the whole sensor container log file so we can see how the event object looks like.</p>
+          <p><a href="https://forum.stackstorm.com/t/icinga2-package-usage-sample-req/406/5">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/icinga2-package-usage-sample-req/406/5</link>
+        <pubDate>Mon, 31 Dec 2018 08:24:22 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-406-5</guid>
+        <source url="https://forum.stackstorm.com/t/icinga2-package-usage-sample-req/406.rss">Icinga2 Package Usage Sample Req</source>
+      </item>
+      <item>
+        <title>Icinga2 Package Usage Sample Req</title>
+        <dc:creator><![CDATA[Batman]]></dc:creator>
+        <description><![CDATA[
+            <p>This is the error i see on debug mode.</p>
+<pre><code>2018-12-25 05:41:58,330 ERROR [-] Traceback (most recent call last):
+
+2018-12-25 05:41:58,330 ERROR [-]   File "/opt/stackstorm/packs/icinga2/sensors/lib/client.py", line 64, in on_receive
+
+2018-12-25 05:41:58,331 ERROR [-]
+2018-12-25 05:41:58,331 ERROR [-] self._sensor.process_event(event)
+
+2018-12-25 05:41:58,331 ERROR [-]   File "/opt/stackstorm/packs/icinga2/sensors/icinga2_state_change_events.py", line 24, in process_event
+
+2018-12-25 05:41:58,331 ERROR [-]
+2018-12-25 05:41:58,331 ERROR [-] payload['service'] = event['service']
+
+2018-12-25 05:41:58,332 ERROR [-] KeyError
+2018-12-25 05:41:58,332 ERROR [-] :
+2018-12-25 05:41:58,332 ERROR [-] 'service'
+2018-12-25 05:41:58,332 ERROR [-]
+
+* Failed writing body (0 != 1)
+* Failed writing data
+* Closing connection 0</code></pre>
+          <p><a href="https://forum.stackstorm.com/t/icinga2-package-usage-sample-req/406/4">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/icinga2-package-usage-sample-req/406/4</link>
+        <pubDate>Tue, 25 Dec 2018 05:50:02 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-406-4</guid>
+        <source url="https://forum.stackstorm.com/t/icinga2-package-usage-sample-req/406.rss">Icinga2 Package Usage Sample Req</source>
+      </item>
+      <item>
+        <title>Icinga2 Package Usage Sample Req</title>
+        <dc:creator><![CDATA[Batman]]></dc:creator>
+        <description><![CDATA[
+            <aside class="quote no-group" data-post="2" data-topic="406" data-full="true">
+<div class="title">
+<div class="quote-controls"></div>
+<img alt="" width="20" height="20" src="https://avatars.discourse.org/v2/letter/l/edb3f5/40.png" class="avatar"> lhill:</div>
+<blockquote>
+<p>That part looks like it’s probably OK. Is your Sensu system creating any StateChange events?</p>
+</blockquote>
+</aside>
+<p>I have not configured sensu. But i did manually triggered many host/service state change in icinga. And i do not see any events for the same. Maybe my understanding about plugin is wrong. Can you brief on correct usage please</p>
+          <p><a href="https://forum.stackstorm.com/t/icinga2-package-usage-sample-req/406/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/icinga2-package-usage-sample-req/406/3</link>
+        <pubDate>Fri, 21 Dec 2018 06:45:52 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-406-3</guid>
+        <source url="https://forum.stackstorm.com/t/icinga2-package-usage-sample-req/406.rss">Icinga2 Package Usage Sample Req</source>
+      </item>
+      <item>
+        <title>Icinga2 Package Usage Sample Req</title>
+        <dc:creator><![CDATA[lhill]]></dc:creator>
+        <description><![CDATA[
+            <p>That part looks like it’s probably OK. Is your Sensu system creating any StateChange events?</p>
+          <p><a href="https://forum.stackstorm.com/t/icinga2-package-usage-sample-req/406/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/icinga2-package-usage-sample-req/406/2</link>
+        <pubDate>Thu, 20 Dec 2018 22:34:06 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-406-2</guid>
+        <source url="https://forum.stackstorm.com/t/icinga2-package-usage-sample-req/406.rss">Icinga2 Package Usage Sample Req</source>
+      </item>
+      <item>
+        <title>Icinga2 Package Usage Sample Req</title>
+        <dc:creator><![CDATA[Batman]]></dc:creator>
+        <description><![CDATA[
+            <p>Hello All,</p>
+<p>Can anyone help me to use Icinga2 Package. I have installed/Registered the package. However i don’t see icinga events at stackstorm.</p>
+<p>Here is the sensor request in debug mode.</p>
+<p>Note: IP/User Name are masked</p>
+<pre><code>2018-12-20 06:26:45,450 INFO [-] Icinga2StateChangeSensor initialized with URL: https://IP:MASKED:5665/v1/events?queue=state_change&amp;types=StateChange User: ****** Password: *****
+2018-12-20 06:26:45,450 INFO [-] Running sensor in passive mode
+2018-12-20 06:26:45,450 INFO [-] Setting up API connection params.
+2018-12-20 06:26:45,451 INFO [-] Starting connection to API endpoint.
+2018-12-20 06:26:45,451 INFO [-] pyCurl started.
+2018-12-20 06:26:45,451 INFO [-] keep trying = 1
+*   Trying *******...
+* Connected to ******* (*******) port 5665 (#0)
+* found 148 certificates in /etc/ssl/certs/ca-certificates.crt
+* found 594 certificates in /etc/ssl/certs
+* ALPN, offering http/1.1
+* SSL connection using TLS1.2 / RSA_AES_256_GCM_SHA384
+*        server certificate verification SKIPPED
+*        server certificate status verification SKIPPED
+*        common name: icinga2-master1(does not match '*******')
+*        server certificate expiration date OK
+*        server certificate activation date OK
+*        certificate public key: RSA
+*        certificate version: #3
+*        subject: CN=icinga2-master1
+*        start date: Thu, 04 Oct 2018 09:30:25 GMT
+*        expire date: Fri, 30 Sep 2033 09:30:25 GMT
+*        issuer: CN=Icinga CA
+*        compression: NULL
+* ALPN, server did not agree to a protocol
+* Server auth using Basic with user '*******'
+&gt; POST /v1/events?queue=state_change&amp;types=StateChange HTTP/1.1
+Host: *******:5665
+Authorization: Basic 
+User-Agent: PycURL/7.43.0.2 libcurl/7.47.0 GnuTLS/3.4.10 zlib/1.2.8 libidn/1.32 librtmp/2.3
+Accept: application/json
+Content-Length: 0
+Content-Type: application/x-www-form-urlencoded
+
+&lt; HTTP/1.1 200 OK
+&lt; Content-Type: application/json
+2018-12-20 06:26:49,654 DEBUG [-] 1 active sensor(s)
+2018-12-20 06:26:54,655 DEBUG [-] 1 active sensor(s)
+2018-12-20 06:26:59,656 DEBUG [-] 1 active sensor(s)
+2018-12-20 06:27:04,656 DEBUG [-] 1 active sensor(s)
+2018-12-20 06:27:09,657 DEBUG [-] 1 active sensor(s)
+2018-12-20 06:27:14,657 DEBUG [-] 1 active sensor(s)
+2018-12-20 06:27:19,658 DEBUG [-] 1 active sensor(s)</code></pre>
+          <p><a href="https://forum.stackstorm.com/t/icinga2-package-usage-sample-req/406/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/icinga2-package-usage-sample-req/406/1</link>
+        <pubDate>Thu, 20 Dec 2018 06:53:04 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-406-1</guid>
+        <source url="https://forum.stackstorm.com/t/icinga2-package-usage-sample-req/406.rss">Icinga2 Package Usage Sample Req</source>
+      </item>
+  </channel>
+</rss>

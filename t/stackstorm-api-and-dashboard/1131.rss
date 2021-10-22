@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Stackstorm api and dashboard</title>
+    <link>https://forum.stackstorm.com/t/stackstorm-api-and-dashboard/1131</link>
+    <description>Is stackstorm dashboard at backend uses stackstorm api or it written as separate (without stackstorm api) ?
+Guys i need help to create UI. We actually creating UI on angular and using .net for backend and we calling stackstorm api at .net and output giving to frontend . Is this right way? Or suggest me something else because i am fresher.</description>
+    
+    <lastBuildDate>Mon, 30 Mar 2020 19:29:09 +0000</lastBuildDate>
+    <category>API</category>
+    <atom:link href="https://forum.stackstorm.com/t/stackstorm-api-and-dashboard/1131.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Stackstorm api and dashboard</title>
+        <dc:creator><![CDATA[armab]]></dc:creator>
+        <description><![CDATA[
+            <p>Yes, for example you can run particular commands on remote server via stackstorm actions, store the values in st2 k/v storage and query ST2 API to display the result in your custom frontend UI.</p>
+          <p><a href="https://forum.stackstorm.com/t/stackstorm-api-and-dashboard/1131/4">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/stackstorm-api-and-dashboard/1131/4</link>
+        <pubDate>Mon, 30 Mar 2020 19:29:09 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1131-4</guid>
+        <source url="https://forum.stackstorm.com/t/stackstorm-api-and-dashboard/1131.rss">Stackstorm api and dashboard</source>
+      </item>
+      <item>
+        <title>Stackstorm api and dashboard</title>
+        <dc:creator><![CDATA[kiran.lohar]]></dc:creator>
+        <description><![CDATA[
+            <p>actually i am remotely accessing another server , run some command to check memory and disc space. that memory status my action returns so this output i want to show on UI.<br>
+is this possible?</p>
+          <p><a href="https://forum.stackstorm.com/t/stackstorm-api-and-dashboard/1131/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/stackstorm-api-and-dashboard/1131/3</link>
+        <pubDate>Mon, 30 Mar 2020 17:22:13 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1131-3</guid>
+        <source url="https://forum.stackstorm.com/t/stackstorm-api-and-dashboard/1131.rss">Stackstorm api and dashboard</source>
+      </item>
+      <item>
+        <title>Stackstorm api and dashboard</title>
+        <dc:creator><![CDATA[armab]]></dc:creator>
+        <description><![CDATA[
+            <p>StackStorm Web UI is a React app that works with ST2 APIs directly.</p>
+<p>Your UI should access st2 APIs, - we’ve seen other companies developing their custom UI. No need to have another backend layer like .net app.</p>
+<p>Inspecting API calls when using default st2 web ui can help, also take a look at <a href="https://api.stackstorm.com/">https://api.stackstorm.com/</a> for the list of supported API endpoints.</p>
+          <p><a href="https://forum.stackstorm.com/t/stackstorm-api-and-dashboard/1131/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/stackstorm-api-and-dashboard/1131/2</link>
+        <pubDate>Mon, 30 Mar 2020 15:53:55 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1131-2</guid>
+        <source url="https://forum.stackstorm.com/t/stackstorm-api-and-dashboard/1131.rss">Stackstorm api and dashboard</source>
+      </item>
+      <item>
+        <title>Stackstorm api and dashboard</title>
+        <dc:creator><![CDATA[kiran.lohar]]></dc:creator>
+        <description><![CDATA[
+            <p>Is stackstorm dashboard at backend uses stackstorm api or it written as separate (without stackstorm api) ?<br>
+Guys i need help to create UI. We actually creating UI on angular and using .net for backend and we calling stackstorm api at .net and output giving to frontend . Is this right way? Or suggest me something else because i am fresher.</p>
+          <p><a href="https://forum.stackstorm.com/t/stackstorm-api-and-dashboard/1131/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/stackstorm-api-and-dashboard/1131/1</link>
+        <pubDate>Mon, 30 Mar 2020 14:43:02 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1131-1</guid>
+        <source url="https://forum.stackstorm.com/t/stackstorm-api-and-dashboard/1131.rss">Stackstorm api and dashboard</source>
+      </item>
+  </channel>
+</rss>

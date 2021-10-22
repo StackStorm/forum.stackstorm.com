@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Parallel runs of same orquesta workflow</title>
+    <link>https://forum.stackstorm.com/t/parallel-runs-of-same-orquesta-workflow/979</link>
+    <description>Hello Stackstormers,
+
+I was wondering, is it possible to let a single orquesta workflow execute in parallel with different parameters? I&#39;ve noticed that when a sensor triggers my workflow in rapid succession, the triggers will be processed in series, but I would like them to run in parallel.
+
+Is there a configuration option for this? I can&#39;t seem to find it.
+
+Thanks in advance.</description>
+    
+    <lastBuildDate>Mon, 17 Feb 2020 13:06:21 +0000</lastBuildDate>
+    <category>Workflows</category>
+    <atom:link href="https://forum.stackstorm.com/t/parallel-runs-of-same-orquesta-workflow/979.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Parallel runs of same orquesta workflow</title>
+        <dc:creator><![CDATA[nschagen]]></dc:creator>
+        <description><![CDATA[
+            <p>Thanks. I will try it once more. I’ll let you know if I run into specific issues <img src="https://emoji.discourse-cdn.com/apple/slight_smile.png?v=9" title=":slight_smile:" class="emoji" alt=":slight_smile:"></p>
+          <p><a href="https://forum.stackstorm.com/t/parallel-runs-of-same-orquesta-workflow/979/4">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/parallel-runs-of-same-orquesta-workflow/979/4</link>
+        <pubDate>Mon, 17 Feb 2020 13:06:21 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-979-4</guid>
+        <source url="https://forum.stackstorm.com/t/parallel-runs-of-same-orquesta-workflow/979.rss">Parallel runs of same orquesta workflow</source>
+      </item>
+      <item>
+        <title>Parallel runs of same orquesta workflow</title>
+        <dc:creator><![CDATA[armab]]></dc:creator>
+        <description><![CDATA[
+            <p>And just a note that there are some interesting examples in <a href="https://github.com/StackStorm/st2/tree/master/contrib/examples/actions/workflows" class="inline-onebox">st2/contrib/examples/actions/workflows at master · StackStorm/st2 · GitHub</a> of workflows themselves, even though its a bit different to what youre asking.</p>
+          <p><a href="https://forum.stackstorm.com/t/parallel-runs-of-same-orquesta-workflow/979/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/parallel-runs-of-same-orquesta-workflow/979/3</link>
+        <pubDate>Wed, 05 Feb 2020 02:00:38 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-979-3</guid>
+        <source url="https://forum.stackstorm.com/t/parallel-runs-of-same-orquesta-workflow/979.rss">Parallel runs of same orquesta workflow</source>
+      </item>
+      <item>
+        <title>Parallel runs of same orquesta workflow</title>
+        <dc:creator><![CDATA[armab]]></dc:creator>
+        <description><![CDATA[
+            <p>Yes, it should.</p>
+<p>StackStorm &amp; Orquesta are designed to run workflows/actions in parallel, even with different params.</p>
+<p>Try to do more tests by triggering more workflows by hand and check the system resources of your deployment/environment.</p>
+          <p><a href="https://forum.stackstorm.com/t/parallel-runs-of-same-orquesta-workflow/979/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/parallel-runs-of-same-orquesta-workflow/979/2</link>
+        <pubDate>Wed, 05 Feb 2020 01:59:44 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-979-2</guid>
+        <source url="https://forum.stackstorm.com/t/parallel-runs-of-same-orquesta-workflow/979.rss">Parallel runs of same orquesta workflow</source>
+      </item>
+      <item>
+        <title>Parallel runs of same orquesta workflow</title>
+        <dc:creator><![CDATA[nschagen]]></dc:creator>
+        <description><![CDATA[
+            <p>Hello Stackstormers,</p>
+<p>I was wondering, is it possible to let a single orquesta workflow execute in parallel with different parameters? I’ve noticed that when a sensor triggers my workflow in rapid succession, the triggers will be processed in series, but I would like them to run in parallel.</p>
+<p>Is there a configuration option for this? I can’t seem to find it.</p>
+<p>Thanks in advance.</p>
+          <p><a href="https://forum.stackstorm.com/t/parallel-runs-of-same-orquesta-workflow/979/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/parallel-runs-of-same-orquesta-workflow/979/1</link>
+        <pubDate>Mon, 30 Dec 2019 15:12:52 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-979-1</guid>
+        <source url="https://forum.stackstorm.com/t/parallel-runs-of-same-orquesta-workflow/979.rss">Parallel runs of same orquesta workflow</source>
+      </item>
+  </channel>
+</rss>

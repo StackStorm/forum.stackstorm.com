@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Access different pack configs in common pack</title>
+    <link>https://forum.stackstorm.com/t/access-different-pack-configs-in-common-pack/1824</link>
+    <description>I am trying to build a central (common) pack which contains some common actions eg.
+
+1. Get Data from Postgres
+2. Get Data from some API call
+
+These are generic actions and these require `configs` for them to run. Eg. Postgres requires `host`, `port`, `username`, `password`, `db`. These `configs` are stored in different packs for different tenants. Each tenant has its own pack and each tenant will have its `configs`. 
+
+I want to reuse the common actions instead of adding these everytime to each tenant. I want one common pack which will hold the common actions and based on the `tenant` context or `pack (tenant)` name it will fetch the `configs` from that pack.
+
+I have been struggling a lot to do this, unfortunately the only way I found was to duplicate these common actions across tenant packs. Is there any other way to do it?</description>
+    
+    <lastBuildDate>Fri, 03 Sep 2021 05:22:05 +0000</lastBuildDate>
+    <category>Workflows</category>
+    <atom:link href="https://forum.stackstorm.com/t/access-different-pack-configs-in-common-pack/1824.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Access different pack configs in common pack</title>
+        <dc:creator><![CDATA[sarthak1996]]></dc:creator>
+        <description><![CDATA[
+            <aside class="quote no-group" data-username="jamesdreid" data-post="2" data-topic="1824">
+<div class="title">
+<div class="quote-controls"></div>
+<img alt="" width="20" height="20" src="https://avatars.discourse-cdn.com/v4/letter/j/ad7895/40.png" class="avatar"> jamesdreid:</div>
+<blockquote>
+<p>nd you can combine that with a common name structure used across all tenants to access the key specific to the client/tenant pack that stores the credentials with</p>
+</blockquote>
+</aside>
+<p>We allow users to create workflow and actions. So storing in KV is not a good approach for us since anyone can update KV from the action.</p>
+<p>Currently we have decided to move with API Key and storing everything in meta as encrypted. Let me know if there is a better approach</p>
+          <p><a href="https://forum.stackstorm.com/t/access-different-pack-configs-in-common-pack/1824/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/access-different-pack-configs-in-common-pack/1824/3</link>
+        <pubDate>Fri, 03 Sep 2021 05:22:05 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1824-3</guid>
+        <source url="https://forum.stackstorm.com/t/access-different-pack-configs-in-common-pack/1824.rss">Access different pack configs in common pack</source>
+      </item>
+      <item>
+        <title>Access different pack configs in common pack</title>
+        <dc:creator><![CDATA[jamesdreid]]></dc:creator>
+        <description><![CDATA[
+            <p>You best bet it likely to just make all the actions in the common pack accept the credentials passed in a input to the action and then store all the credentials in the keystore in a format that matches what needs to be passed to the actions. The keystore names and be tied to the packname of the individual tenets and then you can reuse the workflows that will extract the Postgres credentials from the keystore and then use them as input to the common Postgres action.  This workflow (or at minimum the first 2 tasks) can then be replicated as needed in each of the tenants.</p>
+<p>In a workflow, you can reference the name of a pack with the following context call:</p>
+<pre><code class="lang-auto">&lt;% ctx().st2.pack %&gt;
+</code></pre>
+<p>And you can combine that with a common name structure used across all tenants to access the key specific to the client/tenant pack that stores the credentials with a task like the following in a workflow:</p>
+<pre><code class="lang-auto">get_tenant_creds:
+    action: st2.kv.get_object
+    input:
+      key: &lt;% 'POSTGRES___' + ctx().st2.pack %&gt;
+    next:
+      - when: &lt;% succeeded() %&gt;
+        publish: 
+            - postgres_creds: &lt;% result().result %&gt;
+</code></pre>
+<p>With this, you can then access the credentials in using the variable name set in the publish:</p>
+<pre><code class="lang-auto">&lt;% ctx().postgres_creds %&gt;
+</code></pre>
+          <p><a href="https://forum.stackstorm.com/t/access-different-pack-configs-in-common-pack/1824/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/access-different-pack-configs-in-common-pack/1824/2</link>
+        <pubDate>Mon, 30 Aug 2021 14:22:23 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1824-2</guid>
+        <source url="https://forum.stackstorm.com/t/access-different-pack-configs-in-common-pack/1824.rss">Access different pack configs in common pack</source>
+      </item>
+      <item>
+        <title>Access different pack configs in common pack</title>
+        <dc:creator><![CDATA[sarthak1996]]></dc:creator>
+        <description><![CDATA[
+            <p>I am trying to build a central (common) pack which contains some common actions eg.</p>
+<ol>
+<li>Get Data from Postgres</li>
+<li>Get Data from some API call</li>
+</ol>
+<p>These are generic actions and these require <code>configs</code> for them to run. Eg. Postgres requires <code>host</code>, <code>port</code>, <code>username</code>, <code>password</code>, <code>db</code>. These <code>configs</code> are stored in different packs for different tenants. Each tenant has its own pack and each tenant will have its <code>configs</code>.</p>
+<p>I want to reuse the common actions instead of adding these everytime to each tenant. I want one common pack which will hold the common actions and based on the <code>tenant</code> context or <code>pack (tenant)</code> name it will fetch the <code>configs</code> from that pack.</p>
+<p>I have been struggling a lot to do this, unfortunately the only way I found was to duplicate these common actions across tenant packs. Is there any other way to do it?</p>
+          <p><a href="https://forum.stackstorm.com/t/access-different-pack-configs-in-common-pack/1824/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/access-different-pack-configs-in-common-pack/1824/1</link>
+        <pubDate>Tue, 24 Aug 2021 18:29:20 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1824-1</guid>
+        <source url="https://forum.stackstorm.com/t/access-different-pack-configs-in-common-pack/1824.rss">Access different pack configs in common pack</source>
+      </item>
+  </channel>
+</rss>

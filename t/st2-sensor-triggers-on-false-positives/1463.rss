@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>ST2 sensor triggers on false positives</title>
+    <link>https://forum.stackstorm.com/t/st2-sensor-triggers-on-false-positives/1463</link>
+    <description>Hi All,
+
+We have implemented a solution with custom sensors where it watches to Kubernetes CRD object changes and create AWS resources based on that. It has been working fine for sometime now. Suddenly it triggered without any changes to the K8s CRD object. It happened twice apart within 8hrs and with the same pattern.  We didn&#39;t notice any anomalies in the logs and it shows as trigger was invoked by the sensor.
+
+    | MODIFIED, 6 nodes | bitesize.cb_chain             | stanley      | failed (235s elapsed)    | Wed, 21 Oct 2020 22:55:58 UTC | Wed, 21 Oct 2020 22:59:53 UTC |
+    | MODIFIED, 5 nodes | bitesize.cb_chain             | stanley      | canceled (7023s elapsed) | Wed, 21 Oct 2020 22:55:58 UTC | Thu, 22 Oct 2020 00:53:01 UTC |
+    | MODIFIED, 3 nodes | bitesize.cb_chain             | stanley      | failed (238s elapsed)    | Wed, 21 Oct 2020 22:55:58 UTC | Wed, 21 Oct 2020 22:59:56 UTC |
+    | ADDED, 3 nodes    | bitesize.cb_chain             | stanley      | succeeded (14s elapsed)  | Thu, 22 Oct 2020 08:49:16 UTC | Thu, 22 Oct 2020 08:49:30 UTC |
+    | MODIFIED, 6 nodes | bitesize.cb_chain             | stanley      | failed (243s elapsed)    | Thu, 22 Oct 2020 09:22:21 UTC | Thu, 22 Oct 2020 09:26:24 UTC |
+    | MODIFIED, 5 nodes | bitesize.cb_chain             | stanley      | failed (467s elapsed)    | Thu, 22 Oct 2020 09:22:21 UTC | Thu, 22 Oct 2020 09:30:08 UTC |
+    | MODIFIED, 3 nodes | bitesize.cb_chain             | stanley      | failed (472s elapsed)    | Thu, 22 Oct 2020 09:22:21 UTC | Thu, 22 Oct 2020 09:30:13 UTC |
+
+Has anybody noticed similar kind of behavior with sensors?
+
+ST2 version: 3.0.0</description>
+    
+    <lastBuildDate>Mon, 26 Oct 2020 10:42:29 +0000</lastBuildDate>
+    <category>Rules</category>
+    <atom:link href="https://forum.stackstorm.com/t/st2-sensor-triggers-on-false-positives/1463.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>ST2 sensor triggers on false positives</title>
+        <dc:creator><![CDATA[singhabahu]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi All,</p>
+<p>We have implemented a solution with custom sensors where it watches to Kubernetes CRD object changes and create AWS resources based on that. It has been working fine for sometime now. Suddenly it triggered without any changes to the K8s CRD object. It happened twice apart within 8hrs and with the same pattern.  We didn’t notice any anomalies in the logs and it shows as trigger was invoked by the sensor.</p>
+<pre><code>| MODIFIED, 6 nodes | bitesize.cb_chain             | stanley      | failed (235s elapsed)    | Wed, 21 Oct 2020 22:55:58 UTC | Wed, 21 Oct 2020 22:59:53 UTC |
+| MODIFIED, 5 nodes | bitesize.cb_chain             | stanley      | canceled (7023s elapsed) | Wed, 21 Oct 2020 22:55:58 UTC | Thu, 22 Oct 2020 00:53:01 UTC |
+| MODIFIED, 3 nodes | bitesize.cb_chain             | stanley      | failed (238s elapsed)    | Wed, 21 Oct 2020 22:55:58 UTC | Wed, 21 Oct 2020 22:59:56 UTC |
+| ADDED, 3 nodes    | bitesize.cb_chain             | stanley      | succeeded (14s elapsed)  | Thu, 22 Oct 2020 08:49:16 UTC | Thu, 22 Oct 2020 08:49:30 UTC |
+| MODIFIED, 6 nodes | bitesize.cb_chain             | stanley      | failed (243s elapsed)    | Thu, 22 Oct 2020 09:22:21 UTC | Thu, 22 Oct 2020 09:26:24 UTC |
+| MODIFIED, 5 nodes | bitesize.cb_chain             | stanley      | failed (467s elapsed)    | Thu, 22 Oct 2020 09:22:21 UTC | Thu, 22 Oct 2020 09:30:08 UTC |
+| MODIFIED, 3 nodes | bitesize.cb_chain             | stanley      | failed (472s elapsed)    | Thu, 22 Oct 2020 09:22:21 UTC | Thu, 22 Oct 2020 09:30:13 UTC |
+</code></pre>
+<p>Has anybody noticed similar kind of behavior with sensors?</p>
+<p>ST2 version: 3.0.0</p>
+          <p><a href="https://forum.stackstorm.com/t/st2-sensor-triggers-on-false-positives/1463/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/st2-sensor-triggers-on-false-positives/1463/1</link>
+        <pubDate>Mon, 26 Oct 2020 10:42:29 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1463-1</guid>
+        <source url="https://forum.stackstorm.com/t/st2-sensor-triggers-on-false-positives/1463.rss">ST2 sensor triggers on false positives</source>
+      </item>
+  </channel>
+</rss>

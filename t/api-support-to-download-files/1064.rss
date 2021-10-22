@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>API support to Download Files</title>
+    <link>https://forum.stackstorm.com/t/api-support-to-download-files/1064</link>
+    <description>I&#39;m using Stackstorm for Ansible playbooks executions.
+
+I have installed st2 ansible pack
+
+&gt; st2 pack install ansible
+
+and using Stackstorm&#39;s API to create executions for executing playbooks.
+
+I have a bit specific usecase which require to download file on client-side (using http client) through rest-apis.
+
+I can fetch files using ansible from control nodes (using ansible&#39;s fetch module) on certain directories. but I need to download that file on client side through stackstorm rest apis....
+
+suggest suitable solution for same...
+Thanks</description>
+    
+    <lastBuildDate>Thu, 20 Feb 2020 06:00:20 +0000</lastBuildDate>
+    <category>API</category>
+    <atom:link href="https://forum.stackstorm.com/t/api-support-to-download-files/1064.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>API support to Download Files</title>
+        <dc:creator><![CDATA[punkrokk]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi <a class="mention" href="https://github.com/manoj-aps">@manoj-aps</a>! Welcome to StackStorm!</p>
+<p>To make sure I understand your question, are you saying you wish to HTTP GET a file from somewherel save it on the <code>ST2</code> local server and then make it available via HTTP(s) from Stackstorm?</p>
+<p>If I understood you correctly there are really two ways to accomplish this.</p>
+<p>The first would be to build a flask server in docker that serves up a folder which the stanley user can write to, and have your sensor which pulls the file from somewhere write it to that directory. Here’s an example implementation: <a href="https://github.com/Syncurity/syn-st2-flask" class="inline-onebox">GitHub - Syncurity/syn-st2-flask</a>. Keep in mind that I have other private code that modifies the files in <code>app/static</code> folders. I also have another repo that I use for running the flask app with <code>docker-compose</code>. <a href="https://github.com/Syncurity/syn-st2-docker" class="inline-onebox">GitHub - Syncurity/syn-st2-docker: Docker Services to Support Security Automation Brokers and Storage</a></p>
+<p>The other option would be to take the approach this guy took with Palo Alto External Dynamic Block Lists: <a href="https://medium.com/@IrekRomaniuk/stackstorm-as-source-of-firewall-dynamic-list-1ff79f808a5f">https://medium.com/@IrekRomaniuk/stackstorm-as-source-of-firewall-dynamic-list-1ff79f808a5f</a></p>
+<p>Let me know if this helps.</p>
+          <p><a href="https://forum.stackstorm.com/t/api-support-to-download-files/1064/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/api-support-to-download-files/1064/2</link>
+        <pubDate>Wed, 19 Feb 2020 16:05:13 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1064-2</guid>
+        <source url="https://forum.stackstorm.com/t/api-support-to-download-files/1064.rss">API support to Download Files</source>
+      </item>
+      <item>
+        <title>API support to Download Files</title>
+        <dc:creator><![CDATA[manoj-aps]]></dc:creator>
+        <description><![CDATA[
+            <p>I need to use StackStorm REST api interface to download files from remote machines. Please suggest if there is any api support for same.</p>
+          <p><a href="https://forum.stackstorm.com/t/api-support-to-download-files/1064/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/api-support-to-download-files/1064/3</link>
+        <pubDate>Wed, 19 Feb 2020 13:24:01 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1064-3</guid>
+        <source url="https://forum.stackstorm.com/t/api-support-to-download-files/1064.rss">API support to Download Files</source>
+      </item>
+      <item>
+        <title>API support to Download Files</title>
+        <dc:creator><![CDATA[manoj-aps]]></dc:creator>
+        <description><![CDATA[
+            <p>I’m using Stackstorm for Ansible playbooks executions.</p>
+<p>I have installed st2 ansible pack</p>
+<blockquote>
+<p>st2 pack install ansible</p>
+</blockquote>
+<p>and using Stackstorm’s API to create executions for executing playbooks.</p>
+<p>I have a bit specific usecase which require to download file on client-side (using http client) through rest-apis.</p>
+<p>I can fetch files using ansible from control nodes (using ansible’s fetch module) on certain directories. but I need to download that file on client side through stackstorm rest apis…</p>
+<p>suggest suitable solution for same…<br>
+Thanks</p>
+          <p><a href="https://forum.stackstorm.com/t/api-support-to-download-files/1064/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/api-support-to-download-files/1064/1</link>
+        <pubDate>Wed, 19 Feb 2020 10:20:33 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1064-1</guid>
+        <source url="https://forum.stackstorm.com/t/api-support-to-download-files/1064.rss">API support to Download Files</source>
+      </item>
+  </channel>
+</rss>

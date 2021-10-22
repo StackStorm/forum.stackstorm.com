@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Rule doesn&#39;t match sensor output</title>
+    <link>https://forum.stackstorm.com/t/rule-doesnt-match-sensor-output/463</link>
+    <description>Hi,
+
+I found out my rule doesn&#39;t match with sensor output but unsure whats wrong. Any insight will be of much help
+
+Sensor output:
+
+`2019-02-01 06:21:48,072 INFO [-] Processing event: {u&#39;check_result&#39;: {u&#39;check_source&#39;: u&#39;xxx&#39;, u&#39;exit_status&#39;: 2.0, u&#39;vars_before&#39;: {u&#39;state_type&#39;: 1.0, u&#39;reachable&#39;: True, u&#39;state&#39;: 2.0, u&#39;attempt&#39;: 1.0}, u&#39;type&#39;: u&#39;CheckResult&#39;, u&#39;vars_after&#39;: {u&#39;state_type&#39;: 1.0, u&#39;reachable&#39;: True, u&#39;state&#39;: 2.0, u&#39;attempt&#39;: 1.0}, u&#39;execution_start&#39;: 1549002107.592814, u&#39;schedule_end&#39;: 1549002108.066733, u&#39;performance_data&#39;: [u&#39;available_upgrades=3;;;0&#39;, u&#39;critical_updates=3;;;0&#39;], u&#39;state&#39;: 2.0, u&#39;command&#39;: xxx&#39;], u&#39;execution_end&#39;: 1549002108.066672, u&#39;active&#39;: True, u&#39;output&#39;: u&#39;APT CRITICAL: xxx &#39;, u&#39;schedule_start&#39;: 1549002107.592504}, u&#39;timestamp&#39;: 1549002108.066818, u&#39;host&#39;: u&#39;xxx&#39;, u&#39;type&#39;: u&#39;CheckResult&#39;, u&#39;service&#39;: u&#39;apt&#39;}`
+
+Rule:
+
+    name: icinga_action
+    pack: icinga2
+    description: Post to chat when icinga2 service state changes
+    enabled: true
+    trigger:
+      type: icinga2.event.state_change
+    #criteria:
+    #  trigger.type:
+    #    pattern: &quot;u&#39;state_type&quot;
+    #    type: &quot;eq&quot;
+    #  trigger.state_type:
+    #    pattern: 0.1
+    #    type: gt
+    criteria:                              # optional
+       trigger.type:
+         type: &quot;matchregex&quot;
+         pattern : &quot;*exit_status*&quot;
+       trigger.state_type:
+         type: &quot;gt&quot;
+         pattern : &quot;0.1&quot;
+
+    action:
+      ref: chatops.post_message
+      parameters:
+        message: Icinga2 service {{trigger.service}} on host {{trigger.host}} has changed its state to {{ trigger.state|int }}, state type {{ trigger.state_type|int }}
+          {{trigger.check_result.output}}
+        channel: &#39;xxxx&#39;
+
+
+Rule Doesn&#39;t Match:
+
+2019-02-01 06:28:53,216 INFO [-] Validating rule icinga2.icinga_action for event.state_change.
+2019-02-01 06:28:53,232 INFO [-] Validation for rule icinga2.icinga_action failed on     criteria -
+      key: trigger.state_type
+      pattern: 0.1
+      type: gt
+      payload: None
+    2019-02-01 06:28:53,232 INFO [-] 0 rule(s) found to enforce for event.state_change.
+    2019-02-01 06:28:53,232 INFO [-] === RULE DOES NOT MATCH ===</description>
+    
+    <lastBuildDate>Wed, 06 Feb 2019 04:46:01 +0000</lastBuildDate>
+    <category>Rules</category>
+    <atom:link href="https://forum.stackstorm.com/t/rule-doesnt-match-sensor-output/463.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Rule doesn&#39;t match sensor output</title>
+        <dc:creator><![CDATA[Batman]]></dc:creator>
+        <description><![CDATA[
+            <aside class="quote no-group" data-post="3" data-topic="463">
+<div class="title">
+<div class="quote-controls"></div>
+<img alt="" width="20" height="20" src="https://avatars.discourse.org/v2/letter/l/edb3f5/40.png" class="avatar"> lhill:</div>
+<blockquote>
+<p>Look at your trigger instance, specifically the <code>type:</code> parameter - it is <code>'type': 'CheckResult'</code></p>
+</blockquote>
+</aside>
+<p>Thanks <a class="mention" href="https://github.com/blag">@blag</a>, <a class="mention" href="https://github.com/lhill">@lhill</a>: That solved the Issue.</p>
+          <p><a href="https://forum.stackstorm.com/t/rule-doesnt-match-sensor-output/463/4">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/rule-doesnt-match-sensor-output/463/4</link>
+        <pubDate>Wed, 06 Feb 2019 04:46:01 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-463-4</guid>
+        <source url="https://forum.stackstorm.com/t/rule-doesnt-match-sensor-output/463.rss">Rule doesn&#39;t match sensor output</source>
+      </item>
+      <item>
+        <title>Rule doesn&#39;t match sensor output</title>
+        <dc:creator><![CDATA[lhill]]></dc:creator>
+        <description><![CDATA[
+            <p>Look at your trigger instance, specifically the <code>type:</code> parameter - it is <code>'type': 'CheckResult'</code></p>
+<p>But in your rule, you’re doing this:</p>
+<pre><code class="lang-yaml">   trigger.type:
+     type: "matchregex"
+     pattern : "*exit_status*"
+</code></pre>
+<p><code>exit_status</code> is the name of a key within your trigger - it is not a value. Are you trying to check if that key exists, or are you trying to check that the <code>exit_status</code> key exists, and is a particular value?</p>
+          <p><a href="https://forum.stackstorm.com/t/rule-doesnt-match-sensor-output/463/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/rule-doesnt-match-sensor-output/463/3</link>
+        <pubDate>Fri, 01 Feb 2019 22:11:33 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-463-3</guid>
+        <source url="https://forum.stackstorm.com/t/rule-doesnt-match-sensor-output/463.rss">Rule doesn&#39;t match sensor output</source>
+      </item>
+      <item>
+        <title>Rule doesn&#39;t match sensor output</title>
+        <dc:creator><![CDATA[blag]]></dc:creator>
+        <description><![CDATA[
+            <p>Answered: <a href="https://stackstorm-community.slack.com/archives/C066APT88/p1549007726529200" rel="nofollow noopener">https://stackstorm-community.slack.com/archives/C066APT88/p1549007726529200</a></p>
+<p>Your data is not valid JSON. That is why the rule is not matching.</p>
+          <p><a href="https://forum.stackstorm.com/t/rule-doesnt-match-sensor-output/463/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/rule-doesnt-match-sensor-output/463/2</link>
+        <pubDate>Fri, 01 Feb 2019 07:57:50 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-463-2</guid>
+        <source url="https://forum.stackstorm.com/t/rule-doesnt-match-sensor-output/463.rss">Rule doesn&#39;t match sensor output</source>
+      </item>
+      <item>
+        <title>Rule doesn&#39;t match sensor output</title>
+        <dc:creator><![CDATA[Batman]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi,</p>
+<p>I found out my rule doesn’t match with sensor output but unsure whats wrong. Any insight will be of much help</p>
+<p>Sensor output:</p>
+<p><code>2019-02-01 06:21:48,072 INFO [-] Processing event: {u'check_result': {u'check_source': u'xxx', u'exit_status': 2.0, u'vars_before': {u'state_type': 1.0, u'reachable': True, u'state': 2.0, u'attempt': 1.0}, u'type': u'CheckResult', u'vars_after': {u'state_type': 1.0, u'reachable': True, u'state': 2.0, u'attempt': 1.0}, u'execution_start': 1549002107.592814, u'schedule_end': 1549002108.066733, u'performance_data': [u'available_upgrades=3;;;0', u'critical_updates=3;;;0'], u'state': 2.0, u'command': xxx'], u'execution_end': 1549002108.066672, u'active': True, u'output': u'APT CRITICAL: xxx ', u'schedule_start': 1549002107.592504}, u'timestamp': 1549002108.066818, u'host': u'xxx', u'type': u'CheckResult', u'service': u'apt'}</code></p>
+<p>Rule:</p>
+<pre><code>name: icinga_action
+pack: icinga2
+description: Post to chat when icinga2 service state changes
+enabled: true
+trigger:
+  type: icinga2.event.state_change
+#criteria:
+#  trigger.type:
+#    pattern: "u'state_type"
+#    type: "eq"
+#  trigger.state_type:
+#    pattern: 0.1
+#    type: gt
+criteria:                              # optional
+   trigger.type:
+     type: "matchregex"
+     pattern : "*exit_status*"
+   trigger.state_type:
+     type: "gt"
+     pattern : "0.1"
+
+action:
+  ref: chatops.post_message
+  parameters:
+    message: Icinga2 service {{trigger.service}} on host {{trigger.host}} has changed its state to {{ trigger.state|int }}, state type {{ trigger.state_type|int }}
+      {{trigger.check_result.output}}
+    channel: 'xxxx'
+</code></pre>
+<p>Rule Doesn’t Match:</p>
+<p>2019-02-01 06:28:53,216 INFO [-] Validating rule icinga2.icinga_action for event.state_change.<br>
+2019-02-01 06:28:53,232 INFO [-] Validation for rule icinga2.icinga_action failed on     criteria -<br>
+key: trigger.state_type<br>
+pattern: 0.1<br>
+type: gt<br>
+payload: None<br>
+2019-02-01 06:28:53,232 INFO [-] 0 rule(s) found to enforce for event.state_change.<br>
+2019-02-01 06:28:53,232 INFO [-] === RULE DOES NOT MATCH ===</p>
+          <p><a href="https://forum.stackstorm.com/t/rule-doesnt-match-sensor-output/463/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/rule-doesnt-match-sensor-output/463/1</link>
+        <pubDate>Fri, 01 Feb 2019 06:33:02 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-463-1</guid>
+        <source url="https://forum.stackstorm.com/t/rule-doesnt-match-sensor-output/463.rss">Rule doesn&#39;t match sensor output</source>
+      </item>
+  </channel>
+</rss>

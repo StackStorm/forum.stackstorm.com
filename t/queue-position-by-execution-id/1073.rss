@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Queue position by execution ID</title>
+    <link>https://forum.stackstorm.com/t/queue-position-by-execution-id/1073</link>
+    <description>Is it possible to get the queue position of a task by its execution Id?, As in how many tasks are to be done prior to that task?</description>
+    
+    <lastBuildDate>Sat, 22 Feb 2020 12:33:57 +0000</lastBuildDate>
+    <category>API</category>
+    <atom:link href="https://forum.stackstorm.com/t/queue-position-by-execution-id/1073.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Queue position by execution ID</title>
+        <dc:creator><![CDATA[armab]]></dc:creator>
+        <description><![CDATA[
+            <p>You can query executions, filter depending on their status and calculate the position yourself.<br>
+Try to play with the <a href="https://api.stackstorm.com/api/v1/executions/">https://api.stackstorm.com/api/v1/executions/</a></p>
+          <p><a href="https://forum.stackstorm.com/t/queue-position-by-execution-id/1073/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/queue-position-by-execution-id/1073/2</link>
+        <pubDate>Sat, 22 Feb 2020 12:33:57 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1073-2</guid>
+        <source url="https://forum.stackstorm.com/t/queue-position-by-execution-id/1073.rss">Queue position by execution ID</source>
+      </item>
+      <item>
+        <title>Queue position by execution ID</title>
+        <dc:creator><![CDATA[Reth]]></dc:creator>
+        <description><![CDATA[
+            <p>Is it possible to get the queue position of a task by its execution Id?, As in how many tasks are to be done prior to that task?</p>
+          <p><a href="https://forum.stackstorm.com/t/queue-position-by-execution-id/1073/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/queue-position-by-execution-id/1073/1</link>
+        <pubDate>Fri, 21 Feb 2020 23:34:26 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1073-1</guid>
+        <source url="https://forum.stackstorm.com/t/queue-position-by-execution-id/1073.rss">Queue position by execution ID</source>
+      </item>
+  </channel>
+</rss>

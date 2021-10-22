@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>RabbitMQ cannot be re-established</title>
+    <link>https://forum.stackstorm.com/t/rabbitmq-cannot-be-re-established/1725</link>
+    <description>Hi Team,
+
+We are getting this issue. Please help to resolve.
+
+2021-06-01 12:36:22,302 ERROR [-] Connections to RabbitMQ cannot be re-established: [Errno 111] Connection refused
+Traceback (most recent call last):
+  File &quot;/opt/stackstorm/st2/lib/python3.6/site-packages/amqp/transport.py&quot;, line 137, in _connect
+    host, port, family, socket.SOCK_STREAM, SOL_TCP)
+  File &quot;/usr/lib64/python3.6/socket.py&quot;, line 745, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -9] Address family for hostname not supported</description>
+    
+    <lastBuildDate>Mon, 14 Jun 2021 19:13:42 +0000</lastBuildDate>
+    <category>Platform</category>
+    <atom:link href="https://forum.stackstorm.com/t/rabbitmq-cannot-be-re-established/1725.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>RabbitMQ cannot be re-established</title>
+        <dc:creator><![CDATA[jamesdreid]]></dc:creator>
+        <description><![CDATA[
+            <p>This looks like the message generated when the RabbitMQ service does not start.  I would check to make sure the service is running, restart it (if possible) and try again.  It does not say what version of ST2 or what OS it is being run on, but there was an issue with a Centos upgrade to RabbitMQ that caused it to not start properly.  The fix was to remove the one installed from the Centos repos and install the version distributed by RabbitMQ instead.</p>
+          <p><a href="https://forum.stackstorm.com/t/rabbitmq-cannot-be-re-established/1725/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/rabbitmq-cannot-be-re-established/1725/2</link>
+        <pubDate>Mon, 14 Jun 2021 19:13:42 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1725-2</guid>
+        <source url="https://forum.stackstorm.com/t/rabbitmq-cannot-be-re-established/1725.rss">RabbitMQ cannot be re-established</source>
+      </item>
+      <item>
+        <title>RabbitMQ cannot be re-established</title>
+        <dc:creator><![CDATA[arul]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi Team,</p>
+<p>We are getting this issue. Please help to resolve.</p>
+<p>2021-06-01 12:36:22,302 ERROR [-] Connections to RabbitMQ cannot be re-established: [Errno 111] Connection refused<br>
+Traceback (most recent call last):<br>
+File “/opt/stackstorm/st2/lib/python3.6/site-packages/amqp/transport.py”, line 137, in _connect<br>
+host, port, family, socket.SOCK_STREAM, SOL_TCP)<br>
+File “/usr/lib64/python3.6/socket.py”, line 745, in getaddrinfo<br>
+for res in _socket.getaddrinfo(host, port, family, type, proto, flags):<br>
+socket.gaierror: [Errno -9] Address family for hostname not supported</p>
+          <p><a href="https://forum.stackstorm.com/t/rabbitmq-cannot-be-re-established/1725/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/rabbitmq-cannot-be-re-established/1725/1</link>
+        <pubDate>Tue, 01 Jun 2021 12:55:01 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1725-1</guid>
+        <source url="https://forum.stackstorm.com/t/rabbitmq-cannot-be-re-established/1725.rss">RabbitMQ cannot be re-established</source>
+      </item>
+  </channel>
+</rss>

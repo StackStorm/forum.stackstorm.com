@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Stackstorm and Napalm_logs integration not working</title>
+    <link>https://forum.stackstorm.com/t/stackstorm-and-napalm-logs-integration-not-working/1625</link>
+    <description>I&#39;m running Stackstorm 3.4.1 on Python 3.6.8 on Centos 7 (3.10.0-1160.2.2.el7) and trying to get syslogs to trigger a rule.  Currently I have napalm-logs setup to ingest syslogs and publishes that to zmq.  This works correctly and verified w/ a zmq client.   
+
+I now have connected a zmq client, via the napalm-log pack and appear to ingest the syslog mesg but fails to process due to validation errors.  Here is the st2rulesengine.log output:
+
+2021-03-29 13:25:29,407 139692157875616 ERROR consumers [-] StagedQueueConsumer failed to process message: {&#39;trigger&#39;: &#39;napalm_logs.log&#39;, &#39;payload&#39;: {b&#39;host&#39;: b&#39;vmx01&#39;, b&#39;yang_message&#39;: {b&#39;bgp&#39;: {b&#39;neighbors&#39;: {b&#39;neighbor&#39;: {b&#39;192.168.140.254&#39;: {b&#39;state&#39;: {b&#39;peer_as&#39;: b&#39;4230&#39;}, b&#39;afi_safis&#39;: {b&#39;afi_safi&#39;: {b&#39;inet4&#39;: {b&#39;state&#39;: {b&#39;prefixes&#39;: {b&#39;received&#39;: 141}}, b&#39;ipv4_unicast&#39;: {b&#39;prefix_limit&#39;: {b&#39;state&#39;: {b&#39;max_prefixes&#39;: 140}}}}}}}}}}}, b&#39;message_details&#39;: {b&#39;processId&#39;: b&#39;2902&#39;, b&#39;facility&#39;: 3, b&#39;hostPrefix&#39;: None, b&#39;pri&#39;: b&#39;28&#39;, b&#39;processName&#39;: b&#39;rpd&#39;, b&#39;host&#39;: b&#39;vmx01&#39;, b&#39;tag&#39;: b&#39;BGP_PREFIX_THRESH_EXCEEDED&#39;, b&#39;time&#39;: b&#39;14:03:12&#39;, b&#39;date&#39;: b&#39;Jun 30&#39;, b&#39;message&#39;: b&#39;192.168.140.254 (External AS 4230): Configured maximum prefix-limit threshold(140) exceeded for inet4-unicast nlri: 141 (instance master)&#39;, b&#39;severity&#39;: 4}, b&#39;timestamp&#39;: 1593525792, b&#39;error&#39;: b&#39;BGP_PREFIX_THRESH_EXCEEDED&#39;, b&#39;ip&#39;: b&#39;192.168.1.183&#39;, b&#39;facility&#39;: 3, b&#39;os&#39;: b&#39;junos&#39;, b&#39;yang_model&#39;: b&#39;openconfig-bgp&#39;, b&#39;severity&#39;: 4}, &#39;trace_context&#39;: None}
+Traceback (most recent call last):
+  File &quot;/opt/stackstorm/st2/lib/python3.6/site-packages/st2common/transport/consumers.py&quot;, line 86, in process
+    response = self._handler.pre_ack_process(body)
+  File &quot;/opt/stackstorm/st2/lib/python3.6/site-packages/st2reactor/rules/worker.py&quot;, line 57, in pre_ack_process
+    raise_on_no_trigger=True)
+  File &quot;/opt/stackstorm/st2/lib/python3.6/site-packages/st2reactor/container/utils.py&quot;, line 55, in create_trigger_instance
+    return TriggerInstance.add_or_update(trigger_instance)
+  File &quot;/opt/stackstorm/st2/lib/python3.6/site-packages/st2common/persistence/base.py&quot;, line 174, in add_or_update
+    model_object = cls._get_impl().add_or_update(model_object, validate=True)
+  File &quot;/opt/stackstorm/st2/lib/python3.6/site-packages/st2common/models/db/__init__.py&quot;, line 466, in add_or_update
+    instance.save(validate=validate)
+  File &quot;/opt/stackstorm/st2/lib/python3.6/site-packages/mongoengine/document.py&quot;, line 369, in save
+    self.validate(clean=clean)
+  File &quot;/opt/stackstorm/st2/lib/python3.6/site-packages/mongoengine/base/document.py&quot;, line 413, in validate
+    raise ValidationError(message, errors=errors)
+mongoengine.errors.ValidationError: ValidationError (TriggerInstanceDB:None) (Invalid dictionary key - documents must have only string keys: [&#39;payload&#39;])
+
+Any ideas why this is failing MongoDB validations for this data?</description>
+    
+    <lastBuildDate>Tue, 27 Apr 2021 19:49:28 +0000</lastBuildDate>
+    <category>Platform</category>
+    <atom:link href="https://forum.stackstorm.com/t/stackstorm-and-napalm-logs-integration-not-working/1625.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Stackstorm and Napalm_logs integration not working</title>
+        <dc:creator><![CDATA[blag]]></dc:creator>
+        <description><![CDATA[
+            <p>Can you explain a bit more?</p>
+          <p><a href="https://forum.stackstorm.com/t/stackstorm-and-napalm-logs-integration-not-working/1625/7">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/stackstorm-and-napalm-logs-integration-not-working/1625/7</link>
+        <pubDate>Tue, 27 Apr 2021 19:49:28 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1625-7</guid>
+        <source url="https://forum.stackstorm.com/t/stackstorm-and-napalm-logs-integration-not-working/1625.rss">Stackstorm and Napalm_logs integration not working</source>
+      </item>
+      <item>
+        <title>Stackstorm and Napalm_logs integration not working</title>
+        <dc:creator><![CDATA[deezknuts]]></dc:creator>
+        <description><![CDATA[
+            <p>This turned out to be a python version issue.  Resolved</p>
+          <p><a href="https://forum.stackstorm.com/t/stackstorm-and-napalm-logs-integration-not-working/1625/6">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/stackstorm-and-napalm-logs-integration-not-working/1625/6</link>
+        <pubDate>Fri, 23 Apr 2021 20:40:25 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1625-6</guid>
+        <source url="https://forum.stackstorm.com/t/stackstorm-and-napalm-logs-integration-not-working/1625.rss">Stackstorm and Napalm_logs integration not working</source>
+      </item>
+      <item>
+        <title>Stackstorm and Napalm_logs integration not working</title>
+        <dc:creator><![CDATA[blag]]></dc:creator>
+        <description><![CDATA[
+            <p>The only help I can really give you is to configure everything to use strings instead of bytes.</p>
+<p>What version of ST2 are you using?</p>
+<pre><code class="lang-auto">st2 --version
+</code></pre>
+          <p><a href="https://forum.stackstorm.com/t/stackstorm-and-napalm-logs-integration-not-working/1625/5">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/stackstorm-and-napalm-logs-integration-not-working/1625/5</link>
+        <pubDate>Sun, 11 Apr 2021 20:10:27 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1625-5</guid>
+        <source url="https://forum.stackstorm.com/t/stackstorm-and-napalm-logs-integration-not-working/1625.rss">Stackstorm and Napalm_logs integration not working</source>
+      </item>
+      <item>
+        <title>Stackstorm and Napalm_logs integration not working</title>
+        <dc:creator><![CDATA[deezknuts]]></dc:creator>
+        <description><![CDATA[
+            <p>Thank you!   Thanks for pointing that out… the dictionary K/V are all byte strings.  That’s strange.  The client I’m using is the napalm-logs pack client from here: <a href="https://github.com/lampwins/stackstorm-napalm-logs" class="inline-onebox" rel="noopener nofollow ugc">GitHub - lampwins/stackstorm-napalm-logs</a>.  It registers a sensor and connects to the napalm-log ZMQ server.  I’m’ unsure why the dict is in byte string.  Newbie here so pls excuse me.  The syslog data source is a python script using sockets to send the data to the napalm-log syslog port.  I’ve also ran a virtual MX router and configured it to send syslog to napalm-log and got the same result (byte string)  Thoughts?</p>
+          <p><a href="https://forum.stackstorm.com/t/stackstorm-and-napalm-logs-integration-not-working/1625/4">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/stackstorm-and-napalm-logs-integration-not-working/1625/4</link>
+        <pubDate>Tue, 30 Mar 2021 03:10:37 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1625-4</guid>
+        <source url="https://forum.stackstorm.com/t/stackstorm-and-napalm-logs-integration-not-working/1625.rss">Stackstorm and Napalm_logs integration not working</source>
+      </item>
+      <item>
+        <title>Stackstorm and Napalm_logs integration not working</title>
+        <dc:creator><![CDATA[blag]]></dc:creator>
+        <description><![CDATA[
+            <p>The error message looks pretty clear to me. Something is trying to store a dictionary that uses bytes as dictionary keys and MongoDB can only handle dictionary keys that are strings.</p>
+<aside class="quote no-group quote-modified" data-username="deezknuts" data-post="1" data-topic="1625">
+<div class="title">
+<div class="quote-controls"></div>
+<img alt="" width="20" height="20" src="https://sjc6.discourse-cdn.com/standard10/user_avatar/forum.stackstorm.com/deezknuts/40/391_2.png" class="avatar"> deezknuts:</div>
+<blockquote>
+<pre><code class="lang-auto">...
+{
+  b’host’: b’vmx01’,
+  b’yang_message’: {
+    b’bgp’: {
+      b’neighbors’: {
+        b’neighbor’: {
+          b’192.168.140.254’: {
+            b’state’: {
+              b’peer_as’: b’4230’
+            },
+            b’afi_safis’: {
+              b’afi_safi’: {
+                b’inet4’: {
+                  b’state’: {
+                    b’prefixes’: {
+                      b’received’: 141
+                    }
+                  },
+                  b’ipv4_unicast’: {
+                    b’prefix_limit’: {
+                      b’state’: {
+                        b’max_prefixes’: 140
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  b’message_details’: {
+    b’processId’: b’2902’,
+    b’facility’: 3,
+    b’hostPrefix’: None,
+    b’pri’: b’28’,
+    b’processName’: b’rpd’,
+    b’host’: b’vmx01’,
+    b’tag’: b’BGP_PREFIX_THRESH_EXCEEDED’,
+    b’time’: b’14:03:12’,
+    b’date’: b’Jun 30’,
+    b’message’: b’192.168.140.254 (External AS 4230): Configured maximum prefix-limit threshold(140) exceeded for inet4-unicast nlri: 141 (instance master)’,
+    b’severity’: 4
+  },
+  b’timestamp’: 1593525792,
+  b’error’: b’BGP_PREFIX_THRESH_EXCEEDED’,
+  b’ip’: b’192.168.1.183’,
+  b’facility’: 3,
+  b’os’: b’junos’,
+  b’yang_model’: b’openconfig-bgp’,
+  b’severity’: 4
+}
+</code></pre>
+</blockquote>
+</aside>
+<p>Either your payload source is sending those keys that are bytes, or your ZMQ client is decoding them as bytes instead of strings.</p>
+<p>Have you verified either or both of those possibilities?</p>
+          <p><a href="https://forum.stackstorm.com/t/stackstorm-and-napalm-logs-integration-not-working/1625/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/stackstorm-and-napalm-logs-integration-not-working/1625/2</link>
+        <pubDate>Mon, 29 Mar 2021 21:46:39 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1625-2</guid>
+        <source url="https://forum.stackstorm.com/t/stackstorm-and-napalm-logs-integration-not-working/1625.rss">Stackstorm and Napalm_logs integration not working</source>
+      </item>
+      <item>
+        <title>Stackstorm and Napalm_logs integration not working</title>
+        <dc:creator><![CDATA[deezknuts]]></dc:creator>
+        <description><![CDATA[
+            <p>I’m running Stackstorm 3.4.1 on Python 3.6.8 on Centos 7 (3.10.0-1160.2.2.el7) and trying to get syslogs to trigger a rule.  Currently I have napalm-logs setup to ingest syslogs and publishes that to zmq.  This works correctly and verified w/ a zmq client.</p>
+<p>I now have connected a zmq client, via the napalm-log pack and appear to ingest the syslog mesg but fails to process due to validation errors.  Here is the st2rulesengine.log output:</p>
+<p>2021-03-29 13:25:29,407 139692157875616 ERROR consumers [-] StagedQueueConsumer failed to process message: {‘trigger’: ‘napalm_logs.log’, ‘payload’: {b’host’: b’vmx01’, b’yang_message’: {b’bgp’: {b’neighbors’: {b’neighbor’: {b’192.168.140.254’: {b’state’: {b’peer_as’: b’4230’}, b’afi_safis’: {b’afi_safi’: {b’inet4’: {b’state’: {b’prefixes’: {b’received’: 141}}, b’ipv4_unicast’: {b’prefix_limit’: {b’state’: {b’max_prefixes’: 140}}}}}}}}}}}, b’message_details’: {b’processId’: b’2902’, b’facility’: 3, b’hostPrefix’: None, b’pri’: b’28’, b’processName’: b’rpd’, b’host’: b’vmx01’, b’tag’: b’BGP_PREFIX_THRESH_EXCEEDED’, b’time’: b’14:03:12’, b’date’: b’Jun 30’, b’message’: b’192.168.140.254 (External AS 4230): Configured maximum prefix-limit threshold(140) exceeded for inet4-unicast nlri: 141 (instance master)’, b’severity’: 4}, b’timestamp’: 1593525792, b’error’: b’BGP_PREFIX_THRESH_EXCEEDED’, b’ip’: b’192.168.1.183’, b’facility’: 3, b’os’: b’junos’, b’yang_model’: b’openconfig-bgp’, b’severity’: 4}, ‘trace_context’: None}<br>
+Traceback (most recent call last):<br>
+File “/opt/stackstorm/st2/lib/python3.6/site-packages/st2common/transport/consumers.py”, line 86, in process<br>
+response = self._handler.pre_ack_process(body)<br>
+File “/opt/stackstorm/st2/lib/python3.6/site-packages/st2reactor/rules/worker.py”, line 57, in pre_ack_process<br>
+raise_on_no_trigger=True)<br>
+File “/opt/stackstorm/st2/lib/python3.6/site-packages/st2reactor/container/utils.py”, line 55, in create_trigger_instance<br>
+return TriggerInstance.add_or_update(trigger_instance)<br>
+File “/opt/stackstorm/st2/lib/python3.6/site-packages/st2common/persistence/base.py”, line 174, in add_or_update<br>
+model_object = cls._get_impl().add_or_update(model_object, validate=True)<br>
+File “/opt/stackstorm/st2/lib/python3.6/site-packages/st2common/models/db/<strong>init</strong>.py”, line 466, in add_or_update<br>
+instance.save(validate=validate)<br>
+File “/opt/stackstorm/st2/lib/python3.6/site-packages/mongoengine/document.py”, line 369, in save<br>
+self.validate(clean=clean)<br>
+File “/opt/stackstorm/st2/lib/python3.6/site-packages/mongoengine/base/document.py”, line 413, in validate<br>
+raise ValidationError(message, errors=errors)<br>
+mongoengine.errors.ValidationError: ValidationError (TriggerInstanceDB:None) (Invalid dictionary key - documents must have only string keys: [‘payload’])</p>
+<p>Any ideas why this is failing MongoDB validations for this data?</p>
+          <p><a href="https://forum.stackstorm.com/t/stackstorm-and-napalm-logs-integration-not-working/1625/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/stackstorm-and-napalm-logs-integration-not-working/1625/1</link>
+        <pubDate>Mon, 29 Mar 2021 21:12:18 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1625-1</guid>
+        <source url="https://forum.stackstorm.com/t/stackstorm-and-napalm-logs-integration-not-working/1625.rss">Stackstorm and Napalm_logs integration not working</source>
+      </item>
+  </channel>
+</rss>

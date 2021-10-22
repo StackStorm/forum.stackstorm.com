@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Do we support multiple replicas for st2sensorcontainer, st2rulesengine in kubernetes-1ppc mode?</title>
+    <link>https://forum.stackstorm.com/t/do-we-support-multiple-replicas-for-st2sensorcontainer-st2rulesengine-in-kubernetes-1ppc-mode/116</link>
+    <description>Hi Team,
+I deployed st2 using kubernetes-1ppc mode
+I saw all the replicas in the st2.yml are all set to 1
+like  st2sensorcontainer
+https://github.com/StackStorm/st2-docker/blob/master/runtime/kubernetes-1ppc/st2.yml#L128
+
+I went through our ha doc and found some st2 comps need to take extra work to achieve HA(like st2rulesengine need to disable the timer,  st2sensorcontainer need to consider partitioning sensors) 
+https://docs.stackstorm.com/reference/ha.html
+My question is do we support multi-replicas? expecially for st2sensorcontainer,st2rulesengine, these comps.
+Any extra work to do when using kubernetes-1ppc mode?</description>
+    
+    <lastBuildDate>Wed, 18 Apr 2018 07:44:17 +0000</lastBuildDate>
+    <category>Platform</category>
+    <atom:link href="https://forum.stackstorm.com/t/do-we-support-multiple-replicas-for-st2sensorcontainer-st2rulesengine-in-kubernetes-1ppc-mode/116.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Do we support multiple replicas for st2sensorcontainer, st2rulesengine in kubernetes-1ppc mode?</title>
+        <dc:creator><![CDATA[longfei]]></dc:creator>
+        <description><![CDATA[
+            <p>I run with following configurations and it worked for me<br>
+replicas:<br>
+st2web: 3<br>
+st2stream: 3<br>
+st2sensorcontainer: 1<br>
+st2rulesengine: 1<br>
+st2resultstracker: 3<br>
+st2notifier: 3<br>
+st2garbagecollector: 1<br>
+st2auth: 3<br>
+st2api: 3<br>
+st2actionrunner: 3<br>
+mistralserver: 3<br>
+mistralapi: 3</p>
+          <p><a href="https://forum.stackstorm.com/t/do-we-support-multiple-replicas-for-st2sensorcontainer-st2rulesengine-in-kubernetes-1ppc-mode/116/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/do-we-support-multiple-replicas-for-st2sensorcontainer-st2rulesengine-in-kubernetes-1ppc-mode/116/3</link>
+        <pubDate>Wed, 18 Apr 2018 07:44:17 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-116-3</guid>
+        <source url="https://forum.stackstorm.com/t/do-we-support-multiple-replicas-for-st2sensorcontainer-st2rulesengine-in-kubernetes-1ppc-mode/116.rss">Do we support multiple replicas for st2sensorcontainer, st2rulesengine in kubernetes-1ppc mode?</source>
+      </item>
+      <item>
+        <title>Do we support multiple replicas for st2sensorcontainer, st2rulesengine in kubernetes-1ppc mode?</title>
+        <dc:creator><![CDATA[warrenvw]]></dc:creator>
+        <description><![CDATA[
+            <p>Sorry… I do not know of any out-of-the-box st2-docker based solution that does the noted extra work required to achieve HA. I believe multi-replicas would work in k8s-1ppc mode once these additional changes are made.</p>
+<p>Anyone else able to provide a working example?</p>
+          <p><a href="https://forum.stackstorm.com/t/do-we-support-multiple-replicas-for-st2sensorcontainer-st2rulesengine-in-kubernetes-1ppc-mode/116/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/do-we-support-multiple-replicas-for-st2sensorcontainer-st2rulesengine-in-kubernetes-1ppc-mode/116/2</link>
+        <pubDate>Thu, 05 Apr 2018 16:47:46 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-116-2</guid>
+        <source url="https://forum.stackstorm.com/t/do-we-support-multiple-replicas-for-st2sensorcontainer-st2rulesengine-in-kubernetes-1ppc-mode/116.rss">Do we support multiple replicas for st2sensorcontainer, st2rulesengine in kubernetes-1ppc mode?</source>
+      </item>
+      <item>
+        <title>Do we support multiple replicas for st2sensorcontainer, st2rulesengine in kubernetes-1ppc mode?</title>
+        <dc:creator><![CDATA[longfei]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi Team,<br>
+I deployed st2 using kubernetes-1ppc mode<br>
+I saw all the replicas in the st2.yml are all set to 1<br>
+like  st2sensorcontainer<br>
+</p><aside class="onebox githubblob">
+  <header class="source">
+      <a href="https://github.com/StackStorm/st2-docker/blob/master/runtime/kubernetes-1ppc/st2.yml#L128" target="_blank" rel="nofollow noopener">github.com</a>
+  </header>
+  <article class="onebox-body">
+    <h4><a href="https://github.com/StackStorm/st2-docker/blob/master/runtime/kubernetes-1ppc/st2.yml#L128" target="_blank" rel="nofollow noopener">StackStorm/st2-docker/blob/master/runtime/kubernetes-1ppc/st2.yml#L128</a></h4>
+<pre class="onebox"><code class="lang-yml"><ol class="start lines" start="118" style="counter-reset: li-counter 117 ;">
+<li>ports:</li>
+<li>- protocol: TCP</li>
+<li>  port: 9102</li>
+<li>
+</li>
+<li>---</li>
+<li>apiVersion: apps/v1beta1</li>
+<li>kind: Deployment</li>
+<li>metadata:</li>
+<li>name: st2sensorcontainer</li>
+<li>spec:</li>
+<li class="selected">replicas: 1</li>
+<li>template:</li>
+<li>  metadata:</li>
+<li>    labels:</li>
+<li>      app: st2sensorcontainer</li>
+<li>  spec:</li>
+<li>    containers:</li>
+<li>    - name: st2sensorcontainer</li>
+<li>      image: stackstorm/stackstorm:latest</li>
+<li>      imagePullPolicy: IfNotPresent</li>
+<li>      env:</li>
+</ol></code></pre>
+
+
+  </article>
+  <div class="onebox-metadata">
+    
+    
+  </div>
+  <div style="clear: both"></div>
+</aside>
+<p></p>
+<p>I went through our ha doc and found some st2 comps need to take extra work to achieve HA(like st2rulesengine need to disable the timer,  st2sensorcontainer need to consider partitioning sensors)<br>
+<a href="https://docs.stackstorm.com/reference/ha.html" class="onebox" target="_blank" rel="nofollow noopener">https://docs.stackstorm.com/reference/ha.html</a><br>
+My question is do we support multi-replicas? expecially for st2sensorcontainer,st2rulesengine, these comps.<br>
+Any extra work to do when using kubernetes-1ppc mode?</p>
+          <p><a href="https://forum.stackstorm.com/t/do-we-support-multiple-replicas-for-st2sensorcontainer-st2rulesengine-in-kubernetes-1ppc-mode/116/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/do-we-support-multiple-replicas-for-st2sensorcontainer-st2rulesengine-in-kubernetes-1ppc-mode/116/1</link>
+        <pubDate>Wed, 04 Apr 2018 02:41:35 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-116-1</guid>
+        <source url="https://forum.stackstorm.com/t/do-we-support-multiple-replicas-for-st2sensorcontainer-st2rulesengine-in-kubernetes-1ppc-mode/116.rss">Do we support multiple replicas for st2sensorcontainer, st2rulesengine in kubernetes-1ppc mode?</source>
+      </item>
+  </channel>
+</rss>

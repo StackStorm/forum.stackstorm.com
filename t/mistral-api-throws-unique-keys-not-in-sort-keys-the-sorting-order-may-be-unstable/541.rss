@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Mistral api throws Unique keys not in sort_keys. The sorting order may be unstable</title>
+    <link>https://forum.stackstorm.com/t/mistral-api-throws-unique-keys-not-in-sort-keys-the-sorting-order-may-be-unstable/541</link>
+    <description>The workflow is stuck and not proceed with api log:
+Unique keys not in sort_keys. The sorting order may be unstable.
+
+OR
+
+Adding password for user stackstorm
+/st2-docker/bin/entrypoint.sh: ignoring /st2-docker/entrypoint.d/*
+
+Traceback (most recent call last):
+  File &quot;/opt/stackstorm/mistral/bin/gunicorn&quot;, line 11, in &lt;module&gt;
+    sys.exit(run())
+  File &quot;/opt/stackstorm/mistral/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py&quot;, line 61, in run
+    WSGIApplication(&quot;%(prog)s [OPTIONS] [APP_MODULE]&quot;).run()
+  File &quot;/opt/stackstorm/mistral/lib/python2.7/site-packages/gunicorn/app/base.py&quot;, line 223, in run
+    super(Application, self).run()
+  File &quot;/opt/stackstorm/mistral/lib/python2.7/site-packages/gunicorn/app/base.py&quot;, line 72, in run
+    Arbiter(self).run()
+  File &quot;/opt/stackstorm/mistral/lib/python2.7/site-packages/gunicorn/arbiter.py&quot;, line 232, in run
+    self.halt(reason=inst.reason, exit_status=inst.exit_status)
+  File &quot;/opt/stackstorm/mistral/lib/python2.7/site-packages/gunicorn/arbiter.py&quot;, line 345, in halt
+    self.stop()
+  File &quot;/opt/stackstorm/mistral/lib/python2.7/site-packages/gunicorn/arbiter.py&quot;, line 393, in stop
+    time.sleep(0.1)
+  File &quot;/opt/stackstorm/mistral/lib/python2.7/site-packages/gunicorn/arbiter.py&quot;, line 245, in handle_chld
+    self.reap_workers()
+  File &quot;/opt/stackstorm/mistral/lib/python2.7/site-packages/gunicorn/arbiter.py&quot;, line 525, in reap_workers
+    raise HaltServer(reason, self.WORKER_BOOT_ERROR)
+gunicorn.errors.HaltServer: &lt;HaltServer &#39;Worker failed to boot.&#39; 3&gt;</description>
+    
+    <lastBuildDate>Wed, 13 Mar 2019 19:39:56 +0000</lastBuildDate>
+    <category>Uncategorized</category>
+    <atom:link href="https://forum.stackstorm.com/t/mistral-api-throws-unique-keys-not-in-sort-keys-the-sorting-order-may-be-unstable/541.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Mistral api throws Unique keys not in sort_keys. The sorting order may be unstable</title>
+        <dc:creator><![CDATA[warrenvw]]></dc:creator>
+        <description><![CDATA[
+            <p>Hello <a class="mention" href="https://github.com/chenww">@chenww</a>. I could be of more assistance if I knew more about your environment and how to reproduce the issue.</p>
+          <p><a href="https://forum.stackstorm.com/t/mistral-api-throws-unique-keys-not-in-sort-keys-the-sorting-order-may-be-unstable/541/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/mistral-api-throws-unique-keys-not-in-sort-keys-the-sorting-order-may-be-unstable/541/2</link>
+        <pubDate>Wed, 13 Mar 2019 19:39:56 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-541-2</guid>
+        <source url="https://forum.stackstorm.com/t/mistral-api-throws-unique-keys-not-in-sort-keys-the-sorting-order-may-be-unstable/541.rss">Mistral api throws Unique keys not in sort_keys. The sorting order may be unstable</source>
+      </item>
+      <item>
+        <title>Mistral api throws Unique keys not in sort_keys. The sorting order may be unstable</title>
+        <dc:creator><![CDATA[chenww]]></dc:creator>
+        <description><![CDATA[
+            <p>The workflow is stuck and not proceed with api log:<br>
+Unique keys not in sort_keys. The sorting order may be unstable.</p>
+<p>OR</p>
+<p>Adding password for user stackstorm<br>
+/st2-docker/bin/entrypoint.sh: ignoring /st2-docker/entrypoint.d/*</p>
+<p>Traceback (most recent call last):<br>
+File “/opt/stackstorm/mistral/bin/gunicorn”, line 11, in <br>
+sys.exit(run())<br>
+File “/opt/stackstorm/mistral/lib/python2.7/site-packages/gunicorn/app/wsgiapp.py”, line 61, in run<br>
+WSGIApplication("%(prog)s [OPTIONS] [APP_MODULE]").run()<br>
+File “/opt/stackstorm/mistral/lib/python2.7/site-packages/gunicorn/app/base.py”, line 223, in run<br>
+super(Application, self).run()<br>
+File “/opt/stackstorm/mistral/lib/python2.7/site-packages/gunicorn/app/base.py”, line 72, in run<br>
+Arbiter(self).run()<br>
+File “/opt/stackstorm/mistral/lib/python2.7/site-packages/gunicorn/arbiter.py”, line 232, in run<br>
+self.halt(reason=inst.reason, exit_status=inst.exit_status)<br>
+File “/opt/stackstorm/mistral/lib/python2.7/site-packages/gunicorn/arbiter.py”, line 345, in halt<br>
+self.stop()<br>
+File “/opt/stackstorm/mistral/lib/python2.7/site-packages/gunicorn/arbiter.py”, line 393, in stop<br>
+time.sleep(0.1)<br>
+File “/opt/stackstorm/mistral/lib/python2.7/site-packages/gunicorn/arbiter.py”, line 245, in handle_chld<br>
+self.reap_workers()<br>
+File “/opt/stackstorm/mistral/lib/python2.7/site-packages/gunicorn/arbiter.py”, line 525, in reap_workers<br>
+raise HaltServer(reason, self.WORKER_BOOT_ERROR)<br>
+gunicorn.errors.HaltServer: &lt;HaltServer ‘Worker failed to boot.’ 3&gt;</p>
+          <p><a href="https://forum.stackstorm.com/t/mistral-api-throws-unique-keys-not-in-sort-keys-the-sorting-order-may-be-unstable/541/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/mistral-api-throws-unique-keys-not-in-sort-keys-the-sorting-order-may-be-unstable/541/1</link>
+        <pubDate>Mon, 11 Mar 2019 15:49:46 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-541-1</guid>
+        <source url="https://forum.stackstorm.com/t/mistral-api-throws-unique-keys-not-in-sort-keys-the-sorting-order-may-be-unstable/541.rss">Mistral api throws Unique keys not in sort_keys. The sorting order may be unstable</source>
+      </item>
+  </channel>
+</rss>

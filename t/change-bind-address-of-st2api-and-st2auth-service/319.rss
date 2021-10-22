@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Change bind address of st2api and st2auth service</title>
+    <link>https://forum.stackstorm.com/t/change-bind-address-of-st2api-and-st2auth-service/319</link>
+    <description>can someone tell me how to change bind address of st2auth, st2api and st2stream
+by default it binds to 127.0.0.1 but I am running nginx on another server and not able to communicate from there
+I have already tried changing it to 0.0.0.0 in /etc/st2/st2.conf and /usr/lib/systemd/system/st2api.service
+now unicorn daemon is running with 0.0.0.0 but it still binding to 127.0.0.1
+
+[root@no1010042033174 ~]# ps afx|grep st2api
+22863 pts/0    S+     0:00          \_ grep --color=auto st2api
+11605 ?        Ss     0:01 /opt/stackstorm/st2/bin/python /opt/stackstorm/st2/bin/gunicorn st2api.wsgi:application -k eventlet -b 0.0.0.0:9101 --workers 1 --threads 1 --graceful-timeout 10 --timeout 30 --log-config /etc/st2/logging.api.gunicorn.conf
+11825 ?        S      0:33  \_ /opt/stackstorm/st2/bin/python /opt/stackstorm/st2/bin/gunicorn st2api.wsgi:application -k eventlet -b 0.0.0.0:9101 --workers 1 --threads 1 --graceful-timeout 10 --timeout 30 --log-config /etc/st2/logging.api.gunicorn.conf
+[root@no1010042033174 ~]# netstat -ntlp
+Active Internet connections (only servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name
+tcp        0      0 127.0.0.1:8989          0.0.0.0:*               LISTEN      11838/python
+tcp        0      0 0.0.0.0:2049            0.0.0.0:*               LISTEN      -
+tcp        0      0 0.0.0.0:50819           0.0.0.0:*               LISTEN      1292/rpc.statd
+tcp        0      0 0.0.0.0:42981           0.0.0.0:*               LISTEN      -
+tcp        0      0 127.0.0.1:9100          0.0.0.0:*               LISTEN      1/systemd
+tcp        0      0 127.0.0.1:9101          0.0.0.0:*               LISTEN      1/systemd
+tcp        0      0 127.0.0.1:9102          0.0.0.0:*               LISTEN      1/systemd
+tcp        0      0 0.0.0.0:111             0.0.0.0:*               LISTEN      502/rpcbind
+tcp        0      0 0.0.0.0:20048           0.0.0.0:*               LISTEN      1303/rpc.mountd
+tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      2070/sshd
+tcp        0      0 127.0.0.1:25            0.0.0.0:*               LISTEN      952/master
+tcp6       0      0 :::45916                :::*                    LISTEN      1292/rpc.statd
+tcp6       0      0 :::2049                 :::*                    LISTEN      -
+tcp6       0      0 :::34735                :::*                    LISTEN      -
+tcp6       0      0 :::111                  :::*                    LISTEN      502/rpcbind
+tcp6       0      0 :::20048                :::*                    LISTEN      1303/rpc.mountd
+tcp6       0      0 :::22                   :::*                    LISTEN      2070/sshd
+tcp6       0      0 ::1:25                  :::*                    LISTEN      952/master
+[root@no1010042033174 ~]#</description>
+    
+    <lastBuildDate>Tue, 25 Sep 2018 17:07:24 +0000</lastBuildDate>
+    <category>API</category>
+    <atom:link href="https://forum.stackstorm.com/t/change-bind-address-of-st2api-and-st2auth-service/319.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Change bind address of st2api and st2auth service</title>
+        <dc:creator><![CDATA[lhill]]></dc:creator>
+        <description><![CDATA[
+            <p><a href="https://github.com/StackStorm/st2/issues/3356">Ports for api and authentication services can't be changed · Issue #3356 · StackStorm/st2 · GitHub</a> may be relevant</p>
+          <p><a href="https://forum.stackstorm.com/t/change-bind-address-of-st2api-and-st2auth-service/319/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/change-bind-address-of-st2api-and-st2auth-service/319/2</link>
+        <pubDate>Tue, 25 Sep 2018 17:07:24 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-319-2</guid>
+        <source url="https://forum.stackstorm.com/t/change-bind-address-of-st2api-and-st2auth-service/319.rss">Change bind address of st2api and st2auth service</source>
+      </item>
+      <item>
+        <title>Change bind address of st2api and st2auth service</title>
+        <dc:creator><![CDATA[arun2803]]></dc:creator>
+        <description><![CDATA[
+            <p>can someone tell me how to change bind address of st2auth, st2api and st2stream<br>
+by default it binds to 127.0.0.1 but I am running nginx on another server and not able to communicate from there<br>
+I have already tried changing it to 0.0.0.0 in /etc/st2/st2.conf and /usr/lib/systemd/system/st2api.service<br>
+now unicorn daemon is running with 0.0.0.0 but it still binding to 127.0.0.1</p>
+<p>[root@no1010042033174 ~]# ps afx|grep st2api<br>
+22863 pts/0    S+     0:00          _ grep --color=auto st2api<br>
+11605 ?        Ss     0:01 /opt/stackstorm/st2/bin/python /opt/stackstorm/st2/bin/gunicorn st2api.wsgi:application -k eventlet -b 0.0.0.0:9101 --workers 1 --threads 1 --graceful-timeout 10 --timeout 30 --log-config /etc/st2/logging.api.gunicorn.conf<br>
+11825 ?        S      0:33  _ /opt/stackstorm/st2/bin/python /opt/stackstorm/st2/bin/gunicorn st2api.wsgi:application -k eventlet -b 0.0.0.0:9101 --workers 1 --threads 1 --graceful-timeout 10 --timeout 30 --log-config /etc/st2/logging.api.gunicorn.conf<br>
+[root@no1010042033174 ~]# netstat -ntlp<br>
+Active Internet connections (only servers)<br>
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name<br>
+tcp        0      0 127.0.0.1:8989          0.0.0.0:*               LISTEN      11838/python<br>
+tcp        0      0 0.0.0.0:2049            0.0.0.0:*               LISTEN      -<br>
+tcp        0      0 0.0.0.0:50819           0.0.0.0:*               LISTEN      1292/rpc.statd<br>
+tcp        0      0 0.0.0.0:42981           0.0.0.0:*               LISTEN      -<br>
+tcp        0      0 127.0.0.1:9100          0.0.0.0:*               LISTEN      1/systemd<br>
+tcp        0      0 127.0.0.1:9101          0.0.0.0:*               LISTEN      1/systemd<br>
+tcp        0      0 127.0.0.1:9102          0.0.0.0:*               LISTEN      1/systemd<br>
+tcp        0      0 0.0.0.0:111             0.0.0.0:*               LISTEN      502/rpcbind<br>
+tcp        0      0 0.0.0.0:20048           0.0.0.0:*               LISTEN      1303/rpc.mountd<br>
+tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      2070/sshd<br>
+tcp        0      0 127.0.0.1:25            0.0.0.0:*               LISTEN      952/master<br>
+tcp6       0      0 :::45916                :::*                    LISTEN      1292/rpc.statd<br>
+tcp6       0      0 :::2049                 :::*                    LISTEN      -<br>
+tcp6       0      0 :::34735                :::*                    LISTEN      -<br>
+tcp6       0      0 :::111                  :::*                    LISTEN      502/rpcbind<br>
+tcp6       0      0 :::20048                :::*                    LISTEN      1303/rpc.mountd<br>
+tcp6       0      0 :::22                   :::*                    LISTEN      2070/sshd<br>
+tcp6       0      0 ::1:25                  :::*                    LISTEN      952/master<br>
+[root@no1010042033174 ~]#</p>
+          <p><a href="https://forum.stackstorm.com/t/change-bind-address-of-st2api-and-st2auth-service/319/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/change-bind-address-of-st2api-and-st2auth-service/319/1</link>
+        <pubDate>Tue, 25 Sep 2018 16:35:53 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-319-1</guid>
+        <source url="https://forum.stackstorm.com/t/change-bind-address-of-st2api-and-st2auth-service/319.rss">Change bind address of st2api and st2auth service</source>
+      </item>
+  </channel>
+</rss>

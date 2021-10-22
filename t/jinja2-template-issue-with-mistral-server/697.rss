@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Jinja2 template issue with mistral server</title>
+    <link>https://forum.stackstorm.com/t/jinja2-template-issue-with-mistral-server/697</link>
+    <description>I have a mistral action that has the following input parameters:
+
+        input:
+          cmts_hostname: &#39;&lt;% $.cmts.cmts %&gt;&#39;
+          mac_list:
+            CM_MAC_ADDRS: &#39;{% set macs=[] %}{% for mac in _.cmts.mac -%}{{ macs.append({&quot;CM_MAC_ADDR&quot;: mac,&quot;ACTION&quot;:&quot;UNBLOCK&quot;, &quot;REASON&quot;: &quot;AGING&quot;}) }}{%- endfor %}{{ macs }}&#39;
+
+however the log file shows additional &quot;None&quot; string in the data structure:
+
+&gt; 2019-06-21 03:14:01.110 260 INFO mistral.notifiers.notification_server [req-83f261a9-ddd4-4c73-862f-777a17292759 - - - - -] Received RPC request &#39;notify&#39;[ex_id=aa87eb30-eca0-44bd-a4c6-cd85f22240cb, event=TASK_LAUNCHED, timestamp=None, data={u&#39;state_info&#39;: None, u&#39;in_context&#39;: {u&#39;__task_execution&#39;: {u&#39;id&#39;: u&#39;aa87eb30-eca0-44bd-a4c6-cd85f22240cb&#39;, u&#39;name&#39;: u&#39;unblock_cmts&#39;}}, u&#39;name&#39;: u&#39;unblock_cmts&#39;, u&#39;workflow_name&#39;: u&#39;modem_clone.unblock_aged_modems_workflow.unblock_cmts&#39;, u&#39;unique_key&#39;: None, u&#39;created_at&#39;: u&#39;2019-06-21 03:14:01&#39;, u&#39;runtime_context&#39;: {}, u&#39;state&#39;: u&#39;RUNNING&#39;, u&#39;id&#39;: u&#39;aa87eb30-eca0-44bd-a4c6-cd85f22240cb&#39;, u&#39;workflow_execution_id&#39;: u&#39;5d96372b-edfb-4720-8515-2c352a2e698d&#39;, u&#39;workflow_id&#39;: u&#39;6141d78c-79bd-449b-ae47-57e58b9feac2&#39;, u&#39;workflow_namespace&#39;: u&#39;&#39;, u&#39;published&#39;: {}, u&#39;scope&#39;: u&#39;private&#39;, u&#39;project_id&#39;: u&#39;&lt;default-project&gt;&#39;, u&#39;type&#39;: u&#39;ACTION&#39;, u&#39;spec&#39;: {u&#39;action&#39;: u&#39;st2.action&#39;, u&#39;input&#39;: {u&#39;ref&#39;: u&#39;modem_clone.modify_modem_block_list_workflow&#39;, u&#39;parameters&#39;: {u&#39;cmts_hostname&#39;: u&#39;&lt;% $.cmts.cmts %&gt;&#39;, u&#39;mac_list&#39;: {u&#39;CM_MAC_ADDRS&#39;: u&#39;{% set macs=[] %}{% for mac in _.cmts.mac -%}{{ macs.append({&quot;CM_MAC_ADDR&quot;: mac,&quot;ACTION&quot;:&quot;UNBLOCK&quot;, &quot;REASON&quot;: &quot;AGING&quot;}) }}{%- endfor %}{{ macs }}&#39;}, u&#39;run_id&#39;: u&#39;&lt;% $.run_id %&gt;&#39;}}, u&#39;version&#39;: u&#39;2.0&#39;, u&#39;type&#39;: u&#39;direct&#39;, u&#39;name&#39;: u&#39;unblock_cmts&#39;}, u&#39;processed&#39;: False}, publishers=[{u&#39;type&#39;: u&#39;st2&#39;}]]
+2019-06-21 03:14:01.111 260 INFO st2mistral.notifiers.stackstorm_notifier [req-83f261a9-ddd4-4c73-862f-777a17292759 - - - - -] The event TASK_LAUNCHED for aa87eb30-eca0-44bd-a4c6-cd85f22240cb is not processed for st2 because there is no event handler defined.
+2019-06-21 03:14:01.137 260 INFO mistral.executors.executor_server [req-3a2ab8a5-d7f6-491e-b389-6947d8bd7d7a - - - - -] Received RPC request &#39;run_action&#39;[action_ex_id=700907b8-42cf-49c0-95df-5875393488b1, action_cls_str=st2mistral.actions.stackstorm.St2Action, action_cls_attrs={}, params={st2_context: {u&#39;endpoint&#39;: u&#39;http://127.0.0.1:9101/v1/actionexecutions&#39;, u&#39;api_url&#39;: u&#39;http://127.0.0.1:9101/v1&#39;, u&#39;parent&#39;: {u&#39;trace_context&#39;: {}, u&#39;user&#39;: u&#39;admin&#39;, u&#39;execution_id&#39;: u&#39;5d0c4b776ee06301ddd02959&#39;, u&#39;pack&#39;: u&#39;modem_clone&#39;}, u&#39;auth_token&#39;: u&#39;4d02c6396d934626b1df739a973c3880&#39;, u&#39;notify&#39;: {}, u&#39;skip_notify_tasks&#39;: []}..., timeout=None]
+2019-06-21 03:14:01.145 260 INFO st2mistral.actions.stackstorm [req-3a2ab8a5-d7f6-491e-b389-6947d8bd7d7a - - - - -] Running St2Action [action_context={&#39;action_execution_id&#39;: u&#39;700907b8-42cf-49c0-95df-5875393488b1&#39;, &#39;workflow_name&#39;: u&#39;modem_clone.unblock_aged_modems_workflow.unblock_cmts&#39;, &#39;task_execution_id&#39;: u&#39;aa87eb30-eca0-44bd-a4c6-cd85f22240cb&#39;, &#39;workflow_execution_id&#39;: u&#39;5d96372b-edfb-4720-8515-2c352a2e698d&#39;, &#39;task_name&#39;: u&#39;unblock_cmts&#39;, &#39;callback_url&#39;: u&#39;/v2/action_executions/700907b8-42cf-49c0-95df-5875393488b1&#39;}, ref=modem_clone.modify_modem_block_list_workflow, parameters={u&#39;cmts_hostname&#39;: u&#39;nxs01chdcnc&#39;, u&#39;mac_list&#39;: {u&#39;CM_MAC_ADDRS&#39;: u&quot;*None*[{&#39;ACTION&#39;: &#39;UNBLOCK&#39;, &#39;CM_MAC_ADDR&#39;: u&#39;08:00:27:ef:f6:50&#39;, &#39;REASON&#39;: &#39;AGING&#39;}]&quot;}, u&#39;run_id&#39;: u&#39;cc6e68427afc&#39;}, st2_context={u&#39;endpoint&#39;: u&#39;http://127.0.0.1:9101/v1/actionexecutions&#39;, u&#39;api_url&#39;: u&#39;http://127.0.0.1:9101/v1&#39;, u&#39;parent&#39;: {u&#39;trace_context&#39;: {}, u&#39;user&#39;: u&#39;admin&#39;, u&#39;execution_id&#39;: u&#39;5d0c4b776ee06301ddd02959&#39;, u&#39;pack&#39;: u&#39;modem_clone&#39;}, u&#39;skip_notify_tasks&#39;: [], u&#39;notify&#39;: {}}]
+2019-06-21 03:14:01.145 260 INFO st2mistral.actions.stackstorm [req-3a2ab8a5-d7f6-491e-b389-6947d8bd7d7a - - - - -] Sending HTTP request for St2Action [action_context={&#39;action_execution_id&#39;: u&#39;700907b8-42cf-49c0-95df-5875393488b1&#39;, &#39;workflow_name&#39;: u&#39;modem_clone.unblock_aged_modems_workflow.unblock_cmts&#39;, &#39;task_execution_id&#39;: u&#39;aa87eb30-eca0-44bd-a4c6-cd85f22240cb&#39;, &#39;workflow_execution_id&#39;: u&#39;5d96372b-edfb-4720-8515-2c352a2e698d&#39;, &#39;task_name&#39;: u&#39;unblock_cmts&#39;, &#39;callback_url&#39;: u&#39;/v2/action_executions/700907b8-42cf-49c0-95df-5875393488b1&#39;}, ref=modem_clone.modify_modem_block_list_workflow, parameters={u&#39;cmts_hostname&#39;: u&#39;nxs01chdcnc&#39;, u&#39;mac_list&#39;: {u&#39;CM_MAC_ADDRS&#39;: u&quot;None[{&#39;ACTION&#39;: &#39;UNBLOCK&#39;, &#39;CM_MAC_ADDR&#39;: u&#39;08:00:27:ef:f6:50&#39;, &#39;REASON&#39;: &#39;AGING&#39;}]&quot;}, u&#39;run_id&#39;: u&#39;cc6e68427afc&#39;}, st2_context={u&#39;endpoint&#39;: u&#39;http://127.0.0.1:9101/v1/actionexecutions&#39;, u&#39;api_url&#39;: u&#39;http://127.0.0.1:9101/v1&#39;, u&#39;parent&#39;: {u&#39;trace_context&#39;: {}, u&#39;user&#39;: u&#39;admin&#39;, u&#39;execution_id&#39;: u&#39;5d0c4b776ee06301ddd02959&#39;, u&#39;pack&#39;: u&#39;modem_clone&#39;}, u&#39;skip_notify_tasks&#39;: [], u&#39;notify&#39;: {}}]
+2019-06-21 03:14:01.253 260 INFO st2mistral.actions.stackstorm [req-3a2ab8a5-d7f6-491e-b389-6947d8bd7d7a - - - - -] Received HTTP response for St2Action [action_context={&#39;action_execution_id&#39;: u&#39;700907b8-42cf-49c0-95df-5875393488b1&#39;, &#39;workflow_name&#39;: u&#39;modem_clone.unblock_aged_modems_workflow.unblock_cmts&#39;, &#39;task_execution_id&#39;: u&#39;aa87eb30-eca0-44bd-a4c6-cd85f22240cb&#39;, &#39;workflow_execution_id&#39;: u&#39;5d96372b-edfb-4720-8515-2c352a2e698d&#39;, &#39;task_name&#39;: u&#39;unblock_cmts&#39;, &#39;callback_url&#39;: u&#39;/v2/action_executions/700907b8-42cf-49c0-95df-5875393488b1&#39;}, ref=modem_clone.modify_modem_block_list_workflow, parameters={u&#39;cmts_hostname&#39;: u&#39;nxs01chdcnc&#39;, u&#39;mac_list&#39;: {u&#39;CM_MAC_ADDRS&#39;: u&quot;None[{&#39;ACTION&#39;: &#39;UNBLOCK&#39;, &#39;CM_MAC_ADDR&#39;: u&#39;08:00:27:ef:f6:50&#39;, &#39;REASON&#39;: &#39;AGING&#39;}]&quot;}, u&#39;run_id&#39;: u&#39;cc6e68427afc&#39;}, st2_context={u&#39;endpoint&#39;: u&#39;http://127.0.0.1:9101/v1/actionexecutions&#39;, u&#39;api_url&#39;: u&#39;http://127.0.0.1:9101/v1&#39;, u&#39;parent&#39;: {u&#39;trace_context&#39;: {}, u&#39;user&#39;: u&#39;admin&#39;, u&#39;execution_id&#39;: u&#39;5d0c4b776ee06301ddd02959&#39;, u&#39;pack&#39;: u&#39;modem_clone&#39;}, u&#39;skip_notify_tasks&#39;: [], u&#39;notify&#39;: {}}]:
+201
+{
+    &quot;status&quot;: &quot;requested&quot;,
+    &quot;start_timestamp&quot;: &quot;2019-06-21T03:14:01.174440Z&quot;,
+    &quot;log&quot;: [
+        {
+            &quot;status&quot;: &quot;requested&quot;,
+            &quot;timestamp&quot;: &quot;2019-06-21T03:14:01.000000Z&quot;
+        }
+    ],
+    &quot;parameters&quot;: {
+        &quot;cmts_hostname&quot;: &quot;nxs01chdcnc&quot;,
+        &quot;mac_list&quot;: {
+            &quot;CM_MAC_ADDRS&quot;: &quot;**None**[{&#39;ACTION&#39;: &#39;UNBLOCK&#39;, &#39;CM_MAC_ADDR&#39;: u&#39;08:00:27:ef:f6:50&#39;, &#39;REASON&#39;: &#39;AGING&#39;}]&quot;
+        },</description>
+    
+    <lastBuildDate>Fri, 21 Jun 2019 22:49:05 +0000</lastBuildDate>
+    <category>Mistral</category>
+    <atom:link href="https://forum.stackstorm.com/t/jinja2-template-issue-with-mistral-server/697.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Jinja2 template issue with mistral server</title>
+        <dc:creator><![CDATA[chenww]]></dc:creator>
+        <description><![CDATA[
+            <p>I compared jinja2 version between ansible and st2, but are on 2.10, but ansible is fine with the above template, but not st2.</p>
+<p>I changed to YAQL which is much clean and has no issue:</p>
+<blockquote>
+<pre><code>   input:
+</code></pre>
+</blockquote>
+<pre><code>      cmts_hostname: '&lt;% $.cmts.cmts %&gt;'
+      mac_list:
+        CM_MAC_ADDRS: '&lt;% $.cmts.mac.select({"CM_MAC_ADDR"=&gt; $, "ACTION"=&gt;"UNBLOCK", "REASON"=&gt;"AGING"}) %&gt;'</code></pre>
+          <p><a href="https://forum.stackstorm.com/t/jinja2-template-issue-with-mistral-server/697/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/jinja2-template-issue-with-mistral-server/697/2</link>
+        <pubDate>Fri, 21 Jun 2019 22:49:05 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-697-2</guid>
+        <source url="https://forum.stackstorm.com/t/jinja2-template-issue-with-mistral-server/697.rss">Jinja2 template issue with mistral server</source>
+      </item>
+      <item>
+        <title>Jinja2 template issue with mistral server</title>
+        <dc:creator><![CDATA[chenww]]></dc:creator>
+        <description><![CDATA[
+            <p>I have a mistral action that has the following input parameters:</p>
+<pre><code>    input:
+      cmts_hostname: '&lt;% $.cmts.cmts %&gt;'
+      mac_list:
+        CM_MAC_ADDRS: '{% set macs=[] %}{% for mac in _.cmts.mac -%}{{ macs.append({"CM_MAC_ADDR": mac,"ACTION":"UNBLOCK", "REASON": "AGING"}) }}{%- endfor %}{{ macs }}'
+</code></pre>
+<p>however the log file shows additional “None” string in the data structure:</p>
+<blockquote>
+<p>2019-06-21 03:14:01.110 260 INFO mistral.notifiers.notification_server [req-83f261a9-ddd4-4c73-862f-777a17292759 - - - - -] Received RPC request ‘notify’[ex_id=aa87eb30-eca0-44bd-a4c6-cd85f22240cb, event=TASK_LAUNCHED, timestamp=None, data={u’state_info’: None, u’in_context’: {u’__task_execution’: {u’id’: u’aa87eb30-eca0-44bd-a4c6-cd85f22240cb’, u’name’: u’unblock_cmts’}}, u’name’: u’unblock_cmts’, u’workflow_name’: u’modem_clone.unblock_aged_modems_workflow.unblock_cmts’, u’unique_key’: None, u’created_at’: u’2019-06-21 03:14:01’, u’runtime_context’: {}, u’state’: u’RUNNING’, u’id’: u’aa87eb30-eca0-44bd-a4c6-cd85f22240cb’, u’workflow_execution_id’: u’5d96372b-edfb-4720-8515-2c352a2e698d’, u’workflow_id’: u’6141d78c-79bd-449b-ae47-57e58b9feac2’, u’workflow_namespace’: u’’, u’published’: {}, u’scope’: u’private’, u’project_id’: u’’, u’type’: u’ACTION’, u’spec’: {u’action’: u’st2.action’, u’input’: {u’ref’: u’modem_clone.modify_modem_block_list_workflow’, u’parameters’: {u’cmts_hostname’: u’&lt;% <span class="math">.cmts.cmts %&gt;', u'mac_list': {u'CM_MAC_ADDRS': u'{% set macs=[] %}{% for mac in _.cmts.mac -%}{{ macs.append({"CM_MAC_ADDR": mac,"ACTION":"UNBLOCK", "REASON": "AGING"}) }}{%- endfor %}{{ macs }}'}, u'run_id': u'&lt;% </span>.run_id %&gt;’}}, u’version’: u’2.0’, u’type’: u’direct’, u’name’: u’unblock_cmts’}, u’processed’: False}, publishers=[{u’type’: u’st2’}]]<br>
+2019-06-21 03:14:01.111 260 INFO st2mistral.notifiers.stackstorm_notifier [req-83f261a9-ddd4-4c73-862f-777a17292759 - - - - -] The event TASK_LAUNCHED for aa87eb30-eca0-44bd-a4c6-cd85f22240cb is not processed for st2 because there is no event handler defined.<br>
+2019-06-21 03:14:01.137 260 INFO mistral.executors.executor_server [req-3a2ab8a5-d7f6-491e-b389-6947d8bd7d7a - - - - -] Received RPC request ‘run_action’[action_ex_id=700907b8-42cf-49c0-95df-5875393488b1, action_cls_str=st2mistral.actions.stackstorm.St2Action, action_cls_attrs={}, params={st2_context: {u’endpoint’: u’<a href="http://127.0.0.1:9101/v1/actionexecutions" rel="nofollow noopener">http://127.0.0.1:9101/v1/actionexecutions</a>’, u’api_url’: u’<a href="http://127.0.0.1:9101/v1" rel="nofollow noopener">http://127.0.0.1:9101/v1</a>’, u’parent’: {u’trace_context’: {}, u’user’: u’admin’, u’execution_id’: u’5d0c4b776ee06301ddd02959’, u’pack’: u’modem_clone’}, u’auth_token’: u’4d02c6396d934626b1df739a973c3880’, u’notify’: {}, u’skip_notify_tasks’: []}…, timeout=None]<br>
+2019-06-21 03:14:01.145 260 INFO st2mistral.actions.stackstorm [req-3a2ab8a5-d7f6-491e-b389-6947d8bd7d7a - - - - -] Running St2Action [action_context={‘action_execution_id’: u’700907b8-42cf-49c0-95df-5875393488b1’, ‘workflow_name’: u’modem_clone.unblock_aged_modems_workflow.unblock_cmts’, ‘task_execution_id’: u’aa87eb30-eca0-44bd-a4c6-cd85f22240cb’, ‘workflow_execution_id’: u’5d96372b-edfb-4720-8515-2c352a2e698d’, ‘task_name’: u’unblock_cmts’, ‘callback_url’: u’/v2/action_executions/700907b8-42cf-49c0-95df-5875393488b1’}, ref=modem_clone.modify_modem_block_list_workflow, parameters={u’cmts_hostname’: u’nxs01chdcnc’, u’mac_list’: {u’CM_MAC_ADDRS’: u"<em>None</em>[{‘ACTION’: ‘UNBLOCK’, ‘CM_MAC_ADDR’: u’08:00:27:ef:f6:50’, ‘REASON’: ‘AGING’}]"}, u’run_id’: u’cc6e68427afc’}, st2_context={u’endpoint’: u’<a href="http://127.0.0.1:9101/v1/actionexecutions" rel="nofollow noopener">http://127.0.0.1:9101/v1/actionexecutions</a>’, u’api_url’: u’<a href="http://127.0.0.1:9101/v1" rel="nofollow noopener">http://127.0.0.1:9101/v1</a>’, u’parent’: {u’trace_context’: {}, u’user’: u’admin’, u’execution_id’: u’5d0c4b776ee06301ddd02959’, u’pack’: u’modem_clone’}, u’skip_notify_tasks’: [], u’notify’: {}}]<br>
+2019-06-21 03:14:01.145 260 INFO st2mistral.actions.stackstorm [req-3a2ab8a5-d7f6-491e-b389-6947d8bd7d7a - - - - -] Sending HTTP request for St2Action [action_context={‘action_execution_id’: u’700907b8-42cf-49c0-95df-5875393488b1’, ‘workflow_name’: u’modem_clone.unblock_aged_modems_workflow.unblock_cmts’, ‘task_execution_id’: u’aa87eb30-eca0-44bd-a4c6-cd85f22240cb’, ‘workflow_execution_id’: u’5d96372b-edfb-4720-8515-2c352a2e698d’, ‘task_name’: u’unblock_cmts’, ‘callback_url’: u’/v2/action_executions/700907b8-42cf-49c0-95df-5875393488b1’}, ref=modem_clone.modify_modem_block_list_workflow, parameters={u’cmts_hostname’: u’nxs01chdcnc’, u’mac_list’: {u’CM_MAC_ADDRS’: u"None[{‘ACTION’: ‘UNBLOCK’, ‘CM_MAC_ADDR’: u’08:00:27:ef:f6:50’, ‘REASON’: ‘AGING’}]"}, u’run_id’: u’cc6e68427afc’}, st2_context={u’endpoint’: u’<a href="http://127.0.0.1:9101/v1/actionexecutions" rel="nofollow noopener">http://127.0.0.1:9101/v1/actionexecutions</a>’, u’api_url’: u’<a href="http://127.0.0.1:9101/v1" rel="nofollow noopener">http://127.0.0.1:9101/v1</a>’, u’parent’: {u’trace_context’: {}, u’user’: u’admin’, u’execution_id’: u’5d0c4b776ee06301ddd02959’, u’pack’: u’modem_clone’}, u’skip_notify_tasks’: [], u’notify’: {}}]<br>
+2019-06-21 03:14:01.253 260 INFO st2mistral.actions.stackstorm [req-3a2ab8a5-d7f6-491e-b389-6947d8bd7d7a - - - - -] Received HTTP response for St2Action [action_context={‘action_execution_id’: u’700907b8-42cf-49c0-95df-5875393488b1’, ‘workflow_name’: u’modem_clone.unblock_aged_modems_workflow.unblock_cmts’, ‘task_execution_id’: u’aa87eb30-eca0-44bd-a4c6-cd85f22240cb’, ‘workflow_execution_id’: u’5d96372b-edfb-4720-8515-2c352a2e698d’, ‘task_name’: u’unblock_cmts’, ‘callback_url’: u’/v2/action_executions/700907b8-42cf-49c0-95df-5875393488b1’}, ref=modem_clone.modify_modem_block_list_workflow, parameters={u’cmts_hostname’: u’nxs01chdcnc’, u’mac_list’: {u’CM_MAC_ADDRS’: u"None[{‘ACTION’: ‘UNBLOCK’, ‘CM_MAC_ADDR’: u’08:00:27:ef:f6:50’, ‘REASON’: ‘AGING’}]"}, u’run_id’: u’cc6e68427afc’}, st2_context={u’endpoint’: u’<a href="http://127.0.0.1:9101/v1/actionexecutions" rel="nofollow noopener">http://127.0.0.1:9101/v1/actionexecutions</a>’, u’api_url’: u’<a href="http://127.0.0.1:9101/v1" rel="nofollow noopener">http://127.0.0.1:9101/v1</a>’, u’parent’: {u’trace_context’: {}, u’user’: u’admin’, u’execution_id’: u’5d0c4b776ee06301ddd02959’, u’pack’: u’modem_clone’}, u’skip_notify_tasks’: [], u’notify’: {}}]:<br>
+201<br>
+{<br>
+“status”: “requested”,<br>
+“start_timestamp”: “2019-06-21T03:14:01.174440Z”,<br>
+“log”: [<br>
+{<br>
+“status”: “requested”,<br>
+“timestamp”: “2019-06-21T03:14:01.000000Z”<br>
+}<br>
+],<br>
+“parameters”: {<br>
+“cmts_hostname”: “nxs01chdcnc”,<br>
+“mac_list”: {<br>
+“CM_MAC_ADDRS”: “<strong>None</strong>[{‘ACTION’: ‘UNBLOCK’, ‘CM_MAC_ADDR’: u’08:00:27:ef:f6:50’, ‘REASON’: ‘AGING’}]”<br>
+},</p>
+</blockquote>
+          <p><a href="https://forum.stackstorm.com/t/jinja2-template-issue-with-mistral-server/697/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/jinja2-template-issue-with-mistral-server/697/1</link>
+        <pubDate>Fri, 21 Jun 2019 03:23:45 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-697-1</guid>
+        <source url="https://forum.stackstorm.com/t/jinja2-template-issue-with-mistral-server/697.rss">Jinja2 template issue with mistral server</source>
+      </item>
+  </channel>
+</rss>

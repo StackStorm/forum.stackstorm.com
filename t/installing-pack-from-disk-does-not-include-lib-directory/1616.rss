@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Installing pack from disk does not include lib/ directory</title>
+    <link>https://forum.stackstorm.com/t/installing-pack-from-disk-does-not-include-lib-directory/1616</link>
+    <description>I have a pack (it is a Git repo) that I am attempting to install from disk using
+`st2 pack install file://&lt;path to pack&gt;`. The pack installs successfully, but there is a `lib` sub-directory within my `actions` folder that is not moved into `/opt/stackstorm/packs`.
+
+Below is how my pack is structured on disk before installing:
+
+    &gt; pwd
+    /home/justinm/mypack/actions
+    &gt; ls -l
+    -rw-r--r--. 1 root root 470 Mar 24  2021 create_release.py
+    -rw-r--r--. 1 root root 483 Mar 23 16:08 create_release.yaml
+    -rw-r--r--. 1 root root   0 Feb  8 23:58 __init__.py
+    drwxr-xr-x. 2 root root  67 Feb  8 23:58 lib
+    -rw-r--r--. 1 root root 394 Mar 24  2021 list_releases.py
+    -rw-r--r--. 1 root root 404 Mar 23 16:13 list_releases.yaml
+
+    &gt; ls -l lib
+    -rw-r--r--. 1 root root 2093 Mar 23 16:11 actions.py
+    -rw-r--r--. 1 root root    0 Feb  8 23:58 __init__.py
+
+And here is a snippet from the log from when I installed this pack with the `--debug` flag:
+
+    # -------- begin 140499208565520 request ----------
+    curl -X GET -H  &#39;Connection: keep-alive&#39; -H  &#39;Accept-Encoding: gzip, deflate&#39; -H  &#39;Accept: */*&#39; -H  &#39;User-Agent: python-requests/2.14.2&#39; -H  &#39;X-Auth-Token: aacc49af1148409aa9659e4f3d757d66&#39; http://127.0.0.1:9101/v1/packs/mypack
+    # -------- begin 140499208565520 response ----------
+    {
+        &quot;files&quot;: [
+            &quot;.gitignore&quot;,
+            &quot;README.md&quot;,
+            &quot;config.schema.yaml&quot;,
+            &quot;icon.png&quot;,
+            &quot;mypack.yaml.example&quot;,
+            &quot;pack.yaml&quot;,
+            &quot;requirements.txt&quot;,
+            &quot;actions/__init__.py&quot;,
+            &quot;actions/create_release.py&quot;,
+            &quot;actions/create_release.yaml&quot;,
+            &quot;actions/list_releases.py&quot;,
+            &quot;actions/list_releases.yaml&quot;
+        ],
+        &quot;name&quot;: &quot;mypack&quot;,
+        &quot;contributors&quot;: [],
+        &quot;author&quot;: &quot;justinm&quot;,
+        &quot;description&quot;: &quot;My test pack&quot;,
+        &quot;system&quot;: {},
+        &quot;email&quot;: &quot;justinm@foo.bar.com&quot;,
+        &quot;version&quot;: &quot;1.0.0&quot;,
+        &quot;dependencies&quot;: [],
+        &quot;keywords&quot;: [],
+        &quot;path&quot;: &quot;/opt/stackstorm/packs/mypack&quot;,
+        &quot;ref&quot;: &quot;mypack&quot;,
+        &quot;id&quot;: &quot;605a5211a54923e4429fbfde&quot;,
+        &quot;uid&quot;: &quot;mypack&quot;
+    }
+
+The `lib` directory is not included in the `files` list, and it does not exist in `/opt/stackstorm/packs` either:
+
+    &gt; ls -l /opt/stackstorm/packs/mypack/actions
+    -rwxrwxr-x. 1 root st2packs 470 Mar 24 09:19 create_release.py
+    -rwxrwxr-x. 1 root st2packs 483 Mar 24 09:19 create_release.yaml
+    -rwxrwxr-x. 1 root st2packs   0 Mar 24 09:19 __init__.py
+    -rwxrwxr-x. 1 root st2packs 394 Mar 24 09:19 list_releases.py
+    -rwxrwxr-x. 1 root st2packs 404 Mar 24 09:19 list_releases.yaml
+
+My actions are failing because they rely on code in this `lib` directory. Anyone have any ideas? This `lib` directory has been committed into my Git repo as well.</description>
+    
+    <lastBuildDate>Thu, 25 Mar 2021 13:41:13 +0000</lastBuildDate>
+    <category>Pack Management</category>
+    <atom:link href="https://forum.stackstorm.com/t/installing-pack-from-disk-does-not-include-lib-directory/1616.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Installing pack from disk does not include lib/ directory</title>
+        <dc:creator><![CDATA[justinm89]]></dc:creator>
+        <description><![CDATA[
+            <p>Figured it out, this was a classic PEBKAC error. My <code>.gitignore</code> had an entry for <code>lib/</code>… When I did my initial Git commit I was lazy and just did a <code>git commit -A</code> and didn’t even notice my <code>lib</code> dir wasn’t included.</p>
+<p>I removed the <code>lib/</code> entry from <code>.gitignore</code> and the pack installed perfectly.</p>
+          <p><a href="https://forum.stackstorm.com/t/installing-pack-from-disk-does-not-include-lib-directory/1616/4">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/installing-pack-from-disk-does-not-include-lib-directory/1616/4</link>
+        <pubDate>Thu, 25 Mar 2021 13:41:13 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1616-4</guid>
+        <source url="https://forum.stackstorm.com/t/installing-pack-from-disk-does-not-include-lib-directory/1616.rss">Installing pack from disk does not include lib/ directory</source>
+      </item>
+      <item>
+        <title>Installing pack from disk does not include lib/ directory</title>
+        <dc:creator><![CDATA[justinm89]]></dc:creator>
+        <description><![CDATA[
+            <p>We do not have that flag enabled, however we’re also not trying to share the <code>lib</code> dir between actions and sensors. In fact, I added a couple of sensors to <code>sensors</code> along with a <code>lib</code> directory containing shared code for sensors, and it’s not installing that lib folder either. I renamed my <code>lib</code> dirs to <code>lib2</code> and it installed them just fine, so the issue is clearly with the <code>lib</code> directory.</p>
+<p>I’m a little hesitant to enable that option because I inherited this StackStorm instance from an employee who is no longer with the company, and this instance is used by a ton of automation processes, so I don’t want to break anything. However, I did a test by installing a pack from the StackStorm exchange that includes <code>lib</code> dirs in <code>actions</code> and <code>sensors</code>, and they installed perfectly. This is really perplexing.</p>
+          <p><a href="https://forum.stackstorm.com/t/installing-pack-from-disk-does-not-include-lib-directory/1616/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/installing-pack-from-disk-does-not-include-lib-directory/1616/3</link>
+        <pubDate>Thu, 25 Mar 2021 13:32:18 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1616-3</guid>
+        <source url="https://forum.stackstorm.com/t/installing-pack-from-disk-does-not-include-lib-directory/1616.rss">Installing pack from disk does not include lib/ directory</source>
+      </item>
+      <item>
+        <title>Installing pack from disk does not include lib/ directory</title>
+        <dc:creator><![CDATA[blag]]></dc:creator>
+        <description><![CDATA[
+            <p>I’m not sure, that’s weird.</p>
+<p>Do you have the appropriate flag turned on in your <code>st2.conf</code>?</p>
+<p>See <a href="https://docs.stackstorm.com/reference/sharing_code_sensors_actions.html#sharing-code-between-sensors-and-python-actions" class="inline-onebox">Sharing code between Sensors and Python Actions — StackStorm 3.4.0 documentation</a> :</p>
+<blockquote>
+<p>This feature is turned off by default to avoid potential issues that might arise due to existing pack structures and lib imports. You may require to refactor your pack if enabling this feature breaks your packs. To enable this feature, simply set the following config option in <code>/etc/st2/st2.conf</code> :</p>
+<pre><code class="lang-ini">[packs]
+enable_common_libs = True
+</code></pre>
+<p>You have to restart st2 via <code>st2ctl restart</code> for the config change to be picked up.</p>
+</blockquote>
+          <p><a href="https://forum.stackstorm.com/t/installing-pack-from-disk-does-not-include-lib-directory/1616/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/installing-pack-from-disk-does-not-include-lib-directory/1616/2</link>
+        <pubDate>Wed, 24 Mar 2021 19:13:32 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1616-2</guid>
+        <source url="https://forum.stackstorm.com/t/installing-pack-from-disk-does-not-include-lib-directory/1616.rss">Installing pack from disk does not include lib/ directory</source>
+      </item>
+      <item>
+        <title>Installing pack from disk does not include lib/ directory</title>
+        <dc:creator><![CDATA[justinm89]]></dc:creator>
+        <description><![CDATA[
+            <p>I have a pack (it is a Git repo) that I am attempting to install from disk using<br>
+<code>st2 pack install file://&lt;path to pack&gt;</code>. The pack installs successfully, but there is a <code>lib</code> sub-directory within my <code>actions</code> folder that is not moved into <code>/opt/stackstorm/packs</code>.</p>
+<p>Below is how my pack is structured on disk before installing:</p>
+<pre><code>&gt; pwd
+/home/justinm/mypack/actions
+&gt; ls -l
+-rw-r--r--. 1 root root 470 Mar 24  2021 create_release.py
+-rw-r--r--. 1 root root 483 Mar 23 16:08 create_release.yaml
+-rw-r--r--. 1 root root   0 Feb  8 23:58 __init__.py
+drwxr-xr-x. 2 root root  67 Feb  8 23:58 lib
+-rw-r--r--. 1 root root 394 Mar 24  2021 list_releases.py
+-rw-r--r--. 1 root root 404 Mar 23 16:13 list_releases.yaml
+
+&gt; ls -l lib
+-rw-r--r--. 1 root root 2093 Mar 23 16:11 actions.py
+-rw-r--r--. 1 root root    0 Feb  8 23:58 __init__.py
+</code></pre>
+<p>And here is a snippet from the log from when I installed this pack with the <code>--debug</code> flag:</p>
+<pre><code># -------- begin 140499208565520 request ----------
+curl -X GET -H  'Connection: keep-alive' -H  'Accept-Encoding: gzip, deflate' -H  'Accept: */*' -H  'User-Agent: python-requests/2.14.2' -H  'X-Auth-Token: aacc49af1148409aa9659e4f3d757d66' http://127.0.0.1:9101/v1/packs/mypack
+# -------- begin 140499208565520 response ----------
+{
+    "files": [
+        ".gitignore",
+        "README.md",
+        "config.schema.yaml",
+        "icon.png",
+        "mypack.yaml.example",
+        "pack.yaml",
+        "requirements.txt",
+        "actions/__init__.py",
+        "actions/create_release.py",
+        "actions/create_release.yaml",
+        "actions/list_releases.py",
+        "actions/list_releases.yaml"
+    ],
+    "name": "mypack",
+    "contributors": [],
+    "author": "justinm",
+    "description": "My test pack",
+    "system": {},
+    "email": "justinm@foo.bar.com",
+    "version": "1.0.0",
+    "dependencies": [],
+    "keywords": [],
+    "path": "/opt/stackstorm/packs/mypack",
+    "ref": "mypack",
+    "id": "605a5211a54923e4429fbfde",
+    "uid": "mypack"
+}
+</code></pre>
+<p>The <code>lib</code> directory is not included in the <code>files</code> list, and it does not exist in <code>/opt/stackstorm/packs</code> either:</p>
+<pre><code>&gt; ls -l /opt/stackstorm/packs/mypack/actions
+-rwxrwxr-x. 1 root st2packs 470 Mar 24 09:19 create_release.py
+-rwxrwxr-x. 1 root st2packs 483 Mar 24 09:19 create_release.yaml
+-rwxrwxr-x. 1 root st2packs   0 Mar 24 09:19 __init__.py
+-rwxrwxr-x. 1 root st2packs 394 Mar 24 09:19 list_releases.py
+-rwxrwxr-x. 1 root st2packs 404 Mar 24 09:19 list_releases.yaml
+</code></pre>
+<p>My actions are failing because they rely on code in this <code>lib</code> directory. Anyone have any ideas? This <code>lib</code> directory has been committed into my Git repo as well.</p>
+          <p><a href="https://forum.stackstorm.com/t/installing-pack-from-disk-does-not-include-lib-directory/1616/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/installing-pack-from-disk-does-not-include-lib-directory/1616/1</link>
+        <pubDate>Wed, 24 Mar 2021 15:35:50 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1616-1</guid>
+        <source url="https://forum.stackstorm.com/t/installing-pack-from-disk-does-not-include-lib-directory/1616.rss">Installing pack from disk does not include lib/ directory</source>
+      </item>
+  </channel>
+</rss>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>How do I call an external function from a stackstorm custom python action?</title>
+    <link>https://forum.stackstorm.com/t/how-do-i-call-an-external-function-from-a-stackstorm-custom-python-action/766</link>
+    <description>I have the following structure inside my actions pack:
+       
+    actions/
+             __init__.py
+              acl.run.py
+              acl.run.yaml
+              lib/
+                 __init__.py
+                 utils.py
+
+And inside the acl.run.py script there is this import:
+
+    from actions.lib.utils import create_device
+
+But when I try to call the acl.run.py actions I get this error:
+
+    ImportError: No module named &#39;actions&#39;
+
+I have also tried to use the relative path ( _.lib.utils_), but in that case I&#39;ve got:
+
+    SystemError: Parent module &#39;acl&#39; not loaded, cannot perform relative import
+
+If i remove the _acl_ part from  the name I have:
+
+    SystemError: Parent module &#39;&#39; not loaded, cannot perform relative import
+
+Since I don&#39;t know how exactly Stackstorm loads the script can someone write here and also in the documentation how to link the lib folder (named as best practice in the documentation( to the actions scripts?</description>
+    
+    <lastBuildDate>Tue, 23 Jul 2019 11:51:30 +0000</lastBuildDate>
+    <category>How do I do X in st2?</category>
+    <atom:link href="https://forum.stackstorm.com/t/how-do-i-call-an-external-function-from-a-stackstorm-custom-python-action/766.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>How do I call an external function from a stackstorm custom python action?</title>
+        <dc:creator><![CDATA[armab]]></dc:creator>
+        <description><![CDATA[
+            <p>Here is an example: <a href="https://github.com/StackStorm-Exchange/stackstorm-ansible/tree/master/actions" class="inline-onebox" rel="nofollow noopener">stackstorm-ansible/actions at master · StackStorm-Exchange/stackstorm-ansible · GitHub</a> with <code>lib</code> inside actions.</p>
+          <p><a href="https://forum.stackstorm.com/t/how-do-i-call-an-external-function-from-a-stackstorm-custom-python-action/766/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-do-i-call-an-external-function-from-a-stackstorm-custom-python-action/766/2</link>
+        <pubDate>Tue, 23 Jul 2019 11:51:30 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-766-2</guid>
+        <source url="https://forum.stackstorm.com/t/how-do-i-call-an-external-function-from-a-stackstorm-custom-python-action/766.rss">How do I call an external function from a stackstorm custom python action?</source>
+      </item>
+      <item>
+        <title>How do I call an external function from a stackstorm custom python action?</title>
+        <dc:creator><![CDATA[Thecave3]]></dc:creator>
+        <description><![CDATA[
+            <p>I have the following structure inside my actions pack:</p>
+<pre><code>actions/
+         __init__.py
+          acl.run.py
+          acl.run.yaml
+          lib/
+             __init__.py
+             utils.py
+</code></pre>
+<p>And inside the acl.run.py script there is this import:</p>
+<pre><code>from actions.lib.utils import create_device
+</code></pre>
+<p>But when I try to call the acl.run.py actions I get this error:</p>
+<pre><code>ImportError: No module named 'actions'
+</code></pre>
+<p>I have also tried to use the relative path ( <em>.lib.utils</em>), but in that case I’ve got:</p>
+<pre><code>SystemError: Parent module 'acl' not loaded, cannot perform relative import
+</code></pre>
+<p>If i remove the <em>acl</em> part from  the name I have:</p>
+<pre><code>SystemError: Parent module '' not loaded, cannot perform relative import
+</code></pre>
+<p>Since I don’t know how exactly Stackstorm loads the script can someone write here and also in the documentation how to link the lib folder (named as best practice in the documentation( to the actions scripts?</p>
+          <p><a href="https://forum.stackstorm.com/t/how-do-i-call-an-external-function-from-a-stackstorm-custom-python-action/766/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/how-do-i-call-an-external-function-from-a-stackstorm-custom-python-action/766/1</link>
+        <pubDate>Tue, 23 Jul 2019 10:01:12 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-766-1</guid>
+        <source url="https://forum.stackstorm.com/t/how-do-i-call-an-external-function-from-a-stackstorm-custom-python-action/766.rss">How do I call an external function from a stackstorm custom python action?</source>
+      </item>
+  </channel>
+</rss>

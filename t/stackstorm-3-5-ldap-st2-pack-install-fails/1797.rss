@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Stackstorm 3.5 - LDAP ,st2 pack install fails</title>
+    <link>https://forum.stackstorm.com/t/stackstorm-3-5-ldap-st2-pack-install-fails/1797</link>
+    <description>Hi Team,
+
+Need help in resolving the LDAP error.
+
+On stackstorm 3.5 able to use the ldap by modifying the configuration in /etc/st2/st2.conf
+
+Able to list the packs but not able to install the pack with LDAP account
+
+
+#####error #########
+Installation may take a while for packs with many items.
+
+        [ succeeded ] init_task
+        [ succeeded ] download_pack
+        [ succeeded ] make_a_prerun
+        [ succeeded ] get_pack_dependencies
+        [ succeeded ] check_dependency_and_conflict_list
+        [ succeeded ] install_pack_requirements
+        [ succeeded ] get_pack_warnings
+        [  failed   ] register_pack
+
+##############
+
+   stderr: &quot;st2.actions.python.St2RegisterAction: DEBUG    Calling client method &quot;register&quot; with kwargs &quot;{&#39;types&#39;: [&#39;all&#39;], &#39;packs&#39;: [&#39;ansible&#39;]}&quot;
+/opt/stackstorm/st2/lib/python3.6/site-packages/urllib3/connectionpool.py:1020: InsecureRequestWarning: Unverified HTTPS request is being made to host &#39;qc1udatast204.abacus-us.com&#39;. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings
+  InsecureRequestWarning,
+Traceback (most recent call last):
+  File &quot;/opt/stackstorm/st2/lib/python3.6/site-packages/python_runner/python_action_wrapper.py&quot;, line 395, in &lt;module&gt;
+    obj.run()
+  File &quot;/opt/stackstorm/st2/lib/python3.6/site-packages/python_runner/python_action_wrapper.py&quot;, line 214, in run
+    output = action.run(**self._parameters)
+  File &quot;/opt/stackstorm/packs/packs/actions/pack_mgmt/register.py&quot;, line 79, in run
+    format_func=format_result,
+  File &quot;/opt/stackstorm/packs/packs/actions/pack_mgmt/register.py&quot;, line 155, in _run_client_method
+    result = method(**method_kwargs)
+  File &quot;/opt/stackstorm/st2/lib/python3.6/site-packages/st2client/models/core.py&quot;, line 42, in decorate
+    return func(*args, **kwargs)
+  File &quot;/opt/stackstorm/st2/lib/python3.6/site-packages/st2client/models/core.py&quot;, line 630, in register
+    self.handle_error(response)
+  File &quot;/opt/stackstorm/st2/lib/python3.6/site-packages/st2client/models/core.py&quot;, line 195, in handle_error
+    response.raise_for_status()
+  File &quot;/opt/stackstorm/st2/lib/python3.6/site-packages/requests/models.py&quot;, line 943, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 404 Client Error: Not Found
+Unable to retrieve detailed message from the HTTP response. expected value at line 1 column 1: line 1 column 1 (char 0)
+ for url: https://host.company.com/v1/packs/register
+
+####################</description>
+    
+    <lastBuildDate>Wed, 04 Aug 2021 13:01:10 +0000</lastBuildDate>
+    <category>Pack Management</category>
+    <atom:link href="https://forum.stackstorm.com/t/stackstorm-3-5-ldap-st2-pack-install-fails/1797.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Stackstorm 3.5 - LDAP ,st2 pack install fails</title>
+        <dc:creator><![CDATA[nithinsubbaraj]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi Team,</p>
+<p>Need help in resolving the LDAP error.</p>
+<p>On stackstorm 3.5 able to use the ldap by modifying the configuration in /etc/st2/st2.conf</p>
+<p>Able to list the packs but not able to install the pack with LDAP account</p>
+<p>####<a class="hashtag" href="https://forum.stackstorm.com/tag/error">#<span>error</span></a> #########<br>
+Installation may take a while for packs with many items.</p>
+<pre><code>    [ succeeded ] init_task
+    [ succeeded ] download_pack
+    [ succeeded ] make_a_prerun
+    [ succeeded ] get_pack_dependencies
+    [ succeeded ] check_dependency_and_conflict_list
+    [ succeeded ] install_pack_requirements
+    [ succeeded ] get_pack_warnings
+    [  failed   ] register_pack
+</code></pre>
+<p>##############</p>
+<p>stderr: "st2.actions.python.St2RegisterAction: DEBUG    Calling client method “register” with kwargs “{‘types’: [‘all’], ‘packs’: [‘ansible’]}”<br>
+/opt/stackstorm/st2/lib/python3.6/site-packages/urllib3/connectionpool.py:1020: InsecureRequestWarning: Unverified HTTPS request is being made to host ‘<a href="http://qc1udatast204.abacus-us.com" rel="noopener nofollow ugc">qc1udatast204.abacus-us.com</a>’. Adding certificate verification is strongly advised. See: <a href="https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings" class="inline-onebox" rel="noopener nofollow ugc">Advanced Usage - urllib3 2.0.0.dev0 documentation</a><br>
+InsecureRequestWarning,<br>
+Traceback (most recent call last):<br>
+File “/opt/stackstorm/st2/lib/python3.6/site-packages/python_runner/python_action_wrapper.py”, line 395, in <br>
+obj.run()<br>
+File “/opt/stackstorm/st2/lib/python3.6/site-packages/python_runner/python_action_wrapper.py”, line 214, in run<br>
+output = action.run(**self._parameters)<br>
+File “/opt/stackstorm/packs/packs/actions/pack_mgmt/register.py”, line 79, in run<br>
+format_func=format_result,<br>
+File “/opt/stackstorm/packs/packs/actions/pack_mgmt/register.py”, line 155, in _run_client_method<br>
+result = method(**method_kwargs)<br>
+File “/opt/stackstorm/st2/lib/python3.6/site-packages/st2client/models/core.py”, line 42, in decorate<br>
+return func(*args, **kwargs)<br>
+File “/opt/stackstorm/st2/lib/python3.6/site-packages/st2client/models/core.py”, line 630, in register<br>
+self.handle_error(response)<br>
+File “/opt/stackstorm/st2/lib/python3.6/site-packages/st2client/models/core.py”, line 195, in handle_error<br>
+response.raise_for_status()<br>
+File “/opt/stackstorm/st2/lib/python3.6/site-packages/requests/models.py”, line 943, in raise_for_status<br>
+raise HTTPError(http_error_msg, response=self)<br>
+requests.exceptions.HTTPError: 404 Client Error: Not Found<br>
+Unable to retrieve detailed message from the HTTP response. expected value at line 1 column 1: line 1 column 1 (char 0)<br>
+for url: <a href="https://host.company.com/v1/packs/register" rel="noopener nofollow ugc">https://host.company.com/v1/packs/register</a></p>
+<p>####################</p>
+          <p><a href="https://forum.stackstorm.com/t/stackstorm-3-5-ldap-st2-pack-install-fails/1797/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/stackstorm-3-5-ldap-st2-pack-install-fails/1797/1</link>
+        <pubDate>Wed, 04 Aug 2021 13:01:10 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1797-1</guid>
+        <source url="https://forum.stackstorm.com/t/stackstorm-3-5-ldap-st2-pack-install-fails/1797.rss">Stackstorm 3.5 - LDAP ,st2 pack install fails</source>
+      </item>
+  </channel>
+</rss>

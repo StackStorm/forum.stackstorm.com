@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Confusion about Mistral and StackStorm</title>
+    <link>https://forum.stackstorm.com/t/confusion-about-mistral-and-stackstorm/453</link>
+    <description>Hi guys,
+
+Mistral originate from OpenStack foundation, now it&#39;s as a workflow service in StackStorm. 
+1. if I write some custom action in Mistral(OpenStack), can these actions be reused in StackStorm directly?
+2. on the other hand, can StackStorm&#39;s actions be reused in Mistral(OpenStack) ?</description>
+    
+    <lastBuildDate>Fri, 25 Jan 2019 02:36:11 +0000</lastBuildDate>
+    <category>Mistral</category>
+    <atom:link href="https://forum.stackstorm.com/t/confusion-about-mistral-and-stackstorm/453.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Confusion about Mistral and StackStorm</title>
+        <dc:creator><![CDATA[wisererik]]></dc:creator>
+        <description><![CDATA[
+            <p>Thanks Jacob.  According to what you said, the Mistral of StackStorm is based on Mistral of OpenStack, but it has changed a lot. Now Mistral is not “Mistral”, right?</p>
+          <p><a href="https://forum.stackstorm.com/t/confusion-about-mistral-and-stackstorm/453/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/confusion-about-mistral-and-stackstorm/453/3</link>
+        <pubDate>Fri, 25 Jan 2019 02:36:11 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-453-3</guid>
+        <source url="https://forum.stackstorm.com/t/confusion-about-mistral-and-stackstorm/453.rss">Confusion about Mistral and StackStorm</source>
+      </item>
+      <item>
+        <title>Confusion about Mistral and StackStorm</title>
+        <dc:creator><![CDATA[cognifloyd]]></dc:creator>
+        <description><![CDATA[
+            <p>No and no. Mistral and StackStorm actions are not interchangeable.<br>
+The major thing that is the same between Mistral in OpenStack and in StackStorm is the Mistral workflow language (and the system service processing that language).</p>
+<p>When learning workflows in StackStorm, I recommend you look at and use Orquesta instead of Mistral. The workflow language is similar to Mistral, but makes it significantly faster since it runs directly in StackStorm. Plus, it doesn’t have Unicode issues like Mistral. It’s just all around awesome!<br>
+<a href="https://docs.stackstorm.com/orquesta/index.html" class="onebox" target="_blank" rel="nofollow noopener">https://docs.stackstorm.com/orquesta/index.html</a></p>
+          <p><a href="https://forum.stackstorm.com/t/confusion-about-mistral-and-stackstorm/453/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/confusion-about-mistral-and-stackstorm/453/2</link>
+        <pubDate>Thu, 24 Jan 2019 13:31:49 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-453-2</guid>
+        <source url="https://forum.stackstorm.com/t/confusion-about-mistral-and-stackstorm/453.rss">Confusion about Mistral and StackStorm</source>
+      </item>
+      <item>
+        <title>Confusion about Mistral and StackStorm</title>
+        <dc:creator><![CDATA[wisererik]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi guys,</p>
+<p>Mistral originate from OpenStack foundation, now it’s as a workflow service in StackStorm.</p>
+<ol>
+<li>if I write some custom action in Mistral(OpenStack), can these actions be reused in StackStorm directly?</li>
+<li>on the other hand, can StackStorm’s actions be reused in Mistral(OpenStack) ?</li>
+</ol>
+          <p><a href="https://forum.stackstorm.com/t/confusion-about-mistral-and-stackstorm/453/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/confusion-about-mistral-and-stackstorm/453/1</link>
+        <pubDate>Thu, 24 Jan 2019 08:35:42 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-453-1</guid>
+        <source url="https://forum.stackstorm.com/t/confusion-about-mistral-and-stackstorm/453.rss">Confusion about Mistral and StackStorm</source>
+      </item>
+  </channel>
+</rss>

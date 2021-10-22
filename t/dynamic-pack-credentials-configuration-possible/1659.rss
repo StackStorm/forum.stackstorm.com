@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Dynamic Pack credentials/configuration possible?</title>
+    <link>https://forum.stackstorm.com/t/dynamic-pack-credentials-configuration-possible/1659</link>
+    <description>At the risk of ressurecting an [old thread](https://forum.stackstorm.com/t/pack-configs-different-hosts-credentials/398), I have a situation where I will need to perform actions using a pack but need to change the configuration of the pack at run-time.  
+
+Example:
+I have a workflow that orchestrates actions across several different platforms, one of which is AWS.  The aws 2.0.0 pack has me configure the AWS Access Key and Secret Key in the pack configuration, which is then used by the actions.  I&#39;ll need to target different customer was accounts, as they provide the account ID and access/secret tokens as part of the API call, and would like to reconfigure the pack for the scope of the action runner, or failing that, configure the AWS pack itself and lock operations to just that workflow until its completed to ensure no concurrent runners try to do actions in the wrong enclave.
+
+I haven&#39;t seen any native action in st2 to manipulate pack configuration, so I&#39;m embarking on the arcane wizardry of delving into where that configuration is read from at runtime to see how to go about writing core actions to manipulate it.
+
+Can someone tell me I&#39;m crazy and point to a better way?</description>
+    
+    <lastBuildDate>Thu, 22 Apr 2021 04:24:54 +0000</lastBuildDate>
+    <category>Operations</category>
+    <atom:link href="https://forum.stackstorm.com/t/dynamic-pack-credentials-configuration-possible/1659.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Dynamic Pack credentials/configuration possible?</title>
+        <dc:creator><![CDATA[willowhawk]]></dc:creator>
+        <description><![CDATA[
+            <p>At the risk of ressurecting an <a href="https://forum.stackstorm.com/t/pack-configs-different-hosts-credentials/398">old thread</a>, I have a situation where I will need to perform actions using a pack but need to change the configuration of the pack at run-time.</p>
+<p>Example:<br>
+I have a workflow that orchestrates actions across several different platforms, one of which is AWS.  The aws 2.0.0 pack has me configure the AWS Access Key and Secret Key in the pack configuration, which is then used by the actions.  I’ll need to target different customer was accounts, as they provide the account ID and access/secret tokens as part of the API call, and would like to reconfigure the pack for the scope of the action runner, or failing that, configure the AWS pack itself and lock operations to just that workflow until its completed to ensure no concurrent runners try to do actions in the wrong enclave.</p>
+<p>I haven’t seen any native action in st2 to manipulate pack configuration, so I’m embarking on the arcane wizardry of delving into where that configuration is read from at runtime to see how to go about writing core actions to manipulate it.</p>
+<p>Can someone tell me I’m crazy and point to a better way?</p>
+          <p><a href="https://forum.stackstorm.com/t/dynamic-pack-credentials-configuration-possible/1659/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/dynamic-pack-credentials-configuration-possible/1659/1</link>
+        <pubDate>Thu, 22 Apr 2021 04:24:54 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1659-1</guid>
+        <source url="https://forum.stackstorm.com/t/dynamic-pack-credentials-configuration-possible/1659.rss">Dynamic Pack credentials/configuration possible?</source>
+      </item>
+  </channel>
+</rss>

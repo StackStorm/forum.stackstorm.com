@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Servicenow API Returns - Read json</title>
+    <link>https://forum.stackstorm.com/t/servicenow-api-returns-read-json/1688</link>
+    <description>The  below json format i got it from Servicenow API.  i need to get &quot;sys_id&quot; value from the below json format in Python script.
+i have tired via print(content.result[&quot;sys_id&quot;])  but no luck.
+please help.
+
+result: 
+  exit_code: 0
+  result: null
+  stderr: &#39;&#39;
+  stdout: &#39;{&#39;&#39;result&#39;&#39;: [{&#39;&#39;sys_id&#39;&#39;: &#39;&#39;563cb250db0c38100a340c65ca9619a0&#39;&#39;, &#39;&#39;number&#39;&#39;: &#39;&#39;INC10954789&#39;&#39;}]}</description>
+    
+    <lastBuildDate>Tue, 11 May 2021 18:07:19 +0000</lastBuildDate>
+    <category>Workflows</category>
+    <atom:link href="https://forum.stackstorm.com/t/servicenow-api-returns-read-json/1688.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Servicenow API Returns - Read json</title>
+        <dc:creator><![CDATA[blag]]></dc:creator>
+        <description><![CDATA[
+            <p>What happened when you tried <code>print(content.result[“sys_id”])</code>? What was the output or the error?</p>
+          <p><a href="https://forum.stackstorm.com/t/servicenow-api-returns-read-json/1688/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/servicenow-api-returns-read-json/1688/2</link>
+        <pubDate>Tue, 11 May 2021 18:07:19 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1688-2</guid>
+        <source url="https://forum.stackstorm.com/t/servicenow-api-returns-read-json/1688.rss">Servicenow API Returns - Read json</source>
+      </item>
+      <item>
+        <title>Servicenow API Returns - Read json</title>
+        <dc:creator><![CDATA[arul]]></dc:creator>
+        <description><![CDATA[
+            <p>The  below json format i got it from Servicenow API.  i need to get “sys_id” value from the below json format in Python script.<br>
+i have tired via print(content.result[“sys_id”])  but no luck.<br>
+please help.</p>
+<p>result:<br>
+exit_code: 0<br>
+result: null<br>
+stderr: ‘’<br>
+stdout: ‘{’‘result’’: [{’‘sys_id’’: ‘‘563cb250db0c38100a340c65ca9619a0’’, ‘‘number’’: ‘‘INC10954789’’}]}</p>
+          <p><a href="https://forum.stackstorm.com/t/servicenow-api-returns-read-json/1688/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/servicenow-api-returns-read-json/1688/1</link>
+        <pubDate>Tue, 11 May 2021 17:25:30 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1688-1</guid>
+        <source url="https://forum.stackstorm.com/t/servicenow-api-returns-read-json/1688.rss">Servicenow API Returns - Read json</source>
+      </item>
+  </channel>
+</rss>

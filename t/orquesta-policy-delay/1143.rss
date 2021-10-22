@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Orquesta policy delay</title>
+    <link>https://forum.stackstorm.com/t/orquesta-policy-delay/1143</link>
+    <description>We are using Stackstorm policies to limit the number of executions of a particular workflow as documented in the top of this page : https://docs.stackstorm.com/reference/policies.html
+like this:
+
+    name: my_action.concurrency
+    description: Limits the concurrent executions for my action.
+    enabled: true
+    resource_ref: demo.my_action
+    policy_type: action.concurrency
+    parameters:
+        action: delay
+        threshold: 10
+
+Works great -  we get to 10 executions running, the 11th, 12th, etc  go to &quot;delayed&quot;, until some of the first 10 finish.
+
+The app consumes messages from Kafka. There are two options I can see to consume from Kafka -  
+A. read everything from Kafka, invoke a stackstorm execution per message.   Hit the limit of 10 executions,  then the rest go to &#39;delayed&#39; until they can be worked by ST2.  This uses ST2 as a queue, and we have hit a limit (several hundred) delayed messages, after which ST2 almost crashed.
+OR    
+B. Detect when ST2 is able to accept more work (backpressure).  For each Kafka message, we would invoke ST2 then check if the execution went to &#39;delayed&#39;. If so, sleep and poll ST2 until the execution went to &#39;running&#39; or a terminal state, then get the next Kafka message, repeat.
+
+Questions:
+1. Which is best. - Option A or Option B?  Is there a better way to do this?
+2. For Option B - how long the &#39;delay&#39; will hold / is there a timeout for the delay?  Can we set it? What state to the workflows go to after the timeout is reached?</description>
+    
+    <lastBuildDate>Mon, 06 Apr 2020 21:25:37 +0000</lastBuildDate>
+    <category>Workflows</category>
+    <atom:link href="https://forum.stackstorm.com/t/orquesta-policy-delay/1143.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Orquesta policy delay</title>
+        <dc:creator><![CDATA[devdude]]></dc:creator>
+        <description><![CDATA[
+            <p>OK - thanks for explaining how that works, and no timeout for delayed executions.</p>
+<p>The scheduler - yeah. That seems to imply trading some performance for the ability to queue up the requests. That would drive us towards Option B with a longer polling interval…</p>
+<p>Thank you for helping us think through this.</p>
+          <p><a href="https://forum.stackstorm.com/t/orquesta-policy-delay/1143/7">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/orquesta-policy-delay/1143/7</link>
+        <pubDate>Mon, 06 Apr 2020 21:25:37 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1143-7</guid>
+        <source url="https://forum.stackstorm.com/t/orquesta-policy-delay/1143.rss">Orquesta policy delay</source>
+      </item>
+      <item>
+        <title>Orquesta policy delay</title>
+        <dc:creator><![CDATA[m4dcoder]]></dc:creator>
+        <description><![CDATA[
+            <p>There is no timeout specifically for workflow execution.  It can sit in the queue until there is resource freed up to process it.</p>
+<p>You are right, I forgot about the scheduler.  There’s a scheduler sleep_interval (secs) option you can set in the st2.conf file. It defaults to 0.1 second. You can try to change it to an acceptable value that is easier on the system. Note that this will also delay normal scheduling up to the sleep interval.</p>
+          <p><a href="https://forum.stackstorm.com/t/orquesta-policy-delay/1143/6">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/orquesta-policy-delay/1143/6</link>
+        <pubDate>Mon, 06 Apr 2020 21:03:16 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1143-6</guid>
+        <source url="https://forum.stackstorm.com/t/orquesta-policy-delay/1143.rss">Orquesta policy delay</source>
+      </item>
+      <item>
+        <title>Orquesta policy delay</title>
+        <dc:creator><![CDATA[devdude]]></dc:creator>
+        <description><![CDATA[
+            <p>they can be 5 - 7 minutes to complete. I am asking - will the workflows that cannot run right away stay in delayed? Is there a “delayed too long - give up” timeout or will they just stay enqueued until they are consumed?</p>
+          <p><a href="https://forum.stackstorm.com/t/orquesta-policy-delay/1143/5">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/orquesta-policy-delay/1143/5</link>
+        <pubDate>Mon, 06 Apr 2020 20:58:31 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1143-5</guid>
+        <source url="https://forum.stackstorm.com/t/orquesta-policy-delay/1143.rss">Orquesta policy delay</source>
+      </item>
+      <item>
+        <title>Orquesta policy delay</title>
+        <dc:creator><![CDATA[m4dcoder]]></dc:creator>
+        <description><![CDATA[
+            <p>How long an action execution stays on delayed as a result of the concurrency policy depends on what the action is doing.  So you probably have better idea how long it takes for each action execution under the policy to complete?</p>
+          <p><a href="https://forum.stackstorm.com/t/orquesta-policy-delay/1143/4">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/orquesta-policy-delay/1143/4</link>
+        <pubDate>Mon, 06 Apr 2020 20:56:48 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1143-4</guid>
+        <source url="https://forum.stackstorm.com/t/orquesta-policy-delay/1143.rss">Orquesta policy delay</source>
+      </item>
+      <item>
+        <title>Orquesta policy delay</title>
+        <dc:creator><![CDATA[devdude]]></dc:creator>
+        <description><![CDATA[
+            <p>What seems to have happened is … every 2500 milliseconds the scheduler re-polls to see if it can drive the delayed workflows --&gt; scheduled --&gt; running.  With enough (400 - 600) workflows in ‘delayed’, the scheduler and/or Redis became swamped / CPU bound. We had MongoDB problems at the same time, so a little difficult to tell.</p>
+<p>For Option B, any idea how long things can stay in ‘delayed’?</p>
+          <p><a href="https://forum.stackstorm.com/t/orquesta-policy-delay/1143/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/orquesta-policy-delay/1143/3</link>
+        <pubDate>Mon, 06 Apr 2020 20:54:44 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1143-3</guid>
+        <source url="https://forum.stackstorm.com/t/orquesta-policy-delay/1143.rss">Orquesta policy delay</source>
+      </item>
+      <item>
+        <title>Orquesta policy delay</title>
+        <dc:creator><![CDATA[m4dcoder]]></dc:creator>
+        <description><![CDATA[
+            <p>Ideally, I would say option A because you don’t have to keep polling st2 which is more resource heavy.  Can you provide any more context on the limit you’re hitting with option A?  In my recollection, the delayed action executions are not consuming resources.  As each action execution completes, it will query for the next delayed to resume.</p>
+          <p><a href="https://forum.stackstorm.com/t/orquesta-policy-delay/1143/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/orquesta-policy-delay/1143/2</link>
+        <pubDate>Mon, 06 Apr 2020 20:49:18 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1143-2</guid>
+        <source url="https://forum.stackstorm.com/t/orquesta-policy-delay/1143.rss">Orquesta policy delay</source>
+      </item>
+      <item>
+        <title>Orquesta policy delay</title>
+        <dc:creator><![CDATA[devdude]]></dc:creator>
+        <description><![CDATA[
+            <p>We are using Stackstorm policies to limit the number of executions of a particular workflow as documented in the top of this page : <a href="https://docs.stackstorm.com/reference/policies.html" class="inline-onebox" rel="nofollow noopener">Policies — StackStorm 3.1.0 documentation</a><br>
+like this:</p>
+<pre><code>name: my_action.concurrency
+description: Limits the concurrent executions for my action.
+enabled: true
+resource_ref: demo.my_action
+policy_type: action.concurrency
+parameters:
+    action: delay
+    threshold: 10
+</code></pre>
+<p>Works great -  we get to 10 executions running, the 11th, 12th, etc  go to “delayed”, until some of the first 10 finish.</p>
+<p>The app consumes messages from Kafka. There are two options I can see to consume from Kafka -<br>
+A. read everything from Kafka, invoke a stackstorm execution per message.   Hit the limit of 10 executions,  then the rest go to ‘delayed’ until they can be worked by ST2.  This uses ST2 as a queue, and we have hit a limit (several hundred) delayed messages, after which ST2 almost crashed.<br>
+OR<br>
+B. Detect when ST2 is able to accept more work (backpressure).  For each Kafka message, we would invoke ST2 then check if the execution went to ‘delayed’. If so, sleep and poll ST2 until the execution went to ‘running’ or a terminal state, then get the next Kafka message, repeat.</p>
+<p>Questions:</p>
+<ol>
+<li>Which is best. - Option A or Option B?  Is there a better way to do this?</li>
+<li>For Option B - how long the ‘delay’ will hold / is there a timeout for the delay?  Can we set it? What state to the workflows go to after the timeout is reached?</li>
+</ol>
+          <p><a href="https://forum.stackstorm.com/t/orquesta-policy-delay/1143/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/orquesta-policy-delay/1143/1</link>
+        <pubDate>Mon, 06 Apr 2020 18:15:16 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1143-1</guid>
+        <source url="https://forum.stackstorm.com/t/orquesta-policy-delay/1143.rss">Orquesta policy delay</source>
+      </item>
+  </channel>
+</rss>

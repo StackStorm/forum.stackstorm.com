@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Python3 - URL Encoded Webhook Failure</title>
+    <link>https://forum.stackstorm.com/t/python3-url-encoded-webhook-failure/1013</link>
+    <description>I have been testing URL Encoded webhooks and I keep running into an error where Stackstorm is converting the URL Encoded text data into binary format which then causes it to fail when trying to encode it as JSON data.
+
+The simple URL Encoded body data I have been testing with is:
+
+MyVariableOne=ValueOne&amp;MyVariableTwo=ValueTwo
+
+When posting this to my webook URL using Postman, I get the an HTPP 500 error with an &quot;Internal Server Error&quot; message response for Stackstrom and the following debug output in the API logs:
+
+    [2020-01-27 11:49:57 +0000] [10770] [DEBUG] POST /v1/webhooks/valero_cpe
+    2020-01-27 11:49:57,579 140064340756784 DEBUG (unknown file) [-] Match path: /v1/webhooks/valero_cpe
+    2020-01-27 11:49:57,580 140064340756784 INFO (unknown file) [-] 684b74a5-5ea6-4602-9006-2a9a0033710c - POST /v1/webhooks/valero_cpe with query={} (method=&#39;POST&#39;,path=&#39;/v1/webhooks/valero_cpe&#39;,remote_addr=&#39;127.0.0.1&#39;,query={},request_id=&#39;684b74a5-5ea6-4602-9006-2a9a0033710c&#39;)
+    2020-01-27 11:49:57,580 140064340756784 DEBUG (unknown file) [-] Received call with WebOb: POST /v1/webhooks/valero_cpe HTTP/1.0
+    Accept: */*
+    Accept-Encoding: gzip, deflate, br
+    Cache-Control: no-cache
+    Content-Length: 46
+    Content-Type: application/x-www-form-urlencoded
+    Host: 81296fd8.ngrok.io,81296fd8.ngrok.io
+    Postman-Token: 00a125ee-11b4-46fe-9500-75f5d9a811d8
+    St2-Api-Key: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+    User-Agent: PostmanRuntime/7.22.0
+    X-Forwarded-For: 68.187.78.177, 127.0.0.1
+    X-Forwarded-Proto: https
+    X-Real-Ip: 127.0.0.1
+    X-Request-Id: 684b74a5-5ea6-4602-9006-2a9a0033710c
+
+    MyVariableOne=ValueOne&amp;MyVariableTwo=ValueTwo
+
+    2020-01-27 11:49:57,580 140064340756784 DEBUG (unknown file) [-] Match path: /v1/webhooks/valero_cpe
+    2020-01-27 11:49:57,581 140064340756784 DEBUG (unknown file) [-] Parsed endpoint: {&#39;operationId&#39;: &#39;st2api.controllers.v1.webhooks:webhooks_controller.post&#39;, &#39;x-requirements&#39;: {&#39;hook&#39;: &#39;.*&#39;}, &#39;description&#39;: &#39;Trigger a webhook.\n&#39;, &#39;parameters&#39;: [{&#39;name&#39;: &#39;hook&#39;, &#39;in&#39;: &#39;path&#39;, &#39;description&#39;: &#39;Webhook path&#39;, &#39;type&#39;: &#39;string&#39;, &#39;required&#39;: True}, {&#39;name&#39;: &#39;webhook_body_api&#39;, &#39;in&#39;: &#39;body&#39;, &#39;description&#39;: &#39;Webhook payload&#39;, &#39;schema&#39;: {&#39;$ref&#39;: &#39;#/definitions/WebhookBody&#39;}}], &#39;x-parameters&#39;: [{&#39;name&#39;: &#39;headers&#39;, &#39;in&#39;: &#39;request&#39;, &#39;description&#39;: &#39;List of headers attached to the request.&#39;}, {&#39;name&#39;: &#39;user&#39;, &#39;in&#39;: &#39;context&#39;, &#39;x-as&#39;: &#39;requester_user&#39;, &#39;description&#39;: &#39;User performing the operation.&#39;}], &#39;responses&#39;: {&#39;202&#39;: {&#39;description&#39;: &#39;Single action being created&#39;, &#39;schema&#39;: {&#39;$ref&#39;: &#39;#/definitions/WebhookBody&#39;}, &#39;examples&#39;: {&#39;application/json&#39;: {&#39;ref&#39;: &#39;core.local&#39;}}}, &#39;default&#39;: {&#39;description&#39;: &#39;Unexpected error&#39;, &#39;schema&#39;: {&#39;$ref&#39;: &#39;#/definitions/Error&#39;}}}}
+    2020-01-27 11:49:57,581 140064340756784 DEBUG (unknown file) [-] Parsed path_vars: {&#39;hook&#39;: &#39;valero_cpe&#39;}
+    2020-01-27 11:49:57,583 140064340756784 AUDIT (unknown file) [-] API key with id &quot;5ddbbb999e14ef34dced4bfc&quot; is validated.
+    2020-01-27 11:49:57,587 140064340756784 DEBUG (unknown file) [-] Dispatching trigger {&#39;uid&#39;: &#39;trigger:core:8e1eb20c-33f6-4e4e-b0e9-dc166b37be7d:f7c2bb36b9bae14671835604c4167e1c&#39;, &#39;ref&#39;: &#39;core.8e1eb20c-33f6-4e4e-b0e9-dc166b37be7d&#39;, &#39;name&#39;: &#39;8e1eb20c-33f6-4e4e-b0e9-dc166b37be7d&#39;, &#39;pack&#39;: &#39;core&#39;, &#39;type&#39;: &#39;core.st2.webhook&#39;, &#39;parameters&#39;: {&#39;url&#39;: &#39;/valero_cpe&#39;}, &#39;id&#39;: &#39;5df13f759e14ef0c5f1bcc3a&#39;} with payload {&#39;headers&#39;: {&#39;Host&#39;: &#39;81296fd8.ngrok.io,81296fd8.ngrok.io&#39;, &#39;X-Real-Ip&#39;: &#39;127.0.0.1&#39;, &#39;X-Forwarded-For&#39;: &#39;68.187.78.177, 127.0.0.1&#39;, &#39;Content-Length&#39;: &#39;46&#39;, &#39;St2-Api-Key&#39;: &#39;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&#39;, &#39;Content-Type&#39;: &#39;application/x-www-form-urlencoded&#39;, &#39;User-Agent&#39;: &#39;PostmanRuntime/7.22.0&#39;, &#39;Accept&#39;: &#39;*/*&#39;, &#39;Cache-Control&#39;: &#39;no-cache&#39;, &#39;Postman-Token&#39;: &#39;00a125ee-11b4-46fe-9500-75f5d9a811d8&#39;, &#39;Accept-Encoding&#39;: &#39;gzip, deflate, br&#39;, &#39;X-Forwarded-Proto&#39;: &#39;https&#39;, &#39;X-Request-Id&#39;: &#39;684b74a5-5ea6-4602-9006-2a9a0033710c&#39;}, &#39;body&#39;: {b&#39;MyVariableOne&#39;: [b&#39;ValueOne&#39;], b&#39;MyVariableTwo&#39;: [b&#39;ValueTwo\n&#39;]}}.
+    2020-01-27 11:49:57,590 140064340756784 DEBUG (unknown file) [-] Dispatching trigger (trigger={&#39;uid&#39;: &#39;trigger:core:8e1eb20c-33f6-4e4e-b0e9-dc166b37be7d:f7c2bb36b9bae14671835604c4167e1c&#39;, &#39;ref&#39;: &#39;core.8e1eb20c-33f6-4e4e-b0e9-dc166b37be7d&#39;, &#39;name&#39;: &#39;8e1eb20c-33f6-4e4e-b0e9-dc166b37be7d&#39;, &#39;pack&#39;: &#39;core&#39;, &#39;type&#39;: &#39;core.st2.webhook&#39;, &#39;parameters&#39;: {&#39;url&#39;: &#39;/valero_cpe&#39;}, &#39;id&#39;: &#39;5df13f759e14ef0c5f1bcc3a&#39;},payload={&#39;trigger&#39;: {&#39;uid&#39;: &#39;trigger:core:8e1eb20c-33f6-4e4e-b0e9-dc166b37be7d:f7c2bb36b9bae14671835604c4167e1c&#39;, &#39;ref&#39;: &#39;core.8e1eb20c-33f6-4e4e-b0e9-dc166b37be7d&#39;, &#39;name&#39;: &#39;8e1eb20c-33f6-4e4e-b0e9-dc166b37be7d&#39;, &#39;pack&#39;: &#39;core&#39;, &#39;type&#39;: &#39;core.st2.webhook&#39;, &#39;parameters&#39;: {&#39;url&#39;: &#39;/valero_cpe&#39;}, &#39;id&#39;: &#39;5df13f759e14ef0c5f1bcc3a&#39;}, &#39;payload&#39;: {&#39;headers&#39;: {&#39;Host&#39;: &#39;81296fd8.ngrok.io,81296fd8.ngrok.io&#39;, &#39;X-Real-Ip&#39;: &#39;127.0.0.1&#39;, &#39;X-Forwarded-For&#39;: &#39;68.187.78.177, 127.0.0.1&#39;, &#39;Content-Length&#39;: &#39;46&#39;, &#39;St2-Api-Key&#39;: &#39;MzE0NDQ2MzI1YjhiZDFjNmRjZjE5NmUzODEyYTViYmZjNzY3YjYyNzVlNGMxMGQ3ODQ3NzI0YzE0YjNjNjVjNA&#39;, &#39;Content-Type&#39;: &#39;application/x-www-form-urlencoded&#39;, &#39;User-Agent&#39;: &#39;PostmanRuntime/7.22.0&#39;, &#39;Accept&#39;: &#39;*/*&#39;, &#39;Cache-Control&#39;: &#39;no-cache&#39;, &#39;Postman-Token&#39;: &#39;00a125ee-11b4-46fe-9500-75f5d9a811d8&#39;, &#39;Accept-Encoding&#39;: &#39;gzip, deflate, br&#39;, &#39;X-Forwarded-Proto&#39;: &#39;https&#39;, &#39;X-Request-Id&#39;: &#39;684b74a5-5ea6-4602-9006-2a9a0033710c&#39;}, &#39;body&#39;: {b&#39;MyVariableOne&#39;: [b&#39;ValueOne&#39;], b&#39;MyVariableTwo&#39;: [b&#39;ValueTwo\n&#39;]}}, &#39;trace_context&#39;: &lt;st2common.models.api.trace.TraceContext object at 0x7f634564e518&gt;})
+    2020-01-27 11:49:57,591 140064340756784 DEBUG channel [-] using channel_id: 1
+    2020-01-27 11:49:57,596 140064340756784 DEBUG channel [-] Channel open
+    2020-01-27 11:49:57,600 140064340756784 DEBUG channel [-] Closed channel #1
+    2020-01-27 11:49:57,601 140064340756784 ERROR (unknown file) [-] Failed to call controller function &quot;post&quot; for operation &quot;st2api.controllers.v1.webhooks:webhooks_controller.post&quot;: key b&#39;MyVariableOne&#39; is not a string
+    Traceback (most recent call last):
+      File &quot;/opt/stackstorm/st2/lib/python3.6/site-packages/st2common/router.py&quot;, line 515, in __call__
+        resp = func(**kw)
+      File &quot;/opt/stackstorm/st2/lib/python3.6/site-packages/st2api/controllers/v1/webhooks.py&quot;, line 172, in post
+        return Response(json=body, status=http_client.ACCEPTED)
+      File &quot;/opt/stackstorm/st2/lib/python3.6/site-packages/st2common/router.py&quot;, line 150, in __init__
+        body = json_encode(json_body).encode(&#39;UTF-8&#39;)
+      File &quot;/opt/stackstorm/st2/lib/python3.6/site-packages/st2common/util/jsonify.py&quot;, line 45, in json_encode
+        return json.dumps(obj, cls=GenericJSON, indent=indent)
+      File &quot;/usr/lib/python3.6/json/__init__.py&quot;, line 238, in dumps
+        **kw).encode(obj)
+      File &quot;/usr/lib/python3.6/json/encoder.py&quot;, line 201, in encode
+        chunks = list(chunks)
+      File &quot;/usr/lib/python3.6/json/encoder.py&quot;, line 430, in _iterencode
+        yield from _iterencode_dict(o, _current_indent_level)
+      File &quot;/usr/lib/python3.6/json/encoder.py&quot;, line 376, in _iterencode_dict
+        raise TypeError(&quot;key &quot; + repr(key) + &quot; is not a string&quot;)
+    TypeError: key b&#39;MyVariableOne&#39; is not a string
+    2020-01-27 11:49:57,601 140064340756784 ERROR (unknown file) [-] API call failed: key b&#39;MyVariableOne&#39; is not a string
+    Traceback (most recent call last):
+      File &quot;/opt/stackstorm/st2/lib/python3.6/site-packages/st2common/middleware/error_handling.py&quot;, line 48, in __call__
+        return self.app(environ, start_response)
+      File &quot;/opt/stackstorm/st2/lib/python3.6/site-packages/st2common/middleware/streaming.py&quot;, line 47, in __call__
+        return self.app(environ, start_response)
+      File &quot;/opt/stackstorm/st2/lib/python3.6/site-packages/st2common/router.py&quot;, line 594, in as_wsgi
+        resp = self(req)
+      File &quot;/opt/stackstorm/st2/lib/python3.6/site-packages/st2common/router.py&quot;, line 519, in __call__
+        raise e
+      File &quot;/opt/stackstorm/st2/lib/python3.6/site-packages/st2common/router.py&quot;, line 515, in __call__
+        resp = func(**kw)
+      File &quot;/opt/stackstorm/st2/lib/python3.6/site-packages/st2api/controllers/v1/webhooks.py&quot;, line 172, in post
+        return Response(json=body, status=http_client.ACCEPTED)
+      File &quot;/opt/stackstorm/st2/lib/python3.6/site-packages/st2common/router.py&quot;, line 150, in __init__
+        body = json_encode(json_body).encode(&#39;UTF-8&#39;)
+      File &quot;/opt/stackstorm/st2/lib/python3.6/site-packages/st2common/util/jsonify.py&quot;, line 45, in json_encode
+        return json.dumps(obj, cls=GenericJSON, indent=indent)
+      File &quot;/usr/lib/python3.6/json/__init__.py&quot;, line 238, in dumps
+        **kw).encode(obj)
+      File &quot;/usr/lib/python3.6/json/encoder.py&quot;, line 201, in encode
+        chunks = list(chunks)
+      File &quot;/usr/lib/python3.6/json/encoder.py&quot;, line 430, in _iterencode
+        yield from _iterencode_dict(o, _current_indent_level)
+      File &quot;/usr/lib/python3.6/json/encoder.py&quot;, line 376, in _iterencode_dict
+        raise TypeError(&quot;key &quot; + repr(key) + &quot; is not a string&quot;)
+    TypeError: key b&#39;MyVariableOne&#39; is not a string (_exception_class=&#39;TypeError&#39;,_exception_message=&quot;key b&#39;MyVariableOne&#39; is not a string&quot;,_exception_data={})
+    2020-01-27 11:49:57,606 140064340756784 DEBUG (unknown file) [-] Match path: /v1/webhooks/valero_cpe
+    2020-01-27 11:49:57,607 140064340756784 INFO (unknown file) [-] 684b74a5-5ea6-4602-9006-2a9a0033710c - 500 46 27.193ms (method=&#39;POST&#39;,path=&#39;/v1/webhooks/valero_cpe&#39;,remote_addr=&#39;127.0.0.1&#39;,status=500,runtime=27.193,content_length=46,request_id=&#39;684b74a5-5ea6-4602-9006-2a9a0033710c&#39;)
+    2020-01-27 11:49:57,608 140064340756784 DEBUG (unknown file) [-] 684b74a5-5ea6-4602-9006-2a9a0033710c - 500 46 27.193ms
+    b&#39;{\n    &quot;faultstring&quot;: &quot;Internal Server Error&quot;\n}&#39; (method=&#39;POST&#39;,path=&#39;/v1/webhooks/valero_cpe&#39;,remote_addr=&#39;127.0.0.1&#39;,status=500,runtime=27.193,content_length=46,request_id=&#39;684b74a5-5ea6-4602-9006-2a9a0033710c&#39;,result=&#39;b\&#39;{\\n    &quot;faultstring&quot;: &quot;Internal Server Error&quot;\\n}\&#39;&#39;)
+    [2020-01-27 11:49:57 +0000] [10770] [DEBUG] Closing connection.</description>
+    
+    <lastBuildDate>Tue, 28 Jan 2020 21:43:51 +0000</lastBuildDate>
+    <category>API</category>
+    <atom:link href="https://forum.stackstorm.com/t/python3-url-encoded-webhook-failure/1013.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Python3 - URL Encoded Webhook Failure</title>
+        <dc:creator><![CDATA[jamesdreid]]></dc:creator>
+        <description><![CDATA[
+            <p>Bug report submitted.</p>
+<h1><span class="hashtag">#4853</span></h1>
+          <p><a href="https://forum.stackstorm.com/t/python3-url-encoded-webhook-failure/1013/4">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/python3-url-encoded-webhook-failure/1013/4</link>
+        <pubDate>Tue, 28 Jan 2020 21:43:51 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1013-4</guid>
+        <source url="https://forum.stackstorm.com/t/python3-url-encoded-webhook-failure/1013.rss">Python3 - URL Encoded Webhook Failure</source>
+      </item>
+      <item>
+        <title>Python3 - URL Encoded Webhook Failure</title>
+        <dc:creator><![CDATA[armab]]></dc:creator>
+        <description><![CDATA[
+            <p>Yes, please report a bug in <code>stackstorm/st2</code> and having a PR for it would be just awesome!</p>
+          <p><a href="https://forum.stackstorm.com/t/python3-url-encoded-webhook-failure/1013/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/python3-url-encoded-webhook-failure/1013/3</link>
+        <pubDate>Mon, 27 Jan 2020 22:32:20 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1013-3</guid>
+        <source url="https://forum.stackstorm.com/t/python3-url-encoded-webhook-failure/1013.rss">Python3 - URL Encoded Webhook Failure</source>
+      </item>
+      <item>
+        <title>Python3 - URL Encoded Webhook Failure</title>
+        <dc:creator><![CDATA[jamesdreid]]></dc:creator>
+        <description><![CDATA[
+            <p>I believe I have isolated the issue and it is due to the encoding for the body data that is returned by the WSGI server.  In Python2, the body data was returned as a string so line 404 (below) in the router.py file worked properly to process the URL encoded body data.</p>
+<p><code> data = urlparse.parse_qs(req.body)</code></p>
+<p>In Python3, the WSGI server encoded the body data as a byte string and  it needed to be decoded as a string before being processed further.  Changing line 404 to the following, corrected the error and processed the web hook data properly:</p>
+<p><code>data = urlparse.parse_qs(req.body.decode('utf-8'))</code></p>
+<p>Not sure if this change will break anything else, but I will happily open a bug report/tracking issue if needed and I can figure out the process.</p>
+<p>Thanks</p>
+          <p><a href="https://forum.stackstorm.com/t/python3-url-encoded-webhook-failure/1013/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/python3-url-encoded-webhook-failure/1013/2</link>
+        <pubDate>Mon, 27 Jan 2020 22:12:25 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1013-2</guid>
+        <source url="https://forum.stackstorm.com/t/python3-url-encoded-webhook-failure/1013.rss">Python3 - URL Encoded Webhook Failure</source>
+      </item>
+      <item>
+        <title>Python3 - URL Encoded Webhook Failure</title>
+        <dc:creator><![CDATA[jamesdreid]]></dc:creator>
+        <description><![CDATA[
+            <p>I have been testing URL Encoded webhooks and I keep running into an error where Stackstorm is converting the URL Encoded text data into binary format which then causes it to fail when trying to encode it as JSON data.</p>
+<p>The simple URL Encoded body data I have been testing with is:</p>
+<p>MyVariableOne=ValueOne&amp;MyVariableTwo=ValueTwo</p>
+<p>When posting this to my webook URL using Postman, I get the an HTPP 500 error with an “Internal Server Error” message response for Stackstrom and the following debug output in the API logs:</p>
+<pre><code>[2020-01-27 11:49:57 +0000] [10770] [DEBUG] POST /v1/webhooks/valero_cpe
+2020-01-27 11:49:57,579 140064340756784 DEBUG (unknown file) [-] Match path: /v1/webhooks/valero_cpe
+2020-01-27 11:49:57,580 140064340756784 INFO (unknown file) [-] 684b74a5-5ea6-4602-9006-2a9a0033710c - POST /v1/webhooks/valero_cpe with query={} (method='POST',path='/v1/webhooks/valero_cpe',remote_addr='127.0.0.1',query={},request_id='684b74a5-5ea6-4602-9006-2a9a0033710c')
+2020-01-27 11:49:57,580 140064340756784 DEBUG (unknown file) [-] Received call with WebOb: POST /v1/webhooks/valero_cpe HTTP/1.0
+Accept: */*
+Accept-Encoding: gzip, deflate, br
+Cache-Control: no-cache
+Content-Length: 46
+Content-Type: application/x-www-form-urlencoded
+Host: 81296fd8.ngrok.io,81296fd8.ngrok.io
+Postman-Token: 00a125ee-11b4-46fe-9500-75f5d9a811d8
+St2-Api-Key: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+User-Agent: PostmanRuntime/7.22.0
+X-Forwarded-For: 68.187.78.177, 127.0.0.1
+X-Forwarded-Proto: https
+X-Real-Ip: 127.0.0.1
+X-Request-Id: 684b74a5-5ea6-4602-9006-2a9a0033710c
+
+MyVariableOne=ValueOne&amp;MyVariableTwo=ValueTwo
+
+2020-01-27 11:49:57,580 140064340756784 DEBUG (unknown file) [-] Match path: /v1/webhooks/valero_cpe
+2020-01-27 11:49:57,581 140064340756784 DEBUG (unknown file) [-] Parsed endpoint: {'operationId': 'st2api.controllers.v1.webhooks:webhooks_controller.post', 'x-requirements': {'hook': '.*'}, 'description': 'Trigger a webhook.\n', 'parameters': [{'name': 'hook', 'in': 'path', 'description': 'Webhook path', 'type': 'string', 'required': True}, {'name': 'webhook_body_api', 'in': 'body', 'description': 'Webhook payload', 'schema': {'$ref': '#/definitions/WebhookBody'}}], 'x-parameters': [{'name': 'headers', 'in': 'request', 'description': 'List of headers attached to the request.'}, {'name': 'user', 'in': 'context', 'x-as': 'requester_user', 'description': 'User performing the operation.'}], 'responses': {'202': {'description': 'Single action being created', 'schema': {'$ref': '#/definitions/WebhookBody'}, 'examples': {'application/json': {'ref': 'core.local'}}}, 'default': {'description': 'Unexpected error', 'schema': {'$ref': '#/definitions/Error'}}}}
+2020-01-27 11:49:57,581 140064340756784 DEBUG (unknown file) [-] Parsed path_vars: {'hook': 'valero_cpe'}
+2020-01-27 11:49:57,583 140064340756784 AUDIT (unknown file) [-] API key with id "5ddbbb999e14ef34dced4bfc" is validated.
+2020-01-27 11:49:57,587 140064340756784 DEBUG (unknown file) [-] Dispatching trigger {'uid': 'trigger:core:8e1eb20c-33f6-4e4e-b0e9-dc166b37be7d:f7c2bb36b9bae14671835604c4167e1c', 'ref': 'core.8e1eb20c-33f6-4e4e-b0e9-dc166b37be7d', 'name': '8e1eb20c-33f6-4e4e-b0e9-dc166b37be7d', 'pack': 'core', 'type': 'core.st2.webhook', 'parameters': {'url': '/valero_cpe'}, 'id': '5df13f759e14ef0c5f1bcc3a'} with payload {'headers': {'Host': '81296fd8.ngrok.io,81296fd8.ngrok.io', 'X-Real-Ip': '127.0.0.1', 'X-Forwarded-For': '68.187.78.177, 127.0.0.1', 'Content-Length': '46', 'St2-Api-Key': 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx', 'Content-Type': 'application/x-www-form-urlencoded', 'User-Agent': 'PostmanRuntime/7.22.0', 'Accept': '*/*', 'Cache-Control': 'no-cache', 'Postman-Token': '00a125ee-11b4-46fe-9500-75f5d9a811d8', 'Accept-Encoding': 'gzip, deflate, br', 'X-Forwarded-Proto': 'https', 'X-Request-Id': '684b74a5-5ea6-4602-9006-2a9a0033710c'}, 'body': {b'MyVariableOne': [b'ValueOne'], b'MyVariableTwo': [b'ValueTwo\n']}}.
+2020-01-27 11:49:57,590 140064340756784 DEBUG (unknown file) [-] Dispatching trigger (trigger={'uid': 'trigger:core:8e1eb20c-33f6-4e4e-b0e9-dc166b37be7d:f7c2bb36b9bae14671835604c4167e1c', 'ref': 'core.8e1eb20c-33f6-4e4e-b0e9-dc166b37be7d', 'name': '8e1eb20c-33f6-4e4e-b0e9-dc166b37be7d', 'pack': 'core', 'type': 'core.st2.webhook', 'parameters': {'url': '/valero_cpe'}, 'id': '5df13f759e14ef0c5f1bcc3a'},payload={'trigger': {'uid': 'trigger:core:8e1eb20c-33f6-4e4e-b0e9-dc166b37be7d:f7c2bb36b9bae14671835604c4167e1c', 'ref': 'core.8e1eb20c-33f6-4e4e-b0e9-dc166b37be7d', 'name': '8e1eb20c-33f6-4e4e-b0e9-dc166b37be7d', 'pack': 'core', 'type': 'core.st2.webhook', 'parameters': {'url': '/valero_cpe'}, 'id': '5df13f759e14ef0c5f1bcc3a'}, 'payload': {'headers': {'Host': '81296fd8.ngrok.io,81296fd8.ngrok.io', 'X-Real-Ip': '127.0.0.1', 'X-Forwarded-For': '68.187.78.177, 127.0.0.1', 'Content-Length': '46', 'St2-Api-Key': 'MzE0NDQ2MzI1YjhiZDFjNmRjZjE5NmUzODEyYTViYmZjNzY3YjYyNzVlNGMxMGQ3ODQ3NzI0YzE0YjNjNjVjNA', 'Content-Type': 'application/x-www-form-urlencoded', 'User-Agent': 'PostmanRuntime/7.22.0', 'Accept': '*/*', 'Cache-Control': 'no-cache', 'Postman-Token': '00a125ee-11b4-46fe-9500-75f5d9a811d8', 'Accept-Encoding': 'gzip, deflate, br', 'X-Forwarded-Proto': 'https', 'X-Request-Id': '684b74a5-5ea6-4602-9006-2a9a0033710c'}, 'body': {b'MyVariableOne': [b'ValueOne'], b'MyVariableTwo': [b'ValueTwo\n']}}, 'trace_context': &lt;st2common.models.api.trace.TraceContext object at 0x7f634564e518&gt;})
+2020-01-27 11:49:57,591 140064340756784 DEBUG channel [-] using channel_id: 1
+2020-01-27 11:49:57,596 140064340756784 DEBUG channel [-] Channel open
+2020-01-27 11:49:57,600 140064340756784 DEBUG channel [-] Closed channel #1
+2020-01-27 11:49:57,601 140064340756784 ERROR (unknown file) [-] Failed to call controller function "post" for operation "st2api.controllers.v1.webhooks:webhooks_controller.post": key b'MyVariableOne' is not a string
+Traceback (most recent call last):
+  File "/opt/stackstorm/st2/lib/python3.6/site-packages/st2common/router.py", line 515, in __call__
+    resp = func(**kw)
+  File "/opt/stackstorm/st2/lib/python3.6/site-packages/st2api/controllers/v1/webhooks.py", line 172, in post
+    return Response(json=body, status=http_client.ACCEPTED)
+  File "/opt/stackstorm/st2/lib/python3.6/site-packages/st2common/router.py", line 150, in __init__
+    body = json_encode(json_body).encode('UTF-8')
+  File "/opt/stackstorm/st2/lib/python3.6/site-packages/st2common/util/jsonify.py", line 45, in json_encode
+    return json.dumps(obj, cls=GenericJSON, indent=indent)
+  File "/usr/lib/python3.6/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+  File "/usr/lib/python3.6/json/encoder.py", line 201, in encode
+    chunks = list(chunks)
+  File "/usr/lib/python3.6/json/encoder.py", line 430, in _iterencode
+    yield from _iterencode_dict(o, _current_indent_level)
+  File "/usr/lib/python3.6/json/encoder.py", line 376, in _iterencode_dict
+    raise TypeError("key " + repr(key) + " is not a string")
+TypeError: key b'MyVariableOne' is not a string
+2020-01-27 11:49:57,601 140064340756784 ERROR (unknown file) [-] API call failed: key b'MyVariableOne' is not a string
+Traceback (most recent call last):
+  File "/opt/stackstorm/st2/lib/python3.6/site-packages/st2common/middleware/error_handling.py", line 48, in __call__
+    return self.app(environ, start_response)
+  File "/opt/stackstorm/st2/lib/python3.6/site-packages/st2common/middleware/streaming.py", line 47, in __call__
+    return self.app(environ, start_response)
+  File "/opt/stackstorm/st2/lib/python3.6/site-packages/st2common/router.py", line 594, in as_wsgi
+    resp = self(req)
+  File "/opt/stackstorm/st2/lib/python3.6/site-packages/st2common/router.py", line 519, in __call__
+    raise e
+  File "/opt/stackstorm/st2/lib/python3.6/site-packages/st2common/router.py", line 515, in __call__
+    resp = func(**kw)
+  File "/opt/stackstorm/st2/lib/python3.6/site-packages/st2api/controllers/v1/webhooks.py", line 172, in post
+    return Response(json=body, status=http_client.ACCEPTED)
+  File "/opt/stackstorm/st2/lib/python3.6/site-packages/st2common/router.py", line 150, in __init__
+    body = json_encode(json_body).encode('UTF-8')
+  File "/opt/stackstorm/st2/lib/python3.6/site-packages/st2common/util/jsonify.py", line 45, in json_encode
+    return json.dumps(obj, cls=GenericJSON, indent=indent)
+  File "/usr/lib/python3.6/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+  File "/usr/lib/python3.6/json/encoder.py", line 201, in encode
+    chunks = list(chunks)
+  File "/usr/lib/python3.6/json/encoder.py", line 430, in _iterencode
+    yield from _iterencode_dict(o, _current_indent_level)
+  File "/usr/lib/python3.6/json/encoder.py", line 376, in _iterencode_dict
+    raise TypeError("key " + repr(key) + " is not a string")
+TypeError: key b'MyVariableOne' is not a string (_exception_class='TypeError',_exception_message="key b'MyVariableOne' is not a string",_exception_data={})
+2020-01-27 11:49:57,606 140064340756784 DEBUG (unknown file) [-] Match path: /v1/webhooks/valero_cpe
+2020-01-27 11:49:57,607 140064340756784 INFO (unknown file) [-] 684b74a5-5ea6-4602-9006-2a9a0033710c - 500 46 27.193ms (method='POST',path='/v1/webhooks/valero_cpe',remote_addr='127.0.0.1',status=500,runtime=27.193,content_length=46,request_id='684b74a5-5ea6-4602-9006-2a9a0033710c')
+2020-01-27 11:49:57,608 140064340756784 DEBUG (unknown file) [-] 684b74a5-5ea6-4602-9006-2a9a0033710c - 500 46 27.193ms
+b'{\n    "faultstring": "Internal Server Error"\n}' (method='POST',path='/v1/webhooks/valero_cpe',remote_addr='127.0.0.1',status=500,runtime=27.193,content_length=46,request_id='684b74a5-5ea6-4602-9006-2a9a0033710c',result='b\'{\\n    "faultstring": "Internal Server Error"\\n}\'')
+[2020-01-27 11:49:57 +0000] [10770] [DEBUG] Closing connection.</code></pre>
+          <p><a href="https://forum.stackstorm.com/t/python3-url-encoded-webhook-failure/1013/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/python3-url-encoded-webhook-failure/1013/1</link>
+        <pubDate>Mon, 27 Jan 2020 12:16:58 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1013-1</guid>
+        <source url="https://forum.stackstorm.com/t/python3-url-encoded-webhook-failure/1013.rss">Python3 - URL Encoded Webhook Failure</source>
+      </item>
+  </channel>
+</rss>

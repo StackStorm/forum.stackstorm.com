@@ -1,0 +1,916 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:discourse="http://www.discourse.org/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Mistral - StackStorm Support (ARCHIVED)</title>
+    <link>https://forum.stackstorm.com/c/workflow-related-issues/mistral-related-issues/16</link>
+    <description>Topics in the &#39;Mistral&#39; category </description>
+    
+      <lastBuildDate>Fri, 06 Aug 2021 14:00:34 +0000</lastBuildDate>
+      <atom:link href="https://forum.stackstorm.com/c/workflow-related-issues/mistral-related-issues/16.rss" rel="self" type="application/rss+xml" />
+        <item>
+          <title>Orquesta workflows || YaqlEvaluation No functi on &quot;dict&quot; matches supplied arguments</title>
+          <dc:creator><![CDATA[arul]]></dc:creator>
+          <category>Mistral</category>
+          <description><![CDATA[
+            <p>Hi Team,<br>
+we are trying to loop the dict values in the Orquesta workflows .however we got the error.</p>
+<p>Variable name : <strong>sql_server_report</strong><br>
+output:<br>
+run:<br>
+exit_code: 0<br>
+result:<br>
+output: "{1=&gt;‘DESTD01__SQLHealthCheckResults2021-08-05.html’,2=&gt;‘GSQL01__SQLHealthCheckResults2019-06-24T06.00.01.8333200-0600.html’}<br>
+"<br>
+<strong>Error :</strong><br>
+result:<br>
+errors:</p>
+<ul>
+<li>message: ‘YaqlEvaluationException: Unable to evaluate expression ‘’&lt;% dict(ctx().sql_server_report).values()  %&gt;’’. NoMatchingFunctionException: No functi<br>
+on “dict” matches supplied arguments’</li>
+</ul>
+<p>workflow design :</p>
+<p>next:<br>
+- when: “{{ succeeded() }}”<br>
+publish:<br>
+- <strong>sql_server_report</strong>: “{{ result().output.run.result.output | to_json_string }}”<br>
+- report_file_check: true<br>
+- run: “{{ result().output.run }}”<br>
+do:<br>
+- report_file_content<br>
+- when: “{{ failed() }}”<br>
+publish:<br>
+- error_message: “{{ result().output.run.result.details.result_set[0].value._error.msg + ‘\n’ }}”<br>
+- error_output: “{{ result().output.run.result.details.result_set[0].value._output if ‘_output’ in result().output.run.result.details.result_set[0].value else ‘’ }}”<br>
+- run: “{{ result().output.run.result.details.result_set[0].value._error.msg }}”<br>
+- run_error: true<br>
+- report_file_check: false<br>
+do:<br>
+- fail<br>
+report_file_content:<br>
+<strong>with: &lt;% dict(ctx().sql_server_report).values()  %&gt;</strong><br>
+action: core.echo message=&lt;% item() %&gt;<br>
+next:<br>
+- when: “{{ succeeded() }}”<br>
+do:<br>
+- noop<br>
+- when: “{{ failed() }}”<br>
+do:<br>
+- noop</p>
+<p>while execute the command  with: &lt;% dict(ctx().sql_server_report).values()  %&gt; got the below error.</p>
+<p>result:<br>
+<strong>errors:</strong></p>
+<ul>
+<li>
+<strong>message: 'YaqlEvaluationException: Unable to evaluate expression ‘’&lt;%</strong> <strong>dict(ctx().sql_server_report).values()  %&gt;’’. NoMatchingFunctionException: No functi</strong><br>
+<strong>on “dict” matches supplied arguments’</strong>
+</li>
+</ul>
+            <p><small>7 posts - 2 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/orquesta-workflows-yaqlevaluation-no-functi-on-dict-matches-supplied-arguments/1802">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/orquesta-workflows-yaqlevaluation-no-functi-on-dict-matches-supplied-arguments/1802</link>
+          <pubDate>Fri, 06 Aug 2021 14:00:34 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1802</guid>
+          <source url="https://forum.stackstorm.com/t/orquesta-workflows-yaqlevaluation-no-functi-on-dict-matches-supplied-arguments/1802.rss">Orquesta workflows || YaqlEvaluation No functi on &quot;dict&quot; matches supplied arguments</source>
+        </item>
+        <item>
+          <title>How to retrieve variable in second task from first task using bash script?</title>
+          <dc:creator><![CDATA[patrik]]></dc:creator>
+          <category>Mistral</category>
+          <description><![CDATA[
+            <p>Hi there, I am new to stackstorm. I need help to resolve the problem, I am having.</p>
+<p>I am working on one workflow that will get variable information from first task and use that variable in second task using bash script. I see that is possible using python, but I would prefer to do with bash. Here is the workflow.</p>
+<pre><code class="lang-auto">input:
+  - value1
+  - value2
+  - value3
+
+output:
+  - value2: &lt;% ctx().value2 %&gt;
+  - value3: &lt;% ctx().value3 %&gt;
+
+tasks:
+  task1:
+    action: jobname.get_info value1=&lt;% ctx(value1) %&gt;
+    next:
+      - when: &lt;% succeeded() %&gt;
+        publish:
+          - stdout: &lt;% result().stdout %&gt;
+          - stderr: &lt;% result().stderr %&gt;
+          - value2: &lt;% ctx("value2") %&gt;, &lt;% result().result %&gt;
+          - value3: &lt;% ctx("value3") %&gt;, &lt;% result().result %&gt;
+      - do: task2
+      - when: &lt;% failed() %&gt;
+        publish: stderr=&lt;% result().stderr %&gt;
+        do: fail
+
+  task2:
+    action: job.name2 value2=&lt;% ctx(value2) %&gt;
+    next:
+      - when: &lt;% succeeded() %&gt;
+        publish:
+          - stdout: &lt;% result().stdout %&gt;
+          - stderr: &lt;% result().stderr %&gt;
+      - do: task3
+      - when: &lt;% failed() %&gt;
+        publish: stderr=&lt;% result().stderr %&gt;
+        do: fail
+</code></pre>
+<p>I see that the first job gets succeeded without any error, but the second job uses <code>value2</code> in the execution, so it won’t move forward in execution and errors out.</p>
+<pre><code class="lang-auto">{
+  "output": null,
+  "errors": [
+    {
+      "message": "YaqlEvaluationException: Unable to resolve key 'result' in expression '&lt;% result().result %&gt;' from context.",
+      "task_transition_id": "noop__t0",
+      "type": "error",
+      "route": 0,
+      "task_id": "task1"
+    },
+    {
+      "message": "YaqlEvaluationException: Unable to evaluate expression '&lt;% ctx(stdout) %&gt;'. VariableUndefinedError: The variable \"stdout\" is undefined.",
+      "type": "error"
+    }
+  ]
+}
+</code></pre>
+<p>Thanks in advance!! <img src="https://emoji.discourse-cdn.com/apple/slight_smile.png?v=9" title=":slight_smile:" class="emoji" alt=":slight_smile:"></p>
+            <p><small>10 posts - 3 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/how-to-retrieve-variable-in-second-task-from-first-task-using-bash-script/1675">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/how-to-retrieve-variable-in-second-task-from-first-task-using-bash-script/1675</link>
+          <pubDate>Mon, 03 May 2021 14:55:52 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1675</guid>
+          <source url="https://forum.stackstorm.com/t/how-to-retrieve-variable-in-second-task-from-first-task-using-bash-script/1675.rss">How to retrieve variable in second task from first task using bash script?</source>
+        </item>
+        <item>
+          <title>Hot to access specific value inside a json string object</title>
+          <dc:creator><![CDATA[porlock]]></dc:creator>
+          <category>Mistral</category>
+          <description><![CDATA[
+            <p>Hey,</p>
+<p>I have following ActionChain task</p>
+<pre><code>        name: "parse_payload"
+        ref: "st2_viacbs_pack.stpayload"
+        parameters:
+            payload: "{{payload}}"
+        publish:
+            output: "{{parse_payload.result|from_json_string}}"
+        on-success: "c2"
+        on-failure: "c4"
+</code></pre>
+<p>and on output i get:<br>
+“published”: {<br>
+“output”: “{‘st_enrichment’: ‘false’}”<br>
+},</p>
+<p>In next task i want to get value of st_enrichment, how i can achieve that ?  I tried<br>
+{{output.st_enrichment}}<br>
+{{output.[st_enrichment]}}<br>
+{{output.[‘st_enrichment’]}}<br>
+{{output|from_json_string[‘st_enrichment’]}}</p>
+<p>But it always return error, that object string doesn’t have st_enrichment or expected token is not valid.</p>
+            <p><small>1 post - 1 participant</small></p>
+            <p><a href="https://forum.stackstorm.com/t/hot-to-access-specific-value-inside-a-json-string-object/1665">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/hot-to-access-specific-value-inside-a-json-string-object/1665</link>
+          <pubDate>Fri, 23 Apr 2021 17:24:45 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1665</guid>
+          <source url="https://forum.stackstorm.com/t/hot-to-access-specific-value-inside-a-json-string-object/1665.rss">Hot to access specific value inside a json string object</source>
+        </item>
+        <item>
+          <title>Converting mistral workflow to Orquesta</title>
+          <dc:creator><![CDATA[smeds]]></dc:creator>
+          <category>Mistral</category>
+          <description><![CDATA[
+            <p>I have started migrating my mistral workflows into Orquesta format and have a hard time understanding how I set up something similar to “task-defaults” in Orquesta. If any of my tasks fail, I want to send a email notifying me about the failure. But I would prefer not to have to set the same lines of code in all task. Is it possible?</p>
+            <p><small>5 posts - 3 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/converting-mistral-workflow-to-orquesta/1417">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/converting-mistral-workflow-to-orquesta/1417</link>
+          <pubDate>Tue, 15 Sep 2020 12:40:37 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1417</guid>
+          <source url="https://forum.stackstorm.com/t/converting-mistral-workflow-to-orquesta/1417.rss">Converting mistral workflow to Orquesta</source>
+        </item>
+        <item>
+          <title>Dynamic hostlist create new task for each item</title>
+          <dc:creator><![CDATA[eazysnatch]]></dc:creator>
+          <category>Mistral</category>
+          <description><![CDATA[
+            <p>Hello ,</p>
+<p>My goal is to create dynamic workflow tasks. I have a CMDB and my first task is to get all servers in prod after that my 2nd task is a for loop to iterate over those hosts.</p>
+<p>Any idea how to create a new workflow task for each server in the list. The idea here is to have 20 tor 25 tasks based on which servers are in prod. My goal is to have a new task for each host to be sure that i have good output based on every server not 1 big workflow with 20 servers output and to search which fails and which not.</p>
+<p>We didn’t that on jenkins and its working perfectly but I want to migrate it to stackstorm.</p>
+<p>Just to mention that im using Mistral because we are with 2.9 ST2 and im not sure when we will upgrade to 3.2. The problem i hit is with Orchestra for loop bug <a href="https://github.com/StackStorm/st2/issues/4701" class="inline-onebox" rel="nofollow noopener">Orquesta - Unable to use loop variable in a Jinja for loop · Issue #4701 · StackStorm/st2 · GitHub</a></p>
+<p>All that will be scheduled in st2 cron. The current workaround is to create manual rules for each host and scheduled them with st2cron but i want to use the CMDB to avoid babysitting in the feature no matter if we remove or add new hosts this automation will work.</p>
+            <p><small>2 posts - 2 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/dynamic-hostlist-create-new-task-for-each-item/1351">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/dynamic-hostlist-create-new-task-for-each-item/1351</link>
+          <pubDate>Tue, 14 Jul 2020 08:53:22 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1351</guid>
+          <source url="https://forum.stackstorm.com/t/dynamic-hostlist-create-new-task-for-each-item/1351.rss">Dynamic hostlist create new task for each item</source>
+        </item>
+        <item>
+          <title>How to Configure Group Managed Service Accounts in at Server level or in Workflows to get backend authentication</title>
+          <dc:creator><![CDATA[Meena08]]></dc:creator>
+          <category>Mistral</category>
+          <description><![CDATA[
+            <p>How to Configure Group Managed Service Accounts in at Server level or in Workflows to get backend authentication</p>
+            <p><small>1 post - 1 participant</small></p>
+            <p><a href="https://forum.stackstorm.com/t/how-to-configure-group-managed-service-accounts-in-at-server-level-or-in-workflows-to-get-backend-authentication/1340">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/how-to-configure-group-managed-service-accounts-in-at-server-level-or-in-workflows-to-get-backend-authentication/1340</link>
+          <pubDate>Fri, 10 Jul 2020 05:04:59 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1340</guid>
+          <source url="https://forum.stackstorm.com/t/how-to-configure-group-managed-service-accounts-in-at-server-level-or-in-workflows-to-get-backend-authentication/1340.rss">How to Configure Group Managed Service Accounts in at Server level or in Workflows to get backend authentication</source>
+        </item>
+        <item>
+          <title>Publish Ansible Variable to Mistral</title>
+          <dc:creator><![CDATA[roboticpuppies]]></dc:creator>
+          <category>Mistral</category>
+          <description><![CDATA[
+            <p>Hello. Is it possible to publish ansible varibles to mistral? In my workflow, I use ansible.playbook action to get server status like CPU load, uptime, service status, etc then save them to ansible variables. What I need is to pass that variables to mistral. If it is possible, where I can found an example of that? I’ve searched about this but haven’t gotten anything. Thank you.</p>
+            <p><small>6 posts - 2 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/publish-ansible-variable-to-mistral/1093">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/publish-ansible-variable-to-mistral/1093</link>
+          <pubDate>Thu, 05 Mar 2020 07:01:19 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1093</guid>
+          <source url="https://forum.stackstorm.com/t/publish-ansible-variable-to-mistral/1093.rss">Publish Ansible Variable to Mistral</source>
+        </item>
+        <item>
+          <title>A way to pass values to the next task in a workflow</title>
+          <dc:creator><![CDATA[h-murakami]]></dc:creator>
+          <category>Mistral</category>
+          <description><![CDATA[
+            <p>I’m making a package that creates an EC2 instance.<br>
+(Of course I understand that there are AWS packs, but for studying)</p>
+<p>Get the information after EC2 instance creation, and print it as standard output.</p>
+<p>It worked fine so far, but if you try to get the instance information in the next workflow, you get an error for some reason.</p>
+<p>However, if you create another workflow and follow the steps below, you can retrieve the values ​​without problems.</p>
+<ol>
+<li>Save the same JSON data (*) to a file</li>
+<li>Echo the file to task 1 for standard output</li>
+<li>In Task 2, retrieve the JSON value of 2.<br>
+(*) I don’t know if it is the same because it is saved after standard output …</li>
+</ol>
+<p>What is the cause?</p>
+<p>[yaml]</p>
+<pre><code class="lang-auto">    tasks:
+      task1:
+        action: hmpack.aws_ec2_create
+        input:
+          AMI_ID: "&lt;% $ .AMI_ID%&gt;"
+          Instance_Type: "&lt;% $ .Instance_Type%&gt;"
+          Key_Name: "&lt;% $ .Key_Name%&gt;"
+          Tag_Name: "&lt;% $ .Tag_Name%&gt;"
+        publish:
+          json_result: "&lt;% task (task1) .result.stdout%&gt;"
+        on-success:
+          -task2
+      task2:
+        action: core.local
+        input:
+           cmd: "echo &lt;% $ .json_result.Reservations [0] .Instances [0] .PublicDnsName%&gt; &gt;&gt; /data/ec2.log"
+</code></pre>
+<p>[ERROR]</p>
+<pre><code class="lang-auto">"state_info": "Failed to run task [error=Can not evaluate YAQL expression [expression=$.json_result.Reservations[0].Instances[0].PublicDnsName, error=Unknown function \"#property#Reservations\", data={}], wf=hmpack.deploy_machine.main, task=task2]:
+Traceback (most recent call last):
+  File \"/opt/stackstorm/mistral/lib/python2.7/site-packages/mistral/engine/task_handler.py\", line 63, in run_task
+    task.run()
+:
+</code></pre>
+            <p><small>2 posts - 2 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/a-way-to-pass-values-to-the-next-task-in-a-workflow/958">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/a-way-to-pass-values-to-the-next-task-in-a-workflow/958</link>
+          <pubDate>Wed, 11 Dec 2019 22:31:29 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-958</guid>
+          <source url="https://forum.stackstorm.com/t/a-way-to-pass-values-to-the-next-task-in-a-workflow/958.rss">A way to pass values to the next task in a workflow</source>
+        </item>
+        <item>
+          <title>Create variable output</title>
+          <dc:creator><![CDATA[User42]]></dc:creator>
+          <category>Mistral</category>
+          <description><![CDATA[
+            <p>Hi,</p>
+<p>I want to create a ‘variable output’, it’s mean i want a new field in result of my workflow which i can call with</p>
+<blockquote>
+<p>&lt;% task(my_task).result.my_variable %&gt;</p>
+</blockquote>
+<p>I tried with the ouput option but it’s not working.</p>
+<p>Someone has an idea ? <img src="https://emoji.discourse-cdn.com/apple/slight_smile.png?v=9" title=":slight_smile:" class="emoji" alt=":slight_smile:"></p>
+            <p><small>2 posts - 2 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/create-variable-output/915">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/create-variable-output/915</link>
+          <pubDate>Tue, 12 Nov 2019 12:50:48 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-915</guid>
+          <source url="https://forum.stackstorm.com/t/create-variable-output/915.rss">Create variable output</source>
+        </item>
+        <item>
+          <title>Cannot start mistral workflow in ST2 3.1</title>
+          <dc:creator><![CDATA[techdiverdown]]></dc:creator>
+          <category>Mistral</category>
+          <description><![CDATA[
+            <p>We upgraded to st2 3.1 and we cannot execute mistral workflows. The actions work fine. The logs show me this error:</p>
+<p>id: 5d66f520daf15a00f9054c98<br>
+action.ref: audit_components.generic_template_audit_workflow<br>
+parameters:<br>
+audit_name: SNMP_NX7000<br>
+node_names:</p>
+<ul>
+<li>foo<br>
+status: failed (787s elapsed)<br>
+start_timestamp: Wed, 28 Aug 2019 21:41:52 UTC<br>
+end_timestamp: Wed, 28 Aug 2019 21:54:59 UTC<br>
+result:<br>
+error: (‘Connection aborted.’, BadStatusLine("’’",))<br>
+traceback: "  File “/opt/stackstorm/st2/lib/python2.7/site-packages/st2actions/container/base.py”, line 127, in _do_run<br>
+(status, result, context) = runner.run(action_params)<br>
+File “/opt/stackstorm/st2/lib/python2.7/site-packages/retrying.py”, line 49, in wrapped_f<br>
+return Retrying(*dargs, **dkw).call(f, *args, **kw)<br>
+File “/opt/stackstorm/st2/lib/python2.7/site-packages/retrying.py”, line 212, in call<br>
+raise attempt.get()<br>
+File “/opt/stackstorm/st2/lib/python2.7/site-packages/retrying.py”, line 247, in get<br>
+six.reraise(self.value[0], self.value[1], self.value[2])<br>
+File “/opt/stackstorm/st2/lib/python2.7/site-packages/retrying.py”, line 200, in call<br>
+attempt = Attempt(fn(*args, **kwargs), attempt_number, False)<br>
+File “/opt/stackstorm/st2/lib/python2.7/site-packages/mistral_v2/mistral_v2.py”, line 251, in run<br>
+result = self.start_workflow(action_parameters=action_parameters)<br>
+File “/opt/stackstorm/st2/lib/python2.7/site-packages/mistral_v2/mistral_v2.py”, line 288, in start_workflow<br>
+**options)<br>
+File “/opt/stackstorm/st2/lib/python2.7/site-packages/mistralclient/api/v2/executions.py”, line 65, in create<br>
+return self._create(’/executions’, data)<br>
+File “/opt/stackstorm/st2/lib/python2.7/site-packages/mistralclient/api/base.py”, line 95, in _create<br>
+resp = self.http_client.post(url, data)<br>
+File “/opt/stackstorm/st2/lib/python2.7/site-packages/mistralclient/api/httpclient.py”, line 54, in decorator<br>
+resp = func(self, *args, **kwargs)<br>
+File “/opt/stackstorm/st2/lib/python2.7/site-packages/mistralclient/api/httpclient.py”, line 120, in post<br>
+return self.session.post(self.base_url + url, data=body, **options)<br>
+File “/opt/stackstorm/st2/lib/python2.7/site-packages/requests/sessions.py”, line 581, in post<br>
+return self.request(‘POST’, url, data=data, json=json, **kwargs)<br>
+File “/opt/stackstorm/st2/lib/python2.7/site-packages/requests/sessions.py”, line 533, in request<br>
+resp = self.send(prep, **send_kwargs)<br>
+File “/opt/stackstorm/st2/lib/python2.7/site-packages/requests/sessions.py”, line 646, in send<br>
+r = adapter.send(request, **kwargs)<br>
+File “/opt/stackstorm/st2/lib/python2.7/site-packages/requests/adapters.py”, line 498, in send<br>
+raise ConnectionError(err, request=request)</li>
+</ul>
+            <p><small>4 posts - 3 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/cannot-start-mistral-workflow-in-st2-3-1/813">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/cannot-start-mistral-workflow-in-st2-3-1/813</link>
+          <pubDate>Wed, 28 Aug 2019 22:21:38 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-813</guid>
+          <source url="https://forum.stackstorm.com/t/cannot-start-mistral-workflow-in-st2-3-1/813.rss">Cannot start mistral workflow in ST2 3.1</source>
+        </item>
+        <item>
+          <title>Capture Task Errors into Orquesta Workflows</title>
+          <dc:creator><![CDATA[AcharyaTejaswi]]></dc:creator>
+          <category>Mistral</category>
+          <description><![CDATA[
+            <p>Hi,</p>
+<p>I am new to orquesta workflows.I am trying to capture the error of the tasks which got failed in the workflow and assign to a variable to display/parse it with custom text included into the error.But could not able to find any link within the stackstorm documentation on this calling of failed task’s error into orquesta workflow. Can anyone please help me to on this problem.</p>
+<p>Thanks,<br>
+Acharya</p>
+            <p><small>1 post - 1 participant</small></p>
+            <p><a href="https://forum.stackstorm.com/t/capture-task-errors-into-orquesta-workflows/802">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/capture-task-errors-into-orquesta-workflows/802</link>
+          <pubDate>Mon, 19 Aug 2019 15:59:13 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-802</guid>
+          <source url="https://forum.stackstorm.com/t/capture-task-errors-into-orquesta-workflows/802.rss">Capture Task Errors into Orquesta Workflows</source>
+        </item>
+        <item>
+          <title>Long running workflows stop without any errors</title>
+          <dc:creator><![CDATA[techdiverdown]]></dc:creator>
+          <category>Mistral</category>
+          <description><![CDATA[
+            <p>We have workflows that can run for 12-24 hours or more, depending on the data. This is one a k8s HA cluster with 3.1.0. It appears after 5-6 hours or so, the workflow just stops without any indication of why? Is there some sort of timeout I need to configure to prevent this?</p>
+<p>Additional notes the execution still reads running, st2 execution list show running for 326784 seconds and climbing. When i do st2 execution get 5d4deccedf212700f841dfdf i see all actions completed?</p>
+            <p><small>4 posts - 2 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/long-running-workflows-stop-without-any-errors/797">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/long-running-workflows-stop-without-any-errors/797</link>
+          <pubDate>Tue, 13 Aug 2019 15:02:00 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-797</guid>
+          <source url="https://forum.stackstorm.com/t/long-running-workflows-stop-without-any-errors/797.rss">Long running workflows stop without any errors</source>
+        </item>
+        <item>
+          <title>Python custom env variables</title>
+          <dc:creator><![CDATA[eazysnatch]]></dc:creator>
+          <category>Mistral</category>
+          <description><![CDATA[
+            <p>Does anyone achieve Python runner env passing to mistral workflow. Here is what i mean</p>
+<pre><code class="lang-auto">ST2_PUBLIC_URL='https://192.168.16.20'
+➜  st2 st2 run core.local cmd=env | grep -i st2_public_url
+    ST2_PUBLIC_URL=https://192.168.16.20
+➜  st2```
+for core.local runner ENV variable ST2_PUBLIC_URL is fine but for Python its not
+
+```PIException: RemoteError: Remote error: UndefinedError 'dict object' has no attribute 'st2_public_url'```
+In my workflow i use it as:
+```Execution URL is: {{ env().st2_public_url }}"```
+
+If i use for example {{ env().st2_execution_id }} its OK but custom vars are not
+
+My plan is to have Jira comment which will provide public URL with execution ID:
+```Execution URL is: {{ env().st2_public_url }}"//actionexecutions/{{ env().st2_execution_id }}```
+
+Which will generate: https://192.168.16.20/actionexecutions/TASK_ID
+I can easy put var inside the workflow but i need to do it in any of my workflows which is not a good idea i want to have public URL Env var and use it in my actions</code></pre>
+            <p><small>10 posts - 2 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/python-custom-env-variables/787">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/python-custom-env-variables/787</link>
+          <pubDate>Wed, 31 Jul 2019 14:16:39 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-787</guid>
+          <source url="https://forum.stackstorm.com/t/python-custom-env-variables/787.rss">Python custom env variables</source>
+        </item>
+        <item>
+          <title>Executions stuck in canceling state</title>
+          <dc:creator><![CDATA[User42]]></dc:creator>
+          <category>Mistral</category>
+          <description><![CDATA[
+            <p>Hi,</p>
+<p>I have an  issue with  executions  stuck in ‘canceling’ state. I have a concurrency policy that  allow  20 executions. So all my new execution of this action are tagged automatically ‘cancel’. I decided to restart stackstorm but nothing changed. Someone has an idea ?</p>
+<p>Thank</p>
+            <p><small>7 posts - 3 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/executions-stuck-in-canceling-state/776">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/executions-stuck-in-canceling-state/776</link>
+          <pubDate>Tue, 30 Jul 2019 06:42:19 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-776</guid>
+          <source url="https://forum.stackstorm.com/t/executions-stuck-in-canceling-state/776.rss">Executions stuck in canceling state</source>
+        </item>
+        <item>
+          <title>How to access and use database in a mistral workflow?</title>
+          <dc:creator><![CDATA[ayushpallav]]></dc:creator>
+          <category>Mistral</category>
+          <description><![CDATA[
+            <p>I have a postgres database. I want to query a particular table in the database and send texts to the contact of each selected people(row) from mistral workflow. I am new to mistral workflows, help!</p>
+            <p><small>3 posts - 3 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/how-to-access-and-use-database-in-a-mistral-workflow/745">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/how-to-access-and-use-database-in-a-mistral-workflow/745</link>
+          <pubDate>Tue, 16 Jul 2019 12:17:16 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-745</guid>
+          <source url="https://forum.stackstorm.com/t/how-to-access-and-use-database-in-a-mistral-workflow/745.rss">How to access and use database in a mistral workflow?</source>
+        </item>
+        <item>
+          <title>Jinja2 template issue with mistral server</title>
+          <dc:creator><![CDATA[chenww]]></dc:creator>
+          <category>Mistral</category>
+          <description><![CDATA[
+            <p>I have a mistral action that has the following input parameters:</p>
+<pre><code>    input:
+      cmts_hostname: '&lt;% $.cmts.cmts %&gt;'
+      mac_list:
+        CM_MAC_ADDRS: '{% set macs=[] %}{% for mac in _.cmts.mac -%}{{ macs.append({"CM_MAC_ADDR": mac,"ACTION":"UNBLOCK", "REASON": "AGING"}) }}{%- endfor %}{{ macs }}'
+</code></pre>
+<p>however the log file shows additional “None” string in the data structure:</p>
+<blockquote>
+<p>2019-06-21 03:14:01.110 260 INFO mistral.notifiers.notification_server [req-83f261a9-ddd4-4c73-862f-777a17292759 - - - - -] Received RPC request ‘notify’[ex_id=aa87eb30-eca0-44bd-a4c6-cd85f22240cb, event=TASK_LAUNCHED, timestamp=None, data={u’state_info’: None, u’in_context’: {u’__task_execution’: {u’id’: u’aa87eb30-eca0-44bd-a4c6-cd85f22240cb’, u’name’: u’unblock_cmts’}}, u’name’: u’unblock_cmts’, u’workflow_name’: u’modem_clone.unblock_aged_modems_workflow.unblock_cmts’, u’unique_key’: None, u’created_at’: u’2019-06-21 03:14:01’, u’runtime_context’: {}, u’state’: u’RUNNING’, u’id’: u’aa87eb30-eca0-44bd-a4c6-cd85f22240cb’, u’workflow_execution_id’: u’5d96372b-edfb-4720-8515-2c352a2e698d’, u’workflow_id’: u’6141d78c-79bd-449b-ae47-57e58b9feac2’, u’workflow_namespace’: u’’, u’published’: {}, u’scope’: u’private’, u’project_id’: u’’, u’type’: u’ACTION’, u’spec’: {u’action’: u’st2.action’, u’input’: {u’ref’: u’modem_clone.modify_modem_block_list_workflow’, u’parameters’: {u’cmts_hostname’: u’&lt;% <span class="math">.cmts.cmts %&gt;', u'mac_list': {u'CM_MAC_ADDRS': u'{% set macs=[] %}{% for mac in _.cmts.mac -%}{{ macs.append({"CM_MAC_ADDR": mac,"ACTION":"UNBLOCK", "REASON": "AGING"}) }}{%- endfor %}{{ macs }}'}, u'run_id': u'&lt;% </span>.run_id %&gt;’}}, u’version’: u’2.0’, u’type’: u’direct’, u’name’: u’unblock_cmts’}, u’processed’: False}, publishers=[{u’type’: u’st2’}]]<br>
+2019-06-21 03:14:01.111 260 INFO st2mistral.notifiers.stackstorm_notifier [req-83f261a9-ddd4-4c73-862f-777a17292759 - - - - -] The event TASK_LAUNCHED for aa87eb30-eca0-44bd-a4c6-cd85f22240cb is not processed for st2 because there is no event handler defined.<br>
+2019-06-21 03:14:01.137 260 INFO mistral.executors.executor_server [req-3a2ab8a5-d7f6-491e-b389-6947d8bd7d7a - - - - -] Received RPC request ‘run_action’[action_ex_id=700907b8-42cf-49c0-95df-5875393488b1, action_cls_str=st2mistral.actions.stackstorm.St2Action, action_cls_attrs={}, params={st2_context: {u’endpoint’: u’<a href="http://127.0.0.1:9101/v1/actionexecutions" rel="nofollow noopener">http://127.0.0.1:9101/v1/actionexecutions</a>’, u’api_url’: u’<a href="http://127.0.0.1:9101/v1" rel="nofollow noopener">http://127.0.0.1:9101/v1</a>’, u’parent’: {u’trace_context’: {}, u’user’: u’admin’, u’execution_id’: u’5d0c4b776ee06301ddd02959’, u’pack’: u’modem_clone’}, u’auth_token’: u’4d02c6396d934626b1df739a973c3880’, u’notify’: {}, u’skip_notify_tasks’: []}…, timeout=None]<br>
+2019-06-21 03:14:01.145 260 INFO st2mistral.actions.stackstorm [req-3a2ab8a5-d7f6-491e-b389-6947d8bd7d7a - - - - -] Running St2Action [action_context={‘action_execution_id’: u’700907b8-42cf-49c0-95df-5875393488b1’, ‘workflow_name’: u’modem_clone.unblock_aged_modems_workflow.unblock_cmts’, ‘task_execution_id’: u’aa87eb30-eca0-44bd-a4c6-cd85f22240cb’, ‘workflow_execution_id’: u’5d96372b-edfb-4720-8515-2c352a2e698d’, ‘task_name’: u’unblock_cmts’, ‘callback_url’: u’/v2/action_executions/700907b8-42cf-49c0-95df-5875393488b1’}, ref=modem_clone.modify_modem_block_list_workflow, parameters={u’cmts_hostname’: u’nxs01chdcnc’, u’mac_list’: {u’CM_MAC_ADDRS’: u"<em>None</em>[{‘ACTION’: ‘UNBLOCK’, ‘CM_MAC_ADDR’: u’08:00:27:ef:f6:50’, ‘REASON’: ‘AGING’}]"}, u’run_id’: u’cc6e68427afc’}, st2_context={u’endpoint’: u’<a href="http://127.0.0.1:9101/v1/actionexecutions" rel="nofollow noopener">http://127.0.0.1:9101/v1/actionexecutions</a>’, u’api_url’: u’<a href="http://127.0.0.1:9101/v1" rel="nofollow noopener">http://127.0.0.1:9101/v1</a>’, u’parent’: {u’trace_context’: {}, u’user’: u’admin’, u’execution_id’: u’5d0c4b776ee06301ddd02959’, u’pack’: u’modem_clone’}, u’skip_notify_tasks’: [], u’notify’: {}}]<br>
+2019-06-21 03:14:01.145 260 INFO st2mistral.actions.stackstorm [req-3a2ab8a5-d7f6-491e-b389-6947d8bd7d7a - - - - -] Sending HTTP request for St2Action [action_context={‘action_execution_id’: u’700907b8-42cf-49c0-95df-5875393488b1’, ‘workflow_name’: u’modem_clone.unblock_aged_modems_workflow.unblock_cmts’, ‘task_execution_id’: u’aa87eb30-eca0-44bd-a4c6-cd85f22240cb’, ‘workflow_execution_id’: u’5d96372b-edfb-4720-8515-2c352a2e698d’, ‘task_name’: u’unblock_cmts’, ‘callback_url’: u’/v2/action_executions/700907b8-42cf-49c0-95df-5875393488b1’}, ref=modem_clone.modify_modem_block_list_workflow, parameters={u’cmts_hostname’: u’nxs01chdcnc’, u’mac_list’: {u’CM_MAC_ADDRS’: u"None[{‘ACTION’: ‘UNBLOCK’, ‘CM_MAC_ADDR’: u’08:00:27:ef:f6:50’, ‘REASON’: ‘AGING’}]"}, u’run_id’: u’cc6e68427afc’}, st2_context={u’endpoint’: u’<a href="http://127.0.0.1:9101/v1/actionexecutions" rel="nofollow noopener">http://127.0.0.1:9101/v1/actionexecutions</a>’, u’api_url’: u’<a href="http://127.0.0.1:9101/v1" rel="nofollow noopener">http://127.0.0.1:9101/v1</a>’, u’parent’: {u’trace_context’: {}, u’user’: u’admin’, u’execution_id’: u’5d0c4b776ee06301ddd02959’, u’pack’: u’modem_clone’}, u’skip_notify_tasks’: [], u’notify’: {}}]<br>
+2019-06-21 03:14:01.253 260 INFO st2mistral.actions.stackstorm [req-3a2ab8a5-d7f6-491e-b389-6947d8bd7d7a - - - - -] Received HTTP response for St2Action [action_context={‘action_execution_id’: u’700907b8-42cf-49c0-95df-5875393488b1’, ‘workflow_name’: u’modem_clone.unblock_aged_modems_workflow.unblock_cmts’, ‘task_execution_id’: u’aa87eb30-eca0-44bd-a4c6-cd85f22240cb’, ‘workflow_execution_id’: u’5d96372b-edfb-4720-8515-2c352a2e698d’, ‘task_name’: u’unblock_cmts’, ‘callback_url’: u’/v2/action_executions/700907b8-42cf-49c0-95df-5875393488b1’}, ref=modem_clone.modify_modem_block_list_workflow, parameters={u’cmts_hostname’: u’nxs01chdcnc’, u’mac_list’: {u’CM_MAC_ADDRS’: u"None[{‘ACTION’: ‘UNBLOCK’, ‘CM_MAC_ADDR’: u’08:00:27:ef:f6:50’, ‘REASON’: ‘AGING’}]"}, u’run_id’: u’cc6e68427afc’}, st2_context={u’endpoint’: u’<a href="http://127.0.0.1:9101/v1/actionexecutions" rel="nofollow noopener">http://127.0.0.1:9101/v1/actionexecutions</a>’, u’api_url’: u’<a href="http://127.0.0.1:9101/v1" rel="nofollow noopener">http://127.0.0.1:9101/v1</a>’, u’parent’: {u’trace_context’: {}, u’user’: u’admin’, u’execution_id’: u’5d0c4b776ee06301ddd02959’, u’pack’: u’modem_clone’}, u’skip_notify_tasks’: [], u’notify’: {}}]:<br>
+201<br>
+{<br>
+“status”: “requested”,<br>
+“start_timestamp”: “2019-06-21T03:14:01.174440Z”,<br>
+“log”: [<br>
+{<br>
+“status”: “requested”,<br>
+“timestamp”: “2019-06-21T03:14:01.000000Z”<br>
+}<br>
+],<br>
+“parameters”: {<br>
+“cmts_hostname”: “nxs01chdcnc”,<br>
+“mac_list”: {<br>
+“CM_MAC_ADDRS”: “<strong>None</strong>[{‘ACTION’: ‘UNBLOCK’, ‘CM_MAC_ADDR’: u’08:00:27:ef:f6:50’, ‘REASON’: ‘AGING’}]”<br>
+},</p>
+</blockquote>
+            <p><small>2 posts - 1 participant</small></p>
+            <p><a href="https://forum.stackstorm.com/t/jinja2-template-issue-with-mistral-server/697">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/jinja2-template-issue-with-mistral-server/697</link>
+          <pubDate>Fri, 21 Jun 2019 03:23:45 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-697</guid>
+          <source url="https://forum.stackstorm.com/t/jinja2-template-issue-with-mistral-server/697.rss">Jinja2 template issue with mistral server</source>
+        </item>
+        <item>
+          <title>Remove python unicode &quot;u:&quot; from string in YAQL</title>
+          <dc:creator><![CDATA[devdude]]></dc:creator>
+          <category>Mistral</category>
+          <description><![CDATA[
+            <p>Hello. I’m in a stackstorm workflow trying to construct a dict object and pass it as a string to <code>core.http</code>.<br>
+Above action runs, but fails as the body has the ‘u’ for unicode embedded in front of all the values ( u\‘reason\’: u\‘reasoncode\’ …).</p>
+<pre><code>write_elastic:
+  action: core.http
+  input:
+    url: "http://url:port/index/_doc/"
+    method: POST
+    body: '&lt;% str( { "run_id"=&gt; $.run_id, "results"=&gt; $.results }) %&gt;'
+    headers:
+      Content-Type: "application/json
+</code></pre>
+<p>How do I produce a string that does NOT have Python unicode encoding for the body?</p>
+            <p><small>4 posts - 3 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/remove-python-unicode-u-from-string-in-yaql/680">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/remove-python-unicode-u-from-string-in-yaql/680</link>
+          <pubDate>Tue, 04 Jun 2019 20:48:37 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-680</guid>
+          <source url="https://forum.stackstorm.com/t/remove-python-unicode-u-from-string-in-yaql/680.rss">Remove python unicode &quot;u:&quot; from string in YAQL</source>
+        </item>
+        <item>
+          <title>How to troubleshoot slow `execution list` response?</title>
+          <dc:creator><![CDATA[Yoshi]]></dc:creator>
+          <category>Mistral</category>
+          <description><![CDATA[
+            <pre><code class="lang-auto"># st2 --version
+st2 2.10.1, on Python 2.7.6
+</code></pre>
+<p>I’m facing <code>st2 execution</code> command latency issue in my single node st2 environment.<br>
+First <code>st2 execution list --last 20</code>  spent 4 minutes to show the result.<br>
+Second and after it took 5 seconds only.</p>
+<p>I’d like to learn how I can investigate this latency issue.  Any advice is appreciated.<br>
+Thanks in advance.</p>
+            <p><small>3 posts - 2 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/how-to-troubleshoot-slow-execution-list-response/620">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/how-to-troubleshoot-slow-execution-list-response/620</link>
+          <pubDate>Wed, 24 Apr 2019 11:29:09 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-620</guid>
+          <source url="https://forum.stackstorm.com/t/how-to-troubleshoot-slow-execution-list-response/620.rss">How to troubleshoot slow `execution list` response?</source>
+        </item>
+        <item>
+          <title>Mistral Workflow with Notifications and Parameters</title>
+          <dc:creator><![CDATA[MickeyPvX]]></dc:creator>
+          <category>Mistral</category>
+          <description><![CDATA[
+            <p>I’ve got a mistral workflow that takes some parameters and also is set to notify on complete so I can do something else with the data after each step completes:</p>
+<pre><code>---
+name: test_action
+entry_point: workflows/test_action.yaml
+runner_type: mistral-v2
+pack: test_pack
+parameters:
+  param_1:
+    type: string
+notify:
+  on-complete:
+    routes:
+      - "to_somewhere"
+</code></pre>
+<p>Corresponding rule:</p>
+<pre><code>---
+...
+trigger:
+  type: core.st2.generic.notifytrigger
+  parameters: {}
+criteria:
+  trigger.channel:
+    pattern: "to_somewhere"
+    type: "equals"
+action:
+  ref: test_pack.send_somewhere
+  parameters:
+    message: "{{ trigger }}"
+</code></pre>
+<p>I’ve been trying to figure out the best way to get the parameters fed to the “test_action” workflow to be sent at the end of each task in the workflow and at the end of the workflow itself.  Jinja templates such as {{ action_parameters }} or {{ action_context }} etc. in the test_action.yaml notify section don’t seem to work quite right.</p>
+<p>So for example, I’ve tried:</p>
+<pre><code>notify:
+  on-complete:
+    routes:
+      - "to_somewhere"
+  data:
+    param: "{{ action_parameters.param_1 }}"
+</code></pre>
+<p>But it seems like it doesn’t render out properly for both the tasks in the workflow and the workflow…it’s one or the other.</p>
+<p>I’ve seen in the docs regarding notifications and mistral that per task notifications aren’t fully supported as “first class citizens” and wondering if that’s what’s causing my frustration with this.  Also open to suggestion on how to achieve the end result in a different way.</p>
+            <p><small>8 posts - 2 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/mistral-workflow-with-notifications-and-parameters/584">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/mistral-workflow-with-notifications-and-parameters/584</link>
+          <pubDate>Wed, 03 Apr 2019 21:18:04 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-584</guid>
+          <source url="https://forum.stackstorm.com/t/mistral-workflow-with-notifications-and-parameters/584.rss">Mistral Workflow with Notifications and Parameters</source>
+        </item>
+        <item>
+          <title>Performance Optimization for workflows</title>
+          <dc:creator><![CDATA[techdiverdown]]></dc:creator>
+          <category>Mistral</category>
+          <description><![CDATA[
+            <p>Yes, I know we should be moving to Orquesta, but until GA, I am stuck with mistral workflows.</p>
+<p>We have a large, complex mistral workflow that calls other workflows, about 15 tasks total. We are connecting to network devices and we query large data sets with graphql and connect to routers with netmiko and napalm and issue queries. We write results to elasticsearch.</p>
+<p>Inside the main workflow we gather the list of devices, then loop through the large set of routers (several dozen to 1000) and then execute the subworkflow for each of the routers, which does the aforementioned query and write to elastic.</p>
+<p>We get buried after about 50 devices and things lock up pretty hard. We implemented a policy to throttle the behavior and that is working better. I am wondering if our expectations are in line with reality. We have a very large national network with 100K devices, so it takes about 10-15 mins to do 100 devices, i would like to do many more in parallel.</p>
+<p>We are running in K8s at the moment, but load testing a single node to duplicate various errors we are seeing.</p>
+<p>Wondering how to scale our mistral a bit more in our production. We are seeing the mistral server process eat up the CPU . When i look at the process i see:</p>
+<p>/opt/stackstorm/mistral/bin/python /opt/stackstorm/mistral/bin/gunicorn --log-file /var/log/mistral/mistral-api.log -b 127.0.0.1:8989 -w 2 mistral.api.wsgi --graceful-timeout 10</p>
+<p>It appears i can start more workers/threads for gunicorn…anyway any suggestions for performance optimization would be appreciated. I have turned down logs at this point to ERROR, and done various and sundry other things. Beside the policy, not much is making any difference.</p>
+            <p><small>2 posts - 2 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/performance-optimization-for-workflows/552">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/performance-optimization-for-workflows/552</link>
+          <pubDate>Fri, 15 Mar 2019 22:28:16 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-552</guid>
+          <source url="https://forum.stackstorm.com/t/performance-optimization-for-workflows/552.rss">Performance Optimization for workflows</source>
+        </item>
+        <item>
+          <title>Passing output to slack from workflow</title>
+          <dc:creator><![CDATA[gmnvn18]]></dc:creator>
+          <category>Mistral</category>
+          <description><![CDATA[
+            <p>Hello,</p>
+<p>I’m exploring stackstorm and getting used to it. I’m trying to automate to get top 5 cpu process when we get a cpu alert. I achieved that by following disk remediation example. However I’m facing issue with posting the command output directly to slack. Kindly requesting your help.</p>
+<p>Here’s my workflow(<em>actions/workflows/check_cpu.yaml</em>):</p>
+<pre><code>---
+version: '2.0'
+name: ops.check_cpu
+
+workflows:
+  main:
+    input:
+      - hostname
+      - event_id
+      - alert_message
+      - raw_payload
+
+    tasks:
+      check_process:
+        action: core.remote
+        input:
+          hosts: &lt;% $.hostname %&gt;
+          cmd: "ps -eo pid,pcpu,user,args --sort=-%cpu | head -6 | head -c 1000"
+        on-error:
+          - pagerduty_escalation
+        on-success:
+          - post_to_slack
+
+      pagerduty_escalation:
+        action: pagerduty.incident.create.rest_v2.simple
+        input:
+          service_id: "PxxxxxxN"
+          title: "Stackstorm Check CPU failed on &lt;% $.hostname %&gt;"
+          from_email: "xxxxx@xxxxx.com"
+          details: "Stackstorm could not autoremediate high cpu usage on &lt;% $.hostname %&gt;. Alert: &lt;% $.alert_message %&gt;"
+
+      post_to_slack:
+        action: slack.post_message
+        input:
+          channel: "#stackstorm"
+          message: "High CPU Usage triggered from: &lt;% $.hostname %&gt;. Here's the processes details:\n&lt;% task(check_process).result.stdout %&gt;"
+</code></pre>
+<p>Here’s the action chain(actions/chains/check_cpu.yaml):</p>
+<pre><code>---
+  chain:
+    -
+      name: "check_process"
+      ref: "core.remote"
+      params:
+        hosts: "{{hostname}}"
+        cmd: "ps -eo pid,pcpu,user,args --sort=-%cpu | head -6"
+      on-success: "post_to_slack"
+      on-failure: "pagerduty_escalation"
+    -
+      name: "pagerduty_escalation"
+      ref: "pagerduty.incident.create.rest_v2.simple"
+      params:
+        service_id: "PxxxxxN"
+        title: "Stackstorm Check CPU failed on {{hostname}}"
+        from_email: "xxxxxx@xxxxx.com"
+        details: "Stackstorm could not autoremediate high cpu usage on {{hostname}}. Alert: {{alert_message}}"
+    -
+      name: "post_to_slack"
+      ref: "slack.post_message"
+      params:
+        channel: "#stackstorm"
+        message: "Stackstorm got a cpu alert &amp; has got top 5 cpu consuming processes on {{hostname}}. Details:\n{{ check_process.stdout }}"
+  default: "check_process"
+</code></pre>
+<p>Here’s the Error I’m seeing in the UI console:</p>
+<pre><code class="lang-auto">{
+  "tasks": [
+    {
+      "state_info": null,
+      "name": "check_process",
+      "workflow_name": "ops.check_cpu.main",
+      "created_at": "2019-02-22 19:30:53",
+      "updated_at": "2019-02-22 19:30:54",
+      "workflow_execution_id": "47529098-87e4-49b8-beaa-ce320ab9f432",
+      "state": "SUCCESS",
+      "result": {
+        "10.146.74.91": {
+          "succeeded": true,
+          "failed": false,
+          "return_code": 0,
+          "stderr": "",
+          "stdout": "  PID %CPU USER     COMMAND\
+ 9032 61.1 root     /usr/bin/python2.7 /usr/bin/aws s3 sync /media/ebs/logs s3://dev.canopydata.com/logserver\
+17787 23.9 root     /usr/bin/java -Xms1g -Xmx1g -XX:+UseParNewGC -XX:+UseConcMarkSweepGC -XX:CMSInitiatingOccupancyFraction=75 -XX:+UseCMSInitiatingOccupancyOnly -Djava.awt.headless=true -Dfile.encoding=UTF-8 -Djruby.compile.invokedynamic=true -Djruby.jit.threshold=0 -XX:+HeapDumpOnOutOfMemoryError -Djava.security.egd=file:/dev/urandom -cp /usr/lib/logstash-6.2.3/logstash-core/lib/jars/animal-sniffer-annotations-1.14.jar:/usr/lib/logstash-6.2.3/logstash-core/lib/jars/commons-compiler-3.0.8.jar:/usr/lib/logstash-6.2.3/logstash-core/lib/jars/error_prone_annotations-2.0.18.jar:/usr/lib/logstash-6.2.3/logstash-core/lib/jars/google-java-format-1.5.jar:/usr/lib/logstash-6.2.3/logstash-core/lib/jars/guava-22.0.jar:/usr/lib/logstash-6.2.3/logstash-core/lib/jars/j2objc-annotations-1.1.jar:/usr/lib/logstash-6.2.3/logstash-core/lib/jars/jackson-annotations-2.9."
+        }
+      },
+      "published": {},
+      "input": null,
+      "id": "bc149571-1d49-4b68-9320-d87bd668fe1d"
+    },
+    {
+      "state_info": "Failed to run task [error=Can not evaluate YAQL expression [expression=task(check_process).result.stdout, error=u'stdout', data={}], wf=ops.check_cpu.main, task=post_to_slack]:
+Traceback (most recent call last):
+  File \"/opt/stackstorm/mistral/lib/python2.7/site-packages/mistral/engine/task_handler.py\", line 63, in run_task
+    task.run()
+  File \"/opt/stackstorm/mistral/lib/python2.7/site-packages/osprofiler/profiler.py\", line 159, in wrapper
+    result = f(*args, **kwargs)
+  File \"/opt/stackstorm/mistral/lib/python2.7/site-packages/mistral/engine/tasks.py\", line 374, in run
+    self._run_new()
+  File \"/opt/stackstorm/mistral/lib/python2.7/site-packages/osprofiler/profiler.py\", line 159, in wrapper
+    result = f(*args, **kwargs)
+  File \"/opt/stackstorm/mistral/lib/python2.7/site-packages/mistral/engine/tasks.py\", line 403, in _run_new
+    self._schedule_actions()
+  File \"/opt/stackstorm/mistral/lib/python2.7/site-packages/mistral/engine/tasks.py\", line 470, in _schedule_actions
+    input_dict = self._get_action_input()
+  File \"/opt/stackstorm/mistral/lib/python2.7/site-packages/osprofiler/profiler.py\", line 159, in wrapper
+    result = f(*args, **kwargs)
+  File \"/opt/stackstorm/mistral/lib/python2.7/site-packages/mistral/engine/tasks.py\", line 500, in _get_action_input
+    input_dict = self._evaluate_expression(self.task_spec.get_input(), ctx)
+  File \"/opt/stackstorm/mistral/lib/python2.7/site-packages/mistral/engine/tasks.py\", line 524, in _evaluate_expression
+    ctx_view
+  File \"/opt/stackstorm/mistral/lib/python2.7/site-packages/mistral/expressions/__init__.py\", line 100, in evaluate_recursively
+    data[key] = _evaluate_item(data[key], context)
+  File \"/opt/stackstorm/mistral/lib/python2.7/site-packages/mistral/expressions/__init__.py\", line 89, in _evaluate_item
+    return evaluate_recursively(item, context)
+  File \"/opt/stackstorm/mistral/lib/python2.7/site-packages/mistral/expressions/__init__.py\", line 100, in evaluate_recursively
+    data[key] = _evaluate_item(data[key], context)
+  File \"/opt/stackstorm/mistral/lib/python2.7/site-packages/mistral/expressions/__init__.py\", line 79, in _evaluate_item
+    return evaluate(item, context)
+  File \"/opt/stackstorm/mistral/lib/python2.7/site-packages/mistral/expressions/__init__.py\", line 71, in evaluate
+    return evaluator.evaluate(expression, context)
+  File \"/opt/stackstorm/mistral/lib/python2.7/site-packages/mistral/expressions/yaql_expression.py\", line 119, in evaluate
+    cls).evaluate(trim_expr, data_context)
+  File \"/opt/stackstorm/mistral/lib/python2.7/site-packages/mistral/expressions/yaql_expression.py\", line 73, in evaluate
+    \", data=%s]\" % (expression, str(e), data_context)
+YaqlEvaluationException: Can not evaluate YAQL expression [expression=task(check_process).result.stdout, error=u'stdout', data={}]
+",
+</code></pre>
+            <p><small>16 posts - 3 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/passing-output-to-slack-from-workflow/504">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/passing-output-to-slack-from-workflow/504</link>
+          <pubDate>Fri, 22 Feb 2019 19:41:56 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-504</guid>
+          <source url="https://forum.stackstorm.com/t/passing-output-to-slack-from-workflow/504.rss">Passing output to slack from workflow</source>
+        </item>
+        <item>
+          <title>Mistral workflow</title>
+          <dc:creator><![CDATA[petergits]]></dc:creator>
+          <category>Mistral</category>
+          <description><![CDATA[
+            <p>Trying to figure out how to call a mistral workflow from within an action within a  mistral workflow.  Think of them as nested.  Can you point me to a sample which effectively allows me to build up mistral workflows?</p>
+<p>Thanks in advance,</p>
+<p>Peter M. Gits</p>
+            <p><small>4 posts - 2 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/mistral-workflow/466">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/mistral-workflow/466</link>
+          <pubDate>Fri, 01 Feb 2019 23:32:39 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-466</guid>
+          <source url="https://forum.stackstorm.com/t/mistral-workflow/466.rss">Mistral workflow</source>
+        </item>
+        <item>
+          <title>Confusion about Mistral and StackStorm</title>
+          <dc:creator><![CDATA[wisererik]]></dc:creator>
+          <category>Mistral</category>
+          <description><![CDATA[
+            <p>Hi guys,</p>
+<p>Mistral originate from OpenStack foundation, now it’s as a workflow service in StackStorm.</p>
+<ol>
+<li>if I write some custom action in Mistral(OpenStack), can these actions be reused in StackStorm directly?</li>
+<li>on the other hand, can StackStorm’s actions be reused in Mistral(OpenStack) ?</li>
+</ol>
+            <p><small>3 posts - 2 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/confusion-about-mistral-and-stackstorm/453">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/confusion-about-mistral-and-stackstorm/453</link>
+          <pubDate>Thu, 24 Jan 2019 08:35:42 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-453</guid>
+          <source url="https://forum.stackstorm.com/t/confusion-about-mistral-and-stackstorm/453.rss">Confusion about Mistral and StackStorm</source>
+        </item>
+        <item>
+          <title>Setting a key, value inside mistral workflow</title>
+          <dc:creator><![CDATA[petergits]]></dc:creator>
+          <category>Mistral</category>
+          <description><![CDATA[
+            <p>Can I set a key, value inside mistral workflow without calling out the st2client?  (I didn’t see this in the source for mistral under <a href="https://github.com/StackStorm/st2mistral/blob/master/st2mistral/functions/stackstorm.py" rel="nofollow noopener">stackstorm source for mistral st2kv</a></p>
+<p>Cheers,</p>
+<p>Peter</p>
+            <p><small>3 posts - 2 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/setting-a-key-value-inside-mistral-workflow/451">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/setting-a-key-value-inside-mistral-workflow/451</link>
+          <pubDate>Tue, 22 Jan 2019 22:07:01 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-451</guid>
+          <source url="https://forum.stackstorm.com/t/setting-a-key-value-inside-mistral-workflow/451.rss">Setting a key, value inside mistral workflow</source>
+        </item>
+        <item>
+          <title>Problem auth st2 when resume workflow from another workflow or webhook</title>
+          <dc:creator><![CDATA[ivan]]></dc:creator>
+          <category>Mistral</category>
+          <description><![CDATA[
+            <p>Hi, I have a mistral workflow in pause and I want resume from another workflow with:</p>
+<p>st2 execute resume “ID_workflow” -t “token”</p>
+<p>but the ouput is</p>
+<p>ERROR: 401 Client Error: Unauthorized<br>
+MESSAGE: Unauthorized - One of Token or API key required. for url: <a href="http://st2api:9101/executions/5bf2d5b8b2efc800159997f8" rel="nofollow noopener">http://st2api:9101/executions/5bf2d5b8b2efc800159997f8</a></p>
+<p>The token its ok becouse when i use the following command works fine:</p>
+<p>st2 execution list -t token</p>
+<p>I tried use a webhook but get the same problem, so the question is how to resume workflow with another workflow or webhook?</p>
+            <p><small>5 posts - 2 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/problem-auth-st2-when-resume-workflow-from-another-workflow-or-webhook/372">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/problem-auth-st2-when-resume-workflow-from-another-workflow-or-webhook/372</link>
+          <pubDate>Mon, 19 Nov 2018 18:13:38 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-372</guid>
+          <source url="https://forum.stackstorm.com/t/problem-auth-st2-when-resume-workflow-from-another-workflow-or-webhook/372.rss">Problem auth st2 when resume workflow from another workflow or webhook</source>
+        </item>
+  </channel>
+</rss>

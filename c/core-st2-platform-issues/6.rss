@@ -1,0 +1,931 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:discourse="http://www.discourse.org/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Platform - StackStorm Support (ARCHIVED)</title>
+    <link>https://forum.stackstorm.com/c/core-st2-platform-issues/6</link>
+    <description>Topics in the &#39;Platform&#39; category </description>
+    
+      <lastBuildDate>Thu, 19 Aug 2021 08:35:37 +0000</lastBuildDate>
+      <atom:link href="https://forum.stackstorm.com/c/core-st2-platform-issues/6.rss" rel="self" type="application/rss+xml" />
+        <item>
+          <title>Is there one rule and sensor that applies to all actions?</title>
+          <dc:creator><![CDATA[Bryan]]></dc:creator>
+          <category>Rules</category>
+          <description><![CDATA[
+            <p>Hello,</p>
+<p>I’m searching for a general way to write rules and sensors.</p>
+<p>For example, I have 2 timing action: <strong>action_a, action_b</strong>:</p>
+<pre><code class="lang-auto">**action_a brief definition:**
+parameters:
+  param_a_1:
+    type: object
+    required: true
+  param_a_2:
+    type: object
+    required: true
+</code></pre>
+<pre><code class="lang-auto">**action_b brief definition:**
+parameters:
+  param_b_1:
+    type: string
+    required: true
+  param_b_2:
+    type: array
+    required: true
+  param_b_3:
+    type: string
+    required: true
+</code></pre>
+<p>I save the action and its param as key-value pair(change to yaml for human read) in stackstorm mongodb:</p>
+<pre><code class="lang-auto">deploy_time: "2021-08-19 23:00" 
+action: pack1.action_a
+params:
+  param_a_1:
+    key_1: value_1
+  param_a_2:
+    key_a_2: value_a_2
+</code></pre>
+<pre><code class="lang-auto">deploy_time: "2021-08-19 23:00"
+action: pack2.action_b
+params:
+  param_b_1: "string_1"
+  param_b_2:
+    - object_1
+    - object_2
+  param_b_3: "string_3"
+</code></pre>
+<p>Then I write a sensor to read stackstorm Datastore.  Sensor will compare current system time and <code>deploy_time</code>, if current system time is later than <code>deploy_time</code>, sensor will generate a playload to rule.</p>
+<p>As you can image, I have to write 3 very similar file( <code>sensor.py</code>; <code>sensor.yaml</code>; <code>rule.yaml</code> ) for each action. The only difference between them is <code>payload_schema</code> section of <code>sensor.yaml</code><br>
+and <code>action</code> section of <code>rule.yaml</code>.<br>
+<code>sensor.py</code> is almost exactly the same.</p>
+<p>Is there a general way to write rules and sensors?</p>
+            <p><small>1 post - 1 participant</small></p>
+            <p><a href="https://forum.stackstorm.com/t/is-there-one-rule-and-sensor-that-applies-to-all-actions/1814">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/is-there-one-rule-and-sensor-that-applies-to-all-actions/1814</link>
+          <pubDate>Thu, 19 Aug 2021 08:35:37 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1814</guid>
+          <source url="https://forum.stackstorm.com/t/is-there-one-rule-and-sensor-that-applies-to-all-actions/1814.rss">Is there one rule and sensor that applies to all actions?</source>
+        </item>
+        <item>
+          <title>Specifying with node an action is run on in an HA set up?</title>
+          <dc:creator><![CDATA[jeffschulthies]]></dc:creator>
+          <category>Platform</category>
+          <description><![CDATA[
+            <p>I wanted to utilize this <a href="https://docs.stackstorm.com/reference/ha.html#reference-ha-setup" rel="noopener nofollow ugc">reference</a> for HA set up but I had a more in depth question.</p>
+<p>The HA set up will be in multiple DR sites. We need to make some optimizations to localize jobs to a certain site e.g. prevent jobs from being run on a us-east-node while interacting with hosts we have on us-west. Is this capability in StackStorm? or would be need some other solution like creating multiple st2 instances instead.</p>
+<p>Thanks,<br>
+jeff</p>
+            <p><small>3 posts - 2 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/specifying-with-node-an-action-is-run-on-in-an-ha-set-up/1810">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/specifying-with-node-an-action-is-run-on-in-an-ha-set-up/1810</link>
+          <pubDate>Mon, 16 Aug 2021 19:20:00 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1810</guid>
+          <source url="https://forum.stackstorm.com/t/specifying-with-node-an-action-is-run-on-in-an-ha-set-up/1810.rss">Specifying with node an action is run on in an HA set up?</source>
+        </item>
+        <item>
+          <title>Config_context in rules</title>
+          <dc:creator><![CDATA[sekhars]]></dc:creator>
+          <category>Rules</category>
+          <description><![CDATA[
+            <p>I was wondering if we can use <code>config_context</code> in Rules for a given pack. I have been unsuccessful so far</p>
+            <p><small>1 post - 1 participant</small></p>
+            <p><a href="https://forum.stackstorm.com/t/config-context-in-rules/1805">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/config-context-in-rules/1805</link>
+          <pubDate>Sun, 08 Aug 2021 22:31:50 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1805</guid>
+          <source url="https://forum.stackstorm.com/t/config-context-in-rules/1805.rss">Config_context in rules</source>
+        </item>
+        <item>
+          <title>In st2 k8s deployment, getting `File does not exist` - while running script on remote server using custom pack</title>
+          <dc:creator><![CDATA[mohan28]]></dc:creator>
+          <category>Pack Management</category>
+          <description><![CDATA[
+            <p>ST2 version: 3.5</p>
+<p>While trying to run the script on the remote server, getting the below error:</p>
+<p><strong>Inside st2client:</strong><br>
+$st2 run samplepack.run_remote_script<br>
+<strong>error: Failed copying content to remote boxes. Local path /opt/stackstorm/packs/samplepack/actions/touch_test.sh does not exist.</strong><br>
+failed: true<br>
+return_code: 255<br>
+succeeded: false<br>
+traceback: "  File “/opt/stackstorm/st2/lib/python3.6/site-packages/remote_runner/remote_script_runner.py”, line 50, in _run<br>
+copy_results = self._copy_artifacts(remote_action)<br>
+File “/opt/stackstorm/st2/lib/python3.6/site-packages/remote_runner/remote_script_runner.py”, line 108, in _copy_artifacts<br>
+mode=file_mode,<br>
+File “/opt/stackstorm/st2/lib/python3.6/site-packages/st2common/runners/parallel_ssh.py”, line 177, in put<br>
+raise Exception(“Local path %s does not exist.” % local_path)<br>
+"</p>
+<h2>
+<a name="action-1" class="anchor" href="https://forum.stackstorm.com#action-1"></a>Action:</h2>
+<p>runner_type: “remote-shell-script”<br>
+description: “remote shell runner”<br>
+enabled: true<br>
+name: run_remote_script<br>
+pack: st2testclassic<br>
+entry_point: “touch_test.sh”<br>
+parameters:<br>
+cmd:<br>
+required: true<br>
+type: string<br>
+default: “date”<br>
+username:<br>
+required: true<br>
+type: string<br>
+default: “xxxx”<br>
+password:<br>
+required: true<br>
+type: string<br>
+default: “xxxx”<br>
+hosts:<br>
+type: “string”<br>
+description: “Address of the syslog server”<br>
+required: true<br>
+default: “<a href="http://xxx.com" rel="noopener nofollow ugc">xxx.com</a>”<br>
+experimental:<br>
+immutable: true<br>
+default: true</p>
+<p>But the script is present, as shwon below in the st2client :<br>
+</p><div class="lightbox-wrapper"><a class="lightbox" href="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/3162cea22613aefdd8e9a062e3b576bbe570e1f3.jpeg" data-download-href="/uploads/short-url/72T5xJceGHgEpzxllFbt5t8g72X.jpeg?dl=1" title="Screenshot 2021-08-04 at 8.42.51 PM" rel="noopener nofollow ugc"><img src="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/3162cea22613aefdd8e9a062e3b576bbe570e1f3_2_690x109.jpeg" alt="Screenshot 2021-08-04 at 8.42.51 PM" data-base62-sha1="72T5xJceGHgEpzxllFbt5t8g72X" width="690" height="109" srcset="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/3162cea22613aefdd8e9a062e3b576bbe570e1f3_2_690x109.jpeg, https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/3162cea22613aefdd8e9a062e3b576bbe570e1f3_2_1035x163.jpeg 1.5x, https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/3162cea22613aefdd8e9a062e3b576bbe570e1f3_2_1380x218.jpeg 2x" data-small-upload="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/3162cea22613aefdd8e9a062e3b576bbe570e1f3_2_10x10.png"></a></div><p></p>
+            <p><small>1 post - 1 participant</small></p>
+            <p><a href="https://forum.stackstorm.com/t/in-st2-k8s-deployment-getting-file-does-not-exist-while-running-script-on-remote-server-using-custom-pack/1798">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/in-st2-k8s-deployment-getting-file-does-not-exist-while-running-script-on-remote-server-using-custom-pack/1798</link>
+          <pubDate>Wed, 04 Aug 2021 15:24:13 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1798</guid>
+          <source url="https://forum.stackstorm.com/t/in-st2-k8s-deployment-getting-file-does-not-exist-while-running-script-on-remote-server-using-custom-pack/1798.rss">In st2 k8s deployment, getting `File does not exist` - while running script on remote server using custom pack</source>
+        </item>
+        <item>
+          <title>Stackstorm 3.5 - LDAP ,st2 pack install fails</title>
+          <dc:creator><![CDATA[nithinsubbaraj]]></dc:creator>
+          <category>Pack Management</category>
+          <description><![CDATA[
+            <p>Hi Team,</p>
+<p>Need help in resolving the LDAP error.</p>
+<p>On stackstorm 3.5 able to use the ldap by modifying the configuration in /etc/st2/st2.conf</p>
+<p>Able to list the packs but not able to install the pack with LDAP account</p>
+<p>####<a class="hashtag" href="https://forum.stackstorm.com/tag/error">#<span>error</span></a> #########<br>
+Installation may take a while for packs with many items.</p>
+<pre><code>    [ succeeded ] init_task
+    [ succeeded ] download_pack
+    [ succeeded ] make_a_prerun
+    [ succeeded ] get_pack_dependencies
+    [ succeeded ] check_dependency_and_conflict_list
+    [ succeeded ] install_pack_requirements
+    [ succeeded ] get_pack_warnings
+    [  failed   ] register_pack
+</code></pre>
+<p>##############</p>
+<p>stderr: "st2.actions.python.St2RegisterAction: DEBUG    Calling client method “register” with kwargs “{‘types’: [‘all’], ‘packs’: [‘ansible’]}”<br>
+/opt/stackstorm/st2/lib/python3.6/site-packages/urllib3/connectionpool.py:1020: InsecureRequestWarning: Unverified HTTPS request is being made to host ‘<a href="http://qc1udatast204.abacus-us.com" rel="noopener nofollow ugc">qc1udatast204.abacus-us.com</a>’. Adding certificate verification is strongly advised. See: <a href="https://urllib3.readthedocs.io/en/latest/advanced-usage.html#ssl-warnings" class="inline-onebox" rel="noopener nofollow ugc">Advanced Usage - urllib3 2.0.0.dev0 documentation</a><br>
+InsecureRequestWarning,<br>
+Traceback (most recent call last):<br>
+File “/opt/stackstorm/st2/lib/python3.6/site-packages/python_runner/python_action_wrapper.py”, line 395, in <br>
+obj.run()<br>
+File “/opt/stackstorm/st2/lib/python3.6/site-packages/python_runner/python_action_wrapper.py”, line 214, in run<br>
+output = action.run(**self._parameters)<br>
+File “/opt/stackstorm/packs/packs/actions/pack_mgmt/register.py”, line 79, in run<br>
+format_func=format_result,<br>
+File “/opt/stackstorm/packs/packs/actions/pack_mgmt/register.py”, line 155, in _run_client_method<br>
+result = method(**method_kwargs)<br>
+File “/opt/stackstorm/st2/lib/python3.6/site-packages/st2client/models/core.py”, line 42, in decorate<br>
+return func(*args, **kwargs)<br>
+File “/opt/stackstorm/st2/lib/python3.6/site-packages/st2client/models/core.py”, line 630, in register<br>
+self.handle_error(response)<br>
+File “/opt/stackstorm/st2/lib/python3.6/site-packages/st2client/models/core.py”, line 195, in handle_error<br>
+response.raise_for_status()<br>
+File “/opt/stackstorm/st2/lib/python3.6/site-packages/requests/models.py”, line 943, in raise_for_status<br>
+raise HTTPError(http_error_msg, response=self)<br>
+requests.exceptions.HTTPError: 404 Client Error: Not Found<br>
+Unable to retrieve detailed message from the HTTP response. expected value at line 1 column 1: line 1 column 1 (char 0)<br>
+for url: <a href="https://host.company.com/v1/packs/register" rel="noopener nofollow ugc">https://host.company.com/v1/packs/register</a></p>
+<p>####################</p>
+            <p><small>1 post - 1 participant</small></p>
+            <p><a href="https://forum.stackstorm.com/t/stackstorm-3-5-ldap-st2-pack-install-fails/1797">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/stackstorm-3-5-ldap-st2-pack-install-fails/1797</link>
+          <pubDate>Wed, 04 Aug 2021 13:01:09 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1797</guid>
+          <source url="https://forum.stackstorm.com/t/stackstorm-3-5-ldap-st2-pack-install-fails/1797.rss">Stackstorm 3.5 - LDAP ,st2 pack install fails</source>
+        </item>
+        <item>
+          <title>How to create a new runner</title>
+          <dc:creator><![CDATA[User42]]></dc:creator>
+          <category>Pack Management</category>
+          <description><![CDATA[
+            <p>Hi,</p>
+<p>I want to create a new runner, Where can i find the doc to help me for that ?</p>
+<p>Thank You</p>
+            <p><small>3 posts - 2 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/how-to-create-a-new-runner/1790">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/how-to-create-a-new-runner/1790</link>
+          <pubDate>Wed, 28 Jul 2021 18:14:18 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1790</guid>
+          <source url="https://forum.stackstorm.com/t/how-to-create-a-new-runner/1790.rss">How to create a new runner</source>
+        </item>
+        <item>
+          <title>Downgrading stackstom from 3.5 to 3.4 facing issue</title>
+          <dc:creator><![CDATA[nithinsubbaraj]]></dc:creator>
+          <category>Pack Management</category>
+          <description><![CDATA[
+            <p>Hi Team,</p>
+<p>We have installed latest version of stackstorm pack st2 3.5.0, on Python 3.6.8 on our linux 8 server ,when we try to downgrade the server to 3.4.1 ,we are facing the below error.</p>
+<p>Earlier:<br>
+st2 --version<br>
+st2 3.5.0, on Python 3.6.8</p>
+<p>Now:<br>
+st2 --version<br>
+st2 3.4.1, on Python 3.6.8</p>
+<p>The error we are facing is<br>
+st2 pack list<br>
+ERROR: (‘Connection aborted.’, ConnectionResetError(104, ‘Connection reset by peer’))<br>
+st2 pack install jira<br>
+ERROR: (‘Connection aborted.’, ConnectionResetError(104, ‘Connection reset by peer’))</p>
+<p>Logs:<br>
+Traceback (most recent call last):<br>
+File “/opt/stackstorm/st2/lib/python3.6/site-packages/st2common/metrics/base.py”, line 228, in metrics_initialize<br>
+METRICS = get_plugin_instance(PLUGIN_NAMESPACE, cfg.CONF.metrics.driver)<br>
+File “/opt/stackstorm/st2/lib/python3.6/site-packages/st2common/util/loader.py”, line 223, in get_plugin_instance<br>
+namespace=namespace, name=name, invoke_on_load=invoke_on_load<br>
+File “/opt/stackstorm/st2/lib/python3.6/site-packages/stevedore/driver.py”, line 61, in <strong>init</strong><br>
+warn_on_missing_entrypoint=warn_on_missing_entrypoint<br>
+File “/opt/stackstorm/st2/lib/python3.6/site-packages/stevedore/named.py”, line 89, in <strong>init</strong><br>
+self._init_plugins(extensions)<br>
+File “/opt/stackstorm/st2/lib/python3.6/site-packages/stevedore/driver.py”, line 113, in _init_plugins<br>
+(self.namespace, name))<br>
+stevedore.exception.NoMatches: No ‘st2common.metrics.driver’ driver found, looking for ‘noop’</p>
+<p>During handling of the above exception, another exception occurred:</p>
+            <p><small>1 post - 1 participant</small></p>
+            <p><a href="https://forum.stackstorm.com/t/downgrading-stackstom-from-3-5-to-3-4-facing-issue/1783">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/downgrading-stackstom-from-3-5-to-3-4-facing-issue/1783</link>
+          <pubDate>Mon, 19 Jul 2021 11:23:21 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1783</guid>
+          <source url="https://forum.stackstorm.com/t/downgrading-stackstom-from-3-5-to-3-4-facing-issue/1783.rss">Downgrading stackstom from 3.5 to 3.4 facing issue</source>
+        </item>
+        <item>
+          <title>How to compare datetime in Rule</title>
+          <dc:creator><![CDATA[Bryan]]></dc:creator>
+          <category>Rules</category>
+          <description><![CDATA[
+            <p>Hello,<br>
+I want to compare trigger’s datetime with current time in rules.<br>
+For expample, some action will only execute on work time, which means trigger time should between 9:00 and 18:00, Monday - Friday.<br>
+I can’t find any jinja example <code>timediff_lt</code> or <code>timediff_gt</code> in example pack.<br>
+Any suggestions?</p>
+            <p><small>1 post - 1 participant</small></p>
+            <p><a href="https://forum.stackstorm.com/t/how-to-compare-datetime-in-rule/1778">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/how-to-compare-datetime-in-rule/1778</link>
+          <pubDate>Tue, 13 Jul 2021 12:39:08 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1778</guid>
+          <source url="https://forum.stackstorm.com/t/how-to-compare-datetime-in-rule/1778.rss">How to compare datetime in Rule</source>
+        </item>
+        <item>
+          <title>Ansible Pack Installation fails</title>
+          <dc:creator><![CDATA[Phill93]]></dc:creator>
+          <category>Pack Management</category>
+          <description><![CDATA[
+            <p>Hello,</p>
+<p>I have a strange problem. I am trying to install the Ansible Pack on a new Stackstorm instance. The process always aborts at the action “SetupVirtualEnvironmentAction”, the error message “unable to execute ‘x86_64-linux-gnu-gcc’: No such file or directory” indicates that the runner is not able to find the gcc under /usr/bin/.</p>
+<p>The installation for pykerberos runs with the root user and the system Python without problems.</p>
+<p>Greetings</p>
+<p>Phill93</p>
+            <p><small>2 posts - 2 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/ansible-pack-installation-fails/1777">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/ansible-pack-installation-fails/1777</link>
+          <pubDate>Mon, 12 Jul 2021 13:52:34 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1777</guid>
+          <source url="https://forum.stackstorm.com/t/ansible-pack-installation-fails/1777.rss">Ansible Pack Installation fails</source>
+        </item>
+        <item>
+          <title>Stackstorm HA: Multiple PollingSensor Cause Duplicated Actions</title>
+          <dc:creator><![CDATA[Bryan]]></dc:creator>
+          <category>Rules</category>
+          <description><![CDATA[
+            <p>Hello,<br>
+Did anyone try to deploy Stackstorm HA on Virtual Linux directly? I try to search in this forum, but it look like few people have the same problem as me.<br>
+Anyway, I have Stackstorm HA deploy on 3 Oracle Linux 8. But I’m facing many Duplicated <code>Actions</code> issue:</p>
+<ul>
+<li>First, I’m facing duplicated st2timersengine.</li>
+</ul>
+<p>According to <a href="https://docs.stackstorm.com/reference/ha.html" class="inline-onebox" rel="noopener nofollow ugc">High Availability Deployment — StackStorm 3.5.0 documentation</a>,</p>
+<pre><code class="lang-auto">[timer]
+enable = False
+</code></pre>
+<p>I set 2 false and 1 true on 3 vms, but it don’t work for me, very strange.<br>
+Anyway I solve this issue by using keeplived, As mentioned as <code>external monitoring</code></p>
+<ul>
+<li>Now, I find that multiple PollingSensor also cause duplicated actions</li>
+</ul>
+<p>There are 3 same rule/sensor of cause(each Stackstorm has one st2rulesengine/st2sensorcontainer), because they load the same pack.</p>
+<p>Obviously, 3 sensor polling the same system, get 3 same result and generate 3 same payloads, and then trigger 3 same actions.</p>
+<p>But I can’t kill 2 of them like st2timersengine, becasue external webhook send requset to upper Nginx, and nginx transfer the request to one of 3 stackstorm. They will cause webhook out of work.</p>
+<p>What should I do?<br>
+Otherwise, I have to use timer action instead of PollingSensor.</p>
+            <p><small>4 posts - 2 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/stackstorm-ha-multiple-pollingsensor-cause-duplicated-actions/1773">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/stackstorm-ha-multiple-pollingsensor-cause-duplicated-actions/1773</link>
+          <pubDate>Mon, 12 Jul 2021 10:56:01 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1773</guid>
+          <source url="https://forum.stackstorm.com/t/stackstorm-ha-multiple-pollingsensor-cause-duplicated-actions/1773.rss">Stackstorm HA: Multiple PollingSensor Cause Duplicated Actions</source>
+        </item>
+        <item>
+          <title>Rule not working with error {rule.trigger &quot;core.st2.webhook&quot; and trigger.ref &quot;core.59362943-d192-4502-bc0a-9c7c8ecc69d1&quot; do not match.}</title>
+          <dc:creator><![CDATA[prabhanshu]]></dc:creator>
+          <category>Rules</category>
+          <description><![CDATA[
+            <p>Hi Team,</p>
+<p>I created a rule:</p>
+<pre><code class="lang-auto">---
+    name: "pdalert_remediation_rule"
+    pack: "default"
+    description: "PD alert remediation rule"
+    enabled: true
+
+    trigger:
+        type: "core.st2.webhook"
+        parameters:
+            url: "sample"
+
+    criteria:
+        trigger.body.messages[0].event:
+            pattern: "incident.trigger"
+            type: "equals"
+
+    action:
+        ref: "default.pdalert_remediation"
+        parameters:
+            hostname: "{{trigger.body.messages[0].log_entries[0].channel.host}}.srvs.ahdev.co"
+            event_id: "{{trigger.body.messages[0].log_entries[0].agent.id}}"
+            email_id: "prabhanshu.pandey@acquia.com"
+</code></pre>
+<p>While executing the rule trigger is getting processed but no execution ID is getting created.</p>
+<p>While looking into it further and testing the rule i see.</p>
+<pre><code class="lang-auto">[05:28:36] root@ded-95.opsteam1:/opt/stackstorm/packs/default/rules# st2-rule-tester --trigger-instance-id=60e6467244c92e3371291b06 --rule=pdalert_remediation_rule.yaml --debug
+2021-07-08 05:28:44,218 INFO [-] Connecting to database "st2" @ "127.0.0.1:27017" as user "stackstorm".
+2021-07-08 05:28:44,279 INFO [-] Successfully connected to database "st2" @ "127.0.0.1:27017" as user "stackstorm".
+2021-07-08 05:28:44,279 DEBUG [-] Ensuring database indexes...
+2021-07-08 05:28:45,333 DEBUG [-] Skipping index cleanup for blacklisted model "PermissionGrantDB"...
+2021-07-08 05:28:45,721 DEBUG [-] Indexes are ensured for models: ActionAliasDB, ActionAliasDB, ActionDB, ActionExecutionDB, ActionExecutionDB, ActionExecutionOutputDB, ActionExecutionSchedulingQueueItemDB, ActionExecutionStateDB, ActionExecutionStateDB, ApiKeyDB, ConfigDB, ConfigSchemaDB, GroupToRoleMappingDB, KeyValuePairDB, LiveActionDB, LiveActionDB, PackDB, PermissionGrantDB, PolicyDB, PolicyTypeDB, RoleDB, RuleDB, RuleEnforcementDB, RunnerTypeDB, RunnerTypeDB, SensorTypeDB, TaskExecutionDB, TokenDB, TraceDB, TriggerDB, TriggerInstanceDB, TriggerTypeDB, UserDB, UserRoleAssignmentDB, WorkflowExecutionDB
+2021-07-08 05:28:45,804 INFO [-] rule.trigger "core.st2.webhook" and trigger.ref "core.59362943-d192-4502-bc0a-9c7c8ecc69d1" do not match.
+2021-07-08 05:28:45,821 INFO [-] === RULE DOES NOT MATCH ===
+</code></pre>
+<p>Can someone look into it? I so want to move forward from the below error.</p>
+<pre><code class="lang-auto">2021-07-08 05:28:45,804 INFO [-] rule.trigger "core.st2.webhook" and trigger.ref "core.59362943-d192-4502-bc0a-9c7c8ecc69d1" do not match.
+</code></pre>
+<p>Regards,<br>
+Prabhanshu.</p>
+            <p><small>2 posts - 2 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/rule-not-working-with-error-rule-trigger-core-st2-webhook-and-trigger-ref-core-59362943-d192-4502-bc0a-9c7c8ecc69d1-do-not-match/1771">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/rule-not-working-with-error-rule-trigger-core-st2-webhook-and-trigger-ref-core-59362943-d192-4502-bc0a-9c7c8ecc69d1-do-not-match/1771</link>
+          <pubDate>Thu, 08 Jul 2021 05:38:32 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1771</guid>
+          <source url="https://forum.stackstorm.com/t/rule-not-working-with-error-rule-trigger-core-st2-webhook-and-trigger-ref-core-59362943-d192-4502-bc0a-9c7c8ecc69d1-do-not-match/1771.rss">Rule not working with error {rule.trigger &quot;core.st2.webhook&quot; and trigger.ref &quot;core.59362943-d192-4502-bc0a-9c7c8ecc69d1&quot; do not match.}</source>
+        </item>
+        <item>
+          <title>Stackstorm Front-end display bug</title>
+          <dc:creator><![CDATA[yk_lu]]></dc:creator>
+          <category>Platform</category>
+          <description><![CDATA[
+            <p>Hi Support-Team:<br>
+Recently，I encountered a problem and I want to report it to you ,When I call the sub-process in the process, the default value of the enumeration type displays the first value in the enumeration type on the front-end page, instead of the default value.So I think this is a bug. When I run the sub-process separately and adjust other parameters, the default value of the enumeration type parameter will be displayed correctly on the front end.Below I will list the process and cases in detail.</p>
+<h2>
+<a name="the-workflow-is-as-follow-actionorquastayaml-1" class="anchor" href="https://forum.stackstorm.com#the-workflow-is-as-follow-actionorquastayaml-1"></a>The workflow is as follow:<br>
+Action/orquasta.yaml</h2>
+<p>name: orquesta-basic<br>
+pack: redis<br>
+description: Run a local linux command<br>
+runner_type: orquesta<br>
+entry_point: workflows/orquasta.yaml<br>
+enabled: true<br>
+parameters:<br>
+cmd:<br>
+required: true<br>
+type: string<br>
+timeout:<br>
+type: integer<br>
+default: 60</p>
+<p>Workflows/orquasta.yaml<br>
+version: 1.0</p>
+<p>description: A basic workflow that runs an arbitrary linux command.</p>
+<p>input:</p>
+<ul>
+<li>cmd</li>
+<li>timeout</li>
+</ul>
+<p>tasks:<br>
+task1:<br>
+action: redis.output_para<br>
+input:<br>
+main_idc: &lt;% ctx(cmd) %&gt;</p>
+<p>Action/output_para.yaml</p>
+<hr>
+<p>name: “output_para”<br>
+description: “[workflow] .”<br>
+runner_type: “python-script”<br>
+enabled: true<br>
+entry_point: “output_para.py”<br>
+pack: redis<br>
+parameters:<br>
+main_idc:<br>
+type: “string”<br>
+description: “main idc code.”<br>
+required: true<br>
+enum:<br>
+- SHAJQ<br>
+- SHAOY<br>
+- SHARB<br>
+- CFTRB<br>
+- CFTJQ<br>
+- SIN-AWS<br>
+- FRA-AWS<br>
+- SFO-AWS<br>
+- YMQ-AWS<br>
+- SHA-ALI<br>
+- “None”<br>
+position: 0<br>
+default: “CFTJQ”<br>
+policy:<br>
+type: “string”<br>
+description: “not enum type,default 2”<br>
+required: true<br>
+default: ‘2’<br>
+position: 1<br>
+cluster_type:<br>
+type: “string”<br>
+description: “enum type,default 3”<br>
+required: true<br>
+enum:<br>
+- ‘0’<br>
+- ‘2’<br>
+- ‘3’<br>
+- ‘4’<br>
+- ‘5’<br>
+default: ‘3’<br>
+position: 2</p>
+<p>Action/output_para.yaml</p>
+<h1>
+<a name="coding-utf-8-2" class="anchor" href="https://forum.stackstorm.com#coding-utf-8-2"></a>-<em>- coding: utf-8 -</em>-</h1>
+<p>from st2common.runners.base_action import Action</p>
+<p>class output(Action):<br>
+def run(self,main_idc,policy,cluster_type):<br>
+print(main_idc,policy,cluster_type)<br>
+return True</p>
+<p>The cases is as follow:<br>
+1》Main process call sub process case：<br>
+The output result is not equal to the input result displayed on the front end<br>
+</p><div class="lightbox-wrapper"><a class="lightbox" href="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/29fc3e4a0a82391edce698238f2ab6d060a2495d.png" data-download-href="/uploads/short-url/5Zq0jCfgUuj7RyH6ZOytd4hdUHH.png?dl=1" title="image" rel="noopener nofollow ugc"><img src="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/29fc3e4a0a82391edce698238f2ab6d060a2495d_2_323x500.png" alt="image" data-base62-sha1="5Zq0jCfgUuj7RyH6ZOytd4hdUHH" width="323" height="500" srcset="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/29fc3e4a0a82391edce698238f2ab6d060a2495d_2_323x500.png, https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/29fc3e4a0a82391edce698238f2ab6d060a2495d.png 1.5x, https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/29fc3e4a0a82391edce698238f2ab6d060a2495d.png 2x" data-small-upload="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/29fc3e4a0a82391edce698238f2ab6d060a2495d_2_10x10.png"></a></div><p></p>
+<p>2》Run sub-processes independently and adjust main_idc parameter,the cluster_type parameter will be adjusted.Otherwise, the front-end display is still  wrong.</p>
+<p>1.outer parameters have not been adjusted.</p>
+<p><img src="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/7518eb31a03a3598cc5c3e311e175fac00428fde.png" alt="image" data-base62-sha1="gHTfDkokuKI0JCD9P3dJ0kp8Ege" width="562" height="478"></p>
+<ol start="2">
+<li>Other parameters have been adjusted</li>
+</ol>
+<p><img src="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/3e0c0d4c01fc68fba7b84cd996a0d02b2fa44b23.png" alt="image" data-base62-sha1="8QTqj8iuS6W8TnhbbxaBZGuu5DJ" width="551" height="467"></p>
+<p>So far my conclusion is：<br>
+1,Parameter trigger update is carried out after any parameter adjustment<br>
+2,When the main process is called the sub-process, even if there are other parameter adjustments, it will not trigger the default value parameter adjustment displayed on the front-end</p>
+<p>That’s all, please reply after receiving<br>
+Thank you</p>
+            <p><small>1 post - 1 participant</small></p>
+            <p><a href="https://forum.stackstorm.com/t/stackstorm-front-end-display-bug/1767">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/stackstorm-front-end-display-bug/1767</link>
+          <pubDate>Tue, 06 Jul 2021 11:08:36 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1767</guid>
+          <source url="https://forum.stackstorm.com/t/stackstorm-front-end-display-bug/1767.rss">Stackstorm Front-end display bug</source>
+        </item>
+        <item>
+          <title>St2 apikey create - connection aborted</title>
+          <dc:creator><![CDATA[bohn002]]></dc:creator>
+          <category>API</category>
+          <description><![CDATA[
+            <p>Running Ansible to install StackStorm on an AWS instance. Suddenly having trouble.<br>
+Original command:</p>
+<pre><code class="lang-auto">ansible-playbook stackstorm.yml -i 'localhost,' --connection=local
+</code></pre>
+<p>which results in</p>
+<pre><code class="lang-auto">TASK [StackStorm.st2chatops : Generate "st2_api_key" if not provided with the "role" or in "defaults/main.yml"] ***
+fatal: [ec2-&lt;ip&gt;.***.compute.amazonaws.com]: FAILED! =&gt; {"censored": "the output has been hidden due to the fact that 'no_log: true' was specified for this result", "changed": true}```
+</code></pre>
+<p>changed no_log: false and got a complain about not reaching port 9101 to create the key. Added 9101 to my security group and now still getting connection issues. Ports open to all, 80/443/9100-9103</p>
+<pre><code class="lang-auto">fatal: [localhost]: FAILED! =&gt; {"changed": true, "cmd": ["st2", "apikey", "create", "-k"], "delta": "0:00:04.156206", "end": "2021-07-01 21:21:20.928591", "msg": "non-zero return code", "rc": 2, "start": "2021-07-01 21:21:16.772385", "stderr": "", "stderr_lines": [], "stdout": "ERROR: ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))", "stdout_lines": ["ERROR: ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))"]}
+</code></pre>
+<p>even running by hand:</p>
+<pre><code class="lang-auto">$ st2 apikey create -k
+ERROR: ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+</code></pre>
+<p>What am I missing?</p>
+            <p><small>5 posts - 2 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/st2-apikey-create-connection-aborted/1760">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/st2-apikey-create-connection-aborted/1760</link>
+          <pubDate>Thu, 01 Jul 2021 21:40:06 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1760</guid>
+          <source url="https://forum.stackstorm.com/t/st2-apikey-create-connection-aborted/1760.rss">St2 apikey create - connection aborted</source>
+        </item>
+        <item>
+          <title>Sending large HTTP POST inside run() with requests package</title>
+          <dc:creator><![CDATA[techdiverdown]]></dc:creator>
+          <category>Platform</category>
+          <description><![CDATA[
+            <p>Question about sending http post with large body via run() and using requests versus core.http. We noted that it fails using the run method with http requests and it works with the core.http. By failure i mean it runs and we see defunct processes eventually. We jacked the action timeout way up…but it never returns from run. Can someone explain why these 2 methods behave differently and when one should use the core.http versus run with requests. When i say large the body is about 2K lines of JSON.</p>
+            <p><small>2 posts - 2 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/sending-large-http-post-inside-run-with-requests-package/1758">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/sending-large-http-post-inside-run-with-requests-package/1758</link>
+          <pubDate>Thu, 01 Jul 2021 16:55:01 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1758</guid>
+          <source url="https://forum.stackstorm.com/t/sending-large-http-post-inside-run-with-requests-package/1758.rss">Sending large HTTP POST inside run() with requests package</source>
+        </item>
+        <item>
+          <title>Gunicorn timeout configuration</title>
+          <dc:creator><![CDATA[hsilverio]]></dc:creator>
+          <category>User Management</category>
+          <description><![CDATA[
+            <p>Hi,</p>
+<p>I need your help!</p>
+<p>When I call the api <strong><a href="https://myUrl/auth/v1/tokens" rel="noopener nofollow ugc">https://myUrl/auth/v1/tokens</a></strong> i’m getting an error “Nginx is unable to reach st2auth.”. This error is intermittent, when it reaches 30 seconds it gives an error, if the time is less than 30s I get the token successfully.<br>
+Typically occurs on the first invocation, the following ones are succeeded in milliseconds.</p>
+<p>I think changing Gunicorn’s default from 30 to 60 might solve the problem.<br>
+My question is how to change Gunicorn’s default setting from 30 seconds to 60?</p>
+<p><strong>Error in var/log/st2/st2auth.log:</strong><br>
+[CRITICAL] WORKER TIMEOUT</p>
+<p><strong>API Response:</strong><br>
+Status: 503 - Service Temporarily Unavailable - Time:30.90s - Size:307 B<br>
+“faultstring”: “Nginx is unable to reach st2auth. Make sure service is running.”</p>
+            <p><small>2 posts - 2 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/gunicorn-timeout-configuration/1757">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/gunicorn-timeout-configuration/1757</link>
+          <pubDate>Thu, 01 Jul 2021 11:45:25 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1757</guid>
+          <source url="https://forum.stackstorm.com/t/gunicorn-timeout-configuration/1757.rss">Gunicorn timeout configuration</source>
+        </item>
+        <item>
+          <title>Sensor token expired when running in Docker</title>
+          <dc:creator><![CDATA[v.sim]]></dc:creator>
+          <category>API</category>
+          <description><![CDATA[
+            <p>I am running stackstorm in docker <a href="https://github.com/StackStorm/st2-docker" rel="noopener nofollow ugc">https://github.com/StackStorm/st2-docker</a> using the st2 provided docker build.</p>
+<p>My sensor is periodically reading/writing values to the stackstorm datastore.<br>
+The token is expiring and the program is unable to continue.</p>
+<p>I solved this problem in a standard stackstorm ubuntu installation by having the sensor exit(1) and then stackstorm would automatically restart the sensor. This fix however is not working in docker.</p>
+<pre><code class="lang-auto">2021-06-30 01:25:02,500 140510655553608 ERROR oc_sensor [-] [qa8 - Sensor]  Failed to connect to datastore. 401 Client Error: Unauthorized
+MESSAGE: Unauthorized - Token has expired. for url: http://127.0.0.1:9101/v1/keys/qa8:last_poll_timestamp
+2021-06-30 01:25:02,505 140510655553608 ERROR oc_sensor [-] [qa8 - Sensor]  Failed to connect to datastore. 401 Client Error: Unauthorized
+MESSAGE: Unauthorized - Token has expired. for url: http://127.0.0.1:9101/v1/keys/qa8:last_poll_timestamp
+2021-06-30 01:25:02,511 140510655553608 ERROR oc_sensor [-] [qa8 - Sensor]  Failed to connect to datastore. 401 Client Error: Unauthorized
+MESSAGE: Unauthorized - Token has expired. for url: http://127.0.0.1:9101/v1/keys/qa8:last_poll_timestamp
+</code></pre>
+            <p><small>1 post - 1 participant</small></p>
+            <p><a href="https://forum.stackstorm.com/t/sensor-token-expired-when-running-in-docker/1756">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/sensor-token-expired-when-running-in-docker/1756</link>
+          <pubDate>Wed, 30 Jun 2021 21:08:24 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1756</guid>
+          <source url="https://forum.stackstorm.com/t/sensor-token-expired-when-running-in-docker/1756.rss">Sensor token expired when running in Docker</source>
+        </item>
+        <item>
+          <title>Stackstorm HA redis nodes constantly crashing</title>
+          <dc:creator><![CDATA[dsale]]></dc:creator>
+          <category>Platform</category>
+          <description><![CDATA[
+            <p>After removing/deleting a stackstorm ha release on a kubernetes cluster, the redis nodes are constantly crashing when creating a new stackstorm ha release via helm.</p>
+<p>The following errors are found in the logs for the stackstorm redis nodes.</p>
+<p><code>[stackstorm-redis-node-0 sentinel] </code> Could not connect to Redis at stackstorm-redis.dev.svc.cluster.local:26379: Connection refused<br>
+<code>[stackstorm-redis-node-0 sentinel] </code> Could not connect to Redis at -p:6379: Name or service not known<br>
+<code>[stackstorm-redis-node-0 redis] </code> Could not connect to Redis at stackstorm-redis.dev.svc.cluster.local:26379: Connection refused<br>
+<code>[stackstorm-redis-node-0 redis] </code> Could not connect to Redis at -p:6379: Name or service not known</p>
+            <p><small>1 post - 1 participant</small></p>
+            <p><a href="https://forum.stackstorm.com/t/stackstorm-ha-redis-nodes-constantly-crashing/1752">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/stackstorm-ha-redis-nodes-constantly-crashing/1752</link>
+          <pubDate>Mon, 28 Jun 2021 21:11:22 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1752</guid>
+          <source url="https://forum.stackstorm.com/t/stackstorm-ha-redis-nodes-constantly-crashing/1752.rss">Stackstorm HA redis nodes constantly crashing</source>
+        </item>
+        <item>
+          <title>Keeping HA nodes in sync (non k8s)</title>
+          <dc:creator><![CDATA[minsis]]></dc:creator>
+          <category>Pack Management</category>
+          <description><![CDATA[
+            <p>I have multiple clusters and multiple nodes in each one. In the documentation it suggest keeping the packs and virutalenv in sync with something like Ansible but there’s no suggestions on how one should do this. Any high-level suggestions on how to do this?</p>
+            <p><small>1 post - 1 participant</small></p>
+            <p><a href="https://forum.stackstorm.com/t/keeping-ha-nodes-in-sync-non-k8s/1744">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/keeping-ha-nodes-in-sync-non-k8s/1744</link>
+          <pubDate>Wed, 23 Jun 2021 19:41:38 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1744</guid>
+          <source url="https://forum.stackstorm.com/t/keeping-ha-nodes-in-sync-non-k8s/1744.rss">Keeping HA nodes in sync (non k8s)</source>
+        </item>
+        <item>
+          <title>RBAC permissions implications</title>
+          <dc:creator><![CDATA[minsis]]></dc:creator>
+          <category>RBAC</category>
+          <description><![CDATA[
+            <p>I have a limited user account that has only permissions to install and sync packs. But there seems to maybe be some implications that are missing when you’re limiting a user role like this which is failing the install the pack(s)</p>
+<pre><code class="lang-yaml">name: pack_management
+description: Allows a user to install, register, and modify packs only
+permission_grants:
+  -
+    permission_types:
+       - "pack_list"
+       - "pack_install"
+       - "pack_uninstall"
+       - "pack_create"
+       - "pack_register"
+       - "pack_config"
+       - "pack_search"
+       - "pack_views_index_health"
+  -
+    resource_uid: "action:packs.install"
+    permission_types:
+       - "action_execute"
+</code></pre>
+<p>But because there’s no execution_view permissions the pack install fails</p>
+<pre><code class="lang-auto">st2@st2appl01 ~ $ st2 pack install ansible
+
+For the "ansible" pack, the following content will be registered:
+
+actions   |  8
+rules     |  0
+sensors   |  0
+aliases   |  0
+triggers  |  0
+
+Installation may take a while for packs with many items.
+ERROR: 403 Client Error: Forbidden
+MESSAGE: User "&lt;user&gt;" doesn't have required permission "execution_view" on resource "execution:60d34c08d795d3d021105294" for url: http://127.0.0.1:9101/v1/executions/60d34c08d795d3d021105294
+</code></pre>
+<p>I’ve tried doing permissions like:</p>
+<pre><code class="lang-yaml">---
+  -
+    resource_uid: "execution:"
+    permission_types:
+       - "execution_view"
+
+---
+  -
+    resource_uid: "execution:*"
+    permission_types:
+       - "execution_view"
+</code></pre>
+<p>But none of these are working. I dont know if there’s a specific uid to use for something like this or if I need to register this as a type of permission bug.</p>
+            <p><small>2 posts - 2 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/rbac-permissions-implications/1743">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/rbac-permissions-implications/1743</link>
+          <pubDate>Wed, 23 Jun 2021 15:48:29 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1743</guid>
+          <source url="https://forum.stackstorm.com/t/rbac-permissions-implications/1743.rss">RBAC permissions implications</source>
+        </item>
+        <item>
+          <title>How do I access config from remote-script?</title>
+          <dc:creator><![CDATA[guymatz]]></dc:creator>
+          <category>Pack Management</category>
+          <description><![CDATA[
+            <p>Hi!  How do I access a pack’s config from a remote-shell-script?</p>
+            <p><small>1 post - 1 participant</small></p>
+            <p><a href="https://forum.stackstorm.com/t/how-do-i-access-config-from-remote-script/1732">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/how-do-i-access-config-from-remote-script/1732</link>
+          <pubDate>Tue, 08 Jun 2021 20:09:50 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1732</guid>
+          <source url="https://forum.stackstorm.com/t/how-do-i-access-config-from-remote-script/1732.rss">How do I access config from remote-script?</source>
+        </item>
+        <item>
+          <title>RabbitMQ cannot be re-established</title>
+          <dc:creator><![CDATA[arul]]></dc:creator>
+          <category>Platform</category>
+          <description><![CDATA[
+            <p>Hi Team,</p>
+<p>We are getting this issue. Please help to resolve.</p>
+<p>2021-06-01 12:36:22,302 ERROR [-] Connections to RabbitMQ cannot be re-established: [Errno 111] Connection refused<br>
+Traceback (most recent call last):<br>
+File “/opt/stackstorm/st2/lib/python3.6/site-packages/amqp/transport.py”, line 137, in _connect<br>
+host, port, family, socket.SOCK_STREAM, SOL_TCP)<br>
+File “/usr/lib64/python3.6/socket.py”, line 745, in getaddrinfo<br>
+for res in _socket.getaddrinfo(host, port, family, type, proto, flags):<br>
+socket.gaierror: [Errno -9] Address family for hostname not supported</p>
+            <p><small>2 posts - 2 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/rabbitmq-cannot-be-re-established/1725">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/rabbitmq-cannot-be-re-established/1725</link>
+          <pubDate>Tue, 01 Jun 2021 12:55:00 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1725</guid>
+          <source url="https://forum.stackstorm.com/t/rabbitmq-cannot-be-re-established/1725.rss">RabbitMQ cannot be re-established</source>
+        </item>
+        <item>
+          <title>Stackstorm - mongodb backup and restore</title>
+          <dc:creator><![CDATA[mohan28]]></dc:creator>
+          <category>Platform</category>
+          <description><![CDATA[
+            <p>Hello,</p>
+<p>How does people Backup and restore of mongodb, in case of failures, on HA K8s cluster or docker environments in StackStorm?<br>
+It would be great if you can share any use cases you guys came across.</p>
+            <p><small>2 posts - 2 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/stackstorm-mongodb-backup-and-restore/1722">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/stackstorm-mongodb-backup-and-restore/1722</link>
+          <pubDate>Mon, 31 May 2021 08:00:14 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1722</guid>
+          <source url="https://forum.stackstorm.com/t/stackstorm-mongodb-backup-and-restore/1722.rss">Stackstorm - mongodb backup and restore</source>
+        </item>
+        <item>
+          <title>St2 python client remote access issue</title>
+          <dc:creator><![CDATA[nxstorm]]></dc:creator>
+          <category>CLI</category>
+          <description><![CDATA[
+            <p>Hi,<br>
+I am new to stackstorm. Trying out the st2client for the remote connectivity. I had some issue on the establishment. Apparently all others seem ok including the access through API, eg https://{host}/api. Would appreciate if anyone can give me some pointer.</p>
+<p><strong>My client config is:</strong><br>
+[general]<br>
+base_url = <a href="https://192.168.1.3/api" rel="noopener nofollow ugc">https://192.168.1.3/api</a><br>
+<span class="hashtag">#api_version</span> = v1<br>
+# Path to the CA cert bundle used to validate the SSL certificates<br>
+cacert =</p>
+<pre><code>[cli]
+debug = True
+# True to cache the retrieved auth token during authentication in ~/.st2/token
+# and use the cached token in the subsequent API requests
+cache_token = True
+# Timezone used for timestamps displayed in the CLI. If not provided it defaults
+# to UTC
+timezone = Europe/Ljubljana
+
+[credentials]
+# Credentials used to authenticate against the auth API and retrieve the auth
+# token
+username = st2admin
+password = changeme
+
+[api]
+url = https://192.168.1.3:9101/api
+# or for a remote instance
+# url = https://example.com/api/v1
+
+[auth]
+url = https://192.168.1.2:9100/auth
+# or for a remote instance
+#url = https://example.com/auth/v1
+
+[stream]
+url = http://192.168.1.2:9102
+# or for a remote instance
+# url = https://example.com/stream/v1
+</code></pre>
+<p><strong>Issue:</strong><br>
+~/st2client/.st2#  st2 --config-file=./config action list<br>
+2021-05-18 09:48:45,777  WARNING - Auth API server is not available, skipping authentication.<br>
+ERROR: HTTPSConnectionPool(host=‘192.168.1.3’, port=9101): Max retries exceeded with url: /api/actions?include_attributes=ref%2Cpack%2Cdescription (Caused by NewConnectionError(’&lt;urllib3.connection.HTTPSConnection object at 0x7f4992178668&gt;: Failed to establish a new connection: [Errno 111] Connection refused’,))</p>
+            <p><small>2 posts - 2 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/st2-python-client-remote-access-issue/1710">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/st2-python-client-remote-access-issue/1710</link>
+          <pubDate>Tue, 18 May 2021 16:53:25 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1710</guid>
+          <source url="https://forum.stackstorm.com/t/st2-python-client-remote-access-issue/1710.rss">St2 python client remote access issue</source>
+        </item>
+        <item>
+          <title>How to specify hosts target of an action in rule</title>
+          <dc:creator><![CDATA[nxstorm]]></dc:creator>
+          <category>Rules</category>
+          <description><![CDATA[
+            <p>Hi,</p>
+<p>New to stackstorm. I have been following example to get myself up to speed. There is one thing that i am not too sure about. I have an action which is remote-shell-script type and able to run individually cmd against remote host using ‘st2 run action hosts=ABC’.  However, when i tried the same action with a rule, it seems falling apart, and the rule wont get executed according to the rule-enforcement list. I realized that I did not specify the target host to run against. So I am wondering to where in rule definition i could specify the hosts=ABC ???</p>
+<p>Thanks,<br>
+Storm</p>
+            <p><small>5 posts - 2 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/how-to-specify-hosts-target-of-an-action-in-rule/1697">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/how-to-specify-hosts-target-of-an-action-in-rule/1697</link>
+          <pubDate>Thu, 13 May 2021 20:41:59 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1697</guid>
+          <source url="https://forum.stackstorm.com/t/how-to-specify-hosts-target-of-an-action-in-rule/1697.rss">How to specify hosts target of an action in rule</source>
+        </item>
+        <item>
+          <title>Python Task return Json || Parse in orquesta workflows</title>
+          <dc:creator><![CDATA[arul]]></dc:creator>
+          <category>Platform</category>
+          <description><![CDATA[
+            <p>hi Team</p>
+<p>in my workflow, calling one of the Python script tasks &amp; got the stdout as JSON format.</p>
+<p>stdout: ‘{’‘short_description’’: ‘‘host1 is not responding to Ping’’, ‘‘description’’: ‘‘host1   is not re<br>
+sponding to Ping’’, ‘‘cmdb_ci.name’’: ‘‘host1’’, ‘‘state’’: ‘‘7’’, ‘‘assignment_group.name’’: ‘‘Wintel L1’’}</p>
+<p>we need to parse the json values inside the workflow. i have tried to get the description as below</p>
+<ul>
+<li>inc_description: “{{ result().stdout.description }}”<br>
+however i got an error  -  - message: ‘JinjaEvaluationException: There are unresolved variables: result().stdout.description’</li>
+</ul>
+<p>Please help.</p>
+<p>tasks:<br>
+Collecting_info:<br>
+action: arul_automation.GetIncident<br>
+input:<br>
+Incident_Number: “{{ ctx().incident_no }}”<br>
+Field_name: “number,description,short_description”<br>
+next:<br>
+- when: “{{ succeeded() }}”<br>
+publish:<br>
+- inc_description: “{{ result().stdout.description }}”<br>
+- error_message: “{{ result().stderr }}”<br>
+do:<br>
+- noop<br>
+- when: “{{ failed() }}”<br>
+publish:<br>
+- error_message: “Could not get the details for this incidnet {{ ctx().incident_no }}”<br>
+do:<br>
+- noop</p>
+            <p><small>2 posts - 2 participants</small></p>
+            <p><a href="https://forum.stackstorm.com/t/python-task-return-json-parse-in-orquesta-workflows/1695">Read full topic</a></p>
+          ]]></description>
+          <link>https://forum.stackstorm.com/t/python-task-return-json-parse-in-orquesta-workflows/1695</link>
+          <pubDate>Thu, 13 May 2021 13:53:56 +0000</pubDate>
+          <discourse:topicPinned>No</discourse:topicPinned>
+          <discourse:topicClosed>No</discourse:topicClosed>
+          <discourse:topicArchived>No</discourse:topicArchived>
+          <guid isPermaLink="false">forum.stackstorm.com-topic-1695</guid>
+          <source url="https://forum.stackstorm.com/t/python-task-return-json-parse-in-orquesta-workflows/1695.rss">Python Task return Json || Parse in orquesta workflows</source>
+        </item>
+  </channel>
+</rss>

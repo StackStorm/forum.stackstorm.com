@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Proper fail for orchesta</title>
+    <link>https://forum.stackstorm.com/t/proper-fail-for-orchesta/1716</link>
+    <description>I have been using action-chains for years.  My normal python code for my actions is either 
+return True
+return False
+
+In orquesta transitions I specify
+when: &lt;% failed() %&gt; 
+do: someaction
+
+This has not been working for some actions.. any ideas why?? SHould I be using exit(1) instead?</description>
+    
+    <lastBuildDate>Tue, 29 Jun 2021 11:45:23 +0000</lastBuildDate>
+    <category>Uncategorized</category>
+    <atom:link href="https://forum.stackstorm.com/t/proper-fail-for-orchesta/1716.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Proper fail for orchesta</title>
+        <dc:creator><![CDATA[Bryan]]></dc:creator>
+        <description><![CDATA[
+            <p>You should return a tuple:<br>
+<code>return (False, "Error from exception")</code><br>
+as same as</p>
+<blockquote>
+<p>sys.exit(1)</p>
+</blockquote>
+<blockquote>
+<p>raise exception</p>
+</blockquote>
+<p>You can find more information at:<br>
+<a href="https://docs.stackstorm.com/actions.html#writing-custom-python-actions" class="onebox" target="_blank" rel="noopener nofollow ugc">https://docs.stackstorm.com/actions.html#writing-custom-python-actions</a></p>
+          <p><a href="https://forum.stackstorm.com/t/proper-fail-for-orchesta/1716/4">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/proper-fail-for-orchesta/1716/4</link>
+        <pubDate>Tue, 29 Jun 2021 11:43:56 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1716-4</guid>
+        <source url="https://forum.stackstorm.com/t/proper-fail-for-orchesta/1716.rss">Proper fail for orchesta</source>
+      </item>
+      <item>
+        <title>Proper fail for orchesta</title>
+        <dc:creator><![CDATA[badchad]]></dc:creator>
+        <description><![CDATA[
+            <p>So, like</p>
+<p>return True, “some result string or json”<br>
+return False, “error from exception”<br>
+?</p>
+<p>IF so, this is what I am currently doing and sometimes the False isn’t getting caught.  I read deeper into this and I think maybe instead of False, we might move to raise an exception instead.  Will mess around, appreciate the response.</p>
+          <p><a href="https://forum.stackstorm.com/t/proper-fail-for-orchesta/1716/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/proper-fail-for-orchesta/1716/3</link>
+        <pubDate>Sun, 23 May 2021 21:27:59 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1716-3</guid>
+        <source url="https://forum.stackstorm.com/t/proper-fail-for-orchesta/1716.rss">Proper fail for orchesta</source>
+      </item>
+      <item>
+        <title>Proper fail for orchesta</title>
+        <dc:creator><![CDATA[Carlos]]></dc:creator>
+        <description><![CDATA[
+            <p>If your action is a python-runner <a href="https://docs.stackstorm.com/reference/runners.html#python-runner-python-script" class="inline-onebox" rel="noopener nofollow ugc">Action Runners — StackStorm 3.4.0 documentation</a> it might help returning a tuple to express execution success/failure rather than just true/false.</p>
+          <p><a href="https://forum.stackstorm.com/t/proper-fail-for-orchesta/1716/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/proper-fail-for-orchesta/1716/2</link>
+        <pubDate>Sat, 22 May 2021 17:35:32 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1716-2</guid>
+        <source url="https://forum.stackstorm.com/t/proper-fail-for-orchesta/1716.rss">Proper fail for orchesta</source>
+      </item>
+      <item>
+        <title>Proper fail for orchesta</title>
+        <dc:creator><![CDATA[badchad]]></dc:creator>
+        <description><![CDATA[
+            <p>I have been using action-chains for years.  My normal python code for my actions is either<br>
+return True<br>
+return False</p>
+<p>In orquesta transitions I specify<br>
+when: &lt;% failed() %&gt;<br>
+do: someaction</p>
+<p>This has not been working for some actions… any ideas why?? SHould I be using exit(1) instead?</p>
+          <p><a href="https://forum.stackstorm.com/t/proper-fail-for-orchesta/1716/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/proper-fail-for-orchesta/1716/1</link>
+        <pubDate>Sat, 22 May 2021 17:19:42 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1716-1</guid>
+        <source url="https://forum.stackstorm.com/t/proper-fail-for-orchesta/1716.rss">Proper fail for orchesta</source>
+      </item>
+  </channel>
+</rss>

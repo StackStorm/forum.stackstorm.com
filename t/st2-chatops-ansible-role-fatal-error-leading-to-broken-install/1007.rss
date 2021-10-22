@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>St2.chatops Ansible Role fatal error leading to broken install</title>
+    <link>https://forum.stackstorm.com/t/st2-chatops-ansible-role-fatal-error-leading-to-broken-install/1007</link>
+    <description>Ansible Version: 2.9.2 
+CentOS Linux release 7.7.1908 (Core)
+https://github.com/StackStorm/ansible-st2.git |
+
+Greetings, 
+
+I have deployed StackStorm using your provided ansible playbook. However after deployment and configuring hubot to integrate with Slack I noticed the chatbot service wasnt online and I was unable to start it.  
+
+I ran your self-check script as per your troubleshooting guide and noticed that the API key was also not set &quot;StackStorm client couldn&#39;t connect to StackStorm.&quot;. I solved this temporarily by manually &quot;export ST2_API_KEY...&quot;. However the check then fails on &quot;Step 1 failed: Hubot is not running on this machine.&quot;. This prompted me to rerun the ansible script and check for any failures. This is what I found. 
+
+--------------------
+
+TASK [StackStorm.st2chatops : Check if API key already exist in st2chatops.env] ******************************************************************
+fatal: [localhost]: FAILED! =&gt; {&quot;changed&quot;: false, &quot;cmd&quot;: [&quot;grep&quot;, &quot;-e&quot;, &quot;^export ST2_API_KEY=\&quot;\\${ST2_API_KEY}\&quot;$&quot;, &quot;/opt/stackstorm/chatops/st2chatops.env&quot;], &quot;delta&quot;: &quot;0:00:00.004789&quot;, &quot;end&quot;: &quot;2020-01-20 16:34:40.465620&quot;, &quot;msg&quot;: &quot;non-zero return code&quot;, &quot;rc&quot;: 1, &quot;start&quot;: &quot;2020-01-20 16:34:40.460831&quot;, &quot;stderr&quot;: &quot;&quot;, &quot;stderr_lines&quot;: [], &quot;stdout&quot;: &quot;&quot;, &quot;stdout_lines&quot;: []}
+...ignoring
+
+---------------------
+I am wondering if this is something that has been seen before and if you could help in diagnose the problem. I believe it is failing this task and it is having a knock on effect skipping subsequent tasks. 
+
+Much Appreciated 
+Matthew</description>
+    
+    <lastBuildDate>Wed, 22 Jan 2020 11:56:06 +0000</lastBuildDate>
+    <category>Uncategorized</category>
+    <atom:link href="https://forum.stackstorm.com/t/st2-chatops-ansible-role-fatal-error-leading-to-broken-install/1007.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>St2.chatops Ansible Role fatal error leading to broken install</title>
+        <dc:creator><![CDATA[mmcneilly]]></dc:creator>
+        <description><![CDATA[
+            <p>Thanks for this <a class="mention" href="https://github.com/armab">@armab</a> this has done the trick.<br>
+Must have made a type somewhere when I was manually configuring it before, just happy its working and automated <img src="https://emoji.discourse-cdn.com/apple/slight_smile.png?v=9" title=":slight_smile:" class="emoji" alt=":slight_smile:"></p>
+          <p><a href="https://forum.stackstorm.com/t/st2-chatops-ansible-role-fatal-error-leading-to-broken-install/1007/5">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/st2-chatops-ansible-role-fatal-error-leading-to-broken-install/1007/5</link>
+        <pubDate>Wed, 22 Jan 2020 11:56:06 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1007-5</guid>
+        <source url="https://forum.stackstorm.com/t/st2-chatops-ansible-role-fatal-error-leading-to-broken-install/1007.rss">St2.chatops Ansible Role fatal error leading to broken install</source>
+      </item>
+      <item>
+        <title>St2.chatops Ansible Role fatal error leading to broken install</title>
+        <dc:creator><![CDATA[armab]]></dc:creator>
+        <description><![CDATA[
+            <p>In order to enable ChatOps you have to configure it.<br>
+See: <a href="https://docs.stackstorm.com/chatops/chatops.html#package-based-install" class="inline-onebox">What is ChatOps? — StackStorm 3.1.0 documentation</a> from the general StackStorm documentation.</p>
+<p>For Slack, you have to provide Hubot Slack Token via Ansible variables. See <code>st2chatops.st2chatops_config</code> <a href="https://github.com/stackstorm/ansible-st2#variables" class="inline-onebox">GitHub - StackStorm/ansible-st2: Ansible Roles and Playbooks to deploy StackStorm</a><br>
+That will update <code>st2chatops.env</code> with Slack Token.</p>
+<p>Once that’s done ChatOps service should work/start OK.</p>
+          <p><a href="https://forum.stackstorm.com/t/st2-chatops-ansible-role-fatal-error-leading-to-broken-install/1007/4">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/st2-chatops-ansible-role-fatal-error-leading-to-broken-install/1007/4</link>
+        <pubDate>Tue, 21 Jan 2020 21:04:28 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1007-4</guid>
+        <source url="https://forum.stackstorm.com/t/st2-chatops-ansible-role-fatal-error-leading-to-broken-install/1007.rss">St2.chatops Ansible Role fatal error leading to broken install</source>
+      </item>
+      <item>
+        <title>St2.chatops Ansible Role fatal error leading to broken install</title>
+        <dc:creator><![CDATA[mmcneilly]]></dc:creator>
+        <description><![CDATA[
+            <p>I never set any ansible variables, is this required? The only configuration I did was to set the following in the playbook (stackstorm.yaml) so that it ran on localhost.</p>
+<p>hosts: localhost<br>
+connection: local</p>
+<p>The st2chatops.env file looks fine from the point of view that StackStorm API Key is there and uncommented.</p>
+<p>The playbook did run and complete. If I was to rerun it I get the following.</p>
+<p>PLAY RECAP ***************************************************************************************************************************************<br>
+localhost                  : ok=86   changed=0    unreachable=0    failed=0    skipped=69   rescued=0    ignored=1</p>
+<p>Thanks for the heads up</p>
+          <p><a href="https://forum.stackstorm.com/t/st2-chatops-ansible-role-fatal-error-leading-to-broken-install/1007/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/st2-chatops-ansible-role-fatal-error-leading-to-broken-install/1007/3</link>
+        <pubDate>Tue, 21 Jan 2020 12:16:45 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1007-3</guid>
+        <source url="https://forum.stackstorm.com/t/st2-chatops-ansible-role-fatal-error-leading-to-broken-install/1007.rss">St2.chatops Ansible Role fatal error leading to broken install</source>
+      </item>
+      <item>
+        <title>St2.chatops Ansible Role fatal error leading to broken install</title>
+        <dc:creator><![CDATA[armab]]></dc:creator>
+        <description><![CDATA[
+            <p>This could be a bug somewhere.<br>
+What Ansible variables did you set to install stackstorm?</p>
+<p>How <code>/opt/stackstorm/chatops/st2chatops.env</code> looks like after Ansible run?<br>
+Did Ansible run succeeded at all?</p>
+<p>Don’t forget to mask any secrets when posting logs.</p>
+          <p><a href="https://forum.stackstorm.com/t/st2-chatops-ansible-role-fatal-error-leading-to-broken-install/1007/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/st2-chatops-ansible-role-fatal-error-leading-to-broken-install/1007/2</link>
+        <pubDate>Tue, 21 Jan 2020 11:56:13 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1007-2</guid>
+        <source url="https://forum.stackstorm.com/t/st2-chatops-ansible-role-fatal-error-leading-to-broken-install/1007.rss">St2.chatops Ansible Role fatal error leading to broken install</source>
+      </item>
+      <item>
+        <title>St2.chatops Ansible Role fatal error leading to broken install</title>
+        <dc:creator><![CDATA[mmcneilly]]></dc:creator>
+        <description><![CDATA[
+            <p>Ansible Version: 2.9.2<br>
+CentOS Linux release 7.7.1908 (Core)<br>
+<a href="https://github.com/StackStorm/ansible-st2.git" rel="nofollow noopener">https://github.com/StackStorm/ansible-st2.git</a> |</p>
+<p>Greetings,</p>
+<p>I have deployed StackStorm using your provided ansible playbook. However after deployment and configuring hubot to integrate with Slack I noticed the chatbot service wasnt online and I was unable to start it.</p>
+<p>I ran your self-check script as per your troubleshooting guide and noticed that the API key was also not set “StackStorm client couldn’t connect to StackStorm.”. I solved this temporarily by manually “export ST2_API_KEY…”. However the check then fails on “Step 1 failed: Hubot is not running on this machine.”. This prompted me to rerun the ansible script and check for any failures. This is what I found.</p>
+<hr>
+<p>TASK [StackStorm.st2chatops : Check if API key already exist in st2chatops.env] ******************************************************************<br>
+fatal: [localhost]: FAILED! =&gt; {“changed”: false, “cmd”: [“grep”, “-e”, “^export ST2_API_KEY=”\<span class="math">{ST2_API_KEY}\"</span>", “/opt/stackstorm/chatops/st2chatops.env”], “delta”: “0:00:00.004789”, “end”: “2020-01-20 16:34:40.465620”, “msg”: “non-zero return code”, “rc”: 1, “start”: “2020-01-20 16:34:40.460831”, “stderr”: “”, “stderr_lines”: [], “stdout”: “”, “stdout_lines”: []}<br>
+…ignoring</p>
+<hr>
+<p>I am wondering if this is something that has been seen before and if you could help in diagnose the problem. I believe it is failing this task and it is having a knock on effect skipping subsequent tasks.</p>
+<p>Much Appreciated<br>
+Matthew</p>
+          <p><a href="https://forum.stackstorm.com/t/st2-chatops-ansible-role-fatal-error-leading-to-broken-install/1007/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/st2-chatops-ansible-role-fatal-error-leading-to-broken-install/1007/1</link>
+        <pubDate>Tue, 21 Jan 2020 11:42:16 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1007-1</guid>
+        <source url="https://forum.stackstorm.com/t/st2-chatops-ansible-role-fatal-error-leading-to-broken-install/1007.rss">St2.chatops Ansible Role fatal error leading to broken install</source>
+      </item>
+  </channel>
+</rss>

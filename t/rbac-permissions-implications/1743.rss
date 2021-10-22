@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>RBAC permissions implications</title>
+    <link>https://forum.stackstorm.com/t/rbac-permissions-implications/1743</link>
+    <description>I have a limited user account that has only permissions to install and sync packs. But there seems to maybe be some implications that are missing when you&#39;re limiting a user role like this which is failing the install the pack(s)
+
+```yaml
+name: pack_management
+description: Allows a user to install, register, and modify packs only
+permission_grants:
+  -
+    permission_types:
+       - &quot;pack_list&quot;
+       - &quot;pack_install&quot;
+       - &quot;pack_uninstall&quot;
+       - &quot;pack_create&quot;
+       - &quot;pack_register&quot;
+       - &quot;pack_config&quot;
+       - &quot;pack_search&quot;
+       - &quot;pack_views_index_health&quot;
+  -
+    resource_uid: &quot;action:packs.install&quot;
+    permission_types:
+       - &quot;action_execute&quot;
+```
+
+But because there&#39;s no execution_view permissions the pack install fails
+```shell
+st2@st2appl01 ~ $ st2 pack install ansible
+
+For the &quot;ansible&quot; pack, the following content will be registered:
+
+actions   |  8
+rules     |  0
+sensors   |  0
+aliases   |  0
+triggers  |  0
+
+Installation may take a while for packs with many items.
+ERROR: 403 Client Error: Forbidden
+MESSAGE: User &quot;&lt;user&gt;&quot; doesn&#39;t have required permission &quot;execution_view&quot; on resource &quot;execution:60d34c08d795d3d021105294&quot; for url: http://127.0.0.1:9101/v1/executions/60d34c08d795d3d021105294
+```
+
+I&#39;ve tried doing permissions like:
+```yaml
+---
+  -
+    resource_uid: &quot;execution:&quot;
+    permission_types:
+       - &quot;execution_view&quot;
+
+---
+  -
+    resource_uid: &quot;execution:*&quot;
+    permission_types:
+       - &quot;execution_view&quot;
+```
+
+But none of these are working. I dont know if there&#39;s a specific uid to use for something like this or if I need to register this as a type of permission bug.</description>
+    
+    <lastBuildDate>Mon, 06 Sep 2021 15:54:43 +0000</lastBuildDate>
+    <category>RBAC</category>
+    <atom:link href="https://forum.stackstorm.com/t/rbac-permissions-implications/1743.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>RBAC permissions implications</title>
+        <dc:creator><![CDATA[amanda11]]></dc:creator>
+        <description><![CDATA[
+            <p>Did you try using the global permission <strong>execution_list</strong>, e.g.<br>
+permission_types:<br>
+- “execution_list”</p>
+          <p><a href="https://forum.stackstorm.com/t/rbac-permissions-implications/1743/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/rbac-permissions-implications/1743/2</link>
+        <pubDate>Mon, 06 Sep 2021 15:54:43 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1743-2</guid>
+        <source url="https://forum.stackstorm.com/t/rbac-permissions-implications/1743.rss">RBAC permissions implications</source>
+      </item>
+      <item>
+        <title>RBAC permissions implications</title>
+        <dc:creator><![CDATA[minsis]]></dc:creator>
+        <description><![CDATA[
+            <p>I have a limited user account that has only permissions to install and sync packs. But there seems to maybe be some implications that are missing when you’re limiting a user role like this which is failing the install the pack(s)</p>
+<pre><code class="lang-yaml">name: pack_management
+description: Allows a user to install, register, and modify packs only
+permission_grants:
+  -
+    permission_types:
+       - "pack_list"
+       - "pack_install"
+       - "pack_uninstall"
+       - "pack_create"
+       - "pack_register"
+       - "pack_config"
+       - "pack_search"
+       - "pack_views_index_health"
+  -
+    resource_uid: "action:packs.install"
+    permission_types:
+       - "action_execute"
+</code></pre>
+<p>But because there’s no execution_view permissions the pack install fails</p>
+<pre><code class="lang-auto">st2@st2appl01 ~ $ st2 pack install ansible
+
+For the "ansible" pack, the following content will be registered:
+
+actions   |  8
+rules     |  0
+sensors   |  0
+aliases   |  0
+triggers  |  0
+
+Installation may take a while for packs with many items.
+ERROR: 403 Client Error: Forbidden
+MESSAGE: User "&lt;user&gt;" doesn't have required permission "execution_view" on resource "execution:60d34c08d795d3d021105294" for url: http://127.0.0.1:9101/v1/executions/60d34c08d795d3d021105294
+</code></pre>
+<p>I’ve tried doing permissions like:</p>
+<pre><code class="lang-yaml">---
+  -
+    resource_uid: "execution:"
+    permission_types:
+       - "execution_view"
+
+---
+  -
+    resource_uid: "execution:*"
+    permission_types:
+       - "execution_view"
+</code></pre>
+<p>But none of these are working. I dont know if there’s a specific uid to use for something like this or if I need to register this as a type of permission bug.</p>
+          <p><a href="https://forum.stackstorm.com/t/rbac-permissions-implications/1743/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/rbac-permissions-implications/1743/1</link>
+        <pubDate>Wed, 23 Jun 2021 15:48:30 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1743-1</guid>
+        <source url="https://forum.stackstorm.com/t/rbac-permissions-implications/1743.rss">RBAC permissions implications</source>
+      </item>
+  </channel>
+</rss>

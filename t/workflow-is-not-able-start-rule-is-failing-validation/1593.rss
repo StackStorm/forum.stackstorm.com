@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Workflow is not able start, rule is failing validation</title>
+    <link>https://forum.stackstorm.com/t/workflow-is-not-able-start-rule-is-failing-validation/1593</link>
+    <description>Hi Team,
+Please find the Workflow details 
+Meta data:
+
+    [07:23:05] root@ded-95.opsteam1:/opt/stackstorm/packs/default/actions/workflows# cat ../event_demo.meta.yaml
+    pack: default
+    enabled: true
+    runner_type: orquesta
+    parameters:
+      alerts_hostname:
+        type: object
+        required: true
+      alerts_id:
+        type: object
+        required: true
+      alerts_command:
+        type: string
+        required: true
+      resolver:
+        type: string
+        required: true
+    name: event_demo
+    entry_point: workflows/event_demo.yaml
+    [07:23:16] root@ded-95.opsteam1:/opt/stackstorm/packs/default/actions/workflows#
+
+WF:
+
+        version: 1.0
+    input:
+      - alerts_hostname
+      - alerts_id
+      - alerts_command
+      - resolver
+
+    tasks:
+      output_alert:
+        action: core.echo
+        with:
+          concurrency: 1
+        input:
+          message: &quot;Alert hostname &lt;% ctx().alerts_hostname %&gt;, alert id &lt;% ctx().alerts_id, command exec &lt;% ctx(&#39;alerts_command&#39;) %&gt;, resolver &lt;% ctx(&#39;resolver&#39;) %&gt;&quot;
+
+![Screenshot 2021-03-10 at 12.55.09 PM|690x392](upload://ueSAoQYvrv1ZP2071V4mPhdrXdL.png) 
+
+can someone guide me i want to print the values which i am getting in input to the WF.</description>
+    
+    <lastBuildDate>Mon, 12 Jul 2021 11:16:32 +0000</lastBuildDate>
+    <category>Workflows</category>
+    <atom:link href="https://forum.stackstorm.com/t/workflow-is-not-able-start-rule-is-failing-validation/1593.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Workflow is not able start, rule is failing validation</title>
+        <dc:creator><![CDATA[Bryan]]></dc:creator>
+        <description><![CDATA[
+            <p>There is no <em>items</em> in <em>with</em> statement.<br>
+<code>items</code> is <strong>required</strong><br>
+<a href="https://docs.stackstorm.com/orquesta/languages/orquesta.html#with-items-model" class="onebox" target="_blank" rel="noopener nofollow ugc">https://docs.stackstorm.com/orquesta/languages/orquesta.html#with-items-model</a></p>
+          <p><a href="https://forum.stackstorm.com/t/workflow-is-not-able-start-rule-is-failing-validation/1593/4">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/workflow-is-not-able-start-rule-is-failing-validation/1593/4</link>
+        <pubDate>Mon, 12 Jul 2021 11:16:32 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1593-4</guid>
+        <source url="https://forum.stackstorm.com/t/workflow-is-not-able-start-rule-is-failing-validation/1593.rss">Workflow is not able start, rule is failing validation</source>
+      </item>
+      <item>
+        <title>Workflow is not able start, rule is failing validation</title>
+        <dc:creator><![CDATA[arms11]]></dc:creator>
+        <description><![CDATA[
+            <p>Your <code>tasks</code> has <code>with</code> syntax which If I remember correctly must have <code>items</code> which are array or list like iterables. if that is not the input, please remove them. <code>with</code> and <code>concurrency</code> are not valid in the current structure.</p>
+          <p><a href="https://forum.stackstorm.com/t/workflow-is-not-able-start-rule-is-failing-validation/1593/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/workflow-is-not-able-start-rule-is-failing-validation/1593/3</link>
+        <pubDate>Wed, 10 Mar 2021 13:36:59 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1593-3</guid>
+        <source url="https://forum.stackstorm.com/t/workflow-is-not-able-start-rule-is-failing-validation/1593.rss">Workflow is not able start, rule is failing validation</source>
+      </item>
+      <item>
+        <title>Workflow is not able start, rule is failing validation</title>
+        <dc:creator><![CDATA[prabhanshu]]></dc:creator>
+        <description><![CDATA[
+            <p>Initially its giving an error like</p>
+<pre><code>    {
+  "output": null,
+  "errors": [
+    {
+      "type": "error",
+      "message": "TypeError: argument of type 'NoneType' is not iterable",
+      "task_id": "output_alert",
+      "route": 0
+    }
+  ]
+}</code></pre>
+          <p><a href="https://forum.stackstorm.com/t/workflow-is-not-able-start-rule-is-failing-validation/1593/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/workflow-is-not-able-start-rule-is-failing-validation/1593/2</link>
+        <pubDate>Wed, 10 Mar 2021 07:28:31 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1593-2</guid>
+        <source url="https://forum.stackstorm.com/t/workflow-is-not-able-start-rule-is-failing-validation/1593.rss">Workflow is not able start, rule is failing validation</source>
+      </item>
+      <item>
+        <title>Workflow is not able start, rule is failing validation</title>
+        <dc:creator><![CDATA[prabhanshu]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi Team,<br>
+Please find the Workflow details<br>
+Meta data:</p>
+<pre><code>[07:23:05] root@ded-95.opsteam1:/opt/stackstorm/packs/default/actions/workflows# cat ../event_demo.meta.yaml
+pack: default
+enabled: true
+runner_type: orquesta
+parameters:
+  alerts_hostname:
+    type: object
+    required: true
+  alerts_id:
+    type: object
+    required: true
+  alerts_command:
+    type: string
+    required: true
+  resolver:
+    type: string
+    required: true
+name: event_demo
+entry_point: workflows/event_demo.yaml
+[07:23:16] root@ded-95.opsteam1:/opt/stackstorm/packs/default/actions/workflows#
+</code></pre>
+<p>WF:</p>
+<pre><code>    version: 1.0
+input:
+  - alerts_hostname
+  - alerts_id
+  - alerts_command
+  - resolver
+
+tasks:
+  output_alert:
+    action: core.echo
+    with:
+      concurrency: 1
+    input:
+      message: "Alert hostname &lt;% ctx().alerts_hostname %&gt;, alert id &lt;% ctx().alerts_id, command exec &lt;% ctx('alerts_command') %&gt;, resolver &lt;% ctx('resolver') %&gt;"
+</code></pre>
+<p></p><div class="lightbox-wrapper"><a class="lightbox" href="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/d3efd55e7d4bc538d25cbc3184a8c68f7006c3d9.png" data-download-href="/uploads/short-url/ueSAoQYvrv1ZP2071V4mPhdrXdL.png?dl=1" title="Screenshot 2021-03-10 at 12.55.09 PM" rel="noopener nofollow ugc"><img src="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/d3efd55e7d4bc538d25cbc3184a8c68f7006c3d9_2_690x392.png" alt="Screenshot 2021-03-10 at 12.55.09 PM" data-base62-sha1="ueSAoQYvrv1ZP2071V4mPhdrXdL" width="690" height="392" srcset="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/d3efd55e7d4bc538d25cbc3184a8c68f7006c3d9_2_690x392.png, https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/d3efd55e7d4bc538d25cbc3184a8c68f7006c3d9_2_1035x588.png 1.5x, https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/d3efd55e7d4bc538d25cbc3184a8c68f7006c3d9_2_1380x784.png 2x" data-small-upload="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/d3efd55e7d4bc538d25cbc3184a8c68f7006c3d9_2_10x10.png"></a></div><p></p>
+<p>can someone guide me i want to print the values which i am getting in input to the WF.</p>
+          <p><a href="https://forum.stackstorm.com/t/workflow-is-not-able-start-rule-is-failing-validation/1593/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/workflow-is-not-able-start-rule-is-failing-validation/1593/1</link>
+        <pubDate>Wed, 10 Mar 2021 07:26:15 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1593-1</guid>
+        <source url="https://forum.stackstorm.com/t/workflow-is-not-able-start-rule-is-failing-validation/1593.rss">Workflow is not able start, rule is failing validation</source>
+      </item>
+  </channel>
+</rss>

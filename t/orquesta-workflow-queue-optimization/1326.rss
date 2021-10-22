@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Orquesta Workflow Queue Optimization</title>
+    <link>https://forum.stackstorm.com/t/orquesta-workflow-queue-optimization/1326</link>
+    <description>I use orquesta for workflow need. When the Stackstorm execution queue is full, it blocks new workflow tasks. I defined workflow policies to distribute queue to all important workflows. What should be the best optimization approach here?</description>
+    
+    <lastBuildDate>Mon, 06 Jul 2020 04:48:10 +0000</lastBuildDate>
+    <category>Platform</category>
+    <atom:link href="https://forum.stackstorm.com/t/orquesta-workflow-queue-optimization/1326.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Orquesta Workflow Queue Optimization</title>
+        <dc:creator><![CDATA[kyildiz]]></dc:creator>
+        <description><![CDATA[
+            <p>I use orquesta for workflow need. When the Stackstorm execution queue is full, it blocks new workflow tasks. I defined workflow policies to distribute queue to all important workflows. What should be the best optimization approach here?</p>
+          <p><a href="https://forum.stackstorm.com/t/orquesta-workflow-queue-optimization/1326/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/orquesta-workflow-queue-optimization/1326/1</link>
+        <pubDate>Mon, 06 Jul 2020 04:48:10 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1326-1</guid>
+        <source url="https://forum.stackstorm.com/t/orquesta-workflow-queue-optimization/1326.rss">Orquesta Workflow Queue Optimization</source>
+      </item>
+  </channel>
+</rss>

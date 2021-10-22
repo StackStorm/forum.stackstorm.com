@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Executing action for 2 times if the action gets timed out in st2 v3.1.0</title>
+    <link>https://forum.stackstorm.com/t/executing-action-for-2-times-if-the-action-gets-timed-out-in-st2-v3-1-0/1323</link>
+    <description>My issue is for examaple if I am using &quot;core.remote&quot; action to connect with end device for running command. In that case if the device is not return any code action will get timedout as it&#39;s status at the case can we rerun that perticular action and is it possible to handle within the workflow. I am using stackstorm version 3.1.0 can handling through the orquesta code
+Thanks in advance</description>
+    
+    <lastBuildDate>Tue, 14 Jul 2020 11:03:48 +0000</lastBuildDate>
+    <category>Workflows</category>
+    <atom:link href="https://forum.stackstorm.com/t/executing-action-for-2-times-if-the-action-gets-timed-out-in-st2-v3-1-0/1323.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Executing action for 2 times if the action gets timed out in st2 v3.1.0</title>
+        <dc:creator><![CDATA[Balaji.p.s]]></dc:creator>
+        <description><![CDATA[
+            <p><a class="mention" href="https://github.com/armab">@armab</a> can you please let me know why I am unable to execute the above script while running it is giving giving following lines in log file.<br>
+can we call the task like this ?</p>
+<pre><code class="lang-auto">2020-07-07 17:19:34,427 140497650797296 INFO workflows [-] [5f04614db55eb7205f2503a4] Processing request for workflow execution.
+2020-07-07 17:19:34,449 140497650797296 INFO workflows [-] [5f04614db55eb7205f2503a4] Requesting conductor to start running workflow execution.
+2020-07-07 17:19:34,449 140497650797296 INFO workflows [-] [5f04614db55eb7205f2503a4] Identifying next set (0) of tasks for workflow execution in status "running".
+2020-07-07 17:19:34,450 140497650797296 INFO workflows [-] [5f04614db55eb7205f2503a4] No tasks identified to execute next.
+2020-07-07 17:19:34,450 140497650797296 INFO workflows [-] [5f04614db55eb7205f2503a4] Updating workflow execution from status "requested" to "running".
+</code></pre>
+          <p><a href="https://forum.stackstorm.com/t/executing-action-for-2-times-if-the-action-gets-timed-out-in-st2-v3-1-0/1323/4">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/executing-action-for-2-times-if-the-action-gets-timed-out-in-st2-v3-1-0/1323/4</link>
+        <pubDate>Tue, 14 Jul 2020 11:03:48 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1323-4</guid>
+        <source url="https://forum.stackstorm.com/t/executing-action-for-2-times-if-the-action-gets-timed-out-in-st2-v3-1-0/1323.rss">Executing action for 2 times if the action gets timed out in st2 v3.1.0</source>
+      </item>
+      <item>
+        <title>Executing action for 2 times if the action gets timed out in st2 v3.1.0</title>
+        <dc:creator><![CDATA[Balaji.p.s]]></dc:creator>
+        <description><![CDATA[
+            <p>Can we handle timeout action within the workflow by rerunning timeout action by calling action with the attribute “do” in st2 v3.1.0.<br>
+I am using below code</p>
+<pre><code class="lang-auto">version: 1.0
+vars:
+  - ActionReTry: 0
+  - MaxActionReTry: 1
+tasks:
+  task1:
+    action: core.local
+    input:
+      cmd: ping 127.2.14.34
+      timeout: 10
+    next:
+      - when: &lt;% result().return_code=-9 and ctx(ActionReTry)=0%&gt;
+        publish: 
+          - data2: "Yes"
+          - ActioncountStr: "{% set count = ctx('ActionReTry')+1 %}{{count}}"
+          - ActionReTry: "{{ ctx('ActioncountStr') | int }}"
+        do: 
+          - task1
+      - when: &lt;% result().return_code=-9 and ctx(ActionReTry) = ctx(MaxActionReTry) %&gt;
+        publish:
+          - data2: "Reached Max and timedout"
+        do: 
+          - task3
+  task3:
+    action: core.echo
+    input:
+      message: 'stop'
+</code></pre>
+<p>In this case it is not taking task1 to run when the condition satisfied.<br>
+the same logic is working if I add a another action before task1 and make the present task1 as task2 it is working for rerunning the action when action get timeout i.e by using attribute “do” I am able to run from task2 but can’t able to run as task1 don’t know why that is happening. May I know why is that behaviour?</p>
+          <p><a href="https://forum.stackstorm.com/t/executing-action-for-2-times-if-the-action-gets-timed-out-in-st2-v3-1-0/1323/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/executing-action-for-2-times-if-the-action-gets-timed-out-in-st2-v3-1-0/1323/3</link>
+        <pubDate>Sun, 05 Jul 2020 14:42:47 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1323-3</guid>
+        <source url="https://forum.stackstorm.com/t/executing-action-for-2-times-if-the-action-gets-timed-out-in-st2-v3-1-0/1323.rss">Executing action for 2 times if the action gets timed out in st2 v3.1.0</source>
+      </item>
+      <item>
+        <title>Executing action for 2 times if the action gets timed out in st2 v3.1.0</title>
+        <dc:creator><![CDATA[armab]]></dc:creator>
+        <description><![CDATA[
+            <p>You want to use Orquesta retry feature, which is available since st2 v3.2.0<br>
+<a href="https://docs.stackstorm.com/orquesta/languages/orquesta.html#task-retry-model" class="onebox" target="_blank">https://docs.stackstorm.com/orquesta/languages/orquesta.html#task-retry-model</a></p>
+          <p><a href="https://forum.stackstorm.com/t/executing-action-for-2-times-if-the-action-gets-timed-out-in-st2-v3-1-0/1323/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/executing-action-for-2-times-if-the-action-gets-timed-out-in-st2-v3-1-0/1323/2</link>
+        <pubDate>Sun, 05 Jul 2020 11:16:44 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1323-2</guid>
+        <source url="https://forum.stackstorm.com/t/executing-action-for-2-times-if-the-action-gets-timed-out-in-st2-v3-1-0/1323.rss">Executing action for 2 times if the action gets timed out in st2 v3.1.0</source>
+      </item>
+      <item>
+        <title>Executing action for 2 times if the action gets timed out in st2 v3.1.0</title>
+        <dc:creator><![CDATA[Balaji.p.s]]></dc:creator>
+        <description><![CDATA[
+            <p>My issue is for examaple if I am using “core.remote” action to connect with end device for running command. In that case if the device is not return any code action will get timedout as it’s status at the case can we rerun that perticular action and is it possible to handle within the workflow. I am using stackstorm version 3.1.0 can handling through the orquesta code<br>
+Thanks in advance</p>
+          <p><a href="https://forum.stackstorm.com/t/executing-action-for-2-times-if-the-action-gets-timed-out-in-st2-v3-1-0/1323/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/executing-action-for-2-times-if-the-action-gets-timed-out-in-st2-v3-1-0/1323/1</link>
+        <pubDate>Sun, 05 Jul 2020 05:04:48 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1323-1</guid>
+        <source url="https://forum.stackstorm.com/t/executing-action-for-2-times-if-the-action-gets-timed-out-in-st2-v3-1-0/1323.rss">Executing action for 2 times if the action gets timed out in st2 v3.1.0</source>
+      </item>
+  </channel>
+</rss>

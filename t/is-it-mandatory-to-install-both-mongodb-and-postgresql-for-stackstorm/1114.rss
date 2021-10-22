@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Is it mandatory to install both mongodb and postgresql for stackstorm</title>
+    <link>https://forum.stackstorm.com/t/is-it-mandatory-to-install-both-mongodb-and-postgresql-for-stackstorm/1114</link>
+    <description>Hi all
+
+I am integrating stackstorm. I went through the document (https://docs.stackstorm.com/install/rhel7.html)  for installation. but I did not understand is it mandatory to install both MongoDB and PostgreSQL for stackstorm? If yes, then what are the reasons?</description>
+    
+    <lastBuildDate>Fri, 29 May 2020 04:37:47 +0000</lastBuildDate>
+    <category>Documentation</category>
+    <atom:link href="https://forum.stackstorm.com/t/is-it-mandatory-to-install-both-mongodb-and-postgresql-for-stackstorm/1114.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Is it mandatory to install both mongodb and postgresql for stackstorm</title>
+        <dc:creator><![CDATA[lhill]]></dc:creator>
+        <description><![CDATA[
+            <p>He said <strong>after</strong> 3.2, so from 3.3 onwards</p>
+<p>You can remove it today if you don’t use Mistral workflows</p>
+          <p><a href="https://forum.stackstorm.com/t/is-it-mandatory-to-install-both-mongodb-and-postgresql-for-stackstorm/1114/5">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/is-it-mandatory-to-install-both-mongodb-and-postgresql-for-stackstorm/1114/5</link>
+        <pubDate>Fri, 29 May 2020 04:37:47 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1114-5</guid>
+        <source url="https://forum.stackstorm.com/t/is-it-mandatory-to-install-both-mongodb-and-postgresql-for-stackstorm/1114.rss">Is it mandatory to install both mongodb and postgresql for stackstorm</source>
+      </item>
+      <item>
+        <title>Is it mandatory to install both mongodb and postgresql for stackstorm</title>
+        <dc:creator><![CDATA[rajeeb]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi blag,<br>
+As per last update you mentioned that in 3.2v stackstorm will remove PostgreSQL. Now they released 3.2v but PostgreSQL is still present. kindly provide the update. whether stackstorm will remove PostgreSQL or what?</p>
+          <p><a href="https://forum.stackstorm.com/t/is-it-mandatory-to-install-both-mongodb-and-postgresql-for-stackstorm/1114/4">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/is-it-mandatory-to-install-both-mongodb-and-postgresql-for-stackstorm/1114/4</link>
+        <pubDate>Fri, 29 May 2020 04:21:23 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1114-4</guid>
+        <source url="https://forum.stackstorm.com/t/is-it-mandatory-to-install-both-mongodb-and-postgresql-for-stackstorm/1114.rss">Is it mandatory to install both mongodb and postgresql for stackstorm</source>
+      </item>
+      <item>
+        <title>Is it mandatory to install both mongodb and postgresql for stackstorm</title>
+        <dc:creator><![CDATA[rajeeb]]></dc:creator>
+        <description><![CDATA[
+            <p>Thanks for your information blag.</p>
+          <p><a href="https://forum.stackstorm.com/t/is-it-mandatory-to-install-both-mongodb-and-postgresql-for-stackstorm/1114/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/is-it-mandatory-to-install-both-mongodb-and-postgresql-for-stackstorm/1114/3</link>
+        <pubDate>Wed, 18 Mar 2020 01:36:56 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1114-3</guid>
+        <source url="https://forum.stackstorm.com/t/is-it-mandatory-to-install-both-mongodb-and-postgresql-for-stackstorm/1114.rss">Is it mandatory to install both mongodb and postgresql for stackstorm</source>
+      </item>
+      <item>
+        <title>Is it mandatory to install both mongodb and postgresql for stackstorm</title>
+        <dc:creator><![CDATA[blag]]></dc:creator>
+        <description><![CDATA[
+            <p>They are both currently required.</p>
+<p>MongoDB is used directly by StackStorm.</p>
+<p>PostgreSQL is used by Mistral. StackStorm currently wraps Mistral, but we will be removing Mistral after ST2 v3.2 (which is the next release). So PostgreSQL is also currently required, but will not be used or (automatically) installed after v3.2.</p>
+          <p><a href="https://forum.stackstorm.com/t/is-it-mandatory-to-install-both-mongodb-and-postgresql-for-stackstorm/1114/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/is-it-mandatory-to-install-both-mongodb-and-postgresql-for-stackstorm/1114/2</link>
+        <pubDate>Tue, 17 Mar 2020 17:56:26 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1114-2</guid>
+        <source url="https://forum.stackstorm.com/t/is-it-mandatory-to-install-both-mongodb-and-postgresql-for-stackstorm/1114.rss">Is it mandatory to install both mongodb and postgresql for stackstorm</source>
+      </item>
+      <item>
+        <title>Is it mandatory to install both mongodb and postgresql for stackstorm</title>
+        <dc:creator><![CDATA[rajeeb]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi all</p>
+<p>I am integrating stackstorm. I went through the document (<a href="https://docs.stackstorm.com/install/rhel7.html" class="inline-onebox" rel="nofollow noopener">RHEL 7/CentOS 7 — StackStorm 3.1.0 documentation</a>)  for installation. but I did not understand is it mandatory to install both MongoDB and PostgreSQL for stackstorm? If yes, then what are the reasons?</p>
+          <p><a href="https://forum.stackstorm.com/t/is-it-mandatory-to-install-both-mongodb-and-postgresql-for-stackstorm/1114/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/is-it-mandatory-to-install-both-mongodb-and-postgresql-for-stackstorm/1114/1</link>
+        <pubDate>Tue, 17 Mar 2020 17:07:17 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1114-1</guid>
+        <source url="https://forum.stackstorm.com/t/is-it-mandatory-to-install-both-mongodb-and-postgresql-for-stackstorm/1114.rss">Is it mandatory to install both mongodb and postgresql for stackstorm</source>
+      </item>
+  </channel>
+</rss>

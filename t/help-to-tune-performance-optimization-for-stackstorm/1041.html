@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en" class="desktop-view not-mobile-device text-size-normal anon">
+<head>
+    <meta charset="utf-8">
+    <title>Help to tune performance optimization for stackstorm - Platform - StackStorm Support (ARCHIVED)</title>
+    <meta name="description"
+          content="Currently working on POC for using stackstorm. I went through the sample st2.conf and used the docker container option for deployment and conducted performance testing. Regardless of what configuration change i make for &amp;hellip;">
+    <meta name="discourse_theme_id" content="2">
+    <meta name="discourse_current_homepage" content="latest">
+    <meta name="generator"
+          content="Discourse 2.8.0.beta6 - https://github.com/discourse/discourse version a1daf9fe53a66e2d2cdf9757ab4812fb9a2b2787">
+    <link rel="icon" type="image/png"
+          href="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/379ced12f8326d58f1b3d2b3ff652f883e141f6a_2_32x32.PNG">
+    <link rel="apple-touch-icon" type="image/png"
+          href="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/379ced12f8326d58f1b3d2b3ff652f883e141f6a_2_180x180.PNG">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <link rel="canonical" href="1041.html"/>
+    <script type="application/ld+json">{
+        "@context": "http://schema.org",
+        "@type": "WebSite",
+        "url": "https://forum.stackstorm.com",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://forum.stackstorm.com/search?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }
+    </script>
+    <link rel="search" type="application/opensearchdescription+xml" href="../../opensearch.xml"
+          title="StackStorm Support (ARCHIVED) Search">
+
+
+    <link href="/../../stylesheets/color_definitions_base__2_3c5eec1ecf192052ea70b4afdab57a62bccc0604.css?__ws=forum.stackstorm.com"
+          media="all" rel="stylesheet" class="light-scheme"/>
+
+    <link href="/../../stylesheets/desktop_b2f2968742d41481357e0df259b51ce29f72481a.css?__ws=forum.stackstorm.com"
+          media="all" rel="stylesheet" data-target="desktop"/>
+
+
+    <meta name="fragment" content="!">
+
+
+    <link id="manifest-link" rel="manifest" href="../../manifest.webmanifest" crossorigin="use-credentials">
+
+
+    <link rel="alternate" type="application/rss+xml"
+          title="RSS feed of &#39;Help to tune performance optimization for stackstorm&#39;"
+          href="https://forum.stackstorm.com/t/help-to-tune-performance-optimization-for-stackstorm/1041.rss"/>
+    <meta property="og:site_name" content="StackStorm Support (ARCHIVED)"/>
+    <meta property="og:type" content="website"/>
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:image"
+          content="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/891f00fbdb31fecb5bd9dab30c186d2fed0091ca.jpeg"/>
+    <meta property="og:image"
+          content="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/891f00fbdb31fecb5bd9dab30c186d2fed0091ca.jpeg"/>
+    <meta property="og:url"
+          content="https://forum.stackstorm.com/t/help-to-tune-performance-optimization-for-stackstorm/1041"/>
+    <meta name="twitter:url"
+          content="https://forum.stackstorm.com/t/help-to-tune-performance-optimization-for-stackstorm/1041"/>
+    <meta property="og:title" content="Help to tune performance optimization for stackstorm"/>
+    <meta name="twitter:title" content="Help to tune performance optimization for stackstorm"/>
+    <meta property="og:description"
+          content="Currently working on POC for using stackstorm. I went through the sample st2.conf and used the docker container option for deployment and conducted performance testing. Regardless of what configuration change i make for actionrunner, scheduler, workflow runner i dont see any improvements on concurrency, getting pretty bad performance for st2_get, st2_set api’s ranging from 2seconds for one user and 16 to 17seconds for 5 concurrent requests. Its sort of difficult to understand whether the config ..."/>
+    <meta name="twitter:description"
+          content="Currently working on POC for using stackstorm. I went through the sample st2.conf and used the docker container option for deployment and conducted performance testing. Regardless of what configuration change i make for actionrunner, scheduler, workflow runner i dont see any improvements on concurrency, getting pretty bad performance for st2_get, st2_set api’s ranging from 2seconds for one user and 16 to 17seconds for 5 concurrent requests. Its sort of difficult to understand whether the config ..."/>
+    <meta name="twitter:label1" value="Reading time"/>
+    <meta name="twitter:data1" value="1 mins 🕑"/>
+    <meta name="twitter:label2" value="Likes"/>
+    <meta name="twitter:data2" value="1 ❤"/>
+    <meta property="article:published_time" content="2020-02-05T20:50:43+00:00"/>
+    <meta property="og:ignore_canonical" content="true"/>
+
+
+    <script type="application/ld+json">{
+        "@context": "http://schema.org",
+        "@type": "QAPage",
+        "name": "Help to tune performance optimization for stackstorm",
+        "mainEntity": {
+            "@type": "Question",
+            "name": "Help to tune performance optimization for stackstorm",
+            "text": "Currently working on POC for using stackstorm. I went through the sample st2.conf and used the docker container option for deployment and conducted performance testing. Regardless of what configuration change i make for actionrunner, scheduler, workflow runner i dont see any improvements on concurre&hellip;",
+            "upvoteCount": 0,
+            "answerCount": 0,
+            "dateCreated": "2020-02-05T20:50:42.997Z",
+            "author": {
+                "@type": "Person",
+                "name": ""
+            }
+        }
+    }
+    </script>
+
+    <meta id="data-discourse-setup" data-cdn="https://sjc6.discourse-cdn.com/standard10"
+          data-base-url="https://forum.stackstorm.com" data-base-uri="" data-environment="production"
+          data-letter-avatar-version="5_8fec8e114563efeaf5265573e510f08e"
+          data-markdown-it-url="https://aws1.discourse-cdn.com/standard10/assets/markdown-it-bundle-31e9a9c535ca1801c26da78b0ff465821751a98f921c5cdc5457d7e5a69e9748.js"
+          data-service-worker-url="service-worker.js" data-default-locale="en"
+          data-asset-version="597e36448c9b51d0fa3b7e43ec1fd6d5" data-disable-custom-css="false"
+          data-highlight-js-path="/highlight-js/forum.stackstorm.com/ac0f4aa001e1343346941766d72e0c1ae330832b.js"
+          data-svg-sprite-path="/svg-sprite/forum.stackstorm.com/svg-2-c2ad434b1e06079c7e282124aed9938dc95b83ea.js"
+          data-enable-js-error-reporting="true" data-color-scheme-is-dark="false" data-user-dark-scheme-id="-1"
+          data-s3-cdn="https://aws1.discourse-cdn.com/standard10"
+          data-s3-base-url="//discourse-cloud-file-uploads.s3.dualstack.us-west-2.amazonaws.com/standard10">
+
+    <meta name="discourse/config/environment"
+          content="%7B%22modulePrefix%22%3A%22discourse%22%2C%22environment%22%3A%22production%22%2C%22rootURL%22%3A%22%22%2C%22locationType%22%3A%22auto%22%2C%22historySupportMiddleware%22%3Afalse%2C%22EmberENV%22%3A%7B%22FEATURES%22%3A%7B%7D%2C%22EXTEND_PROTOTYPES%22%3A%7B%22Date%22%3Afalse%7D%2C%22_APPLICATION_TEMPLATE_WRAPPER%22%3Afalse%2C%22_DEFAULT_ASYNC_OBSERVERS%22%3Atrue%2C%22_JQUERY_INTEGRATION%22%3Atrue%7D%2C%22APP%22%3A%7B%22name%22%3A%22discourse%22%2C%22version%22%3A%222.8.0.beta6%20a1daf9fe53a66e2d2cdf9757ab4812fb9a2b2787%22%2C%22exportApplicationGlobal%22%3Atrue%7D%7D"/>
+</head>
+
+<body class="">
+
+
+<header class="d-header">
+    <div class="wrap">
+        <div class="contents clearfix">
+            <div class="title">
+                <a href="../../index.html">
+                    <picture>
+                        <img src="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png"
+                             alt="StackStorm Support (ARCHIVED)" id="site-logo"/>
+                    </picture>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</header>
+
+<div id="main-outlet" class="wrap" role="main">
+    <!-- preload-content: -->
+
+    <!-- EOF START -->
+    <div class="container" id="main-container">
+        <div id="ember11" class="ember-view"></div>
+        <div id="ember12" class="controls ember-view"><!----></div>
+        <div id="ember13" class="ember-view"><!----></div>
+        <div id="ember14" class="ember-view">
+            <div class="row">
+                <div id="global-notice-alert-read-only" class="alert alert-info alert-read-only">
+                    <!----> <span class="text">This site is in read only mode. Please continue to browse, but replying, likes, and other actions are disabled for now.</span>
+
+                    <!---->    </div>
+            </div>
+            <div class="row">
+                <div id="global-notice-alert-global-notice" class="alert alert-info alert-global-notice">
+                    <!----> <span class="text"><h3>⚠️ We've moved!</h3>  <p> Hi there!<br><br> To reduce project dependency on 3rd party paid services the StackStorm TSC has decided to move the Q/A from this forum to <a
+                        href="https://github.com/StackStorm/st2/discussions">Github Discussions</a>. This will make user experience better integrated with the native Github flow, as well as the questions closer to the community where they can provide answers. </p>  <p> Use 🔗 <b><a
+                        href="https://github.com/StackStorm/st2/discussions" class="active">Github Discussions</a></b> to ask your questions. </p></span>
+
+                    <!---->    </div>
+            </div>
+        </div>
+        <div id="ember17" class="hidden create-topics-notice ember-view"><!----></div>
+        <!---->
+    </div>
+    <!-- EOF END -->
+    <div id="topic-title">
+        <h1>
+            <a href="1041.html">Help to tune performance optimization for stackstorm</a>
+        </h1>
+
+        <div class="topic-category" itemscope itemtype="http://schema.org/BreadcrumbList">
+          <span itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a href="../../c/core-st2-platform-issues/6" class="badge-wrapper bullet" itemprop="item">
+              <span class='badge-category-bg' style='background-color: #AB9364'></span>
+              <span class='badge-category clear-badge'>
+                <span class='category-name' itemprop='name'>Platform</span>
+              </span>
+            </a>
+            <meta itemprop="position" content="1"/>
+          </span>
+        </div>
+
+        <div class="topic-category">
+            <div class='discourse-tags list-tags'>
+                <a href='../../tag/performance' class='discourse-tag' rel="tag">performance</a>
+            </div>
+        </div>
+    </div>
+
+
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/smurugu'><span itemprop='name'>smurugu</span></a>
+            
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="1041.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2020-02-05T20:50:43Z' class='post-time'>
+                February 5, 2020,  8:50pm
+              </time>
+              <meta itemprop='dateModified' content='2020-02-06T14:35:46Z'>
+          <span itemprop='position'>#1</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Currently working on POC for using stackstorm. I went through the sample st2.conf and used the docker
+                container option for deployment and conducted performance testing. Regardless of what configuration
+                change i make for actionrunner, scheduler, workflow runner i dont see any improvements on concurrency,
+                getting pretty bad performance for st2_get, st2_set api’s ranging from 2seconds for one user and 16 to
+                17seconds for 5 concurrent requests. Its sort of difficult to understand whether the config updates are
+                taken into account by service for processing. With default configuration i was expecting stackstorm to
+                perform well atleast for 40 concurrent requests</p>
+            <p>Any guidance on how to go about config changes besides st2.conf and to see whether its actually using the
+                configuration. Its possible i am missing something here.</p>
+            <p>To start with, i would use st2_set and st2_get api’s and then increase the concurrency from 1 to 5 and
+                observe the response time in webui console. Even with 1 request, its taking 2 seconds which is very bad.
+                I am sure these api calls are using mongodb but even then 2 seconds is not acceptable</p>
+            <p>Any help is appreciated.</p>
+        </div>
+
+        <meta itemprop='headline' content='Help to tune performance optimization for stackstorm'>
+        <meta itemprop='keywords' content='performance'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/armab'><span itemprop='name'>armab</span></a>
+            (Eugen Cusmaunsa)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="1041.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2020-02-06T14:45:05Z' class='post-time'>
+                February 6, 2020,  2:45pm
+              </time>
+              <meta itemprop='dateModified' content='2020-02-06T14:55:22Z'>
+          <span itemprop='position'>#2</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>This doesn’t look normal. For CI/CD server we’re using requests/responses are maxed to sub-second in the
+                worst case. For reference, that instance is based on <code>c5.2xlarge</code> AWS instance (8 vCPUs, 16GB
+                RAM).</p>
+            <p>What’s the hardware resources you rely on? What’s the platform you’re using? OS, environment, cloud,
+                instance size, etc. Are you using any HA configuration or not to scale out and distribute the load? (<a
+                        href="https://docs.stackstorm.com/reference/ha.html" class="inline-onebox">High Availability
+                    Deployment — StackStorm 3.1.0 documentation</a>)</p>
+            <p>See recommended production requirements in terms of machine resources: <a
+                    href="https://docs.stackstorm.com/install/system_requirements.html" class="inline-onebox">System
+                Requirements — StackStorm 3.1.0 documentation</a></p>
+            <p>Diagnose disk I/O, what’s taking CPU resources, memory pressure and more to understand where the
+                bottleneck is and what could be scaled-out. Besides of that, how MongoDB and RabbitMQ clusters are
+                configured and perform? Did you monitor/instrument them? They’re the most important moving parts st2
+                relies on, - if they’re slow everything is slow.</p>
+        </div>
+
+        <meta itemprop='headline' content='Help to tune performance optimization for stackstorm'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/smurugu'><span itemprop='name'>smurugu</span></a>
+            
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="1041.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2020-02-11T17:48:38Z' class='post-time'>
+                February 11, 2020,  5:48pm
+              </time>
+              <meta itemprop='dateModified' content='2020-02-11T17:48:38Z'>
+          <span itemprop='position'>#3</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Thanks. To alleviate the perf issue from prod environment. I created virtualbox vm with the following
+                configurations</p>
+            <p>12GB RAM, Intel i5 processor, configured to use all CPU’s, Windows 7, 64 bit<br>
+                docker-compose.yaml for deploying ST2 containers<br>
+                Ubuntu 16.04.6 LTS</p>
+            <p>Testing</p>
+            <p>Used st2_get, st2_set actions for testing<br>
+                With one request still getting 1second response<br>
+                As the volume ramp up with 5 concurrent users, there are sporaidic 1sec,2sec,3sec responses</p>
+            <p>containers are running with default configuration without any changes</p>
+        </div>
+
+        <meta itemprop='headline' content='Help to tune performance optimization for stackstorm'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/smurugu'><span itemprop='name'>smurugu</span></a>
+            
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="1041.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2020-02-13T22:00:52Z' class='post-time'>
+                February 13, 2020, 10:00pm
+              </time>
+              <meta itemprop='dateModified' content='2020-02-13T22:00:52Z'>
+          <span itemprop='position'>#4</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Did some more testing, it turns out when concurrency gets increased all the request seem to stuck on
+                something, lock ? and then everything gets cleared up at the same time. I also noted that it takes time
+                to complete the execution, there are delays from scheduler to schedule the action runner and the action
+                runner takes most of the time. any insight is appreciated. I can upload logs and other configs if
+                needed</p>
+        </div>
+
+        <meta itemprop='headline' content='Help to tune performance optimization for stackstorm'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/punkrokk'><span itemprop='name'>punkrokk</span></a>
+            (punkrokk)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="1041.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2020-02-14T02:54:17Z' class='post-time'>
+                February 14, 2020,  2:54am
+              </time>
+              <meta itemprop='dateModified' content='2020-02-14T02:54:17Z'>
+          <span itemprop='position'>#5</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p><a class="mention" href="https://github.com/smurugu">@smurugu</a> Welcome! Glad to have you
+                here!</p>
+            <p>Are you able to performance test on a closer to prod like system? My guess is that with Docker in
+                Virtualbox on Windows you have a few layers of unintentional bottlenecks that are going to be hard to
+                diagnose or actually resolve. I’d recommend maybe trying this directly on a linux box maybe in ec2 so
+                you can remove the hypervisor on Windows layer and see if you have significantly better results (you
+                should).</p>
+            <p>When ever I test any software - I do functional testing with a setup similar to yours (but on a Mac which
+                I can run linux docker natively), then performance testing on a setup that is closer to what production
+                to be. In addition, Virutalbox is definitely not known for their superior close to bare metal
+                workstation performance like VMWare Workstation is.</p>
+            <p>My 2 cents. YMMV.</p>
+        </div>
+
+        <meta itemprop='headline' content='Help to tune performance optimization for stackstorm'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/smurugu'><span itemprop='name'>smurugu</span></a>
+            
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="1041.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2020-02-14T05:17:28Z' class='post-time'>
+                February 14, 2020,  5:17am
+              </time>
+              <meta itemprop='dateModified' content='2020-02-14T05:17:28Z'>
+          <span itemprop='position'>#6</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>It sounds like there is a deadlock situation going on with st2_set and st2_get calls when these calls are
+                made concurrently, i think the issue persists regardless of the environment; I am doing more testing to
+                confirm the behavior with other scenarios. I will update the thread by next week</p>
+        </div>
+
+        <meta itemprop='headline' content='Help to tune performance optimization for stackstorm'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+            <span class='post-likes'>1 Like</span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/punkrokk'><span itemprop='name'>punkrokk</span></a>
+            (punkrokk)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="1041.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2020-02-14T06:08:15Z' class='post-time'>
+                February 14, 2020,  6:08am
+              </time>
+              <meta itemprop='dateModified' content='2020-02-14T06:08:15Z'>
+          <span itemprop='position'>#7</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p><a class="mention" href="https://github.com/smurugu">@smurugu</a> roger that. Let us know
+                what you find.</p>
+        </div>
+
+        <meta itemprop='headline' content='Help to tune performance optimization for stackstorm'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/smurugu'><span itemprop='name'>smurugu</span></a>
+            
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="1041.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2020-02-26T05:24:50Z' class='post-time'>
+                February 26, 2020,  5:24am
+              </time>
+              <meta itemprop='dateModified' content='2020-02-26T05:24:50Z'>
+          <span itemprop='position'>#8</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>We use HA configuration, initially with 4vcpu and then increased upto 16vcpu. Following is the
+                configuration</p>
+            <p>4 nodes, 16cpu, 16gb with the following configuration<br>
+                6 mongodb-ha<br>
+                2 st2 web<br>
+                4 rules engines<br>
+                12 st2-st2api<br>
+                1 st2-api<br>
+                9 rabbitmq<br>
+                30 schedulers<br>
+                12 workflow engines<br>
+                30 action runners</p>
+            <p>Simple st2_get, st2_set calls are taking 2seconds, when concurrency gets increased its all over the
+                place. Besides st2_set, get i tried echo actions as well, still 2 seconds. When i increase the
+                concurrency everything is out of bounce</p>
+        </div>
+
+        <meta itemprop='headline' content='Help to tune performance optimization for stackstorm'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+
+
+    <!-- :preload-content -->
+    <footer class="noscript-footer-nav">
+        <nav itemscope itemtype='http://schema.org/SiteNavigationElement'>
+            <a href='../../index.html'>Home</a>
+            <a href="../../categories.html">Categories</a>
+            <a href="https://forum.stackstorm.com/guidelines">FAQ/Guidelines</a>
+            <a href="../../tos.html">Terms of Service</a>
+            <a href="../../privacy.html">Privacy Policy</a>
+        </nav>
+    </footer>
+</div>
+
+<footer id='noscript-footer'>
+    <p>Powered by <a href="https://www.discourse.org">Discourse</a>, best viewed with JavaScript enabled</p>
+</footer>
+
+
+<section id='main'>
+</section>
+
+
+</body>
+</html>

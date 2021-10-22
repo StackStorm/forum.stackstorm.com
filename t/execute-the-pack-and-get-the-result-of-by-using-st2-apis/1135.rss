@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Execute the pack and get the result of by using st2 apis</title>
+    <link>https://forum.stackstorm.com/t/execute-the-pack-and-get-the-result-of-by-using-st2-apis/1135</link>
+    <description>I try to execute st2 api using url to execute the pack and get the result.
+The url is ,
+&quot;https://172.16.0.110/stream/v1/executions/5e5765eca5d39d012205d1a2/output?st2-api-key=ZTFkNmVjZGYyMDk3MDNiYTcxZjcyMmVmZTFhMjAzZjJmZTE5OWJiN2YyMGFjN2QwNjk5MjE3YzllNTUwZWY0MQ&amp;output_type=stdout&quot; 
+
+But there is no result when i try to execute it.
+Please help me</description>
+    
+    <lastBuildDate>Fri, 03 Apr 2020 03:26:43 +0000</lastBuildDate>
+    <category>API</category>
+    <atom:link href="https://forum.stackstorm.com/t/execute-the-pack-and-get-the-result-of-by-using-st2-apis/1135.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Execute the pack and get the result of by using st2 apis</title>
+        <dc:creator><![CDATA[punkrokk]]></dc:creator>
+        <description><![CDATA[
+            <p><a class="mention" href="https://github.com/sheetal">@sheetal</a> what does happen</p>
+          <p><a href="https://forum.stackstorm.com/t/execute-the-pack-and-get-the-result-of-by-using-st2-apis/1135/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/execute-the-pack-and-get-the-result-of-by-using-st2-apis/1135/2</link>
+        <pubDate>Fri, 03 Apr 2020 03:26:43 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1135-2</guid>
+        <source url="https://forum.stackstorm.com/t/execute-the-pack-and-get-the-result-of-by-using-st2-apis/1135.rss">Execute the pack and get the result of by using st2 apis</source>
+      </item>
+      <item>
+        <title>Execute the pack and get the result of by using st2 apis</title>
+        <dc:creator><![CDATA[sheetal]]></dc:creator>
+        <description><![CDATA[
+            <p>I try to execute st2 api using url to execute the pack and get the result.<br>
+The url is ,<br>
+“<a href="https://172.16.0.110/stream/v1/executions/5e5765eca5d39d012205d1a2/output?st2-api-key=ZTFkNmVjZGYyMDk3MDNiYTcxZjcyMmVmZTFhMjAzZjJmZTE5OWJiN2YyMGFjN2QwNjk5MjE3YzllNTUwZWY0MQ&amp;output_type=stdout" rel="nofollow noopener">https://172.16.0.110/stream/v1/executions/5e5765eca5d39d012205d1a2/output?st2-api-key=ZTFkNmVjZGYyMDk3MDNiYTcxZjcyMmVmZTFhMjAzZjJmZTE5OWJiN2YyMGFjN2QwNjk5MjE3YzllNTUwZWY0MQ&amp;output_type=stdout</a>”</p>
+<p>But there is no result when i try to execute it.<br>
+Please help me</p>
+          <p><a href="https://forum.stackstorm.com/t/execute-the-pack-and-get-the-result-of-by-using-st2-apis/1135/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/execute-the-pack-and-get-the-result-of-by-using-st2-apis/1135/1</link>
+        <pubDate>Wed, 01 Apr 2020 09:12:24 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1135-1</guid>
+        <source url="https://forum.stackstorm.com/t/execute-the-pack-and-get-the-result-of-by-using-st2-apis/1135.rss">Execute the pack and get the result of by using st2 apis</source>
+      </item>
+  </channel>
+</rss>

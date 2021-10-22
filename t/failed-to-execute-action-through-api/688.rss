@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Failed to execute action through API</title>
+    <link>https://forum.stackstorm.com/t/failed-to-execute-action-through-api/688</link>
+    <description>I am running an action through API as below -
+
+ curl --insecure -X POST -H  &#39;Connection: keep-alive&#39; -H  &#39;Accept-Encoding: gzip, deflate&#39; -H  &#39;Accept: */*&#39; -H  &#39;User-Agent: python-requests/2.14.2&#39; -H  &#39;content-type: application/json&#39; -H  &#39;X-Auth-Token: &lt;authtoken&gt;&#39; -H  &#39;Content-Length: 73&#39; --data-binary &#39;{&quot;action&quot;: &quot;core.local&quot;, &quot;user&quot;: null, &quot;parameters&quot;: {&quot;cmd&quot;: &quot;sudo systemctl stop ntpd&quot;}}&#39; https://&lt;IP&gt;/api/v1/executions
+
+Its failing with error 
+
+    &quot;faultstring&quot;: &quot;Failed to parse request body: Unterminated string starting at: line 1 column 62 (char 61)&quot;
+
+If I run same API with commands  like &quot;ifconfig&quot; it works, please let me know what wrong I am doing.
+
+Please do needful.</description>
+    
+    <lastBuildDate>Tue, 11 Jun 2019 15:00:48 +0000</lastBuildDate>
+    <category>Uncategorized</category>
+    <atom:link href="https://forum.stackstorm.com/t/failed-to-execute-action-through-api/688.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Failed to execute action through API</title>
+        <dc:creator><![CDATA[lhill]]></dc:creator>
+        <description><![CDATA[
+            <p>Try running your command from CLI with <code>--debug</code>, e.g. <code>st2 --debug run core.local ...</code></p>
+<p>That will display the equivalent <code>curl</code> calls. Compare those with what you’re using.</p>
+          <p><a href="https://forum.stackstorm.com/t/failed-to-execute-action-through-api/688/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/failed-to-execute-action-through-api/688/3</link>
+        <pubDate>Tue, 11 Jun 2019 15:00:48 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-688-3</guid>
+        <source url="https://forum.stackstorm.com/t/failed-to-execute-action-through-api/688.rss">Failed to execute action through API</source>
+      </item>
+      <item>
+        <title>Failed to execute action through API</title>
+        <dc:creator><![CDATA[lhill]]></dc:creator>
+        <description><![CDATA[
+            <p>Hard to say for certain, since you’ve masked out some details above. But most likely it’s just what the error is telling you - you have an unterminated string, usually due to misplaced or missing <code>'</code> or <code>"</code>.</p>
+          <p><a href="https://forum.stackstorm.com/t/failed-to-execute-action-through-api/688/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/failed-to-execute-action-through-api/688/2</link>
+        <pubDate>Tue, 11 Jun 2019 14:59:52 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-688-2</guid>
+        <source url="https://forum.stackstorm.com/t/failed-to-execute-action-through-api/688.rss">Failed to execute action through API</source>
+      </item>
+      <item>
+        <title>Failed to execute action through API</title>
+        <dc:creator><![CDATA[gowrish.ec]]></dc:creator>
+        <description><![CDATA[
+            <p>I am running an action through API as below -</p>
+<p>curl --insecure -X POST -H  ‘Connection: keep-alive’ -H  ‘Accept-Encoding: gzip, deflate’ -H  ‘Accept: <em>/</em>’ -H  ‘User-Agent: python-requests/2.14.2’ -H  ‘content-type: application/json’ -H  'X-Auth-Token: ’ -H  ‘Content-Length: 73’ --data-binary ‘{“action”: “core.local”, “user”: null, “parameters”: {“cmd”: “sudo systemctl stop ntpd”}}’ https:///api/v1/executions</p>
+<p>Its failing with error</p>
+<pre><code>"faultstring": "Failed to parse request body: Unterminated string starting at: line 1 column 62 (char 61)"
+</code></pre>
+<p>If I run same API with commands  like “ifconfig” it works, please let me know what wrong I am doing.</p>
+<p>Please do needful.</p>
+          <p><a href="https://forum.stackstorm.com/t/failed-to-execute-action-through-api/688/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/failed-to-execute-action-through-api/688/1</link>
+        <pubDate>Tue, 11 Jun 2019 14:47:12 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-688-1</guid>
+        <source url="https://forum.stackstorm.com/t/failed-to-execute-action-through-api/688.rss">Failed to execute action through API</source>
+      </item>
+  </channel>
+</rss>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Reusing reference HA architecture for Centralised Controller plus worker per client setup</title>
+    <link>https://forum.stackstorm.com/t/reusing-reference-ha-architecture-for-centralised-controller-plus-worker-per-client-setup/1795</link>
+    <description>![Screenshot 2021-08-02 at 10.37.53 AM|458x326](upload://9QzypBD994h66H9q5oyoqouoOn4.png)
+
+Folks, 
+
+Please see attached. Trying to setup Stackstorm for a IT service provider with multiple clients, We are looking at having a Centralised controller system for service provider to administer automations, look at history etc ( Running st2web, mongodb, nginx) and each client worker will run (action runner , and other st2 processes )
+
+The problem we found is -  st2schedular , st2action runner processes rely on Mongodb to fetch ,schedule and run automations, so client 2 worker ends up running automations scheduled by client 1 worker schedular process. Is it possible to control this with any configuration changes? Are there any IT service providers using this kind of setup in multi client environment? Any inputs would be highly beneficial Thank you very much.</description>
+    
+    <lastBuildDate>Tue, 17 Aug 2021 00:09:01 +0000</lastBuildDate>
+    <category>Uncategorized</category>
+    <atom:link href="https://forum.stackstorm.com/t/reusing-reference-ha-architecture-for-centralised-controller-plus-worker-per-client-setup/1795.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Reusing reference HA architecture for Centralised Controller plus worker per client setup</title>
+        <dc:creator><![CDATA[punkrokk]]></dc:creator>
+        <description><![CDATA[
+            <p>What you are looking for is “action affinity” (eg. the ability to declare which worker runs a specific action/workflow/set of actions). This is not present in ST2 today. It’s one of the 4 big architectural issues present in ST2 today.</p>
+          <p><a href="https://forum.stackstorm.com/t/reusing-reference-ha-architecture-for-centralised-controller-plus-worker-per-client-setup/1795/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/reusing-reference-ha-architecture-for-centralised-controller-plus-worker-per-client-setup/1795/2</link>
+        <pubDate>Tue, 17 Aug 2021 00:09:01 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1795-2</guid>
+        <source url="https://forum.stackstorm.com/t/reusing-reference-ha-architecture-for-centralised-controller-plus-worker-per-client-setup/1795.rss">Reusing reference HA architecture for Centralised Controller plus worker per client setup</source>
+      </item>
+      <item>
+        <title>Reusing reference HA architecture for Centralised Controller plus worker per client setup</title>
+        <dc:creator><![CDATA[jonathangull]]></dc:creator>
+        <description><![CDATA[
+            <p><img src="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/4504f3b58e421b02d76120ba83d8e1151f86aafe.png" alt="Screenshot 2021-08-02 at 10.37.53 AM" data-base62-sha1="9QzypBD994h66H9q5oyoqouoOn4" width="458" height="326"></p>
+<p>Folks,</p>
+<p>Please see attached. Trying to setup Stackstorm for a IT service provider with multiple clients, We are looking at having a Centralised controller system for service provider to administer automations, look at history etc ( Running st2web, mongodb, nginx) and each client worker will run (action runner , and other st2 processes )</p>
+<p>The problem we found is -  st2schedular , st2action runner processes rely on Mongodb to fetch ,schedule and run automations, so client 2 worker ends up running automations scheduled by client 1 worker schedular process. Is it possible to control this with any configuration changes? Are there any IT service providers using this kind of setup in multi client environment? Any inputs would be highly beneficial Thank you very much.</p>
+          <p><a href="https://forum.stackstorm.com/t/reusing-reference-ha-architecture-for-centralised-controller-plus-worker-per-client-setup/1795/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/reusing-reference-ha-architecture-for-centralised-controller-plus-worker-per-client-setup/1795/1</link>
+        <pubDate>Mon, 02 Aug 2021 15:43:38 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1795-1</guid>
+        <source url="https://forum.stackstorm.com/t/reusing-reference-ha-architecture-for-centralised-controller-plus-worker-per-client-setup/1795.rss">Reusing reference HA architecture for Centralised Controller plus worker per client setup</source>
+      </item>
+  </channel>
+</rss>

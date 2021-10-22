@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="en" class="desktop-view not-mobile-device text-size-normal anon">
+<head>
+    <meta charset="utf-8">
+    <title>See &quot;systemctl status postgresql.service&quot; and &quot;journalctl -xe&quot; for details - Platform -
+        StackStorm Support (ARCHIVED)</title>
+    <meta name="description" content="Hi I am getting error while starting Mongo DB and  postgresql.service 
+Job for postgresql.service failed because the control process exited with error code. See “systemctl status postgresql.service” and “journalctl -xe” &amp;hellip;">
+    <meta name="discourse_theme_id" content="2">
+    <meta name="discourse_current_homepage" content="latest">
+    <meta name="generator"
+          content="Discourse 2.8.0.beta6 - https://github.com/discourse/discourse version a1daf9fe53a66e2d2cdf9757ab4812fb9a2b2787">
+    <link rel="icon" type="image/png"
+          href="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/379ced12f8326d58f1b3d2b3ff652f883e141f6a_2_32x32.PNG">
+    <link rel="apple-touch-icon" type="image/png"
+          href="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/379ced12f8326d58f1b3d2b3ff652f883e141f6a_2_180x180.PNG">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <link rel="canonical" href="141.html"/>
+    <script type="application/ld+json">{
+        "@context": "http://schema.org",
+        "@type": "WebSite",
+        "url": "https://forum.stackstorm.com",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://forum.stackstorm.com/search?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }
+    </script>
+    <link rel="search" type="application/opensearchdescription+xml" href="../../opensearch.xml"
+          title="StackStorm Support (ARCHIVED) Search">
+
+
+    <link href="/../../stylesheets/color_definitions_base__2_3c5eec1ecf192052ea70b4afdab57a62bccc0604.css?__ws=forum.stackstorm.com"
+          media="all" rel="stylesheet" class="light-scheme"/>
+
+    <link href="/../../stylesheets/desktop_b2f2968742d41481357e0df259b51ce29f72481a.css?__ws=forum.stackstorm.com"
+          media="all" rel="stylesheet" data-target="desktop"/>
+
+
+    <meta name="fragment" content="!">
+
+
+    <link id="manifest-link" rel="manifest" href="../../manifest.webmanifest" crossorigin="use-credentials">
+
+
+    <link rel="alternate" type="application/rss+xml"
+          title="RSS feed of &#39;See &quot;systemctl status postgresql.service&quot; and &quot;journalctl -xe&quot; for details&#39;"
+          href="https://forum.stackstorm.com/t/see-systemctl-status-postgresql-service-and-journalctl-xe-for-details/141.rss"/>
+    <meta property="og:site_name" content="StackStorm Support (ARCHIVED)"/>
+    <meta property="og:type" content="website"/>
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:image"
+          content="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/891f00fbdb31fecb5bd9dab30c186d2fed0091ca.jpeg"/>
+    <meta property="og:image"
+          content="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/891f00fbdb31fecb5bd9dab30c186d2fed0091ca.jpeg"/>
+    <meta property="og:url"
+          content="https://forum.stackstorm.com/t/see-systemctl-status-postgresql-service-and-journalctl-xe-for-details/141"/>
+    <meta name="twitter:url"
+          content="https://forum.stackstorm.com/t/see-systemctl-status-postgresql-service-and-journalctl-xe-for-details/141"/>
+    <meta property="og:title"
+          content="See &quot;systemctl status postgresql.service&quot; and &quot;journalctl -xe&quot; for details"/>
+    <meta name="twitter:title"
+          content="See &quot;systemctl status postgresql.service&quot; and &quot;journalctl -xe&quot; for details"/>
+    <meta property="og:description"
+          content="Hi I am getting error while starting Mongo DB and  postgresql.service  Job for postgresql.service failed because the control process exited with error code. See “systemctl status postgresql.service” and “journalctl -xe” for details"/>
+    <meta name="twitter:description"
+          content="Hi I am getting error while starting Mongo DB and  postgresql.service  Job for postgresql.service failed because the control process exited with error code. See “systemctl status postgresql.service” and “journalctl -xe” for details"/>
+    <meta property="article:published_time" content="2018-05-09T23:39:32+00:00"/>
+    <meta property="og:ignore_canonical" content="true"/>
+
+
+    <script type="application/ld+json">{
+        "@context": "http://schema.org",
+        "@type": "QAPage",
+        "name": "See \"systemctl status postgresql.service\" and \"journalctl -xe\" for details",
+        "mainEntity": {
+            "@type": "Question",
+            "name": "See \"systemctl status postgresql.service\" and \"journalctl -xe\" for details",
+            "text": "Hi I am getting error while starting Mongo DB and  postgresql.service\n\nJob for postgresql.service failed because the control process exited with error code. See “systemctl status postgresql.service” and “journalctl -xe” for details",
+            "upvoteCount": 0,
+            "answerCount": 0,
+            "dateCreated": "2018-05-09T23:39:32.832Z",
+            "author": {
+                "@type": "Person",
+                "name": "Baskaran"
+            }
+        }
+    }
+    </script>
+
+    <meta id="data-discourse-setup" data-cdn="https://sjc6.discourse-cdn.com/standard10"
+          data-base-url="https://forum.stackstorm.com" data-base-uri="" data-environment="production"
+          data-letter-avatar-version="5_8fec8e114563efeaf5265573e510f08e"
+          data-markdown-it-url="https://aws1.discourse-cdn.com/standard10/assets/markdown-it-bundle-31e9a9c535ca1801c26da78b0ff465821751a98f921c5cdc5457d7e5a69e9748.js"
+          data-service-worker-url="service-worker.js" data-default-locale="en"
+          data-asset-version="597e36448c9b51d0fa3b7e43ec1fd6d5" data-disable-custom-css="false"
+          data-highlight-js-path="/highlight-js/forum.stackstorm.com/ac0f4aa001e1343346941766d72e0c1ae330832b.js"
+          data-svg-sprite-path="/svg-sprite/forum.stackstorm.com/svg-2-c2ad434b1e06079c7e282124aed9938dc95b83ea.js"
+          data-enable-js-error-reporting="true" data-color-scheme-is-dark="false" data-user-dark-scheme-id="-1"
+          data-s3-cdn="https://aws1.discourse-cdn.com/standard10"
+          data-s3-base-url="//discourse-cloud-file-uploads.s3.dualstack.us-west-2.amazonaws.com/standard10">
+
+    <meta name="discourse/config/environment"
+          content="%7B%22modulePrefix%22%3A%22discourse%22%2C%22environment%22%3A%22production%22%2C%22rootURL%22%3A%22%22%2C%22locationType%22%3A%22auto%22%2C%22historySupportMiddleware%22%3Afalse%2C%22EmberENV%22%3A%7B%22FEATURES%22%3A%7B%7D%2C%22EXTEND_PROTOTYPES%22%3A%7B%22Date%22%3Afalse%7D%2C%22_APPLICATION_TEMPLATE_WRAPPER%22%3Afalse%2C%22_DEFAULT_ASYNC_OBSERVERS%22%3Atrue%2C%22_JQUERY_INTEGRATION%22%3Atrue%7D%2C%22APP%22%3A%7B%22name%22%3A%22discourse%22%2C%22version%22%3A%222.8.0.beta6%20a1daf9fe53a66e2d2cdf9757ab4812fb9a2b2787%22%2C%22exportApplicationGlobal%22%3Atrue%7D%7D"/>
+</head>
+
+<body class="">
+
+
+<header class="d-header">
+    <div class="wrap">
+        <div class="contents clearfix">
+            <div class="title">
+                <a href="../../index.html">
+                    <picture>
+                        <img src="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png"
+                             alt="StackStorm Support (ARCHIVED)" id="site-logo"/>
+                    </picture>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</header>
+
+<div id="main-outlet" class="wrap" role="main">
+    <!-- preload-content: -->
+
+    <!-- EOF START -->
+    <div class="container" id="main-container">
+        <div id="ember11" class="ember-view"></div>
+        <div id="ember12" class="controls ember-view"><!----></div>
+        <div id="ember13" class="ember-view"><!----></div>
+        <div id="ember14" class="ember-view">
+            <div class="row">
+                <div id="global-notice-alert-read-only" class="alert alert-info alert-read-only">
+                    <!----> <span class="text">This site is in read only mode. Please continue to browse, but replying, likes, and other actions are disabled for now.</span>
+
+                    <!---->    </div>
+            </div>
+            <div class="row">
+                <div id="global-notice-alert-global-notice" class="alert alert-info alert-global-notice">
+                    <!----> <span class="text"><h3>⚠️ We've moved!</h3>  <p> Hi there!<br><br> To reduce project dependency on 3rd party paid services the StackStorm TSC has decided to move the Q/A from this forum to <a
+                        href="https://github.com/StackStorm/st2/discussions">Github Discussions</a>. This will make user experience better integrated with the native Github flow, as well as the questions closer to the community where they can provide answers. </p>  <p> Use 🔗 <b><a
+                        href="https://github.com/StackStorm/st2/discussions" class="active">Github Discussions</a></b> to ask your questions. </p></span>
+
+                    <!---->    </div>
+            </div>
+        </div>
+        <div id="ember17" class="hidden create-topics-notice ember-view"><!----></div>
+        <!---->
+    </div>
+    <!-- EOF END -->
+    <div id="topic-title">
+        <h1>
+            <a href="141.html">See &quot;systemctl status postgresql.service&quot; and &quot;journalctl -xe&quot; for
+                details</a>
+        </h1>
+
+        <div class="topic-category" itemscope itemtype="http://schema.org/BreadcrumbList">
+          <span itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a href="../../c/core-st2-platform-issues/6" class="badge-wrapper bullet" itemprop="item">
+              <span class='badge-category-bg' style='background-color: #AB9364'></span>
+              <span class='badge-category clear-badge'>
+                <span class='category-name' itemprop='name'>Platform</span>
+              </span>
+            </a>
+            <meta itemprop="position" content="1"/>
+          </span>
+        </div>
+
+        <div class="topic-category">
+            <div class='discourse-tags list-tags'>
+                <a href='../../tag/postgresql' class='discourse-tag' rel="tag">postgresql</a>,
+                <a href='../../tag/mongodb' class='discourse-tag' rel="tag">mongodb</a>
+            </div>
+        </div>
+    </div>
+
+
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/baskarankj'><span
+                    itemprop='name'>baskarankj</span></a>
+            (Baskaran)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="141.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2018-05-09T23:39:32Z' class='post-time'>
+                May 9, 2018, 11:39pm
+              </time>
+              <meta itemprop='dateModified' content='2018-05-15T19:37:58Z'>
+          <span itemprop='position'>#1</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Hi I am getting error while starting Mongo DB and postgresql.service</p>
+            <p>Job for postgresql.service failed because the control process exited with error code. See “systemctl
+                status postgresql.service” and “journalctl -xe” for details</p>
+        </div>
+
+        <meta itemprop='headline'
+              content='See &quot;systemctl status postgresql.service&quot; and &quot;journalctl -xe&quot; for details'>
+        <meta itemprop='keywords' content='postgresql, mongodb'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/lhill'><span itemprop='name'>lhill</span></a>
+            (Lindsay Hill)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="141.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2018-05-09T23:42:28Z' class='post-time'>
+                May 9, 2018, 11:42pm
+              </time>
+              <meta itemprop='dateModified' content='2018-05-09T23:42:28Z'>
+          <span itemprop='position'>#2</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Since the error suggested checking <code>journalctl -xe</code>, did you try running that? What did it
+                tell you?</p>
+        </div>
+
+        <meta itemprop='headline'
+              content='See &quot;systemctl status postgresql.service&quot; and &quot;journalctl -xe&quot; for details'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/lhill'><span itemprop='name'>lhill</span></a>
+            (Lindsay Hill)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="141.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2018-05-09T23:45:52Z' class='post-time'>
+                May 9, 2018, 11:45pm
+              </time>
+              <meta itemprop='dateModified' content='2018-05-09T23:45:52Z'>
+          <span itemprop='position'>#3</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Same with <code>systemctl status postgresql.service</code> - did you try running that?</p>
+        </div>
+
+        <meta itemprop='headline'
+              content='See &quot;systemctl status postgresql.service&quot; and &quot;journalctl -xe&quot; for details'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/baskarankj'><span
+                    itemprop='name'>baskarankj</span></a>
+            (Baskaran)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="141.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2018-05-11T23:46:38Z' class='post-time'>
+                May 11, 2018, 11:46pm
+              </time>
+              <meta itemprop='dateModified' content='2018-05-11T23:46:38Z'>
+          <span itemprop='position'>#4</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Hi Lindsey,</p>
+            <p>Thanks for the quick reply. I have run it and i am getting the following error</p>
+            <p>[184838@digidevdb01 ~]<span class="math"> systemctl status postgresql.service
+● postgresql.service - PostgreSQL database server
+   Loaded: loaded (/usr/lib/systemd/system/postgresql.service; enabled; vendor preset: disabled)
+   Active: failed (Result: exit-code) since Thu 2018-05-10 04:41:18 IST; 2 days ago
+[184838@digidevdb01 ~]</span></p>
+        </div>
+
+        <meta itemprop='headline'
+              content='See &quot;systemctl status postgresql.service&quot; and &quot;journalctl -xe&quot; for details'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/lhill'><span itemprop='name'>lhill</span></a>
+            (Lindsay Hill)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="141.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2018-05-12T02:29:41Z' class='post-time'>
+                May 12, 2018,  2:29am
+              </time>
+              <meta itemprop='dateModified' content='2018-05-12T02:29:41Z'>
+          <span itemprop='position'>#5</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>And have you tried looking at the logs with <code>journalctl</code>? Or done any other debugging?</p>
+            <p>My first guess would be that you’ve run out of disk space.</p>
+            <p>Failing that, look at the logs for MongoDB and PostgreSQL. They will tell you why the services won’t
+                start.</p>
+        </div>
+
+        <meta itemprop='headline'
+              content='See &quot;systemctl status postgresql.service&quot; and &quot;journalctl -xe&quot; for details'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="2"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/baskarankj'><span
+                    itemprop='name'>baskarankj</span></a>
+            (Baskaran)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="141.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2018-05-13T21:34:08Z' class='post-time'>
+                May 13, 2018,  9:34pm
+              </time>
+              <meta itemprop='dateModified' content='2018-05-13T21:34:08Z'>
+          <span itemprop='position'>#6</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Hi Lindsay,</p>
+            <p>Thanks for the guidance. can you help me with the debugging. I am getting 503 error while generating the
+                token</p>
+        </div>
+
+        <meta itemprop='headline'
+              content='See &quot;systemctl status postgresql.service&quot; and &quot;journalctl -xe&quot; for details'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/baskarankj'><span
+                    itemprop='name'>baskarankj</span></a>
+            (Baskaran)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="141.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2018-05-13T21:35:47Z' class='post-time'>
+                May 13, 2018,  9:35pm
+              </time>
+              <meta itemprop='dateModified' content='2018-05-13T21:35:47Z'>
+          <span itemprop='position'>#7</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Please find the exact error message as follows</p>
+            <p>"Failed to authenticate with credentials provided in the config.</p>
+            <p>ERROR: 503 Server Error: Service Unavailable</p>
+            <p>Unable to retrieve detailed message from the HTTP response. Expecting value: line 1 column 1 (char 0)</p>
+            <p>for url: <a href="http://127.0.0.1:9100/tokens" rel="nofollow noopener">http://127.0.0.1:9100/tokens</a>
+            </p>
+            <p>"</p>
+        </div>
+
+        <meta itemprop='headline'
+              content='See &quot;systemctl status postgresql.service&quot; and &quot;journalctl -xe&quot; for details'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/lhill'><span itemprop='name'>lhill</span></a>
+            (Lindsay Hill)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="141.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2018-05-14T01:11:03Z' class='post-time'>
+                May 14, 2018,  1:11am
+              </time>
+              <meta itemprop='dateModified' content='2018-05-14T01:11:03Z'>
+          <span itemprop='position'>#8</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>You’re getting that error because ST2 services are not running properly. This is almost certainly because
+                PostgreSQL and MongoDB are not running. If it’s what I think it is, RabbitMQ is probably not working
+                either.</p>
+            <p>I have already asked you to check the output of <code>journalctl</code> and to check the logs. Have you
+                done that? Have you checked the disk space? Have you done any troubleshooting? <em>Please</em>: try some
+                of the things I’ve suggested, and report those results. Or have you already done that troubleshooting
+                and fixed some issues, but not reported the results here?</p>
+            <p>I can’t help you any further unless you take some steps to do some troubleshooting yourself. I don’t have
+                access to your system to fix it for you.</p>
+        </div>
+
+        <meta itemprop='headline'
+              content='See &quot;systemctl status postgresql.service&quot; and &quot;journalctl -xe&quot; for details'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="2"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/baskarankj'><span
+                    itemprop='name'>baskarankj</span></a>
+            (Baskaran)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="141.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2018-05-14T05:35:58Z' class='post-time'>
+                May 14, 2018,  5:35am
+              </time>
+              <meta itemprop='dateModified' content='2018-05-14T05:35:58Z'>
+          <span itemprop='position'>#9</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Hi Lindsay</p>
+            <p>Can I schedule a webex to troubleshoot. I am trying develop a POC For automation.</p>
+            <p>Thanks and Regards</p>
+            <p>Baskaran K j</p>
+        </div>
+
+        <meta itemprop='headline'
+              content='See &quot;systemctl status postgresql.service&quot; and &quot;journalctl -xe&quot; for details'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/baskarankj'><span
+                    itemprop='name'>baskarankj</span></a>
+            (Baskaran)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="141.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2018-05-14T10:29:54Z' class='post-time'>
+                May 14, 2018, 10:29am
+              </time>
+              <meta itemprop='dateModified' content='2018-05-14T10:29:54Z'>
+          <span itemprop='position'>#10</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Hi Lindsay,</p>
+            <p>Please find the error message as follows.</p>
+            <p><strong>systemctl status postgresql.service</strong></p>
+            <p>● postgresql.service</p>
+            <p>Loaded: not-found (Reason: No such file or directory)</p>
+            <p>Active: failed (Result: exit-code) since Thu 2018-05-10 04:41:18 IST; 4 days ago</p>
+            <p>May 10 04:41:17 digidevdb01 pg_ctl[17369]: HINT: Is another postmaster already running on port 5432? If
+                not, wait a few seconds and retry.</p>
+            <p>May 10 04:41:17 digidevdb01 pg_ctl[17369]: LOG: could not bind IPv4 socket: Address already in use</p>
+            <p>May 10 04:41:17 digidevdb01 pg_ctl[17369]: HINT: Is another postmaster already running on port 5432? If
+                not, wait a few seconds and retry.</p>
+            <p>May 10 04:41:17 digidevdb01 pg_ctl[17369]: WARNING: could not create listen socket for “localhost”</p>
+            <p>May 10 04:41:17 digidevdb01 pg_ctl[17369]: FATAL: could not create any TCP/IP sockets</p>
+            <p>May 10 04:41:18 digidevdb01 pg_ctl[17369]: pg_ctl: could not start server</p>
+            <p>May 10 04:41:18 digidevdb01 systemd[1]: postgresql.service: control process exited, code=exited
+                status=1</p>
+            <p>May 10 04:41:18 digidevdb01 systemd[1]: Failed to start PostgreSQL database server.</p>
+            <p>May 10 04:41:18 digidevdb01 systemd[1]: Unit postgresql.service entered failed state.</p>
+            <p>May 10 04:41:18 digidevdb01 systemd[1]: postgresql.service failed.</p>
+            <p><strong>[root@digidevdb01 ~]# journalctl :-</strong></p>
+            <p>– -- Unit session-2668.scope has finished starting up.</p>
+        </div>
+
+        <meta itemprop='headline'
+              content='See &quot;systemctl status postgresql.service&quot; and &quot;journalctl -xe&quot; for details'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/lhill'><span itemprop='name'>lhill</span></a>
+            (Lindsay Hill)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="141.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2018-05-14T17:26:28Z' class='post-time'>
+                May 14, 2018,  5:26pm
+              </time>
+              <meta itemprop='dateModified' content='2018-05-14T17:26:28Z'>
+          <span itemprop='position'>#11</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <blockquote>
+                <p>Can I schedule a webex to troubleshoot</p>
+            </blockquote>
+            <p>I can put you in touch with Professional Services organizations that can do paid engagements if you need
+                that?</p>
+        </div>
+
+        <meta itemprop='headline'
+              content='See &quot;systemctl status postgresql.service&quot; and &quot;journalctl -xe&quot; for details'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/lhill'><span itemprop='name'>lhill</span></a>
+            (Lindsay Hill)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="141.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2018-05-14T17:28:49Z' class='post-time'>
+                May 14, 2018,  5:28pm
+              </time>
+              <meta itemprop='dateModified' content='2018-05-14T17:28:49Z'>
+          <span itemprop='position'>#12</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <blockquote>
+                <p>May 10 04:41:17 digidevdb01 pg_ctl[17369]: HINT: Is another postmaster already running on port 5432?
+                    If not, wait a few seconds and retry.</p>
+                <p>May 10 04:41:17 digidevdb01 pg_ctl[17369]: LOG: could not bind IPv4 socket: Address already in
+                    use</p>
+                <p>May 10 04:41:17 digidevdb01 pg_ctl[17369]: HINT: Is another postmaster already running on port 5432?
+                    If not, wait a few seconds and retry.</p>
+                <p>May 10 04:41:17 digidevdb01 pg_ctl[17369]: WARNING: could not create listen socket for
+                    “localhost”</p>
+                <p>May 10 04:41:17 digidevdb01 pg_ctl[17369]: FATAL: could not create any TCP/IP sockets</p>
+            </blockquote>
+            <p>Again, you have a log file that <strong>TELLS YOU WHAT TO CHECK</strong> but you haven’t done that. Have
+                you made any effort to check what it suggests? Have you tried doing any of the other things that I’ve
+                asked?</p>
+            <p>You could also try using Google to figure out why Postgresql is not starting. This is not a
+                StackStorm-specific problem, and there’s a limit to how much free support you can get if you are
+                unwilling to do even minimal troubleshooting yourself.</p>
+        </div>
+
+        <meta itemprop='headline'
+              content='See &quot;systemctl status postgresql.service&quot; and &quot;journalctl -xe&quot; for details'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/baskarankj'><span
+                    itemprop='name'>baskarankj</span></a>
+            (Baskaran)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="141.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2018-05-14T21:48:13Z' class='post-time'>
+                May 14, 2018,  9:48pm
+              </time>
+              <meta itemprop='dateModified' content='2018-05-14T21:48:13Z'>
+          <span itemprop='position'>#13</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>hi lindsay,</p>
+            <p>Thanks for the reply.</p>
+            <p>i have found the error :-</p>
+            <p>May 15 03:12:20 digidevdb01 mongod[21016]: Error parsing YAML config: duplicate key:
+                security.authorization(canonical key: security.authorization)</p>
+            <p>May 15 03:12:20 digidevdb01 mongod[21016]: try ‘/usr/bin/mongod --help’ for more information</p>
+        </div>
+
+        <meta itemprop='headline'
+              content='See &quot;systemctl status postgresql.service&quot; and &quot;journalctl -xe&quot; for details'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+
+
+    <!-- :preload-content -->
+    <footer class="noscript-footer-nav">
+        <nav itemscope itemtype='http://schema.org/SiteNavigationElement'>
+            <a href='../../index.html'>Home</a>
+            <a href="../../categories.html">Categories</a>
+            <a href="https://forum.stackstorm.com/guidelines">FAQ/Guidelines</a>
+            <a href="../../tos.html">Terms of Service</a>
+            <a href="../../privacy.html">Privacy Policy</a>
+        </nav>
+    </footer>
+</div>
+
+<footer id='noscript-footer'>
+    <p>Powered by <a href="https://www.discourse.org">Discourse</a>, best viewed with JavaScript enabled</p>
+</footer>
+
+
+<section id='main'>
+</section>
+
+
+</body>
+</html>

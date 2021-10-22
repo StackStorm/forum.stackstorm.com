@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Stackstorm installation on mac</title>
+    <link>https://forum.stackstorm.com/t/stackstorm-installation-on-mac/1526</link>
+    <description>&lt;p&gt;
+How to install stackstorm on mac to work with python? I am new to this. Please guide.
+&lt;/p&gt;</description>
+    
+    <lastBuildDate>Mon, 04 Jan 2021 13:39:49 +0000</lastBuildDate>
+    <category>Platform</category>
+    <atom:link href="https://forum.stackstorm.com/t/stackstorm-installation-on-mac/1526.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Stackstorm installation on mac</title>
+        <dc:creator><![CDATA[Carlos]]></dc:creator>
+        <description><![CDATA[
+            <p>StackStorm is not supported on Mac, however it’s possible to run a supported Linux operating system  running inside a Virtual Machine.  <a href="https://docs.stackstorm.com/install/vagrant.html" class="inline-onebox" rel="noopener nofollow ugc">Vagrant &amp; Virtual Appliance — StackStorm 3.3.0 documentation</a></p>
+          <p><a href="https://forum.stackstorm.com/t/stackstorm-installation-on-mac/1526/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/stackstorm-installation-on-mac/1526/2</link>
+        <pubDate>Mon, 04 Jan 2021 13:39:49 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1526-2</guid>
+        <source url="https://forum.stackstorm.com/t/stackstorm-installation-on-mac/1526.rss">Stackstorm installation on mac</source>
+      </item>
+      <item>
+        <title>Stackstorm installation on mac</title>
+        <dc:creator><![CDATA[Gautam]]></dc:creator>
+        <description><![CDATA[
+            <p>
+How to install stackstorm on mac to work with python? I am new to this. Please guide.
+</p>
+          <p><a href="https://forum.stackstorm.com/t/stackstorm-installation-on-mac/1526/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/stackstorm-installation-on-mac/1526/1</link>
+        <pubDate>Mon, 04 Jan 2021 12:28:21 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1526-1</guid>
+        <source url="https://forum.stackstorm.com/t/stackstorm-installation-on-mac/1526.rss">Stackstorm installation on mac</source>
+      </item>
+  </channel>
+</rss>

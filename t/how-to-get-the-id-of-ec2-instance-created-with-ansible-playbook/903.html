@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="en" class="desktop-view not-mobile-device text-size-normal anon">
+<head>
+    <meta charset="utf-8">
+    <title>How to get the ID of EC2 instance created with Ansible playbook - howto - StackStorm Support
+        (ARCHIVED)</title>
+    <meta name="description" content="I succeeded in creating an EC2 instance by using the ansible.playbook action. 
+I wanted to create a workflow to pass EC2 instances created with this playbook to new actions. 
+However, after ansible execution ends, it is &amp;hellip;">
+    <meta name="discourse_theme_id" content="2">
+    <meta name="discourse_current_homepage" content="latest">
+    <meta name="generator"
+          content="Discourse 2.8.0.beta6 - https://github.com/discourse/discourse version a1daf9fe53a66e2d2cdf9757ab4812fb9a2b2787">
+    <link rel="icon" type="image/png"
+          href="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/379ced12f8326d58f1b3d2b3ff652f883e141f6a_2_32x32.PNG">
+    <link rel="apple-touch-icon" type="image/png"
+          href="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/379ced12f8326d58f1b3d2b3ff652f883e141f6a_2_180x180.PNG">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <link rel="canonical" href="903.html"/>
+    <script type="application/ld+json">{
+        "@context": "http://schema.org",
+        "@type": "WebSite",
+        "url": "https://forum.stackstorm.com",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://forum.stackstorm.com/search?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }
+    </script>
+    <link rel="search" type="application/opensearchdescription+xml" href="../../opensearch.xml"
+          title="StackStorm Support (ARCHIVED) Search">
+
+
+    <link href="/../../stylesheets/color_definitions_base__2_3c5eec1ecf192052ea70b4afdab57a62bccc0604.css?__ws=forum.stackstorm.com"
+          media="all" rel="stylesheet" class="light-scheme"/>
+
+    <link href="/../../stylesheets/desktop_b2f2968742d41481357e0df259b51ce29f72481a.css?__ws=forum.stackstorm.com"
+          media="all" rel="stylesheet" data-target="desktop"/>
+
+
+    <meta name="fragment" content="!">
+
+
+    <link id="manifest-link" rel="manifest" href="../../manifest.webmanifest" crossorigin="use-credentials">
+
+
+    <link rel="alternate" type="application/rss+xml"
+          title="RSS feed of &#39;How to get the ID of EC2 instance created with Ansible playbook&#39;" href="903.rss"/>
+    <meta property="og:site_name" content="StackStorm Support (ARCHIVED)"/>
+    <meta property="og:type" content="website"/>
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:image"
+          content="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/891f00fbdb31fecb5bd9dab30c186d2fed0091ca.jpeg"/>
+    <meta property="og:image"
+          content="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/891f00fbdb31fecb5bd9dab30c186d2fed0091ca.jpeg"/>
+    <meta property="og:url"
+          content="https://forum.stackstorm.com/t/how-to-get-the-id-of-ec2-instance-created-with-ansible-playbook/903"/>
+    <meta name="twitter:url"
+          content="https://forum.stackstorm.com/t/how-to-get-the-id-of-ec2-instance-created-with-ansible-playbook/903"/>
+    <meta property="og:title" content="How to get the ID of EC2 instance created with Ansible playbook"/>
+    <meta name="twitter:title" content="How to get the ID of EC2 instance created with Ansible playbook"/>
+    <meta property="og:description"
+          content="I succeeded in creating an EC2 instance by using the ansible.playbook action.  I wanted to create a workflow to pass EC2 instances created with this playbook to new actions.  However, after ansible execution ends, it is not linked to the next task.  How can I solve it?  [Playbook]  - name: &quot;create ec2 instance&quot;   ec2:     instance_tags:       Name: &quot;{{ ec2.name }}&quot;     key_name: &quot;{{ keypair.name }}&quot;     instance_type: &quot;{{ ec2.instance_type }}&quot;     image: &quot;{{ ec2.image }}&quot;     wait: yes     group..."/>
+    <meta name="twitter:description"
+          content="I succeeded in creating an EC2 instance by using the ansible.playbook action.  I wanted to create a workflow to pass EC2 instances created with this playbook to new actions.  However, after ansible execution ends, it is not linked to the next task.  How can I solve it?  [Playbook]  - name: &quot;create ec2 instance&quot;   ec2:     instance_tags:       Name: &quot;{{ ec2.name }}&quot;     key_name: &quot;{{ keypair.name }}&quot;     instance_type: &quot;{{ ec2.instance_type }}&quot;     image: &quot;{{ ec2.image }}&quot;     wait: yes     group..."/>
+    <meta property="article:published_time" content="2019-11-06T06:16:51+00:00"/>
+    <meta property="og:ignore_canonical" content="true"/>
+
+
+    <script type="application/ld+json">{
+        "@context": "http://schema.org",
+        "@type": "QAPage",
+        "name": "How to get the ID of EC2 instance created with Ansible playbook",
+        "mainEntity": {
+            "@type": "Question",
+            "name": "How to get the ID of EC2 instance created with Ansible playbook",
+            "text": "I succeeded in creating an EC2 instance by using the ansible.playbook action.\n\nI wanted to create a workflow to pass EC2 instances created with this playbook to new actions.\n\nHowever, after ansible execution ends, it is not linked to the next task.\n\nHow can I solve it?\n\n[Playbook]\n\n- name: &quot;create e&hellip;",
+            "upvoteCount": 0,
+            "answerCount": 0,
+            "dateCreated": "2019-11-06T06:16:51.322Z",
+            "author": {
+                "@type": "Person",
+                "name": "Hironori Murakami "
+            }
+        }
+    }
+    </script>
+
+    <meta id="data-discourse-setup" data-cdn="https://sjc6.discourse-cdn.com/standard10"
+          data-base-url="https://forum.stackstorm.com" data-base-uri="" data-environment="production"
+          data-letter-avatar-version="5_8fec8e114563efeaf5265573e510f08e"
+          data-markdown-it-url="https://aws1.discourse-cdn.com/standard10/assets/markdown-it-bundle-31e9a9c535ca1801c26da78b0ff465821751a98f921c5cdc5457d7e5a69e9748.js"
+          data-service-worker-url="service-worker.js" data-default-locale="en"
+          data-asset-version="597e36448c9b51d0fa3b7e43ec1fd6d5" data-disable-custom-css="false"
+          data-highlight-js-path="/highlight-js/forum.stackstorm.com/ac0f4aa001e1343346941766d72e0c1ae330832b.js"
+          data-svg-sprite-path="/svg-sprite/forum.stackstorm.com/svg-2-c2ad434b1e06079c7e282124aed9938dc95b83ea.js"
+          data-enable-js-error-reporting="true" data-color-scheme-is-dark="false" data-user-dark-scheme-id="-1"
+          data-s3-cdn="https://aws1.discourse-cdn.com/standard10"
+          data-s3-base-url="//discourse-cloud-file-uploads.s3.dualstack.us-west-2.amazonaws.com/standard10">
+
+    <meta name="discourse/config/environment"
+          content="%7B%22modulePrefix%22%3A%22discourse%22%2C%22environment%22%3A%22production%22%2C%22rootURL%22%3A%22%22%2C%22locationType%22%3A%22auto%22%2C%22historySupportMiddleware%22%3Afalse%2C%22EmberENV%22%3A%7B%22FEATURES%22%3A%7B%7D%2C%22EXTEND_PROTOTYPES%22%3A%7B%22Date%22%3Afalse%7D%2C%22_APPLICATION_TEMPLATE_WRAPPER%22%3Afalse%2C%22_DEFAULT_ASYNC_OBSERVERS%22%3Atrue%2C%22_JQUERY_INTEGRATION%22%3Atrue%7D%2C%22APP%22%3A%7B%22name%22%3A%22discourse%22%2C%22version%22%3A%222.8.0.beta6%20a1daf9fe53a66e2d2cdf9757ab4812fb9a2b2787%22%2C%22exportApplicationGlobal%22%3Atrue%7D%7D"/>
+</head>
+
+<body class="">
+
+
+<header class="d-header">
+    <div class="wrap">
+        <div class="contents clearfix">
+            <div class="title">
+                <a href="../../index.html">
+                    <picture>
+                        <img src="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png"
+                             alt="StackStorm Support (ARCHIVED)" id="site-logo"/>
+                    </picture>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</header>
+
+<div id="main-outlet" class="wrap" role="main">
+    <!-- preload-content: -->
+
+    <!-- EOF START -->
+    <div class="container" id="main-container">
+        <div id="ember11" class="ember-view"></div>
+        <div id="ember12" class="controls ember-view"><!----></div>
+        <div id="ember13" class="ember-view"><!----></div>
+        <div id="ember14" class="ember-view">
+            <div class="row">
+                <div id="global-notice-alert-read-only" class="alert alert-info alert-read-only">
+                    <!----> <span class="text">This site is in read only mode. Please continue to browse, but replying, likes, and other actions are disabled for now.</span>
+
+                    <!---->    </div>
+            </div>
+            <div class="row">
+                <div id="global-notice-alert-global-notice" class="alert alert-info alert-global-notice">
+                    <!----> <span class="text"><h3>⚠️ We've moved!</h3>  <p> Hi there!<br><br> To reduce project dependency on 3rd party paid services the StackStorm TSC has decided to move the Q/A from this forum to <a
+                        href="https://github.com/StackStorm/st2/discussions">Github Discussions</a>. This will make user experience better integrated with the native Github flow, as well as the questions closer to the community where they can provide answers. </p>  <p> Use 🔗 <b><a
+                        href="https://github.com/StackStorm/st2/discussions" class="active">Github Discussions</a></b> to ask your questions. </p></span>
+
+                    <!---->    </div>
+            </div>
+        </div>
+        <div id="ember17" class="hidden create-topics-notice ember-view"><!----></div>
+        <!---->
+    </div>
+    <!-- EOF END -->
+    <div id="topic-title">
+        <h1>
+            <a href="903.html">How to get the ID of EC2 instance created with Ansible playbook</a>
+        </h1>
+
+
+        <div class="topic-category">
+            <div class='discourse-tags list-tags'>
+                <a href='../../tag/packs' class='discourse-tag' rel="tag">packs</a>,
+                <a href='../../tag/howto' class='discourse-tag' rel="tag">howto</a>,
+                <a href='../../tag/ansible' class='discourse-tag' rel="tag">ansible</a>
+            </div>
+        </div>
+    </div>
+
+
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/h-murakami'><span
+                    itemprop='name'>h-murakami</span></a>
+            (Hironori Murakami )
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="903.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2019-11-06T06:16:51Z' class='post-time'>
+                November 6, 2019,  6:16am
+              </time>
+              <meta itemprop='dateModified' content='2019-11-06T06:16:51Z'>
+          <span itemprop='position'>#1</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>I succeeded in creating an EC2 instance by using the ansible.playbook action.<br>
+                I wanted to create a workflow to pass EC2 instances created with this playbook to new actions.<br>
+                However, after ansible execution ends, it is not linked to the next task.</p>
+            <p>How can I solve it?</p>
+            <p>[Playbook]</p>
+            <pre><code class="lang-auto">- name: "create ec2 instance"
+  ec2:
+    instance_tags:
+      Name: "{{ ec2.name }}"
+    key_name: "{{ keypair.name }}"
+    instance_type: "{{ ec2.instance_type }}"
+    image: "{{ ec2.image }}"
+    wait: yes
+    group: "{{ secgrp.name }}"
+    count: 1
+    vpc_subnet_id: "{{ vpc_regst.subnet.id }}"
+    assign_public_ip: yes
+  register: ec2_regst
+</code></pre>
+            <p>[workflow]</p>
+            <pre><code class="lang-auto">    tasks:
+      task1:
+        action: ansible.playbook
+        input:
+          playbook: &lt;% $.param %&gt;
+        publish:
+          instance_id: ec2_regst.instances[0].id
+          ec2rr: ec2_regst
+        on-success:
+          - task2
+      task2:
+        action: core.local
+        input:
+          cmd: "echo '$ &lt;% $ %&gt; $.param: &lt;% $.param %&gt;, $.instance_id: &lt;% $.instance_id %&gt;, $.ec2err: &lt;% $.ec2err %&gt;'"
+</code></pre>
+        </div>
+
+        <meta itemprop='headline' content='How to get the ID of EC2 instance created with Ansible playbook'>
+        <meta itemprop='keywords' content='packs, howto, ansible'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/h-murakami'><span
+                    itemprop='name'>h-murakami</span></a>
+            (Hironori Murakami )
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="903.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2019-11-07T08:28:33Z' class='post-time'>
+                November 7, 2019,  8:28am
+              </time>
+              <meta itemprop='dateModified' content='2019-11-07T08:28:33Z'>
+          <span itemprop='position'>#2</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>The only way to link with Ansible is to pass parameters in RabbitMQ or a file.</p>
+        </div>
+
+        <meta itemprop='headline' content='How to get the ID of EC2 instance created with Ansible playbook'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/armab'><span itemprop='name'>armab</span></a>
+            (Eugen Cusmaunsa)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="903.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2019-11-07T13:15:05Z' class='post-time'>
+                November 7, 2019,  1:15pm
+              </time>
+              <meta itemprop='dateModified' content='2019-11-07T13:15:05Z'>
+          <span itemprop='position'>#3</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Data output from Ansible run should be json-formatted for StackStorm to be able to access/query that in a
+                workflow as structured <code>foo.bar</code>.</p>
+            <p>Try playing with <a href="https://github.com/stackstorm-exchange/stackstorm-ansible#structured-output"
+                                   class="inline-onebox">GitHub - StackStorm-Exchange/stackstorm-ansible: st2 content
+                pack containing ansible integrations</a> to make sure Ansible play result output is <code>json</code>.
+            </p>
+        </div>
+
+        <meta itemprop='headline' content='How to get the ID of EC2 instance created with Ansible playbook'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/h-murakami'><span
+                    itemprop='name'>h-murakami</span></a>
+            (Hironori Murakami )
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="903.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2019-11-19T22:48:53Z' class='post-time'>
+                November 19, 2019, 10:48pm
+              </time>
+              <meta itemprop='dateModified' content='2019-11-19T22:48:53Z'>
+          <span itemprop='position'>#4</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Hi, armab</p>
+            <p>Thank you for answering.</p>
+            <p>So that’s it.<br>
+                Is the output from Ansible the standard output?<br>
+                For example, if the output is as follows:<br>
+                <code>` {"HOSTS": {"NAME", "ABC"} }</code> `<br>
+                In the next action,<br>
+                Is it possible to obtain it by specifying it like HOSTS.NAME?</p>
+        </div>
+
+        <meta itemprop='headline' content='How to get the ID of EC2 instance created with Ansible playbook'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/armab'><span itemprop='name'>armab</span></a>
+            (Eugen Cusmaunsa)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="903.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2019-11-20T23:10:25Z' class='post-time'>
+                November 20, 2019, 11:10pm
+              </time>
+              <meta itemprop='dateModified' content='2019-11-20T23:10:25Z'>
+          <span itemprop='position'>#5</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Yes, you got it right.<br>
+                Any json-structurred output from the Action stdout is then automatically parsed by StackStorm so you can
+                access it via dot notation.</p>
+        </div>
+
+        <meta itemprop='headline' content='How to get the ID of EC2 instance created with Ansible playbook'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/h-murakami'><span
+                    itemprop='name'>h-murakami</span></a>
+            (Hironori Murakami )
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="903.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2019-11-23T23:59:19Z' class='post-time'>
+                November 23, 2019, 11:59pm
+              </time>
+              <meta itemprop='dateModified' content='2019-11-23T23:59:19Z'>
+          <span itemprop='position'>#6</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Hi, armab</p>
+            <p>Great!</p>
+            <p>I now want to get an IP address after creating an EC2 instance with an Ansible playbook.</p>
+            <p>However, since Ansible outputs PlayBook execution information to standard output, it seems difficult to
+                pick only EC2 instance information from it.</p>
+            <p>Is there any other way to output EC2 instance information to a file?</p>
+        </div>
+
+        <meta itemprop='headline' content='How to get the ID of EC2 instance created with Ansible playbook'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/armab'><span itemprop='name'>armab</span></a>
+            (Eugen Cusmaunsa)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="903.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2019-11-24T15:42:29Z' class='post-time'>
+                November 24, 2019,  3:42pm
+              </time>
+              <meta itemprop='dateModified' content='2019-11-24T15:42:29Z'>
+          <span itemprop='position'>#7</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Alternatively,<br>
+                you can use native ST2 AWS integration pack, see <a
+                        href="https://github.com/stackstorm-exchange/stackstorm-aws" class="inline-onebox">GitHub -
+                    StackStorm-Exchange/stackstorm-aws: st2 content pack containing Amazon Web Services
+                    integrations.</a> directly without Ansible as a middleman.</p>
+        </div>
+
+        <meta itemprop='headline' content='How to get the ID of EC2 instance created with Ansible playbook'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/h-murakami'><span
+                    itemprop='name'>h-murakami</span></a>
+            (Hironori Murakami )
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="903.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2019-11-24T22:31:42Z' class='post-time'>
+                November 24, 2019, 10:31pm
+              </time>
+              <meta itemprop='dateModified' content='2019-11-24T22:31:42Z'>
+          <span itemprop='position'>#8</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Hi, armab</p>
+            <p>Thank you for answering.<br>
+                AWS Pack seems to create an EC2 instance with the create_vm action, but at the same time, it seems
+                necessary to specify Route53.</p>
+            <p>I don’t want to specify Route53 now.<br>
+                Also, I want to specify the disk volume specification.</p>
+            <p>What should I do in such a case?</p>
+            <p>Also, aside from disk issues, I didn’t want to specify Route53, so I tried to specify it as a dummy, but
+                I got this error.</p>
+            <pre><code class="lang-auto">{
+  "published": {},
+  "tasks": [],
+  "error": "Failed to run task \"run_instance\". Parameter rendering failed.. Failed rendering value for action parameter \"ImageId\" in task \"run_instance\" (template string={{Image_id}}): 'Image_id' is undefined",
+  "traceback": "Traceback (most recent call last):
+  File \"/opt/stackstorm/st2/lib/python2.7/site-packages/action_chain_runner/action_chain_runner.py\", line 496, in _run_chain
+    action_params=action_parameters, context_result=context_result)
+  File \"/opt/stackstorm/st2/lib/python2.7/site-packages/action_chain_runner/action_chain_runner.py\", line 731, in _get_next_action
+    chain_context={'parent': parent_context})
+  File \"/opt/stackstorm/st2/lib/python2.7/site-packages/action_chain_runner/action_chain_runner.py\", line 713, in _resolve_params
+    raise action_exc.ParameterRenderingFailedException(msg)
+ParameterRenderingFailedException: Failed rendering value for action parameter \"ImageId\" in task \"run_instance\" (template string={{Image_id}}): 'Image_id' is undefined
+"
+}
+</code></pre>
+        </div>
+
+        <meta itemprop='headline' content='How to get the ID of EC2 instance created with Ansible playbook'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/armab'><span itemprop='name'>armab</span></a>
+            (Eugen Cusmaunsa)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="903.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2019-11-26T15:00:53Z' class='post-time'>
+                November 26, 2019,  3:00pm
+              </time>
+              <meta itemprop='dateModified' content='2019-11-26T15:00:53Z'>
+          <span itemprop='position'>#9</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>You can modify original AWS pack workflow and meta to make it non-mandatory field.<br>
+            <aside class="onebox githubblob">
+                <header class="source">
+                    <a href="https://github.com/StackStorm-Exchange/stackstorm-aws/blob/777aa4a58f7d37e16bbcebca0e466ab2d78155e7/actions/create_vm.meta.yaml#L24-L27"
+                       target="_blank">github.com</a>
+                </header>
+                <article class="onebox-body">
+                    <h4>
+                        <a href="https://github.com/StackStorm-Exchange/stackstorm-aws/blob/777aa4a58f7d37e16bbcebca0e466ab2d78155e7/actions/create_vm.meta.yaml#L24-L27"
+                           target="_blank">StackStorm-Exchange/stackstorm-aws/blob/777aa4a58f7d37e16bbcebca0e466ab2d78155e7/actions/create_vm.meta.yaml#L24-L27</a>
+                    </h4>
+                    <pre class="onebox"><code class="lang-yaml"><ol class="start lines" start="24"
+                                                                    style="counter-reset: li-counter 23 ;">
+<li>dns_zone:</li>
+<li>  type: "string"</li>
+<li>  description: "Route53 DNS Zone to add host to"</li>
+<li>  required: true</li>
+</ol></code></pre>
+
+
+                </article>
+                <div class="onebox-metadata">
+
+
+                </div>
+                <div style="clear: both"></div>
+            </aside>
+            </p>
+            <aside class="onebox githubblob">
+                <header class="source">
+                    <a href="https://github.com/StackStorm-Exchange/stackstorm-aws/blob/777aa4a58f7d37e16bbcebca0e466ab2d78155e7/actions/workflows/create_vm.yaml#L36-L43"
+                       target="_blank">github.com</a>
+                </header>
+                <article class="onebox-body">
+                    <h4>
+                        <a href="https://github.com/StackStorm-Exchange/stackstorm-aws/blob/777aa4a58f7d37e16bbcebca0e466ab2d78155e7/actions/workflows/create_vm.yaml#L36-L43"
+                           target="_blank">StackStorm-Exchange/stackstorm-aws/blob/777aa4a58f7d37e16bbcebca0e466ab2d78155e7/actions/workflows/create_vm.yaml#L36-L43</a>
+                    </h4>
+                    <pre class="onebox"><code class="lang-yaml"><ol class="start lines" start="36"
+                                                                    style="counter-reset: li-counter 35 ;">
+<li>-</li>
+<li>  name: "add_cname"</li>
+<li>  ref: "aws.r53_zone_add_cname"</li>
+<li>  params:</li>
+<li>    name: "{{hostname}}.{{dns_zone}}"</li>
+<li>    value: "{{run_instance.result[0][0].private_dns_name}}"</li>
+<li>    zone: "{{dns_zone}}"</li>
+<li>  on-success: "set_hostname"</li>
+</ol></code></pre>
+
+
+                </article>
+                <div class="onebox-metadata">
+
+
+                </div>
+                <div style="clear: both"></div>
+            </aside>
+
+            <p>AWS pack is opensource and we’ll be happy to accept contributions and enhancements: <a
+                    href="https://github.com/StackStorm-Exchange/stackstorm-aws" class="inline-onebox">GitHub -
+                StackStorm-Exchange/stackstorm-aws: st2 content pack containing Amazon Web Services integrations.</a>
+            </p>
+        </div>
+
+        <meta itemprop='headline' content='How to get the ID of EC2 instance created with Ansible playbook'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/h-murakami'><span
+                    itemprop='name'>h-murakami</span></a>
+            (Hironori Murakami )
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="903.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2019-11-26T22:36:46Z' class='post-time'>
+                November 26, 2019, 10:36pm
+              </time>
+              <meta itemprop='dateModified' content='2019-11-26T22:36:46Z'>
+          <span itemprop='position'>#10</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Hi, armab.</p>
+            <p>Thank you for your answer.</p>
+            <p>There was certainly a way to modify the original Packs.</p>
+            <p>I see. I will try.</p>
+            <p>Thank you!</p>
+        </div>
+
+        <meta itemprop='headline' content='How to get the ID of EC2 instance created with Ansible playbook'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/h-murakami'><span
+                    itemprop='name'>h-murakami</span></a>
+            (Hironori Murakami )
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="903.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2019-11-27T22:18:50Z' class='post-time'>
+                November 27, 2019, 10:18pm
+              </time>
+              <meta itemprop='dateModified' content='2019-11-27T22:18:50Z'>
+          <span itemprop='position'>#11</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>I tried it, but I got this error.</p>
+            <pre><code class="lang-auto">"Traceback (most recent call last):
+  File \"/opt/stackstorm/st2/lib/python2.7/site-packages/action_chain_runner/action_chain_runner.py\", line 496, in _run_chain
+    action_params=action_parameters, context_result=context_result)
+  File \"/opt/stackstorm/st2/lib/python2.7/site-packages/action_chain_runner/action_chain_runner.py\", line 731, in _get_next_action
+    chain_context={'parent': parent_context})
+  File \"/opt/stackstorm/st2/lib/python2.7/site-packages/action_chain_runner/action_chain_runner.py\", line 713, in _resolve_params
+    raise action_exc.ParameterRenderingFailedException(msg)
+ParameterRenderingFailedException: Failed rendering value for action parameter \"ImageId\" in task \"run_instance\" (template string={{Image_id}}): 'Image_id' is undefined
+"
+</code></pre>
+            <p>imageid:ami-0ab3e16f9c414dee7<br>
+                keyname:lamp2<br>
+                subnet:subnet-xxxxxxxxx &lt;-Actual value is masked<br>
+                hostname:test<br>
+                keyfile:lamp2.pem<br>
+                InstanceType:t2.micro</p>
+            <p>I’m worried about where “image_id” is “undefined”.<br>
+                Is something wrong?</p>
+        </div>
+
+        <meta itemprop='headline' content='How to get the ID of EC2 instance created with Ansible playbook'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/h-murakami'><span
+                    itemprop='name'>h-murakami</span></a>
+            (Hironori Murakami )
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="903.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2019-11-27T22:54:24Z' class='post-time'>
+                November 27, 2019, 10:54pm
+              </time>
+              <meta itemprop='dateModified' content='2019-11-27T22:54:24Z'>
+          <span itemprop='position'>#12</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>I’m not familiar with yaml, but what I saw is the following error in create_vm.yaml:</p>
+            <aside class="onebox githubblob">
+                <header class="source">
+                    <a href="https://github.com/StackStorm-Exchange/stackstorm-aws/blob/master/actions/workflows/create_vm.yaml#L6-L11"
+                       target="_blank" rel="nofollow noopener">github.com</a>
+                </header>
+                <article class="onebox-body">
+                    <h4>
+                        <a href="https://github.com/StackStorm-Exchange/stackstorm-aws/blob/master/actions/workflows/create_vm.yaml#L6-L11"
+                           target="_blank" rel="nofollow noopener">StackStorm-Exchange/stackstorm-aws/blob/master/actions/workflows/create_vm.yaml#L6-L11</a>
+                    </h4>
+                    <pre class="onebox"><code class="lang-yaml"><ol class="start lines" start="6"
+                                                                    style="counter-reset: li-counter 5 ;">
+<li>params:</li>
+<li>  ImageId: "{{Image_id}}"</li>
+<li>  InstanceType: "{{InstanceType}}"</li>
+<li>  SubnetId: "{{SubnetId}}"</li>
+<li>  KeyName: "{{KeyName}}"</li>
+<li>on-success: "wait_for_instance"</li>
+</ol></code></pre>
+
+
+                </article>
+                <div class="onebox-metadata">
+
+
+                </div>
+                <div style="clear: both"></div>
+            </aside>
+
+            <pre><code class="lang-auto">ImageId: "{{Image_id}}"
+↓
+ImageId: "{{ImageId}}"
+</code></pre>
+            <p>However, even if this is corrected, an essential parameter error occurs.</p>
+            <p>Because it is a very long log, I will omit it …</p>
+            <pre><code class="lang-auto"> "Traceback (most recent call last):
+  File \"/opt/stackstorm/st2/lib/python2.7/site-packages/action_chain_runner/action_chain_runner.py\", line 526, in _run_chain
+    liveaction = self._run_action(liveaction)
+  File \"/opt/stackstorm/st2/lib/python2.7/site-packages/action_chain_runner/action_chain_runner.py\", line 750, in _run_action
+    raise e
+ValidationError: u'MinCount' is a required property
+
+Failed validating 'required' in schema['properties'][u'MinCount']:
+:
+:
+On instance[u'MinCount']:
+    {'ImageId': u'ami-0ab3e16f9c414dee7',
+     'InstanceType': u't2.micro',
+     'KeyName': u'lamp2',
+     'SubnetId': u'subnet-xxxxxxxxx',
+     u'action': u'run_instances',
+     u'cls': u'ec2',
+     u'debug': False,
+     u'log_level': u'DEBUG',
+     u'module_path': u'boto3',
+     u'timeout': 600}"
+      },
+      "id": "run_instance",
+      "execution_id": null,
+      "name": "run_instance"
+    }
+  ] 
+</code></pre>
+            <p>It might be good to add “mincount”, but I don’t know what this mincount is and what it does at instance
+                creation.</p>
+            <p>Looking at the AWS documentation, it seems that the maximum number of EC2 instances that can be launched
+                within one AZ … although I never specified it when creating an EC2 instance …</p>
+        </div>
+
+        <meta itemprop='headline' content='How to get the ID of EC2 instance created with Ansible playbook'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/h-murakami'><span
+                    itemprop='name'>h-murakami</span></a>
+            (Hironori Murakami )
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="903.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2019-11-28T02:22:52Z' class='post-time'>
+                November 28, 2019,  2:22am
+              </time>
+              <meta itemprop='dateModified' content='2019-11-28T02:22:52Z'>
+          <span itemprop='position'>#13</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>I tried to set MinCount and MaxCount to 1 instead.<br>
+                This time, the error is</p>
+            <pre><code class="lang-auto">botocore.exceptions.ClientError: An error occurred (AuthFailure) when calling the RunInstances operation: AWS was not able to validate the provided access credentials
+</code></pre>
+            <p>It seems to be a problem with permissions, but with aws cli you can create an instance without problems,
+                and access key and secret key are also set in /opt/stackstorm/config/aws.yaml. What is the cause?</p>
+        </div>
+
+        <meta itemprop='headline' content='How to get the ID of EC2 instance created with Ansible playbook'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+
+
+    <!-- :preload-content -->
+    <footer class="noscript-footer-nav">
+        <nav itemscope itemtype='http://schema.org/SiteNavigationElement'>
+            <a href='../../index.html'>Home</a>
+            <a href="../../categories.html">Categories</a>
+            <a href="https://forum.stackstorm.com/guidelines">FAQ/Guidelines</a>
+            <a href="../../tos.html">Terms of Service</a>
+            <a href="../../privacy.html">Privacy Policy</a>
+        </nav>
+    </footer>
+</div>
+
+<footer id='noscript-footer'>
+    <p>Powered by <a href="https://www.discourse.org">Discourse</a>, best viewed with JavaScript enabled</p>
+</footer>
+
+
+<section id='main'>
+</section>
+
+
+</body>
+</html>

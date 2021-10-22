@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Value: &lt;% st2kv( system.$.combinedKey ) %&gt;</title>
+    <link>https://forum.stackstorm.com/t/value-st2kv-system-combinedkey/321</link>
+    <description>```yaml
+    vars:
+        value: unspecified
+        combinedKey: &lt;% $.scope %&gt;.&lt;% $.key %&gt;
+    vars:
+        value: unspecified
+        combinedKey: &lt;% $.scope %&gt;.&lt;% $.key %&gt;
+```
+
+been running through the publish statement and trying to figure out how I get the variable `$.st2_execution_id`  or `env().st2_execution_id` into the actual variable to be able to fetch it for the &#39;st2kv&#39;.  While the below `&#39;system.leastBusyBuildServer&#39;` works as expected, doing something like `&#39;system.$.st2_execution_id.exit_status&#39;` doesn&#39;t expand the variable and I get back
+
+&gt; state_info: &quot;Failed to handle action completion [error=Can not evaluate YAQL expression [expression=st2kv( system.$.combinedKey ), error=No function &quot;#operator_.&quot; matches supplied arguments, data={}], wf=examples.mistral-kv, task=task1, action=std.noop]:
+
+
+```yaml
+    publish:
+# fails               value: &lt;% st2kv( &lt;% $.scope%&gt;.&lt;% $.key %&gt; ) %&gt;
+#  fails              value: &lt;% st2kv( &#39;$.combinedKey&#39; ) %&gt;
+#  fails              value: &lt;% st2kv( $.combinedKey) %&gt;
+#worked                value: &lt;% st2kv( &#39;system.leastBusyBuildServer&#39; ) %&gt;
+#fails                value: &lt;% st2kv(&#39;system.$.st2_execution_id.exit_status&#39; )
+```
+I have also tried this in the 
+```yaml
+    vars:
+        last_exit_prep_all:  concat(&quot;&#39;&quot; , &quot;st2_id&quot; , &quot;.&quot; , $.last_exit_prep, &quot;.&quot; , &quot;exit_status&quot; , &quot;&#39;&quot;)
+        st2_execution_id: &lt;% env().st2_execution_id %&gt;
+
+publish:
+                 exit_status_string: &lt;% st2kv($.last_exit_prep_all) %&gt;
+```
+also fails..</description>
+    
+    <lastBuildDate>Wed, 26 Sep 2018 23:12:46 +0000</lastBuildDate>
+    <category>Mistral</category>
+    <atom:link href="https://forum.stackstorm.com/t/value-st2kv-system-combinedkey/321.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Value: &lt;% st2kv( system.$.combinedKey ) %&gt;</title>
+        <dc:creator><![CDATA[petergits]]></dc:creator>
+        <description><![CDATA[
+            <p>this worked, struggling for too long… removing the single quotes solved this for me  yeah!!</p>
+<pre><code class="lang-yaml">vars:
+    value: unspecified
+    combinedKey: &lt;% $.scope %&gt;.&lt;% $.key %&gt;
+input:
+   - key
+   - scope
+output:
+    stdout: &lt;% $.value %&gt;
+  
+tasks:
+    task1:
+        action: std.noop
+        publish:
+            value: &lt;% st2kv( $.combinedKey ) %&gt;
+</code></pre>
+          <p><a href="https://forum.stackstorm.com/t/value-st2kv-system-combinedkey/321/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/value-st2kv-system-combinedkey/321/3</link>
+        <pubDate>Wed, 26 Sep 2018 21:45:50 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-321-3</guid>
+        <source url="https://forum.stackstorm.com/t/value-st2kv-system-combinedkey/321.rss">Value: &lt;% st2kv( system.$.combinedKey ) %&gt;</source>
+      </item>
+      <item>
+        <title>Value: &lt;% st2kv( system.$.combinedKey ) %&gt;</title>
+        <dc:creator><![CDATA[lhill]]></dc:creator>
+        <description><![CDATA[
+            <p>What’s the actual problem you’re trying to solve here?</p>
+          <p><a href="https://forum.stackstorm.com/t/value-st2kv-system-combinedkey/321/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/value-st2kv-system-combinedkey/321/2</link>
+        <pubDate>Wed, 26 Sep 2018 21:45:13 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-321-2</guid>
+        <source url="https://forum.stackstorm.com/t/value-st2kv-system-combinedkey/321.rss">Value: &lt;% st2kv( system.$.combinedKey ) %&gt;</source>
+      </item>
+      <item>
+        <title>Value: &lt;% st2kv( system.$.combinedKey ) %&gt;</title>
+        <dc:creator><![CDATA[petergits]]></dc:creator>
+        <description><![CDATA[
+            <pre><code class="lang-yaml">    vars:
+        value: unspecified
+        combinedKey: &lt;% $.scope %&gt;.&lt;% $.key %&gt;
+    vars:
+        value: unspecified
+        combinedKey: &lt;% $.scope %&gt;.&lt;% $.key %&gt;
+</code></pre>
+<p>been running through the publish statement and trying to figure out how I get the variable <code>$.st2_execution_id</code>  or <code>env().st2_execution_id</code> into the actual variable to be able to fetch it for the ‘st2kv’.  While the below <code>'system.leastBusyBuildServer'</code> works as expected, doing something like <code>'system.$.st2_execution_id.exit_status'</code> doesn’t expand the variable and I get back</p>
+<blockquote>
+<p>state_info: "Failed to handle action completion [error=Can not evaluate YAQL expression [expression=st2kv( system.$.combinedKey ), error=No function “<span class="hashtag">#operator_</span>.” matches supplied arguments, data={}], wf=examples.mistral-kv, task=task1, action=std.noop]:</p>
+</blockquote>
+<pre><code class="lang-yaml">    publish:
+# fails               value: &lt;% st2kv( &lt;% $.scope%&gt;.&lt;% $.key %&gt; ) %&gt;
+#  fails              value: &lt;% st2kv( '$.combinedKey' ) %&gt;
+#  fails              value: &lt;% st2kv( $.combinedKey) %&gt;
+#worked                value: &lt;% st2kv( 'system.leastBusyBuildServer' ) %&gt;
+#fails                value: &lt;% st2kv('system.$.st2_execution_id.exit_status' )
+</code></pre>
+<p>I have also tried this in the</p>
+<pre><code class="lang-yaml">    vars:
+        last_exit_prep_all:  concat("'" , "st2_id" , "." , $.last_exit_prep, "." , "exit_status" , "'")
+        st2_execution_id: &lt;% env().st2_execution_id %&gt;
+
+publish:
+                 exit_status_string: &lt;% st2kv($.last_exit_prep_all) %&gt;
+</code></pre>
+<p>also fails…</p>
+          <p><a href="https://forum.stackstorm.com/t/value-st2kv-system-combinedkey/321/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/value-st2kv-system-combinedkey/321/1</link>
+        <pubDate>Wed, 26 Sep 2018 21:40:09 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-321-1</guid>
+        <source url="https://forum.stackstorm.com/t/value-st2kv-system-combinedkey/321.rss">Value: &lt;% st2kv( system.$.combinedKey ) %&gt;</source>
+      </item>
+  </channel>
+</rss>

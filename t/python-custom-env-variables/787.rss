@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Python custom env variables</title>
+    <link>https://forum.stackstorm.com/t/python-custom-env-variables/787</link>
+    <description>Does anyone achieve Python runner env passing to mistral workflow. Here is what i mean
+```➜  st2 cat /etc/default/st2actionrunner
+ST2_PUBLIC_URL=&#39;https://192.168.16.20&#39;
+➜  st2 st2 run core.local cmd=env | grep -i st2_public_url
+    ST2_PUBLIC_URL=https://192.168.16.20
+➜  st2```
+for core.local runner ENV variable ST2_PUBLIC_URL is fine but for Python its not
+
+```PIException: RemoteError: Remote error: UndefinedError &#39;dict object&#39; has no attribute &#39;st2_public_url&#39;```
+In my workflow i use it as:
+```Execution URL is: {{ env().st2_public_url }}&quot;```
+
+If i use for example {{ env().st2_execution_id }} its OK but custom vars are not
+
+My plan is to have Jira comment which will provide public URL with execution ID:
+```Execution URL is: {{ env().st2_public_url }}&quot;//actionexecutions/{{ env().st2_execution_id }}```
+
+Which will generate: https://192.168.16.20/actionexecutions/TASK_ID
+I can easy put var inside the workflow but i need to do it in any of my workflows which is not a good idea i want to have public URL Env var and use it in my actions</description>
+    
+    <lastBuildDate>Thu, 01 Aug 2019 13:54:33 +0000</lastBuildDate>
+    <category>Mistral</category>
+    <atom:link href="https://forum.stackstorm.com/t/python-custom-env-variables/787.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Python custom env variables</title>
+        <dc:creator><![CDATA[armab]]></dc:creator>
+        <description><![CDATA[
+            <p>I think that’s a perfectly valid use case.<br>
+If you think there is an improvement that will make workflows more useful, - please submit a feature request.</p>
+<p>In a meantime, you have a workaround with <code>core.local</code>.</p>
+<p>Talking about Mistral, - we’re deprecating that workflow engine in next releases (<a href="https://docs.stackstorm.com/latest/roadmap.html#id2" class="inline-onebox" rel="nofollow noopener">Roadmap — StackStorm 3.2dev documentation</a>) in favor of Orquesta (<a href="https://docs.stackstorm.com/orquesta/index.html" class="inline-onebox" rel="nofollow noopener">Orquesta — StackStorm 3.1.0 documentation</a>), so it makes more sense to compose your feature request around new engine.</p>
+          <p><a href="https://forum.stackstorm.com/t/python-custom-env-variables/787/10">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/python-custom-env-variables/787/10</link>
+        <pubDate>Thu, 01 Aug 2019 13:54:33 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-787-10</guid>
+        <source url="https://forum.stackstorm.com/t/python-custom-env-variables/787.rss">Python custom env variables</source>
+      </item>
+      <item>
+        <title>Python custom env variables</title>
+        <dc:creator><![CDATA[eazysnatch]]></dc:creator>
+        <description><![CDATA[
+            <p>Thank you for your support. I found that issue but nobody respond there also “–inherit-en” is just a CLI option which does not work for me. Im trying to debug why is not working as we expect.</p>
+<p>The main idea must be straight forward:</p>
+<ul>
+<li>Put your custom vars in /etc/default/st2actionrunner</li>
+<li>restart action runner - st2ctl restart-component st2actionrunner</li>
+<li>you are done now all runners will have access to those vars with {{ env().MYVAR }}</li>
+</ul>
+          <p><a href="https://forum.stackstorm.com/t/python-custom-env-variables/787/9">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/python-custom-env-variables/787/9</link>
+        <pubDate>Thu, 01 Aug 2019 06:45:26 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-787-9</guid>
+        <source url="https://forum.stackstorm.com/t/python-custom-env-variables/787.rss">Python custom env variables</source>
+      </item>
+      <item>
+        <title>Python custom env variables</title>
+        <dc:creator><![CDATA[armab]]></dc:creator>
+        <description><![CDATA[
+            <p>Understood.<br>
+I found there is somewhat related bug reported in StackStorm: <a href="https://github.com/StackStorm/st2/issues/4676" class="inline-onebox" rel="nofollow noopener">st2 run --inherit-env does not work for actions run with python-script runner · Issue #4676 · StackStorm/st2 · GitHub</a><br>
+Please include in that bug report that python runner doesn’t read ENV variables from outside at all, - that’ll bring a bit more info to the issue.</p>
+          <p><a href="https://forum.stackstorm.com/t/python-custom-env-variables/787/8">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/python-custom-env-variables/787/8</link>
+        <pubDate>Wed, 31 Jul 2019 21:24:33 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-787-8</guid>
+        <source url="https://forum.stackstorm.com/t/python-custom-env-variables/787.rss">Python custom env variables</source>
+      </item>
+      <item>
+        <title>Python custom env variables</title>
+        <dc:creator><![CDATA[eazysnatch]]></dc:creator>
+        <description><![CDATA[
+            <p>Thank you for your advices. For Datastore im aware I was thinking of that. core.local is a good option I didn’t think of that.</p>
+<p>How I didn’t it till now is one of my python actions I did</p>
+<p>Action name: process_fields</p>
+<p>import os<br>
+st2_public_url = os.environ[‘ST2_PUBLIC_URL’]<br>
+“st2_public_url”: st2_public_url     &lt;&lt;&lt;&lt; here I publish it as task result.</p>
+<p>then from workflow.</p>
+<p>st2_public_url: “{{ task(‘process_fields’).result.result.st2_public_url }}”</p>
+<p>I think the datastore is the more clean because its not tide with specific action.</p>
+<p>The question is why is not working in doc it says it pass env also to Python runner</p>
+          <p><a href="https://forum.stackstorm.com/t/python-custom-env-variables/787/7">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/python-custom-env-variables/787/7</link>
+        <pubDate>Wed, 31 Jul 2019 18:51:44 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-787-7</guid>
+        <source url="https://forum.stackstorm.com/t/python-custom-env-variables/787.rss">Python custom env variables</source>
+      </item>
+      <item>
+        <title>Python custom env variables</title>
+        <dc:creator><![CDATA[armab]]></dc:creator>
+        <description><![CDATA[
+            <p>You can workaround that by saving public_url in st2 K/V storage and accessing it from mistral workflow.<br>
+Another way is to use <code>core.local</code> to print the ENV value and passing that task output to the next action within workflow.</p>
+          <p><a href="https://forum.stackstorm.com/t/python-custom-env-variables/787/6">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/python-custom-env-variables/787/6</link>
+        <pubDate>Wed, 31 Jul 2019 18:26:27 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-787-6</guid>
+        <source url="https://forum.stackstorm.com/t/python-custom-env-variables/787.rss">Python custom env variables</source>
+      </item>
+      <item>
+        <title>Python custom env variables</title>
+        <dc:creator><![CDATA[eazysnatch]]></dc:creator>
+        <description><![CDATA[
+            <p>Main goal:<br>
+get entire history URL from a workflow action task example:</p>
+<pre><code class="lang-auto">https://192.168.16.20/#/history/5d41b94f52364c4ab1889dde 
+</code></pre>
+<p>5d41b94f52364c4ab1889dde = st2_execution_id or st2_action_execiton_id</p>
+<p>Im searching for a VAR which will give me web public IP in which we login for GUI. I’m not talking about “env().st2_action_api_url” which is 127.0.0.1:9101/v1/</p>
+<p>Let me explain it in more details.</p>
+<p>I have a workflow and in my notification task I put line below … notice  {{ env().st2_public_url }} :</p>
+<pre><code class="lang-auto">notify:
+        action: MY_PACK.jira_comment_issue_with_role
+        input:
+          issue_key: "{{ _.issue_name }}"
+          role: "MY ROLE"
+          comment: |
+              {{ _.fail_message }}
+              =========================================================
+              {{ _.fail_message_detail }}
+              =========================================================
+              Stackstorm execution task URL is: {{ env().st2_public_url }}/#/history/{{ env().st2_execution_id }}
+</code></pre>
+<p>st2_public_url is my personal env which I put in:</p>
+<pre><code class="lang-auto">#cat /etc/default/st2actionrunner
+ST2_PUBLIC_URL='https://192.168.16.20'
+</code></pre>
+<p>When I run core.local I can see the ENV variable.</p>
+<p>When my sensors catch jira ticket and pass the trigger it run the workflow and I get the errors below In which you can see ( last line ) it complain from "st2_public_url</p>
+<p>P.S. There is no problem that env is in capital chars.</p>
+<pre><code class="lang-auto">2019-07-31 15:35:04,899 140322733357488 WARNING mistral [-] Determining if &lt;class 'mistralclient.api.base.APIException'&gt; should be retried...
+2019-07-31 15:35:04,899 140322733357488 ERROR callback [-] RemoteError: Remote error: UndefinedError 'dict object' has no attribute 'st2_public_url'
+[u'Traceback (most recent call last):\n', u'  File "/opt/stackstorm/mistral/local/lib/python2.7/site-packages/oslo_messaging/rpc/server.py", line 157, in _process_incoming\n    res = self.dispatcher.dispatch(message)\n', u'  File "/opt/stackstorm/mistral/local/lib/python2.7/site-packages/oslo_messaging/rpc/dispatcher.py", line 213, in dispatch\n    return self._do_dispatch(endpoint, method, ctxt, args)\n', u'  File "/opt/stackstorm/mistral/local/lib/python2.7/site-packages/oslo_messaging/rpc/dispatcher.py", line 183, in _do_dispatch\n    result = func(ctxt, **new_args)\n', u'  File "/opt/stackstorm/mistral/local/lib/python2.7/site-packages/mistral/engine/engine_server.py", line 157, in on_action_complete\n    return self.engine.on_action_complete(action_ex_id, result, wf_action)\n', u'  File "/opt/stackstorm/mistral/local/lib/python2.7/site-packages/mistral/db/utils.py", line 81, in decorate\n    return _with_auth_context(auth_ctx, func, *args, **kw)\n', u'  File "/opt/stackstorm/mistral/local/lib/python2.7/site-packages/tenacity/__init__.py", line 292, in wrapped_f\n    return self.call(f, *args, **kw)\n', u'  File "/opt/stackstorm/mistral/local/lib/python2.7/site-packages/tenacity/__init__.py", line 358, in call\n    do = self.iter(retry_state=retry_state)\n', u'  File "/opt/stackstorm/mistral/local/lib/python2.7/site-packages/tenacity/__init__.py", line 319, in iter\n    return fut.result()\n', u'  File "/opt/stackstorm/mistral/local/lib/python2.7/site-packages/concurrent/futures/_base.py", line 455, in result\n    return self.__get_result()\n', u'  File "/opt/stackstorm/mistral/local/lib/python2.7/site-packages/tenacity/__init__.py", line 361, in call\n    result = fn(*args, **kwargs)\n', u'  File "/opt/stackstorm/mistral/local/lib/python2.7/site-packages/mistral/db/utils.py", line 50, in _with_auth_context\n    return func(*args, **kw)\n', u'  File "/opt/stackstorm/mistral/local/lib/python2.7/site-packages/mistral/engine/action_queue.py", line 94, in decorate\n    res = func(*args, **kw)\n', u'  File "/opt/stackstorm/mistral/local/lib/python2.7/site-packages/osprofiler/profiler.py", line 159, in wrapper\n    result = f(*args, **kwargs)\n', u'  File "/opt/stackstorm/mistral/local/lib/python2.7/site-packages/mistral/engine/default_engine.py", line 140, in on_action_complete\n    action_handler.on_action_complete(action_ex, result)\n', u'  File "/opt/stackstorm/mistral/local/lib/python2.7/site-packages/osprofiler/profiler.py", line 159, in wrapper\n    result = f(*args, **kwargs)\n', u'  File "/opt/stackstorm/mistral/local/lib/python2.7/site-packages/mistral/engine/action_handler.py", line 54, in on_action_complete\n    task_handler.schedule_on_action_complete(action_ex)\n', u'  File "/opt/stackstorm/mistral/local/lib/python2.7/site-packages/mistral/engine/task_handler.py", line 437, in schedule_on_action_complete\n    _on_action_complete(action_ex)\n', u'  File "/opt/stackstorm/mistral/local/lib/python2.7/site-packages/osprofiler/profiler.py", line 159, in wrapper\n    result = f(*args, **kwargs)\n', u'  File "/opt/stackstorm/mistral/local/lib/python2.7/site-packages/mistral/engine/task_handler.py", line 110, in _on_action_complete\n    task.on_action_complete(action_ex)\n', u'  File "/opt/stackstorm/mistral/local/lib/python2.7/site-packages/osprofiler/profiler.py", line 159, in wrapper\n    result = f(*args, **kwargs)\n', u'  File "/opt/stackstorm/mistral/local/lib/python2.7/site-packages/mistral/engine/tasks.py", line 365, in on_action_complete\n    self.complete(state, state_info)\n', u'  File "/opt/stackstorm/mistral/local/lib/python2.7/site-packages/osprofiler/profiler.py", line 159, in wrapper\n    result = f(*args, **kwargs)\n', u'  File "/opt/stackstorm/mistral/local/lib/python2.7/site-packages/mistral/engine/tasks.py", line 219, in complete\n    data_flow.publish_variables(self.task_ex, self.task_spec)\n', u'  File "/opt/stackstorm/mistral/local/lib/python2.7/site-packages/mistral/workflow/data_flow.py", line 210, in publish_variables\n    task_ex.published = expr.evaluate_recursively(branch_vars, expr_ctx)\n', u'  File "/opt/stackstorm/mistral/local/lib/python2.7/site-packages/mistral/expressions/__init__.py", line 100, in evaluate_recursively\n    data[key] = _evaluate_item(data[key], context)\n', u'  File "/opt/stackstorm/mistral/local/lib/python2.7/site-packages/mistral/expressions/__init__.py", line 79, in _evaluate_item\n    return evaluate(item, context)\n', u'  File "/opt/stackstorm/mistral/local/lib/python2.7/site-packages/mistral/expressions/__init__.py", line 71, in evaluate\n    return evaluator.evaluate(expression, context)\n', u'  File "/opt/stackstorm/mistral/local/lib/python2.7/site-packages/mistral/expressions/jinja_expression.py", line 150, in evaluate\n    result = cls._env.from_string(expression).render(**ctx)\n', u'  File "/opt/stackstorm/mistral/local/lib/python2.7/site-packages/jinja2/environment.py", line 1008, in render\n    return self.environment.handle_exception(exc_info, True)\n', u'  File "/opt/stackstorm/mistral/local/lib/python2.7/site-packages/jinja2/environment.py", line 780, in handle_exception\n    reraise(exc_type, exc_value, tb)\n', u'  File "&lt;template&gt;", line 1, in top-level template code\n', u"UndefinedError: 'dict object' has no attribute 'st2_public_url'\n"].
+Traceback (most recent call last):
+  File "/opt/stackstorm/st2/local/lib/python2.7/site-packages/mistral_v2/callback.py", line 138, in callback
+    cls._update_action_execution(url, data)
+  File "/opt/stackstorm/st2/local/lib/python2.7/site-packages/retrying.py", line 49, in wrapped_f
+    return Retrying(*dargs, **dkw).call(f, *args, **kw)
+  File "/opt/stackstorm/st2/local/lib/python2.7/site-packages/retrying.py", line 206, in call
+    return attempt.get(self._wrap_exception)
+  File "/opt/stackstorm/st2/local/lib/python2.7/site-packages/retrying.py", line 247, in get
+    six.reraise(self.value[0], self.value[1], self.value[2])
+  File "/opt/stackstorm/st2/local/lib/python2.7/site-packages/retrying.py", line 200, in call
+    attempt = Attempt(fn(*args, **kwargs), attempt_number, False)
+  File "/opt/stackstorm/st2/local/lib/python2.7/site-packages/mistral_v2/callback.py", line 91, in _update_action_execution
+    client.action_executions.update(action_execution_id, **data)
+  File "/opt/stackstorm/st2/local/lib/python2.7/site-packages/mistralclient/api/v2/action_executions.py", line 67, in update
+    return self._update('/action_executions/%s' % id, data)
+  File "/opt/stackstorm/st2/local/lib/python2.7/site-packages/mistralclient/api/base.py", line 114, in _update
+    self._raise_api_exception(resp)
+  File "/opt/stackstorm/st2/local/lib/python2.7/site-packages/mistralclient/api/base.py", line 160, in _raise_api_exception
+    error_message=error_data)
+**APIException: RemoteError: Remote error: UndefinedError 'dict object' has no attribute 'st2_public_url'**```</code></pre>
+          <p><a href="https://forum.stackstorm.com/t/python-custom-env-variables/787/5">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/python-custom-env-variables/787/5</link>
+        <pubDate>Wed, 31 Jul 2019 16:05:49 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-787-5</guid>
+        <source url="https://forum.stackstorm.com/t/python-custom-env-variables/787.rss">Python custom env variables</source>
+      </item>
+      <item>
+        <title>Python custom env variables</title>
+        <dc:creator><![CDATA[armab]]></dc:creator>
+        <description><![CDATA[
+            <p>You can read ENV variable during the <code>core.local</code> action run. Use that within workflow to pass <code>ENV</code> variable further or write any conditional logic around ENV value.</p>
+          <p><a href="https://forum.stackstorm.com/t/python-custom-env-variables/787/4">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/python-custom-env-variables/787/4</link>
+        <pubDate>Wed, 31 Jul 2019 15:30:46 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-787-4</guid>
+        <source url="https://forum.stackstorm.com/t/python-custom-env-variables/787.rss">Python custom env variables</source>
+      </item>
+      <item>
+        <title>Python custom env variables</title>
+        <dc:creator><![CDATA[eazysnatch]]></dc:creator>
+        <description><![CDATA[
+            <p>its a workflow I must check how to specify --inherit-env option inside action YAML. My sensors start the trigger &gt; then workflow is kicked off ,so I don’t use RUN from CMD.</p>
+          <p><a href="https://forum.stackstorm.com/t/python-custom-env-variables/787/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/python-custom-env-variables/787/3</link>
+        <pubDate>Wed, 31 Jul 2019 14:36:01 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-787-3</guid>
+        <source url="https://forum.stackstorm.com/t/python-custom-env-variables/787.rss">Python custom env variables</source>
+      </item>
+      <item>
+        <title>Python custom env variables</title>
+        <dc:creator><![CDATA[armab]]></dc:creator>
+        <description><![CDATA[
+            <p><code>st2 run</code> has <code>-e</code> option to pass env variable:</p>
+<pre><code class="lang-auto">  -e, --inherit-env     Pass all the environment variables which are
+                        accessible to the CLI as "env" parameter to the
+                        action. Note: Only works with python, local and remote
+                        runners.
+</code></pre>
+<p>Try that.</p>
+          <p><a href="https://forum.stackstorm.com/t/python-custom-env-variables/787/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/python-custom-env-variables/787/2</link>
+        <pubDate>Wed, 31 Jul 2019 14:33:11 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-787-2</guid>
+        <source url="https://forum.stackstorm.com/t/python-custom-env-variables/787.rss">Python custom env variables</source>
+      </item>
+      <item>
+        <title>Python custom env variables</title>
+        <dc:creator><![CDATA[eazysnatch]]></dc:creator>
+        <description><![CDATA[
+            <p>Does anyone achieve Python runner env passing to mistral workflow. Here is what i mean</p>
+<pre><code class="lang-auto">ST2_PUBLIC_URL='https://192.168.16.20'
+➜  st2 st2 run core.local cmd=env | grep -i st2_public_url
+    ST2_PUBLIC_URL=https://192.168.16.20
+➜  st2```
+for core.local runner ENV variable ST2_PUBLIC_URL is fine but for Python its not
+
+```PIException: RemoteError: Remote error: UndefinedError 'dict object' has no attribute 'st2_public_url'```
+In my workflow i use it as:
+```Execution URL is: {{ env().st2_public_url }}"```
+
+If i use for example {{ env().st2_execution_id }} its OK but custom vars are not
+
+My plan is to have Jira comment which will provide public URL with execution ID:
+```Execution URL is: {{ env().st2_public_url }}"//actionexecutions/{{ env().st2_execution_id }}```
+
+Which will generate: https://192.168.16.20/actionexecutions/TASK_ID
+I can easy put var inside the workflow but i need to do it in any of my workflows which is not a good idea i want to have public URL Env var and use it in my actions</code></pre>
+          <p><a href="https://forum.stackstorm.com/t/python-custom-env-variables/787/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/python-custom-env-variables/787/1</link>
+        <pubDate>Wed, 31 Jul 2019 14:16:39 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-787-1</guid>
+        <source url="https://forum.stackstorm.com/t/python-custom-env-variables/787.rss">Python custom env variables</source>
+      </item>
+  </channel>
+</rss>

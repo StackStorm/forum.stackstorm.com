@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Performance Optimization for workflows</title>
+    <link>https://forum.stackstorm.com/t/performance-optimization-for-workflows/552</link>
+    <description>Yes, I know we should be moving to Orquesta, but until GA, I am stuck with mistral workflows. 
+
+We have a large, complex mistral workflow that calls other workflows, about 15 tasks total. We are connecting to network devices and we query large data sets with graphql and connect to routers with netmiko and napalm and issue queries. We write results to elasticsearch. 
+
+Inside the main workflow we gather the list of devices, then loop through the large set of routers (several dozen to 1000) and then execute the subworkflow for each of the routers, which does the aforementioned query and write to elastic. 
+
+We get buried after about 50 devices and things lock up pretty hard. We implemented a policy to throttle the behavior and that is working better. I am wondering if our expectations are in line with reality. We have a very large national network with 100K devices, so it takes about 10-15 mins to do 100 devices, i would like to do many more in parallel. 
+
+We are running in K8s at the moment, but load testing a single node to duplicate various errors we are seeing. 
+
+Wondering how to scale our mistral a bit more in our production. We are seeing the mistral server process eat up the CPU . When i look at the process i see: 
+
+/opt/stackstorm/mistral/bin/python /opt/stackstorm/mistral/bin/gunicorn --log-file /var/log/mistral/mistral-api.log -b 127.0.0.1:8989 -w 2 mistral.api.wsgi --graceful-timeout 10
+
+It appears i can start more workers/threads for gunicorn..anyway any suggestions for performance optimization would be appreciated. I have turned down logs at this point to ERROR, and done various and sundry other things. Beside the policy, not much is making any difference.</description>
+    
+    <lastBuildDate>Tue, 19 Mar 2019 17:08:07 +0000</lastBuildDate>
+    <category>Mistral</category>
+    <atom:link href="https://forum.stackstorm.com/t/performance-optimization-for-workflows/552.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Performance Optimization for workflows</title>
+        <dc:creator><![CDATA[m4dcoder]]></dc:creator>
+        <description><![CDATA[
+            <p>Let’s continue this discussion in Slack.  We will need some more context from you about your environment and workflow.</p>
+          <p><a href="https://forum.stackstorm.com/t/performance-optimization-for-workflows/552/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/performance-optimization-for-workflows/552/2</link>
+        <pubDate>Tue, 19 Mar 2019 17:08:07 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-552-2</guid>
+        <source url="https://forum.stackstorm.com/t/performance-optimization-for-workflows/552.rss">Performance Optimization for workflows</source>
+      </item>
+      <item>
+        <title>Performance Optimization for workflows</title>
+        <dc:creator><![CDATA[techdiverdown]]></dc:creator>
+        <description><![CDATA[
+            <p>Yes, I know we should be moving to Orquesta, but until GA, I am stuck with mistral workflows.</p>
+<p>We have a large, complex mistral workflow that calls other workflows, about 15 tasks total. We are connecting to network devices and we query large data sets with graphql and connect to routers with netmiko and napalm and issue queries. We write results to elasticsearch.</p>
+<p>Inside the main workflow we gather the list of devices, then loop through the large set of routers (several dozen to 1000) and then execute the subworkflow for each of the routers, which does the aforementioned query and write to elastic.</p>
+<p>We get buried after about 50 devices and things lock up pretty hard. We implemented a policy to throttle the behavior and that is working better. I am wondering if our expectations are in line with reality. We have a very large national network with 100K devices, so it takes about 10-15 mins to do 100 devices, i would like to do many more in parallel.</p>
+<p>We are running in K8s at the moment, but load testing a single node to duplicate various errors we are seeing.</p>
+<p>Wondering how to scale our mistral a bit more in our production. We are seeing the mistral server process eat up the CPU . When i look at the process i see:</p>
+<p>/opt/stackstorm/mistral/bin/python /opt/stackstorm/mistral/bin/gunicorn --log-file /var/log/mistral/mistral-api.log -b 127.0.0.1:8989 -w 2 mistral.api.wsgi --graceful-timeout 10</p>
+<p>It appears i can start more workers/threads for gunicorn…anyway any suggestions for performance optimization would be appreciated. I have turned down logs at this point to ERROR, and done various and sundry other things. Beside the policy, not much is making any difference.</p>
+          <p><a href="https://forum.stackstorm.com/t/performance-optimization-for-workflows/552/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/performance-optimization-for-workflows/552/1</link>
+        <pubDate>Fri, 15 Mar 2019 22:28:17 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-552-1</guid>
+        <source url="https://forum.stackstorm.com/t/performance-optimization-for-workflows/552.rss">Performance Optimization for workflows</source>
+      </item>
+  </channel>
+</rss>

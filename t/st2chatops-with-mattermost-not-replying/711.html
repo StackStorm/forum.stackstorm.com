@@ -1,0 +1,1689 @@
+<!DOCTYPE html>
+<html lang="en" class="desktop-view not-mobile-device text-size-normal anon">
+<head>
+    <meta charset="utf-8">
+    <title>St2chatops with Mattermost not replying - Chatops - StackStorm Support (ARCHIVED)</title>
+    <meta name="description" content="Good afternoon, 
+For the past couple weeks, I’ve been attemping to troubleshoot st2chatops/hubot connected to Mattermost not replying with the output after running a command except for help. I believe that this is caused&amp;hellip;">
+    <meta name="discourse_theme_id" content="2">
+    <meta name="discourse_current_homepage" content="latest">
+    <meta name="generator"
+          content="Discourse 2.8.0.beta6 - https://github.com/discourse/discourse version a1daf9fe53a66e2d2cdf9757ab4812fb9a2b2787">
+    <link rel="icon" type="image/png"
+          href="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/379ced12f8326d58f1b3d2b3ff652f883e141f6a_2_32x32.PNG">
+    <link rel="apple-touch-icon" type="image/png"
+          href="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/379ced12f8326d58f1b3d2b3ff652f883e141f6a_2_180x180.PNG">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <link rel="canonical" href="711.html"/>
+    <script type="application/ld+json">{
+        "@context": "http://schema.org",
+        "@type": "WebSite",
+        "url": "https://forum.stackstorm.com",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://forum.stackstorm.com/search?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }
+    </script>
+    <link rel="search" type="application/opensearchdescription+xml" href="../../opensearch.xml"
+          title="StackStorm Support (ARCHIVED) Search">
+
+
+    <link href="/../../stylesheets/color_definitions_base__2_3c5eec1ecf192052ea70b4afdab57a62bccc0604.css?__ws=forum.stackstorm.com"
+          media="all" rel="stylesheet" class="light-scheme"/>
+
+    <link href="/../../stylesheets/desktop_b2f2968742d41481357e0df259b51ce29f72481a.css?__ws=forum.stackstorm.com"
+          media="all" rel="stylesheet" data-target="desktop"/>
+
+
+    <meta name="fragment" content="!">
+
+
+    <link id="manifest-link" rel="manifest" href="../../manifest.webmanifest" crossorigin="use-credentials">
+
+
+    <link rel="alternate" type="application/rss+xml"
+          title="RSS feed of &#39;St2chatops with Mattermost not replying&#39;"
+          href="https://forum.stackstorm.com/t/st2chatops-with-mattermost-not-replying/711.rss"/>
+    <meta property="og:site_name" content="StackStorm Support (ARCHIVED)"/>
+    <meta property="og:type" content="website"/>
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:image"
+          content="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/891f00fbdb31fecb5bd9dab30c186d2fed0091ca.jpeg"/>
+    <meta property="og:image"
+          content="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/891f00fbdb31fecb5bd9dab30c186d2fed0091ca.jpeg"/>
+    <meta property="og:url" content="https://forum.stackstorm.com/t/st2chatops-with-mattermost-not-replying/711"/>
+    <meta name="twitter:url" content="https://forum.stackstorm.com/t/st2chatops-with-mattermost-not-replying/711"/>
+    <meta property="og:title" content="St2chatops with Mattermost not replying"/>
+    <meta name="twitter:title" content="St2chatops with Mattermost not replying"/>
+    <meta property="og:description"
+          content="Good afternoon,  For the past couple weeks, I’ve been attemping to troubleshoot st2chatops/hubot connected to Mattermost not replying with the output after running a command except for help. I believe that this is caused by the bot not being connected to the event stream, but I am unsure how to fix this.  I have installed StackStorm by following the Centos 7 install guide in your documentation.  Running !help returns the help output as expected.  Running, for example, !pack get docker returns no..."/>
+    <meta name="twitter:description"
+          content="Good afternoon,  For the past couple weeks, I’ve been attemping to troubleshoot st2chatops/hubot connected to Mattermost not replying with the output after running a command except for help. I believe that this is caused by the bot not being connected to the event stream, but I am unsure how to fix this.  I have installed StackStorm by following the Centos 7 install guide in your documentation.  Running !help returns the help output as expected.  Running, for example, !pack get docker returns no..."/>
+    <meta name="twitter:label1" value="Reading time"/>
+    <meta name="twitter:data1" value="19 mins 🕑"/>
+    <meta name="twitter:label2" value="Likes"/>
+    <meta name="twitter:data2" value="4 ❤"/>
+    <meta property="article:published_time" content="2019-06-25T16:58:00+00:00"/>
+    <meta property="og:ignore_canonical" content="true"/>
+
+    <link rel="next" href="https://forum.stackstorm.com/t/st2chatops-with-mattermost-not-replying/711?page=2">
+
+
+    <script type="application/ld+json">{
+        "@context": "http://schema.org",
+        "@type": "QAPage",
+        "name": "St2chatops with Mattermost not replying",
+        "mainEntity": {
+            "@type": "Question",
+            "name": "St2chatops with Mattermost not replying",
+            "text": "Good afternoon,\n\nFor the past couple weeks, I’ve been attemping to troubleshoot st2chatops/hubot connected to Mattermost not replying with the output after running a command except for help. I believe that this is caused by the bot not being connected to the event stream, but I am unsure how to fix &hellip;",
+            "upvoteCount": 0,
+            "answerCount": 1,
+            "dateCreated": "2019-06-25T16:58:00.019Z",
+            "author": {
+                "@type": "Person",
+                "name": ""
+            },
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "I just released version 0.10.0 of hubot-stackstorm to NPM. Please try installing that version instead:\n\ncd /opt/stackstorm/chatops\n\nnpm install hubot-stackstorm@0.10.0\n\nThat contains the fix and a large amount of refactoring.\n\nIf you do not want to install that version, an alternative is to manually &hellip;",
+                "upvoteCount": 2,
+                "dateCreated": "2019-08-07T21:59:28.886Z",
+                "url": "https://forum.stackstorm.com/t/st2chatops-with-mattermost-not-replying/711/29",
+                "author": {
+                    "@type": "Person",
+                    "name": "blag"
+                }
+            }
+        }
+    }
+    </script>
+
+    <meta id="data-discourse-setup" data-cdn="https://sjc6.discourse-cdn.com/standard10"
+          data-base-url="https://forum.stackstorm.com" data-base-uri="" data-environment="production"
+          data-letter-avatar-version="5_8fec8e114563efeaf5265573e510f08e"
+          data-markdown-it-url="https://aws1.discourse-cdn.com/standard10/assets/markdown-it-bundle-31e9a9c535ca1801c26da78b0ff465821751a98f921c5cdc5457d7e5a69e9748.js"
+          data-service-worker-url="service-worker.js" data-default-locale="en"
+          data-asset-version="597e36448c9b51d0fa3b7e43ec1fd6d5" data-disable-custom-css="false"
+          data-highlight-js-path="/highlight-js/forum.stackstorm.com/ac0f4aa001e1343346941766d72e0c1ae330832b.js"
+          data-svg-sprite-path="/svg-sprite/forum.stackstorm.com/svg-2-c2ad434b1e06079c7e282124aed9938dc95b83ea.js"
+          data-enable-js-error-reporting="true" data-color-scheme-is-dark="false" data-user-dark-scheme-id="-1"
+          data-s3-cdn="https://aws1.discourse-cdn.com/standard10"
+          data-s3-base-url="//discourse-cloud-file-uploads.s3.dualstack.us-west-2.amazonaws.com/standard10">
+
+    <meta name="discourse/config/environment"
+          content="%7B%22modulePrefix%22%3A%22discourse%22%2C%22environment%22%3A%22production%22%2C%22rootURL%22%3A%22%22%2C%22locationType%22%3A%22auto%22%2C%22historySupportMiddleware%22%3Afalse%2C%22EmberENV%22%3A%7B%22FEATURES%22%3A%7B%7D%2C%22EXTEND_PROTOTYPES%22%3A%7B%22Date%22%3Afalse%7D%2C%22_APPLICATION_TEMPLATE_WRAPPER%22%3Afalse%2C%22_DEFAULT_ASYNC_OBSERVERS%22%3Atrue%2C%22_JQUERY_INTEGRATION%22%3Atrue%7D%2C%22APP%22%3A%7B%22name%22%3A%22discourse%22%2C%22version%22%3A%222.8.0.beta6%20a1daf9fe53a66e2d2cdf9757ab4812fb9a2b2787%22%2C%22exportApplicationGlobal%22%3Atrue%7D%7D"/>
+</head>
+
+<body class="">
+
+
+<header class="d-header">
+    <div class="wrap">
+        <div class="contents clearfix">
+            <div class="title">
+                <a href="../../index.html">
+                    <picture>
+                        <img src="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png"
+                             alt="StackStorm Support (ARCHIVED)" id="site-logo"/>
+                    </picture>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</header>
+
+<div id="main-outlet" class="wrap" role="main">
+    <!-- preload-content: -->
+
+    <!-- EOF START -->
+    <div class="container" id="main-container">
+        <div id="ember11" class="ember-view"></div>
+        <div id="ember12" class="controls ember-view"><!----></div>
+        <div id="ember13" class="ember-view"><!----></div>
+        <div id="ember14" class="ember-view">
+            <div class="row">
+                <div id="global-notice-alert-read-only" class="alert alert-info alert-read-only">
+                    <!----> <span class="text">This site is in read only mode. Please continue to browse, but replying, likes, and other actions are disabled for now.</span>
+
+                    <!---->    </div>
+            </div>
+            <div class="row">
+                <div id="global-notice-alert-global-notice" class="alert alert-info alert-global-notice">
+                    <!----> <span class="text"><h3>⚠️ We've moved!</h3>  <p> Hi there!<br><br> To reduce project dependency on 3rd party paid services the StackStorm TSC has decided to move the Q/A from this forum to <a
+                        href="https://github.com/StackStorm/st2/discussions">Github Discussions</a>. This will make user experience better integrated with the native Github flow, as well as the questions closer to the community where they can provide answers. </p>  <p> Use 🔗 <b><a
+                        href="https://github.com/StackStorm/st2/discussions" class="active">Github Discussions</a></b> to ask your questions. </p></span>
+
+                    <!---->    </div>
+            </div>
+        </div>
+        <div id="ember17" class="hidden create-topics-notice ember-view"><!----></div>
+        <!---->
+    </div>
+    <!-- EOF END -->
+    <div id="topic-title">
+        <h1>
+            <a href="711.html">St2chatops with Mattermost not replying</a>
+        </h1>
+
+        <div class="topic-category" itemscope itemtype="http://schema.org/BreadcrumbList">
+          <span itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a href="../../c/chatops-related-issues/9" class="badge-wrapper bullet" itemprop="item">
+              <span class='badge-category-bg' style='background-color: #AB9364'></span>
+              <span class='badge-category clear-badge'>
+                <span class='category-name' itemprop='name'>Chatops</span>
+              </span>
+            </a>
+            <meta itemprop="position" content="1"/>
+          </span>
+        </div>
+
+        <div class="topic-category">
+            <div class='discourse-tags list-tags'>
+                <a href='../../tag/st2stream' class='discourse-tag' rel="tag">st2stream</a>,
+                <a href='../../tag/mattermost' class='discourse-tag' rel="tag">mattermost</a>,
+                <a href='../../tag/chatops' class='discourse-tag' rel="tag">chatops</a>
+            </div>
+        </div>
+    </div>
+
+
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/ChickenNotHD'><span
+                    itemprop='name'>ChickenNotHD</span></a>
+            
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="711.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2019-06-25T16:58:00Z' class='post-time'>
+                June 25, 2019,  4:58pm
+              </time>
+              <meta itemprop='dateModified' content='2019-07-03T15:05:25Z'>
+          <span itemprop='position'>#1</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Good afternoon,</p>
+            <p>For the past couple weeks, I’ve been attemping to troubleshoot st2chatops/hubot connected to Mattermost
+                not replying with the output after running a command except for help. I believe that this is caused by
+                the bot not being connected to the event stream, but I am unsure how to fix this.</p>
+            <p>I have installed StackStorm by following the Centos 7 install guide in your documentation.</p>
+            <p>Running <em>!help</em> returns the help output as expected.<br>
+                Running, for example, <em>!pack get docker</em> returns nothing at all. I can see, however, that in the
+                StackStorm history tab on the web ui, that both the packs.get action and the chatops.post_result action
+                resulted in a <em>Succeeded</em> status.</p>
+            <p>The following will contain my config files/log files. If you need any more of them, do let me know.</p>
+            <blockquote>
+                <p>/opt/stackstorm/chatops/st2chatops.env</p>
+            </blockquote>
+            <pre><code>export ST2_HOSTNAME="127.0.0.1"
+export NODE_TLS_REJECT_UNAUTHORIZED="${NODE_TLS_REJECT_UNAUTHORIZED:-0}"
+export EXPRESS_PORT="${EXPRESS_PORT:-8081}"
+export HUBOT_LOG_LEVEL="${HUBOT_LOG_LEVEL:-debug}"
+export HUBOT_NAME="${HUBOT_NAME:-hubot}"
+export HUBOT_ALIAS="${HUBOT_ALIAS:-!}"
+export ST2_API_URL="https://${ST2_HOSTNAME}/api"
+export ST2_AUTH_URL="https://${ST2_HOSTNAME}/auth"
+export ST2_STREAM_URL="https://${ST2_HOSTNAME}/stream"
+export ST2_API_KEY="API_KEY"
+export ST2_AUTH_USERNAME="st2admin"
+export ST2_AUTH_PASSWORD="PASSWORD"
+export ST2_WEBUI_URL="https://STACKSTORM"
+export HUBOT_ADAPTER=matteruser
+export MATTERMOST_HOST=HOST
+export MATTERMOST_GROUP=StackStorm
+export MATTERMOST_USER=hubot
+export MATTERMOST_PASSWORD="PASSWORD"
+export MATTERMOST_WSS_PORT=443
+export MATTERMOST_HTTP_PORT=443
+export MATTERMOST_TLS_VERIFY=false
+export MATTERMOST_USE_TLS=true
+export MATTERMOST_LOG_LEVEL=debug
+export MATTERMOST_REPLY=true
+</code></pre>
+            <blockquote>
+                <p>/etc/st2/st2.conf</p>
+            </blockquote>
+            <pre><code>[api]
+host = 127.0.0.1
+port = 9101
+logging = /etc/st2/logging.api.gunicorn.conf
+mask_secrets = True
+debug = True
+[stream]
+logging = /etc/st2/logging.stream.gunicorn.conf
+host = 127.0.0.1
+port = 9102
+debug = True
+[sensorcontainer]
+logging = /etc/st2/logging.sensorcontainer.conf
+[rulesengine]
+logging = /etc/st2/logging.rulesengine.conf
+[actionrunner]
+logging = /etc/st2/logging.actionrunner.conf
+virtualenv_opts =
+[resultstracker]
+logging = /etc/st2/logging.resultstracker.conf
+[notifier]
+logging = /etc/st2/logging.notifier.conf
+[exporter]
+logging = /etc/st2/logging.exporter.conf
+[garbagecollector]
+logging = /etc/st2/logging.garbagecollector.conf
+[timersengine]
+logging = /etc/st2/logging.timersengine.conf
+[auth]
+host = 127.0.0.1
+port = 9100
+use_ssl = True
+debug = False
+enable = True
+cert = /etc/ssl/st2/st2.crt
+key = /etc/ssl/st2/st2.key
+logging = /etc/st2/logging.auth.gunicorn.conf
+debug = True
+mode = standalone
+backend = flat_file
+backend_kwargs = {"file_path": "/etc/st2/htpasswd"}
+api_url = http://127.0.0.1:9101/
+[system]
+base_path = /opt/stackstorm
+[webui]
+webui_base_url = https://STACKSTORM
+[syslog]
+host = 127.0.0.1
+port = 514
+facility = local7
+protocol = udp
+[log]
+excludes = requests,paramiko
+redirect_stderr = False
+mask_secrets = True
+[system_user]
+user = stanley
+ssh_key_file = /home/stanley/.ssh/stanley_rsa
+[messaging]
+url = amqp://guest:guest@127.0.0.1:5672/
+[ssh_runner]
+remote_dir = /tmp
+[workflow_engine]
+logging = /etc/st2/logging.workflowengine.conf
+[scheduler]
+logging = /etc/st2/logging.scheduler.conf
+[keyvalue]
+encryption_key_path = /etc/st2/keys/datastore_key.json
+</code></pre>
+            <blockquote>
+                <p>/etc/nginx/conf.d/st2.conf</p>
+            </blockquote>
+            <blockquote>
+                <p>output of journalctl after systemctl restart st2chatops</p>
+            </blockquote>
+            <pre><code>-- Logs begin at Mon 2019-06-24 05:40:30 UTC, end at Tue 2019-06-25 16:04:25 UTC. --
+Jun 25 15:54:55 SERVER systemd[1]: Started StackStorm service st2chatops.
+-- Subject: Unit st2chatops.service has finished start-up
+-- Defined-By: systemd
+-- Support: http://lists.freedesktop.org/mailman/listinfo/systemd-devel
+-- 
+-- Unit st2chatops.service has finished starting up.
+-- 
+-- The start-up result is done.
+Jun 25 15:54:55 SERVER hubot[40886]: Tue, 25 Jun 2019 15:54:55 GMT body-parser deprecated undefined extended: provide extended option at node_modules/hubot/src/robot.js:445:21
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] DEBUG Loading adapter matteruser
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] INFO Logging in...
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] DEBUG POST /users/login
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] INFO api url:https://MATTERMOST:443/api/v4/users/login
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] INFO Websocket URL: wss://MATTERMOST:443/api/v4/websocket
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] INFO Logged in as user "hubot" but not connected yet.
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] INFO Loading /users/me
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] DEBUG GET /users/me
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] INFO api url:https://MATTERMOST:443/api/v4/users/me
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] INFO Loading /users/me/preferences
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] DEBUG GET /users/me/preferences
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] INFO api url:https://MATTERMOST:443/api/v4/users/me/preferences
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] INFO Loading /users/me/teams
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] DEBUG GET /users/me/teams
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] INFO api url:https://MATTERMOST:443/api/v4/users/me/teams
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] INFO Loaded Me...
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] INFO Found 1 teams.
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] DEBUG Testing stackstorm == StackStorm
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] INFO Found team! bkt3m3ah3bdb7p4asyoporaafe
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] INFO Loading /users?page=0&amp;per_page=200&amp;in_team=bkt3m3ah3bdb7p4asyoporaafe
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] DEBUG GET /users?page=0&amp;per_page=200&amp;in_team=bkt3m3ah3bdb7p4asyoporaafe
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] INFO api url:https://MATTERMOST:443/api/v4/users?page=0&amp;per_page=200&amp;in_team=bkt3m3ah3bdb7p4asyoporaafe
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] INFO Loading /users/me/teams/bkt3m3ah3bdb7p4asyoporaafe/channels
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] DEBUG GET /users/me/teams/bkt3m3ah3bdb7p4asyoporaafe/channels
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] INFO api url:https://MATTERMOST:443/api/v4/users/me/teams/bkt3m3ah3bdb7p4asyoporaafe/channels
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] INFO Connecting...
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] INFO Loaded Preferences...
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] INFO Found 5 subscribed channels.
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] INFO Found 2 profiles.
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] DEBUG Adding user 1dwugfdxui8sjfrz7q5a15snah
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] DEBUG Adding user c1tjrej1pibk9xgxnajo3br8rw
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] INFO Loading /users?page=1&amp;per_page=200&amp;in_team=bkt3m3ah3bdb7p4asyoporaafe
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] DEBUG GET /users?page=1&amp;per_page=200&amp;in_team=bkt3m3ah3bdb7p4asyoporaafe
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] INFO api url:https://MATTERMOST:443/api/v4/users?page=1&amp;per_page=200&amp;in_team=bkt3m3ah3bdb7p4asyoporaafe
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] INFO Found 0 profiles.
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] INFO Connected to Mattermost.
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] DEBUG Loading scripts from /opt/stackstorm/chatops/scripts
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] DEBUG Loading scripts from /opt/stackstorm/chatops/src/scripts
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] INFO Sending challenge...
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] INFO Starting pinger...
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] INFO Mattermost server: 5.9.0.5.9.1.9f13f073fc130ee6975f57c436fabfee.false
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] DEBUG Received unhandled message:
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] DEBUG { status: 'OK', seq_reply: 1 }
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] DEBUG Loading external-scripts from npm packages
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] INFO Using ST2_API_KEY as authentication. Expiry will lead to bot exit.
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] DEBUG Using matteruser post data handler.
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] DEBUG Parsing help for /opt/stackstorm/chatops/node_modules/hubot-stackstorm/scripts/stackstorm.js
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] INFO Loading commands....
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] DEBUG Parsing help for /opt/stackstorm/chatops/node_modules/hubot-help/src/help.coffee
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] DEBUG Added command: pack get &lt;pack&gt; - Get information about installed StackStorm pack.
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] DEBUG Added command: pack get {{ pack }} - Get information about installed StackStorm pack.
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] DEBUG Added command: pack install &lt;pack_name|git_url&gt;[,&lt;pack_name|git_url&gt;] - Install/upgrade StackStorm packs.
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] DEBUG Added command: pack install {{ packs }} - Install/upgrade StackStorm packs.
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] DEBUG Added command: pack search &lt;query&gt; - Search for packs in StackStorm Exchange and other directories.
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] DEBUG Added command: pack search {{ query }} - Search for packs in StackStorm Exchange and other directories.
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] DEBUG Added command: pack show &lt;pack&gt; - Show information about the pack from StackStorm Exchange.
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] DEBUG Added command: pack show {{ pack }} - Show information about the pack from StackStorm Exchange.
+Jun 25 15:54:55 SERVER hubot[40886]: [Tue Jun 25 2019 15:54:55 GMT+0000 (UTC)] INFO 4 commands are loaded</code></pre>
+        </div>
+
+        <meta itemprop='headline' content='St2chatops with Mattermost not replying'>
+        <meta itemprop='keywords' content='st2stream, mattermost, chatops'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/jinping'><span itemprop='name'>jinping</span></a>
+            (Jinping)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="711.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2019-06-25T19:23:32Z' class='post-time'>
+                June 25, 2019,  7:23pm
+              </time>
+              <meta itemprop='dateModified' content='2019-06-25T19:23:32Z'>
+          <span itemprop='position'>#2</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p><code>st2chatop</code> only supports Mattermost version 5.<br>
+                Could you provide <code>st2chatops</code> log after run actions <code>!pack get docker</code>?</p>
+            <p>ChatOps Troubleshooting Guide:<br>
+            <aside class="onebox githubblob">
+                <header class="source">
+                    <a href="https://github.com/StackStorm/st2docs/blob/master/docs/source/troubleshooting/basic_chatops_troubleshooting.rst"
+                       target="_blank" rel="nofollow noopener">github.com</a>
+                </header>
+                <article class="onebox-body">
+                    <h4>
+                        <a href="https://github.com/StackStorm/st2docs/blob/master/docs/source/troubleshooting/basic_chatops_troubleshooting.rst"
+                           target="_blank" rel="nofollow noopener">StackStorm/st2docs/blob/master/docs/source/troubleshooting/basic_chatops_troubleshooting.rst</a>
+                    </h4>
+                    <pre><code class="lang-rst">ChatOps Troubleshooting Guide
+=============================
+
+This guide will help you troubleshoot ``st2chatops``, up to the point where Hubot should work,
+reply to your commands and send manually triggered messages via ``chatops.post_message``. 
+
+.. note::
+    
+    The recommended way to install ``st2chatops`` is using the steps mentioned 
+    in :doc:`Installation Section &lt;../install/index&gt;` for your OS.
+
+----------------------------------------------
+Troubleshooting Using Hubot Self-check Script:
+----------------------------------------------
+
+We have a `self-check script &lt;https://github.com/StackStorm/st2chatops/blob/master/scripts/self-check.sh&gt;`_ 
+to help you debug ChatOps issues.
+
+Just copy the script and run it on your server. It will run a few essential tests that will provide
+you basic troubleshooting steps in case of a failure.
+</code></pre>
+
+                    This file has been truncated. <a
+                        href="https://github.com/StackStorm/st2docs/blob/master/docs/source/troubleshooting/basic_chatops_troubleshooting.rst"
+                        target="_blank" rel="nofollow noopener">show original</a>
+
+                </article>
+                <div class="onebox-metadata">
+
+
+                </div>
+                <div style="clear: both"></div>
+            </aside>
+            </p>
+        </div>
+
+        <meta itemprop='headline' content='St2chatops with Mattermost not replying'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/ChickenNotHD'><span
+                    itemprop='name'>ChickenNotHD</span></a>
+            
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="711.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2019-06-26T11:51:01Z' class='post-time'>
+                June 26, 2019, 11:51am
+              </time>
+              <meta itemprop='dateModified' content='2019-06-26T11:53:29Z'>
+          <span itemprop='position'>#3</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Hello and sorry for the late reply,</p>
+            <p>I am using Mattermost 5.9.1. I do not think that my Mattermost version is the problem, as the bot
+                responds to ‘!help’ and reads my commands correctly, it just doesn’t send back the result of the
+                StackStorm action.<br>
+                Here’s the output of <code>!pack get docker</code>:</p>
+            <pre><code>Jun 26 11:07:09 SERVER hubot[19601]: [Wed Jun 26 2019 11:07:09 GMT+0000 (UTC)] INFO Someone is typing... { event: 'typing',
+Jun 26 11:07:09 SERVER hubot[19601]: data: { parent_id: '', user_id: 'c1tjrej1pibk9xgxnajo3br8rw' },
+Jun 26 11:07:09 SERVER hubot[19601]: broadcast:
+Jun 26 11:07:09 SERVER hubot[19601]: { omit_users: { c1tjrej1pibk9xgxnajo3br8rw: true },
+Jun 26 11:07:09 SERVER hubot[19601]: user_id: '',
+Jun 26 11:07:09 SERVER hubot[19601]: channel_id: 'bb6gusgg7ffp9je7br6bnckaxa',
+Jun 26 11:07:09 SERVER hubot[19601]: team_id: '' },
+Jun 26 11:07:09 SERVER hubot[19601]: seq: 2 }
+Jun 26 11:07:09 SERVER hubot[19601]: [Wed Jun 26 2019 11:07:09 GMT+0000 (UTC)] INFO ping
+Jun 26 11:07:09 SERVER hubot[19601]: [Wed Jun 26 2019 11:07:09 GMT+0000 (UTC)] INFO ACK ping (2)
+Jun 26 11:07:13 SERVER hubot[19601]: [Wed Jun 26 2019 11:07:13 GMT+0000 (UTC)] DEBUG Message {
+Jun 26 11:07:13 SERVER hubot[19601]: event: 'posted',
+Jun 26 11:07:13 SERVER hubot[19601]: data:
+Jun 26 11:07:13 SERVER hubot[19601]: { channel_display_name: '@USERNAME',
+Jun 26 11:07:13 SERVER hubot[19601]: channel_name: '1dwugfdxui8sjfrz7q5a15snah__c1tjrej1pibk9xgxnajo3br8rw',
+Jun 26 11:07:13 SERVER hubot[19601]: channel_type: 'D',
+Jun 26 11:07:13 SERVER hubot[19601]: mentions: '["1dwugfdxui8sjfrz7q5a15snah"]',
+Jun 26 11:07:13 SERVER hubot[19601]: post: '{"id":"sg3p9kwxht8npgcargm9mk4b9c","create_at":1561547234522,"update_at":1561547234522,"edit_at":0,"delete_at":0,"is_pinned":false,"user_id":"c1tjrej1pibk9xgxnajo3br8rw","channel_id":"bb6gusgg7ffp9je7br6bnckaxa","root_id":"","parent_id":"","original_id":"","message":"pack get docker","type":"","props":{},"hashtags":"","pending_post_id":"c1tjrej1pibk9xgxnajo3br8rw:1561547151471","metadata":{}}',
+Jun 26 11:07:13 SERVER hubot[19601]: sender_name: 'USERNAME',
+Jun 26 11:07:13 SERVER hubot[19601]: team_id: '' },
+Jun 26 11:07:13 SERVER hubot[19601]: broadcast:
+Jun 26 11:07:13 SERVER hubot[19601]: { omit_users: null,
+Jun 26 11:07:13 SERVER hubot[19601]: user_id: '',
+Jun 26 11:07:13 SERVER hubot[19601]: channel_id: 'bb6gusgg7ffp9je7br6bnckaxa',
+Jun 26 11:07:13 SERVER hubot[19601]: team_id: '' },
+Jun 26 11:07:13 SERVER hubot[19601]: seq: 3 }
+Jun 26 11:07:13 SERVER hubot[19601]: [Wed Jun 26 2019 11:07:13 GMT+0000 (UTC)] DEBUG From: c1tjrej1pibk9xgxnajo3br8rw, To: 1dwugfdxui8sjfrz7q5a15snah
+Jun 26 11:07:13 SERVER hubot[19601]: [Wed Jun 26 2019 11:07:13 GMT+0000 (UTC)] DEBUG Text: hubot pack get docker
+Jun 26 11:07:13 SERVER hubot[19601]: [Wed Jun 26 2019 11:07:13 GMT+0000 (UTC)] DEBUG Message sent to hubot brain.
+Jun 26 11:07:13 SERVER hubot[19601]: [Wed Jun 26 2019 11:07:13 GMT+0000 (UTC)] DEBUG Message 'hubot pack get docker' matched regex //^\s*[@]?(?:hubot[:,]?|![:,]?)\s*(?:([\s\S]+?)$)/i/; listener.options = { id: null }
+Jun 26 11:07:13 SERVER hubot[19601]: [Wed Jun 26 2019 11:07:13 GMT+0000 (UTC)] DEBUG Executing listener callback for Message 'hubot pack get docker'
+Jun 26 11:07:13 SERVER hubot[19601]: [Wed Jun 26 2019 11:07:13 GMT+0000 (UTC)] DEBUG Sending command payload: {"name":"pack_get","format":"pack get {{ pack }}","command":"pack get docker","user":"USERNAME","source_channel":"bb6gusgg7ffp9je7br6bnckaxa","source_context":{"room":"bb6gusgg7ffp9je7br6bnckaxa","user":{"id":"c1tjrej1pibk9xgxnajo3br8rw","name":"USERNAME","real_name":"LASTNAME, FIRSTNAME","email_address":"USERNAME@gitlab.localhost","mm":{"dm_channel_id":"bb6gusgg7ffp9je7br6bnckaxa","id":"c1tjrej1pibk9xgxnajo3br8rw","create_at":1560781196718,"update_at":1560781983164,"delete_at":0,"username":"USERNAME","auth_data":"","auth_service":"","email":"USERNAME@gitlab.localhost","nickname":"","first_name":"LASTNAME,","last_name":"FIRSTNAME","position":"","roles":"system_user system_admin","locale":"en","timezone":{"automaticTimezone":"","manualTimezone":"","useAutomaticTimezone":"true"}},"room":"bb6gusgg7ffp9je7br6bnckaxa","room_name":"@USERNAME","channel_type":"D"},"message":{"user":{"id":"c1tjrej1pibk9xgxnajo3br8rw","name":"USERNAME","real_name":"LASTNAME, FIRSTNAME","email_address":"USERNAME@gitlab.localhost","mm":{"dm_channel_id":"bb6gusgg7ffp9je7br6bnckaxa","id":"c1tjrej1pibk9xgxnajo3br8rw","create_at":1560781196718,"update_at":1560781983164,"delete_at":0,"username":"USERNAME","auth_data":"","auth_service":"","email":"USERNAME@gitlab.localhost","nickname":"","first_name":"LASTNAME,","last_name":"FIRSTNAME","position":"","roles":"system_user system_admin","locale":"en","timezone":{"automaticTimezone":"","manualTimezone":"","useAutomaticTimezone":"true"}},"room":"bb6gusgg7ffp9je7br6bnckaxa","room_name":"@USERNAME","channel_type":"D"},"done":false,"room":"bb6gusgg7ffp9je7br6bnckaxa","text":"hubot pack get docker","id":"sg3p9kwxht8npgcargm9mk4b9c"}},"notification_route":"hubot"}
+Jun 26 11:07:16 SERVER hubot[19601]: [Wed Jun 26 2019 11:07:16 GMT+0000 (UTC)] DEBUG Chatops message received: {"trace_context": null, "payload": {"extra": {}, "whisper": false, "user": "USERNAME", "context": {"message": {"id": "sg3p9kwxht8npgcargm9mk4b9c", "text": "hubot pack get docker", "done": false, "user": {"room": "bb6gusgg7ffp9je7br6bnckaxa", "mm": {"username": "USERNAME", "first_name": "LASTNAME,", "last_name": "FIRSTNAME", "roles": "system_user system_admin", "locale": "en", "dm_channel_id": "bb6gusgg7ffp9je7br6bnckaxa", "update_at": 1560781983164, "create_at": 1560781196718, "auth_service": "", "email": "USERNAME@gitlab.localhost", "auth_data": "", "timezone": {"automaticTimezone": "", "useAutomaticTimezone": "true", "manualTimezone": ""}, "delete_at": 0, "position": "", "nickname": "", "id": "c1tjrej1pibk9xgxnajo3br8rw"}, "room_name": "@USERNAME", "real_name": "LASTNAME, FIRSTNAME", "channel_type": "D", "email_address": "USERNAME@gitlab.localhost", "id": "c1tjrej1pibk9xgxnajo3br8rw", "name": "USERNAME"}, "room": "bb6gusgg7ffp9je7br6bnckaxa"}, "room": "bb6gusgg7ffp9je7br6bnckaxa", "user": {"room": "bb6gusgg7ffp9je7br6bnckaxa", "mm": {"username": "USERNAME", "first_name": "LASTNAME,", "last_name": "FIRSTNAME", "roles": "system_user system_admin", "locale": "en", "dm_channel_id": "bb6gusgg7ffp9je7br6bnckaxa", "update_at": 1560781983164, "create_at": 1560781196718, "auth_service": "", "id": "c1tjrej1pibk9xgxnajo3br8rw", "auth_data": "", "position": "", "delete_at": 0, "timezone": {"automaticTimezone": "", "useAutomaticTimezone": "true", "manualTimezone": ""}, "nickname": "", "email": "USERNAME@gitlab.localhost"}, "room_name": "@USERNAME", "real_name": "LASTNAME, FIRSTNAME", "channel_type": "D", "email_address": "USERNAME@gitlab.localhost", "id": "c1tjrej1pibk9xgxnajo3br8rw", "name": "USERNAME"}}, "message": "The requested pack is not present in your StackStorm installation.\nTo install the pack: `pack install docker`\n", "channel": "bb6gusgg7ffp9je7br6bnckaxa"}}
+Jun 26 11:07:39 SERVER hubot[19601]: [Wed Jun 26 2019 11:07:39 GMT+0000 (UTC)] INFO ping
+Jun 26 11:07:39 SERVER hubot[19601]: [Wed Jun 26 2019 11:07:39 GMT+0000 (UTC)] INFO ACK ping (2)
+</code></pre>
+            <p>As you can see in the “Chatops message received” line near the bottom, it does contain the ‘message’
+                field that is supposed to be printed in Mattermost, but it isn’t.<br>
+                As for the troubleshooting guide, I have went through it multiple times. I believe that my problem is my
+                following:</p>
+            <pre><code>* Gives an acknowledgement message without result:
+
+If you get an acknowledgement message, but then nothing happens, Hubot is most likely disconnected from the StackStorm stream. The main reason for it is a wrong networking setup (Hubot can't connect to your StackStorm instance); check nginx configuration and the parameters in `/opt/stackstorm/chatops/st2chatops.env` (most importantly, `ST2_HOSTNAME` ). Another reason is that either the StackStorm action you're trying to launch or your alias fails with an unexpected error that the bot can't process. This can be checked in StackStorm execution history through CLI or Web UI.
+</code></pre>
+            <p>I have also ran the self-check.sh script, and every time it fails at the last step: ‘End to end test
+                failed: Hubot not responding to “st2 list” command.’ I have never had any of the ‘st2’ commands in my
+                help, but I do get the ‘pack’ commands. The script recommends re-installing st2chatops, which I have
+                done just now to make sure, for a grand total of 3 times.</p>
+        </div>
+
+        <meta itemprop='headline' content='St2chatops with Mattermost not replying'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/ChickenNotHD'><span
+                    itemprop='name'>ChickenNotHD</span></a>
+            
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="711.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2019-06-27T17:28:37Z' class='post-time'>
+                June 27, 2019,  5:28pm
+              </time>
+              <meta itemprop='dateModified' content='2019-06-27T17:28:37Z'>
+          <span itemprop='position'>#4</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>To be sure that the problem is in fact the bot not connecting to the event stream, I have installed a
+                server running Rocket.Chat.</p>
+            <p>Setup: Stackstorm + st2chatops on a CentOS 7 box and Rocket.Chat in docker on a different CentOS 7
+                box</p>
+            <p>Result: The same thing happens, the bot connects properly, is online, responds to <code>!help</code>,
+                sees that I am typing, reads <code>!pack get docker</code> and runs it. Stackstorm then runs the <code>chatops.post_result</code>
+                workflow, but it doesn’t post the response to Rocket.Chat. However, I do actually get an errors in
+                <code>journalctl -u st2chatops</code> so that may help.</p>
+            <pre><code>Jun 27 16:46:42 SERVER hubot[93283]: [Thu Jun 27 2019 16:46:42 GMT+0000 (UTC)] ERROR Stream error: Event { type: 'error' }
+Jun 27 16:46:43 SERVER hubot[93283]: [Thu Jun 27 2019 16:46:43 GMT+0000 (UTC)] DEBUG Chatops message received: {"trace_context": null, "payload": {"extra": {}, "whisper": false, "user": "USERNAME", "context": {"message": {"id": "jPJcsEzXcBwxw89Sd", "text": "!pack get docker", "done": false, "user": {"room": "general", "roomType": "c", "roomID": "GENERAL", "id": "3fgyFYzZD6wnNoNaf", "name": "USERNAME"}, "room": "general"}, "room": "general", "user": {"roomType": "c", "roomID": "GENERAL", "room": "general", "name": "USERNAME", "id": "3fgyFYzZD6wnNoNaf"}}, "message": "The requested pack is not present in your StackStorm installation.\nTo install the pack: `pack install docker`\n", "channel": "general"}}
+Jun 27 16:46:43 SERVER hubot[93283]: [Thu Jun 27 2019 16:46:43 GMT+0000 (UTC)] ERROR TypeError: Cannot read property 'roomID' of undefined
+Jun 27 16:46:43 SERVER hubot[93283]: at strings.map (/opt/stackstorm/chatops/node_modules/hubot-rocketchat/index.js:155:25)
+Jun 27 16:46:43 SERVER hubot[93283]: at Array.map (&lt;anonymous&gt;:null:null)
+Jun 27 16:46:43 SERVER hubot[93283]: at RocketChatBotAdapter.send (/opt/stackstorm/chatops/node_modules/hubot-rocketchat/index.js:154:20)
+Jun 27 16:46:43 SERVER hubot[93283]: at Robot.messageRoom (/opt/stackstorm/chatops/node_modules/hubot/src/robot.js:608:23)
+Jun 27 16:46:43 SERVER hubot[93283]: at sendChunk (/opt/stackstorm/chatops/node_modules/hubot-stackstorm/lib/post_data.js:454:25)
+Jun 27 16:46:43 SERVER hubot[93283]: at RocketChatDataPostHandler.postData (/opt/stackstorm/chatops/node_modules/hubot-stackstorm/lib/post_data.js:459:5)
+Jun 27 16:46:43 SERVER hubot[93283]: at EventSource.&lt;anonymous&gt; (/opt/stackstorm/chatops/node_modules/hubot-stackstorm/scripts/stackstorm.js:390:25)
+Jun 27 16:46:43 SERVER hubot[93283]: at emitOne (events.js:116:13)
+Jun 27 16:46:43 SERVER hubot[93283]: at EventSource.emit (events.js:211:7)
+Jun 27 16:46:43 SERVER hubot[93283]: at _emit (/opt/stackstorm/chatops/node_modules/eventsource/lib/eventsource.js:172:17)
+Jun 27 16:46:43 SERVER hubot[93283]: at parseEventStreamLine (/opt/stackstorm/chatops/node_modules/eventsource/lib/eventsource.js:186:9)
+Jun 27 16:46:43 SERVER hubot[93283]: at IncomingMessage.&lt;anonymous&gt; (/opt/stackstorm/chatops/node_modules/eventsource/lib/eventsource.js:150:11)
+Jun 27 16:46:43 SERVER hubot[93283]: at emitOne (events.js:116:13)
+Jun 27 16:46:43 SERVER hubot[93283]: at IncomingMessage.emit (events.js:211:7)
+Jun 27 16:46:43 SERVER hubot[93283]: at IncomingMessage.Readable.read (_stream_readable.js:475:10)
+Jun 27 16:46:43 SERVER hubot[93283]: at flow (_stream_readable.js:846:34)
+Jun 27 16:46:43 SERVER hubot[93283]: at resume_ (_stream_readable.js:828:3)
+Jun 27 16:46:43 SERVER hubot[93283]: at _combinedTickCallback (internal/process/next_tick.js:139:11)
+Jun 27 16:46:43 SERVER hubot[93283]: at process._tickCallback (internal/process/next_tick.js:181:9)
+Jun 27 16:46:56 SERVER hubot[93283]: [Thu Jun 27 2019 16:46:56 GMT+0000 (UTC)] INFO [received] Message in room GENERAL
+Jun 27 16:46:56 SERVER hubot[93283]: [Thu Jun 27 2019 16:46:56 GMT+0000 (UTC)] INFO Message receive callback ID gRvCWNTqTnBwbTAJH at Thu Jun 27 2019 16:46:56 GMT+0000 (UTC)
+Jun 27 16:46:56 SERVER hubot[93283]: [Thu Jun 27 2019 16:46:56 GMT+0000 (UTC)] INFO [Incoming] USERNAME: !pack get docker
+Jun 27 16:46:56 SERVER hubot[93283]: [Thu Jun 27 2019 16:46:56 GMT+0000 (UTC)] DEBUG [getRoomNameById] Calling (caching): GENERAL
+Jun 27 16:46:56 SERVER hubot[93283]: [Thu Jun 27 2019 16:46:56 GMT+0000 (UTC)] DEBUG [getRoomNameById] Success: "general"
+Jun 27 16:46:56 SERVER hubot[93283]: [Thu Jun 27 2019 16:46:56 GMT+0000 (UTC)] INFO Filters passed, will receive message
+Jun 27 16:46:56 SERVER hubot[93283]: [Thu Jun 27 2019 16:46:56 GMT+0000 (UTC)] DEBUG TextMessage: !pack get docker
+Jun 27 16:46:56 SERVER hubot[93283]: [Thu Jun 27 2019 16:46:56 GMT+0000 (UTC)] DEBUG Message '!pack get docker' matched regex //^\s*[@]?(?:hubot[:,]?|![:,]?)\s*(?:([\s\S]+?)$)/i/; listener.options = { id: null }
+Jun 27 16:46:56 SERVER hubot[93283]: [Thu Jun 27 2019 16:46:56 GMT+0000 (UTC)] DEBUG Executing listener callback for Message '!pack get docker'
+Jun 27 16:46:56 SERVER hubot[93283]: [Thu Jun 27 2019 16:46:56 GMT+0000 (UTC)] DEBUG Sending command payload: {"name":"pack_get","format":"pack get {{ pack }}","command":"pack get docker","user":"USERNAME","source_channel":"general","source_context":{"room":"general","user":{"id":"3fgyFYzZD6wnNoNaf","name":"USERNAME","roomID":"GENERAL","roomType":"c","room":"general"},"message":{"user":{"id":"3fgyFYzZD6wnNoNaf","name":"USERNAME","roomID":"GENERAL","roomType":"c","room":"general"},"done":false,"room":"general","text":"!pack get docker","id":"gRvCWNTqTnBwbTAJH"}},"notification_route":"hubot"}
+Jun 27 16:46:56 SERVER hubot[93283]: [Thu Jun 27 2019 16:46:56 GMT+0000 (UTC)] DEBUG Chatops message received: {"trace_context": null, "payload": {"extra": {}, "whisper": false, "user": "USERNAME", "context": {"message": {"id": "jPJcsEzXcBwxw89Sd", "text": "!pack get docker", "done": false, "user": {"room": "general", "roomType": "c", "roomID": "GENERAL", "id": "3fgyFYzZD6wnNoNaf", "name": "USERNAME"}, "room": "general"}, "room": "general", "user": {"roomType": "c", "roomID": "GENERAL", "room": "general", "name": "USERNAME", "id": "3fgyFYzZD6wnNoNaf"}}, "message": "The requested pack is not present in your StackStorm installation.\nTo install the pack: `pack install docker`\n", "channel": "general"}}
+Jun 27 16:46:56 SERVER hubot[93283]: [Thu Jun 27 2019 16:46:56 GMT+0000 (UTC)] ERROR TypeError: Cannot read property 'roomID' of undefined
+Jun 27 16:46:56 SERVER hubot[93283]: at strings.map (/opt/stackstorm/chatops/node_modules/hubot-rocketchat/index.js:155:25)
+Jun 27 16:46:56 SERVER hubot[93283]: at Array.map (&lt;anonymous&gt;:null:null)
+Jun 27 16:46:56 SERVER hubot[93283]: at RocketChatBotAdapter.send (/opt/stackstorm/chatops/node_modules/hubot-rocketchat/index.js:154:20)
+Jun 27 16:46:56 SERVER hubot[93283]: at Robot.messageRoom (/opt/stackstorm/chatops/node_modules/hubot/src/robot.js:608:23)
+Jun 27 16:46:56 SERVER hubot[93283]: at sendChunk (/opt/stackstorm/chatops/node_modules/hubot-stackstorm/lib/post_data.js:454:25)
+Jun 27 16:46:56 SERVER hubot[93283]: at RocketChatDataPostHandler.postData (/opt/stackstorm/chatops/node_modules/hubot-stackstorm/lib/post_data.js:459:5)
+Jun 27 16:46:56 SERVER hubot[93283]: at EventSource.&lt;anonymous&gt; (/opt/stackstorm/chatops/node_modules/hubot-stackstorm/scripts/stackstorm.js:390:25)
+Jun 27 16:46:56 SERVER hubot[93283]: at emitOne (events.js:116:13)
+Jun 27 16:46:56 SERVER hubot[93283]: at EventSource.emit (events.js:211:7)
+Jun 27 16:46:56 SERVER hubot[93283]: at _emit (/opt/stackstorm/chatops/node_modules/eventsource/lib/eventsource.js:172:17)
+Jun 27 16:46:56 SERVER hubot[93283]: at parseEventStreamLine (/opt/stackstorm/chatops/node_modules/eventsource/lib/eventsource.js:186:9)
+Jun 27 16:46:56 SERVER hubot[93283]: at IncomingMessage.&lt;anonymous&gt; (/opt/stackstorm/chatops/node_modules/eventsource/lib/eventsource.js:150:11)
+Jun 27 16:46:56 SERVER hubot[93283]: at emitOne (events.js:116:13)
+Jun 27 16:46:56 SERVER hubot[93283]: at IncomingMessage.emit (events.js:211:7)
+Jun 27 16:46:56 SERVER hubot[93283]: at addChunk (_stream_readable.js:263:12)
+Jun 27 16:46:56 SERVER hubot[93283]: at readableAddChunk (_stream_readable.js:250:11)
+Jun 27 16:46:56 SERVER hubot[93283]: at IncomingMessage.Readable.push (_stream_readable.js:208:10)
+Jun 27 16:46:56 SERVER hubot[93283]: at HTTPParser.parserOnBody (_http_common.js:137:22)
+Jun 27 16:46:56 SERVER hubot[93283]: at TLSSocket.socketOnData (_http_client.js:454:20)
+Jun 27 16:46:56 SERVER hubot[93283]: at emitOne (events.js:116:13)
+Jun 27 16:46:56 SERVER hubot[93283]: at TLSSocket.emit (events.js:211:7)
+Jun 27 16:46:56 SERVER hubot[93283]: at addChunk (_stream_readable.js:263:12)
+Jun 27 16:46:56 SERVER hubot[93283]: at readableAddChunk (_stream_readable.js:250:11)
+Jun 27 16:46:56 SERVER hubot[93283]: at TLSSocket.Readable.push (_stream_readable.js:208:10)
+Jun 27 16:46:56 SERVER hubot[93283]: at TLSWrap.onread (net.js:601:20)
+Jun 27 16:46:56 SERVER hubot[93283]: [Thu Jun 27 2019 16:46:56 GMT+0000 (UTC)] ERROR Stream error: Event { type: 'error' }
+Jun 27 16:46:57 SERVER hubot[93283]: [Thu Jun 27 2019 16:46:57 GMT+0000 (UTC)] DEBUG Chatops message received: {"trace_context": null, "payload": {"extra": {}, "whisper": false, "user": "USERNAME", "context": {"message": {"id": "jPJcsEzXcBwxw89Sd", "text": "!pack get docker", "done": false, "user": {"room": "general", "roomType": "c", "roomID": "GENERAL", "id": "3fgyFYzZD6wnNoNaf", "name": "USERNAME"}, "room": "general"}, "room": "general", "user": {"roomType": "c", "roomID": "GENERAL", "room": "general", "name": "USERNAME", "id": "3fgyFYzZD6wnNoNaf"}}, "message": "The requested pack is not present in your StackStorm installation.\nTo install the pack: `pack install docker`\n", "channel": "general"}}
+Jun 27 16:46:57 SERVER hubot[93283]: [Thu Jun 27 2019 16:46:57 GMT+0000 (UTC)] ERROR TypeError: Cannot read property 'roomID' of undefined
+Jun 27 16:46:57 SERVER hubot[93283]: at strings.map (/opt/stackstorm/chatops/node_modules/hubot-rocketchat/index.js:155:25)
+Jun 27 16:46:57 SERVER hubot[93283]: at Array.map (&lt;anonymous&gt;:null:null)
+Jun 27 16:46:57 SERVER hubot[93283]: at RocketChatBotAdapter.send (/opt/stackstorm/chatops/node_modules/hubot-rocketchat/index.js:154:20)
+Jun 27 16:46:57 SERVER hubot[93283]: at Robot.messageRoom (/opt/stackstorm/chatops/node_modules/hubot/src/robot.js:608:23)
+Jun 27 16:46:57 SERVER hubot[93283]: at sendChunk (/opt/stackstorm/chatops/node_modules/hubot-stackstorm/lib/post_data.js:454:25)
+Jun 27 16:46:57 SERVER hubot[93283]: at RocketChatDataPostHandler.postData (/opt/stackstorm/chatops/node_modules/hubot-stackstorm/lib/post_data.js:459:5)
+Jun 27 16:46:57 SERVER hubot[93283]: at EventSource.&lt;anonymous&gt; (/opt/stackstorm/chatops/node_modules/hubot-stackstorm/scripts/stackstorm.js:390:25)
+Jun 27 16:46:57 SERVER hubot[93283]: at emitOne (events.js:116:13)
+Jun 27 16:46:57 SERVER hubot[93283]: at EventSource.emit (events.js:211:7)
+Jun 27 16:46:57 SERVER hubot[93283]: at _emit (/opt/stackstorm/chatops/node_modules/eventsource/lib/eventsource.js:172:17)
+Jun 27 16:46:57 SERVER hubot[93283]: at parseEventStreamLine (/opt/stackstorm/chatops/node_modules/eventsource/lib/eventsource.js:186:9)
+Jun 27 16:46:57 SERVER hubot[93283]: at IncomingMessage.&lt;anonymous&gt; (/opt/stackstorm/chatops/node_modules/eventsource/lib/eventsource.js:150:11)
+Jun 27 16:46:57 SERVER hubot[93283]: at emitOne (events.js:116:13)
+Jun 27 16:46:57 SERVER hubot[93283]: at IncomingMessage.emit (events.js:211:7)
+Jun 27 16:46:57 SERVER hubot[93283]: at IncomingMessage.Readable.read (_stream_readable.js:475:10)
+Jun 27 16:46:57 SERVER hubot[93283]: at flow (_stream_readable.js:846:34)
+Jun 27 16:46:57 SERVER hubot[93283]: at resume_ (_stream_readable.js:828:3)
+Jun 27 16:46:57 SERVER hubot[93283]: at _combinedTickCallback (internal/process/next_tick.js:139:11)
+Jun 27 16:46:57 SERVER hubot[93283]: at process._tickCallback (internal/process/next_tick.js:181:9)
+Jun 27 16:46:58 SERVER hubot[93283]: [Thu Jun 27 2019 16:46:58 GMT+0000 (UTC)] DEBUG Chatops message received: {"trace_context": null, "payload": {"extra": {}, "whisper": false, "user": "USERNAME", "context": {"message": {"id": "jPJcsEzXcBwxw89Sd", "text": "!pack get docker", "done": false, "user": {"room": "general", "roomType": "c", "roomID": "GENERAL", "id": "3fgyFYzZD6wnNoNaf", "name": "USERNAME"}, "room": "general"}, "room": "general", "user": {"roomType": "c", "roomID": "GENERAL", "room": "general", "name": "USERNAME", "id": "3fgyFYzZD6wnNoNaf"}}, "message": "The requested pack is not present in your StackStorm installation.\nTo install the pack: `pack install docker`\n", "channel": "general"}}
+Jun 27 16:46:58 SERVER hubot[93283]: [Thu Jun 27 2019 16:46:58 GMT+0000 (UTC)] ERROR TypeError: Cannot read property 'roomID' of undefined
+Jun 27 16:46:58 SERVER hubot[93283]: at strings.map (/opt/stackstorm/chatops/node_modules/hubot-rocketchat/index.js:155:25)
+Jun 27 16:46:58 SERVER hubot[93283]: at Array.map (&lt;anonymous&gt;:null:null)
+Jun 27 16:46:58 SERVER hubot[93283]: at RocketChatBotAdapter.send (/opt/stackstorm/chatops/node_modules/hubot-rocketchat/index.js:154:20)
+Jun 27 16:46:58 SERVER hubot[93283]: at Robot.messageRoom (/opt/stackstorm/chatops/node_modules/hubot/src/robot.js:608:23)
+Jun 27 16:46:58 SERVER hubot[93283]: at sendChunk (/opt/stackstorm/chatops/node_modules/hubot-stackstorm/lib/post_data.js:454:25)
+Jun 27 16:46:58 SERVER hubot[93283]: at RocketChatDataPostHandler.postData (/opt/stackstorm/chatops/node_modules/hubot-stackstorm/lib/post_data.js:459:5)
+Jun 27 16:46:58 SERVER hubot[93283]: at EventSource.&lt;anonymous&gt; (/opt/stackstorm/chatops/node_modules/hubot-stackstorm/scripts/stackstorm.js:390:25)
+Jun 27 16:46:58 SERVER hubot[93283]: at emitOne (events.js:116:13)
+Jun 27 16:46:58 SERVER hubot[93283]: at EventSource.emit (events.js:211:7)
+Jun 27 16:46:58 SERVER hubot[93283]: at _emit (/opt/stackstorm/chatops/node_modules/eventsource/lib/eventsource.js:172:17)
+Jun 27 16:46:58 SERVER hubot[93283]: at parseEventStreamLine (/opt/stackstorm/chatops/node_modules/eventsource/lib/eventsource.js:186:9)
+Jun 27 16:46:58 SERVER hubot[93283]: at IncomingMessage.&lt;anonymous&gt; (/opt/stackstorm/chatops/node_modules/eventsource/lib/eventsource.js:150:11)
+Jun 27 16:46:58 SERVER hubot[93283]: at emitOne (events.js:116:13)
+Jun 27 16:46:58 SERVER hubot[93283]: at IncomingMessage.emit (events.js:211:7)
+Jun 27 16:46:58 SERVER hubot[93283]: at addChunk (_stream_readable.js:263:12)
+Jun 27 16:46:58 SERVER hubot[93283]: at readableAddChunk (_stream_readable.js:250:11)
+Jun 27 16:46:58 SERVER hubot[93283]: at IncomingMessage.Readable.push (_stream_readable.js:208:10)
+Jun 27 16:46:58 SERVER hubot[93283]: at HTTPParser.parserOnBody (_http_common.js:137:22)
+Jun 27 16:46:58 SERVER hubot[93283]: at TLSSocket.socketOnData (_http_client.js:454:20)
+Jun 27 16:46:58 SERVER hubot[93283]: at emitOne (events.js:116:13)
+Jun 27 16:46:58 SERVER hubot[93283]: at TLSSocket.emit (events.js:211:7)
+Jun 27 16:46:58 SERVER hubot[93283]: at addChunk (_stream_readable.js:263:12)
+Jun 27 16:46:58 SERVER hubot[93283]: at readableAddChunk (_stream_readable.js:250:11)
+Jun 27 16:46:58 SERVER hubot[93283]: at TLSSocket.Readable.push (_stream_readable.js:208:10)
+Jun 27 16:46:58 SERVER hubot[93283]: at TLSWrap.onread (net.js:601:20)
+Jun 27 16:46:58 SERVER hubot[93283]: [Thu Jun 27 2019 16:46:58 GMT+0000 (UTC)] ERROR Stream error: Event { type: 'error' }
+Jun 27 16:46:59 SERVER hubot[93283]: [Thu Jun 27 2019 16:46:59 GMT+0000 (UTC)] DEBUG Chatops message received: {"trace_context": null, "payload": {"extra": {}, "whisper": false, "user": "USERNAME", "context": {"message": {"id": "jPJcsEzXcBwxw89Sd", "text": "!pack get docker", "done": false, "user": {"room": "general", "roomType": "c", "roomID": "GENERAL", "id": "3fgyFYzZD6wnNoNaf", "name": "USERNAME"}, "room": "general"}, "room": "general", "user": {"roomType": "c", "roomID": "GENERAL", "room": "general", "name": "USERNAME", "id": "3fgyFYzZD6wnNoNaf"}}, "message": "The requested pack is not present in your StackStorm installation.\nTo install the pack: `pack install docker`\n", "channel": "general"}}
+Jun 27 16:46:59 SERVER hubot[93283]: [Thu Jun 27 2019 16:46:59 GMT+0000 (UTC)] ERROR TypeError: Cannot read property 'roomID' of undefined
+Jun 27 16:46:59 SERVER hubot[93283]: at strings.map (/opt/stackstorm/chatops/node_modules/hubot-rocketchat/index.js:155:25)
+Jun 27 16:46:59 SERVER hubot[93283]: at Array.map (&lt;anonymous&gt;:null:null)
+Jun 27 16:46:59 SERVER hubot[93283]: at RocketChatBotAdapter.send (/opt/stackstorm/chatops/node_modules/hubot-rocketchat/index.js:154:20)
+Jun 27 16:46:59 SERVER hubot[93283]: at Robot.messageRoom (/opt/stackstorm/chatops/node_modules/hubot/src/robot.js:608:23)
+Jun 27 16:46:59 SERVER hubot[93283]: at sendChunk (/opt/stackstorm/chatops/node_modules/hubot-stackstorm/lib/post_data.js:454:25)
+Jun 27 16:46:59 SERVER hubot[93283]: at RocketChatDataPostHandler.postData (/opt/stackstorm/chatops/node_modules/hubot-stackstorm/lib/post_data.js:459:5)
+Jun 27 16:46:59 SERVER hubot[93283]: at EventSource.&lt;anonymous&gt; (/opt/stackstorm/chatops/node_modules/hubot-stackstorm/scripts/stackstorm.js:390:25)
+Jun 27 16:46:59 SERVER hubot[93283]: at emitOne (events.js:116:13)
+Jun 27 16:46:59 SERVER hubot[93283]: at EventSource.emit (events.js:211:7)
+Jun 27 16:46:59 SERVER hubot[93283]: at _emit (/opt/stackstorm/chatops/node_modules/eventsource/lib/eventsource.js:172:17)
+Jun 27 16:46:59 SERVER hubot[93283]: at parseEventStreamLine (/opt/stackstorm/chatops/node_modules/eventsource/lib/eventsource.js:186:9)
+Jun 27 16:46:59 SERVER hubot[93283]: at IncomingMessage.&lt;anonymous&gt; (/opt/stackstorm/chatops/node_modules/eventsource/lib/eventsource.js:150:11)
+Jun 27 16:46:59 SERVER hubot[93283]: at emitOne (events.js:116:13)
+Jun 27 16:46:59 SERVER hubot[93283]: at IncomingMessage.emit (events.js:211:7)
+Jun 27 16:46:59 SERVER hubot[93283]: at addChunk (_stream_readable.js:263:12)
+Jun 27 16:46:59 SERVER hubot[93283]: at readableAddChunk (_stream_readable.js:250:11)
+Jun 27 16:46:59 SERVER hubot[93283]: at IncomingMessage.Readable.push (_stream_readable.js:208:10)
+Jun 27 16:46:59 SERVER hubot[93283]: at HTTPParser.parserOnBody (_http_common.js:137:22)
+Jun 27 16:46:59 SERVER hubot[93283]: at TLSSocket.socketOnData (_http_client.js:454:20)
+Jun 27 16:46:59 SERVER hubot[93283]: at emitOne (events.js:116:13)
+Jun 27 16:46:59 SERVER hubot[93283]: at TLSSocket.emit (events.js:211:7)
+Jun 27 16:46:59 SERVER hubot[93283]: at addChunk (_stream_readable.js:263:12)
+Jun 27 16:46:59 SERVER hubot[93283]: at readableAddChunk (_stream_readable.js:250:11)
+Jun 27 16:46:59 SERVER hubot[93283]: at TLSSocket.Readable.push (_stream_readable.js:208:10)
+Jun 27 16:46:59 SERVER hubot[93283]: at TLSWrap.onread (net.js:601:20)
+Jun 27 16:47:24 SERVER hubot[93283]: [Thu Jun 27 2019 16:47:24 GMT+0000 (UTC)] ERROR Stream error: Event { type: 'error' }
+Jun 27 16:47:25 SERVER hubot[93283]: [Thu Jun 27 2019 16:47:25 GMT+0000 (UTC)] DEBUG Chatops message received: {"trace_context": null, "payload": {"extra": {}, "whisper": false, "user": "USERNAME", "context": {"message": {"id": "jPJcsEzXcBwxw89Sd", "text": "!pack get docker", "done": false, "user": {"room": "general", "roomType": "c", "roomID": "GENERAL", "id": "3fgyFYzZD6wnNoNaf", "name": "USERNAME"}, "room": "general"}, "room": "general", "user": {"roomType": "c", "roomID": "GENERAL", "room": "general", "name": "USERNAME", "id": "3fgyFYzZD6wnNoNaf"}}, "message": "The requested pack is not present in your StackStorm installation.\nTo install the pack: `pack install docker`\n", "channel": "general"}}
+Jun 27 16:47:25 SERVER hubot[93283]: [Thu Jun 27 2019 16:47:25 GMT+0000 (UTC)] ERROR TypeError: Cannot read property 'roomID' of undefined
+Jun 27 16:47:25 SERVER hubot[93283]: at strings.map (/opt/stackstorm/chatops/node_modules/hubot-rocketchat/index.js:155:25)
+Jun 27 16:47:25 SERVER hubot[93283]: at Array.map (&lt;anonymous&gt;:null:null)
+Jun 27 16:47:25 SERVER hubot[93283]: at RocketChatBotAdapter.send (/opt/stackstorm/chatops/node_modules/hubot-rocketchat/index.js:154:20)
+Jun 27 16:47:25 SERVER hubot[93283]: at Robot.messageRoom (/opt/stackstorm/chatops/node_modules/hubot/src/robot.js:608:23)
+Jun 27 16:47:25 SERVER hubot[93283]: at sendChunk (/opt/stackstorm/chatops/node_modules/hubot-stackstorm/lib/post_data.js:454:25)
+Jun 27 16:47:25 SERVER hubot[93283]: at RocketChatDataPostHandler.postData (/opt/stackstorm/chatops/node_modules/hubot-stackstorm/lib/post_data.js:459:5)
+Jun 27 16:47:25 SERVER hubot[93283]: at EventSource.&lt;anonymous&gt; (/opt/stackstorm/chatops/node_modules/hubot-stackstorm/scripts/stackstorm.js:390:25)
+Jun 27 16:47:25 SERVER hubot[93283]: at emitOne (events.js:116:13)
+Jun 27 16:47:25 SERVER hubot[93283]: at EventSource.emit (events.js:211:7)
+Jun 27 16:47:25 SERVER hubot[93283]: at _emit (/opt/stackstorm/chatops/node_modules/eventsource/lib/eventsource.js:172:17)
+Jun 27 16:47:25 SERVER hubot[93283]: at parseEventStreamLine (/opt/stackstorm/chatops/node_modules/eventsource/lib/eventsource.js:186:9)
+Jun 27 16:47:25 SERVER hubot[93283]: at IncomingMessage.&lt;anonymous&gt; (/opt/stackstorm/chatops/node_modules/eventsource/lib/eventsource.js:150:11)
+Jun 27 16:47:25 SERVER hubot[93283]: at emitOne (events.js:116:13)
+Jun 27 16:47:25 SERVER hubot[93283]: at IncomingMessage.emit (events.js:211:7)
+Jun 27 16:47:25 SERVER hubot[93283]: at addChunk (_stream_readable.js:263:12)
+Jun 27 16:47:25 SERVER hubot[93283]: at readableAddChunk (_stream_readable.js:250:11)
+Jun 27 16:47:25 SERVER hubot[93283]: at IncomingMessage.Readable.push (_stream_readable.js:208:10)
+Jun 27 16:47:25 SERVER hubot[93283]: at HTTPParser.parserOnBody (_http_common.js:137:22)
+Jun 27 16:47:25 SERVER hubot[93283]: at TLSSocket.socketOnData (_http_client.js:454:20)
+Jun 27 16:47:25 SERVER hubot[93283]: at emitOne (events.js:116:13)
+Jun 27 16:47:25 SERVER hubot[93283]: at TLSSocket.emit (events.js:211:7)
+Jun 27 16:47:25 SERVER hubot[93283]: at addChunk (_stream_readable.js:263:12)
+Jun 27 16:47:25 SERVER hubot[93283]: at readableAddChunk (_stream_readable.js:250:11)
+Jun 27 16:47:25 SERVER hubot[93283]: at TLSSocket.Readable.push (_stream_readable.js:208:10)
+Jun 27 16:47:25 SERVER hubot[93283]: at TLSWrap.onread (net.js:601:20)
+Jun 27 16:47:50 SERVER hubot[93283]: [Thu Jun 27 2019 16:47:50 GMT+0000 (UTC)] ERROR Stream error: Event { type: 'error' }
+Jun 27 16:47:51 SERVER hubot[93283]: [Thu Jun 27 2019 16:47:51 GMT+0000 (UTC)] DEBUG Chatops message received: {"trace_context": null, "payload": {"extra": {}, "whisper": false, "user": "USERNAME", "context": {"message": {"id": "jPJcsEzXcBwxw89Sd", "text": "!pack get docker", "done": false, "user": {"room": "general", "roomType": "c", "roomID": "GENERAL", "id": "3fgyFYzZD6wnNoNaf", "name": "USERNAME"}, "room": "general"}, "room": "general", "user": {"roomType": "c", "roomID": "GENERAL", "room": "general", "name": "USERNAME", "id": "3fgyFYzZD6wnNoNaf"}}, "message": "The requested pack is not present in your StackStorm installation.\nTo install the pack: `pack install docker`\n", "channel": "general"}}
+Jun 27 16:47:51 SERVER hubot[93283]: [Thu Jun 27 2019 16:47:51 GMT+0000 (UTC)] ERROR TypeError: Cannot read property 'roomID' of undefined
+Jun 27 16:47:51 SERVER hubot[93283]: at strings.map (/opt/stackstorm/chatops/node_modules/hubot-rocketchat/index.js:155:25)
+Jun 27 16:47:51 SERVER hubot[93283]: at Array.map (&lt;anonymous&gt;:null:null)
+Jun 27 16:47:51 SERVER hubot[93283]: at RocketChatBotAdapter.send (/opt/stackstorm/chatops/node_modules/hubot-rocketchat/index.js:154:20)
+Jun 27 16:47:51 SERVER hubot[93283]: at Robot.messageRoom (/opt/stackstorm/chatops/node_modules/hubot/src/robot.js:608:23)
+Jun 27 16:47:51 SERVER hubot[93283]: at sendChunk (/opt/stackstorm/chatops/node_modules/hubot-stackstorm/lib/post_data.js:454:25)
+Jun 27 16:47:51 SERVER hubot[93283]: at RocketChatDataPostHandler.postData (/opt/stackstorm/chatops/node_modules/hubot-stackstorm/lib/post_data.js:459:5)
+Jun 27 16:47:51 SERVER hubot[93283]: at EventSource.&lt;anonymous&gt; (/opt/stackstorm/chatops/node_modules/hubot-stackstorm/scripts/stackstorm.js:390:25)
+Jun 27 16:47:51 SERVER hubot[93283]: at emitOne (events.js:116:13)
+Jun 27 16:47:51 SERVER hubot[93283]: at EventSource.emit (events.js:211:7)
+Jun 27 16:47:51 SERVER hubot[93283]: at _emit (/opt/stackstorm/chatops/node_modules/eventsource/lib/eventsource.js:172:17)
+Jun 27 16:47:51 SERVER hubot[93283]: at parseEventStreamLine (/opt/stackstorm/chatops/node_modules/eventsource/lib/eventsource.js:186:9)
+Jun 27 16:47:51 SERVER hubot[93283]: at IncomingMessage.&lt;anonymous&gt; (/opt/stackstorm/chatops/node_modules/eventsource/lib/eventsource.js:150:11)
+Jun 27 16:47:51 SERVER hubot[93283]: at emitOne (events.js:116:13)
+Jun 27 16:47:51 SERVER hubot[93283]: at IncomingMessage.emit (events.js:211:7)
+Jun 27 16:47:51 SERVER hubot[93283]: at addChunk (_stream_readable.js:263:12)
+Jun 27 16:47:51 SERVER hubot[93283]: at readableAddChunk (_stream_readable.js:250:11)
+Jun 27 16:47:51 SERVER hubot[93283]: at IncomingMessage.Readable.push (_stream_readable.js:208:10)
+Jun 27 16:47:51 SERVER hubot[93283]: at HTTPParser.parserOnBody (_http_common.js:137:22)
+Jun 27 16:47:51 SERVER hubot[93283]: at TLSSocket.socketOnData (_http_client.js:454:20)
+Jun 27 16:47:51 SERVER hubot[93283]: at emitOne (events.js:116:13)
+Jun 27 16:47:51 SERVER hubot[93283]: at TLSSocket.emit (events.js:211:7)
+Jun 27 16:47:51 SERVER hubot[93283]: at addChunk (_stream_readable.js:263:12)
+Jun 27 16:47:51 SERVER hubot[93283]: at readableAddChunk (_stream_readable.js:250:11)
+Jun 27 16:47:51 SERVER hubot[93283]: at TLSSocket.Readable.push (_stream_readable.js:208:10)
+Jun 27 16:47:51 SERVER hubot[93283]: at TLSWrap.onread (net.js:601:20)
+</code></pre>
+            <p>I can see that the chat bot is requesting <code>/stream/v1/stream</code> with his API key and that it
+                returns a <code>200</code>.</p>
+            <p><code>127.0.0.1 - - [27/Jun/2019:16:59:22 +0000] "GET /stream/v1/stream?st2-api-key=MY_API_KEY HTTP/1.1"
+                200 2 "-" "-"</code></p>
+            <p>Again, if anyone could help me, that would be great.</p>
+            <p>Have a great day.</p>
+        </div>
+
+        <meta itemprop='headline' content='St2chatops with Mattermost not replying'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="2"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/vijain'><span itemprop='name'>vijain</span></a>
+            (Vineesh Jain)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="711.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2019-06-28T01:32:29Z' class='post-time'>
+                June 28, 2019,  1:32am
+              </time>
+              <meta itemprop='dateModified' content='2019-06-28T01:32:29Z'>
+          <span itemprop='position'>#5</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Thanks for the clarifications. We will try to get more information and get back to you soon.</p>
+        </div>
+
+        <meta itemprop='headline' content='St2chatops with Mattermost not replying'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/lhill'><span itemprop='name'>lhill</span></a>
+            (Lindsay Hill)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="711.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2019-06-28T03:25:17Z' class='post-time'>
+                June 28, 2019,  3:25am
+              </time>
+              <meta itemprop='dateModified' content='2019-06-28T03:25:17Z'>
+          <span itemprop='position'>#6</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <aside class="quote no-group quote-modified" data-post="4" data-topic="711">
+                <div class="title">
+                    <div class="quote-controls"></div>
+                    <img alt width="20" height="20" src="https://avatars.discourse.org/v4/letter/c/b487fb/40.png"
+                         class="avatar"> ChickenNotHD:
+                </div>
+                <blockquote>
+                    <p>Cannot read property ‘roomID’ of undefined</p>
+                </blockquote>
+            </aside>
+            <p>It’s curious that your error messages refer to RocketChat, not Mattermost</p>
+        </div>
+
+        <meta itemprop='headline' content='St2chatops with Mattermost not replying'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="2"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/jinping'><span itemprop='name'>jinping</span></a>
+            (Jinping)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="711.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2019-06-28T04:17:53Z' class='post-time'>
+                June 28, 2019,  4:17am
+              </time>
+              <meta itemprop='dateModified' content='2019-06-28T04:17:53Z'>
+          <span itemprop='position'>#7</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p><a class="mention" href="https://github.com/lhill">@lhill</a> good catch! <img
+                    src="https://emoji.discourse-cdn.com/apple/+1.png?v=9" title=":+1:" class="emoji" alt=":+1:"></p>
+        </div>
+
+        <meta itemprop='headline' content='St2chatops with Mattermost not replying'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/ChickenNotHD'><span
+                    itemprop='name'>ChickenNotHD</span></a>
+            
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="711.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2019-06-28T11:03:01Z' class='post-time'>
+                June 28, 2019, 11:03am
+              </time>
+              <meta itemprop='dateModified' content='2019-06-28T11:03:01Z'>
+          <span itemprop='position'>#8</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Thanks for replying,</p>
+            <p>As I said in my previous reply, I have set up a RocketChat server to confirm if the problem was only with
+                my Mattermost instance. So it is normal that my error messages on my last post refers to RocketChat, as
+                this from when I connected the bot to RocketChat.</p>
+            <p>The problem still stands, as the bot behaves in the same way whether I use Mattermost or RocketChat: It
+                runs the command that I send, but does not reply with the result, even though the <code>chatops.post_result</code>
+                is <code>successful</code>.</p>
+        </div>
+
+        <meta itemprop='headline' content='St2chatops with Mattermost not replying'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/armab'><span itemprop='name'>armab</span></a>
+            (Eugen Cusmaunsa)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="711.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2019-07-02T20:40:27Z' class='post-time'>
+                July 2, 2019,  8:40pm
+              </time>
+              <meta itemprop='dateModified' content='2019-07-02T20:40:27Z'>
+          <span itemprop='position'>#9</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Are you saying you tested with RocketChat and it worked, while switching to MatterMost which didn’t work
+                in the same environment?</p>
+            <p>Is it a CentOS7 Docker environment where you installed StackStom? Are you running systemd and installing
+                all services in one container?</p>
+        </div>
+
+        <meta itemprop='headline' content='St2chatops with Mattermost not replying'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/ChickenNotHD'><span
+                    itemprop='name'>ChickenNotHD</span></a>
+            
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="711.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2019-07-03T13:19:19Z' class='post-time'>
+                July 3, 2019,  1:19pm
+              </time>
+              <meta itemprop='dateModified' content='2019-07-03T13:19:19Z'>
+          <span itemprop='position'>#10</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Good morning,</p>
+            <p>Thank you so much for responding.</p>
+            <p>I tested RocketChat because I wanted to verify that my problem was not with my Mattermost installation
+                itself.</p>
+            <p>I have tested RocketChat and Mattermost and it has not worked for both, I actually run into the same
+                problem for both (the bot reads and runs any action-alias successfully on Mattermost, but doesn’t
+                respond with the chatops.post_result or chatops.post_message if I try manually).</p>
+            <p>Example:<br>
+                I run <code>!pack get docker</code> on Mattermost.<br>
+                On the StackStorm web ui, I can see that <code>packs.get</code> gets successfully manually ran by <code>st2admin</code>.<br>
+                Still on the ui, I can see that <code>chatops.post_result</code> is also successful and that <code>core.st2.generic.notifytrigger</code>
+                triggered <code>chatops.notify</code>.<br>
+                In the <code>TRIGGER OUTPUT</code> of <code>chatops.post_result</code> I can see that it contains the
+                message that it is supposed to post to Mattermost, but it never does.</p>
+            <p>Do note however, that the bot does post <code>!help</code> result and will post the <code>ack</code>
+                message if there is one. (for example, doing <code>!pack search docker</code>, the bot will respond with
+                <code>Alright! Let me check if that matches anything in the StackStorm Exchange index.</code> but
+                nothing else.</p>
+            <p>Currently, StackStorm is installed on a CentOS7 VM (no docker) in an environment that is disconnected
+                from the Internet. I have also tried it with docker containers beforehand (from <a
+                        href="https://github.com/StackStorm/st2-docker" class="inline-onebox" rel="nofollow noopener">GitHub
+                    - StackStorm/st2-docker: Demo all-in-one Docker container for StackStorm</a>) also on a CentOS7 VM.
+                I use <code>st2chatops</code>, so hubot is on the same VM as StackStorm. The api, auth and stream
+                endpoint are on the same VM.<br>
+                My Mattermost server is on a different CentOS7 VM. Both can contact eachother without any problem.<br>
+                Finally, to make sure that it was not a problem with the fact that I did not have Internet in this
+                network, I installed it at home on another CentOS7 VM connected to the Internet. Every attempt has
+                resulted in the same problem mentionned above.</p>
+        </div>
+
+        <meta itemprop='headline' content='St2chatops with Mattermost not replying'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/armab'><span itemprop='name'>armab</span></a>
+            (Eugen Cusmaunsa)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="711.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2019-07-03T13:36:13Z' class='post-time'>
+                July 3, 2019,  1:36pm
+              </time>
+              <meta itemprop='dateModified' content='2019-07-03T13:36:13Z'>
+          <span itemprop='position'>#11</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>I see there are stream errors from the st2chatops logs when running RocketChat.</p>
+            <pre><code class="lang-auto">ERROR Stream error: Event { type: 'error' }
+</code></pre>
+            <p>Do you see something similar for Mattermost after running st2chatops for a while? Any other errors
+                appearing in logs?</p>
+            <p>Is there any custom configuration related to CA/self-signed certificates involved in this config?</p>
+            <p>For debugging reasons/isolation try to switch Mattermost configs to HTTP, same for StackStorm API
+                endpoints (ST2_API_URL (<a href="http://127.0.0.1:9101"
+                                           rel="nofollow noopener">http://127.0.0.1:9101</a>), ST2_STREAM_URL (<a
+                        href="http://127.0.0.1:9102" rel="nofollow noopener">http://127.0.0.1:9102</a>)).</p>
+        </div>
+
+        <meta itemprop='headline' content='St2chatops with Mattermost not replying'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/ChickenNotHD'><span
+                    itemprop='name'>ChickenNotHD</span></a>
+            
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="711.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2019-07-03T14:14:45Z' class='post-time'>
+                July 3, 2019,  2:14pm
+              </time>
+              <meta itemprop='dateModified' content='2019-07-03T14:14:45Z'>
+          <span itemprop='position'>#12</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>I do not see the <code>Stream error</code> in st2chatops logs when running st2chatops with Mattermost or
+                any other errors.</p>
+            <p>I do indeed run self-signed certs on my StackStorm server. I have followed the CentOS7 installation guide
+                and created my cert and key with the command that can be found on that guide. Could you elaborate on
+                what you mean by <code>custom configuration</code>?</p>
+            <p>I have changed my Mattermost to HTTP and changed ST2_API_URL to ‘<a href="http://127.0.0.1:9101"
+                                                                                   rel="nofollow noopener">http://127.0.0.1:9101</a>’
+                and ST2_STREAM_URL to ‘<a href="http://127.0.0.1:9102" rel="nofollow noopener">http://127.0.0.1:9102</a>’.
+                I did however leave ST2_AUTH_URL to its original<br>
+                ‘<a>https://$</a>{ST2_HOSTNAME}/auth’.</p>
+            <p>I am having the same problem, no response even though <code>chatops.post_result</code> is successful.
+                There is no error in <code>journalctl -u st2chatops</code>.</p>
+            <p>I have no errors in <code>/var/log/nginx/ssl-st2webui.error.log</code>, but I do notice that after I do
+                <code>!pack get docker</code>, there is no GET request for the stream api in <code>/var/log/nginx/ssl-st2webui.access.log</code>
+                or <code>/var/log/nginx/st2webui.access.log</code>. I do not know if this is normal.</p>
+        </div>
+
+        <meta itemprop='headline' content='St2chatops with Mattermost not replying'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/armab'><span itemprop='name'>armab</span></a>
+            (Eugen Cusmaunsa)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="711.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2019-07-03T14:29:18Z' class='post-time'>
+                July 3, 2019,  2:29pm
+              </time>
+              <meta itemprop='dateModified' content='2019-07-03T14:29:18Z'>
+          <span itemprop='position'>#13</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>How about Mattermost HTTPS/TLS config?</p>
+            <pre><code class="lang-auto">MATTERMOST_WSS_PORT
+MATTERMOST_HTTP_PORT
+MATTERMOST_TLS_VERIFY
+MATTERMOST_USE_TLS
+</code></pre>
+            <p>Did you change that to force HTTP as well?</p>
+        </div>
+
+        <meta itemprop='headline' content='St2chatops with Mattermost not replying'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/ChickenNotHD'><span
+                    itemprop='name'>ChickenNotHD</span></a>
+            
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="711.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2019-07-03T15:03:59Z' class='post-time'>
+                July 3, 2019,  3:03pm
+              </time>
+              <meta itemprop='dateModified' content='2019-07-03T15:03:59Z'>
+          <span itemprop='position'>#14</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Yes, otherwise the bot wouldn’t be able to see my commands and execute them.</p>
+            <p>export MATTERMOST_WSS_PORT=80<br>
+                export MATTERMOST_HTTP_PORT=80<br>
+                export MATTERMOST_TLS_VERIFY=false<br>
+                export MATTERMOST_USE_TLS=false</p>
+        </div>
+
+        <meta itemprop='headline' content='St2chatops with Mattermost not replying'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/armab'><span itemprop='name'>armab</span></a>
+            (Eugen Cusmaunsa)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="711.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2019-07-03T15:04:41Z' class='post-time'>
+                July 3, 2019,  3:04pm
+              </time>
+              <meta itemprop='dateModified' content='2019-07-03T15:04:41Z'>
+          <span itemprop='position'>#15</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Just for the record, what are current st2/st2chatops package versions you’re running? Latest?</p>
+            <p>I’m out of ideas for now.<br>
+                We’ll likely need to try to reproduce it on latest st2 scripted install with default configs and
+                Mattermost server.</p>
+            <p>If nothing works, might be indeed bug or incompatibility issues with recent Mattermost server which is
+                probably different comparing to what we’ve tested before.</p>
+        </div>
+
+        <meta itemprop='headline' content='St2chatops with Mattermost not replying'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/ChickenNotHD'><span
+                    itemprop='name'>ChickenNotHD</span></a>
+            
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="711.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2019-07-03T15:11:22Z' class='post-time'>
+                July 3, 2019,  3:11pm
+              </time>
+              <meta itemprop='dateModified' content='2019-07-03T16:01:25Z'>
+          <span itemprop='position'>#16</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>How would I be able to check which version of the packages I am running?</p>
+            <p>Considering that even RocketChat has the same symptoms, shouldn’t the problem be with my installation of
+                st2 rather than compatibility with Mattermost?</p>
+            <p>I have tried to curl <code>http://127.0.0.1:9102/stream?st2-api-key=MY-API-KEY</code> and the stream
+                seems to work correctly with a lot of events showing up when I run a command from Mattermost. So I do
+                not know why GET requests do not show up in nginx logs for the stream from the bot.</p>
+        </div>
+
+        <meta itemprop='headline' content='St2chatops with Mattermost not replying'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/armab'><span itemprop='name'>armab</span></a>
+            (Eugen Cusmaunsa)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="711.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2019-07-04T00:56:12Z' class='post-time'>
+                July 4, 2019, 12:56am
+              </time>
+              <meta itemprop='dateModified' content='2019-07-04T00:56:12Z'>
+          <span itemprop='position'>#17</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Google should help how to find package versions on CentOS7.</p>
+            <p>Alright, here is an example from my VM:</p>
+            <pre><code class="lang-auto">[vagrant@centos7 ~]$ yum list | grep @StackStorm
+st2.x86_64                              3.1.0-1                        @StackStorm_stable
+st2chatops.x86_64                       3.1.0-2                        @StackStorm_stable
+st2mistral.x86_64                       3.1.0-1                        @StackStorm_stable
+st2web.x86_64                           3.1.0-1                        @StackStorm_stable
+</code></pre>
+        </div>
+
+        <meta itemprop='headline' content='St2chatops with Mattermost not replying'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/ChickenNotHD'><span
+                    itemprop='name'>ChickenNotHD</span></a>
+            
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="711.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2019-07-04T11:10:09Z' class='post-time'>
+                July 4, 2019, 11:10am
+              </time>
+              <meta itemprop='dateModified' content='2019-07-04T11:10:09Z'>
+          <span itemprop='position'>#18</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Sorry, for some reason I thought there would be a <code>st2ctl</code> command to show the version.</p>
+            <p><code>yum list | grep @StackStorm</code> does not work because I installed the packages locally due to
+                the network not having access to the internet.</p>
+            <p><code>yum list | grep st2</code> says:<br>
+                st2.x86_64 is 3.0.1-4<br>
+                st2chatops.x86_64 is 3.0.1-1<br>
+                st2mistral.x86_64 is 3.0.1-1<br>
+                st2web.x86_64 is 3.0.1-1</p>
+        </div>
+
+        <meta itemprop='headline' content='St2chatops with Mattermost not replying'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/armab'><span itemprop='name'>armab</span></a>
+            (Eugen Cusmaunsa)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="711.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2019-07-04T11:44:11Z' class='post-time'>
+                July 4, 2019, 11:44am
+              </time>
+              <meta itemprop='dateModified' content='2019-07-04T16:02:04Z'>
+          <span itemprop='position'>#19</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Thanks, the versions look pretty much almost latest, at least no diff for Mattermost in that
+                st2/st2chatops version range.</p>
+        </div>
+
+        <meta itemprop='headline' content='St2chatops with Mattermost not replying'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="2"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/ChickenNotHD'><span
+                    itemprop='name'>ChickenNotHD</span></a>
+            
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="711.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2019-07-04T12:52:57Z' class='post-time'>
+                July 4, 2019, 12:52pm
+              </time>
+              <meta itemprop='dateModified' content='2019-07-04T12:52:57Z'>
+          <span itemprop='position'>#20</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Tonight, I’ll re-install again from home and try to use st2chatops with Slack instead to try to pinpoint
+                my problem. I’ll let you know how it went tomorrow.</p>
+        </div>
+
+        <meta itemprop='headline' content='St2chatops with Mattermost not replying'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+            <span class='post-likes'>1 Like</span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+
+    <div role='navigation' itemscope itemtype='http://schema.org/SiteNavigationElement' class="topic-body crawler-post">
+        <span itemprop='name'><b><a rel="next" itemprop="url"
+                                    href="https://forum.stackstorm.com/t/st2chatops-with-mattermost-not-replying/711?page=2">next page →</a></b></span>
+    </div>
+
+
+    <!-- :preload-content -->
+    <footer class="noscript-footer-nav">
+        <nav itemscope itemtype='http://schema.org/SiteNavigationElement'>
+            <a href='../../index.html'>Home</a>
+            <a href="../../categories.html">Categories</a>
+            <a href="https://forum.stackstorm.com/guidelines">FAQ/Guidelines</a>
+            <a href="../../tos.html">Terms of Service</a>
+            <a href="../../privacy.html">Privacy Policy</a>
+        </nav>
+    </footer>
+</div>
+
+<footer id='noscript-footer'>
+    <p>Powered by <a href="https://www.discourse.org">Discourse</a>, best viewed with JavaScript enabled</p>
+</footer>
+
+
+<section id='main'>
+</section>
+
+
+</body>
+</html>

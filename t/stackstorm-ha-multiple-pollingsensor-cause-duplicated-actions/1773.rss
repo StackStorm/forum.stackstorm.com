@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Stackstorm HA: Multiple PollingSensor Cause Duplicated Actions</title>
+    <link>https://forum.stackstorm.com/t/stackstorm-ha-multiple-pollingsensor-cause-duplicated-actions/1773</link>
+    <description>Hello,
+Did anyone try to deploy Stackstorm HA on Virtual Linux directly? I try to search in this forum, but it look like few people have the same problem as me.
+Anyway, I have Stackstorm HA deploy on 3 Oracle Linux 8. But I&#39;m facing many Duplicated `Actions` issue:
+
+* First, I&#39;m facing duplicated st2timersengine.
+
+According to https://docs.stackstorm.com/reference/ha.html, 
+```
+[timer]
+enable = False
+```
+I set 2 false and 1 true on 3 vms, but it don&#39;t work for me, very strange.
+Anyway I solve this issue by using keeplived, As mentioned as `external monitoring`
+
+* Now, I find that multiple PollingSensor also cause duplicated actions
+
+There are 3 same rule/sensor of cause(each Stackstorm has one st2rulesengine/st2sensorcontainer), because they load the same pack. 
+
+Obviously, 3 sensor polling the same system, get 3 same result and generate 3 same payloads, and then trigger 3 same actions.
+
+But I can&#39;t kill 2 of them like st2timersengine, becasue external webhook send requset to upper Nginx, and nginx transfer the request to one of 3 stackstorm. They will cause webhook out of work.
+
+What should I do? 
+Otherwise, I have to use timer action instead of PollingSensor.</description>
+    
+    <lastBuildDate>Fri, 16 Jul 2021 22:58:59 +0000</lastBuildDate>
+    <category>Rules</category>
+    <atom:link href="https://forum.stackstorm.com/t/stackstorm-ha-multiple-pollingsensor-cause-duplicated-actions/1773.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Stackstorm HA: Multiple PollingSensor Cause Duplicated Actions</title>
+        <dc:creator><![CDATA[minsis]]></dc:creator>
+        <description><![CDATA[
+            <p>I don’t use the config to disable it. Under the hood st2ctl just runs systemd services. So I keep st2sensorcontainer and st2timersengine disabled and stopped on all the other nodes.</p>
+<p>I also customized the st2ctl script to understand which nodes are set as primary and secondary. That way when you run something like st2ctl start it will only start those two services on the marked primary node.</p>
+<p>Eventually I will have triggers to automate the failover.</p>
+          <p><a href="https://forum.stackstorm.com/t/stackstorm-ha-multiple-pollingsensor-cause-duplicated-actions/1773/4">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/stackstorm-ha-multiple-pollingsensor-cause-duplicated-actions/1773/4</link>
+        <pubDate>Fri, 16 Jul 2021 22:58:59 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1773-4</guid>
+        <source url="https://forum.stackstorm.com/t/stackstorm-ha-multiple-pollingsensor-cause-duplicated-actions/1773.rss">Stackstorm HA: Multiple PollingSensor Cause Duplicated Actions</source>
+      </item>
+      <item>
+        <title>Stackstorm HA: Multiple PollingSensor Cause Duplicated Actions</title>
+        <dc:creator><![CDATA[Bryan]]></dc:creator>
+        <description><![CDATA[
+            <p>Config st2.conf as following:<br>
+<a href="https://docs.stackstorm.com/reference/sensor_partitioning.html" class="onebox" target="_blank" rel="noopener nofollow ugc">https://docs.stackstorm.com/reference/sensor_partitioning.html</a><br>
+I’m using the fourth method <code>[Hash]</code>, divide <code>4294967296</code> evenly into three<br>
+If I use <code>[Key-Value]</code>, then:</p>
+<ol>
+<li>Should I store all sensors in databse, divide them into three parts? I’m afraid there is no <code>all the rest</code> logic.</li>
+<li>So if I develop a new sensor, I have to
+<ul>
+<li>run packs.load</li>
+<li>reset key by st2 key set</li>
+<li>restart st2sensorcontainer by  st2ctl restart-component st2sensorcontainer</li>
+</ul>
+</li>
+</ol>
+          <p><a href="https://forum.stackstorm.com/t/stackstorm-ha-multiple-pollingsensor-cause-duplicated-actions/1773/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/stackstorm-ha-multiple-pollingsensor-cause-duplicated-actions/1773/3</link>
+        <pubDate>Mon, 12 Jul 2021 12:30:33 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1773-3</guid>
+        <source url="https://forum.stackstorm.com/t/stackstorm-ha-multiple-pollingsensor-cause-duplicated-actions/1773.rss">Stackstorm HA: Multiple PollingSensor Cause Duplicated Actions</source>
+      </item>
+      <item>
+        <title>Stackstorm HA: Multiple PollingSensor Cause Duplicated Actions</title>
+        <dc:creator><![CDATA[Bryan]]></dc:creator>
+        <description><![CDATA[
+            <p>I think I find answer here:<br>
+<a href="https://docs.stackstorm.com/reference/ha.html#st2sensorcontainer" class="onebox" target="_blank" rel="noopener nofollow ugc">https://docs.stackstorm.com/reference/ha.html#st2sensorcontainer</a><br>
+I need more investigation, and update result here</p>
+          <p><a href="https://forum.stackstorm.com/t/stackstorm-ha-multiple-pollingsensor-cause-duplicated-actions/1773/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/stackstorm-ha-multiple-pollingsensor-cause-duplicated-actions/1773/2</link>
+        <pubDate>Mon, 12 Jul 2021 11:01:13 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1773-2</guid>
+        <source url="https://forum.stackstorm.com/t/stackstorm-ha-multiple-pollingsensor-cause-duplicated-actions/1773.rss">Stackstorm HA: Multiple PollingSensor Cause Duplicated Actions</source>
+      </item>
+      <item>
+        <title>Stackstorm HA: Multiple PollingSensor Cause Duplicated Actions</title>
+        <dc:creator><![CDATA[Bryan]]></dc:creator>
+        <description><![CDATA[
+            <p>Hello,<br>
+Did anyone try to deploy Stackstorm HA on Virtual Linux directly? I try to search in this forum, but it look like few people have the same problem as me.<br>
+Anyway, I have Stackstorm HA deploy on 3 Oracle Linux 8. But I’m facing many Duplicated <code>Actions</code> issue:</p>
+<ul>
+<li>First, I’m facing duplicated st2timersengine.</li>
+</ul>
+<p>According to <a href="https://docs.stackstorm.com/reference/ha.html" class="inline-onebox" rel="noopener nofollow ugc">High Availability Deployment — StackStorm 3.5.0 documentation</a>,</p>
+<pre><code class="lang-auto">[timer]
+enable = False
+</code></pre>
+<p>I set 2 false and 1 true on 3 vms, but it don’t work for me, very strange.<br>
+Anyway I solve this issue by using keeplived, As mentioned as <code>external monitoring</code></p>
+<ul>
+<li>Now, I find that multiple PollingSensor also cause duplicated actions</li>
+</ul>
+<p>There are 3 same rule/sensor of cause(each Stackstorm has one st2rulesengine/st2sensorcontainer), because they load the same pack.</p>
+<p>Obviously, 3 sensor polling the same system, get 3 same result and generate 3 same payloads, and then trigger 3 same actions.</p>
+<p>But I can’t kill 2 of them like st2timersengine, becasue external webhook send requset to upper Nginx, and nginx transfer the request to one of 3 stackstorm. They will cause webhook out of work.</p>
+<p>What should I do?<br>
+Otherwise, I have to use timer action instead of PollingSensor.</p>
+          <p><a href="https://forum.stackstorm.com/t/stackstorm-ha-multiple-pollingsensor-cause-duplicated-actions/1773/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/stackstorm-ha-multiple-pollingsensor-cause-duplicated-actions/1773/1</link>
+        <pubDate>Mon, 12 Jul 2021 10:56:01 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1773-1</guid>
+        <source url="https://forum.stackstorm.com/t/stackstorm-ha-multiple-pollingsensor-cause-duplicated-actions/1773.rss">Stackstorm HA: Multiple PollingSensor Cause Duplicated Actions</source>
+      </item>
+  </channel>
+</rss>

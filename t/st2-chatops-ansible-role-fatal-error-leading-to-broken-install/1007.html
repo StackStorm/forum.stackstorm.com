@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en" class="desktop-view not-mobile-device text-size-normal anon">
+<head>
+    <meta charset="utf-8">
+    <title>St2.chatops Ansible Role fatal error leading to broken install - api - StackStorm Support (ARCHIVED)</title>
+    <meta name="description" content="Ansible Version: 2.9.2 
+CentOS Linux release 7.7.1908 (Core) 
+https://github.com/StackStorm/ansible-st2.git | 
+Greetings, 
+I have deployed StackStorm using your provided ansible playbook. However after deployment and con&amp;hellip;">
+    <meta name="discourse_theme_id" content="2">
+    <meta name="discourse_current_homepage" content="latest">
+    <meta name="generator"
+          content="Discourse 2.8.0.beta6 - https://github.com/discourse/discourse version a1daf9fe53a66e2d2cdf9757ab4812fb9a2b2787">
+    <link rel="icon" type="image/png"
+          href="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/379ced12f8326d58f1b3d2b3ff652f883e141f6a_2_32x32.PNG">
+    <link rel="apple-touch-icon" type="image/png"
+          href="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/379ced12f8326d58f1b3d2b3ff652f883e141f6a_2_180x180.PNG">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <link rel="canonical" href="1007.html"/>
+    <script type="application/ld+json">{
+        "@context": "http://schema.org",
+        "@type": "WebSite",
+        "url": "https://forum.stackstorm.com",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://forum.stackstorm.com/search?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }
+    </script>
+    <link rel="search" type="application/opensearchdescription+xml" href="../../opensearch.xml"
+          title="StackStorm Support (ARCHIVED) Search">
+
+
+    <link href="/../../stylesheets/color_definitions_base__2_3c5eec1ecf192052ea70b4afdab57a62bccc0604.css?__ws=forum.stackstorm.com"
+          media="all" rel="stylesheet" class="light-scheme"/>
+
+    <link href="/../../stylesheets/desktop_b2f2968742d41481357e0df259b51ce29f72481a.css?__ws=forum.stackstorm.com"
+          media="all" rel="stylesheet" data-target="desktop"/>
+
+
+    <meta name="fragment" content="!">
+
+
+    <link id="manifest-link" rel="manifest" href="../../manifest.webmanifest" crossorigin="use-credentials">
+
+
+    <link rel="alternate" type="application/rss+xml"
+          title="RSS feed of &#39;St2.chatops Ansible Role fatal error leading to broken install&#39;" href="1007.rss"/>
+    <meta property="og:site_name" content="StackStorm Support (ARCHIVED)"/>
+    <meta property="og:type" content="website"/>
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:image"
+          content="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/891f00fbdb31fecb5bd9dab30c186d2fed0091ca.jpeg"/>
+    <meta property="og:image"
+          content="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/891f00fbdb31fecb5bd9dab30c186d2fed0091ca.jpeg"/>
+    <meta property="og:url"
+          content="https://forum.stackstorm.com/t/st2-chatops-ansible-role-fatal-error-leading-to-broken-install/1007"/>
+    <meta name="twitter:url"
+          content="https://forum.stackstorm.com/t/st2-chatops-ansible-role-fatal-error-leading-to-broken-install/1007"/>
+    <meta property="og:title" content="St2.chatops Ansible Role fatal error leading to broken install"/>
+    <meta name="twitter:title" content="St2.chatops Ansible Role fatal error leading to broken install"/>
+    <meta property="og:description"
+          content="Ansible Version: 2.9.2  CentOS Linux release 7.7.1908 (Core)  https://github.com/StackStorm/ansible-st2.git |  Greetings,  I have deployed StackStorm using your provided ansible playbook. However after deployment and configuring hubot to integrate with Slack I noticed the chatbot service wasnt online and I was unable to start it.  I ran your self-check script as per your troubleshooting guide and noticed that the API key was also not set “StackStorm client couldn’t connect to StackStorm.”. I sol..."/>
+    <meta name="twitter:description"
+          content="Ansible Version: 2.9.2  CentOS Linux release 7.7.1908 (Core)  https://github.com/StackStorm/ansible-st2.git |  Greetings,  I have deployed StackStorm using your provided ansible playbook. However after deployment and configuring hubot to integrate with Slack I noticed the chatbot service wasnt online and I was unable to start it.  I ran your self-check script as per your troubleshooting guide and noticed that the API key was also not set “StackStorm client couldn’t connect to StackStorm.”. I sol..."/>
+    <meta name="twitter:label1" value="Reading time"/>
+    <meta name="twitter:data1" value="1 mins 🕑"/>
+    <meta name="twitter:label2" value="Likes"/>
+    <meta name="twitter:data2" value="1 ❤"/>
+    <meta property="article:published_time" content="2020-01-21T11:42:16+00:00"/>
+    <meta property="og:ignore_canonical" content="true"/>
+
+
+    <script type="application/ld+json">{
+        "@context": "http://schema.org",
+        "@type": "QAPage",
+        "name": "St2.chatops Ansible Role fatal error leading to broken install",
+        "mainEntity": {
+            "@type": "Question",
+            "name": "St2.chatops Ansible Role fatal error leading to broken install",
+            "text": "Ansible Version: 2.9.2\n\nCentOS Linux release 7.7.1908 (Core)\n\n<a href="
+            https://forum.stackstorm.com/t/st2-chatops-ansible-role-fatal-error-leading-to-broken-install/\&quot;https://github.com/StackStorm/ansible-st2.git\&quot;" rel=\"nofollow noopener\">https://github.com/StackStorm/ansible-st2.git<\/a> |\n\nGreetings,\n\nI have deployed StackStorm using your provided ansible playbook. However after deployment and configuring hubot to integrate with Slack I noticed the chatbot service wasnt onlin&hellip;","upvoteCount":0,"answerCount":1,"dateCreated":"2020-01-21T11:42:16.763Z","author":{"@type":"Person","name":"Matthew McNeilly"},"acceptedAnswer":{"@type":"Answer","text":"In order to enable ChatOps you have to configure it.\n\nSee: <a href="https://forum.stackstorm.com/t/st2-chatops-ansible-role-fatal-error-leading-to-broken-install/\&quot;https://docs.stackstorm.com/chatops/chatops.html#package-based-install\"" class=\"inline-onebox\">What is ChatOps? — StackStorm 3.1.0 documentation<\/a> from the general StackStorm documentation.\n\nFor Slack, you have to provide Hubot Slack Token via Ansible variables. See st2chatops.st2chatops_config <a href="https://forum.stackstorm.com/t/st2-chatops-ansible-role-fatal-error-leading-to-broken-install/\&quot;https://github.com/stackstorm/ansible-st2#variables\"" class=\"inline-onebox\">GitHub - StackStorm/ansible-st2: Ansible R&hellip;<\/a>","upvoteCount":1,"dateCreated":"2020-01-21T21:04:28.849Z","url":"https://forum.stackstorm.com/t/st2-chatops-ansible-role-fatal-error-leading-to-broken-install/1007/4","author":{"@type":"Person","name":"armab"}}}}
+    </script>
+
+    <meta id="data-discourse-setup" data-cdn="https://sjc6.discourse-cdn.com/standard10"
+          data-base-url="https://forum.stackstorm.com" data-base-uri="" data-environment="production"
+          data-letter-avatar-version="5_8fec8e114563efeaf5265573e510f08e"
+          data-markdown-it-url="https://aws1.discourse-cdn.com/standard10/assets/markdown-it-bundle-31e9a9c535ca1801c26da78b0ff465821751a98f921c5cdc5457d7e5a69e9748.js"
+          data-service-worker-url="service-worker.js" data-default-locale="en"
+          data-asset-version="597e36448c9b51d0fa3b7e43ec1fd6d5" data-disable-custom-css="false"
+          data-highlight-js-path="/highlight-js/forum.stackstorm.com/ac0f4aa001e1343346941766d72e0c1ae330832b.js"
+          data-svg-sprite-path="/svg-sprite/forum.stackstorm.com/svg-2-c2ad434b1e06079c7e282124aed9938dc95b83ea.js"
+          data-enable-js-error-reporting="true" data-color-scheme-is-dark="false" data-user-dark-scheme-id="-1"
+          data-s3-cdn="https://aws1.discourse-cdn.com/standard10"
+          data-s3-base-url="//discourse-cloud-file-uploads.s3.dualstack.us-west-2.amazonaws.com/standard10">
+
+    <meta name="discourse/config/environment"
+          content="%7B%22modulePrefix%22%3A%22discourse%22%2C%22environment%22%3A%22production%22%2C%22rootURL%22%3A%22%22%2C%22locationType%22%3A%22auto%22%2C%22historySupportMiddleware%22%3Afalse%2C%22EmberENV%22%3A%7B%22FEATURES%22%3A%7B%7D%2C%22EXTEND_PROTOTYPES%22%3A%7B%22Date%22%3Afalse%7D%2C%22_APPLICATION_TEMPLATE_WRAPPER%22%3Afalse%2C%22_DEFAULT_ASYNC_OBSERVERS%22%3Atrue%2C%22_JQUERY_INTEGRATION%22%3Atrue%7D%2C%22APP%22%3A%7B%22name%22%3A%22discourse%22%2C%22version%22%3A%222.8.0.beta6%20a1daf9fe53a66e2d2cdf9757ab4812fb9a2b2787%22%2C%22exportApplicationGlobal%22%3Atrue%7D%7D"/>
+</head>
+
+<body class="">
+
+
+<header class="d-header">
+    <div class="wrap">
+        <div class="contents clearfix">
+            <div class="title">
+                <a href="../../index.html">
+                    <picture>
+                        <img src="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png"
+                             alt="StackStorm Support (ARCHIVED)" id="site-logo"/>
+                    </picture>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</header>
+
+<div id="main-outlet" class="wrap" role="main">
+    <!-- preload-content: -->
+
+    <!-- EOF START -->
+    <div class="container" id="main-container">
+        <div id="ember11" class="ember-view"></div>
+        <div id="ember12" class="controls ember-view"><!----></div>
+        <div id="ember13" class="ember-view"><!----></div>
+        <div id="ember14" class="ember-view">
+            <div class="row">
+                <div id="global-notice-alert-read-only" class="alert alert-info alert-read-only">
+                    <!----> <span class="text">This site is in read only mode. Please continue to browse, but replying, likes, and other actions are disabled for now.</span>
+
+                    <!---->    </div>
+            </div>
+            <div class="row">
+                <div id="global-notice-alert-global-notice" class="alert alert-info alert-global-notice">
+                    <!----> <span class="text"><h3>⚠️ We've moved!</h3>  <p> Hi there!<br><br> To reduce project dependency on 3rd party paid services the StackStorm TSC has decided to move the Q/A from this forum to <a
+                        href="https://github.com/StackStorm/st2/discussions">Github Discussions</a>. This will make user experience better integrated with the native Github flow, as well as the questions closer to the community where they can provide answers. </p>  <p> Use 🔗 <b><a
+                        href="https://github.com/StackStorm/st2/discussions" class="active">Github Discussions</a></b> to ask your questions. </p></span>
+
+                    <!---->    </div>
+            </div>
+        </div>
+        <div id="ember17" class="hidden create-topics-notice ember-view"><!----></div>
+        <!---->
+    </div>
+    <!-- EOF END -->
+    <div id="topic-title">
+        <h1>
+            <a href="1007.html">St2.chatops Ansible Role fatal error leading to broken install</a>
+        </h1>
+
+
+        <div class="topic-category">
+            <div class='discourse-tags list-tags'>
+                <a href='../../tag/deployment' class='discourse-tag' rel="tag">deployment</a>,
+                <a href='../../tag/ansible' class='discourse-tag' rel="tag">ansible</a>,
+                <a href='../../tag/chatops' class='discourse-tag' rel="tag">chatops</a>,
+                <a href='../../tag/api' class='discourse-tag' rel="tag">api</a>
+            </div>
+        </div>
+    </div>
+
+
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/mmcneilly'><span itemprop='name'>mmcneilly</span></a>
+            (Matthew McNeilly)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="1007.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2020-01-21T11:42:16Z' class='post-time'>
+                January 21, 2020, 11:42am
+              </time>
+              <meta itemprop='dateModified' content='2020-01-21T12:18:20Z'>
+          <span itemprop='position'>#1</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Ansible Version: 2.9.2<br>
+                CentOS Linux release 7.7.1908 (Core)<br>
+                <a href="https://github.com/StackStorm/ansible-st2.git" rel="nofollow noopener">https://github.com/StackStorm/ansible-st2.git</a>
+                |</p>
+            <p>Greetings,</p>
+            <p>I have deployed StackStorm using your provided ansible playbook. However after deployment and configuring
+                hubot to integrate with Slack I noticed the chatbot service wasnt online and I was unable to start
+                it.</p>
+            <p>I ran your self-check script as per your troubleshooting guide and noticed that the API key was also not
+                set “StackStorm client couldn’t connect to StackStorm.”. I solved this temporarily by manually “export
+                ST2_API_KEY…”. However the check then fails on “Step 1 failed: Hubot is not running on this machine.”.
+                This prompted me to rerun the ansible script and check for any failures. This is what I found.</p>
+            <hr>
+            <p>TASK [StackStorm.st2chatops : Check if API key already exist in st2chatops.env]
+                ******************************************************************<br>
+                fatal: [localhost]: FAILED! =&gt; {“changed”: false, “cmd”: [“grep”, “-e”, “^export ST2_API_KEY=”\<span
+                        class="math">{ST2_API_KEY}\"</span>", “/opt/stackstorm/chatops/st2chatops.env”], “delta”:
+                “0:00:00.004789”, “end”: “2020-01-20 16:34:40.465620”, “msg”: “non-zero return code”, “rc”: 1, “start”:
+                “2020-01-20 16:34:40.460831”, “stderr”: “”, “stderr_lines”: [], “stdout”: “”, “stdout_lines”: []}<br>
+                …ignoring</p>
+            <hr>
+            <p>I am wondering if this is something that has been seen before and if you could help in diagnose the
+                problem. I believe it is failing this task and it is having a knock on effect skipping subsequent
+                tasks.</p>
+            <p>Much Appreciated<br>
+                Matthew</p>
+        </div>
+
+        <meta itemprop='headline' content='St2.chatops Ansible Role fatal error leading to broken install'>
+        <meta itemprop='keywords' content='deployment, ansible, chatops, api'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/armab'><span itemprop='name'>armab</span></a>
+            (Eugen Cusmaunsa)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="1007.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2020-01-21T11:56:13Z' class='post-time'>
+                January 21, 2020, 11:56am
+              </time>
+              <meta itemprop='dateModified' content='2020-01-21T11:56:13Z'>
+          <span itemprop='position'>#2</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>This could be a bug somewhere.<br>
+                What Ansible variables did you set to install stackstorm?</p>
+            <p>How <code>/opt/stackstorm/chatops/st2chatops.env</code> looks like after Ansible run?<br>
+                Did Ansible run succeeded at all?</p>
+            <p>Don’t forget to mask any secrets when posting logs.</p>
+        </div>
+
+        <meta itemprop='headline' content='St2.chatops Ansible Role fatal error leading to broken install'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/mmcneilly'><span itemprop='name'>mmcneilly</span></a>
+            (Matthew McNeilly)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="1007.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2020-01-21T12:16:45Z' class='post-time'>
+                January 21, 2020, 12:16pm
+              </time>
+              <meta itemprop='dateModified' content='2020-01-21T12:16:45Z'>
+          <span itemprop='position'>#3</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>I never set any ansible variables, is this required? The only configuration I did was to set the
+                following in the playbook (stackstorm.yaml) so that it ran on localhost.</p>
+            <p>hosts: localhost<br>
+                connection: local</p>
+            <p>The st2chatops.env file looks fine from the point of view that StackStorm API Key is there and
+                uncommented.</p>
+            <p>The playbook did run and complete. If I was to rerun it I get the following.</p>
+            <p>PLAY RECAP
+                ***************************************************************************************************************************************<br>
+                localhost : ok=86 changed=0 unreachable=0 failed=0 skipped=69 rescued=0 ignored=1</p>
+            <p>Thanks for the heads up</p>
+        </div>
+
+        <meta itemprop='headline' content='St2.chatops Ansible Role fatal error leading to broken install'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/armab'><span itemprop='name'>armab</span></a>
+            (Eugen Cusmaunsa)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="1007.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2020-01-21T21:04:28Z' class='post-time'>
+                January 21, 2020,  9:04pm
+              </time>
+              <meta itemprop='dateModified' content='2020-01-21T21:04:28Z'>
+          <span itemprop='position'>#4</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>In order to enable ChatOps you have to configure it.<br>
+                See: <a href="https://docs.stackstorm.com/chatops/chatops.html#package-based-install"
+                        class="inline-onebox">What is ChatOps? — StackStorm 3.1.0 documentation</a> from the general
+                StackStorm documentation.</p>
+            <p>For Slack, you have to provide Hubot Slack Token via Ansible variables. See <code>st2chatops.st2chatops_config</code>
+                <a href="https://github.com/stackstorm/ansible-st2#variables" class="inline-onebox">GitHub -
+                    StackStorm/ansible-st2: Ansible Roles and Playbooks to deploy StackStorm</a><br>
+                That will update <code>st2chatops.env</code> with Slack Token.</p>
+            <p>Once that’s done ChatOps service should work/start OK.</p>
+        </div>
+
+        <meta itemprop='headline' content='St2.chatops Ansible Role fatal error leading to broken install'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+            <span class='post-likes'>1 Like</span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/mmcneilly'><span itemprop='name'>mmcneilly</span></a>
+            (Matthew McNeilly)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="1007.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2020-01-22T11:56:06Z' class='post-time'>
+                January 22, 2020, 11:56am
+              </time>
+              <meta itemprop='dateModified' content='2020-01-22T11:56:06Z'>
+          <span itemprop='position'>#5</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Thanks for this <a class="mention" href="https://github.com/armab">@armab</a> this has done
+                the trick.<br>
+                Must have made a type somewhere when I was manually configuring it before, just happy its working and
+                automated <img src="https://emoji.discourse-cdn.com/apple/slight_smile.png?v=9" title=":slight_smile:"
+                               class="emoji" alt=":slight_smile:"></p>
+        </div>
+
+        <meta itemprop='headline' content='St2.chatops Ansible Role fatal error leading to broken install'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+
+
+    <!-- :preload-content -->
+    <footer class="noscript-footer-nav">
+        <nav itemscope itemtype='http://schema.org/SiteNavigationElement'>
+            <a href='../../index.html'>Home</a>
+            <a href="../../categories.html">Categories</a>
+            <a href="https://forum.stackstorm.com/guidelines">FAQ/Guidelines</a>
+            <a href="../../tos.html">Terms of Service</a>
+            <a href="../../privacy.html">Privacy Policy</a>
+        </nav>
+    </footer>
+</div>
+
+<footer id='noscript-footer'>
+    <p>Powered by <a href="https://www.discourse.org">Discourse</a>, best viewed with JavaScript enabled</p>
+</footer>
+
+
+<section id='main'>
+</section>
+
+
+</body>
+</html>

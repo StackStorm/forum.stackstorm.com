@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html lang="en" class="desktop-view not-mobile-device text-size-normal anon">
+<head>
+    <meta charset="utf-8">
+    <title>Action class logs cannot be found in any log file - Packages - StackStorm Support (ARCHIVED)</title>
+    <meta name="description"
+          content="Hi everyone, I have recently changed the log formatter and handler to GELF. I don’t see logs for the action python class that I have logged, checked in st2actionrunner.gelf.log or st2actionrunner.audit.log or st2actionru&amp;hellip;">
+    <meta name="discourse_theme_id" content="2">
+    <meta name="discourse_current_homepage" content="latest">
+    <meta name="generator"
+          content="Discourse 2.8.0.beta6 - https://github.com/discourse/discourse version a1daf9fe53a66e2d2cdf9757ab4812fb9a2b2787">
+    <link rel="icon" type="image/png"
+          href="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/379ced12f8326d58f1b3d2b3ff652f883e141f6a_2_32x32.PNG">
+    <link rel="apple-touch-icon" type="image/png"
+          href="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/379ced12f8326d58f1b3d2b3ff652f883e141f6a_2_180x180.PNG">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <link rel="canonical" href="1427.html"/>
+    <script type="application/ld+json">{
+        "@context": "http://schema.org",
+        "@type": "WebSite",
+        "url": "https://forum.stackstorm.com",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://forum.stackstorm.com/search?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }
+    </script>
+    <link rel="search" type="application/opensearchdescription+xml" href="../../opensearch.xml"
+          title="StackStorm Support (ARCHIVED) Search">
+
+
+    <link href="/../../stylesheets/color_definitions_base__2_3c5eec1ecf192052ea70b4afdab57a62bccc0604.css?__ws=forum.stackstorm.com"
+          media="all" rel="stylesheet" class="light-scheme"/>
+
+    <link href="/../../stylesheets/desktop_b2f2968742d41481357e0df259b51ce29f72481a.css?__ws=forum.stackstorm.com"
+          media="all" rel="stylesheet" data-target="desktop"/>
+
+
+    <meta name="fragment" content="!">
+
+
+    <link id="manifest-link" rel="manifest" href="../../manifest.webmanifest" crossorigin="use-credentials">
+
+
+    <link rel="alternate" type="application/rss+xml"
+          title="RSS feed of &#39;Action class logs cannot be found in any log file&#39;" href="1427.rss"/>
+    <meta property="og:site_name" content="StackStorm Support (ARCHIVED)"/>
+    <meta property="og:type" content="website"/>
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:image"
+          content="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/891f00fbdb31fecb5bd9dab30c186d2fed0091ca.jpeg"/>
+    <meta property="og:image"
+          content="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/891f00fbdb31fecb5bd9dab30c186d2fed0091ca.jpeg"/>
+    <meta property="og:url"
+          content="https://forum.stackstorm.com/t/action-class-logs-cannot-be-found-in-any-log-file/1427"/>
+    <meta name="twitter:url"
+          content="https://forum.stackstorm.com/t/action-class-logs-cannot-be-found-in-any-log-file/1427"/>
+    <meta property="og:title" content="Action class logs cannot be found in any log file"/>
+    <meta name="twitter:title" content="Action class logs cannot be found in any log file"/>
+    <meta property="og:description"
+          content="Hi everyone, I have recently changed the log formatter and handler to GELF. I don’t see logs for the action python class that I have logged, checked in st2actionrunner.gelf.log or st2actionrunner.audit.log or st2actionrunner.log but I do see the logs for sensor in under st2sensorcontainer.gelf.log . I’m not sure how to debug this, or why are the logs not to be found anywhere for actions. Could someone please help if they have seen this issue before? Thank you."/>
+    <meta name="twitter:description"
+          content="Hi everyone, I have recently changed the log formatter and handler to GELF. I don’t see logs for the action python class that I have logged, checked in st2actionrunner.gelf.log or st2actionrunner.audit.log or st2actionrunner.log but I do see the logs for sensor in under st2sensorcontainer.gelf.log . I’m not sure how to debug this, or why are the logs not to be found anywhere for actions. Could someone please help if they have seen this issue before? Thank you."/>
+    <meta property="article:published_time" content="2020-09-23T04:05:45+00:00"/>
+    <meta property="og:ignore_canonical" content="true"/>
+
+
+    <script type="application/ld+json">{
+        "@context": "http://schema.org",
+        "@type": "QAPage",
+        "name": "Action class logs cannot be found in any log file",
+        "mainEntity": {
+            "@type": "Question",
+            "name": "Action class logs cannot be found in any log file",
+            "text": "Hi everyone, I have recently changed the log formatter and handler to GELF. I don’t see logs for the action python class that I have logged, checked in st2actionrunner.gelf.log or st2actionrunner.audit.log or st2actionrunner.log but I do see the logs for sensor in under st2sensorcontainer.gelf.log .&hellip;",
+            "upvoteCount": 0,
+            "answerCount": 0,
+            "dateCreated": "2020-09-23T04:05:45.380Z",
+            "author": {
+                "@type": "Person",
+                "name": "KKR"
+            }
+        }
+    }
+    </script>
+
+    <meta id="data-discourse-setup" data-cdn="https://sjc6.discourse-cdn.com/standard10"
+          data-base-url="https://forum.stackstorm.com" data-base-uri="" data-environment="production"
+          data-letter-avatar-version="5_8fec8e114563efeaf5265573e510f08e"
+          data-markdown-it-url="https://aws1.discourse-cdn.com/standard10/assets/markdown-it-bundle-31e9a9c535ca1801c26da78b0ff465821751a98f921c5cdc5457d7e5a69e9748.js"
+          data-service-worker-url="service-worker.js" data-default-locale="en"
+          data-asset-version="597e36448c9b51d0fa3b7e43ec1fd6d5" data-disable-custom-css="false"
+          data-highlight-js-path="/highlight-js/forum.stackstorm.com/ac0f4aa001e1343346941766d72e0c1ae330832b.js"
+          data-svg-sprite-path="/svg-sprite/forum.stackstorm.com/svg-2-c2ad434b1e06079c7e282124aed9938dc95b83ea.js"
+          data-enable-js-error-reporting="true" data-color-scheme-is-dark="false" data-user-dark-scheme-id="-1"
+          data-s3-cdn="https://aws1.discourse-cdn.com/standard10"
+          data-s3-base-url="//discourse-cloud-file-uploads.s3.dualstack.us-west-2.amazonaws.com/standard10">
+
+    <meta name="discourse/config/environment"
+          content="%7B%22modulePrefix%22%3A%22discourse%22%2C%22environment%22%3A%22production%22%2C%22rootURL%22%3A%22%22%2C%22locationType%22%3A%22auto%22%2C%22historySupportMiddleware%22%3Afalse%2C%22EmberENV%22%3A%7B%22FEATURES%22%3A%7B%7D%2C%22EXTEND_PROTOTYPES%22%3A%7B%22Date%22%3Afalse%7D%2C%22_APPLICATION_TEMPLATE_WRAPPER%22%3Afalse%2C%22_DEFAULT_ASYNC_OBSERVERS%22%3Atrue%2C%22_JQUERY_INTEGRATION%22%3Atrue%7D%2C%22APP%22%3A%7B%22name%22%3A%22discourse%22%2C%22version%22%3A%222.8.0.beta6%20a1daf9fe53a66e2d2cdf9757ab4812fb9a2b2787%22%2C%22exportApplicationGlobal%22%3Atrue%7D%7D"/>
+</head>
+
+<body class="">
+
+
+<header class="d-header">
+    <div class="wrap">
+        <div class="contents clearfix">
+            <div class="title">
+                <a href="../../index.html">
+                    <picture>
+                        <img src="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png"
+                             alt="StackStorm Support (ARCHIVED)" id="site-logo"/>
+                    </picture>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</header>
+
+<div id="main-outlet" class="wrap" role="main">
+    <!-- preload-content: -->
+
+    <!-- EOF START -->
+    <div class="container" id="main-container">
+        <div id="ember11" class="ember-view"></div>
+        <div id="ember12" class="controls ember-view"><!----></div>
+        <div id="ember13" class="ember-view"><!----></div>
+        <div id="ember14" class="ember-view">
+            <div class="row">
+                <div id="global-notice-alert-read-only" class="alert alert-info alert-read-only">
+                    <!----> <span class="text">This site is in read only mode. Please continue to browse, but replying, likes, and other actions are disabled for now.</span>
+
+                    <!---->    </div>
+            </div>
+            <div class="row">
+                <div id="global-notice-alert-global-notice" class="alert alert-info alert-global-notice">
+                    <!----> <span class="text"><h3>⚠️ We've moved!</h3>  <p> Hi there!<br><br> To reduce project dependency on 3rd party paid services the StackStorm TSC has decided to move the Q/A from this forum to <a
+                        href="https://github.com/StackStorm/st2/discussions">Github Discussions</a>. This will make user experience better integrated with the native Github flow, as well as the questions closer to the community where they can provide answers. </p>  <p> Use 🔗 <b><a
+                        href="https://github.com/StackStorm/st2/discussions" class="active">Github Discussions</a></b> to ask your questions. </p></span>
+
+                    <!---->    </div>
+            </div>
+        </div>
+        <div id="ember17" class="hidden create-topics-notice ember-view"><!----></div>
+        <!---->
+    </div>
+    <!-- EOF END -->
+    <div id="topic-title">
+        <h1>
+            <a href="1427.html">Action class logs cannot be found in any log file</a>
+        </h1>
+
+        <div class="topic-category" itemscope itemtype="http://schema.org/BreadcrumbList">
+          <span itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a href="../../c/operations-related-issues/20" class="badge-wrapper bullet" itemprop="item">
+              <span class='badge-category-bg' style='background-color: #283890'></span>
+              <span class='badge-category clear-badge'>
+                <span class='category-name' itemprop='name'>Operations</span>
+              </span>
+            </a>
+            <meta itemprop="position" content="1"/>
+          </span>
+            <span itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a href="../../c/operations-related-issues/os-packages-related-issues/21" class="badge-wrapper bullet"
+               itemprop="item">
+              <span class='badge-category-bg' style='background-color: #ED207B'></span>
+              <span class='badge-category clear-badge'>
+                <span class='category-name' itemprop='name'>Packages</span>
+              </span>
+            </a>
+            <meta itemprop="position" content="2"/>
+          </span>
+        </div>
+
+        <div class="topic-category">
+            <div class='discourse-tags list-tags'>
+                <a href='../../tag/logging' class='discourse-tag' rel="tag">logging</a>,
+                <a href='../../tag/actions' class='discourse-tag' rel="tag">actions</a>
+            </div>
+        </div>
+    </div>
+
+
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/Tarto'><span itemprop='name'>Tarto</span></a>
+            (KKR)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="1427.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2020-09-23T04:05:45Z' class='post-time'>
+                September 23, 2020,  4:05am
+              </time>
+              <meta itemprop='dateModified' content='2020-09-23T05:44:29Z'>
+          <span itemprop='position'>#1</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Hi everyone, I have recently changed the log formatter and handler to GELF. I don’t see logs for the
+                action python class that I have logged, checked in st2actionrunner.gelf.log or st2actionrunner.audit.log
+                or st2actionrunner.log but I do see the logs for sensor in under st2sensorcontainer.gelf.log . I’m not
+                sure how to debug this, or why are the logs not to be found anywhere for actions. Could someone please
+                help if they have seen this issue before? Thank you.</p>
+        </div>
+
+        <meta itemprop='headline' content='Action class logs cannot be found in any log file'>
+        <meta itemprop='keywords' content='logging, actions'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/punkrokk'><span itemprop='name'>punkrokk</span></a>
+            (punkrokk)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="1427.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2020-09-23T04:32:39Z' class='post-time'>
+                September 23, 2020,  4:32am
+              </time>
+              <meta itemprop='dateModified' content='2020-09-23T04:32:39Z'>
+          <span itemprop='position'>#2</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Hi <a class="mention" href="https://github.com/tarto">@Tarto</a>. Can you share how you have
+                configured and enabled your GELF logs so maybe I can help?</p>
+        </div>
+
+        <meta itemprop='headline' content='Action class logs cannot be found in any log file'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/Tarto'><span itemprop='name'>Tarto</span></a>
+            (KKR)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="1427.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2020-09-23T05:25:59Z' class='post-time'>
+                September 23, 2020,  5:25am
+              </time>
+              <meta itemprop='dateModified' content='2020-09-23T05:25:59Z'>
+          <span itemprop='position'>#3</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Hi <a class="mention" href="https://github.com/punkrokk">@punkrokk</a>. Below is my
+                logging.actionrunner.conf</p>
+            <pre><code>[loggers]
+keys=root
+
+[handlers]
+keys=consoleHandler, fileHandler, auditHandler, gelfHandler
+
+[formatters]
+keys=simpleConsoleFormatter, verboseConsoleFormatter, gelfFormatter,jsonFormatter
+
+[logger_root]
+level=INFO
+handlers=consoleHandler, fileHandler, auditHandler, gelfHandler
+
+[handler_consoleHandler]
+class=StreamHandler
+level=INFO
+formatter=simpleConsoleFormatter
+args=(sys.stdout,)
+
+[handler_fileHandler]
+#class=st2common.log.FormatNamedFileHandler
+class=handlers.RotatingFileHandler
+level=INFO
+formatter=verboseConsoleFormatter
+#args=('/var/log/st2/st2actionrunner.{pid}.log',)
+args=('/var/log/st2/st2actionrunner.log', "a", 100000000, 5)
+
+[handler_gelfHandler]
+#class=st2common.log.FormatNamedFileHandler
+class=handlers.RotatingFileHandler
+level=INFO
+formatter=gelfFormatter
+#args=('/var/log/st2/st2actionrunner.{pid}.gelf.log',)
+args=('/var/log/st2/st2actionrunner.gelf.log', "a", 100000000, 5)
+
+[handler_auditHandler]
+class=st2common.log.FormatNamedFileHandler
+level=AUDIT
+formatter=jsonFormatter
+args=('/var/log/st2/st2actionrunner.audit.log', "a", 100000000, 5)
+
+[formatter_simpleConsoleFormatter]
+class=st2common.logging.formatters.ConsoleLogFormatter
+format=%(asctime)s %(levelname)s [-] %(message)s
+datefmt=
+
+[formatter_verboseConsoleFormatter]
+class=st2common.logging.formatters.ConsoleLogFormatter
+format=%(asctime)s %(thread)s %(levelname)s %(module)s [-] %(message)s
+datefmt=
+
+[formatter_gelfFormatter]
+class=st2common.logging.formatters.GelfLogFormatter
+format=%(message)s
+
+[formatter_jsonFormatter]
+class=pythonjsonlogger.jsonlogger.JsonFormatter
+format=%(asctime) %(thread) %(levelname) %(module) %(message)~</code></pre>
+        </div>
+
+        <meta itemprop='headline' content='Action class logs cannot be found in any log file'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/Tarto'><span itemprop='name'>Tarto</span></a>
+            (KKR)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="1427.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2020-09-23T05:28:49Z' class='post-time'>
+                September 23, 2020,  5:28am
+              </time>
+              <meta itemprop='dateModified' content='2020-09-23T05:28:49Z'>
+          <span itemprop='position'>#4</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>And my logging.sensorcontainer.conf is below (Sensor logs seems to work fine)</p>
+            <pre><code>[loggers]
+keys=root
+
+[handlers]
+keys=consoleHandler, fileHandler, auditHandler, gelfHandler
+
+[formatters]
+keys=simpleConsoleFormatter, verboseConsoleFormatter, gelfFormatter
+
+[logger_root]
+level=INFO
+handlers=consoleHandler, fileHandler, auditHandler, gelfHandler
+
+[handler_consoleHandler]
+class=StreamHandler
+level=INFO
+formatter=simpleConsoleFormatter
+args=(sys.stdout,)
+
+[handler_fileHandler]
+class=handlers.RotatingFileHandler
+level=INFO
+formatter=verboseConsoleFormatter
+args=("/var/log/st2/st2sensorcontainer.log", "a", 100000000, 5)
+
+[handler_auditHandler]
+class=handlers.RotatingFileHandler
+level=AUDIT
+formatter=gelfFormatter
+args=("/var/log/st2/st2sensorcontainer.audit.log",)
+
+# For all components except actionrunner
+[handler_gelfHandler]
+class=handlers.RotatingFileHandler
+level=INFO
+formatter=gelfFormatter
+args=("/var/log/st2/st2sensorcontainer.gelf.log", "a", 100000000, 5)
+
+[formatter_simpleConsoleFormatter]
+class=st2common.logging.formatters.ConsoleLogFormatter
+format=%(asctime)s %(levelname)s [-] %(message)s
+datefmt=
+
+[formatter_verboseConsoleFormatter]
+class=st2common.logging.formatters.ConsoleLogFormatter
+format=%(asctime)s %(thread)s %(levelname)s %(module)s [-] %(message)s
+datefmt=
+
+[formatter_gelfFormatter]
+class=st2common.logging.formatters.GelfLogFormatter
+format=%(message)s</code></pre>
+        </div>
+
+        <meta itemprop='headline' content='Action class logs cannot be found in any log file'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/punkrokk'><span itemprop='name'>punkrokk</span></a>
+            (punkrokk)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="1427.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2020-09-23T14:55:27Z' class='post-time'>
+                September 23, 2020,  2:55pm
+              </time>
+              <meta itemprop='dateModified' content='2020-09-23T14:55:27Z'>
+          <span itemprop='position'>#5</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Looks to me like you are missing your <code>[handler_gelfHandler]</code> stanzas. Checkout <a
+                    href="https://stackstorm.com/2017/08/22/stackstorm-centralized-logging-graylog/">this blog post.</a>
+                by <a class="mention" href="https://github.com/nmaludy">@nmaludy</a>.</p>
+            <p>Should point you in the right direction.</p>
+            <p>Don’t forget to restart st2 after, and notice a few of the files have differences, as pointed out in the
+                blog post.</p>
+        </div>
+
+        <meta itemprop='headline' content='Action class logs cannot be found in any log file'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/Tarto'><span itemprop='name'>Tarto</span></a>
+            (KKR)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="1427.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2020-09-23T14:58:54Z' class='post-time'>
+                September 23, 2020,  2:58pm
+              </time>
+              <meta itemprop='dateModified' content='2020-09-23T15:03:58Z'>
+          <span itemprop='position'>#6</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Hi <a class="mention" href="https://github.com/punkrokk">@punkrokk</a> Thank you for
+                responding. I do have <code>[handler_gelfHandler]</code> which can been seen by scrolling the conf
+                above. I have restarted st2 by using the command - sudo st2ctl restart. What could’ve gone wrong?</p>
+            <aside class="quote no-group" data-username="Tarto" data-post="3" data-topic="1427">
+                <div class="title">
+                    <div class="quote-controls"></div>
+                    <img alt="" width="20" height="20" src="https://avatars.discourse-cdn.com/v4/letter/t/0ea827/40.png"
+                         class="avatar"> Tarto:
+                </div>
+                <blockquote>
+<pre><code class="lang-auto">[handler_gelfHandler]
+#class=st2common.log.FormatNamedFileHandler
+class=handlers.RotatingFileHandler
+level=INFO
+formatter=gelfFormatter
+#args=('/var/log/st2/st2actionrunner.{pid}.gelf.log',)
+args=('/var/log/st2/st2actionrunner.gelf.log', "a", 100000000, 5)
+</code></pre>
+                </blockquote>
+            </aside>
+        </div>
+
+        <meta itemprop='headline' content='Action class logs cannot be found in any log file'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/punkrokk'><span itemprop='name'>punkrokk</span></a>
+            (punkrokk)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="1427.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2020-09-23T18:15:18Z' class='post-time'>
+                September 23, 2020,  6:15pm
+              </time>
+              <meta itemprop='dateModified' content='2020-09-23T18:15:18Z'>
+          <span itemprop='position'>#7</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>are your logs showing anything? Pick one service and let’s fix that for now.</p>
+        </div>
+
+        <meta itemprop='headline' content='Action class logs cannot be found in any log file'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/Tarto'><span itemprop='name'>Tarto</span></a>
+            (KKR)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="1427.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2020-09-23T18:45:49Z' class='post-time'>
+                September 23, 2020,  6:45pm
+              </time>
+              <meta itemprop='dateModified' content='2020-09-23T18:46:58Z'>
+          <span itemprop='position'>#8</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Yes, <a class="mention" href="https://github.com/punkrokk">@punkrokk</a> they do show the
+                default stacktsorm logs but not the ones I have put in the python class.</p>
+            <p>My <strong>st2actionrunner.gelf.log</strong> has the default logs that stackstorm produces when an action
+                occurs. What I wanted and looking for is the logs I have put in the action python class.</p>
+            <pre><code> {"version": "1.1", "level": 6, "timestamp": 1600886116, "_python": {"name": "st2.st2actions.worker", "process": 6937, "module": "worker", "funcName": "_run_action", "processName": "MainProcess", "lineno": 154, "filename": "worker.py"}, "timestamp_f": 1600886116.498083, "host": "stackstorm-setup-1", "full_message": "Dispatched {~}action_execution: 5f6b956413b90a89c81f440b / {~}live_action: 5f6b956413b90a89c81f4409 with \"running\" status.", "short_message": "Dispatched {~}action_execution: %s / {~}live_action: %s with \"%s\" status."}
+
+    {"version": "1.1", "level": 6, "timestamp": 1600886116, "_runner_type_db": {"runner_module": "python_runner", "description": "A runner for launching python actions.", "name": "python-script", "runner_package": "python_runner", "enabled": true, "query_module": null, "output_key": "result", "output_schema": {"stdout": {"required": true, "type": "string"}, "exit_code": {"required": true, "type": "integer"}, "stderr": {"required": true, "type": "string"}, "result": {"anyOf": [{"type": "object"}, {"type": "string"}, {"type": "integer"}, {"type": "number"}, {"type": "boolean"}, {"type": "array"}, {"type": "null"}]}}, "runner_parameters": {"debug": {"default": false, "required": false, "type": "boolean", "description": "Enable runner debug mode."}, "content_version": {"required": false, "type": "string", "description": "Git revision of the pack content to use for this action execution (git commit sha / tag / branch). Only applies to packs which are git repositories."}, "log_level": {"default": "DEBUG", "enum": ["AUDIT", "CRITICAL", "ERROR", "WARNING", "INFO", "DEBUG"], "type": "string", "description": "Default log level for Python runner actions."}, "env": {"type": "object", "description": "Environment variables which will be available to the script."}, "timeout": {"default": 600, "type": "integer", "description": "Action timeout in seconds. Action will get killed if it doesn't finish in timeout seconds."}}, "id": "5f25b16ae8f3984fb2b89f8b", "uid": "runner_type:python-script"}, "_python": {"name": "st2.st2actions.container.base", "process": 6937, "module": "base", "funcName": "dispatch", "processName": "MainProcess", "lineno": 62, "filename": "base.py"}, "timestamp_f": 1600886116.506733, "host": "stackstorm-setup-1", "full_message": "Dispatching Action to a runner", "_liveaction_db": {"status": "running", "runner_info": {"hostname": "stackstorm-setup-1", "pid": 6937}, "workflow_execution": null, "parameters": {"instances": {"instances": [&lt;instances_list&gt;]}, "log_level": "INFO", "poolname": "&lt;pool_name&gt;"}, "action_is_workflow": false, "start_timestamp": "2020-09-23 18:35:16.156295+00:00", "delay": null, "callback": {}, "task_execution": null, "notify": null, "result": {}, "context": {"trigger_instance": {"id": "5f6b956413b90a89c81f4405", "name": null}, "trace_context": {"id_": "5f6b956413b90a89c81f4407", "trace_tag": "trigger_instance-5f6b956413b90a89c81f4405"}, "user": "stanley", "rule": {"id": "5f501a15379c21fa6c4a0cd8", "name": "replace_instance"}, "pack": "managedstage_remediation"}, "action": "managedstage_remediation.genesis_replace", "id": "5f6b956413b90a89c81f4409", "end_timestamp": null}, "short_message": "Dispatching Action to a runner"}</code></pre>
+        </div>
+
+        <meta itemprop='headline' content='Action class logs cannot be found in any log file'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/punkrokk'><span itemprop='name'>punkrokk</span></a>
+            (punkrokk)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="1427.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2020-09-23T18:58:14Z' class='post-time'>
+                September 23, 2020,  6:58pm
+              </time>
+              <meta itemprop='dateModified' content='2020-09-23T18:58:14Z'>
+          <span itemprop='position'>#9</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>I meant look at the logs for an error related to gelf. Check /car/log/messages also.</p>
+        </div>
+
+        <meta itemprop='headline' content='Action class logs cannot be found in any log file'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/Tarto'><span itemprop='name'>Tarto</span></a>
+            (KKR)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="1427.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2020-09-23T19:33:53Z' class='post-time'>
+                September 23, 2020,  7:33pm
+              </time>
+              <meta itemprop='dateModified' content='2020-09-23T20:22:08Z'>
+          <span itemprop='position'>#10</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>I don’t see anything in <code>/var/log/messages</code>. It is empty. Don’t see any error logs related to
+                GELF. I’m missing something here. Could you please help me point to the right logs I should check.</p>
+            <p>Logging in stackstorm comes under - <strong>st2common</strong>. I don’t see logs for
+                <strong>st2common</strong> as well.</p>
+            <p><strong>These are logs I see under /var/log/st2/</strong></p>
+            <pre><code>-rw-r--r-- 1 st2  st2           297 Sep 23 06:25 st2auth.log
+-rw-r--r-- 1 st2  st2           301 Sep 23 06:25 st2stream.log
+-rw-r--r-- 1 st2  st2             0 Sep 23 06:25 st2resultstracker.audit.log
+-rw-r--r-- 1 st2  st2           258 Sep 23 06:25 st2resultstracker.log
+-rw-r--r-- 1 st2  st2             0 Sep 23 06:25 st2notifier.audit.log
+-rw-r--r-- 1 st2  st2           246 Sep 23 06:25 st2notifier.log
+-rw-r--r-- 1 st2  st2        390852 Sep 23 06:25 st2sensorcontainer.log.1.gz
+-rw-r--r-- 1 root root      1227414 Sep 23 06:25 st2sensorcontainer.gelf.log.1.gz
+-rw-r--r-- 1 st2  st2       1226926 Sep 23 06:25 st2sensorcontainer.audit.log.1.gz
+-rw-rw-r-- 1 root st2packs        0 Sep 23 06:25 st2actionrunner.28024.audit.log
+-rw-rw-r-- 1 root st2packs        0 Sep 23 06:25 st2actionrunner.28026.audit.log
+-rw-rw-r-- 1 root st2packs        0 Sep 23 06:25 st2actionrunner.28028.audit.log
+-rw-r--r-- 1 st2  st2        181384 Sep 23 06:25 st2scheduler.log.1.gz
+-rw-r--r-- 1 st2  st2        142674 Sep 23 06:25 st2scheduler.audit.log.1.gz
+-rw-rw-r-- 1 root st2packs        0 Sep 23 06:25 st2actionrunner.28030.audit.log
+-rw-rw-r-- 1 root st2packs        0 Sep 23 06:25 st2actionrunner.28032.audit.log
+-rw-rw-r-- 1 root st2packs        0 Sep 23 06:25 st2actionrunner.28034.audit.log
+-rw-rw-r-- 1 root st2packs        0 Sep 23 06:25 st2actionrunner.28036.audit.log
+-rw-rw-r-- 1 root st2packs        0 Sep 23 06:25 st2actionrunner.28038.audit.log
+-rw-rw-r-- 1 root st2packs        0 Sep 23 06:25 st2actionrunner.28041.audit.log
+-rw-rw-r-- 1 root st2packs        0 Sep 23 06:25 st2actionrunner.28043.audit.log
+-rw-r--r-- 1 st2  st2             0 Sep 23 06:25 st2workflowengine.audit.log
+-rw-r--r-- 1 st2  st2           258 Sep 23 06:25 st2workflowengine.log
+-rw-r--r-- 1 st2  st2             0 Sep 23 06:25 st2timersengine.audit.log
+-rw-r--r-- 1 st2  st2           254 Sep 23 06:25 st2timersengine.log
+-rw-r--r-- 1 st2  st2       3657282 Sep 23 12:43 st2rulesengine.audit.log
+-rw-r--r-- 1 st2  st2       1594059 Sep 23 12:43 st2scheduler.log
+-rw-r--r-- 1 st2  st2       1474572 Sep 23 12:43 st2scheduler.audit.log
+-rw-rw-r-- 1 root st2packs   549229 Sep 23 12:43 st2actionrunner.log
+-rw-r--r-- 1 root root       676329 Sep 23 12:43 st2actionrunner.gelf.log
+-rw-rw-r-- 1 root st2packs   689680 Sep 23 12:43 st2actionrunner.audit.log
+-rw-r--r-- 1 st2  st2      73700713 Sep 23 12:43 st2rulesengine.log
+-rw-r--r-- 1 st2  st2        144033 Sep 23 12:48 st2api.log
+-rw-r--r-- 1 st2  st2         28980 Sep 23 13:11 st2garbagecollector.log
+-rw-r--r-- 1 st2  st2       2228103 Sep 23 13:19 st2sensorcontainer.log
+-rw-r--r-- 1 root root      6485892 Sep 23 13:19 st2sensorcontainer.gelf.log
+-rw-r--r-- 1 st2  st2       6493895 Sep 23 13:19 st2sensorcontainer.audit.log
+</code></pre>
+            <p><strong>These are the list of logs I see under /var/log</strong></p>
+            <pre><code>drwxr-xr-x 2 root     root             4096 Dec  7  2017 lxd
+drwxr-xr-x 2 root     root             4096 Nov  8  2019 dist-upgrade
+drwxr-xr-x 2 ntp      ntp              4096 Jan  7  2020 ntpstats
+drwxr-xr-x 2 root     root             4096 Apr  7 02:56 fsck
+-rwxr-x--- 1 news     news                0 Apr 15 13:50 news
+-rw-r--r-- 1 root     root              510 Jul 22 14:06 fontconfig.log
+drwxr-xr-x 4 root     root             4096 Jul 22 14:08 puppetlabs
+-rw-r--r-- 1 root     root             8955 Jul 22 14:09 reportpatchstatus
+-rw------- 1 root     root                0 Jul 22 14:16 boot.log
+-rw-r----- 1 root     adm                 0 Jul 22 14:16 kern.log
+-rw-r--r-- 1 root     root             8320 Aug  1 11:09 cloud-init-output.log
+-rw-r--r-- 1 syslog   adm            102304 Aug  1 11:09 cloud-init.log
+drwxr-x--- 2 root     root             4096 Aug  1 11:10 syslog-ng
+drwxr-xr-x 2 mongodb  mongodb          4096 Aug  1 11:12 mongodb
+-rw-r--r-- 1 root     root             1259 Aug  1 11:14 ntp.log
+drwxr-xr-x 2 mistral  root             4096 Aug  1 11:18 mistral
+-rw-r--r-- 1 root     root             8635 Aug  1 12:22 alternatives.log.1
+-rw-r--r-- 1 root     root            61411 Aug  1 12:22 dpkg.log.1
+-rw-r--r-- 1 root     root                1 Aug  9 06:25 mail.err.1
+-rw-r--r-- 1 root     root                0 Aug  9 06:25 mail.err
+-rw-r----- 1 root     adm             54435 Aug  9 06:25 mail.log.1
+-rw-r----- 1 root     adm                 0 Aug  9 06:25 mail.log
+-rw-r----- 1 root     adm              6048 Aug  9 06:25 daemon.log.1
+-rw-r----- 1 root     adm                79 Aug  9 06:25 user.log.1
+-rw-r----- 1 root     adm                 0 Aug  9 06:25 user.log
+-rw-r----- 1 root     adm                 0 Aug  9 06:25 daemon.log
+-rw-r----- 1 root     adm               119 Aug  9 06:25 messages.1
+-rw-r----- 1 root     adm              1110 Aug  9 06:25 cron.log.1
+-rw-r----- 1 root     adm                 0 Aug  9 06:25 cron.log
+-rw-r----- 1 root     adm                 0 Aug  9 06:25 messages
+-rw-r----- 1 root     adm             39511 Aug  9 06:25 error.1
+-rw-r----- 1 root     adm                 0 Aug  9 06:25 error
+-rw------- 1 root     utmp              213 Aug 28 22:29 btmp.1.gz
+-rw-rw-r-- 1 root     utmp            66737 Aug 31 18:25 wtmp.1.gz
+drwxr-xr-x 2 root     root             4096 Sep  1 06:25 apt
+-rw-r--r-- 1 root     root                0 Sep  1 06:25 alternatives.log
+drwxr-x--- 2 root     adm              4096 Sep  1 06:25 unattended-upgrades
+-rw------- 1 root     utmp             5376 Sep 10 07:06 btmp
+drwxr-xr-x 2 root     root             4096 Sep 11 06:25 nginx
+-rw-r--r-- 1 root     root              473 Sep 11 06:26 syslog.7.gz
+-rw-r--r-- 1 root     root              161 Sep 14 06:25 syslog.6.gz
+-rw-r--r-- 1 root     root              188 Sep 15 06:25 syslog.5.gz
+-rw-r--r-- 1 root     root              188 Sep 18 06:25 syslog.4.gz
+-rw-r--r-- 1 root     root              129 Sep 18 17:15 firewalld
+-rw-r--r-- 1 root     root              100 Sep 19 06:25 syslog.3.gz
+drwxr-xr-x 2 rabbitmq rabbitmq         4096 Sep 20 06:25 rabbitmq
+-rw-r--r-- 1 root     root            29231 Sep 20 23:01 dpkg.log
+drwxr-x--- 2 sssd     sssd             4096 Sep 21 06:25 sssd
+-rw-r--r-- 1 root     root              211 Sep 21 06:25 syslog.2.gz
+drwxr-x--- 2 root     root             4096 Sep 21 10:55 audit
+drwsrwsrwt 2 root     root             4096 Sep 22 11:59 filebeat
+drwxrwxr-t 2 root     postgres         4096 Sep 23 06:25 postgresql
+drwxr-xr-x 2 st2      root            28672 Sep 23 06:25 st2
+-rw-r--r-- 1 root     root              125 Sep 23 06:25 syslog.1
+-rw-r--r-- 1 root     root                0 Sep 23 06:25 syslog
+drwxr-xr-x 2 root     root             4096 Sep 23 06:28 sysstat
+-rw-rw-r-- 1 root     utmp          2120832 Sep 23 13:11 wtmp
+-rw-rw-r-- 1 root     utmp     262800005256 Sep 23 13:11 lastlog
+-rw-r--r-- 1 root     root         44695595 Sep 23 13:18 authlog
+-rw-r--r-- 1 root     root          8940721 Sep 23 13:18 cron
+-rw-r--r-- 1 root     root       1037297686 Sep 23 13:18 maillog</code></pre>
+        </div>
+
+        <meta itemprop='headline' content='Action class logs cannot be found in any log file'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/punkrokk'><span itemprop='name'>punkrokk</span></a>
+            (punkrokk)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="1427.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2020-09-24T15:18:24Z' class='post-time'>
+                September 24, 2020,  3:18pm
+              </time>
+              <meta itemprop='dateModified' content='2020-09-24T15:18:24Z'>
+          <span itemprop='position'>#11</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Sorry you are on Ubuntu it looks like - /var/log/syslog</p>
+        </div>
+
+        <meta itemprop='headline' content='Action class logs cannot be found in any log file'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/Tarto'><span itemprop='name'>Tarto</span></a>
+            (KKR)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="1427.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2020-09-29T20:24:00Z' class='post-time'>
+                September 29, 2020,  8:24pm
+              </time>
+              <meta itemprop='dateModified' content='2020-09-29T20:24:00Z'>
+          <span itemprop='position'>#12</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Thank you <a class="mention" href="https://github.com/punkrokk">@punkrokk</a>. I have checked
+                everywhere. no log information. I’m thinking of trying to use python logging instead of stackstorm
+                logging. But not sure if that’s possible and how to GELF format.</p>
+        </div>
+
+        <meta itemprop='headline' content='Action class logs cannot be found in any log file'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/punkrokk'><span itemprop='name'>punkrokk</span></a>
+            (punkrokk)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="1427.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2020-11-10T01:18:20Z' class='post-time'>
+                November 10, 2020,  1:18am
+              </time>
+              <meta itemprop='dateModified' content='2020-11-10T01:18:20Z'>
+          <span itemprop='position'>#13</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Something isn’t right. If you can post all your st2 logs, maybe in a zip file I’ll see if I can check
+                them out.</p>
+        </div>
+
+        <meta itemprop='headline' content='Action class logs cannot be found in any log file'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+
+
+    <!-- :preload-content -->
+    <footer class="noscript-footer-nav">
+        <nav itemscope itemtype='http://schema.org/SiteNavigationElement'>
+            <a href='../../index.html'>Home</a>
+            <a href="../../categories.html">Categories</a>
+            <a href="https://forum.stackstorm.com/guidelines">FAQ/Guidelines</a>
+            <a href="../../tos.html">Terms of Service</a>
+            <a href="../../privacy.html">Privacy Policy</a>
+        </nav>
+    </footer>
+</div>
+
+<footer id='noscript-footer'>
+    <p>Powered by <a href="https://www.discourse.org">Discourse</a>, best viewed with JavaScript enabled</p>
+</footer>
+
+
+<section id='main'>
+</section>
+
+
+</body>
+</html>

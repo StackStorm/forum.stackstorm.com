@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en" class="desktop-view not-mobile-device text-size-normal anon">
+<head>
+    <meta charset="utf-8">
+    <title>Mattermost chatops with ST2 2.10 - Chatops - StackStorm Support (ARCHIVED)</title>
+    <meta name="description" content="Hi, I can’t connect ST2 with Mattermost after change st2 version. 
+st2 2.10.0, on Python 2.7.6 
+Mattermost Version: 5.8.0 
+tailf /var/log/st2/st2chatops.log 
+[Mon Mar 11 2019 18:21:30 GMT+0000 (Coordinated Universal Time&amp;hellip;">
+    <meta name="discourse_theme_id" content="2">
+    <meta name="discourse_current_homepage" content="latest">
+    <meta name="generator"
+          content="Discourse 2.8.0.beta6 - https://github.com/discourse/discourse version a1daf9fe53a66e2d2cdf9757ab4812fb9a2b2787">
+    <link rel="icon" type="image/png"
+          href="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/379ced12f8326d58f1b3d2b3ff652f883e141f6a_2_32x32.PNG">
+    <link rel="apple-touch-icon" type="image/png"
+          href="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/379ced12f8326d58f1b3d2b3ff652f883e141f6a_2_180x180.PNG">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <link rel="canonical" href="543.html"/>
+    <script type="application/ld+json">{
+        "@context": "http://schema.org",
+        "@type": "WebSite",
+        "url": "https://forum.stackstorm.com",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://forum.stackstorm.com/search?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }</script>
+    <link rel="search" type="application/opensearchdescription+xml" href="../../opensearch.xml"
+          title="StackStorm Support (ARCHIVED) Search">
+
+
+    <link href="/../../stylesheets/color_definitions_base__2_3c5eec1ecf192052ea70b4afdab57a62bccc0604.css?__ws=forum.stackstorm.com"
+          media="all" rel="stylesheet" class="light-scheme"/>
+
+    <link href="/../../stylesheets/desktop_b2f2968742d41481357e0df259b51ce29f72481a.css?__ws=forum.stackstorm.com"
+          media="all" rel="stylesheet" data-target="desktop"/>
+
+
+    <meta name="fragment" content="!">
+
+
+    <link id="manifest-link" rel="manifest" href="../../manifest.webmanifest" crossorigin="use-credentials">
+
+
+    <link rel="alternate" type="application/rss+xml" title="RSS feed of &#39;Mattermost chatops with ST2 2.10&#39;"
+          href="https://forum.stackstorm.com/t/mattermost-chatops-with-st2-2-10/543.rss"/>
+    <meta property="og:site_name" content="StackStorm Support (ARCHIVED)"/>
+    <meta property="og:type" content="website"/>
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:image"
+          content="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/891f00fbdb31fecb5bd9dab30c186d2fed0091ca.jpeg"/>
+    <meta property="og:image"
+          content="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/891f00fbdb31fecb5bd9dab30c186d2fed0091ca.jpeg"/>
+    <meta property="og:url" content="https://forum.stackstorm.com/t/mattermost-chatops-with-st2-2-10/543"/>
+    <meta name="twitter:url" content="https://forum.stackstorm.com/t/mattermost-chatops-with-st2-2-10/543"/>
+    <meta property="og:title" content="Mattermost chatops with ST2 2.10"/>
+    <meta name="twitter:title" content="Mattermost chatops with ST2 2.10"/>
+    <meta property="og:description"
+          content="Hi, I can’t connect ST2 with Mattermost after change st2 version.  st2 2.10.0, on Python 2.7.6  Mattermost Version: 5.8.0  tailf /var/log/st2/st2chatops.log  [Mon Mar 11 2019 18:21:30 GMT+0000 (Coordinated Universal Time)] INFO Attempting reconnect  [Mon Mar 11 2019 18:21:30 GMT+0000 (Coordinated Universal Time)] INFO Logging in…  [Mon Mar 11 2019 18:21:30 GMT+0000 (Coordinated Universal Time)] INFO api url:http://192.168.3.150:80/api/v4/users/login  [Mon Mar 11 2019 18:21:30 GMT+0000 (Coordinat..."/>
+    <meta name="twitter:description"
+          content="Hi, I can’t connect ST2 with Mattermost after change st2 version.  st2 2.10.0, on Python 2.7.6  Mattermost Version: 5.8.0  tailf /var/log/st2/st2chatops.log  [Mon Mar 11 2019 18:21:30 GMT+0000 (Coordinated Universal Time)] INFO Attempting reconnect  [Mon Mar 11 2019 18:21:30 GMT+0000 (Coordinated Universal Time)] INFO Logging in…  [Mon Mar 11 2019 18:21:30 GMT+0000 (Coordinated Universal Time)] INFO api url:http://192.168.3.150:80/api/v4/users/login  [Mon Mar 11 2019 18:21:30 GMT+0000 (Coordinat..."/>
+    <meta property="article:published_time" content="2019-03-11T18:32:10+00:00"/>
+    <meta property="og:ignore_canonical" content="true"/>
+
+
+    <script type="application/ld+json">{
+        "@context": "http://schema.org",
+        "@type": "QAPage",
+        "name": "Mattermost chatops with ST2 2.10",
+        "mainEntity": {
+            "@type": "Question",
+            "name": "Mattermost chatops with ST2 2.10",
+            "text": "Hi, I can’t connect ST2 with Mattermost after change st2 version.\n\nst2 2.10.0, on Python 2.7.6\n\nMattermost Version: 5.8.0\n\ntailf /var/log/st2/st2chatops.log\n\n[Mon Mar 11 2019 18:21:30 GMT+0000 (Coordinated Universal Time)] INFO Attempting reconnect\n\n[Mon Mar 11 2019 18:21:30 GMT+0000 (Coordinated Un&hellip;",
+            "upvoteCount": 0,
+            "answerCount": 0,
+            "dateCreated": "2019-03-11T18:32:10.619Z",
+            "author": {
+                "@type": "Person",
+                "name": "igor"
+            }
+        }
+    }</script>
+
+    <meta id="data-discourse-setup" data-cdn="https://sjc6.discourse-cdn.com/standard10"
+          data-base-url="https://forum.stackstorm.com" data-base-uri="" data-environment="production"
+          data-letter-avatar-version="5_8fec8e114563efeaf5265573e510f08e"
+          data-markdown-it-url="https://aws1.discourse-cdn.com/standard10/assets/markdown-it-bundle-31e9a9c535ca1801c26da78b0ff465821751a98f921c5cdc5457d7e5a69e9748.js"
+          data-service-worker-url="service-worker.js" data-default-locale="en"
+          data-asset-version="597e36448c9b51d0fa3b7e43ec1fd6d5" data-disable-custom-css="false"
+          data-highlight-js-path="/highlight-js/forum.stackstorm.com/ac0f4aa001e1343346941766d72e0c1ae330832b.js"
+          data-svg-sprite-path="/svg-sprite/forum.stackstorm.com/svg-2-c2ad434b1e06079c7e282124aed9938dc95b83ea.js"
+          data-enable-js-error-reporting="true" data-color-scheme-is-dark="false" data-user-dark-scheme-id="-1"
+          data-s3-cdn="https://aws1.discourse-cdn.com/standard10"
+          data-s3-base-url="//discourse-cloud-file-uploads.s3.dualstack.us-west-2.amazonaws.com/standard10">
+
+    <meta name="discourse/config/environment"
+          content="%7B%22modulePrefix%22%3A%22discourse%22%2C%22environment%22%3A%22production%22%2C%22rootURL%22%3A%22%22%2C%22locationType%22%3A%22auto%22%2C%22historySupportMiddleware%22%3Afalse%2C%22EmberENV%22%3A%7B%22FEATURES%22%3A%7B%7D%2C%22EXTEND_PROTOTYPES%22%3A%7B%22Date%22%3Afalse%7D%2C%22_APPLICATION_TEMPLATE_WRAPPER%22%3Afalse%2C%22_DEFAULT_ASYNC_OBSERVERS%22%3Atrue%2C%22_JQUERY_INTEGRATION%22%3Atrue%7D%2C%22APP%22%3A%7B%22name%22%3A%22discourse%22%2C%22version%22%3A%222.8.0.beta6%20a1daf9fe53a66e2d2cdf9757ab4812fb9a2b2787%22%2C%22exportApplicationGlobal%22%3Atrue%7D%7D"/>
+</head>
+
+<body class="">
+
+
+<header class="d-header">
+    <div class="wrap">
+        <div class="contents clearfix">
+            <div class="title">
+                <a href="../../index.html">
+                    <picture>
+                        <img src="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png"
+                             alt="StackStorm Support (ARCHIVED)" id="site-logo"/>
+                    </picture>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</header>
+
+<div id="main-outlet" class="wrap" role="main">
+    <!-- preload-content: -->
+
+    <!-- EOF START -->
+    <div class="container" id="main-container">
+        <div id="ember11" class="ember-view"></div>
+        <div id="ember12" class="controls ember-view"><!----></div>
+        <div id="ember13" class="ember-view"><!----></div>
+        <div id="ember14" class="ember-view">
+            <div class="row">
+                <div id="global-notice-alert-read-only" class="alert alert-info alert-read-only">
+                    <!----> <span class="text">This site is in read only mode. Please continue to browse, but replying, likes, and other actions are disabled for now.</span>
+
+                    <!---->    </div>
+            </div>
+            <div class="row">
+                <div id="global-notice-alert-global-notice" class="alert alert-info alert-global-notice">
+                    <!----> <span class="text"><h3>⚠️ We've moved!</h3>  <p> Hi there!<br><br> To reduce project dependency on 3rd party paid services the StackStorm TSC has decided to move the Q/A from this forum to <a
+                        href="https://github.com/StackStorm/st2/discussions">Github Discussions</a>. This will make user experience better integrated with the native Github flow, as well as the questions closer to the community where they can provide answers. </p>  <p> Use 🔗 <b><a
+                        href="https://github.com/StackStorm/st2/discussions" class="active">Github Discussions</a></b> to ask your questions. </p></span>
+
+                    <!---->    </div>
+            </div>
+        </div>
+        <div id="ember17" class="hidden create-topics-notice ember-view"><!----></div>
+        <!---->
+    </div>
+    <!-- EOF END -->
+    <div id="topic-title">
+        <h1>
+            <a href="543.html">Mattermost chatops with ST2 2.10</a>
+        </h1>
+
+        <div class="topic-category" itemscope itemtype="http://schema.org/BreadcrumbList">
+          <span itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a href="../../c/chatops-related-issues/9" class="badge-wrapper bullet" itemprop="item">
+              <span class='badge-category-bg' style='background-color: #AB9364'></span>
+              <span class='badge-category clear-badge'>
+                <span class='category-name' itemprop='name'>Chatops</span>
+              </span>
+            </a>
+            <meta itemprop="position" content="1"/>
+          </span>
+        </div>
+
+    </div>
+
+
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/ivan'><span itemprop='name'>ivan</span></a>
+            (igor)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="543.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2019-03-11T18:32:10Z' class='post-time'>
+                March 11, 2019,  6:32pm
+              </time>
+              <meta itemprop='dateModified' content='2019-03-11T18:32:10Z'>
+          <span itemprop='position'>#1</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Hi, I can’t connect ST2 with Mattermost after change st2 version.</p>
+            <p>st2 2.10.0, on Python 2.7.6<br>
+                Mattermost Version: 5.8.0</p>
+            <p>tailf /var/log/st2/st2chatops.log<br>
+                [Mon Mar 11 2019 18:21:30 GMT+0000 (Coordinated Universal Time)] INFO Attempting reconnect<br>
+                [Mon Mar 11 2019 18:21:30 GMT+0000 (Coordinated Universal Time)] INFO Logging in…<br>
+                [Mon Mar 11 2019 18:21:30 GMT+0000 (Coordinated Universal Time)] INFO api url:<a
+                        href="http://192.168.3.150:80/api/v4/users/login" rel="nofollow noopener">http://192.168.3.150:80/api/v4/users/login</a><br>
+                [Mon Mar 11 2019 18:21:30 GMT+0000 (Coordinated Universal Time)] ERROR Login call failed<br>
+                [Mon Mar 11 2019 18:21:30 GMT+0000 (Coordinated Universal Time)] INFO Reconnecting in 28000ms<br>
+                [Mon Mar 11 2019 18:21:58 GMT+0000 (Coordinated Universal Time)] INFO Attempting reconnect<br>
+                [Mon Mar 11 2019 18:21:58 GMT+0000 (Coordinated Universal Time)] INFO Logging in…<br>
+                [Mon Mar 11 2019 18:21:58 GMT+0000 (Coordinated Universal Time)] INFO api url:<a
+                        href="http://192.168.3.150:80/api/v4/users/login" rel="nofollow noopener">http://192.168.3.150:80/api/v4/users/login</a><br>
+                [Mon Mar 11 2019 18:21:58 GMT+0000 (Coordinated Universal Time)] ERROR Login call failed<br>
+                [Mon Mar 11 2019 18:21:58 GMT+0000 (Coordinated Universal Time)] INFO Reconnecting in 29000ms</p>
+            <p>Mattermost Log:</p>
+            <p>192.168.61.109 - - [11/Mar/2019:15:20:37 -0300] “POST /api/v4/users/login HTTP/1.1” 400 262 “-” “-”
+                “-”</p>
+            <p>I was using st2.9 and worked fine. But hubot-matteruser adapter is other version.</p>
+            <p>ST2 2.9 hubot-matteruser - “version”: “3.10.0”</p>
+            <p>ST2 2.10 hubot-matteruser - “version”: “4.4.0”</p>
+        </div>
+
+        <meta itemprop='headline' content='Mattermost chatops with ST2 2.10'>
+        <meta itemprop='keywords' content=''>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/blag'><span itemprop='name'>blag</span></a>
+            
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="543.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2019-03-11T20:12:51Z' class='post-time'>
+                March 11, 2019,  8:12pm
+              </time>
+              <meta itemprop='dateModified' content='2019-03-11T20:12:51Z'>
+          <span itemprop='position'>#2</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>The hubot-matteruser package v4.4.0 <a
+                    href="https://github.com/loafoe/hubot-matteruser/blob/cde6aee6e6d67e5f5b5b9c2fb51eb4cf90d1ee4b/package.json#L31"
+                    rel="nofollow noopener">depends on</a> the mattermost-client v4.4.0, which does not <a
+                    href="https://github.com/loafoe/mattermost-client/releases/tag/v5.0.0" rel="nofollow noopener">support
+                Mattermost v5</a>.</p>
+            <p>There is also <a href="https://github.com/loafoe/hubot-matteruser#1-install-a-mattermost-server"
+                                rel="nofollow noopener">this</a>:</p>
+            <blockquote>
+                <p><strong>IMPORTANT:</strong> Make sure your <code>hubot-matteruser</code> and
+                    <code>mattermost-client</code> versions <strong>match</strong> the major version of your Mattermost
+                    server so the API versions will match.</p>
+            </blockquote>
+            <p>I did not bump our hubot-matteruser dependencies in the latest update because we don’t have CI setup for
+                Mattermost (only Slack, and soon, MS Teams, hopefully we’ll add Mattermost in ST2 3.2).</p>
+            <p>That is what is officially supported.</p>
+            <p>If you absolutely need to support Mattermost 5 and you are willing to use an unsupported (and possibly
+                unworking) configuration, you can:</p>
+            <pre><code class="lang-auto">cd /opt/stackstorm/chatops
+npm install hubot-matteruser@5.2.0
+st2ctl restart-component st2chatops
+</code></pre>
+            <p>You may need to use <code>sudo</code> before some of those commands.</p>
+            <p>If you wish to help us out (and please do!), please test that everything works. If everything works,
+                please report back here and I will update the dependencies for the official packages and the next
+                release of StackStorm will officially support Mattermost 5. You are not the only users using Mattermost
+                5, so this will help them as well as help us, and it will allow you to run a support ChatOps
+                configuration with Mattermost 5.</p>
+            <p>Please feel free to post back here if you run into any issues, or in our Slack <span class="hashtag">#community</span>
+                channel.</p>
+            <p>Thanks!</p>
+        </div>
+
+        <meta itemprop='headline' content='Mattermost chatops with ST2 2.10'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/ivan'><span itemprop='name'>ivan</span></a>
+            (igor)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="543.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2019-03-18T17:48:10Z' class='post-time'>
+                March 18, 2019,  5:48pm
+              </time>
+              <meta itemprop='dateModified' content='2019-03-18T17:48:10Z'>
+          <span itemprop='position'>#3</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Hi, I change Mattermost to v4.10.8 and chatops works only with hubot-matteruser 5.2.0 but not received
+                the execute results and not works “post_message”, and not get any logs on Mattermost and get the follow
+                message on st2chatops.log:</p>
+            <p>[Mon Mar 18 2019 17:47:06 GMT+0000 (Coordinated Universal Time)] DEBUG Message {<br>
+                event: ‘posted’,<br>
+                data:<br>
+                { channel_display_name: ‘Town Square’,<br>
+                channel_name: ‘town-square’,<br>
+                channel_type: ‘O’,<br>
+                post:<br>
+                ‘{“id”:“bztgp7wyzfgu7pb5t4zy4x9q4r”,“create_at”:1552931224489,“update_at”:1552931224489,“edit_at”:0,“delete_at”:0,“is_pinned”:false,“user_id”:“y8pr9g5r4jfs8n4j7kumrt3uae”,“channel_id”:“rodush46738qxmhhsrz11q57mw”,“root_id”:"",“parent_id”:"",“original_id”:"",“message”:“Alright!
+                Let me check if that matches anything in the StackStorm Exchange
+                index.”,“type”:"",“props”:{},“hashtags”:"",“pending_post_id”:""}’,<br>
+                sender_name: ‘bot’,<br>
+                team_id: ‘9pwo7nzegpg48ctk1so3hpb5ga’ },<br>
+                broadcast:<br>
+                { omit_users: null,<br>
+                user_id: ‘’,<br>
+                channel_id: ‘rodush46738qxmhhsrz11q57mw’,<br>
+                team_id: ‘’ },<br>
+                seq: 17 }<br>
+                [Mon Mar 18 2019 17:47:06 GMT+0000 (Coordinated Universal Time)] INFO ping<br>
+                [Mon Mar 18 2019 17:47:06 GMT+0000 (Coordinated Universal Time)] INFO ACK ping (2)<br>
+                [Mon Mar 18 2019 17:47:09 GMT+0000 (Coordinated Universal Time)] DEBUG Chatops message received:
+                {“trace_context”: null, “payload”: {“whisper”: false, “message”: “Got something for you matching <code>ansible</code>!{~}\n\u2022
+                <em>ansible</em>: st2 content pack containing ansible integrations\n\nI can tell you more about a
+                particular pack, or even get it installed for you right away:\n<code>\npack show &lt;pack&gt;\npack
+                    install &lt;pack&gt;\n</code>\n”, “user”: “iperez”, “channel”: “rodush46738qxmhhsrz11q57mw”,
+                “extra”: {}}}<br>
+                [Mon Mar 18 2019 17:47:36 GMT+0000 (Coordinated Universal Time)] INFO ping<br>
+                [Mon Mar 18 2019 17:47:36 GMT+0000 (Coordinated Universal Time)] INFO ACK ping (2)</p>
+        </div>
+
+        <meta itemprop='headline' content='Mattermost chatops with ST2 2.10'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/lhill'><span itemprop='name'>lhill</span></a>
+            (Lindsay Hill)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="543.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2019-03-18T17:54:55Z' class='post-time'>
+                March 18, 2019,  5:54pm
+              </time>
+              <meta itemprop='dateModified' content='2019-03-18T17:54:55Z'>
+          <span itemprop='position'>#4</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <aside class="quote no-group" data-post="3" data-topic="543">
+                <div class="title">
+                    <div class="quote-controls"></div>
+                    <img alt width="20" height="20" src="https://avatars.discourse.org/v2/letter/i/df788c/40.png"
+                         class="avatar"> ivan:
+                </div>
+                <blockquote>
+                    <p>I change Mattermost to v4.10.8</p>
+                </blockquote>
+            </aside>
+            <p>Rather than also downgrading Mattermost, might be better to use the combination of latest GA Mattermost
+                plus hubot-matteruser? Otherwise you’ve introduced further complications.</p>
+            <p>Or if you’re going to use Mattermost 4.10.8, then use a 4.x version of hubot-matteruser.</p>
+        </div>
+
+        <meta itemprop='headline' content='Mattermost chatops with ST2 2.10'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/ivan'><span itemprop='name'>ivan</span></a>
+            (igor)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="543.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2019-03-18T18:05:06Z' class='post-time'>
+                March 18, 2019,  6:05pm
+              </time>
+              <meta itemprop='dateModified' content='2019-03-18T18:05:06Z'>
+          <span itemprop='position'>#5</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>If use hubot-matteruser 4.4.0 can’t connect to mattermost 4.10.8 and get the follow message on
+                st2chatops.log:</p>
+            <p>[Mon Mar 18 2019 18:03:31 GMT+0000 (Coordinated Universal Time)] ERROR TypeError: Array.prototype.indexOf
+                called on null or undefined<br>
+                at indexOf (:null:null)<br>
+                at Matteruser.message
+                (/opt/stackstorm/chatops/node_modules/hubot-matteruser/src/matteruser.coffee:201:36, :288:51)<br>
+                at Client. (/opt/stackstorm/chatops/node_modules/hubot-matteruser/src/matteruser.coffee:1:1, :5:61)<br>
+                at Client.emit (events.js:182:13)<br>
+                at Client.onMessage (/opt/stackstorm/chatops/node_modules/mattermost-client/src/client.coffee:279:17,
+                :381:23)<br>
+                at WebSocket. (/opt/stackstorm/chatops/node_modules/mattermost-client/src/client.coffee:224:13, :318:22)<br>
+                at WebSocket.emit (events.js:182:13)<br>
+                at Receiver.ontext (/opt/stackstorm/chatops/node_modules/ws/lib/WebSocket.js:841:10)<br>
+                at /opt/stackstorm/chatops/node_modules/ws/lib/Receiver.js:536:18<br>
+                at Receiver.applyExtensions (/opt/stackstorm/chatops/node_modules/ws/lib/Receiver.js:371:5)<br>
+                at /opt/stackstorm/chatops/node_modules/ws/lib/Receiver.js:508:14<br>
+                at Receiver.flush (/opt/stackstorm/chatops/node_modules/ws/lib/Receiver.js:347:3)<br>
+                at Receiver.finish (/opt/stackstorm/chatops/node_modules/ws/lib/Receiver.js:541:12)<br>
+                at Receiver.expectHandler (/opt/stackstorm/chatops/node_modules/ws/lib/Receiver.js:499:31)<br>
+                at Receiver.add (/opt/stackstorm/chatops/node_modules/ws/lib/Receiver.js:103:24)<br>
+                at Socket.realHandler (/opt/stackstorm/chatops/node_modules/ws/lib/WebSocket.js:825:20)<br>
+                at Socket.emit (events.js:182:13)<br>
+                at addChunk (_stream_readable.js:283:12)<br>
+                at readableAddChunk (_stream_readable.js:264:11)<br>
+                at Socket.Readable.push (_stream_readable.js:219:10)<br>
+                at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)</p>
+        </div>
+
+        <meta itemprop='headline' content='Mattermost chatops with ST2 2.10'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/blag'><span itemprop='name'>blag</span></a>
+            
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="543.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2019-03-18T19:58:00Z' class='post-time'>
+                March 18, 2019,  7:58pm
+              </time>
+              <meta itemprop='dateModified' content='2019-03-18T19:58:00Z'>
+          <span itemprop='position'>#6</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>The <a href="https://github.com/loafoe/hubot-matteruser#1-install-a-mattermost-server"
+                      rel="nofollow noopener">installation instructions</a> for <a
+                    href="https://github.com/loafoe/hubot-matteruser" rel="nofollow noopener">hubot-matteruser</a> says
+                this:</p>
+            <blockquote>
+                <p><strong>IMPORTANT:</strong> Make sure your <code>hubot-matteruser</code> and
+                    <code>mattermost-client</code> versions <strong>match</strong> the major version of your Mattermost
+                    server so the API versions will match.</p>
+            </blockquote>
+            <p>So from that, it sounds like if you want to use hubot-matteruser v4.4 then you will need to downgrade
+                your Mattermost <em>server</em> all the way down to version 4.4.</p>
+            <p>But then further down in the <a href="https://github.com/loafoe/hubot-matteruser#upgrade"
+                                               rel="nofollow noopener">upgrade instructions</a> it says:</p>
+            <blockquote>
+                <p>To upgrade your Hubot for Mattermost 4.4.x, find the <code>package.json</code> file in your Hubot
+                    directory and look for the line in the <code>dependencies</code> section that references <code>hubot-matteruser</code>
+                    . Change the verion so it points to <code>^5.1.0</code> of the client.</p>
+            </blockquote>
+            <p>So to get hubot-matteruser to work with a Mattermost server version 4.4, you will need to use
+                hubot-matteruser version <code>5.1.0</code>.</p>
+            <p>I’m not sure which part of the documentation to believe, so you will need to test difference
+                client/server version combinations yourself until you find one that works.</p>
+            <p>Unfortunately, since we don’t have CI setup for Mattermost, we can’t test this configuration. If you can
+                try out different versions of Mattermost and hubot-matteruser and report the results back here, that
+                would help us tremendously in helping all of our users who use Mattermost.</p>
+        </div>
+
+        <meta itemprop='headline' content='Mattermost chatops with ST2 2.10'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/ivan'><span itemprop='name'>ivan</span></a>
+            (igor)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="543.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2019-03-19T13:11:38Z' class='post-time'>
+                March 19, 2019,  1:11pm
+              </time>
+              <meta itemprop='dateModified' content='2019-03-19T13:11:38Z'>
+          <span itemprop='position'>#7</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>I can connect Mattermost 4 and 5 with hubot-matteruser 5.2.0 but only works commands. But when execute
+                command has not result return and didn’t see any error about post_result action and post_message not
+                works.</p>
+            <p>I use st2 2.10.0, on Python 2.7.6</p>
+        </div>
+
+        <meta itemprop='headline' content='Mattermost chatops with ST2 2.10'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/lhill'><span itemprop='name'>lhill</span></a>
+            (Lindsay Hill)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="543.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2019-03-19T16:49:42Z' class='post-time'>
+                March 19, 2019,  4:49pm
+              </time>
+              <meta itemprop='dateModified' content='2019-03-19T16:49:42Z'>
+          <span itemprop='position'>#8</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Try going through the <a
+                    href="https://docs.stackstorm.com/troubleshooting/basic_chatops_troubleshooting.html"
+                    class="inline-onebox" rel="nofollow noopener">ChatOps Troubleshooting Guide — StackStorm 2.10.4
+                documentation</a></p>
+        </div>
+
+        <meta itemprop='headline' content='Mattermost chatops with ST2 2.10'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/ivan'><span itemprop='name'>ivan</span></a>
+            (igor)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="543.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2019-03-19T17:58:38Z' class='post-time'>
+                March 19, 2019,  5:58pm
+              </time>
+              <meta itemprop='dateModified' content='2019-03-19T17:58:38Z'>
+          <span itemprop='position'>#9</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>I tried with another chat, for example Rocketchat and get the similar problem but in this case I see the
+                follow line on st2chatops.log:</p>
+            <p>[Tue Mar 19 2019 17:52:31 GMT+0000 (Coordinated Universal Time)] ERROR TypeError: Cannot read property
+                ‘roomID’ of undefined</p>
+            <p>And solved with this:</p>
+            <p><a href="https://github.com/RocketChat/hubot-rocketchat/commit/5b585c87194cb88135f7357a7af40dc6ed6eef98"
+                  class="inline-onebox" rel="nofollow noopener">fix(send): · RocketChat/hubot-rocketchat@5b585c8 ·
+                GitHub</a></p>
+            <p>But with Mattermost didn’t see any error log, commands works but not return result_post and not send
+                post_message.</p>
+        </div>
+
+        <meta itemprop='headline' content='Mattermost chatops with ST2 2.10'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+
+
+    <!-- :preload-content -->
+    <footer class="noscript-footer-nav">
+        <nav itemscope itemtype='http://schema.org/SiteNavigationElement'>
+            <a href='../../index.html'>Home</a>
+            <a href="../../categories.html">Categories</a>
+            <a href="https://forum.stackstorm.com/guidelines">FAQ/Guidelines</a>
+            <a href="../../tos.html">Terms of Service</a>
+            <a href="../../privacy.html">Privacy Policy</a>
+        </nav>
+    </footer>
+</div>
+
+<footer id='noscript-footer'>
+    <p>Powered by <a href="https://www.discourse.org">Discourse</a>, best viewed with JavaScript enabled</p>
+</footer>
+
+
+<section id='main'>
+</section>
+
+
+</body>
+</html>

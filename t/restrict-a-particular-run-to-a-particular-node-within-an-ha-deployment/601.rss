@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Restrict a particular run to a particular node within an HA deployment?</title>
+    <link>https://forum.stackstorm.com/t/restrict-a-particular-run-to-a-particular-node-within-an-ha-deployment/601</link>
+    <description>How can I restrict a particular action run to only be run on a particular node within a high availability deployment?
+
+My use case is that I want to run a pack install on both nodes. I want to install a stackstorm pack on both HA nodes. The problem is that when I run pack install, it puts an execution request on the rabbitmq through the API. Then *one* of the two HA nodes picks it up and runs it, and not necessarily the node that I want to run it on. This installs the pack (and therefore the pack&#39;s files) on one of the nodes, but not necessarily on both.
+
+I want to be able to put a action on the queue and force stackstorm to make it run on a particular node so that I can force the pack to install correctly on both.</description>
+    
+    <lastBuildDate>Fri, 12 Apr 2019 20:37:56 +0000</lastBuildDate>
+    <category>Pack Management</category>
+    <atom:link href="https://forum.stackstorm.com/t/restrict-a-particular-run-to-a-particular-node-within-an-ha-deployment/601.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Restrict a particular run to a particular node within an HA deployment?</title>
+        <dc:creator><![CDATA[djhaskin987]]></dc:creator>
+        <description><![CDATA[
+            <p>That’s very helpful, thanks <a class="mention" href="https://github.com/armab">@armab</a></p>
+          <p><a href="https://forum.stackstorm.com/t/restrict-a-particular-run-to-a-particular-node-within-an-ha-deployment/601/4">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/restrict-a-particular-run-to-a-particular-node-within-an-ha-deployment/601/4</link>
+        <pubDate>Fri, 12 Apr 2019 20:37:56 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-601-4</guid>
+        <source url="https://forum.stackstorm.com/t/restrict-a-particular-run-to-a-particular-node-within-an-ha-deployment/601.rss">Restrict a particular run to a particular node within an HA deployment?</source>
+      </item>
+      <item>
+        <title>Restrict a particular run to a particular node within an HA deployment?</title>
+        <dc:creator><![CDATA[armab]]></dc:creator>
+        <description><![CDATA[
+            <p>Yes, there is a feature request  <a href="https://github.com/StackStorm/st2/issues/3096" class="inline-onebox" rel="nofollow noopener">Feature req: Partitioning actions to execute on separate nodes · Issue #3096 · StackStorm/st2 · GitHub</a> for partitioning executions to schedule on specific nodes (similar to <a href="https://docs.stackstorm.com/reference/sensor_partitioning.html" class="inline-onebox" rel="nofollow noopener">Partitioning Sensors — StackStorm 2.10.4 documentation</a>). However scheduling execution on specific instance vs running execution on <em>all</em> st2actionrunner instances are 2 different stories.</p>
+<p>What you’re trying to do with <code>st2 pack install</code> in HA environment on all nodes is something that’s not encouraged.</p>
+<p>Imagine you scaled out your HA setup to hundreds of <code>st2actionrunners</code>. If you run your <code>st2 pack install</code> on all nodes, - that not only generates excessive and unneded load/spike. There is a good chance that only part of those executions <code>st2 pack install ...</code> will succeed. Big chunk of executions may fail due to random reasons: resources, disk, memory, failed networking, different env like cloud, remote content change, pack version deployed, etc. In theory this sounds like kind of idempotent operation, in practice because of many moving parts it’s not (cc <a class="mention" href="https://github.com/kami">@kami</a>)<br>
+This means part of your actionrunners will be in unsync state which will result in new set of problems with other operations.</p>
+<p>For HA environment so far you have some options:</p>
+<ul>
+<li>Use <code>NFS</code> in all nodes that will be used as shared storage for st2 packs and virtualenvs in your HA environment: <a href="https://docs.stackstorm.com/reference/ha.html#sharing-content" class="inline-onebox" rel="nofollow noopener">High Availability Deployment — StackStorm 2.10.4 documentation</a>
+</li>
+<li>Converge your VMs/nodes via Configuration Management tools to desired state <em>and</em> verify that state</li>
+<li>K8s/Docker-specific, you bundle pack content and virtualenvs as immutable Docker image: <a href="https://docs.stackstorm.com/install/k8s_ha.html#custom-st2-packs" class="inline-onebox" rel="nofollow noopener">StackStorm HA Cluster in Kubernetes - BETA — StackStorm 2.10.4 documentation</a>
+</li>
+</ul>
+<p>These approaches guarantee that all st2actionrunners would work with the same content.</p>
+          <p><a href="https://forum.stackstorm.com/t/restrict-a-particular-run-to-a-particular-node-within-an-ha-deployment/601/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/restrict-a-particular-run-to-a-particular-node-within-an-ha-deployment/601/3</link>
+        <pubDate>Fri, 12 Apr 2019 20:28:28 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-601-3</guid>
+        <source url="https://forum.stackstorm.com/t/restrict-a-particular-run-to-a-particular-node-within-an-ha-deployment/601.rss">Restrict a particular run to a particular node within an HA deployment?</source>
+      </item>
+      <item>
+        <title>Restrict a particular run to a particular node within an HA deployment?</title>
+        <dc:creator><![CDATA[djhaskin987]]></dc:creator>
+        <description><![CDATA[
+            <p><a class="mention" href="https://github.com/armab">@armab</a> informs me this is a future stack storm feature, and points me to this pull request:<br>
+</p><aside class="onebox githubissue">
+  <header class="source">
+      <a href="https://github.com/StackStorm/st2/issues/3096" target="_blank" rel="nofollow noopener">github.com/StackStorm/st2</a>
+  </header>
+  <article class="onebox-body">
+    <a href="https://github.com/vaishalipavashe" rel="nofollow noopener">
+<img src="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/cbff846f400cafd5d8985e89e5648e6314a0b73d.png" class="thumbnail onebox-avatar" width="420" height="420">
+</a>
+
+<h4><a href="https://github.com/StackStorm/st2/issues/3096" target="_blank" rel="nofollow noopener">Issue: Feature req: Partitioning actions to execute on separate nodes</a></h4>
+
+<div class="date" style="margin-top:10px;">
+	<div class="user" style="margin-top:10px;">
+	opened by <a href="https://github.com/vaishalipavashe" target="_blank" rel="nofollow noopener">vaishalipavashe</a>
+	on <a href="https://github.com/StackStorm/st2/issues/3096" target="_blank" rel="nofollow noopener">2016-12-05</a>
+	</div>
+	<div class="user">
+	</div>
+</div>
+
+<pre class="content" style="white-space: pre-wrap;">If actions can be partitioned like sensors we can have actions and sensors on separate instance in may be separate n/w...</pre>
+
+<div class="labels">
+ 	<span style="display:inline-block;margin-top:2px;background-color: #B8B8B8;padding: 2px;border-radius: 4px;color: #fff;margin-left: 3px;">complexity:medium</span>
+ 	<span style="display:inline-block;margin-top:2px;background-color: #B8B8B8;padding: 2px;border-radius: 4px;color: #fff;margin-left: 3px;">enhancement</span>
+ 	<span style="display:inline-block;margin-top:2px;background-color: #B8B8B8;padding: 2px;border-radius: 4px;color: #fff;margin-left: 3px;">feature</span>
+</div>
+
+  </article>
+  <div class="onebox-metadata">
+    
+    
+  </div>
+  <div style="clear: both"></div>
+</aside>
+<p></p>
+          <p><a href="https://forum.stackstorm.com/t/restrict-a-particular-run-to-a-particular-node-within-an-ha-deployment/601/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/restrict-a-particular-run-to-a-particular-node-within-an-ha-deployment/601/2</link>
+        <pubDate>Fri, 12 Apr 2019 20:04:44 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-601-2</guid>
+        <source url="https://forum.stackstorm.com/t/restrict-a-particular-run-to-a-particular-node-within-an-ha-deployment/601.rss">Restrict a particular run to a particular node within an HA deployment?</source>
+      </item>
+      <item>
+        <title>Restrict a particular run to a particular node within an HA deployment?</title>
+        <dc:creator><![CDATA[djhaskin987]]></dc:creator>
+        <description><![CDATA[
+            <p>How can I restrict a particular action run to only be run on a particular node within a high availability deployment?</p>
+<p>My use case is that I want to run a pack install on both nodes. I want to install a stackstorm pack on both HA nodes. The problem is that when I run pack install, it puts an execution request on the rabbitmq through the API. Then <em>one</em> of the two HA nodes picks it up and runs it, and not necessarily the node that I want to run it on. This installs the pack (and therefore the pack’s files) on one of the nodes, but not necessarily on both.</p>
+<p>I want to be able to put a action on the queue and force stackstorm to make it run on a particular node so that I can force the pack to install correctly on both.</p>
+          <p><a href="https://forum.stackstorm.com/t/restrict-a-particular-run-to-a-particular-node-within-an-ha-deployment/601/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/restrict-a-particular-run-to-a-particular-node-within-an-ha-deployment/601/1</link>
+        <pubDate>Fri, 12 Apr 2019 20:00:51 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-601-1</guid>
+        <source url="https://forum.stackstorm.com/t/restrict-a-particular-run-to-a-particular-node-within-an-ha-deployment/601.rss">Restrict a particular run to a particular node within an HA deployment?</source>
+      </item>
+  </channel>
+</rss>

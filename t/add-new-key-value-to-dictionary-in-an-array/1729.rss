@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Add new key/value to dictionary in an array</title>
+    <link>https://forum.stackstorm.com/t/add-new-key-value-to-dictionary-in-an-array/1729</link>
+    <description>I&#39;m looking to be able to add a new key and value to a dictionary/object that is located in an array of dictionaries/objects, but I&#39;m struggling at how to do so.
+
+Scenario:
+
+I&#39;m looking to build a workflow that will deploy a VM and then make some adjustments inside the VM after deployment. Ideally, I would like to pass an array of dictionaries/objects to be able to deploy multiple VMs at once using &quot;with items&quot; in the tasks.
+
+Below is an example of what I&#39;m looking to pass to the workflow:
+
+```
+[
+  {
+   &quot;Domain&quot; : &quot;example1.com&quot;,
+   &quot;Param1&quot; : &quot;burger1&quot;,
+   &quot;Param2&quot; : &quot;hotdog1&quot;,
+   &quot;Param3&quot; : &quot;soda1&quot;
+  },
+  {
+   &quot;Domain&quot; : &quot;example2.com&quot;,
+   &quot;Param1&quot; : &quot;burger2&quot;,
+   &quot;Param2&quot; : &quot;hotdog2&quot;,
+   &quot;Param3&quot; : &quot;soda2&quot;
+  },
+  {
+   &quot;Domain&quot; : &quot;example3.com&quot;,
+   &quot;Param1&quot; : &quot;burger3&quot;,
+   &quot;Param2&quot; : &quot;hotdog3&quot;,
+   &quot;Param3&quot; : &quot;soda3&quot;
+  }
+ ]
+```
+The issue is that the IP address to access the VM isn&#39;t known until the VM is deployed. What I would like to do is add the IP to the dictionary used to deploy the VM, such as going from:
+```
+{
+ &quot;Domain&quot; : &quot;example1.com&quot;,
+ &quot;Param1&quot; : &quot;burger1&quot;,
+ &quot;Param2&quot; : &quot;hotdog1&quot;,
+ &quot;Param3&quot; : &quot;soda1&quot;
+}
+```
+to:
+```
+{
+ &quot;Domain&quot; : &quot;example1.com&quot;,
+ &quot;Param1&quot; : &quot;burger1&quot;,
+ &quot;Param2&quot; : &quot;hotdog1&quot;,
+ &quot;Param3&quot; : &quot;soda1&quot;,
+ &quot;IPAddress&quot; : &quot;127.0.0.1&quot;
+}
+```
+Has anyone added done this before and can point me in the direction I should head to achieve it?</description>
+    
+    <lastBuildDate>Fri, 04 Jun 2021 18:58:53 +0000</lastBuildDate>
+    <category>Uncategorized</category>
+    <atom:link href="https://forum.stackstorm.com/t/add-new-key-value-to-dictionary-in-an-array/1729.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Add new key/value to dictionary in an array</title>
+        <dc:creator><![CDATA[dcspille]]></dc:creator>
+        <description><![CDATA[
+            <p>You’ll need some logic to edit your dictionaries inside of the list, but here is how to add a key/value to a dictionary-</p>
+<pre><code class="lang-auto">Task1:
+  action: core.noop
+  next:
+    - when: &lt;% [True statement here]%&gt;
+      publish:
+        - dictionary: &lt;% ctx(dictionary).set("IPAddress" =&gt; "127.0.0.1")) %&gt;
+      do: Task2
+</code></pre>
+          <p><a href="https://forum.stackstorm.com/t/add-new-key-value-to-dictionary-in-an-array/1729/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/add-new-key-value-to-dictionary-in-an-array/1729/2</link>
+        <pubDate>Fri, 04 Jun 2021 18:58:53 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1729-2</guid>
+        <source url="https://forum.stackstorm.com/t/add-new-key-value-to-dictionary-in-an-array/1729.rss">Add new key/value to dictionary in an array</source>
+      </item>
+      <item>
+        <title>Add new key/value to dictionary in an array</title>
+        <dc:creator><![CDATA[thozook]]></dc:creator>
+        <description><![CDATA[
+            <p>I’m looking to be able to add a new key and value to a dictionary/object that is located in an array of dictionaries/objects, but I’m struggling at how to do so.</p>
+<p>Scenario:</p>
+<p>I’m looking to build a workflow that will deploy a VM and then make some adjustments inside the VM after deployment. Ideally, I would like to pass an array of dictionaries/objects to be able to deploy multiple VMs at once using “with items” in the tasks.</p>
+<p>Below is an example of what I’m looking to pass to the workflow:</p>
+<pre><code class="lang-auto">[
+  {
+   "Domain" : "example1.com",
+   "Param1" : "burger1",
+   "Param2" : "hotdog1",
+   "Param3" : "soda1"
+  },
+  {
+   "Domain" : "example2.com",
+   "Param1" : "burger2",
+   "Param2" : "hotdog2",
+   "Param3" : "soda2"
+  },
+  {
+   "Domain" : "example3.com",
+   "Param1" : "burger3",
+   "Param2" : "hotdog3",
+   "Param3" : "soda3"
+  }
+ ]
+</code></pre>
+<p>The issue is that the IP address to access the VM isn’t known until the VM is deployed. What I would like to do is add the IP to the dictionary used to deploy the VM, such as going from:</p>
+<pre><code class="lang-auto">{
+ "Domain" : "example1.com",
+ "Param1" : "burger1",
+ "Param2" : "hotdog1",
+ "Param3" : "soda1"
+}
+</code></pre>
+<p>to:</p>
+<pre><code class="lang-auto">{
+ "Domain" : "example1.com",
+ "Param1" : "burger1",
+ "Param2" : "hotdog1",
+ "Param3" : "soda1",
+ "IPAddress" : "127.0.0.1"
+}
+</code></pre>
+<p>Has anyone added done this before and can point me in the direction I should head to achieve it?</p>
+          <p><a href="https://forum.stackstorm.com/t/add-new-key-value-to-dictionary-in-an-array/1729/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/add-new-key-value-to-dictionary-in-an-array/1729/1</link>
+        <pubDate>Fri, 04 Jun 2021 18:21:15 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1729-1</guid>
+        <source url="https://forum.stackstorm.com/t/add-new-key-value-to-dictionary-in-an-array/1729.rss">Add new key/value to dictionary in an array</source>
+      </item>
+  </channel>
+</rss>

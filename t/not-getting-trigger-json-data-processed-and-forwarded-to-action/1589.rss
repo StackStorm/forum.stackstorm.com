@@ -1,0 +1,818 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Not getting trigger JSON data processed and forwarded to action</title>
+    <link>https://forum.stackstorm.com/t/not-getting-trigger-json-data-processed-and-forwarded-to-action/1589</link>
+    <description>Hi Team, 
+I am trying to get the status of the trigger.body.processed from the json payload which i am getting from the webhook placed.
+Below is the rule configuration: 
+![Screenshot 2021-03-06 at 3.11.58 PM|690x302](upload://pOEb3MYiL8jlgiLVirvE4nNOB6U.png) 
+
+And below is the payload which i am getting in trigger instance via webhook: 
+```{
+  &quot;trigger&quot;: &quot;core.59362943-d192-4502-bc0a-9c7c8ecc69d1&quot;,
+  &quot;payload&quot;: {
+    &quot;headers&quot;: {
+      &quot;Host&quot;: &quot;ded-95.opsteam1.srvs.ahdev.co,ded-95.opsteam1.srvs.ahdev.co&quot;,
+      &quot;X-Real-Ip&quot;: &quot;34.222.110.137&quot;,
+      &quot;X-Forwarded-For&quot;: &quot;34.222.110.137&quot;,
+      &quot;Content-Length&quot;: &quot;8673&quot;,
+      &quot;Accept&quot;: &quot;application/json&quot;,
+      &quot;X-Webhook-Id&quot;: &quot;f2c74502-7e5b-11eb-8d69-0242c0a82a0b&quot;,
+      &quot;User-Agent&quot;: &quot;PagerDuty-Webhook/V2.0&quot;,
+      &quot;Content-Type&quot;: &quot;application/json&quot;,
+      &quot;X-Request-Id&quot;: &quot;0664d280-e24c-4080-bb7b-03638479ad1d&quot;
+    },
+    &quot;body&quot;: {
+      &quot;messages&quot;: [
+        {
+          &quot;event&quot;: &quot;incident.trigger&quot;,
+          &quot;log_entries&quot;: [
+            {
+              &quot;id&quot;: &quot;RQ7LPQ18CVXGVY61GCMOS9FTGK&quot;,
+              &quot;type&quot;: &quot;trigger_log_entry&quot;,
+              &quot;summary&quot;: &quot;Triggered through the API&quot;,
+              &quot;self&quot;: &quot;https://api.pagerduty.com/log_entries/RQ7LPQ18CVXGVY61GCMOS9FTGK&quot;,
+              &quot;html_url&quot;: &quot;https://acquiaops.pagerduty.com/incidents/PH1X4KI/log_entries/RQ7LPQ18CVXGVY61GCMOS9FTGK&quot;,
+              &quot;created_at&quot;: &quot;2021-03-06T09:11:34Z&quot;,
+              &quot;agent&quot;: {
+                &quot;id&quot;: &quot;P0K0X5W&quot;,
+                &quot;type&quot;: &quot;nagios_inbound_integration_reference&quot;,
+                &quot;summary&quot;: &quot;Nagios&quot;,
+                &quot;self&quot;: &quot;https://api.pagerduty.com/services/PFDGXO7/integrations/P0K0X5W&quot;,
+                &quot;html_url&quot;: &quot;https://acquiaops.pagerduty.com/services/PFDGXO7/integrations/P0K0X5W&quot;
+              },
+              &quot;channel&quot;: {
+                &quot;type&quot;: &quot;nagios&quot;,
+                &quot;host&quot;: &quot;ded-92.opsteam1&quot;,
+                &quot;state&quot;: &quot;CRITICAL&quot;,
+                &quot;summary&quot;: &quot;ded-92.opsteam1&quot;,
+                &quot;service&quot;: &quot;MySQL Real Lag&quot;,
+                &quot;details&quot;: {
+                  &quot;CONTACTPAGER&quot;: &quot;e01258eab21f497ca5176a61d1ccbd04&quot;,
+                  &quot;HOSTDISPLAYNAME&quot;: &quot;ded-92.opsteam1&quot;,
+                  &quot;HOSTNAME&quot;: &quot;ded-92.opsteam1&quot;,
+                  &quot;SERVICEDESC&quot;: &quot;MySQL Real Lag&quot;,
+                  &quot;SERVICEDISPLAYNAME&quot;: &quot;MySQL Real Lag&quot;,
+                  &quot;SERVICEOUTPUT&quot;: &quot;CRITICAL: Real slave lag exceeded threshold of 60m - 2146012s (run ah-dbcluster status ded-92 for full report)&quot;,
+                  &quot;SERVICEPROBLEMID&quot;: &quot;102&quot;,
+                  &quot;SERVICESTATE&quot;: &quot;CRITICAL&quot;,
+                  &quot;pd_nagios_object&quot;: &quot;service&quot;
+                },
+                &quot;cef_details&quot;: {
+                  &quot;client&quot;: &quot;&quot;,
+                  &quot;client_url&quot;: &quot;&quot;,
+                  &quot;creation_time&quot;: &quot;2021-03-06T09:11:29.000Z&quot;,
+                  &quot;dedup_key&quot;: &quot;event_source=service;host_name=ded-92.opsteam1;service_desc=MySQL Real Lag&quot;,
+                  &quot;description&quot;: &quot;CRITICAL: &#39;MySQL Real Lag&#39; on &#39;ded-92.opsteam1&#39;&quot;,
+                  &quot;details&quot;: {
+                    &quot;CONTACTPAGER&quot;: &quot;e01258eab21f497ca5176a61d1ccbd04&quot;,
+                    &quot;HOSTDISPLAYNAME&quot;: &quot;ded-92.opsteam1&quot;,
+                    &quot;HOSTNAME&quot;: &quot;ded-92.opsteam1&quot;,
+                    &quot;SERVICEDESC&quot;: &quot;MySQL Real Lag&quot;,
+                    &quot;SERVICEDISPLAYNAME&quot;: &quot;MySQL Real Lag&quot;,
+                    &quot;SERVICEOUTPUT&quot;: &quot;CRITICAL: Real slave lag exceeded threshold of 60m - 2146012s (run ah-dbcluster status ded-92 for full report)&quot;,
+                    &quot;SERVICEPROBLEMID&quot;: &quot;102&quot;,
+                    &quot;SERVICESTATE&quot;: &quot;CRITICAL&quot;,
+                    &quot;pd_nagios_object&quot;: &quot;service&quot;
+                  },
+                  &quot;message&quot;: &quot;CRITICAL: &#39;MySQL Real Lag&#39; on &#39;ded-92.opsteam1&#39;&quot;,
+                  &quot;mutations&quot;: [],
+                  &quot;severity&quot;: &quot;critical&quot;,
+                  &quot;source_origin&quot;: &quot;ded-92.opsteam1&quot;,
+                  &quot;version&quot;: &quot;1.0&quot;,
+                  &quot;details_omitted&quot;: false
+                },
+                &quot;details_omitted&quot;: false,
+                &quot;body_omitted&quot;: false
+              },
+              &quot;service&quot;: {
+                &quot;id&quot;: &quot;PFDGXO7&quot;,
+                &quot;type&quot;: &quot;service_reference&quot;,
+                &quot;summary&quot;: &quot;OPA&quot;,
+                &quot;self&quot;: &quot;https://api.pagerduty.com/services/PFDGXO7&quot;,
+                &quot;html_url&quot;: &quot;https://acquiaops.pagerduty.com/service-directory/PFDGXO7&quot;
+              },
+              &quot;incident&quot;: {
+                &quot;id&quot;: &quot;PH1X4KI&quot;,
+                &quot;type&quot;: &quot;incident_reference&quot;,
+                &quot;summary&quot;: &quot;[#683222] CRITICAL: &#39;MySQL Real Lag&#39; on &#39;ded-92.opsteam1&#39;&quot;,
+                &quot;self&quot;: &quot;https://api.pagerduty.com/incidents/PH1X4KI&quot;,
+                &quot;html_url&quot;: &quot;https://acquiaops.pagerduty.com/incidents/PH1X4KI&quot;
+              },
+              &quot;teams&quot;: [
+                {
+                  &quot;id&quot;: &quot;P9CV6YW&quot;,
+                  &quot;type&quot;: &quot;team_reference&quot;,
+                  &quot;summary&quot;: &quot;OPA&quot;,
+                  &quot;self&quot;: &quot;https://api.pagerduty.com/teams/P9CV6YW&quot;,
+                  &quot;html_url&quot;: &quot;https://acquiaops.pagerduty.com/teams/P9CV6YW&quot;
+                }
+              ],
+              &quot;contexts&quot;: [],
+              &quot;event_details&quot;: {
+                &quot;type&quot;: &quot;service&quot;,
+                &quot;host&quot;: &quot;ded-92.opsteam1&quot;,
+                &quot;service&quot;: &quot;MySQL Real Lag&quot;,
+                &quot;service_state&quot;: &quot;CRITICAL&quot;
+              }
+            }
+          ],
+          &quot;webhook&quot;: {
+            &quot;endpoint_url&quot;: &quot;https://ded-95.opsteam1.srvs.ahdev.co/api/v1/webhooks/sample&quot;,
+            &quot;name&quot;: &quot;Nagios Webhook&quot;,
+            &quot;description&quot;: null,
+            &quot;webhook_object&quot;: {
+              &quot;id&quot;: &quot;PFDGXO7&quot;,
+              &quot;type&quot;: &quot;service_reference&quot;,
+              &quot;summary&quot;: &quot;OPA&quot;,
+              &quot;self&quot;: &quot;https://api.pagerduty.com/services/PFDGXO7&quot;,
+              &quot;html_url&quot;: &quot;https://acquiaops.pagerduty.com/service-directory/PFDGXO7&quot;
+            },
+            &quot;config&quot;: {
+              &quot;referer&quot;: &quot;https://acquiaops.pagerduty.com/services/PFDGXO7/integrations?service_profile=1&quot;
+            },
+            &quot;outbound_integration&quot;: {
+              &quot;id&quot;: &quot;PJFWPEP&quot;,
+              &quot;type&quot;: &quot;outbound_integration_reference&quot;,
+              &quot;summary&quot;: &quot;Generic V2 Webhook&quot;,
+              &quot;self&quot;: &quot;https://api.pagerduty.com/outbound_integrations/PJFWPEP&quot;,
+              &quot;html_url&quot;: null
+            },
+            &quot;accounts_addon&quot;: null,
+            &quot;id&quot;: &quot;PLP8LA2&quot;,
+            &quot;type&quot;: &quot;webhook&quot;,
+            &quot;summary&quot;: &quot;Nagios Webhook&quot;,
+            &quot;self&quot;: &quot;https://api.pagerduty.com/webhooks/PLP8LA2&quot;,
+            &quot;html_url&quot;: null
+          },
+          &quot;incident&quot;: {
+            &quot;incident_number&quot;: 683222,
+            &quot;title&quot;: &quot;CRITICAL: &#39;MySQL Real Lag&#39; on &#39;ded-92.opsteam1&#39;&quot;,
+            &quot;description&quot;: &quot;CRITICAL: &#39;MySQL Real Lag&#39; on &#39;ded-92.opsteam1&#39;&quot;,
+            &quot;created_at&quot;: &quot;2021-03-06T09:11:34Z&quot;,
+            &quot;status&quot;: &quot;triggered&quot;,
+            &quot;incident_key&quot;: null,
+            &quot;service&quot;: {
+              &quot;id&quot;: &quot;PFDGXO7&quot;,
+              &quot;name&quot;: &quot;OPA&quot;,
+              &quot;description&quot;: &quot;https://backlog.acquia.com/browse/OP-295273&quot;,
+              &quot;created_at&quot;: &quot;2021-02-01T20:40:50Z&quot;,
+              &quot;updated_at&quot;: &quot;2021-02-24T10:40:41Z&quot;,
+              &quot;status&quot;: &quot;critical&quot;,
+              &quot;teams&quot;: [
+                {
+                  &quot;id&quot;: &quot;P9CV6YW&quot;,
+                  &quot;type&quot;: &quot;team_reference&quot;,
+                  &quot;summary&quot;: &quot;OPA&quot;,
+                  &quot;self&quot;: &quot;https://api.pagerduty.com/teams/P9CV6YW&quot;,
+                  &quot;html_url&quot;: &quot;https://acquiaops.pagerduty.com/teams/P9CV6YW&quot;
+                }
+              ],
+              &quot;alert_creation&quot;: &quot;create_alerts_and_incidents&quot;,
+              &quot;addons&quot;: [],
+              &quot;scheduled_actions&quot;: [],
+              &quot;support_hours&quot;: null,
+              &quot;last_incident_timestamp&quot;: &quot;2021-03-06T09:11:34Z&quot;,
+              &quot;escalation_policy&quot;: {
+                &quot;id&quot;: &quot;PS44B0I&quot;,
+                &quot;type&quot;: &quot;escalation_policy_reference&quot;,
+                &quot;summary&quot;: &quot;OPA&quot;,
+                &quot;self&quot;: &quot;https://api.pagerduty.com/escalation_policies/PS44B0I&quot;,
+                &quot;html_url&quot;: &quot;https://acquiaops.pagerduty.com/escalation_policies/PS44B0I&quot;
+              },
+              &quot;incident_urgency_rule&quot;: {
+                &quot;type&quot;: &quot;constant&quot;,
+                &quot;urgency&quot;: &quot;high&quot;
+              },
+              &quot;acknowledgement_timeout&quot;: null,
+              &quot;auto_resolve_timeout&quot;: null,
+              &quot;alert_grouping&quot;: null,
+              &quot;alert_grouping_timeout&quot;: null,
+              &quot;alert_grouping_parameters&quot;: {
+                &quot;type&quot;: null,
+                &quot;config&quot;: null
+              },
+              &quot;integrations&quot;: [
+                {
+                  &quot;id&quot;: &quot;PKF9GZT&quot;,
+                  &quot;type&quot;: &quot;app_event_transform_inbound_integration_reference&quot;,
+                  &quot;summary&quot;: &quot;Rundeck - Runbook Automation&quot;,
+                  &quot;self&quot;: &quot;https://api.pagerduty.com/services/PFDGXO7/integrations/PKF9GZT&quot;,
+                  &quot;html_url&quot;: &quot;https://acquiaops.pagerduty.com/services/PFDGXO7/integrations/PKF9GZT&quot;
+                },
+                {
+                  &quot;id&quot;: &quot;P85ZYX9&quot;,
+                  &quot;type&quot;: &quot;generic_events_api_inbound_integration_reference&quot;,
+                  &quot;summary&quot;: &quot;StackStorm&quot;,
+                  &quot;self&quot;: &quot;https://api.pagerduty.com/services/PFDGXO7/integrations/P85ZYX9&quot;,
+                  &quot;html_url&quot;: &quot;https://acquiaops.pagerduty.com/services/PFDGXO7/integrations/P85ZYX9&quot;
+                },
+                {
+                  &quot;id&quot;: &quot;P0K0X5W&quot;,
+                  &quot;type&quot;: &quot;nagios_inbound_integration_reference&quot;,
+                  &quot;summary&quot;: &quot;Nagios&quot;,
+                  &quot;self&quot;: &quot;https://api.pagerduty.com/services/PFDGXO7/integrations/P0K0X5W&quot;,
+                  &quot;html_url&quot;: &quot;https://acquiaops.pagerduty.com/services/PFDGXO7/integrations/P0K0X5W&quot;
+                },
+                {
+                  &quot;id&quot;: &quot;PFD75UY&quot;,
+                  &quot;type&quot;: &quot;generic_email_inbound_integration_reference&quot;,
+                  &quot;summary&quot;: &quot;Rundeck Email&quot;,
+                  &quot;self&quot;: &quot;https://api.pagerduty.com/services/PFDGXO7/integrations/PFD75UY&quot;,
+                  &quot;html_url&quot;: &quot;https://acquiaops.pagerduty.com/services/PFDGXO7/integrations/PFD75UY&quot;
+                },
+                {
+                  &quot;id&quot;: &quot;P9KSMZ7&quot;,
+                  &quot;type&quot;: &quot;generic_email_inbound_integration_reference&quot;,
+                  &quot;summary&quot;: &quot;Stackstorm email&quot;,
+                  &quot;self&quot;: &quot;https://api.pagerduty.com/services/PFDGXO7/integrations/P9KSMZ7&quot;,
+                  &quot;html_url&quot;: &quot;https://acquiaops.pagerduty.com/services/PFDGXO7/integrations/P9KSMZ7&quot;
+                },
+                {
+                  &quot;id&quot;: &quot;PSPOC9H&quot;,
+                  &quot;type&quot;: &quot;events_api_v2_inbound_integration_reference&quot;,
+                  &quot;summary&quot;: &quot;Stackstorm&quot;,
+                  &quot;self&quot;: &quot;https://api.pagerduty.com/services/PFDGXO7/integrations/PSPOC9H&quot;,
+                  &quot;html_url&quot;: &quot;https://acquiaops.pagerduty.com/services/PFDGXO7/integrations/PSPOC9H&quot;
+                }
+              ],
+              &quot;metadata&quot;: {},
+              &quot;response_play&quot;: null,
+              &quot;type&quot;: &quot;service&quot;,
+              &quot;summary&quot;: &quot;OPA&quot;,
+              &quot;self&quot;: &quot;https://api.pagerduty.com/services/PFDGXO7&quot;,
+              &quot;html_url&quot;: &quot;https://acquiaops.pagerduty.com/service-directory/PFDGXO7&quot;
+            },
+            &quot;assignments&quot;: [
+              {
+                &quot;at&quot;: &quot;2021-03-06T09:11:34Z&quot;,
+                &quot;assignee&quot;: {
+                  &quot;id&quot;: &quot;PNF7VAO&quot;,
+                  &quot;type&quot;: &quot;user_reference&quot;,
+                  &quot;summary&quot;: &quot;TestNullUser&quot;,
+                  &quot;self&quot;: &quot;https://api.pagerduty.com/users/PNF7VAO&quot;,
+                  &quot;html_url&quot;: &quot;https://acquiaops.pagerduty.com/users/PNF7VAO&quot;
+                }
+              }
+            ],
+            &quot;assigned_via&quot;: &quot;escalation_policy&quot;,
+            &quot;last_status_change_at&quot;: &quot;2021-03-06T09:11:34Z&quot;,
+            &quot;first_trigger_log_entry&quot;: {
+              &quot;id&quot;: &quot;RQ7LPQ18CVXGVY61GCMOS9FTGK&quot;,
+              &quot;type&quot;: &quot;trigger_log_entry_reference&quot;,
+              &quot;summary&quot;: &quot;Triggered through the API&quot;,
+              &quot;self&quot;: &quot;https://api.pagerduty.com/log_entries/RQ7LPQ18CVXGVY61GCMOS9FTGK&quot;,
+              &quot;html_url&quot;: &quot;https://acquiaops.pagerduty.com/incidents/PH1X4KI/log_entries/RQ7LPQ18CVXGVY61GCMOS9FTGK&quot;
+            },
+            &quot;alert_counts&quot;: {
+              &quot;all&quot;: 0,
+              &quot;triggered&quot;: 0,
+              &quot;resolved&quot;: 0
+            },
+            &quot;is_mergeable&quot;: false,
+            &quot;escalation_policy&quot;: {
+              &quot;id&quot;: &quot;PS44B0I&quot;,
+              &quot;type&quot;: &quot;escalation_policy_reference&quot;,
+              &quot;summary&quot;: &quot;OPA&quot;,
+              &quot;self&quot;: &quot;https://api.pagerduty.com/escalation_policies/PS44B0I&quot;,
+              &quot;html_url&quot;: &quot;https://acquiaops.pagerduty.com/escalation_policies/PS44B0I&quot;
+            },
+            &quot;teams&quot;: [
+              {
+                &quot;id&quot;: &quot;P9CV6YW&quot;,
+                &quot;type&quot;: &quot;team_reference&quot;,
+                &quot;summary&quot;: &quot;OPA&quot;,
+                &quot;self&quot;: &quot;https://api.pagerduty.com/teams/P9CV6YW&quot;,
+                &quot;html_url&quot;: &quot;https://acquiaops.pagerduty.com/teams/P9CV6YW&quot;
+              }
+            ],
+            &quot;impacted_services&quot;: [
+              {
+                &quot;id&quot;: &quot;PFDGXO7&quot;,
+                &quot;type&quot;: &quot;service_reference&quot;,
+                &quot;summary&quot;: &quot;OPA&quot;,
+                &quot;self&quot;: &quot;https://api.pagerduty.com/services/PFDGXO7&quot;,
+                &quot;html_url&quot;: &quot;https://acquiaops.pagerduty.com/service-directory/PFDGXO7&quot;
+              }
+            ],
+            &quot;pending_actions&quot;: [],
+            &quot;acknowledgements&quot;: [],
+            &quot;basic_alert_grouping&quot;: null,
+            &quot;alert_grouping&quot;: null,
+            &quot;last_status_change_by&quot;: {
+              &quot;id&quot;: &quot;PFDGXO7&quot;,
+              &quot;type&quot;: &quot;service_reference&quot;,
+              &quot;summary&quot;: &quot;OPA&quot;,
+              &quot;self&quot;: &quot;https://api.pagerduty.com/services/PFDGXO7&quot;,
+              &quot;html_url&quot;: &quot;https://acquiaops.pagerduty.com/service-directory/PFDGXO7&quot;
+            },
+            &quot;metadata&quot;: {},
+            &quot;external_references&quot;: [],
+            &quot;incidents_responders&quot;: [],
+            &quot;responder_requests&quot;: [],
+            &quot;subscriber_requests&quot;: [],
+            &quot;urgency&quot;: &quot;high&quot;,
+            &quot;id&quot;: &quot;PH1X4KI&quot;,
+            &quot;type&quot;: &quot;incident&quot;,
+            &quot;summary&quot;: &quot;[#683222] CRITICAL: &#39;MySQL Real Lag&#39; on &#39;ded-92.opsteam1&#39;&quot;,
+            &quot;self&quot;: &quot;https://api.pagerduty.com/incidents/PH1X4KI&quot;,
+            &quot;html_url&quot;: &quot;https://acquiaops.pagerduty.com/incidents/PH1X4KI&quot;,
+            &quot;alerts&quot;: [
+              {
+                &quot;alert_key&quot;: &quot;event_source=service;host_name=ded-92.opsteam1;service_desc=MySQL Real Lag&quot;
+              }
+            ]
+          },
+          &quot;id&quot;: &quot;f2c74502-7e5b-11eb-8d69-0242c0a82a0b&quot;,
+          &quot;created_on&quot;: &quot;2021-03-06T09:11:34Z&quot;,
+          &quot;account_features&quot;: {
+            &quot;response_automation&quot;: true
+          },
+          &quot;account_id&quot;: &quot;PZH8ILE&quot;
+        }
+      ]
+    }
+  },
+  &quot;occurrence_time&quot;: &quot;2021-03-06T09:11:34.000000Z&quot;,
+  &quot;status&quot;: &quot;processed&quot;,
+  &quot;id&quot;: &quot;604347476a4da21609584dd6&quot;
+}```</description>
+    
+    <lastBuildDate>Thu, 08 Jul 2021 04:36:29 +0000</lastBuildDate>
+    <category>Workflows</category>
+    <atom:link href="https://forum.stackstorm.com/t/not-getting-trigger-json-data-processed-and-forwarded-to-action/1589.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Not getting trigger JSON data processed and forwarded to action</title>
+        <dc:creator><![CDATA[prabhanshu]]></dc:creator>
+        <description><![CDATA[
+            <p>Thanks its working now.</p>
+          <p><a href="https://forum.stackstorm.com/t/not-getting-trigger-json-data-processed-and-forwarded-to-action/1589/9">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/not-getting-trigger-json-data-processed-and-forwarded-to-action/1589/9</link>
+        <pubDate>Thu, 08 Jul 2021 04:36:29 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1589-9</guid>
+        <source url="https://forum.stackstorm.com/t/not-getting-trigger-json-data-processed-and-forwarded-to-action/1589.rss">Not getting trigger JSON data processed and forwarded to action</source>
+      </item>
+      <item>
+        <title>Not getting trigger JSON data processed and forwarded to action</title>
+        <dc:creator><![CDATA[prabhanshu]]></dc:creator>
+        <description><![CDATA[
+            <p>I started getting the data from the trigger to work.<br>
+</p><div class="lightbox-wrapper"><a class="lightbox" href="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/80407e3027d4144450f14b2bbc7e09e6918ac104.png" data-download-href="/uploads/short-url/iizi5aelLVGo2bak16Z4w6LH4xu.png?dl=1" title="Screenshot 2021-03-09 at 9.28.07 PM" rel="noopener nofollow ugc"><img src="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/80407e3027d4144450f14b2bbc7e09e6918ac104_2_690x344.png" alt="Screenshot 2021-03-09 at 9.28.07 PM" data-base62-sha1="iizi5aelLVGo2bak16Z4w6LH4xu" width="690" height="344" srcset="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/80407e3027d4144450f14b2bbc7e09e6918ac104_2_690x344.png, https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/80407e3027d4144450f14b2bbc7e09e6918ac104_2_1035x516.png 1.5x, https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/80407e3027d4144450f14b2bbc7e09e6918ac104_2_1380x688.png 2x" data-small-upload="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/80407e3027d4144450f14b2bbc7e09e6918ac104_2_10x10.png"></a></div><p></p>
+<p>But while processing the input in the workflow, i am getting different different errors. I can understand some good learning curve but this is simply giving some hard time.</p>
+<p>Below is the workflow file:</p>
+<pre><code>version: 1.0
+tasks:
+  output_alert:
+    action: core.echo
+    with:
+      items: "{{ ctx().alerts }}"
+      concurrency: 1
+    input:
+      message: "Alert hostname {{item(HOSTNAME)}}, Alert hostname {{item(SERVICEDESC)}}"
+input:
+  - alerts
+</code></pre>
+<p>Below if the workflow file:</p>
+<pre><code>pack: default
+enabled: true
+runner_type: orquesta
+parameters:
+  alerts:
+    type: object
+    required: true
+name: event_demo
+entry_point: workflows/event_demo.yaml
+</code></pre>
+<p>Not sure how could i be able to fetch the data from the trigger payload which i am getting in the WF:</p>
+<p><code>{"CONTACTPAGER":"e01258eab21f497ca5176a61d1ccbd04","HOSTDISPLAYNAME":"web-4.opsteam1","HOSTNAME":"web-4.opsteam1","SERVICEDESC":"Services Check","SERVICEDISPLAYNAME":"Services Check","SERVICEOUTPUT":"active","SERVICEPROBLEMID":"295","SERVICESTATE":"CRITICAL","pd_nagios_object":"service"}</code></p>
+<p>I need some assistance here, to solve the problem.</p>
+          <p><a href="https://forum.stackstorm.com/t/not-getting-trigger-json-data-processed-and-forwarded-to-action/1589/8">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/not-getting-trigger-json-data-processed-and-forwarded-to-action/1589/8</link>
+        <pubDate>Tue, 09 Mar 2021 16:18:15 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1589-8</guid>
+        <source url="https://forum.stackstorm.com/t/not-getting-trigger-json-data-processed-and-forwarded-to-action/1589.rss">Not getting trigger JSON data processed and forwarded to action</source>
+      </item>
+      <item>
+        <title>Not getting trigger JSON data processed and forwarded to action</title>
+        <dc:creator><![CDATA[arms11]]></dc:creator>
+        <description><![CDATA[
+            <p>I mean I don’t know what you expect or desire to do with your payload, but you can extract information out of the body or header with help of jinja and pass along to your action (hopefully more than <code>core.echo</code>) to do whatever you want.</p>
+<p>From looking your json above what you get is the array of incidents <code>{{trigger.body.messages}}</code>, so while I am not a jinja expert, you can go through jinja docs to see how you can work with arrays. Hope that helps!</p>
+          <p><a href="https://forum.stackstorm.com/t/not-getting-trigger-json-data-processed-and-forwarded-to-action/1589/7">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/not-getting-trigger-json-data-processed-and-forwarded-to-action/1589/7</link>
+        <pubDate>Sat, 06 Mar 2021 14:00:08 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1589-7</guid>
+        <source url="https://forum.stackstorm.com/t/not-getting-trigger-json-data-processed-and-forwarded-to-action/1589.rss">Not getting trigger JSON data processed and forwarded to action</source>
+      </item>
+      <item>
+        <title>Not getting trigger JSON data processed and forwarded to action</title>
+        <dc:creator><![CDATA[arms11]]></dc:creator>
+        <description><![CDATA[
+            <p>I think if I understand your question, I already gave the answer.</p>
+          <p><a href="https://forum.stackstorm.com/t/not-getting-trigger-json-data-processed-and-forwarded-to-action/1589/6">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/not-getting-trigger-json-data-processed-and-forwarded-to-action/1589/6</link>
+        <pubDate>Sat, 06 Mar 2021 13:53:00 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1589-6</guid>
+        <source url="https://forum.stackstorm.com/t/not-getting-trigger-json-data-processed-and-forwarded-to-action/1589.rss">Not getting trigger JSON data processed and forwarded to action</source>
+      </item>
+      <item>
+        <title>Not getting trigger JSON data processed and forwarded to action</title>
+        <dc:creator><![CDATA[prabhanshu]]></dc:creator>
+        <description><![CDATA[
+            <p>Or in other case can i get anything displayed which is there in the body section? what should i write to display value of any key given inside the body of the trigger payload.</p>
+          <p><a href="https://forum.stackstorm.com/t/not-getting-trigger-json-data-processed-and-forwarded-to-action/1589/5">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/not-getting-trigger-json-data-processed-and-forwarded-to-action/1589/5</link>
+        <pubDate>Sat, 06 Mar 2021 13:12:04 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1589-5</guid>
+        <source url="https://forum.stackstorm.com/t/not-getting-trigger-json-data-processed-and-forwarded-to-action/1589.rss">Not getting trigger JSON data processed and forwarded to action</source>
+      </item>
+      <item>
+        <title>Not getting trigger JSON data processed and forwarded to action</title>
+        <dc:creator><![CDATA[prabhanshu]]></dc:creator>
+        <description><![CDATA[
+            <p><a class="mention" href="https://github.com/arms11">@arms11</a> thats something which torments me the most, how can i adjust my jinja to get the status field in the payload. Can you guide me on it, i am not sure about how to get this done.</p>
+          <p><a href="https://forum.stackstorm.com/t/not-getting-trigger-json-data-processed-and-forwarded-to-action/1589/4">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/not-getting-trigger-json-data-processed-and-forwarded-to-action/1589/4</link>
+        <pubDate>Sat, 06 Mar 2021 13:09:58 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1589-4</guid>
+        <source url="https://forum.stackstorm.com/t/not-getting-trigger-json-data-processed-and-forwarded-to-action/1589.rss">Not getting trigger JSON data processed and forwarded to action</source>
+      </item>
+      <item>
+        <title>Not getting trigger JSON data processed and forwarded to action</title>
+        <dc:creator><![CDATA[arms11]]></dc:creator>
+        <description><![CDATA[
+            <p>You are very close <img src="https://emoji.discourse-cdn.com/apple/slightly_smiling_face.png?v=9" title=":slightly_smiling_face:" class="emoji" alt=":slightly_smiling_face:"> If you check the <code>status</code> is out of the <code>body</code> section. You need to change your <code>jinja</code> to appropriately find the status field in your <code>json</code>.<br>
+{{trigger.status}} might do the trick!</p>
+          <p><a href="https://forum.stackstorm.com/t/not-getting-trigger-json-data-processed-and-forwarded-to-action/1589/3">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/not-getting-trigger-json-data-processed-and-forwarded-to-action/1589/3</link>
+        <pubDate>Sat, 06 Mar 2021 12:25:41 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1589-3</guid>
+        <source url="https://forum.stackstorm.com/t/not-getting-trigger-json-data-processed-and-forwarded-to-action/1589.rss">Not getting trigger JSON data processed and forwarded to action</source>
+      </item>
+      <item>
+        <title>Not getting trigger JSON data processed and forwarded to action</title>
+        <dc:creator><![CDATA[prabhanshu]]></dc:creator>
+        <description><![CDATA[
+            <p>I am not able to understand how to process this payload which i am getting via webhook.</p>
+<p>I followed a conversation in support forum and got to know that we can check the status if the trigger body has got processed or not by using “{{trigger.body.processed}}” i tried it to check if the payload is been forwarded to action. But i am not getting any output for that too. Kindly help.</p>
+          <p><a href="https://forum.stackstorm.com/t/not-getting-trigger-json-data-processed-and-forwarded-to-action/1589/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/not-getting-trigger-json-data-processed-and-forwarded-to-action/1589/2</link>
+        <pubDate>Sat, 06 Mar 2021 09:49:04 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1589-2</guid>
+        <source url="https://forum.stackstorm.com/t/not-getting-trigger-json-data-processed-and-forwarded-to-action/1589.rss">Not getting trigger JSON data processed and forwarded to action</source>
+      </item>
+      <item>
+        <title>Not getting trigger JSON data processed and forwarded to action</title>
+        <dc:creator><![CDATA[prabhanshu]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi Team,<br>
+I am trying to get the status of the trigger.body.processed from the json payload which i am getting from the webhook placed.<br>
+Below is the rule configuration:<br>
+</p><div class="lightbox-wrapper"><a class="lightbox" href="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/b4f00450207b6145b356580bc835fcd00149cbe0.png" data-download-href="/uploads/short-url/pOEb3MYiL8jlgiLVirvE4nNOB6U.png?dl=1" title="Screenshot 2021-03-06 at 3.11.58 PM" rel="noopener nofollow ugc"><img src="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/b4f00450207b6145b356580bc835fcd00149cbe0_2_690x302.png" alt="Screenshot 2021-03-06 at 3.11.58 PM" data-base62-sha1="pOEb3MYiL8jlgiLVirvE4nNOB6U" width="690" height="302" srcset="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/b4f00450207b6145b356580bc835fcd00149cbe0_2_690x302.png, https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/b4f00450207b6145b356580bc835fcd00149cbe0_2_1035x453.png 1.5x, https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/b4f00450207b6145b356580bc835fcd00149cbe0_2_1380x604.png 2x" data-small-upload="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/b4f00450207b6145b356580bc835fcd00149cbe0_2_10x10.png"></a></div><p></p>
+<p>And below is the payload which i am getting in trigger instance via webhook:</p>
+<pre><code class="lang-auto">  "trigger": "core.59362943-d192-4502-bc0a-9c7c8ecc69d1",
+  "payload": {
+    "headers": {
+      "Host": "ded-95.opsteam1.srvs.ahdev.co,ded-95.opsteam1.srvs.ahdev.co",
+      "X-Real-Ip": "34.222.110.137",
+      "X-Forwarded-For": "34.222.110.137",
+      "Content-Length": "8673",
+      "Accept": "application/json",
+      "X-Webhook-Id": "f2c74502-7e5b-11eb-8d69-0242c0a82a0b",
+      "User-Agent": "PagerDuty-Webhook/V2.0",
+      "Content-Type": "application/json",
+      "X-Request-Id": "0664d280-e24c-4080-bb7b-03638479ad1d"
+    },
+    "body": {
+      "messages": [
+        {
+          "event": "incident.trigger",
+          "log_entries": [
+            {
+              "id": "RQ7LPQ18CVXGVY61GCMOS9FTGK",
+              "type": "trigger_log_entry",
+              "summary": "Triggered through the API",
+              "self": "https://api.pagerduty.com/log_entries/RQ7LPQ18CVXGVY61GCMOS9FTGK",
+              "html_url": "https://acquiaops.pagerduty.com/incidents/PH1X4KI/log_entries/RQ7LPQ18CVXGVY61GCMOS9FTGK",
+              "created_at": "2021-03-06T09:11:34Z",
+              "agent": {
+                "id": "P0K0X5W",
+                "type": "nagios_inbound_integration_reference",
+                "summary": "Nagios",
+                "self": "https://api.pagerduty.com/services/PFDGXO7/integrations/P0K0X5W",
+                "html_url": "https://acquiaops.pagerduty.com/services/PFDGXO7/integrations/P0K0X5W"
+              },
+              "channel": {
+                "type": "nagios",
+                "host": "ded-92.opsteam1",
+                "state": "CRITICAL",
+                "summary": "ded-92.opsteam1",
+                "service": "MySQL Real Lag",
+                "details": {
+                  "CONTACTPAGER": "e01258eab21f497ca5176a61d1ccbd04",
+                  "HOSTDISPLAYNAME": "ded-92.opsteam1",
+                  "HOSTNAME": "ded-92.opsteam1",
+                  "SERVICEDESC": "MySQL Real Lag",
+                  "SERVICEDISPLAYNAME": "MySQL Real Lag",
+                  "SERVICEOUTPUT": "CRITICAL: Real slave lag exceeded threshold of 60m - 2146012s (run ah-dbcluster status ded-92 for full report)",
+                  "SERVICEPROBLEMID": "102",
+                  "SERVICESTATE": "CRITICAL",
+                  "pd_nagios_object": "service"
+                },
+                "cef_details": {
+                  "client": "",
+                  "client_url": "",
+                  "creation_time": "2021-03-06T09:11:29.000Z",
+                  "dedup_key": "event_source=service;host_name=ded-92.opsteam1;service_desc=MySQL Real Lag",
+                  "description": "CRITICAL: 'MySQL Real Lag' on 'ded-92.opsteam1'",
+                  "details": {
+                    "CONTACTPAGER": "e01258eab21f497ca5176a61d1ccbd04",
+                    "HOSTDISPLAYNAME": "ded-92.opsteam1",
+                    "HOSTNAME": "ded-92.opsteam1",
+                    "SERVICEDESC": "MySQL Real Lag",
+                    "SERVICEDISPLAYNAME": "MySQL Real Lag",
+                    "SERVICEOUTPUT": "CRITICAL: Real slave lag exceeded threshold of 60m - 2146012s (run ah-dbcluster status ded-92 for full report)",
+                    "SERVICEPROBLEMID": "102",
+                    "SERVICESTATE": "CRITICAL",
+                    "pd_nagios_object": "service"
+                  },
+                  "message": "CRITICAL: 'MySQL Real Lag' on 'ded-92.opsteam1'",
+                  "mutations": [],
+                  "severity": "critical",
+                  "source_origin": "ded-92.opsteam1",
+                  "version": "1.0",
+                  "details_omitted": false
+                },
+                "details_omitted": false,
+                "body_omitted": false
+              },
+              "service": {
+                "id": "PFDGXO7",
+                "type": "service_reference",
+                "summary": "OPA",
+                "self": "https://api.pagerduty.com/services/PFDGXO7",
+                "html_url": "https://acquiaops.pagerduty.com/service-directory/PFDGXO7"
+              },
+              "incident": {
+                "id": "PH1X4KI",
+                "type": "incident_reference",
+                "summary": "[#683222] CRITICAL: 'MySQL Real Lag' on 'ded-92.opsteam1'",
+                "self": "https://api.pagerduty.com/incidents/PH1X4KI",
+                "html_url": "https://acquiaops.pagerduty.com/incidents/PH1X4KI"
+              },
+              "teams": [
+                {
+                  "id": "P9CV6YW",
+                  "type": "team_reference",
+                  "summary": "OPA",
+                  "self": "https://api.pagerduty.com/teams/P9CV6YW",
+                  "html_url": "https://acquiaops.pagerduty.com/teams/P9CV6YW"
+                }
+              ],
+              "contexts": [],
+              "event_details": {
+                "type": "service",
+                "host": "ded-92.opsteam1",
+                "service": "MySQL Real Lag",
+                "service_state": "CRITICAL"
+              }
+            }
+          ],
+          "webhook": {
+            "endpoint_url": "https://ded-95.opsteam1.srvs.ahdev.co/api/v1/webhooks/sample",
+            "name": "Nagios Webhook",
+            "description": null,
+            "webhook_object": {
+              "id": "PFDGXO7",
+              "type": "service_reference",
+              "summary": "OPA",
+              "self": "https://api.pagerduty.com/services/PFDGXO7",
+              "html_url": "https://acquiaops.pagerduty.com/service-directory/PFDGXO7"
+            },
+            "config": {
+              "referer": "https://acquiaops.pagerduty.com/services/PFDGXO7/integrations?service_profile=1"
+            },
+            "outbound_integration": {
+              "id": "PJFWPEP",
+              "type": "outbound_integration_reference",
+              "summary": "Generic V2 Webhook",
+              "self": "https://api.pagerduty.com/outbound_integrations/PJFWPEP",
+              "html_url": null
+            },
+            "accounts_addon": null,
+            "id": "PLP8LA2",
+            "type": "webhook",
+            "summary": "Nagios Webhook",
+            "self": "https://api.pagerduty.com/webhooks/PLP8LA2",
+            "html_url": null
+          },
+          "incident": {
+            "incident_number": 683222,
+            "title": "CRITICAL: 'MySQL Real Lag' on 'ded-92.opsteam1'",
+            "description": "CRITICAL: 'MySQL Real Lag' on 'ded-92.opsteam1'",
+            "created_at": "2021-03-06T09:11:34Z",
+            "status": "triggered",
+            "incident_key": null,
+            "service": {
+              "id": "PFDGXO7",
+              "name": "OPA",
+              "description": "https://backlog.acquia.com/browse/OP-295273",
+              "created_at": "2021-02-01T20:40:50Z",
+              "updated_at": "2021-02-24T10:40:41Z",
+              "status": "critical",
+              "teams": [
+                {
+                  "id": "P9CV6YW",
+                  "type": "team_reference",
+                  "summary": "OPA",
+                  "self": "https://api.pagerduty.com/teams/P9CV6YW",
+                  "html_url": "https://acquiaops.pagerduty.com/teams/P9CV6YW"
+                }
+              ],
+              "alert_creation": "create_alerts_and_incidents",
+              "addons": [],
+              "scheduled_actions": [],
+              "support_hours": null,
+              "last_incident_timestamp": "2021-03-06T09:11:34Z",
+              "escalation_policy": {
+                "id": "PS44B0I",
+                "type": "escalation_policy_reference",
+                "summary": "OPA",
+                "self": "https://api.pagerduty.com/escalation_policies/PS44B0I",
+                "html_url": "https://acquiaops.pagerduty.com/escalation_policies/PS44B0I"
+              },
+              "incident_urgency_rule": {
+                "type": "constant",
+                "urgency": "high"
+              },
+              "acknowledgement_timeout": null,
+              "auto_resolve_timeout": null,
+              "alert_grouping": null,
+              "alert_grouping_timeout": null,
+              "alert_grouping_parameters": {
+                "type": null,
+                "config": null
+              },
+              "integrations": [
+                {
+                  "id": "PKF9GZT",
+                  "type": "app_event_transform_inbound_integration_reference",
+                  "summary": "Rundeck - Runbook Automation",
+                  "self": "https://api.pagerduty.com/services/PFDGXO7/integrations/PKF9GZT",
+                  "html_url": "https://acquiaops.pagerduty.com/services/PFDGXO7/integrations/PKF9GZT"
+                },
+                {
+                  "id": "P85ZYX9",
+                  "type": "generic_events_api_inbound_integration_reference",
+                  "summary": "StackStorm",
+                  "self": "https://api.pagerduty.com/services/PFDGXO7/integrations/P85ZYX9",
+                  "html_url": "https://acquiaops.pagerduty.com/services/PFDGXO7/integrations/P85ZYX9"
+                },
+                {
+                  "id": "P0K0X5W",
+                  "type": "nagios_inbound_integration_reference",
+                  "summary": "Nagios",
+                  "self": "https://api.pagerduty.com/services/PFDGXO7/integrations/P0K0X5W",
+                  "html_url": "https://acquiaops.pagerduty.com/services/PFDGXO7/integrations/P0K0X5W"
+                },
+                {
+                  "id": "PFD75UY",
+                  "type": "generic_email_inbound_integration_reference",
+                  "summary": "Rundeck Email",
+                  "self": "https://api.pagerduty.com/services/PFDGXO7/integrations/PFD75UY",
+                  "html_url": "https://acquiaops.pagerduty.com/services/PFDGXO7/integrations/PFD75UY"
+                },
+                {
+                  "id": "P9KSMZ7",
+                  "type": "generic_email_inbound_integration_reference",
+                  "summary": "Stackstorm email",
+                  "self": "https://api.pagerduty.com/services/PFDGXO7/integrations/P9KSMZ7",
+                  "html_url": "https://acquiaops.pagerduty.com/services/PFDGXO7/integrations/P9KSMZ7"
+                },
+                {
+                  "id": "PSPOC9H",
+                  "type": "events_api_v2_inbound_integration_reference",
+                  "summary": "Stackstorm",
+                  "self": "https://api.pagerduty.com/services/PFDGXO7/integrations/PSPOC9H",
+                  "html_url": "https://acquiaops.pagerduty.com/services/PFDGXO7/integrations/PSPOC9H"
+                }
+              ],
+              "metadata": {},
+              "response_play": null,
+              "type": "service",
+              "summary": "OPA",
+              "self": "https://api.pagerduty.com/services/PFDGXO7",
+              "html_url": "https://acquiaops.pagerduty.com/service-directory/PFDGXO7"
+            },
+            "assignments": [
+              {
+                "at": "2021-03-06T09:11:34Z",
+                "assignee": {
+                  "id": "PNF7VAO",
+                  "type": "user_reference",
+                  "summary": "TestNullUser",
+                  "self": "https://api.pagerduty.com/users/PNF7VAO",
+                  "html_url": "https://acquiaops.pagerduty.com/users/PNF7VAO"
+                }
+              }
+            ],
+            "assigned_via": "escalation_policy",
+            "last_status_change_at": "2021-03-06T09:11:34Z",
+            "first_trigger_log_entry": {
+              "id": "RQ7LPQ18CVXGVY61GCMOS9FTGK",
+              "type": "trigger_log_entry_reference",
+              "summary": "Triggered through the API",
+              "self": "https://api.pagerduty.com/log_entries/RQ7LPQ18CVXGVY61GCMOS9FTGK",
+              "html_url": "https://acquiaops.pagerduty.com/incidents/PH1X4KI/log_entries/RQ7LPQ18CVXGVY61GCMOS9FTGK"
+            },
+            "alert_counts": {
+              "all": 0,
+              "triggered": 0,
+              "resolved": 0
+            },
+            "is_mergeable": false,
+            "escalation_policy": {
+              "id": "PS44B0I",
+              "type": "escalation_policy_reference",
+              "summary": "OPA",
+              "self": "https://api.pagerduty.com/escalation_policies/PS44B0I",
+              "html_url": "https://acquiaops.pagerduty.com/escalation_policies/PS44B0I"
+            },
+            "teams": [
+              {
+                "id": "P9CV6YW",
+                "type": "team_reference",
+                "summary": "OPA",
+                "self": "https://api.pagerduty.com/teams/P9CV6YW",
+                "html_url": "https://acquiaops.pagerduty.com/teams/P9CV6YW"
+              }
+            ],
+            "impacted_services": [
+              {
+                "id": "PFDGXO7",
+                "type": "service_reference",
+                "summary": "OPA",
+                "self": "https://api.pagerduty.com/services/PFDGXO7",
+                "html_url": "https://acquiaops.pagerduty.com/service-directory/PFDGXO7"
+              }
+            ],
+            "pending_actions": [],
+            "acknowledgements": [],
+            "basic_alert_grouping": null,
+            "alert_grouping": null,
+            "last_status_change_by": {
+              "id": "PFDGXO7",
+              "type": "service_reference",
+              "summary": "OPA",
+              "self": "https://api.pagerduty.com/services/PFDGXO7",
+              "html_url": "https://acquiaops.pagerduty.com/service-directory/PFDGXO7"
+            },
+            "metadata": {},
+            "external_references": [],
+            "incidents_responders": [],
+            "responder_requests": [],
+            "subscriber_requests": [],
+            "urgency": "high",
+            "id": "PH1X4KI",
+            "type": "incident",
+            "summary": "[#683222] CRITICAL: 'MySQL Real Lag' on 'ded-92.opsteam1'",
+            "self": "https://api.pagerduty.com/incidents/PH1X4KI",
+            "html_url": "https://acquiaops.pagerduty.com/incidents/PH1X4KI",
+            "alerts": [
+              {
+                "alert_key": "event_source=service;host_name=ded-92.opsteam1;service_desc=MySQL Real Lag"
+              }
+            ]
+          },
+          "id": "f2c74502-7e5b-11eb-8d69-0242c0a82a0b",
+          "created_on": "2021-03-06T09:11:34Z",
+          "account_features": {
+            "response_automation": true
+          },
+          "account_id": "PZH8ILE"
+        }
+      ]
+    }
+  },
+  "occurrence_time": "2021-03-06T09:11:34.000000Z",
+  "status": "processed",
+  "id": "604347476a4da21609584dd6"
+}```</code></pre>
+          <p><a href="https://forum.stackstorm.com/t/not-getting-trigger-json-data-processed-and-forwarded-to-action/1589/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/not-getting-trigger-json-data-processed-and-forwarded-to-action/1589/1</link>
+        <pubDate>Sat, 06 Mar 2021 09:45:03 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1589-1</guid>
+        <source url="https://forum.stackstorm.com/t/not-getting-trigger-json-data-processed-and-forwarded-to-action/1589.rss">Not getting trigger JSON data processed and forwarded to action</source>
+      </item>
+  </channel>
+</rss>

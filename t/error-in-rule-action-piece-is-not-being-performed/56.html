@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="en" class="desktop-view not-mobile-device text-size-normal anon">
+<head>
+    <meta charset="utf-8">
+    <title>Error in Rule, action piece is not being performed - Rules - StackStorm Support (ARCHIVED)</title>
+    <meta name="description" content="Fairly new to StackStorm. Trying to integrate a use case where Splunk is sending a webhook based on a particular patern over to StackStorm. 
+When i try to create a rule with the following, the “action” piece is not being&amp;hellip;">
+    <meta name="discourse_theme_id" content="2">
+    <meta name="discourse_current_homepage" content="latest">
+    <meta name="generator"
+          content="Discourse 2.8.0.beta6 - https://github.com/discourse/discourse version a1daf9fe53a66e2d2cdf9757ab4812fb9a2b2787">
+    <link rel="icon" type="image/png"
+          href="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/379ced12f8326d58f1b3d2b3ff652f883e141f6a_2_32x32.PNG">
+    <link rel="apple-touch-icon" type="image/png"
+          href="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/379ced12f8326d58f1b3d2b3ff652f883e141f6a_2_180x180.PNG">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <link rel="canonical" href="56.html"/>
+    <script type="application/ld+json">{
+        "@context": "http://schema.org",
+        "@type": "WebSite",
+        "url": "https://forum.stackstorm.com",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://forum.stackstorm.com/search?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }
+    </script>
+    <link rel="search" type="application/opensearchdescription+xml" href="../../opensearch.xml"
+          title="StackStorm Support (ARCHIVED) Search">
+
+
+    <link href="/../../stylesheets/color_definitions_base__2_3c5eec1ecf192052ea70b4afdab57a62bccc0604.css?__ws=forum.stackstorm.com"
+          media="all" rel="stylesheet" class="light-scheme"/>
+
+    <link href="/../../stylesheets/desktop_b2f2968742d41481357e0df259b51ce29f72481a.css?__ws=forum.stackstorm.com"
+          media="all" rel="stylesheet" data-target="desktop"/>
+
+
+    <meta name="fragment" content="!">
+
+
+    <link id="manifest-link" rel="manifest" href="../../manifest.webmanifest" crossorigin="use-credentials">
+
+
+    <link rel="alternate" type="application/rss+xml"
+          title="RSS feed of &#39;Error in Rule, action piece is not being performed&#39;" href="56.rss"/>
+    <meta property="og:site_name" content="StackStorm Support (ARCHIVED)"/>
+    <meta property="og:type" content="website"/>
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:image"
+          content="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/891f00fbdb31fecb5bd9dab30c186d2fed0091ca.jpeg"/>
+    <meta property="og:image"
+          content="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/891f00fbdb31fecb5bd9dab30c186d2fed0091ca.jpeg"/>
+    <meta property="og:url"
+          content="https://forum.stackstorm.com/t/error-in-rule-action-piece-is-not-being-performed/56"/>
+    <meta name="twitter:url"
+          content="https://forum.stackstorm.com/t/error-in-rule-action-piece-is-not-being-performed/56"/>
+    <meta property="og:title" content="Error in Rule, action piece is not being performed"/>
+    <meta name="twitter:title" content="Error in Rule, action piece is not being performed"/>
+    <meta property="og:description"
+          content="Fairly new to StackStorm. Trying to integrate a use case where Splunk is sending a webhook based on a particular patern over to StackStorm.  When i try to create a rule with the following, the “action” piece is not being performed.  ---     name: &quot;sample_rule_with_webhook&quot;     pack: &quot;examples&quot;     description: &quot;Sample rule dumping webhook payload to a file.&quot;     enabled: true      trigger:         type: &quot;core.st2.webhook&quot;         parameters:             url: &quot;splunk_test&quot;      criteria: {}      ..."/>
+    <meta name="twitter:description"
+          content="Fairly new to StackStorm. Trying to integrate a use case where Splunk is sending a webhook based on a particular patern over to StackStorm.  When i try to create a rule with the following, the “action” piece is not being performed.  ---     name: &quot;sample_rule_with_webhook&quot;     pack: &quot;examples&quot;     description: &quot;Sample rule dumping webhook payload to a file.&quot;     enabled: true      trigger:         type: &quot;core.st2.webhook&quot;         parameters:             url: &quot;splunk_test&quot;      criteria: {}      ..."/>
+    <meta name="twitter:label1" value="Reading time"/>
+    <meta name="twitter:data1" value="6 mins 🕑"/>
+    <meta name="twitter:label2" value="Likes"/>
+    <meta name="twitter:data2" value="3 ❤"/>
+    <meta property="article:published_time" content="2018-03-12T14:47:52+00:00"/>
+    <meta property="og:ignore_canonical" content="true"/>
+
+
+    <script type="application/ld+json">{
+        "@context": "http://schema.org",
+        "@type": "QAPage",
+        "name": "Error in Rule, action piece is not being performed",
+        "mainEntity": {
+            "@type": "Question",
+            "name": "Error in Rule, action piece is not being performed",
+            "text": "Fairly new to StackStorm. Trying to integrate a use case where Splunk is sending a webhook based on a particular patern over to StackStorm.\n\nWhen i try to create a rule with the following, the “action” piece is not being performed.\n\n---\n\nname: &quot;sample_rule_with_webhook&quot;\n\npack: &quot;examples&quot;\n\nd&hellip;",
+            "upvoteCount": 0,
+            "answerCount": 1,
+            "dateCreated": "2018-03-12T14:47:52.338Z",
+            "author": {
+                "@type": "Person",
+                "name": "John"
+            },
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "So your criteria was searching on trigger.result - from the above output, I would probably be looking at something like trigger.body.result._raw.\n\n(also: this forum supports formatting for code &amp; logs)",
+                "upvoteCount": 0,
+                "dateCreated": "2018-03-15T20:27:47.760Z",
+                "url": "https://forum.stackstorm.com/t/error-in-rule-action-piece-is-not-being-performed/56/11",
+                "author": {
+                    "@type": "Person",
+                    "name": "lhill"
+                }
+            }
+        }
+    }
+    </script>
+
+    <meta id="data-discourse-setup" data-cdn="https://sjc6.discourse-cdn.com/standard10"
+          data-base-url="https://forum.stackstorm.com" data-base-uri="" data-environment="production"
+          data-letter-avatar-version="5_8fec8e114563efeaf5265573e510f08e"
+          data-markdown-it-url="https://aws1.discourse-cdn.com/standard10/assets/markdown-it-bundle-31e9a9c535ca1801c26da78b0ff465821751a98f921c5cdc5457d7e5a69e9748.js"
+          data-service-worker-url="service-worker.js" data-default-locale="en"
+          data-asset-version="597e36448c9b51d0fa3b7e43ec1fd6d5" data-disable-custom-css="false"
+          data-highlight-js-path="/highlight-js/forum.stackstorm.com/ac0f4aa001e1343346941766d72e0c1ae330832b.js"
+          data-svg-sprite-path="/svg-sprite/forum.stackstorm.com/svg-2-c2ad434b1e06079c7e282124aed9938dc95b83ea.js"
+          data-enable-js-error-reporting="true" data-color-scheme-is-dark="false" data-user-dark-scheme-id="-1"
+          data-s3-cdn="https://aws1.discourse-cdn.com/standard10"
+          data-s3-base-url="//discourse-cloud-file-uploads.s3.dualstack.us-west-2.amazonaws.com/standard10">
+
+    <meta name="discourse/config/environment"
+          content="%7B%22modulePrefix%22%3A%22discourse%22%2C%22environment%22%3A%22production%22%2C%22rootURL%22%3A%22%22%2C%22locationType%22%3A%22auto%22%2C%22historySupportMiddleware%22%3Afalse%2C%22EmberENV%22%3A%7B%22FEATURES%22%3A%7B%7D%2C%22EXTEND_PROTOTYPES%22%3A%7B%22Date%22%3Afalse%7D%2C%22_APPLICATION_TEMPLATE_WRAPPER%22%3Afalse%2C%22_DEFAULT_ASYNC_OBSERVERS%22%3Atrue%2C%22_JQUERY_INTEGRATION%22%3Atrue%7D%2C%22APP%22%3A%7B%22name%22%3A%22discourse%22%2C%22version%22%3A%222.8.0.beta6%20a1daf9fe53a66e2d2cdf9757ab4812fb9a2b2787%22%2C%22exportApplicationGlobal%22%3Atrue%7D%7D"/>
+</head>
+
+<body class="">
+
+
+<header class="d-header">
+    <div class="wrap">
+        <div class="contents clearfix">
+            <div class="title">
+                <a href="../../index.html">
+                    <picture>
+                        <img src="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png"
+                             alt="StackStorm Support (ARCHIVED)" id="site-logo"/>
+                    </picture>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</header>
+
+<div id="main-outlet" class="wrap" role="main">
+    <!-- preload-content: -->
+
+    <!-- EOF START -->
+    <div class="container" id="main-container">
+        <div id="ember11" class="ember-view"></div>
+        <div id="ember12" class="controls ember-view"><!----></div>
+        <div id="ember13" class="ember-view"><!----></div>
+        <div id="ember14" class="ember-view">
+            <div class="row">
+                <div id="global-notice-alert-read-only" class="alert alert-info alert-read-only">
+                    <!----> <span class="text">This site is in read only mode. Please continue to browse, but replying, likes, and other actions are disabled for now.</span>
+
+                    <!---->    </div>
+            </div>
+            <div class="row">
+                <div id="global-notice-alert-global-notice" class="alert alert-info alert-global-notice">
+                    <!----> <span class="text"><h3>⚠️ We've moved!</h3>  <p> Hi there!<br><br> To reduce project dependency on 3rd party paid services the StackStorm TSC has decided to move the Q/A from this forum to <a
+                        href="https://github.com/StackStorm/st2/discussions">Github Discussions</a>. This will make user experience better integrated with the native Github flow, as well as the questions closer to the community where they can provide answers. </p>  <p> Use 🔗 <b><a
+                        href="https://github.com/StackStorm/st2/discussions" class="active">Github Discussions</a></b> to ask your questions. </p></span>
+
+                    <!---->    </div>
+            </div>
+        </div>
+        <div id="ember17" class="hidden create-topics-notice ember-view"><!----></div>
+        <!---->
+    </div>
+    <!-- EOF END -->
+    <div id="topic-title">
+        <h1>
+            <a href="56.html">Error in Rule, action piece is not being performed</a>
+        </h1>
+
+        <div class="topic-category" itemscope itemtype="http://schema.org/BreadcrumbList">
+          <span itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a href="../../c/core-st2-platform-issues/6" class="badge-wrapper bullet" itemprop="item">
+              <span class='badge-category-bg' style='background-color: #AB9364'></span>
+              <span class='badge-category clear-badge'>
+                <span class='category-name' itemprop='name'>Platform</span>
+              </span>
+            </a>
+            <meta itemprop="position" content="1"/>
+          </span>
+            <span itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a href="../../c/core-st2-platform-issues/rule-related-issues/13" class="badge-wrapper bullet"
+               itemprop="item">
+              <span class='badge-category-bg' style='background-color: #F1592A'></span>
+              <span class='badge-category clear-badge'>
+                <span class='category-name' itemprop='name'>Rules</span>
+              </span>
+            </a>
+            <meta itemprop="position" content="2"/>
+          </span>
+        </div>
+
+        <div class="topic-category">
+            <div class='discourse-tags list-tags'>
+                <a href='../../tag/triggers' class='discourse-tag' rel="tag">triggers</a>,
+                <a href='../../tag/rules' class='discourse-tag' rel="tag">rules</a>,
+                <a href='../../tag/webhooks' class='discourse-tag' rel="tag">webhooks</a>
+            </div>
+        </div>
+    </div>
+
+
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/John_P'><span itemprop='name'>John_P</span></a>
+            (John)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="56.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2018-03-12T14:47:52Z' class='post-time'>
+                March 12, 2018,  2:47pm
+              </time>
+              <meta itemprop='dateModified' content='2018-05-15T19:18:11Z'>
+          <span itemprop='position'>#1</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Fairly new to StackStorm. Trying to integrate a use case where Splunk is sending a webhook based on a
+                particular patern over to StackStorm.</p>
+            <p>When i try to create a rule with the following, the “action” piece is not being performed.</p>
+            <pre><code class="lang-auto">---
+    name: "sample_rule_with_webhook"
+    pack: "examples"
+    description: "Sample rule dumping webhook payload to a file."
+    enabled: true
+
+    trigger:
+        type: "core.st2.webhook"
+        parameters:
+            url: "splunk_test"
+
+    criteria: {}
+        trigger.body.name:
+            pattern: "Start*"
+            type: "matchwildcard"
+
+    action:
+        ref: "core.local"
+        parameters:
+            cmd: "echo \"{{trigger.body}}\" &gt;&gt; ~/st2.webhook_sample.out ; sync"
+</code></pre>
+            <p>I can see trigger in st2 trigger-instance list and shows processed. In the rule logs i see the
+                following:</p>
+            <pre><code class="lang-auto">2018-03-12 10:38:10,623 140227477546480 ERROR filter [-] There might be a problem with the criteria in rule RuleDB(action=ActionExecutionSpecDB@140227478157136(ref="core.local", parameters="{u'cmd': u'echo "{{trigger.body}}" &gt;&gt; ~/st2.webhook_sample.out ; sync'}"), criteria={u'trigger.body.name': {u'pattern': u'Starting', u'type': u'contains'}}, description="Splunk testing", enabled=True, id=5aa15c4c77848358ca3b36d6, name="splunk_test", pack="default", ref="default.splunk_test", tags=[], trigger="core.74017ce9-b665-4356-b8ca-bdf225786950", type=RuleTypeSpecDB@140227478354896(ref="standard", parameters="{}"), uid="rule:default:splunk_test").
+Traceback (most recent call last):
+  File "/opt/stackstorm/st2/lib/python2.7/site-packages/st2reactor/rules/filter.py", line 145, in _check_criterion
+    result = op_func(value=payload_value, criteria_pattern=criteria_pattern)
+  File "/opt/stackstorm/st2/lib/python2.7/site-packages/st2common/operators.py", line 159, in contains
+    return criteria_pattern in value
+TypeError: argument of type 'NoneType' is not iterable (_trigger_instance={'status': 'processing', 'occurrence_time': '2018-03-12 14:38:10.553211+00:00', 'trigger': u'core.74017ce9-b665-4356-b8ca-bdf225786950', 'id': '5aa690d2778483595ab63325', 'payload': {'body': {u'results_link': u'https://abc.123.local:8000/app/search/search?q=%7Cloadjob%20rt_scheduler__john_YWxlcnRfbG9nZXZlbnQ__testing_at_1520860980_24219.409_2D6D92F7-0525-41CB-909C-FA732D025C1A%20%7C%20head%201%20%7C%20tail%201&amp;earliest=0&amp;latest=now', u'app': u'alert_logevent', u'search_name': u'testing', u'result': {u'_si': [u'abc.123.local', u'os'], u'_confstr': u'source::/var/log/messages|host::abc00006|syslog', u'_time': u'1521198257', u'host': u'hlp00006', u'_sourcetype': u'syslog', u'_indextime': u'1520865490', u'_raw': u'Mar 16 07:04:17 hlp00006 systemd[1]: Starting Session 2050 of user root.', u'_serial': u'96'}, u'sid': u'rt_scheduler__john_YWxlcnRfbG9nZXZlbnQ__testing_at_1520860980_24219.409_2D6D92F7-0525-41CB-909C-FA732D025C1A', u'owner': u'john'}, 'headers': {'X-Request-Id': 'afe33463-6ceb-4960-a9b9-c7627b381dd0', 'Accept-Encoding': 'identity', 'X-Forwarded-For': '10.00.000.232', 'Content-Length': '763', 'User-Agent': 'Splunk/2D6D92F7-0525-41CB-909C-FA732D025C1A', 'Host': '123,123', 'X-Real-Ip': '10.27.248.232', 'Content-Type': 'application/json'}}},_trigger={'uid': u'trigger:core:74017ce9-b665-4356-b8ca-bdf225786950:feec5050a7553f359ba5ff7624f093c8', 'parameters': {u'url': u'splunk_test'}, 'ref': u'core.74017ce9-b665-4356-b8ca-bdf225786950', 'ref_count': 1, 'name': u'74017ce9-b665-4356-b8ca-bdf225786950', 'pack': u'core', 'type': u'core.st2.webhook', 'id': '5aa15c4977848358ca3b36d5', 'description': None},_rule={'description': u'Splunk testing', 'tags': [], 'ref': u'default.splunk_test', 'enabled': True, 'name': u'splunk_test', 'trigger': u'core.74017ce9-b665-4356-b8ca-bdf225786950', 'criteria': {u'trigger.body.name': {u'pattern': u'Starting', u'type': u'contains'}}, 'action': 'ActionExecutionSpecDB@140227478157136(ref="core.local", parameters="{u\'cmd\': u\'echo "{{trigger.body}}" &gt;&gt; ~/st2.webhook_sample.out ; sync\'}")', 'pack': u'default', 'type': 'RuleTypeSpecDB@140227478354896(ref="standard", parameters="{}")', 'id': '5aa15c4c77848358ca3b36d6', 'uid': u'rule:default:splunk_test'})
+2018-03-12 10:38:10,632 140227477546480 INFO matcher [-] 0 rule(s) found to enforce for 74017ce9-b665-4356-b8ca-bdf225786950.
+2018-03-12 10:38:10,632 140227477546480 INFO engine [-] Matched 0 rule(s) for trigger_instance 5aa690d2778483595ab63325 (trigger=core.74017ce9-b665-4356-b8ca-bdf225786950)
+2018-03-12 10:38:10,632 140227477546480 INFO engine [-] No matching rules found for trigger instance 5aa690d2778483595ab63325.
+</code></pre>
+            <p>Any advice would be greatly appreciated.</p>
+        </div>
+
+        <meta itemprop='headline' content='Error in Rule, action piece is not being performed'>
+        <meta itemprop='keywords' content='triggers, rules, webhooks'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/nmaludy'><span itemprop='name'>nmaludy</span></a>
+            (Nick Maludy)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="56.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2018-03-12T15:41:30Z' class='post-time'>
+                March 12, 2018,  3:41pm
+              </time>
+              <meta itemprop='dateModified' content='2018-03-12T15:52:03Z'>
+          <span itemprop='position'>#2</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p><a class="mention" href="https://github.com/john_p">@John_P</a> it looks like you have a typo
+                in your criteria section (reference here: <a href="https://docs.stackstorm.com/rules.html#criteria">Rules
+                    — StackStorm 2.6.0 documentation</a>)</p>
+            <p>it should be something like</p>
+            <pre><code class="lang-auto">criteria:
+  trigger.body.name:
+</code></pre>
+            <p>The problem is the line <code>criteria: {}</code>. The extra <code>{}</code> should not be there. Instead
+                the line should look like <code>criteria:</code></p>
+        </div>
+
+        <meta itemprop='headline' content='Error in Rule, action piece is not being performed'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+            <span class='post-likes'>1 Like</span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/John_P'><span itemprop='name'>John_P</span></a>
+            (John)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="56.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2018-03-12T17:29:41Z' class='post-time'>
+                March 12, 2018,  5:29pm
+              </time>
+              <meta itemprop='dateModified' content='2018-03-14T05:09:50Z'>
+          <span itemprop='position'>#3</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>Thanks <a class="mention" href="https://github.com/nmaludy">@nmaludy</a> !</p>
+            <p>I edited the rule as follows:</p>
+            <pre><code class="lang-auto">--
+    name: "test1"
+    pack: "examples"
+    description: "Sample rule dumping webhook payload to a file."
+    enabled: true
+
+    trigger:
+        type: "core.st2.webhook"
+        parameters:
+            url: "splunk_test1"
+
+    criteria:
+        trigger.body.name:
+            pattern: "Start"
+            type: "equals"
+
+    action:
+        ref: "core.local"
+        parameters:
+            cmd: "echo \"{{trigger.body}}\" &gt;&gt; ~/st2.webhook_sample.out ; sync"
+</code></pre>
+            <p>However in the logs, it’s still referring to the wildcard I had above.</p>
+            <p>I tried reloading but still referring to the old rule with the wildcard</p>
+            <pre><code class="lang-auto">st2ctl reload
+st2ctl reload --register-all
+</code></pre>
+            <pre><code class="lang-auto">2018-03-12 13:18:02,794 139936980993840 ERROR filter [-] There might be a problem with the criteria in rule RuleDB(action=ActionExecutionSpecDB@139936985493200(ref="core.local", parameters="{u'cmd': u'echo "{{trigger.body}}" &gt;&gt; ~/st2.webhook_sample.out ; sync'}"), criteria={u'trigger.body.name': {u'pattern': u'Start*', u'type': u'matchwildcard'}}, description="Sample rule dumping webhook payload to a file.", enabled=True, id=5aa69cc6778483237724956f, name="sample_rule_with_webhook", pack="examples", ref="examples.sample_rule_with_webhook", tags=[], trigger="core.74017ce9-b665-4356-b8ca-bdf225786950", type=RuleTypeSpecDB@139936985492432(ref="standard", parameters="{}"), uid="rule:examples:sample_rule_with_webhook").
+Traceback (most recent call last):
+  File "/opt/stackstorm/st2/lib/python2.7/site-packages/st2reactor/rules/filter.py", line 145, in _check_criterion
+    result = op_func(value=payload_value, criteria_pattern=criteria_pattern)
+  File "/opt/stackstorm/st2/lib/python2.7/site-packages/st2common/operators.py", line 220, in match_wildcard
+    return fnmatch.fnmatch(value, criteria_pattern)
+  File "/opt/stackstorm/st2/lib/python2.7/fnmatch.py", line 43, in fnmatch
+    return fnmatchcase(name, pat)
+  File "/opt/stackstorm/st2/lib/python2.7/fnmatch.py", line 83, in fnmatchcase
+    return re_pat.match(name) is not None
+TypeError: expected string or buffer (_trigger_instance={'status': 'processing', 'occurrence_time': '2018-03-12 17:18:02.703268+00:00', 'trigger': u'core.74017ce9-b665-4356-b8ca-bdf225786950', 'id': '5aa6b64a77848324c2e67019', 'payload': {'body': {u'results_link': u'https://abc.123.local:8000/app/search/search?q=%7Cloadjob%20rt_scheduler__john_YWxlcnRfbG9nZXZlbnQ__testing_at_1520869500_25431.260_2D6D92F7-0525-41CB-909C-FA732D025C1A%20%7C%20head%201%20%7C%20tail%201&amp;earliest=0&amp;latest=now', u'app': u'alert_logevent', u'search_name': u'testing', u'result': {u'_si': [u'123.abc.local', u'os'], u'_confstr': u'source::/var/log/messages|host::abc301p|syslog', u'_time': u'1520875081', u'host': u'hsmjcl301p', u'_sourcetype': u'syslog', u'_indextime': u'1520875082', u'_raw': u'Mar 12 13:18:01 hsmjcl301p systemd[1]: Starting Session 14340 of user msms.', u'_serial': u'138'}, u'sid': u'rt_scheduler__speric_YWxlcnRfbG9nZXZlbnQ__testing_at_1520869500_25431.260_2D6D92F7-0525-41CB-909C-FA732D025C1A', u'owner': u'john'}, 'headers': {'X-Request-Id': 'eba9ea2d-eda3-4388-b404-c1034de2c7ad', 'Accept-Encoding': 'identity', 'X-Forwarded-For': '10.27.248.232', 'Content-Length': '771', 'User-Agent': 'Splunk/2D6D92F7-0525-41CB-909C-FA732D025C1A', 'Host': 'emsa066d,emsa066d', 'X-Real-Ip': '10.27.248.232', 'Content-Type': 'application/json'}}},_trigger={'uid': u'trigger:core:74017ce9-b665-4356-b8ca-bdf225786950:feec5050a7553f359ba5ff7624f093c8', 'parameters': {u'url': u'splunk_test'}, 'ref': u'core.74017ce9-b665-4356-b8ca-bdf225786950', 'ref_count': 2, 'name': u'74017ce9-b665-4356-b8ca-bdf225786950', 'pack': u'core', 'type': u'core.st2.webhook', 'id': '5aa15c4977848358ca3b36d5', 'description': None},_rule={'description': u'Sample rule dumping webhook payload to a file.', 'tags': [], 'ref': u'examples.sample_rule_with_webhook', 'enabled': True, 'name': u'sample_rule_with_webhook', 'trigger': u'core.74017ce9-b665-4356-b8ca-bdf225786950', 'criteria': {u'trigger.body.name': {u'pattern': u'Start*', u'type': u'matchwildcard'}}, 'action': 'ActionExecutionSpecDB@139936985493200(ref="core.local", parameters="{u\'cmd\': u\'echo "{{trigger.body}}" &gt;&gt; ~/st2.webhook_sample.out ; sync\'}")', 'pack': u'examples', 'type': 'RuleTypeSpecDB@139936985492432(ref="standard", parameters="{}")', 'id': '5aa69cc6778483237724956f', 'uid': u'rule:examples:sample_rule_with_webhook'})
+2018-03-12 13:18:02,802 139936980993840 INFO matcher [-] 0 rule(s) found to enforce for 74017ce9-b665-4356-b8ca-bdf225786950.
+2018-03-12 13:18:02,803 139936980993840 INFO engine [-] Matched 0 rule(s) for trigger_instance 5aa6b64a77848324c2e67019 (trigger=core.74017ce9-b665-4356-b8ca-bdf225786950)
+2018-03-12 13:18:02,803 139936980993840 INFO engine [-] No matching rules found for trigger instance 5aa6b64a77848324c2e67019.
+</code></pre>
+        </div>
+
+        <meta itemprop='headline' content='Error in Rule, action piece is not being performed'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/nmaludy'><span itemprop='name'>nmaludy</span></a>
+            (Nick Maludy)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="56.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2018-03-12T19:14:28Z' class='post-time'>
+                March 12, 2018,  7:14pm
+              </time>
+              <meta itemprop='dateModified' content='2018-03-12T19:14:28Z'>
+          <span itemprop='position'>#4</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p><a class="mention" href="https://github.com/john_p">@John_P</a> looks like you changed the
+                <code>name:</code> parameter in the file. This is what’s used as a reference in the database. The
+                filename is not used, except for reading the spec from disk.</p>
+            <p>You need to remove the old rule: <code>st2 rule delete examples.sample_rule_with_webhook</code></p>
+        </div>
+
+        <meta itemprop='headline' content='Error in Rule, action piece is not being performed'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+            <span class='post-likes'>1 Like</span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/John_P'><span itemprop='name'>John_P</span></a>
+            (John)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="56.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2018-03-12T22:25:05Z' class='post-time'>
+                March 12, 2018, 10:25pm
+              </time>
+              <meta itemprop='dateModified' content='2018-03-14T05:06:27Z'>
+          <span itemprop='position'>#5</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p><a class="mention" href="https://github.com/nmaludy">@nmaludy</a> thanks for the reply again.
+            </p>
+            <p>I started with a new rule name and deleted the one you suggested.</p>
+            <pre><code class="lang-auto">---
+name: "splunk_test2"
+pack: "examples"
+description: "Sample rule dumping webhook payload to a file."
+enabled: true
+
+trigger:
+    type: "core.st2.webhook"
+    parameters:
+        url: "splunk_test2"
+
+criteria:
+    trigger.body.name:
+        pattern: "Starting"
+        type: "equals"
+
+action:
+    ref: "core.local"
+    parameters:
+        cmd: "echo \"{{trigger.body}}\" &gt;&gt; ~/st2.webhook_sample.out ; sync"
+</code></pre>
+            <p>This is the output from the log:</p>
+            <pre><code class="lang-auto">2018-03-12 18:16:21,268 139936984933392 INFO engine [-] Found 1 rules defined for trigger core.2070f309-c941-4968-8657-8db00dea2870
+ 'Content-Type': 'application/json'}}},rule={'description': u'Sample rule dumping webhook payload to a file.', 'tags': [], 'ref': u'examples.splunk_test2', 'enabled': True, 'name': u'splunk_test2', 'trigger': u'core.2070f309-c941-4968-8657-8db00dea2870', 'criteria': {u'trigger.body.name': {u'pattern': u'Starting', u'type': u'equals'}}, 'action': 'ActionExecutionSpecDB@139936985668560(ref="core.local", parameters="{u\'cmd\': u\'echo "{{trigger.body}}" &gt;&gt; ~/st2.webhook_sample.out ; sync\'}")', 'pack': u'examples', 'type': 'RuleTypeSpecDB@139936985492432(ref="standard", parameters="{}")', 'id': '5aa6fa837784830ed2eae386', 'uid': u'rule:examples:splunk_test2'},trigger={'uid': u'trigger:core:2070f309-c941-4968-8657-8db00dea2870:9c3c218b0be7aaf956f7d83cca233d7b', 'parameters': {u'url': u'splunk_test2'}, 'ref': u'core.2070f309-c941-4968-8657-8db00dea2870', 'ref_count': 1, 'name': u'2070f309-c941-4968-8657-8db00dea2870', 'pack': u'core', 'type': u'core.st2.webhook', 'id': '5aa6fa837784830ed2eae385', 'description': None})
+2018-03-12 18:16:21,600 139936984933392 INFO matcher [-] 0 rule(s) found to enforce for 2070f309-c941-4968-8657-8db00dea2870.
+2018-03-12 18:16:21,600 139936984933392 INFO engine [-] Matched 0 rule(s) for trigger_instance 5aa6fc3377848324c2e6939f (trigger=core.2070f309-c941-4968-8657-8db00dea2870)
+2018-03-12 18:16:21,600 139936984933392 INFO engine [-] No matching rules found for trigger instance 5aa6fc3377848324c2e6939f.
+</code></pre>
+        </div>
+
+        <meta itemprop='headline' content='Error in Rule, action piece is not being performed'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/nmaludy'><span itemprop='name'>nmaludy</span></a>
+            (Nick Maludy)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="56.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2018-03-12T22:38:23Z' class='post-time'>
+                March 12, 2018, 10:38pm
+              </time>
+              <meta itemprop='dateModified' content='2018-03-12T22:38:23Z'>
+          <span itemprop='position'>#6</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p><a class="mention" href="https://github.com/john_p">@John_P</a> that looks right, I only see
+                INFO messages. Is it working now?</p>
+            <p>You can test pretty easily: <a href="https://docs.stackstorm.com/rules.html#testing-rules">Rules —
+                StackStorm 2.6.0 documentation</a></p>
+        </div>
+
+        <meta itemprop='headline' content='Error in Rule, action piece is not being performed'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/lhill'><span itemprop='name'>lhill</span></a>
+            (Lindsay Hill)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="56.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2018-03-13T01:10:36Z' class='post-time'>
+                March 13, 2018,  1:10am
+              </time>
+              <meta itemprop='dateModified' content='2018-03-13T01:10:36Z'>
+          <span itemprop='position'>#7</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>How are you testing that webhook <a class="mention"
+                                                   href="https://github.com/john_p">@John_P</a>? With <code>curl</code>,
+                or from Splunk? If you’re testing it from Splunk, I don’t think <code>trigger.body.name</code> will
+                match anything. The body that you get posted from Splunk doesn’t contain that field.</p>
+            <p>Looks like this was your earlier payload:</p>
+            <pre><code class="lang-json">‘payload’: {‘body’: {u’results_link’: u’https://abc.123.local:8000/app/search/search?q=|loadjob%20rt_scheduler__john_YWxlcnRfbG9nZXZlbnQ__testing_at_1520860980_24219.409_2D6D92F7-0525-41CB-909C-FA732D025C1A%20|%20head%201%20|%20tail%201&amp;earliest=0&amp;latest=now’, u’app’: u’alert_logevent’, u’search_name’: u’testing’, u’result’: {u’_si’: [u’abc.123.local’, u’os’], u’_confstr’: u’source::/var/log/messages|host::abc00006|syslog’, u’_time’: u’1521198257’, u’host’: u’hlp00006’, u’_sourcetype’: u’syslog’, u’_indextime’: u’1520865490’, u’_raw’: u’Mar 16 07:04:17 hlp00006 systemd[1]: Starting Session 2050 of user root.’, u’_serial’: u’96’}, u’sid’: u’rt_scheduler__john_YWxlcnRfbG9nZXZlbnQ__testing_at_1520860980_24219.409_2D6D92F7-0525-41CB-909C-FA732D025C1A’, u’owner’: u’john’
+</code></pre>
+            <p>My guess is that you’re trying to match that <code>Starting Session</code> part? Doesn’t look like you’ve
+                mapped that to any splunk field, it’s only going to show up as something like <code>trigger.body.result.raw</code>
+            </p>
+            <p>What you could do is just have empty criteria, dump the body out to a text file like you’re doing, then
+                see what is contained in that body.</p>
+        </div>
+
+        <meta itemprop='headline' content='Error in Rule, action piece is not being performed'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/John_P'><span itemprop='name'>John_P</span></a>
+            (John)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="56.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2018-03-15T14:13:26Z' class='post-time'>
+                March 15, 2018,  2:13pm
+              </time>
+              <meta itemprop='dateModified' content='2018-03-16T07:24:09Z'>
+          <span itemprop='position'>#8</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p><a class="mention" href="https://github.com/nmaludy">@nmaludy</a> I got it to work by dumping
+                the body to a file as per <a class="mention" href="https://github.com/lhill">@lhill</a>
+                suggestion (thanks!) However if I try to specify any criteria it reads the rule but then states no rules
+                found. I am trying to grep for “Stopped RabbitMQ broker”</p>
+            <pre><code class="lang-auto">---
+    name: "splunk_test3"
+    pack: "examples"
+    description: "Sample rule dumping webhook payload to a file."
+    enabled: true
+
+    trigger:
+        type: "core.st2.webhook"
+        parameters:
+            url: "splunk_test3"
+    criteria:
+        trigger.result:
+            pattern: "Stopped"
+            type: "contains"
+
+
+    action:
+        ref: "core.local"
+        parameters:
+            cmd: "echo \"{{trigger.body}}\" &gt;&gt; ~/st2.webhook_sample.out ; sync"
+</code></pre>
+            <p>Log…</p>
+            <pre><code class="lang-auto">2018-03-14 20:32:19.180380+00:00', 'trigger': u'core.f7542b9a-9d6a-4ea7-9629-00046a7cce17', 'id': '5aa986d3778483286e43bc27', 'payload': {'body': {u'results_link': u'https://abc.123.local:8000/app/search/@go?sid=scheduler__john__search__RMD5aaf2801911994ffa_at_1521059520_151', u'app': u'search', u'search_name': u'Rabbit Down', u'result': {u'status': u'', u'protocol': u'', u'tag::eventtype': u'', u'user_type': u'', u'date_zone': u'local', u'tag': u'', u'date_minute': u'37', u'change_type': u'', u'index': u'linux_dev_rabbitmq', u'sourcetype': u'LINUX_DEV_RabbitMQ', u'vendor_product': u'', u'eventtype': u'nix-all-logs', u'_bkt': u'linux_dev_rabbitmq~178~3FEF5E72-2370-40BC-8412-AE85B3454768', u'_eventtype_color': u'none', u'splunk_server': u'123.abc.local', u'source': u'/var/log/messages', u'linecount': u'1', u'date_year': u'2018', u'app': u'', u'date_hour': u'15', u'product': u'', u'vendor': u'', u'ids_type': u'', u'date_second': u'40', u'date_wday': u'wednesday', u'object_category': u'', u'punct': u'__::__:___.', u'host': u'EMSCAL016D', u'_sourcetype': u'LINUX_DEV_RabbitMQ', u'_indextime': u'1521056261', u'_kv': u'1', u'splunk_server_group': u'dmc_group_indexer', u'_cd': u'178:16625884', u'_si': [u'abc.123.local', u'linux_dev_rabbitmq'], u'src': u'', u'timestartpos': u'0', u'date_month': u'march', u'enabled': u'', u'_subsecond': u'', u'unix_group': u'default', u'_time': u'1521056260', u'range': u'', u'date_mday': u'14', u'timeendpos': u'16', u'_raw': u'Mar 14 15:37:40 EMSCAL016D systemd: Stopped RabbitMQ broker.', u'unix_category': u'all_hosts', u'_serial': u'0', u'tag::app': u''}, u'sid': u'scheduler__john__search__RMD5aaf2801911994ffa_at_1521059520_151', u'owner': u'john'}, 'headers': {'X-Request-Id': '14b90084-4c96-4a8d-ba0a-e2000f7311a0', 'Accept-Encoding': 'identity', 'X-Forwarded-For': '1.1.1.150', 'Content-Length': '1486', 'User-Agent': 'Splunk/FDDD4C40-0DD9-40BE-9660-82A901EE9441', 'Host': 'emsa066d,emsa066d', 'X-Real-Ip': '1.1.1.150', 'Content-Type': 'application/json'}}},rule={'description': u'Sample rule dumping webhook payload to a file.', 'tags': [], 'ref': u'examples.splunk_test3', 'enabled': True, 'name': u'splunk_test3', 'trigger': u'core.f7542b9a-9d6a-4ea7-9629-00046a7cce17', 'criteria': {u'trigger.result': {u'pattern': u'Stopped', u'type': u'regex'}}, 'action': 'ActionExecutionSpecDB@139666330751952(ref="core.local", parameters="{u\'cmd\': u\'touch /abc.txt\', u\'cwd\': u\'/tmp\'}")', 'pack': u'examples', 'type': 'RuleTypeSpecDB@139666330752848(ref="standard", parameters="{}")', 'id': '5aa984eb7784833651eafa40', 'uid': u'rule:examples:splunk_test3'},trigger={'uid': u'trigger:core:f7542b9a-9d6a-4ea7-9629-00046a7cce17:d9fa276bb6d2248cff2712a30c1460ed', 'parameters': {u'url': u'splunk_test3'}, 'ref': u'core.f7542b9a-9d6a-4ea7-9629-00046a7cce17', 'ref_count': 1, 'name': u'f7542b9a-9d6a-4ea7-9629-00046a7cce17', 'pack': u'core', 'type': u'core.st2.webhook', 'id': '5aa984eb7784833651eafa3f', 'description': None})
+2018-03-14 16:32:19,287 139666326579472 ERROR filter [-] There might be a problem with the criteria in rule RuleDB(action=ActionExecutionSpecDB@139666330751952(ref="core.local", parameters="{u'cmd': u'touch /abc.txt', u'cwd': u'/tmp'}"), criteria={u'trigger.result': {u'pattern': u'Stopped', u'type': u'regex'}}, description="Sample rule dumping webhook payload to a file.", enabled=True, id=5aa984eb7784833651eafa40, name="splunk_test3", pack="examples", ref="examples.splunk_test3", tags=[], trigger="core.f7542b9a-9d6a-4ea7-9629-00046a7cce17", type=RuleTypeSpecDB@139666330752848(ref="standard", parameters="{}"), uid="rule:examples:splunk_test3").
+Traceback (most recent call last):
+  File "/opt/stackstorm/st2/lib/python2.7/site-packages/st2reactor/rules/filter.py", line 145, in _check_criterion
+    result = op_func(value=payload_value, criteria_pattern=criteria_pattern)
+  File "/opt/stackstorm/st2/lib/python2.7/site-packages/st2common/operators.py", line 237, in regex
+    return regex.search(value) is not None
+TypeError: expected string or buffer (_trigger_instance={'status': 'processing', 'occurrence_time': '2018-03-14 20:32:19.180380+00:00', 'trigger': u'core.f7542b9a-9d6a-4ea7-9629-00046a7cce17', 'id': '5aa986d3778483286e43bc27', 'payload': {'body': {u'results_link': u'https://abc.123.local:8000/app/search/@go?sid=scheduler__john__search__RMD5aaf2801911994ffa_at_1521059520_151', u'app': u'search', u'search_name': u'Rabbit Down', u'result': {u'status': u'', u'protocol': u'', u'tag::eventtype': u'', u'user_type': u'', u'date_zone': u'local', u'tag': u'', u'date_minute': u'37', u'change_type': u'', u'index': u'linux_dev_rabbitmq', u'sourcetype': u'LINUX_DEV_RabbitMQ', u'vendor_product': u'', u'eventtype': u'nix-all-logs', u'_bkt': u'linux_dev_rabbitmq~178~3FEF5E72-2370-40BC-8412-AE85B3454768', u'_eventtype_color': u'none', u'splunk_server': u'abc.123.local', u'source': u'/var/log/messages', u'linecount': u'1', u'date_year': u'2018', u'app': u'', u'date_hour': u'15', u'product': u'', u'vendor': u'', u'ids_type': u'', u'date_second': u'40', u'date_wday': u'wednesday', u'object_category': u'', u'punct': u'__::__:___.', u'host': u'EMSCAL016D', u'_sourcetype': u'LINUX_DEV_RabbitMQ', u'_indextime': u'1521056261', u'_kv': u'1', u'splunk_server_group': u'dmc_group_indexer', u'_cd': u'178:16625884', u'_si': [u'abc.123.local', u'linux_dev_rabbitmq'], u'src': u'', u'timestartpos': u'0', u'date_month': u'march', u'enabled': u'', u'_subsecond': u'', u'unix_group': u'default', u'_time': u'1521056260', u'range': u'', u'date_mday': u'14', u'timeendpos': u'16', u'_raw': u'Mar 14 15:37:40 EMSCAL016D systemd: Stopped RabbitMQ broker.', u'unix_category': u'all_hosts', u'_serial': u'0', u'tag::app': u''}, u'sid': u'scheduler__john__search__RMD5aaf2801911994ffa_at_1521059520_151', u'owner': u'john'}, 'headers': {'X-Request-Id': '14b90084-4c96-4a8d-ba0a-e2000f7311a0', 'Accept-Encoding': 'identity', 'X-Forwarded-For': '1.1.1.150', 'Content-Length': '1486', 'User-Agent': 'Splunk/FDDD4C40-0DD9-40BE-9660-82A901EE9441', 'Host': 'emsa066d,emsa066d', 'X-Real-Ip': '1.1.1.150', 'Content-Type': 'application/json'}}},_trigger={'uid': u'trigger:core:f7542b9a-9d6a-4ea7-9629-00046a7cce17:d9fa276bb6d2248cff2712a30c1460ed', 'parameters': {u'url': u'splunk_test3'}, 'ref': u'core.f7542b9a-9d6a-4ea7-9629-00046a7cce17', 'ref_count': 1, 'name': u'f7542b9a-9d6a-4ea7-9629-00046a7cce17', 'pack': u'core', 'type': u'core.st2.webhook', 'id': '5aa984eb7784833651eafa3f', 'description': None},_rule={'description': u'Sample rule dumping webhook payload to a file.', 'tags': [], 'ref': u'examples.splunk_test3', 'enabled': True, 'name': u'splunk_test3', 'trigger': u'core.f7542b9a-9d6a-4ea7-9629-00046a7cce17', 'criteria': {u'trigger.result': {u'pattern': u'Stopped', u'type': u'regex'}}, 'action': 'ActionExecutionSpecDB@139666330751952(ref="core.local", parameters="{u\'cmd\': u\'touch /abc.txt\', u\'cwd\': u\'/tmp\'}")', 'pack': u'examples', 'type': 'RuleTypeSpecDB@139666330752848(ref="standard", parameters="{}")', 'id': '5aa984eb7784833651eafa40', 'uid': u'rule:examples:splunk_test3'})
+2018-03-14 16:32:19,304 139666326579472 INFO matcher [-] 0 rule(s) found to enforce for f7542b9a-9d6a-4ea7-9629-00046a7cce17.
+2018-03-14 16:32:19,305 139666326579472 INFO engine [-] Matched 0 rule(s) for trigger_instance 5aa986d3778483286e43bc27 (trigger=core.f7542b9a-9d6a-4ea7-9629-00046a7cce17)
+2018-03-14 16:32:19,305 139666326579472 INFO engine [-] No matching rules found for trigger instance 5aa986d3778483286e43bc27.
+</code></pre>
+        </div>
+
+        <meta itemprop='headline' content='Error in Rule, action piece is not being performed'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/lhill'><span itemprop='name'>lhill</span></a>
+            (Lindsay Hill)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="56.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2018-03-15T18:29:46Z' class='post-time'>
+                March 15, 2018,  6:29pm
+              </time>
+              <meta itemprop='dateModified' content='2018-03-15T18:29:46Z'>
+          <span itemprop='position'>#9</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>When you had no criteria, and dumped the body to file, what did it look like?</p>
+            <p>My guess is that you need to have criteria matching on <code>trigger.result.raw</code>, not just <code>trigger.result</code>.
+            </p>
+        </div>
+
+        <meta itemprop='headline' content='Error in Rule, action piece is not being performed'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/John_P'><span itemprop='name'>John_P</span></a>
+            (John)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="56.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2018-03-15T19:57:10Z' class='post-time'>
+                March 15, 2018,  7:57pm
+              </time>
+              <meta itemprop='dateModified' content='2018-03-15T20:25:17Z'>
+          <span itemprop='position'>#10</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p><a class="mention" href="https://github.com/lhill">@lhill</a> this is what the body looks
+                like:</p>
+            <pre><code class="lang-auto">+-----------------+--------------------------------------------------------------+
+| Property        | Value                                                        |
++-----------------+--------------------------------------------------------------+
+| id              | 5aa981df778483286e43bbdf                                     |
+| trigger         | core.3222deb2-95dd-4e9c-8bb7-8fd5ea83b1bf                    |
+| occurrence_time | 2018-03-14T20:11:11.421000Z                                  |
+| payload         | {                                                            |
+|                 |     "body": {                                                |
+|                 |         "results_link": "https://abc.123.local:80 |
+|                 | 00/app/search/@go?sid=scheduler__abc.123__search__RMD5aaf2801|
+|                 | 911994ffa_at_1521058260_99738",                              |
+|                 |         "app": "search",                                     |
+|                 |         "search_name": "Rabbit Down",                        |
+|                 |         "result": {                                          |
+|                 |             "status": "",                                    |
+|                 |             "protocol": "",                                  |
+|                 |             "tag::eventtype": "",                            |
+|                 |             "user_type": "",                                 |
+|                 |             "date_zone": "local",                            |
+|                 |             "tag": "",                                       |
+|                 |             "date_minute": "37",                             |
+|                 |             "change_type": "",                               |
+|                 |             "index": "linux_dev_rabbitmq",                   |
+|                 |             "sourcetype": "LINUX_DEV_RabbitMQ",              |
+|                 |             "vendor_product": "",                            |
+|                 |             "eventtype": "nix-all-logs",                     |
+|                 |             "_bkt": "linux_dev_rabbitmq~178~3FEF5E72-2370-40 |
+|                 | BC-8412-AE85B3454768",                                       |
+|                 |             "_eventtype_color": "none",                      |
+|                 |             "splunk_server": "abc.123.local",                |
+|                 |             "source": "/var/log/messages",                   |
+|                 |             "linecount": "1",                                |
+|                 |             "date_year": "2018",                             |
+|                 |             "app": "",                                       |
+|                 |             "date_hour": "15",                               |
+|                 |             "product": "",                                   |
+|                 |             "vendor": "",                                    |
+|                 |             "ids_type": "",                                  |
+|                 |             "date_second": "40",                             |
+|                 |             "date_wday": "wednesday",                        |
+|                 |             "object_category": "",                           |
+|                 |             "punct": "__::__:___.",                          |
+|                 |             "host": "ABC016D",                               |
+|                 |             "_sourcetype": "LINUX_DEV_RabbitMQ",             |
+|                 |             "unix_category": "all_hosts",                    |
+|                 |             "_kv": "1",                                      |
+|                 |             "splunk_server_group": "dmc_group_indexer",      |
+|                 |             "_cd": "178:16625884",                           |
+|                 |             "_si": [                                         |
+|                 |                 "abc.123.local",                             |
+|                 |                 "linux_dev_rabbitmq"                         |
+|                 |             ],                                               |
+|                 |             "src": "",                                       |
+|                 |             "timestartpos": "0",                             |
+|                 |             "date_month": "march",                           |
+|                 |             "enabled": "",                                   |
+|                 |             "_subsecond": "",                                |
+|                 |             "unix_group": "default",                         |
+|                 |             "_time": "1521056260",                           |
+|                 |             "range": "",                                     |
+|                 |             "date_mday": "14",                               |
+|                 |             "timeendpos": "16",                              |
+|                 |             "_raw": "Mar 14 15:37:40 ABC016D systemd:        |
+|                 | Stopped RabbitMQ broker.",                                   |
+|                 |             "_indextime": "1521056261",                      |
+|                 |             "_serial": "0",                                  |
+|                 |             "tag::app": ""                                   |
+|                 |         },                                                   |
+|                 |         "sid": "scheduler__abc.123__search__RMD5aaf2801911994|
+|                 | ffa_at_1521058260_99738",                                    |
+|                 |         "owner": "abc.123"                                   |
+|                 |     },                                                       |
+|                 |     "headers": {                                             |
+|                 |         "X-Request-Id": "dcef5321-b022-47be-                 |
+|                 | 9ce8-314af41aaf73",                                          |
+|                 |         "Accept-Encoding": "identity",                       |
+|                 |         "X-Forwarded-For": "10.45.44.150",                   |
+|                 |         "Content-Length": "1490",                            |
+|                 |         "User-Agent":                                        |
+|                 | "Splunk/FDDD4C40-0DD9-40BE-9660-82A901EE9441",               |
+|                 |         "Host": "abc66d,abc66d",                             |
+|                 |         "X-Real-Ip": "1.1.1.150",                            |
+|                 |         "Content-Type": "application/json"                   |
+|                 |     }                                                        |
+|                 | }                                                            |
+| status          | processed                                                    |
++-----------------+--------------------------------------------------------------+
+</code></pre>
+        </div>
+
+        <meta itemprop='headline' content='Error in Rule, action piece is not being performed'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/lhill'><span itemprop='name'>lhill</span></a>
+            (Lindsay Hill)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="56.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2018-03-15T20:27:47Z' class='post-time'>
+                March 15, 2018,  8:27pm
+              </time>
+              <meta itemprop='dateModified' content='2018-03-15T20:27:47Z'>
+          <span itemprop='position'>#11</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>So your criteria was searching on <code>trigger.result</code> - from the above output, I would probably
+                be looking at something like <code>trigger.body.result._raw</code>.</p>
+            <p>(also: this forum supports formatting for code &amp; logs)</p>
+        </div>
+
+        <meta itemprop='headline' content='Error in Rule, action piece is not being performed'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/John_P'><span itemprop='name'>John_P</span></a>
+            (John)
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="56.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2018-03-15T22:16:26Z' class='post-time'>
+                March 15, 2018, 10:16pm
+              </time>
+              <meta itemprop='dateModified' content='2018-03-15T22:16:26Z'>
+          <span itemprop='position'>#12</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p><a class="mention" href="https://github.com/lhill">@lhill</a> that did the trick, thank you
+                very much!!!</p>
+        </div>
+
+        <meta itemprop='headline' content='Error in Rule, action piece is not being performed'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="1"/>
+            <span class='post-likes'>1 Like</span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+
+
+    <!-- :preload-content -->
+    <footer class="noscript-footer-nav">
+        <nav itemscope itemtype='http://schema.org/SiteNavigationElement'>
+            <a href='../../index.html'>Home</a>
+            <a href="../../categories.html">Categories</a>
+            <a href="https://forum.stackstorm.com/guidelines">FAQ/Guidelines</a>
+            <a href="../../tos.html">Terms of Service</a>
+            <a href="../../privacy.html">Privacy Policy</a>
+        </nav>
+    </footer>
+</div>
+
+<footer id='noscript-footer'>
+    <p>Powered by <a href="https://www.discourse.org">Discourse</a>, best viewed with JavaScript enabled</p>
+</footer>
+
+
+<section id='main'>
+</section>
+
+
+</body>
+</html>

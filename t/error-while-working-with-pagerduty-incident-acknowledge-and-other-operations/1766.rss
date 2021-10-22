@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Error while working with Pagerduty incident acknowledge and other operations</title>
+    <link>https://forum.stackstorm.com/t/error-while-working-with-pagerduty-incident-acknowledge-and-other-operations/1766</link>
+    <description>Hi Team, 
+
+While i am using pagerduty plugin in st2 to acknowledge, resolve the incident i am getting an error like below. 
+
+As per what is asked in the plugin, i have provided api key, integration key and a valid Email with which i have user in pagerduty. Still i am not able to administer the triggers in pager duty and getting an above error. Can someone please help me out with this please?
+
+```st2.actions.python.PdAction: DEBUG    Instantiating PdBaseAction()
+st2.actions.python.PdAction: DEBUG    Initializing pypd client
+st2.actions.python.PdAction: DEBUG    Checking if entity is defined: Incident
+st2.actions.python.PdAction: DEBUG    Checking if method is defined: acknowledge
+st2.actions.python.PdAction: DEBUG    Running an entity_id specific method
+st2.actions.python.PdAction: DEBUG    Extracting entity_id from kwargs: PECMUVT
+st2.actions.python.PdAction: DEBUG    running check_required(); inputs: {&#39;entity_id&#39;: &#39;PECMUVT&#39;}
+st2.actions.python.PdAction: DEBUG    running a fetch() on Incident:PECMUVT
+st2.actions.python.PdAction: DEBUG    Running pypd acknowledge on Incident:PECMUVT
+Traceback (most recent call last):
+  File &quot;/opt/stackstorm/st2/lib/python3.6/site-packages/python_runner/python_action_wrapper.py&quot;, line 334, in &lt;module&gt;
+    obj.run()
+  File &quot;/opt/stackstorm/st2/lib/python3.6/site-packages/python_runner/python_action_wrapper.py&quot;, line 193, in run
+    output = action.run(**self._parameters)
+  File &quot;/opt/stackstorm/packs/pagerduty/actions/action.py&quot;, line 112, in run
+    entity=entity, method=method, entity_id=entity_id, **kwargs))
+  File &quot;/opt/stackstorm/packs/pagerduty/actions/lib/base.py&quot;, line 173, in entity_id_method
+    entity_id_method = getattr(source, method)(**kwargs)
+  File &quot;/opt/stackstorm/virtualenvs/pagerduty/lib/python3.6/site-packages/pypd/models/incident.py&quot;, line 64, in acknowledge
+    data=data,)
+  File &quot;/opt/stackstorm/virtualenvs/pagerduty/lib/python3.6/site-packages/pypd/mixins.py&quot;, line 123, in request
+    **kwargs
+  File &quot;/opt/stackstorm/virtualenvs/pagerduty/lib/python3.6/site-packages/pypd/mixins.py&quot;, line 72, in _do_request
+    return self._handle_response(requests_method(*args, **kwargs))
+  File &quot;/opt/stackstorm/virtualenvs/pagerduty/lib/python3.6/site-packages/pypd/mixins.py&quot;, line 48, in _handle_response
+    raise BadRequest(response.status_code, response.text)
+pypd.errors.BadRequest: BadRequest (2010): Access Denied```</description>
+    
+    <lastBuildDate>Thu, 08 Jul 2021 04:41:57 +0000</lastBuildDate>
+    <category>Exchange</category>
+    <atom:link href="https://forum.stackstorm.com/t/error-while-working-with-pagerduty-incident-acknowledge-and-other-operations/1766.rss" rel="self" type="application/rss+xml" />
+      <item>
+        <title>Error while working with Pagerduty incident acknowledge and other operations</title>
+        <dc:creator><![CDATA[prabhanshu]]></dc:creator>
+        <description><![CDATA[
+            <p>This happens to be related to user api key its working now.</p>
+          <p><a href="https://forum.stackstorm.com/t/error-while-working-with-pagerduty-incident-acknowledge-and-other-operations/1766/2">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/error-while-working-with-pagerduty-incident-acknowledge-and-other-operations/1766/2</link>
+        <pubDate>Thu, 08 Jul 2021 04:41:57 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1766-2</guid>
+        <source url="https://forum.stackstorm.com/t/error-while-working-with-pagerduty-incident-acknowledge-and-other-operations/1766.rss">Error while working with Pagerduty incident acknowledge and other operations</source>
+      </item>
+      <item>
+        <title>Error while working with Pagerduty incident acknowledge and other operations</title>
+        <dc:creator><![CDATA[prabhanshu]]></dc:creator>
+        <description><![CDATA[
+            <p>Hi Team,</p>
+<p>While i am using pagerduty plugin in st2 to acknowledge, resolve the incident i am getting an error like below.</p>
+<p>As per what is asked in the plugin, i have provided api key, integration key and a valid Email with which i have user in pagerduty. Still i am not able to administer the triggers in pager duty and getting an above error. Can someone please help me out with this please?</p>
+<pre><code class="lang-auto">st2.actions.python.PdAction: DEBUG    Initializing pypd client
+st2.actions.python.PdAction: DEBUG    Checking if entity is defined: Incident
+st2.actions.python.PdAction: DEBUG    Checking if method is defined: acknowledge
+st2.actions.python.PdAction: DEBUG    Running an entity_id specific method
+st2.actions.python.PdAction: DEBUG    Extracting entity_id from kwargs: PECMUVT
+st2.actions.python.PdAction: DEBUG    running check_required(); inputs: {'entity_id': 'PECMUVT'}
+st2.actions.python.PdAction: DEBUG    running a fetch() on Incident:PECMUVT
+st2.actions.python.PdAction: DEBUG    Running pypd acknowledge on Incident:PECMUVT
+Traceback (most recent call last):
+  File "/opt/stackstorm/st2/lib/python3.6/site-packages/python_runner/python_action_wrapper.py", line 334, in &lt;module&gt;
+    obj.run()
+  File "/opt/stackstorm/st2/lib/python3.6/site-packages/python_runner/python_action_wrapper.py", line 193, in run
+    output = action.run(**self._parameters)
+  File "/opt/stackstorm/packs/pagerduty/actions/action.py", line 112, in run
+    entity=entity, method=method, entity_id=entity_id, **kwargs))
+  File "/opt/stackstorm/packs/pagerduty/actions/lib/base.py", line 173, in entity_id_method
+    entity_id_method = getattr(source, method)(**kwargs)
+  File "/opt/stackstorm/virtualenvs/pagerduty/lib/python3.6/site-packages/pypd/models/incident.py", line 64, in acknowledge
+    data=data,)
+  File "/opt/stackstorm/virtualenvs/pagerduty/lib/python3.6/site-packages/pypd/mixins.py", line 123, in request
+    **kwargs
+  File "/opt/stackstorm/virtualenvs/pagerduty/lib/python3.6/site-packages/pypd/mixins.py", line 72, in _do_request
+    return self._handle_response(requests_method(*args, **kwargs))
+  File "/opt/stackstorm/virtualenvs/pagerduty/lib/python3.6/site-packages/pypd/mixins.py", line 48, in _handle_response
+    raise BadRequest(response.status_code, response.text)
+pypd.errors.BadRequest: BadRequest (2010): Access Denied```</code></pre>
+          <p><a href="https://forum.stackstorm.com/t/error-while-working-with-pagerduty-incident-acknowledge-and-other-operations/1766/1">Read full topic</a></p>
+        ]]></description>
+        <link>https://forum.stackstorm.com/t/error-while-working-with-pagerduty-incident-acknowledge-and-other-operations/1766/1</link>
+        <pubDate>Tue, 06 Jul 2021 09:28:28 +0000</pubDate>
+        <guid isPermaLink="false">forum.stackstorm.com-post-1766-1</guid>
+        <source url="https://forum.stackstorm.com/t/error-while-working-with-pagerduty-incident-acknowledge-and-other-operations/1766.rss">Error while working with Pagerduty incident acknowledge and other operations</source>
+      </item>
+  </channel>
+</rss>

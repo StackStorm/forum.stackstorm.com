@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en" class="desktop-view not-mobile-device text-size-normal anon">
+<head>
+    <meta charset="utf-8">
+    <title>Get result of action in Stackstorm - Workflows - StackStorm Support (ARCHIVED)</title>
+    <meta name="description" content="I am creating a Stackstorm workflow where I want to get the stdout result from one task and compare it in an other task. 
+But I can’t manage to retreive the result value of my action. 
+Sample code: 
+actions/workflow/do_s&amp;hellip;">
+    <meta name="discourse_theme_id" content="2">
+    <meta name="discourse_current_homepage" content="latest">
+    <meta name="generator"
+          content="Discourse 2.8.0.beta6 - https://github.com/discourse/discourse version a1daf9fe53a66e2d2cdf9757ab4812fb9a2b2787">
+    <link rel="icon" type="image/png"
+          href="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/379ced12f8326d58f1b3d2b3ff652f883e141f6a_2_32x32.PNG">
+    <link rel="apple-touch-icon" type="image/png"
+          href="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/optimized/1X/379ced12f8326d58f1b3d2b3ff652f883e141f6a_2_180x180.PNG">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <link rel="canonical" href="1681.html"/>
+    <script type="application/ld+json">{
+        "@context": "http://schema.org",
+        "@type": "WebSite",
+        "url": "https://forum.stackstorm.com",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://forum.stackstorm.com/search?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }
+    </script>
+    <link rel="search" type="application/opensearchdescription+xml" href="../../opensearch.xml"
+          title="StackStorm Support (ARCHIVED) Search">
+
+
+    <link href="/../../stylesheets/color_definitions_base__2_3c5eec1ecf192052ea70b4afdab57a62bccc0604.css?__ws=forum.stackstorm.com"
+          media="all" rel="stylesheet" class="light-scheme"/>
+
+    <link href="/../../stylesheets/desktop_b2f2968742d41481357e0df259b51ce29f72481a.css?__ws=forum.stackstorm.com"
+          media="all" rel="stylesheet" data-target="desktop"/>
+
+
+    <meta name="fragment" content="!">
+
+
+    <link id="manifest-link" rel="manifest" href="../../manifest.webmanifest" crossorigin="use-credentials">
+
+
+    <link rel="alternate" type="application/rss+xml" title="RSS feed of &#39;Get result of action in Stackstorm&#39;"
+          href="1681.rss"/>
+    <meta property="og:site_name" content="StackStorm Support (ARCHIVED)"/>
+    <meta property="og:type" content="website"/>
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:image"
+          content="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/891f00fbdb31fecb5bd9dab30c186d2fed0091ca.jpeg"/>
+    <meta property="og:image"
+          content="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/891f00fbdb31fecb5bd9dab30c186d2fed0091ca.jpeg"/>
+    <meta property="og:url" content="https://forum.stackstorm.com/t/get-result-of-action-in-stackstorm/1681"/>
+    <meta name="twitter:url" content="https://forum.stackstorm.com/t/get-result-of-action-in-stackstorm/1681"/>
+    <meta property="og:title" content="Get result of action in Stackstorm"/>
+    <meta name="twitter:title" content="Get result of action in Stackstorm"/>
+    <meta property="og:description"
+          content="I am creating a Stackstorm workflow where I want to get the stdout result from one task and compare it in an other task.  But I can’t manage to retreive the result value of my action.  Sample code:  actions/workflow/do_stuff.yaml   version: 1.0 description: do_stuff.  input:   - stuff  tasks:   do_stuff:     action: &quot;core.local&quot;     input:       cmd: &quot;/usr/bin/do_stuff &#39;{{ ctx(&#39;stuff&#39;) }}&#39;&quot;       timeout: 600      next:       - publish:         - stdout: &quot;{{ result()[&#39;stdout&#39;] }}&quot;         - stde..."/>
+    <meta name="twitter:description"
+          content="I am creating a Stackstorm workflow where I want to get the stdout result from one task and compare it in an other task.  But I can’t manage to retreive the result value of my action.  Sample code:  actions/workflow/do_stuff.yaml   version: 1.0 description: do_stuff.  input:   - stuff  tasks:   do_stuff:     action: &quot;core.local&quot;     input:       cmd: &quot;/usr/bin/do_stuff &#39;{{ ctx(&#39;stuff&#39;) }}&#39;&quot;       timeout: 600      next:       - publish:         - stdout: &quot;{{ result()[&#39;stdout&#39;] }}&quot;         - stde..."/>
+    <meta property="article:published_time" content="2021-05-07T17:47:58+00:00"/>
+    <meta property="og:ignore_canonical" content="true"/>
+
+
+    <script type="application/ld+json">{
+        "@context": "http://schema.org",
+        "@type": "QAPage",
+        "name": "Get result of action in Stackstorm",
+        "mainEntity": {
+            "@type": "Question",
+            "name": "Get result of action in Stackstorm",
+            "text": "I am creating a Stackstorm workflow where I want to get the stdout result from one task and compare it in an other task.\n\nBut I can’t manage to retreive the result value of my action.\n\nSample code:\n\nactions/workflow/do_stuff.yaml\n\nversion: 1.0\n\ndescription: do_stuff.\n\ninput:\n\n- stuff\n\ntasks:\n\ndo_s&hellip;",
+            "upvoteCount": 0,
+            "answerCount": 1,
+            "dateCreated": "2021-05-07T17:47:58.276Z",
+            "author": {
+                "@type": "Person",
+                "name": ""
+            },
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "I had a small error in my lifecycle.yaml:\n\nif you publish and then do a when, the published variable is innacessible\n\nyou have to do\n\nfirst_task:\n\naction: &quot;stuff_pack.do_stuff&quot;\n\ninput:\n\nstuff: &quot;parameter&quot;\n\nnext:\n\n- when: &quot;{{ succeeded() }}&quot;\n\npublish:\n\n- stuff_resu&hellip;",
+                "upvoteCount": 0,
+                "dateCreated": "2021-05-10T07:33:44.318Z",
+                "url": "https://forum.stackstorm.com/t/get-result-of-action-in-stackstorm/1681/3",
+                "author": {
+                    "@type": "Person",
+                    "name": "lparsy"
+                }
+            }
+        }
+    }
+    </script>
+
+    <meta id="data-discourse-setup" data-cdn="https://sjc6.discourse-cdn.com/standard10"
+          data-base-url="https://forum.stackstorm.com" data-base-uri="" data-environment="production"
+          data-letter-avatar-version="5_8fec8e114563efeaf5265573e510f08e"
+          data-markdown-it-url="https://aws1.discourse-cdn.com/standard10/assets/markdown-it-bundle-31e9a9c535ca1801c26da78b0ff465821751a98f921c5cdc5457d7e5a69e9748.js"
+          data-service-worker-url="service-worker.js" data-default-locale="en"
+          data-asset-version="597e36448c9b51d0fa3b7e43ec1fd6d5" data-disable-custom-css="false"
+          data-highlight-js-path="/highlight-js/forum.stackstorm.com/ac0f4aa001e1343346941766d72e0c1ae330832b.js"
+          data-svg-sprite-path="/svg-sprite/forum.stackstorm.com/svg-2-c2ad434b1e06079c7e282124aed9938dc95b83ea.js"
+          data-enable-js-error-reporting="true" data-color-scheme-is-dark="false" data-user-dark-scheme-id="-1"
+          data-s3-cdn="https://aws1.discourse-cdn.com/standard10"
+          data-s3-base-url="//discourse-cloud-file-uploads.s3.dualstack.us-west-2.amazonaws.com/standard10">
+
+    <meta name="discourse/config/environment"
+          content="%7B%22modulePrefix%22%3A%22discourse%22%2C%22environment%22%3A%22production%22%2C%22rootURL%22%3A%22%22%2C%22locationType%22%3A%22auto%22%2C%22historySupportMiddleware%22%3Afalse%2C%22EmberENV%22%3A%7B%22FEATURES%22%3A%7B%7D%2C%22EXTEND_PROTOTYPES%22%3A%7B%22Date%22%3Afalse%7D%2C%22_APPLICATION_TEMPLATE_WRAPPER%22%3Afalse%2C%22_DEFAULT_ASYNC_OBSERVERS%22%3Atrue%2C%22_JQUERY_INTEGRATION%22%3Atrue%7D%2C%22APP%22%3A%7B%22name%22%3A%22discourse%22%2C%22version%22%3A%222.8.0.beta6%20a1daf9fe53a66e2d2cdf9757ab4812fb9a2b2787%22%2C%22exportApplicationGlobal%22%3Atrue%7D%7D"/>
+</head>
+
+<body class="">
+
+
+<header class="d-header">
+    <div class="wrap">
+        <div class="contents clearfix">
+            <div class="title">
+                <a href="../../index.html">
+                    <picture>
+                        <img src="https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png"
+                             alt="StackStorm Support (ARCHIVED)" id="site-logo"/>
+                    </picture>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</header>
+
+<div id="main-outlet" class="wrap" role="main">
+    <!-- preload-content: -->
+
+    <!-- EOF START -->
+    <div class="container" id="main-container">
+        <div id="ember11" class="ember-view"></div>
+        <div id="ember12" class="controls ember-view"><!----></div>
+        <div id="ember13" class="ember-view"><!----></div>
+        <div id="ember14" class="ember-view">
+            <div class="row">
+                <div id="global-notice-alert-read-only" class="alert alert-info alert-read-only">
+                    <!----> <span class="text">This site is in read only mode. Please continue to browse, but replying, likes, and other actions are disabled for now.</span>
+
+                    <!---->    </div>
+            </div>
+            <div class="row">
+                <div id="global-notice-alert-global-notice" class="alert alert-info alert-global-notice">
+                    <!----> <span class="text"><h3>⚠️ We've moved!</h3>  <p> Hi there!<br><br> To reduce project dependency on 3rd party paid services the StackStorm TSC has decided to move the Q/A from this forum to <a
+                        href="https://github.com/StackStorm/st2/discussions">Github Discussions</a>. This will make user experience better integrated with the native Github flow, as well as the questions closer to the community where they can provide answers. </p>  <p> Use 🔗 <b><a
+                        href="https://github.com/StackStorm/st2/discussions" class="active">Github Discussions</a></b> to ask your questions. </p></span>
+
+                    <!---->    </div>
+            </div>
+        </div>
+        <div id="ember17" class="hidden create-topics-notice ember-view"><!----></div>
+        <!---->
+    </div>
+    <!-- EOF END -->
+    <div id="topic-title">
+        <h1>
+            <a href="1681.html">Get result of action in Stackstorm</a>
+        </h1>
+
+        <div class="topic-category" itemscope itemtype="http://schema.org/BreadcrumbList">
+          <span itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+            <a href="../../c/workflow-related-issues/15" class="badge-wrapper bullet" itemprop="item">
+              <span class='badge-category-bg' style='background-color: #25AAE2'></span>
+              <span class='badge-category clear-badge'>
+                <span class='category-name' itemprop='name'>Workflows</span>
+              </span>
+            </a>
+            <meta itemprop="position" content="1"/>
+          </span>
+        </div>
+
+        <div class="topic-category">
+            <div class='discourse-tags list-tags'>
+                <a href='../../tag/orquesta' class='discourse-tag' rel="tag">orquesta</a>
+            </div>
+        </div>
+    </div>
+
+
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/lparsy'><span itemprop='name'>lparsy</span></a>
+            
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="1681.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2021-05-07T17:47:58Z' class='post-time'>
+                May 7, 2021,  5:47pm
+              </time>
+              <meta itemprop='dateModified' content='2021-05-07T17:47:58Z'>
+          <span itemprop='position'>#1</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>I am creating a Stackstorm workflow where I want to get the stdout result from one task and compare it in
+                an other task.<br>
+                But I can’t manage to retreive the result value of my action.<br>
+                Sample code:</p>
+            <p><strong>actions/workflow/do_stuff.yaml</strong></p>
+            <pre><code class="lang-auto">
+version: 1.0
+description: do_stuff.
+
+input:
+  - stuff
+
+tasks:
+  do_stuff:
+    action: "core.local"
+    input:
+      cmd: "/usr/bin/do_stuff '{{ ctx('stuff') }}'"
+      timeout: 600
+
+    next:
+      - publish:
+        - stdout: "{{ result()['stdout'] }}"
+        - stderr: "{{ result()['stderr'] }}"
+      - when: &lt;% failed() %&gt;
+        do: fail
+
+
+output:
+  - stdout: "{{ ctx('stdout') }}"
+  - stderr: "{{ ctx('stderr') }}"
+
+</code></pre>
+            <p><strong>actions/do_stuff.yaml</strong></p>
+            <pre><code class="lang-auto">---
+name: do_stuff
+pack: stuff_pack
+description: do some stuff
+runner_type: orquesta
+entry_point: workflows/do_stuff.yaml
+enabled: true
+parameters:
+  stuff:
+    required: true
+    type: "string"
+    description: "the stuff"
+</code></pre>
+            <p><strong>actions/workflow/lifecycle.yaml</strong></p>
+            <pre><code class="lang-auto">version: 1.0
+
+description: The stuff workflow
+
+vars:
+  - stuff_result_stdout: null
+
+tasks:
+
+  first_task:
+    action: "stuff_pack.do_stuff"
+    input:
+      stuff: "parameter"
+
+    next:
+      - publish:
+          - stuff_result_stdout: &lt;% result().stdout %&gt;
+      - when: "{{ succeeded() }}"
+        do:
+          - "second_task"
+
+  second_task:
+      action: core.echo message="msg-{{ ctx().stuff_result_stdout }}-"
+</code></pre>
+            <p>On the Stackstorm web UI, i clearly see the output of my command (<code>/usr/bin/do_stuff</code>)</p>
+            <p>with this line <code>stuff_result_stdout: &lt;% result().stdout %&gt;</code><br>
+                I have the error <code>YaqlEvaluationException: Unable to resolve key 'stdout' in expression '&lt;%result().stdout
+                    %&gt;' from context.</code></p>
+            <p>and when I try to get only <code>result()</code>, and print it, I have <code>None</code>.</p>
+            <p>How do I retreive the output of my action in <code>first_task</code>?</p>
+        </div>
+
+        <meta itemprop='headline' content='Get result of action in Stackstorm'>
+        <meta itemprop='keywords' content='orquesta'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/blag'><span itemprop='name'>blag</span></a>
+            
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="1681.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2021-05-07T18:51:15Z' class='post-time'>
+                May 7, 2021,  6:51pm
+              </time>
+              <meta itemprop='dateModified' content='2021-05-07T18:51:15Z'>
+          <span itemprop='position'>#2</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>You might be looking in the wrong place for your error.</p>
+            <p>What is the <code>result()</code> in the <code>do_stuff</code> task in the <code>do_stuff</code>
+                workflow? What is the value of <code>result()['stdout']</code> from that task?</p>
+        </div>
+
+        <meta itemprop='headline' content='Get result of action in Stackstorm'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+    <div itemscope itemtype='http://schema.org/DiscussionForumPosting' class='topic-body crawler-post'>
+        <div class='crawler-post-meta'>
+            <div itemprop='publisher' itemscope itemtype="http://schema.org/Organization">
+                <meta itemprop='name' content='StackStorm'>
+                <div itemprop='logo' itemscope itemtype="http://schema.org/ImageObject">
+                    <meta itemprop='url'
+                          content='https://aws1.discourse-cdn.com/standard10/uploads/stackstorm/original/1X/843840296d4160717941c20e214d0772ce899ab0.png'>
+                </div>
+            </div>
+            <span class="creator" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <a itemprop="url" href='https://github.com/lparsy'><span itemprop='name'>lparsy</span></a>
+            
+          </span>
+
+            <link itemprop="mainEntityOfPage" href="1681.html">
+
+
+            <span class="crawler-post-infos">
+              <time itemprop='datePublished' datetime='2021-05-10T07:33:44Z' class='post-time'>
+                May 10, 2021,  7:33am
+              </time>
+              <meta itemprop='dateModified' content='2021-05-10T07:33:44Z'>
+          <span itemprop='position'>#3</span>
+          </span>
+        </div>
+        <div class='post' itemprop='articleBody'>
+            <p>I had a small error in my lifecycle.yaml:<br>
+                if you publish and then do a <code>when</code>, the published variable is innacessible</p>
+            <p>you have to do</p>
+            <pre><code class="lang-yaml">first_task:
+    action: "stuff_pack.do_stuff"
+    input:
+      stuff: "parameter"
+
+    next:
+      - when: "{{ succeeded() }}"
+        publish:
+          - stuff_result_stdout: &lt;% result().stdout %&gt;
+        do:
+          - "second_task"
+</code></pre>
+            <p>and then on next task you can get <code>ctx().stuff_result_stdout</code></p>
+            <p>I didn’t found much documentation about this context and when variables are accessible or not, which made
+                me do a lot of trial and error.</p>
+        </div>
+
+        <meta itemprop='headline' content='Get result of action in Stackstorm'>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/LikeAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+            <span class='post-likes'></span>
+        </div>
+
+        <div itemprop="interactionStatistic" itemscope itemtype="http://schema.org/InteractionCounter">
+            <meta itemprop="interactionType" content="http://schema.org/CommentAction"/>
+            <meta itemprop="userInteractionCount" content="0"/>
+        </div>
+
+    </div>
+
+
+    <!-- :preload-content -->
+    <footer class="noscript-footer-nav">
+        <nav itemscope itemtype='http://schema.org/SiteNavigationElement'>
+            <a href='../../index.html'>Home</a>
+            <a href="../../categories.html">Categories</a>
+            <a href="https://forum.stackstorm.com/guidelines">FAQ/Guidelines</a>
+            <a href="../../tos.html">Terms of Service</a>
+            <a href="../../privacy.html">Privacy Policy</a>
+        </nav>
+    </footer>
+</div>
+
+<footer id='noscript-footer'>
+    <p>Powered by <a href="https://www.discourse.org">Discourse</a>, best viewed with JavaScript enabled</p>
+</footer>
+
+
+<section id='main'>
+</section>
+
+
+</body>
+</html>
